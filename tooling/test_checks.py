@@ -452,6 +452,52 @@ finally:
     settle._cards_for, settle.score_cards = old_cards, old_score
     shutil.rmtree(stmp, ignore_errors=True)
 
+print("19. market-favourite baseline")
+check("fractional price parsed", ab_tally.decimal_odds("5/2") == 3.5, ab_tally.decimal_odds("5/2"))
+check("decimal price parsed", ab_tally.decimal_odds("2.60") == 2.60, ab_tally.decimal_odds("2.60"))
+check("evens parsed", ab_tally.decimal_odds("EVS") == 2.0, ab_tally.decimal_odds("EVS"))
+check("blank odds ignored", ab_tally.decimal_odds("") is None, ab_tally.decimal_odds(""))
+check("non-price ignored", ab_tally.decimal_odds("SP") is None, ab_tally.decimal_odds("SP"))
+
+btmp = tempfile.mkdtemp(prefix="baseline-")
+old_root = ab_tally.ROOT
+ab_tally.ROOT = btmp
+try:
+    for sub in (("data", "picks_ab"), ("data", "results"), ("data", "cards", "by_date")):
+        os.makedirs(os.path.join(btmp, *sub))
+    snap = {"date": "2026-11-12", "rows": [
+        {"course": "C", "time": "13:00", "withRating": "Alpha", "withoutRating": "Bravo", "changed": True},
+        {"course": "C", "time": "13:10", "withRating": "Bravo", "withoutRating": "Bravo", "changed": False}]}
+    json.dump(snap, open(os.path.join(btmp, "data", "picks_ab", "2026-11-12.json"), "w"))
+    results = [
+        {"course": "C", "time": "13:00", "winner": "Alpha", "pick": "Bravo", "hit": False},
+        {"course": "C", "time": "13:10", "winner": "Bravo", "pick": "Bravo", "hit": True}]
+    json.dump(results, open(os.path.join(btmp, "data", "results", "2026-11-12.json"), "w"))
+    cards = {"GB": [
+        {"course": "C", "time": "13:00", "runners": [
+            {"horse": "Alpha", "odds": "2/1"}, {"horse": "Bravo", "odds": "5/1"}, {"horse": "Charlie", "odds": "10/1"}]},
+        {"course": "C", "time": "13:10", "runners": [
+            {"horse": "Alpha", "odds": "2/1"}, {"horse": "Bravo", "odds": "5/1"}, {"horse": "Charlie", "odds": "10/1"}]}]}
+    json.dump(cards, open(os.path.join(btmp, "data", "cards", "by_date", "2026-11-12.json"), "w"))
+    t = ab_tally.collect()
+    check("baseline covers races with a pick and a price", t["bench_races"] == 2, t["bench_races"])
+    check("favourite win counted once", t["fav_wins"] == 1, t["fav_wins"])
+    check("our pick win counted once", t["pick_hits"] == 1, t["pick_hits"])
+    check("backing the favourite counted", t["pick_fav"] == 0, t["pick_fav"])
+    html = refresh.ab_block_html(t, "2026-11-12")
+    txt = text_of(html)
+    check("panel shows the benchmark", "Benchmark on the same races" in txt, txt[:160])
+    check("panel names the favourite total", "favourite won 1 of 2" in txt, txt[:220])
+
+    tie = {"GB": [{"course": "C", "time": "13:20", "runners": [
+        {"horse": "Alpha", "odds": "2/1"}, {"horse": "Bravo", "odds": "2/1"}]}]}
+    json.dump(tie, open(os.path.join(btmp, "data", "cards", "by_date", "2026-11-12.json"), "w"))
+    favs = ab_tally.card_favourites("2026-11-12")
+    check("joint favourites are not called a market pick", ("c", "13:20") not in favs, favs)
+finally:
+    ab_tally.ROOT = old_root
+    shutil.rmtree(btmp, ignore_errors=True)
+
 print()
 print("passed %d, failed %d%s" % (
     len(PASSED), len(FAILED), (", skipped %d" % len(SKIPPED)) if SKIPPED else ""))

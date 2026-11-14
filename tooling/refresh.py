@@ -410,6 +410,17 @@ def ab_block_html(t, iso):
                  f'({100*t["without"]/n:.1f}%). The rating changed the pick in '
                  f'{t["changed"]} races (won {t["changed_won"]}, '
                  f'lost {t["changed_lost"]}).</p>')
+        if t.get("bench_races"):
+            b = t["bench_races"]
+            inner += (f'<p class="k">Benchmark on the same races: the market '
+                      f'favourite won <b>{t["fav_wins"]} of {b}</b> '
+                      f'({100*t["fav_wins"]/b:.1f}%), our pick won '
+                      f'<b>{t["pick_hits"]} of {b}</b> '
+                      f'({100*t["pick_hits"]/b:.1f}%); we backed the favourite '
+                      f'in {t["pick_fav"]}.</p>')
+        else:
+            inner += ('<p class="k">Benchmark: no pre-race prices were archived '
+                      'for these races.</p>')
         rows = ''.join(
             f'<tr><td>{esc(d["date"])}</td><td class="num">{d["races"]}</td>'
             f'<td class="num">{d["with"]}</td><td class="num">{d["without"]}</td>'

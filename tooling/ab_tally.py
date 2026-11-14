@@ -31,9 +31,62 @@ def wilson(hits, n, z=1.96):
     return ((c - m) / d * 100, (c + m) / d * 100)
 
 
+def decimal_odds(odds):
+    """A fractional or decimal price as a decimal, or None when unusable."""
+    s = str(odds or "").strip().lower()
+    if not s or s in ("sp", "-", "f"):
+        return None
+    if s in ("evs", "evens"):
+        return 2.0
+    m = re.match(r"^(\d+(?:\.\d+)?)\s*/\s*(\d+(?:\.\d+)?)", s)
+    if m:
+        try:
+            return 1 + float(m.group(1)) / float(m.group(2))
+        except (ValueError, ZeroDivisionError):
+            return None
+    m = re.match(r"^(\d+(?:\.\d+)?)\s*$", s)
+    if m:
+        v = float(m.group(1))
+        return v if v > 1.0 else None
+    return None
+
+
+def card_favourites(date):
+    """Shortest-priced runner in the archived pre-race card, keyed by race."""
+    path = os.path.join(ROOT, "data", "cards", "by_date", f"{date}.json")
+    if not os.path.exists(path):
+        return {}
+    try:
+        data = json.load(open(path, encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+    cards = []
+    if isinstance(data, dict):
+        for reg in ("GB", "IRE"):
+            cards += data.get(reg) or []
+    else:
+        cards = data or []
+    out = {}
+    for c in cards:
+        key = (norm(c.get("course")), str(c.get("time", ""))[:5])
+        priced = []
+        for r in c.get("runners", []):
+            d = decimal_odds(r.get("odds"))
+            if d is not None:
+                priced.append((d, norm(r.get("horse"))))
+        if len(priced) < 2:
+            continue
+        priced.sort()
+        if abs(priced[0][0] - priced[1][0]) < 1e-9:
+            continue  # joint favourites: no single market pick
+        out[key] = priced[0][1]
+    return out
+
+
 def collect():
     out = {"days": [], "pending": [], "races": 0, "with": 0, "without": 0,
            "changed": 0, "changed_won": 0, "changed_lost": 0,
+           "bench_races": 0, "fav_wins": 0, "pick_hits": 0, "pick_fav": 0,
            "ci_with": (0.0, 0.0), "ci_without": (0.0, 0.0),
            "enough": False, "verdict": ""}
     snap_dates, day_dates = set(), set()
@@ -52,14 +105,16 @@ def collect():
         winners = {}
         for r in rows:
             if r.get("winner"):
-                winners.setdefault((norm(r.get("course")), str(r.get("time", ""))[:5]), r["winner"])
+                winners.setdefault((norm(r.get("course")), str(r.get("time", ""))[:5]), r)
+        favs = card_favourites(date)
 
         n = w = wo = ch = cw = cl = 0
         for x in snap.get("rows", []):
             key = (norm(x.get("course")), str(x.get("time", ""))[:5])
-            win = winners.get(key)
-            if not win:
+            row = winners.get(key)
+            if not row:
                 continue
+            win = row.get("winner")
             n += 1
             a = x.get("withRating") == win
             b = x.get("withoutRating") == win
@@ -69,6 +124,13 @@ def collect():
                 ch += 1
                 cw += (a and not b)
                 cl += (b and not a)
+            fav = favs.get(key)
+            pick = row.get("pick")
+            if fav and pick:
+                out["bench_races"] += 1
+                out["fav_wins"] += (fav == norm(win))
+                out["pick_hits"] += (norm(pick) == norm(win))
+                out["pick_fav"] += (norm(pick) == fav)
         if not n:
             continue
         day_dates.add(date)
@@ -123,6 +185,13 @@ def main():
               f"{t['ci_without'][0]:.1f}-{t['ci_without'][1]:.1f}%)")
         print(f"  races where the rating changed the pick: {t['changed']} "
               f"(rating won {t['changed_won']}, lost {t['changed_lost']})")
+        if t["bench_races"]:
+            b = t["bench_races"]
+            print(f"  benchmark:      on the {b} races with a stored pick and a "
+                  f"pre-race price, favourite won {t['fav_wins']} "
+                  f"({100*t['fav_wins']/b:.1f}%), our pick won {t['pick_hits']} "
+                  f"({100*t['pick_hits']/b:.1f}%), we backed the favourite "
+                  f"{t['pick_fav']} times")
     if t["pending"]:
         print(f"  waiting for results: {', '.join(t['pending'])}")
     print()
