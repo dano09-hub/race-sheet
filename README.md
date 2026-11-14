@@ -162,6 +162,10 @@ earlier run captured, while a race already on file is refreshed with the newer
 card. Settlement reads that by-date file, which is how a day is still scored
 from the card the page actually showed.
 
+Settled picks are immutable. When a day's results are scraped again, the
+stored pick, finish and fate are carried over; only races that were never
+settled are scored, and they are scored from the archived card.
+
 Options: `--days=3` widens the UK window. The US scrape only covers the date
 given (today). `--skip-checks` bypasses the fixture gate for an emergency run:
 it prints a `CHECKS SKIPPED` banner and appends a timestamped line to

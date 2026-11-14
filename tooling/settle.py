@@ -117,6 +117,8 @@ def main(date):
 
     filled = 0
     for row in rows:
+        if row.get("pick"):
+            continue
         pick = by_time.get((row["course"], row["time"]))
         if not pick:
             for card, p in by_winner.get(row["course"], []):

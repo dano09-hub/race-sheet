@@ -413,6 +413,45 @@ finally:
     refresh.ROOT = old_root
     shutil.rmtree(atmp, ignore_errors=True)
 
+print("17. settled picks survive a results re-scrape")
+old_rows = [{"course": "Cheltenham", "time": "14:55", "winner": "Thunder Rock",
+             "pick": "Mahons Glory", "hit": False, "pick_finish": "3rd"}]
+new_rows = [{"course": "Cheltenham", "time": "14:55", "winner": "Thunder Rock"},
+            {"course": "Dundalk", "time": "19:00", "winner": "Some Horse"}]
+kept = refresh.carry_picks(old_rows, new_rows)
+check("carry keeps the pre-race pick", new_rows[0].get("pick") == "Mahons Glory", new_rows[0])
+check("carry keeps the finish and fate",
+      new_rows[0].get("pick_finish") == "3rd" and new_rows[0].get("hit") is False, new_rows[0])
+check("a genuinely new race stays unsettled", not new_rows[1].get("pick"), new_rows[1])
+check("carry reports one race kept", kept == 1, kept)
+fallback = [{"course": "Cheltenham", "time": "", "winner": "Thunder Rock"}]
+refresh.carry_picks(old_rows, fallback)
+check("carry falls back to course and winner when the time is missing",
+      fallback[0].get("pick") == "Mahons Glory", fallback[0])
+
+print("18. settle.py never rewrites a stored pick")
+stmp = tempfile.mkdtemp(prefix="settle-")
+old_root = settle.ROOT
+old_cards, old_score = settle._cards_for, settle.score_cards
+settle.ROOT = stmp
+try:
+    os.makedirs(os.path.join(stmp, "data", "results"))
+    rpath = os.path.join(stmp, "data", "results", "2026-11-13.json")
+    json.dump([{"course": "Cheltenham", "time": "14:55", "race": "R", "winner": "Thunder Rock",
+                "pick": "Mahons Glory", "hit": False}], open(rpath, "w"))
+    settle._cards_for = lambda d: [{"course": "Cheltenham", "time": "14:55",
+                                    "runners": [{"horse": "Thunder Rock"}]}]
+    settle.score_cards = lambda cards: [{"course": "Cheltenham", "time": "14:55", "pick": "Thunder Rock"}]
+    with contextlib.redirect_stdout(io.StringIO()):
+        settle.main("2026-11-13")
+    kept_rows = json.load(open(rpath))
+    check("existing pick is untouched", kept_rows[0]["pick"] == "Mahons Glory", kept_rows[0]["pick"])
+    check("existing fate is untouched", kept_rows[0].get("hit") is False, kept_rows[0].get("hit"))
+finally:
+    settle.ROOT = old_root
+    settle._cards_for, settle.score_cards = old_cards, old_score
+    shutil.rmtree(stmp, ignore_errors=True)
+
 print()
 print("passed %d, failed %d%s" % (
     len(PASSED), len(FAILED), (", skipped %d" % len(SKIPPED)) if SKIPPED else ""))

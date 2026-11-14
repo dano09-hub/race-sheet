@@ -93,6 +93,35 @@ def settle_day(iso):
     return filled
 
 
+def carry_picks(old_rows, new_rows):
+    """Keep the original pick when a settled day is scraped again.
+
+    A results refresh must never rewrite history: the pick was made before the
+    race, so if the same race appears in the new scrape its stored pick, finish
+    and fate are carried over. Only genuinely new races are left to settle.
+    """
+    by_time, by_winner = {}, {}
+    for r in old_rows or []:
+        if not r.get("pick"):
+            continue
+        t = (r.get("time") or "").strip()
+        if t:
+            by_time[(r.get("course"), t)] = r
+        by_winner[(r.get("course"), r.get("winner"))] = r
+    kept = 0
+    for r in new_rows:
+        t = (r.get("time") or "").strip()
+        prev = by_time.get((r.get("course"), t)) if t else None
+        prev = prev or by_winner.get((r.get("course"), r.get("winner")))
+        if not prev:
+            continue
+        for k in ("pick", "pick_finish", "hit"):
+            if k in prev:
+                r[k] = prev[k]
+        kept += 1
+    return kept
+
+
 #!/usr/bin/env python3
 """Refresh the page in one command: scrape, rebuild, stage for deploy.
 
@@ -451,10 +480,16 @@ def main():
         yday = (today - dt.timedelta(days=1)).isoformat()
         rows = fetch_results_sl.fetch_day(yday) if fetch_results_sl else []
         if rows:
-            os.makedirs(os.path.join(ROOT, "data", "results"), exist_ok=True)
-            with open(os.path.join(ROOT, "data", "results", f"{yday}.json"), "w", encoding="utf-8") as f:
-                json.dump(rows, f)
-            print(f"  results:     {len(rows)} races for {yday} -> data/results/{yday}.json")
+            old_path = os.path.join(ROOT, "data", "results", f"{yday}.json")
+            old_rows = []
+            if os.path.exists(old_path):
+                try:
+                    with open(old_path, encoding="utf-8") as f:
+                        old_rows = json.load(f)
+                    if isinstance(old_rows, dict):
+                        old_rows = old_rows.get("races", [])
+                except Exception:
+                    old_rows = []
             # second results source: every meeting, merged on course + winner
             try:
                 import fetch_results_ir
@@ -468,9 +503,6 @@ def main():
                                  "race": r.get("race", ""), "winner": r["winner"],
                                  "sp": r.get("sp", ""), "places": r.get("places", [])})
                     have.add((r["course"], r["winner"])); added += 1
-                if added:
-                    with open(os.path.join(ROOT, "data", "results", f"{yday}.json"), "w", encoding="utf-8") as f:
-                        json.dump(rows, f, ensure_ascii=False)
                 print(f"  results ir:  +{added} races from irishracing")
             except Exception as e:
                 print(f"  results ir:  skipped ({e})")
@@ -488,6 +520,13 @@ def main():
             except Exception as e:
                 print(f"  rtv cards:   skipped ({e})")
 
+            kept = carry_picks(old_rows, rows)
+            os.makedirs(os.path.join(ROOT, "data", "results"), exist_ok=True)
+            with open(os.path.join(ROOT, "data", "results", f"{yday}.json"), "w", encoding="utf-8") as f:
+                json.dump(rows, f, ensure_ascii=False)
+            print(f"  results:     {len(rows)} races for {yday} -> data/results/{yday}.json")
+            if kept:
+                print(f"  picks kept:  {kept} settled races kept their original pick")
             settle_day(yday)
 
             # keep the with/without-rating A/B running: snapshot the day, then
