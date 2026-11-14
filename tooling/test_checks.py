@@ -730,6 +730,20 @@ with tempfile.TemporaryDirectory(prefix="factor-docs-test-") as _d:
     check("factor docs: wrong documented total is rejected",
           _total_bad.returncode != 0 and "full total" in _total_out,
           _total_out)
+    _readme.write_text(_readme_text, encoding="utf-8")
+    _index = _root / "index.html"
+    _index_text = _index.read_text(encoding="utf-8")
+    _method_text = _index_text.replace("<dt>Draw (4)</dt>", "<dt>Draw (5)</dt>", 1)
+    if _method_text == _index_text:
+        check("factor docs: Method-tab weight fixture found", False,
+              "Draw (4) not found")
+    _index.write_text(_method_text, encoding="utf-8")
+    _method_bad = subprocess.run([sys.executable, str(_checker)], cwd=_root,
+                                 capture_output=True, text=True)
+    _method_out = _method_bad.stdout + _method_bad.stderr
+    check("factor docs: wrong Method-tab weight is rejected",
+          _method_bad.returncode != 0 and "Method tab weights" in _method_out,
+          _method_out)
 
 print()
 print("passed %d, failed %d%s" % (
