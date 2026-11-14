@@ -1,2 +1,6 @@
 # Only scrape_punters (Australia) needs this; the UK/IRE/US/HK path uses urllib.
 requests>=2.31
+
+# Backtest evaluation only.
+numpy>=1.24
+scipy>=1.10
