@@ -384,6 +384,39 @@ positive-EV each-way selection still loses: 29,078 bets, **−41.7% ROI** at SP
 either. SP is sharper than a real morning price, so this is an upper bound on
 what the odds feature can do, not evidence of an edge.
 
+### True pre-race Betfair prices
+
+Betfair's free daily price files add two real pre-race inputs: `MORNINGWAP`
+(weighted average of bets before 11am GMT) and `PPWAP` (weighted average of all
+bets before the off), plus BSP. They are public CSV files, mirrored on
+[Kaggle](https://www.kaggle.com/datasets/eonsky/betfair-sp). The free mirror
+ends in April 2024, so this test covers 2020–2024 rather than 2025.
+
+```bash
+python3 tooling/backtest_places_betfair.py \
+  --db /path/to/raceform.db --prices /path/to/betfair/win/csvs
+```
+
+The join uses date, normalised horse name and off-time (raceform writes
+12-hour times; the join compares clocks modulo 12 hours). It matched 404,721
+runners across 44,570 races with all three prices; 41,752 races have paid
+places. The untouched test set is 18,312 races from July 2022 to April 2024.
+
+| Model | Top-k capture | Log loss | EV>0 bets | ROI |
+|---|---:|---:|---:|---:|
+| BSP market | 53.1% | — | — | — |
+| Ratings only | 45.0% | 0.5586 | — | — |
+| Morning market | 51.2% | 0.5240 | — | — |
+| Morning market + ratings | **51.3%** | **0.5235** | 57,710 | **−3.4%** |
+| Pre-off market | 52.8% | 0.5134 | — | — |
+| Pre-off market + ratings | **52.9%** | **0.5132** | 49,815 | **−0.8%** |
+
+The pre-off model gets close to break-even on Betfair's pre-off average, but it
+is still negative before commission, and the morning model loses more. Ratings
+add only 0.09 percentage points of top-k capture. Neither is wired into the
+live page. `MORNINGWAP`/`PPWAP` are exchange averages, not a bookmaker price you
+could necessarily take; BSP remains the strongest benchmark.
+
 ## Racing Post ratings (comparison only)
 
 ```bash
