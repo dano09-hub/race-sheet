@@ -16,6 +16,7 @@ import json
 import os
 import re
 import shutil
+import subprocess
 import sys
 import tempfile
 from pathlib import Path
@@ -694,6 +695,31 @@ try:
               _counts["complete_races"] == 2, dict(_counts))
 except Exception as exc:
     check("course/going bias imports and parses", False, exc)
+
+print("26. Factor docs guard")
+with tempfile.TemporaryDirectory(prefix="factor-docs-test-") as _d:
+    _root = Path(_d)
+    (_root / "tooling").mkdir()
+    (_root / "dist" / "public").mkdir(parents=True)
+    shutil.copyfile(ROOT / "index.html", _root / "index.html")
+    shutil.copyfile(ROOT / "README.md", _root / "README.md")
+    shutil.copyfile(ROOT / "dist" / "public" / "index.html",
+                    _root / "dist" / "public" / "index.html")
+    _checker = _root / "tooling" / "check_factor_docs.py"
+    shutil.copyfile(ROOT / "tooling" / "check_factor_docs.py", _checker)
+    _ok = subprocess.run([sys.executable, str(_checker)], cwd=_root,
+                         capture_output=True, text=True)
+    check("factor docs: baseline passes", _ok.returncode == 0,
+          _ok.stdout + _ok.stderr)
+    _readme = _root / "README.md"
+    _readme.write_text(
+        _readme.read_text().replace("Twelve factors", "Eleven factors", 1),
+        encoding="utf-8")
+    _bad = subprocess.run([sys.executable, str(_checker)], cwd=_root,
+                          capture_output=True, text=True)
+    _out = _bad.stdout + _bad.stderr
+    check("factor docs: wrong documented count is rejected",
+          _bad.returncode != 0 and "factor count" in _out, _out)
 
 print()
 print("passed %d, failed %d%s" % (
