@@ -25,6 +25,7 @@ ROOT = TOOLING.parent
 sys.path.insert(0, str(TOOLING))
 
 import ab_tally        # noqa: E402
+import collect_eachway_prices as cep  # noqa: E402
 import eachway         # noqa: E402
 import refresh         # noqa: E402
 import recheck_market  # noqa: E402
@@ -521,6 +522,33 @@ check("place-only EV example is +0.05",
       abs(eachway.place_only_ev(0.35, 9.0, 0.25) - 0.05) < 1e-12,
       eachway.place_only_ev(0.35, 9.0, 0.25))
 check("win-only EV is None", eachway.each_way_ev(0.2, 0.5, 3.0, 0.0) is None)
+
+print("21. each-way price snapshot")
+_snap_cards = [{
+    "region": "GB", "course": "C", "time": "13:00", "race": "Handicap",
+    "day": "2026-01-01",
+    "runners": [{"horse": "H%d" % i, "odds": "8/1"} for i in range(10)],
+}]
+_snap = cep.collect(_snap_cards, "2026-01-01", "test")
+check("collector emits one row per priced runner", len(_snap) == 10, len(_snap))
+check("10-runner handicap uses 3 places at 1/5",
+      _snap and (_snap[0]["places"], _snap[0]["place_fraction"]) == (3, 0.20),
+      _snap[0] if _snap else None)
+check("8/1 with 1/5 terms derives 2.60 place odds",
+      _snap and abs(_snap[0]["place_odds"] - 2.6) < 1e-12,
+      _snap[0]["place_odds"] if _snap else None)
+check("derived price is labelled",
+      _snap and _snap[0]["place_odds_kind"] == "derived_standard_terms",
+      _snap[0] if _snap else None)
+check("foreign cards are ignored",
+      cep.collect([{"region": "US", "runners": [{"horse": "X", "odds": "2"}]}],
+                  "2026-01-01", "test") == [])
+check("win-only cards record no place price",
+      (cep.collect([{"region": "GB", "runners": [
+          {"horse": "X%d" % i, "odds": "2"} for i in range(4)]}],
+          "2026-01-01", "test") or [{}])[0].get("place_odds") is None)
+check("fractional and EVS odds parse",
+      cep.parse_decimal("8/1") == 9.0 and cep.parse_decimal("EVS") == 2.0)
 
 print()
 print("passed %d, failed %d%s" % (

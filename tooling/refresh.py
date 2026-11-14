@@ -567,6 +567,13 @@ def main():
     au = au_day()
     print(f"  AU card:     {len(au)} races")
     archive(iso, {"GB": uk_today, "GB_tomorrow": uk_tomorrow, "US": us, "HK": hk, "AU": au})
+    try:
+        import collect_eachway_prices
+        n = collect_eachway_prices.collect_file(
+            os.path.join(ROOT, "data", "cards", f"{iso}.json"), iso)
+        print(f"  each-way:    {n} new price snapshots")
+    except Exception as e:
+        print(f"  each-way:    snapshot skipped ({e})")
 
     html = open(INDEX, encoding="utf-8").read()
     for name, cards, comment in (

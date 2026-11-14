@@ -417,6 +417,46 @@ add only 0.09 percentage points of top-k capture. Neither is wired into the
 live page. `MORNINGWAP`/`PPWAP` are exchange averages, not a bookmaker price you
 could necessarily take; BSP remains the strongest benchmark.
 
+### Forward each-way price snapshots
+
+The sheet archives current card win prices, not a separate place market.
+`tooling/collect_eachway_prices.py` turns each priced runner into an append-only
+snapshot using the race's standard place terms:
+
+```bash
+python3 tooling/collect_eachway_prices.py --date 2026-11-14
+```
+
+Each JSONL row records the win price, field size, handicap flag, places,
+place fraction, derived place decimal and `place_odds_kind`. The current cards
+produce `derived_standard_terms`; if a card supplies `place_odds`, that value is
+used and labelled `bookmaker_quoted`. The first snapshot (14 November 2026,
+246 cards, 608 priced runners) is in `data/eachway_prices.jsonl`.
+
+`refresh.py` calls the collector after archiving each run, so the scheduled
+refresh builds the forward history automatically. It does not change any pick
+or model weight. This is a **derived** place price from the win price and
+standard terms, not a separately quoted place market; enhanced place terms are
+not captured.
+
+### Extending the Betfair test
+
+Betfair's public directory has files after April 2024, but `promo.betfair.com`
+returns HTTP 403 from this cloud network (US egress). I did **not** fabricate an
+extension or pad the report with the stale mirror. The downloader is ready for
+an unblocked UK/IE host:
+
+```bash
+python3 tooling/fetch_betfair_prices.py \
+  --from 2024-05-01 --to 2026-11-30 --out /tmp/betfair_win
+python3 tooling/backtest_places_betfair.py \
+  --db /path/to/raceform.db --prices /tmp/betfair_win
+```
+
+The second command rebuilds `data/place_model_betfair.json` with the new dates.
+Until it is run from a host Betfair serves, the published report remains the
+2020–April 2024 test.
+
 ## Racing Post ratings (comparison only)
 
 ```bash
