@@ -1,0 +1,328 @@
+{
+  "generated": "2026-11-14T09:47:26+00:00",
+  "source": "raceform.db (free Kaggle UK/Ireland archive)",
+  "odds_proxy": "starting price (SP), race-normalised; not a decision-time price",
+  "date_range": [
+    "2016-01-01",
+    "2025-12-31"
+  ],
+  "target": "finished in the paid places under standard GB/IRE each-way terms",
+  "splits": {
+    "train": {
+      "races": 71592,
+      "runners": 705584
+    },
+    "calibration": {
+      "races": 16159,
+      "runners": 156318
+    },
+    "test": {
+      "races": 17576,
+      "runners": 171331
+    }
+  },
+  "models": {
+    "market_only": {
+      "features": [
+        "market_prob",
+        "market_logit",
+        "field_size",
+        "handicap",
+        "place_places"
+      ],
+      "coefficients": {
+        "market_prob": 0.7838875171463343,
+        "market_logit": 0.2786462583632875,
+        "field_size": -0.09151843364470016,
+        "handicap": -0.09376953677998967,
+        "place_places": 0.24398518381675935
+      },
+      "standardisation": {
+        "mean": {
+          "market_prob": 0.1014648858250754,
+          "market_logit": -2.644863561094344,
+          "field_size": 11.113488968003809,
+          "handicap": 0.6322252205265425,
+          "place_places": 2.896052064672668
+        },
+        "std": {
+          "market_prob": 0.0989695209024614,
+          "market_logit": 1.1601671499075976,
+          "field_size": 3.932534381886271,
+          "handicap": 0.48219963817562866,
+          "place_places": 0.49404897874403625
+        }
+      },
+      "temperature": 1.0000000000000004,
+      "calibration_log_loss": 0.5044205034685717
+    },
+    "ratings_only": {
+      "features": [
+        "or_rating_score",
+        "prev_rpr_score",
+        "prev_ts_score",
+        "prev_pos_score",
+        "prev_pos2_score",
+        "days_since_score",
+        "weight_lb_score",
+        "draw_score",
+        "course_win_before_score",
+        "distance_win_before_score",
+        "or_rating_missing",
+        "prev_rpr_missing",
+        "prev_ts_missing",
+        "prev_pos_missing",
+        "prev_pos2_missing",
+        "days_since_missing",
+        "weight_lb_missing",
+        "draw_missing",
+        "course_win_before_missing",
+        "distance_win_before_missing",
+        "field_size",
+        "handicap",
+        "place_places"
+      ],
+      "coefficients": {
+        "or_rating_score": 0.011525994753723548,
+        "prev_rpr_score": 0.2530858094476092,
+        "prev_ts_score": 0.1095150799575826,
+        "prev_pos_score": 0.16873026444757844,
+        "prev_pos2_score": 0.13343039534623746,
+        "days_since_score": 0.0384691078794332,
+        "weight_lb_score": -0.06818100861192153,
+        "draw_score": 0.04065459544091284,
+        "course_win_before_score": 0.04053272874978969,
+        "distance_win_before_score": 0.0009633367814191196,
+        "or_rating_missing": -0.059713018579734226,
+        "prev_rpr_missing": 0.05798237250894471,
+        "prev_ts_missing": -0.08188521332656593,
+        "prev_pos_missing": -0.026108335087271742,
+        "prev_pos2_missing": 0.0979183135509993,
+        "days_since_missing": 0.21721488617410772,
+        "weight_lb_missing": 0.0,
+        "draw_missing": 0.05165092540570064,
+        "course_win_before_missing": 0.0,
+        "distance_win_before_missing": 0.0,
+        "field_size": -0.3394861107279398,
+        "handicap": -0.10595821853683124,
+        "place_places": 0.13635380295746666
+      },
+      "standardisation": {
+        "mean": {
+          "or_rating_score": 38.3842258725673,
+          "prev_rpr_score": 52.138155236317985,
+          "prev_ts_score": 43.83251085683358,
+          "prev_pos_score": 49.42086426057354,
+          "prev_pos2_score": 44.9848832632853,
+          "days_since_score": 62.96418933192325,
+          "weight_lb_score": 43.38459028368042,
+          "draw_score": 29.994726145914456,
+          "course_win_before_score": 12.064049071407515,
+          "distance_win_before_score": 20.91331436086986,
+          "or_rating_missing": 0.26687821719313365,
+          "prev_rpr_missing": 0.10694261774643415,
+          "prev_ts_missing": 0.1374251683711649,
+          "prev_pos_missing": 0.1448643960180503,
+          "prev_pos2_missing": 0.22615025284020046,
+          "days_since_missing": 0.09823918909725844,
+          "weight_lb_missing": 0.0,
+          "draw_missing": 0.4015623937050727,
+          "course_win_before_missing": 0.0,
+          "distance_win_before_missing": 0.0,
+          "field_size": 11.113488968003809,
+          "handicap": 0.6322252205265425,
+          "place_places": 2.896052064672668
+        },
+        "std": {
+          "or_rating_score": 37.81337091541502,
+          "prev_rpr_score": 36.04616881904542,
+          "prev_ts_score": 35.815096150490604,
+          "prev_pos_score": 37.759947909634235,
+          "prev_pos2_score": 39.12044602791752,
+          "days_since_score": 38.87784453561919,
+          "weight_lb_score": 35.37739848529663,
+          "draw_score": 34.94688188118661,
+          "course_win_before_score": 32.57090154023101,
+          "distance_win_before_score": 40.66896505359364,
+          "or_rating_missing": 0.44232819758743425,
+          "prev_rpr_missing": 0.309040279342312,
+          "prev_ts_missing": 0.3442956454405456,
+          "prev_pos_missing": 0.3519640646207732,
+          "prev_pos2_missing": 0.41833756223953145,
+          "days_since_missing": 0.29763778460197476,
+          "weight_lb_missing": 1.0,
+          "draw_missing": 0.4902142772981269,
+          "course_win_before_missing": 1.0,
+          "distance_win_before_missing": 1.0,
+          "field_size": 3.932534381886271,
+          "handicap": 0.48219963817562866,
+          "place_places": 0.49404897874403625
+        }
+      },
+      "temperature": 0.7500000000000002,
+      "calibration_log_loss": 0.551876893508931
+    },
+    "market_ratings": {
+      "features": [
+        "or_rating_score",
+        "prev_rpr_score",
+        "prev_ts_score",
+        "prev_pos_score",
+        "prev_pos2_score",
+        "days_since_score",
+        "weight_lb_score",
+        "draw_score",
+        "course_win_before_score",
+        "distance_win_before_score",
+        "or_rating_missing",
+        "prev_rpr_missing",
+        "prev_ts_missing",
+        "prev_pos_missing",
+        "prev_pos2_missing",
+        "days_since_missing",
+        "weight_lb_missing",
+        "draw_missing",
+        "course_win_before_missing",
+        "distance_win_before_missing",
+        "field_size",
+        "handicap",
+        "place_places",
+        "market_prob",
+        "market_logit"
+      ],
+      "coefficients": {
+        "or_rating_score": -0.04797709581697492,
+        "prev_rpr_score": 0.045082204536545496,
+        "prev_ts_score": 0.004960564412358568,
+        "prev_pos_score": -0.022929661595567533,
+        "prev_pos2_score": -0.0006135764167766417,
+        "days_since_score": 0.014410978587546064,
+        "weight_lb_score": -0.0070780704725321355,
+        "draw_score": -0.0060925208564024174,
+        "course_win_before_score": 0.002859339658425434,
+        "distance_win_before_score": -0.002257090829124479,
+        "or_rating_missing": -0.01578791096790159,
+        "prev_rpr_missing": 0.01899355420924055,
+        "prev_ts_missing": -0.017936006431257118,
+        "prev_pos_missing": -0.01864573500089491,
+        "prev_pos2_missing": -0.007004208336319587,
+        "days_since_missing": 0.00486598129661006,
+        "weight_lb_missing": 0.0,
+        "draw_missing": -0.003100821031565829,
+        "course_win_before_missing": 0.0,
+        "distance_win_before_missing": 0.0,
+        "field_size": -0.09786326045111692,
+        "handicap": -0.0970545649455064,
+        "place_places": 0.24392770562344426,
+        "market_prob": 0.7835930868616079,
+        "market_logit": 0.26946071497610585
+      },
+      "standardisation": {
+        "mean": {
+          "or_rating_score": 38.3842258725673,
+          "prev_rpr_score": 52.138155236317985,
+          "prev_ts_score": 43.83251085683358,
+          "prev_pos_score": 49.42086426057354,
+          "prev_pos2_score": 44.9848832632853,
+          "days_since_score": 62.96418933192325,
+          "weight_lb_score": 43.38459028368042,
+          "draw_score": 29.994726145914456,
+          "course_win_before_score": 12.064049071407515,
+          "distance_win_before_score": 20.91331436086986,
+          "or_rating_missing": 0.26687821719313365,
+          "prev_rpr_missing": 0.10694261774643415,
+          "prev_ts_missing": 0.1374251683711649,
+          "prev_pos_missing": 0.1448643960180503,
+          "prev_pos2_missing": 0.22615025284020046,
+          "days_since_missing": 0.09823918909725844,
+          "weight_lb_missing": 0.0,
+          "draw_missing": 0.4015623937050727,
+          "course_win_before_missing": 0.0,
+          "distance_win_before_missing": 0.0,
+          "field_size": 11.113488968003809,
+          "handicap": 0.6322252205265425,
+          "place_places": 2.896052064672668,
+          "market_prob": 0.1014648858250754,
+          "market_logit": -2.644863561094344
+        },
+        "std": {
+          "or_rating_score": 37.81337091541502,
+          "prev_rpr_score": 36.04616881904542,
+          "prev_ts_score": 35.815096150490604,
+          "prev_pos_score": 37.759947909634235,
+          "prev_pos2_score": 39.12044602791752,
+          "days_since_score": 38.87784453561919,
+          "weight_lb_score": 35.37739848529663,
+          "draw_score": 34.94688188118661,
+          "course_win_before_score": 32.57090154023101,
+          "distance_win_before_score": 40.66896505359364,
+          "or_rating_missing": 0.44232819758743425,
+          "prev_rpr_missing": 0.309040279342312,
+          "prev_ts_missing": 0.3442956454405456,
+          "prev_pos_missing": 0.3519640646207732,
+          "prev_pos2_missing": 0.41833756223953145,
+          "days_since_missing": 0.29763778460197476,
+          "weight_lb_missing": 1.0,
+          "draw_missing": 0.4902142772981269,
+          "course_win_before_missing": 1.0,
+          "distance_win_before_missing": 1.0,
+          "field_size": 3.932534381886271,
+          "handicap": 0.48219963817562866,
+          "place_places": 0.49404897874403625,
+          "market_prob": 0.0989695209024614,
+          "market_logit": 1.1601671499075976
+        }
+      },
+      "temperature": 1.0000000000000004,
+      "calibration_log_loss": 0.5042472997185191
+    }
+  },
+  "test": {
+    "races": 17576,
+    "placed_runners": 48426,
+    "market_topk_capture_pct": 53.07892454466609,
+    "market_topk_races": 17576,
+    "models": {
+      "market_only": {
+        "log_loss": 0.5026449945686423,
+        "brier": 0.16590249283478142,
+        "ece": 0.03423461941899924,
+        "topk_capture_pct": 53.07892454466609,
+        "topk_races": 17576,
+        "temperature": 1.0000000000000004
+      },
+      "ratings_only": {
+        "log_loss": 0.5508764875402677,
+        "brier": 0.18478253937625827,
+        "ece": 0.004843400355952434,
+        "topk_capture_pct": 44.32949242142651,
+        "topk_races": 17576,
+        "temperature": 0.7500000000000002
+      },
+      "market_ratings": {
+        "log_loss": 0.5023660317729238,
+        "brier": 0.16580235790021908,
+        "ece": 0.03416486307669708,
+        "topk_capture_pct": 53.122289679098,
+        "topk_races": 17576,
+        "temperature": 1.0000000000000004
+      }
+    },
+    "each_way": {
+      "market_only": {
+        "positive_ev_bets": 29002,
+        "stake_units": 58004.0,
+        "profit_units": -24691.070810162022,
+        "roi_pct": -42.56787602607065
+      },
+      "market_ratings": {
+        "positive_ev_bets": 29078,
+        "stake_units": 58156.0,
+        "profit_units": -24267.719143772872,
+        "roi_pct": -41.728659370955484
+      }
+    },
+    "market_topk_is_sp_rank": true
+  },
+  "caveat": "SP is post-time and sharper than a current card price. The test shows whether ratings add anything to the market's place ranking; it is not a claim of a live pre-race edge. Terms are standard GB/IRE terms, not enhanced bookmaker offers."
+}

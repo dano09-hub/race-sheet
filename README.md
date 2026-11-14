@@ -360,6 +360,30 @@ calculator is available from the command line:
 python3 tooling/eachway.py --odds 8/1 --p-win 0.12 --p-place 0.35 --field 10 --handicap
 ```
 
+### Market-aware place model
+
+The free archive has only the starting price, not the current card price, so the
+market-aware test uses race-normalised SP as the odds proxy. It fits three
+direct top-k models on exactly the same priced races:
+
+```bash
+python3 tooling/backtest_places_market.py --db /path/to/raceform.db
+```
+
+| Model | Top-k capture | Log loss | Brier | ECE |
+|---|---:|---:|---:|---:|
+| SP top-k baseline | 53.1% | — | — | — |
+| Market only | 53.1% | 0.5026 | 0.1659 | 0.0342 |
+| Ratings only | 44.3% | 0.5509 | 0.1848 | 0.0048 |
+| Market + ratings | **53.1%** | **0.5024** | **0.1658** | 0.0342 |
+
+The ratings improve test log loss by only 0.0002 and top-k capture by 0.04
+percentage points (53.08% to 53.12%) — effectively no ranking gain. The
+positive-EV each-way selection still loses: 29,078 bets, **−41.7% ROI** at SP
+(market-only: −42.6%). The market-aware model therefore does **not** ship
+either. SP is sharper than a real morning price, so this is an upper bound on
+what the odds feature can do, not evidence of an edge.
+
 ## Racing Post ratings (comparison only)
 
 ```bash
