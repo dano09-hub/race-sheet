@@ -705,6 +705,11 @@ with tempfile.TemporaryDirectory(prefix="factor-docs-test-") as _d:
     shutil.copyfile(ROOT / "README.md", _root / "README.md")
     shutil.copyfile(ROOT / "dist" / "public" / "index.html",
                     _root / "dist" / "public" / "index.html")
+    (_root / "ice").mkdir()
+    shutil.copyfile(ROOT / "ice" / "index-all-regions.html",
+                    _root / "ice" / "index-all-regions.html")
+    shutil.copyfile(ROOT / "ice" / "README-all-regions.md",
+                    _root / "ice" / "README-all-regions.md")
     _checker = _root / "tooling" / "check_factor_docs.py"
     shutil.copyfile(ROOT / "tooling" / "check_factor_docs.py", _checker)
     _ok = subprocess.run([sys.executable, str(_checker)], cwd=_root,
@@ -744,6 +749,20 @@ with tempfile.TemporaryDirectory(prefix="factor-docs-test-") as _d:
     check("factor docs: wrong Method-tab weight is rejected",
           _method_bad.returncode != 0 and "Method tab weights" in _method_out,
           _method_out)
+    _index.write_text(_index_text, encoding="utf-8")
+    _archive_readme = _root / "ice" / "README-all-regions.md"
+    _archive_readme_text = _archive_readme.read_text(encoding="utf-8")
+    _archive_readme.write_text(
+        _archive_readme_text.replace("Twelve factors", "Eleven factors", 1),
+        encoding="utf-8")
+    _archive_bad = subprocess.run([sys.executable, str(_checker)], cwd=_root,
+                                  capture_output=True, text=True)
+    _archive_out = _archive_bad.stdout + _archive_bad.stderr
+    check("factor docs: archived count drift is rejected",
+          _archive_bad.returncode != 0
+          and "ice/README-all-regions.md" in _archive_out
+          and "factor count" in _archive_out,
+          _archive_out)
 
 print()
 print("passed %d, failed %d%s" % (

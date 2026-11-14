@@ -223,8 +223,9 @@ python3 tooling/check_factor_docs.py
 
 The second check derives the factor count, full nominal weight and weight
 without Draw from `FACTORS`, then verifies the README, README code block,
-Method tab and served `dist` copy. GitHub Actions runs both checks on pushes to
-`main` and on pull requests.
+Method tab and served `dist` copy. It also checks the archived `ice` README and
+Method tab. GitHub Actions runs both checks on pushes to `main` and on pull
+requests.
 
 Fixture tests for both blocks on the Results tab. For the rating A/B tally: empty
 project, a pending-only day, two days with known hits, all three verdict branches
