@@ -18,8 +18,11 @@ static host, and it works — there is nothing to install.
 
 ## How it scores
 
-Eleven factors, each scored 0–100 within the race, combined with fixed weights.
-Weights live in one place, the `FACTORS` array:
+Twelve factors, each scored 0–100 within the race, combined with fixed weights.
+The eleven GB/IE factors total 100; Draw adds 4 where a card carries it, so the
+full array totals 104. The weights are relative: the scorer divides by the
+active weight, so effective shares still total 100. Weights live in one place,
+the `FACTORS` array:
 
 ```js
 var FACTORS = [
@@ -39,7 +42,8 @@ var FACTORS = [
 ```
 
 Missing or field-constant factors are dropped and the remaining weights
-renormalise, so a race with no odds still scores sensibly. Weights sum to 100.
+renormalise, so a race with no odds still scores sensibly. The full array sums
+to 104 (100 without Draw); that absolute total does not affect the ranking.
 
 ## Changing the ratings
 
@@ -208,11 +212,12 @@ Baselines on this data: the favourite wins **37.6%**, the most-tipped horse
 
 The source keeps only *results* for past dates — past racecards 301 redirect to
 the course page. Official rating, RPR and Topspeed are therefore **not
-recoverable historically**, which means the shipped 11-factor model cannot be
+recoverable historically**, which means the shipped 12-factor model cannot be
 back-tested on this dataset as-is. What can be tested: market, tips, form,
 days since run, course/distance record and jockey/trainer form — six of the
-eleven factors. To get the other three you have to snapshot racecards on the day;
-the scraper is the right place to add that.
+twelve factors. The three pre-race ratings — OR, RPR and Topspeed — plus draw
+and weight are not recoverable; snapshot racecards on the day, and the scraper
+is the right place to add that.
 
 One caveat on `dec`: it is the starting price, i.e. the sharpest version of the
 market. A model trained against it looks better than one betting at a price you

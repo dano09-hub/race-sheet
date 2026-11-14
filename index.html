@@ -626,7 +626,7 @@ Results</h2>
   <details class="notes" open>
     <summary>How the rating is calculated</summary>
     <div class="body">
-      <p>Each factor is scored 0&ndash;100 and averaged with fixed weights. Nothing is user-adjustable, so every horse in every race is treated identically.</p>
+      <p>Each factor is scored 0&ndash;100 and averaged with fixed weights. Nothing is user-adjustable, so every horse in every race is treated identically. The eleven GB/IE factors total 100; Draw adds 4 where a card carries it, so the full array has twelve entries and 104 nominal weight. The scorer divides by the active weight, so these are relative weights and the effective shares always total 100.</p>
       <div class="effbox" id="methodEffective"></div>
       <dl>
         <dt>Market (18)</dt><dd>Implied probability from the price, scaled so the shortest-priced runner scores 100.</dd>
@@ -635,6 +635,7 @@ Results</h2>
         <dt>Timeform (13)</dt><dd>Timeform's rating, normalised across the field &mdash; an independent view of the form it has actually produced. Cards built from Racing TV carry it; Sporting Life cards do not, and the factor drops out.</dd>
         <dt>Official rating (15)</dt><dd>The handicapper's view of ability, normalised across the field.</dd>
         <dt>Course &amp; trip (10)</dt><dd>Whether it has won at the track and over the distance. A record like <code>1/3</code> is used as a rate; Y/N flags score 72/38.</dd>
+        <dt>Draw (4)</dt><dd>Post position; used where the card carries a draw (US/HK), absent on GB/IE cards so the factor drops.</dd>
         <dt>Topspeed (12)</dt><dd>Speed figure, normalised across the field.</dd>
         <dt>Going (4)</dt><dd>Whether the horse acts on today's surface. If nobody in the race is marked, the factor drops out rather than counting as neutral.</dd>
         <dt>Fitness (3)</dt><dd>Days since last run: peak at 15&ndash;35, penalised for long absences and quick reappearances.</dd>

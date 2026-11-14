@@ -18,8 +18,11 @@ static host, and it works — there is nothing to install.
 
 ## How it scores
 
-Eleven factors, each scored 0–100 within the race, combined with fixed weights.
-Weights live in one place, the `FACTORS` array:
+Twelve factors, each scored 0–100 within the race, combined with fixed weights.
+The eleven GB/IE factors total 100; Draw adds 4 where a card carries it, so the
+full array totals 104. The weights are relative: the scorer divides by the
+active weight, so effective shares still total 100. Weights live in one place,
+the `FACTORS` array:
 
 ```js
 var FACTORS = [
@@ -39,7 +42,8 @@ var FACTORS = [
 ```
 
 Missing or field-constant factors are dropped and the remaining weights
-renormalise, so a race with no odds still scores sensibly. Weights sum to 100.
+renormalise, so a race with no odds still scores sensibly. The full array sums
+to 104 (100 without Draw); that absolute total does not affect the ranking.
 
 ## Changing the ratings
 
@@ -279,11 +283,12 @@ Baselines on this data: the favourite wins **37.6%**, the most-tipped horse
 
 The source keeps only *results* for past dates — past racecards 301 redirect to
 the course page. The **pre-race card figures** for OR, RPR and Topspeed are not
-recoverable from our own archive, which is why the shipped 11-factor model cannot
+recoverable from our own archive, which is why the shipped 12-factor model cannot
 be back-tested on `data/dataset.csv.gz` as-is. What can be tested there: market,
 tips, form, days since run, course/distance record and jockey/trainer form — six
-of the eleven factors. To get the other three prospectively, snapshot racecards
-on the day; `refresh.py` already archives what it scores.
+of the twelve factors. The three pre-race ratings — OR, RPR and Topspeed — plus
+draw and weight are not recoverable from this archive. Snapshot racecards on the
+day; `refresh.py` already archives what it scores.
 
 A free Kaggle archive, [Horse Racing results — UK/Ireland 1988–2026](https://www.kaggle.com/datasets/deltaromeo/horse-racing-results-ukireland-2015-2025),
 does include OR, RPR and Topspeed. Its RPR/TS are the figures **earned in that
