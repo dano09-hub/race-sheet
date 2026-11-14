@@ -1,0 +1,122 @@
+{
+ "date": "2026-11-14",
+ "meetings": [
+  "Cheltenham",
+  "Uttoxeter"
+ ],
+ "note": "first pass, market factor absent (no pre-race prices)",
+ "rows": [
+  {
+   "course": "Cheltenham",
+   "time": "12:35",
+   "pick": "Little Ledgend",
+   "score": 79.4,
+   "used": 48,
+   "changed": false
+  },
+  {
+   "course": "Cheltenham",
+   "time": "13:10",
+   "pick": "Charles Darnay",
+   "score": 78.8,
+   "used": 46,
+   "changed": false
+  },
+  {
+   "course": "Cheltenham",
+   "time": "13:45",
+   "pick": "Kabral Du Mathan",
+   "score": 81,
+   "used": 48,
+   "changed": true
+  },
+  {
+   "course": "Cheltenham",
+   "time": "14:20",
+   "pick": "Blueking D'oroux",
+   "score": 81.7,
+   "used": 48,
+   "changed": false
+  },
+  {
+   "course": "Cheltenham",
+   "time": "14:55",
+   "pick": "William Yeats",
+   "score": 74.5,
+   "used": 48,
+   "changed": false
+  },
+  {
+   "course": "Cheltenham",
+   "time": "15:30",
+   "pick": "Daylatedollarshort",
+   "score": 74.3,
+   "used": 48,
+   "changed": false
+  },
+  {
+   "course": "Cheltenham",
+   "time": "16:00",
+   "pick": "Elegantemente",
+   "score": 77.2,
+   "used": 46,
+   "changed": false
+  },
+  {
+   "course": "Uttoxeter",
+   "time": "12:07",
+   "pick": "Spartan Times",
+   "score": 71,
+   "used": 48,
+   "changed": false
+  },
+  {
+   "course": "Uttoxeter",
+   "time": "12:42",
+   "pick": "Spanish Darling",
+   "score": 80.3,
+   "used": 48,
+   "changed": false
+  },
+  {
+   "course": "Uttoxeter",
+   "time": "13:15",
+   "pick": "Boombox",
+   "score": 80,
+   "used": 38,
+   "changed": true
+  },
+  {
+   "course": "Uttoxeter",
+   "time": "13:50",
+   "pick": "Chambers",
+   "score": 63.4,
+   "used": 48,
+   "changed": false
+  },
+  {
+   "course": "Uttoxeter",
+   "time": "14:25",
+   "pick": "Irish Chorus",
+   "score": 80.7,
+   "used": 48,
+   "changed": false
+  },
+  {
+   "course": "Uttoxeter",
+   "time": "15:00",
+   "pick": "Orderoftheday",
+   "score": 76.4,
+   "used": 48,
+   "changed": false
+  },
+  {
+   "course": "Uttoxeter",
+   "time": "15:35",
+   "pick": "Bateleur",
+   "score": 84.1,
+   "used": 36,
+   "changed": false
+  }
+ ]
+}

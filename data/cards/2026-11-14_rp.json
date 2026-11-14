@@ -1,0 +1,6929 @@
+{
+ "date": "2026-11-14",
+ "source": "racingpost.com racecards, via curl_cffi",
+ "fetched_at": "2026-11-13T23:14:13+00:00",
+ "races": [
+  {
+   "course": "Cheltenham",
+   "time": "14:20",
+   "race_id": 930632,
+   "country": "GB",
+   "runners": [
+    {
+     "horse": "Meetmebythesea",
+     "rpr": 159,
+     "ts": 141,
+     "or": 151,
+     "nr": false,
+     "days": "247",
+     "jockey": "Harry Cobden",
+     "trainer": "Ben Pauling"
+    },
+    {
+     "horse": "Blueking d'Oroux",
+     "rpr": 159,
+     "ts": 147,
+     "or": 148,
+     "nr": false,
+     "days": "219",
+     "jockey": "Harry Skelton",
+     "trainer": "Dan Skelton"
+    },
+    {
+     "horse": "Quebecois",
+     "rpr": 159,
+     "ts": 149,
+     "or": 141,
+     "nr": false,
+     "days": "28",
+     "jockey": "Sam Twiston-Davies",
+     "trainer": "Paul Nicholls"
+    },
+    {
+     "horse": "July Flower",
+     "rpr": 159,
+     "ts": 146,
+     "or": 142,
+     "nr": false,
+     "days": "200",
+     "jockey": "Darragh O'Keeffe",
+     "trainer": "Henry De Bromhead"
+    },
+    {
+     "horse": "Zurich",
+     "rpr": 161,
+     "ts": 144,
+     "or": 138,
+     "nr": false,
+     "days": "27",
+     "jockey": "Sean Bowen",
+     "trainer": "Henry De Bromhead"
+    },
+    {
+     "horse": "O'Moore Park",
+     "rpr": 163,
+     "ts": 153,
+     "or": 138,
+     "nr": false,
+     "days": "21",
+     "jockey": "Freddie Keighley",
+     "trainer": "Martin Keighley"
+    },
+    {
+     "horse": "Torneo",
+     "rpr": 155,
+     "ts": 146,
+     "or": 134,
+     "nr": false,
+     "days": "31",
+     "jockey": "Gavin Sheehan",
+     "trainer": "Jamie Snowden"
+    },
+    {
+     "horse": "Release The Beast",
+     "rpr": 156,
+     "ts": 147,
+     "or": 135,
+     "nr": false,
+     "days": "198",
+     "jockey": "Sean Flanagan",
+     "trainer": "Paul Nolan"
+    },
+    {
+     "horse": "Johnnywho",
+     "rpr": 160,
+     "ts": 145,
+     "or": 150,
+     "nr": false,
+     "days": "217",
+     "jockey": "Jonjo O'Neill Jr",
+     "trainer": "Jonjo & A J O'Neill"
+    },
+    {
+     "horse": "Riskintheground",
+     "rpr": 160,
+     "ts": 164,
+     "or": 146,
+     "nr": false,
+     "days": "14",
+     "jockey": "Harry Atkins",
+     "trainer": "Dan Skelton"
+    },
+    {
+     "horse": "Matata",
+     "rpr": 163,
+     "ts": 151,
+     "or": 155,
+     "nr": false,
+     "days": "210",
+     "jockey": "J J Slevin",
+     "trainer": "Nigel & Willy Twiston-Davies"
+    },
+    {
+     "horse": "Guard Your Dreams",
+     "rpr": 159,
+     "ts": 144,
+     "or": 138,
+     "nr": false,
+     "days": "31",
+     "jockey": "Toby McCain-Mitchell",
+     "trainer": "Nigel & Willy Twiston-Davies"
+    },
+    {
+     "horse": "Dunkerque",
+     "rpr": 157,
+     "ts": 146,
+     "or": 132,
+     "nr": false,
+     "days": "53",
+     "jockey": "Sean Quinlan",
+     "trainer": "Jennie Candlish"
+    },
+    {
+     "horse": "Madara",
+     "rpr": 159,
+     "ts": "-",
+     "or": 152,
+     "nr": true,
+     "days": "13",
+     "jockey": "NON-RUNNER",
+     "trainer": "Dan Skelton"
+    },
+    {
+     "horse": "Norn Iron",
+     "rpr": 155,
+     "ts": "-",
+     "or": 137,
+     "nr": true,
+     "days": "197",
+     "jockey": "NON-RUNNER",
+     "trainer": "Harry Derham"
+    }
+   ]
+  },
+  {
+   "course": "Cheltenham",
+   "time": "13:45",
+   "race_id": 930633,
+   "country": "GB",
+   "runners": [
+    {
+     "horse": "Old Park Star",
+     "rpr": "-",
+     "ts": "-",
+     "or": 155,
+     "nr": false,
+     "days": "249",
+     "jockey": "Nico de Boinville",
+     "trainer": "Nicky Henderson"
+    },
+    {
+     "horse": "Workahead",
+     "rpr": 159,
+     "ts": 142,
+     "or": 148,
+     "nr": false,
+     "days": "159",
+     "jockey": "Darragh O'Keeffe",
+     "trainer": "Henry De Bromhead"
+    },
+    {
+     "horse": "Folie Golith",
+     "rpr": 148,
+     "ts": 98,
+     "or": 137,
+     "nr": false,
+     "days": "29",
+     "jockey": "Sean Bowen",
+     "trainer": "Faye Bramley"
+    },
+    {
+     "horse": "Putapoundinthejar",
+     "rpr": 148,
+     "ts": 86,
+     "or": 139,
+     "nr": false,
+     "days": "45 (34F)",
+     "jockey": "Daniel King",
+     "trainer": "A J Martin"
+    },
+    {
+     "horse": "Newtown Rambler",
+     "rpr": 145,
+     "ts": 138,
+     "or": 137,
+     "nr": false,
+     "days": "21",
+     "jockey": "Oakley Brown",
+     "trainer": "Adrian Paul Keatley"
+    },
+    {
+     "horse": "Passing Diamond",
+     "rpr": 149,
+     "ts": 127,
+     "or": 128,
+     "nr": false,
+     "days": "22",
+     "jockey": "Richie McLernon",
+     "trainer": "Ben Haslam"
+    },
+    {
+     "horse": "Kabral Du Mathan",
+     "rpr": 166,
+     "ts": "-",
+     "or": 156,
+     "nr": true,
+     "days": "30",
+     "jockey": "NON-RUNNER",
+     "trainer": "Dan Skelton"
+    }
+   ]
+  },
+  {
+   "course": "Cheltenham",
+   "time": "13:10",
+   "race_id": 930634,
+   "country": "GB",
+   "runners": [
+    {
+     "horse": "Charles Darnay",
+     "rpr": 121,
+     "ts": 79,
+     "or": "-",
+     "nr": false,
+     "days": "15",
+     "jockey": "Harry Cobden",
+     "trainer": "James Owen"
+    },
+    {
+     "horse": "Atomic City",
+     "rpr": 123,
+     "ts": 114,
+     "or": "-",
+     "nr": false,
+     "days": "34",
+     "jockey": "J J Slevin",
+     "trainer": "Joseph Patrick O'Brien"
+    },
+    {
+     "horse": "Admiral Will Brown",
+     "rpr": 122,
+     "ts": 92,
+     "or": "-",
+     "nr": false,
+     "days": "14",
+     "jockey": "Josh Williamson",
+     "trainer": "Patrick Magee"
+    },
+    {
+     "horse": "Magnetude",
+     "rpr": 109,
+     "ts": 35,
+     "or": "-",
+     "nr": false,
+     "days": "31",
+     "jockey": "Jonathan Burke",
+     "trainer": "James Owen"
+    },
+    {
+     "horse": "Don Dandy",
+     "rpr": 116,
+     "ts": 70,
+     "or": 127,
+     "nr": false,
+     "days": "20",
+     "jockey": "Sean Bowen",
+     "trainer": "Olly Murphy"
+    },
+    {
+     "horse": "Mix Match",
+     "rpr": 116,
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "143",
+     "jockey": "Gavin Sheehan",
+     "trainer": "Jamie Snowden"
+    },
+    {
+     "horse": "Confused",
+     "rpr": 111,
+     "ts": 72,
+     "or": "-",
+     "nr": false,
+     "days": "15",
+     "jockey": "Richie McLernon",
+     "trainer": "Faye Bramley"
+    },
+    {
+     "horse": "Electrical",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "(17F)",
+     "jockey": "Sean Flanagan",
+     "trainer": "Brian Toomey"
+    },
+    {
+     "horse": "Tiny Riot",
+     "rpr": 105,
+     "ts": 98,
+     "or": 105,
+     "nr": false,
+     "days": "125 (115F)",
+     "jockey": "Tristan Durrell",
+     "trainer": "Max Young"
+    }
+   ]
+  },
+  {
+   "course": "Cheltenham",
+   "time": "14:55",
+   "race_id": 930635,
+   "country": "GB",
+   "runners": [
+    {
+     "horse": "Ace Of Spades",
+     "rpr": 136,
+     "ts": 124,
+     "or": 137,
+     "nr": false,
+     "days": "21",
+     "jockey": "Harry Skelton",
+     "trainer": "Dan Skelton"
+    },
+    {
+     "horse": "Gold For Alec",
+     "rpr": 137,
+     "ts": 126,
+     "or": 123,
+     "nr": false,
+     "days": "21",
+     "jockey": "Gavin Sheehan",
+     "trainer": "Tom Symonds"
+    },
+    {
+     "horse": "Horaces Pearl",
+     "rpr": 137,
+     "ts": 130,
+     "or": 132,
+     "nr": false,
+     "days": "357",
+     "jockey": "Tom Broughton",
+     "trainer": "Fergal O'Brien"
+    },
+    {
+     "horse": "Rambo T",
+     "rpr": 141,
+     "ts": 107,
+     "or": 133,
+     "nr": false,
+     "days": "35",
+     "jockey": "Sean Bowen",
+     "trainer": "Olly Murphy"
+    },
+    {
+     "horse": "Geezer Rockstar",
+     "rpr": 137,
+     "ts": 112,
+     "or": 122,
+     "nr": false,
+     "days": "182",
+     "jockey": "Bryan Carver",
+     "trainer": "Harry Fry"
+    },
+    {
+     "horse": "Aimeric",
+     "rpr": 141,
+     "ts": 132,
+     "or": 115,
+     "nr": false,
+     "days": "38",
+     "jockey": "William Shanahan",
+     "trainer": "Jennie Candlish"
+    },
+    {
+     "horse": "Ifiwerearichman",
+     "rpr": 138,
+     "ts": 130,
+     "or": 127,
+     "nr": false,
+     "days": "49",
+     "jockey": "Eoin Staples",
+     "trainer": "Paul Nolan"
+    },
+    {
+     "horse": "William Yeats",
+     "rpr": 138,
+     "ts": 128,
+     "or": 114,
+     "nr": false,
+     "days": "9",
+     "jockey": "Jonathan England",
+     "trainer": "Sam England"
+    },
+    {
+     "horse": "Wonderful Eagle",
+     "rpr": 138,
+     "ts": "-",
+     "or": 128,
+     "nr": false,
+     "days": "624",
+     "jockey": "Tom Bellamy",
+     "trainer": "Philip Hobbs & Johnson White"
+    },
+    {
+     "horse": "Black Bamboo",
+     "rpr": 137,
+     "ts": 93,
+     "or": 118,
+     "nr": false,
+     "days": "13",
+     "jockey": "Michael Kenneally",
+     "trainer": "John Joseph Murphy"
+    },
+    {
+     "horse": "Sir Galahad",
+     "rpr": 140,
+     "ts": 133,
+     "or": 135,
+     "nr": false,
+     "days": "105",
+     "jockey": "Lewis Saunders",
+     "trainer": "Olly Murphy"
+    },
+    {
+     "horse": "Lucky Lyreen",
+     "rpr": "-",
+     "ts": "-",
+     "or": 129,
+     "nr": false,
+     "days": "173",
+     "jockey": "Freddie Keighley",
+     "trainer": "Martin Keighley"
+    },
+    {
+     "horse": "Moon Mission",
+     "rpr": 137,
+     "ts": 117,
+     "or": 115,
+     "nr": false,
+     "days": "1",
+     "jockey": "Alan O'Sullivan",
+     "trainer": "P J Rothwell"
+    },
+    {
+     "horse": "Margaret's Legacy",
+     "rpr": 137,
+     "ts": 112,
+     "or": 126,
+     "nr": false,
+     "days": "198",
+     "jockey": "Richard Upton",
+     "trainer": "Warren Greatrex"
+    },
+    {
+     "horse": "Hartur d'Arc",
+     "rpr": "-",
+     "ts": 62,
+     "or": 120,
+     "nr": false,
+     "days": "222",
+     "jockey": "Conor Smithers",
+     "trainer": "John C McConnell"
+    },
+    {
+     "horse": "Blizzard Of Oz",
+     "rpr": 138,
+     "ts": 89,
+     "or": 127,
+     "nr": false,
+     "days": "21",
+     "jockey": "Richie McLernon",
+     "trainer": "Faye Bramley"
+    }
+   ]
+  },
+  {
+   "course": "Cheltenham",
+   "time": "15:30",
+   "race_id": 930636,
+   "country": "GB",
+   "runners": [
+    {
+     "horse": "Daylatedollarshort",
+     "rpr": 136,
+     "ts": 124,
+     "or": 135,
+     "nr": false,
+     "days": "35",
+     "jockey": "Sean Bowen",
+     "trainer": "Olly Murphy"
+    },
+    {
+     "horse": "Hillberry Hill",
+     "rpr": 138,
+     "ts": 100,
+     "or": 122,
+     "nr": false,
+     "days": "235",
+     "jockey": "Tom Bellamy",
+     "trainer": "Kim Bailey & Mat Nicholls"
+    },
+    {
+     "horse": "Grand Conqueror",
+     "rpr": 136,
+     "ts": 97,
+     "or": 127,
+     "nr": false,
+     "days": "24",
+     "jockey": "Richie McLernon",
+     "trainer": "Neil Mulholland"
+    },
+    {
+     "horse": "Sunny South West",
+     "rpr": 136,
+     "ts": 96,
+     "or": 121,
+     "nr": false,
+     "days": "22",
+     "jockey": "Michael Kenneally",
+     "trainer": "Edward F Power"
+    },
+    {
+     "horse": "Emerald Breeze",
+     "rpr": 135,
+     "ts": 112,
+     "or": 120,
+     "nr": false,
+     "days": "223",
+     "jockey": "Toby McCain-Mitchell",
+     "trainer": "Ryan Hatch"
+    },
+    {
+     "horse": "Seamoon Story",
+     "rpr": 136,
+     "ts": 114,
+     "or": 128,
+     "nr": false,
+     "days": "29",
+     "jockey": "Daire McConville",
+     "trainer": "Charlie Longsdon"
+    },
+    {
+     "horse": "Give Him A Chance",
+     "rpr": 135,
+     "ts": 101,
+     "or": 119,
+     "nr": false,
+     "days": "49",
+     "jockey": "Alan O'Sullivan",
+     "trainer": "P J Rothwell"
+    },
+    {
+     "horse": "Luck Between Us",
+     "rpr": 133,
+     "ts": 99,
+     "or": 125,
+     "nr": false,
+     "days": "1",
+     "jockey": "Darragh O'Keeffe",
+     "trainer": "P J Rothwell"
+    },
+    {
+     "horse": "Open Secret",
+     "rpr": 135,
+     "ts": 125,
+     "or": 132,
+     "nr": false,
+     "days": "223 (47F)",
+     "jockey": "Josh Williamson",
+     "trainer": "Gordon Elliott"
+    },
+    {
+     "horse": "Guchen",
+     "rpr": 135,
+     "ts": 130,
+     "or": 120,
+     "nr": false,
+     "days": "36",
+     "jockey": "Aamilah Aswat",
+     "trainer": "Kim Bailey & Mat Nicholls"
+    },
+    {
+     "horse": "Moneygarrow",
+     "rpr": 134,
+     "ts": "-",
+     "or": 133,
+     "nr": true,
+     "days": "246",
+     "jockey": "NON-RUNNER",
+     "trainer": "Dan Skelton"
+    },
+    {
+     "horse": "A King Of Magic",
+     "rpr": 138,
+     "ts": "-",
+     "or": 129,
+     "nr": true,
+     "days": "205",
+     "jockey": "NON-RUNNER",
+     "trainer": "Paul Nicholls"
+    },
+    {
+     "horse": "Caspari",
+     "rpr": 134,
+     "ts": "-",
+     "or": 124,
+     "nr": true,
+     "days": "236",
+     "jockey": "NON-RUNNER",
+     "trainer": "Harry Fry"
+    }
+   ]
+  },
+  {
+   "course": "Cheltenham",
+   "time": "12:35",
+   "race_id": 930637,
+   "country": "GB",
+   "runners": [
+    {
+     "horse": "Little Ledgend",
+     "rpr": 138,
+     "ts": 126,
+     "or": 125,
+     "nr": false,
+     "days": "22",
+     "jockey": "Mr James King",
+     "trainer": "Olly Murphy"
+    },
+    {
+     "horse": "Herakles Westwood",
+     "rpr": 141,
+     "ts": 133,
+     "or": 135,
+     "nr": false,
+     "days": "210",
+     "jockey": "Miss Gina Andrews",
+     "trainer": "Warren Greatrex"
+    },
+    {
+     "horse": "Our Soldier",
+     "rpr": 135,
+     "ts": 125,
+     "or": 122,
+     "nr": false,
+     "days": "13",
+     "jockey": "Mr D Doyle",
+     "trainer": "Denis Gerard Hogan"
+    },
+    {
+     "horse": "Karnaval Point",
+     "rpr": 142,
+     "ts": 127,
+     "or": 123,
+     "nr": false,
+     "days": "21",
+     "jockey": "Mr Lucas Murphy",
+     "trainer": "David Pipe"
+    },
+    {
+     "horse": "Transmission",
+     "rpr": 142,
+     "ts": 81,
+     "or": 131,
+     "nr": false,
+     "days": "14",
+     "jockey": "Mr J W Hendrick",
+     "trainer": "Neil Mulholland"
+    },
+    {
+     "horse": "Dinoland",
+     "rpr": 134,
+     "ts": 126,
+     "or": 120,
+     "nr": false,
+     "days": "14",
+     "jockey": "Mr O McGill",
+     "trainer": "W R Crawford"
+    },
+    {
+     "horse": "Sound And Fury",
+     "rpr": 141,
+     "ts": 132,
+     "or": 126,
+     "nr": false,
+     "days": "252",
+     "jockey": "Mr Freddie Robson",
+     "trainer": "Ben Pauling"
+    },
+    {
+     "horse": "Ladies Well",
+     "rpr": 137,
+     "ts": 122,
+     "or": 110,
+     "nr": false,
+     "days": "14",
+     "jockey": "Mr A P Ryan",
+     "trainer": "Andrew Slattery"
+    },
+    {
+     "horse": "Brucejack",
+     "rpr": 140,
+     "ts": 126,
+     "or": 118,
+     "nr": false,
+     "days": "14",
+     "jockey": "Mr D J O'Sullivan",
+     "trainer": "P A Fahy"
+    },
+    {
+     "horse": "Awaythelad",
+     "rpr": 141,
+     "ts": 128,
+     "or": 112,
+     "nr": false,
+     "days": "38",
+     "jockey": "Mr Samuel Scott",
+     "trainer": "Ben Pauling"
+    },
+    {
+     "horse": "Top Guy",
+     "rpr": 135,
+     "ts": "-",
+     "or": 114,
+     "nr": true,
+     "days": "18",
+     "jockey": "NON-RUNNER",
+     "trainer": "Dan Skelton"
+    },
+    {
+     "horse": "Jaccours",
+     "rpr": 144,
+     "ts": 84,
+     "or": 112,
+     "nr": true,
+     "days": "31",
+     "jockey": "NON-RUNNER",
+     "trainer": "Robbie Llewellyn"
+    }
+   ]
+  },
+  {
+   "course": "Cheltenham",
+   "time": "16:00",
+   "race_id": 930638,
+   "country": "GB",
+   "runners": [
+    {
+     "horse": "Elegantemente",
+     "rpr": 123,
+     "ts": 90,
+     "or": "-",
+     "nr": false,
+     "days": "82",
+     "jockey": "Darragh O'Keeffe",
+     "trainer": "Henry De Bromhead"
+    },
+    {
+     "horse": "Soleretta",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "(251P)",
+     "jockey": "Harry Skelton",
+     "trainer": "Dan Skelton"
+    },
+    {
+     "horse": "Eastern Whisper",
+     "rpr": 117,
+     "ts": 58,
+     "or": "-",
+     "nr": false,
+     "days": "32",
+     "jockey": "Harry Cobden",
+     "trainer": "S G Carey"
+    },
+    {
+     "horse": "Miss Master",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "(230P)",
+     "jockey": "Sean Bowen",
+     "trainer": "Olly Murphy"
+    },
+    {
+     "horse": "She Was The One",
+     "rpr": 116,
+     "ts": 83,
+     "or": "-",
+     "nr": false,
+     "days": "50",
+     "jockey": "Daniel King",
+     "trainer": "Denis Gerard Hogan"
+    },
+    {
+     "horse": "Gypsy Sky",
+     "rpr": 108,
+     "ts": 71,
+     "or": "-",
+     "nr": false,
+     "days": "40",
+     "jockey": "Richie McLernon",
+     "trainer": "David Killahena & Graeme McPherson"
+    },
+    {
+     "horse": "Orderandout",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "(251P)",
+     "jockey": "Jack Quinlan",
+     "trainer": "Neil King"
+    },
+    {
+     "horse": "Sarah's Sister",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "(42P)",
+     "jockey": "Jonathan Burke",
+     "trainer": "Nick Scholfield"
+    },
+    {
+     "horse": "Pether's Angel",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": null,
+     "jockey": "Tom Bellamy",
+     "trainer": "Kim Bailey & Mat Nicholls"
+    },
+    {
+     "horse": "Kshira Sagara",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": null,
+     "jockey": "Alex Harvey",
+     "trainer": "John C McConnell"
+    },
+    {
+     "horse": "Clovelly Charm",
+     "rpr": 118,
+     "ts": 80,
+     "or": "-",
+     "nr": false,
+     "days": "78",
+     "jockey": "Sean Flanagan",
+     "trainer": "P A Fahy"
+    },
+    {
+     "horse": "Island Jetaway",
+     "rpr": 90,
+     "ts": 82,
+     "or": "-",
+     "nr": false,
+     "days": "183",
+     "jockey": "Gavin Sheehan",
+     "trainer": "Billy Aprahamian"
+    },
+    {
+     "horse": "Miss Spec",
+     "rpr": 97,
+     "ts": 57,
+     "or": "-",
+     "nr": false,
+     "days": "17",
+     "jockey": "Tom Broughton",
+     "trainer": "Fergal O'Brien"
+    },
+    {
+     "horse": "Northern Singer",
+     "rpr": 112,
+     "ts": "-",
+     "or": "-",
+     "nr": true,
+     "days": "35",
+     "jockey": "NON-RUNNER",
+     "trainer": "Dan Skelton"
+    },
+    {
+     "horse": "Queen Alice",
+     "rpr": 115,
+     "ts": "-",
+     "or": "-",
+     "nr": true,
+     "days": "222",
+     "jockey": "NON-RUNNER",
+     "trainer": "Harry Derham"
+    }
+   ]
+  },
+  {
+   "course": "Navan",
+   "time": "11:52",
+   "race_id": 933293,
+   "country": "IRE",
+   "runners": [
+    {
+     "horse": "Charismatic Kid",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "222",
+     "jockey": "Jack Kennedy",
+     "trainer": "Gordon Elliott"
+    },
+    {
+     "horse": "The Irish Avatar",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "199",
+     "jockey": "Paul Townend",
+     "trainer": "W P Mullins"
+    },
+    {
+     "horse": "Outofafrika",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "198",
+     "jockey": "Keith Donoghue",
+     "trainer": "Gavin Cromwell"
+    },
+    {
+     "horse": "Luxor Love",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "(286P)",
+     "jockey": "Mike O'Connor",
+     "trainer": "Henry De Bromhead"
+    },
+    {
+     "horse": "Apples Delight",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": null,
+     "jockey": "Sam Ewing",
+     "trainer": "Gordon Elliott"
+    },
+    {
+     "horse": "Confidence Within",
+     "rpr": 109,
+     "ts": 48,
+     "or": "-",
+     "nr": false,
+     "days": "50",
+     "jockey": "Tiernan Power Roche",
+     "trainer": "P J Rothwell"
+    },
+    {
+     "horse": "Bonnie Gold",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "(190P)",
+     "jockey": "Danny Gilligan",
+     "trainer": "Gordon Elliott"
+    },
+    {
+     "horse": "Tidy Town",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": null,
+     "jockey": "Mark Walsh",
+     "trainer": "Noel Meade"
+    },
+    {
+     "horse": "Modern Day Hero",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "(181P)",
+     "jockey": "Eoghan Finegan",
+     "trainer": "Gordon Elliott"
+    },
+    {
+     "horse": "Churchroad Harry",
+     "rpr": 55,
+     "ts": 19,
+     "or": "-",
+     "nr": false,
+     "days": "43",
+     "jockey": "E Walsh",
+     "trainer": "Cian Collins"
+    },
+    {
+     "horse": "Awayoutback",
+     "rpr": 80,
+     "ts": 16,
+     "or": "-",
+     "nr": false,
+     "days": "11",
+     "jockey": "Ben Harvey",
+     "trainer": "Cian Collins"
+    },
+    {
+     "horse": "Spanish Agent",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": null,
+     "jockey": "James Smith",
+     "trainer": "Gordon Elliott"
+    },
+    {
+     "horse": "Rough And Tough",
+     "rpr": 90,
+     "ts": 63,
+     "or": "-",
+     "nr": false,
+     "days": "6",
+     "jockey": "Kieren Buckley",
+     "trainer": "Michael Mulvany"
+    },
+    {
+     "horse": "War Rooms",
+     "rpr": 88,
+     "ts": 35,
+     "or": "-",
+     "nr": false,
+     "days": "14",
+     "jockey": "Brian Hayes",
+     "trainer": "Gerard Keane"
+    },
+    {
+     "horse": "The Stags",
+     "rpr": 99,
+     "ts": 54,
+     "or": "-",
+     "nr": false,
+     "days": "15",
+     "jockey": "Kevin Healy",
+     "trainer": "Gordon Elliott"
+    },
+    {
+     "horse": "Walkwithmyfriend",
+     "rpr": 86,
+     "ts": 23,
+     "or": "-",
+     "nr": false,
+     "days": "11",
+     "jockey": "Jordan Gainford",
+     "trainer": "James William Kenny"
+    },
+    {
+     "horse": "Crystal Yeats",
+     "rpr": 92,
+     "ts": 17,
+     "or": "-",
+     "nr": false,
+     "days": "208",
+     "jockey": "Erin Dunseath",
+     "trainer": "Noel C Kelly"
+    },
+    {
+     "horse": "Eamon's Dream",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "200",
+     "jockey": "Benjamin P Kennedy",
+     "trainer": "Seamus Fahey"
+    },
+    {
+     "horse": "Jetaway Mountain",
+     "rpr": 80,
+     "ts": 46,
+     "or": "-",
+     "nr": false,
+     "days": "20",
+     "jockey": "Ross Berry",
+     "trainer": "C A Murphy"
+    },
+    {
+     "horse": "Attack Or Defend",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "(202P)",
+     "jockey": "Ricky Doyle",
+     "trainer": "D Broad"
+    },
+    {
+     "horse": "Parisian Dream",
+     "rpr": 86,
+     "ts": 4,
+     "or": "-",
+     "nr": false,
+     "days": "20",
+     "jockey": "Shane Markey",
+     "trainer": "Ross O'Sullivan"
+    },
+    {
+     "horse": "Lady Cosmo",
+     "rpr": 69,
+     "ts": 59,
+     "or": "-",
+     "nr": false,
+     "days": "216",
+     "jockey": "Paddy Cody",
+     "trainer": "R P Cody"
+    }
+   ]
+  },
+  {
+   "course": "Navan",
+   "time": "12:27",
+   "race_id": 933294,
+   "country": "IRE",
+   "runners": [
+    {
+     "horse": "Miners Bridge",
+     "rpr": 121,
+     "ts": 49,
+     "or": 111,
+     "nr": false,
+     "days": "27",
+     "jockey": "Phillip Enright",
+     "trainer": "S Curling"
+    },
+    {
+     "horse": "Mount Shenshan",
+     "rpr": 118,
+     "ts": 87,
+     "or": 92,
+     "nr": false,
+     "days": "23",
+     "jockey": "Brian Hayes",
+     "trainer": "Thomas Mullins"
+    },
+    {
+     "horse": "Mother Ship",
+     "rpr": 119,
+     "ts": 91,
+     "or": 98,
+     "nr": false,
+     "days": "23",
+     "jockey": "Harry Sexton",
+     "trainer": "John Joseph Hanlon"
+    },
+    {
+     "horse": "Beckistine",
+     "rpr": 114,
+     "ts": 109,
+     "or": 113,
+     "nr": false,
+     "days": "27",
+     "jockey": "Mark Walsh",
+     "trainer": "M A Molloy"
+    },
+    {
+     "horse": "Macshadow Des Crai",
+     "rpr": 112,
+     "ts": 106,
+     "or": 109,
+     "nr": false,
+     "days": "108",
+     "jockey": "Jack Kennedy",
+     "trainer": "Ian Patrick Donoghue"
+    },
+    {
+     "horse": "Magic Day",
+     "rpr": 116,
+     "ts": 99,
+     "or": 112,
+     "nr": false,
+     "days": "56",
+     "jockey": "Caragh Monaghan",
+     "trainer": "Ian Patrick Donoghue"
+    },
+    {
+     "horse": "Jacko Star",
+     "rpr": 114,
+     "ts": 107,
+     "or": 107,
+     "nr": false,
+     "days": "37",
+     "jockey": "Peter Smithers",
+     "trainer": "J P Dempsey"
+    },
+    {
+     "horse": "Private Policy",
+     "rpr": 116,
+     "ts": 97,
+     "or": 103,
+     "nr": false,
+     "days": "23",
+     "jockey": "Paddy Cleary",
+     "trainer": "Nigel Thomas Slevin"
+    },
+    {
+     "horse": "Dairy Force",
+     "rpr": 116,
+     "ts": 106,
+     "or": 110,
+     "nr": false,
+     "days": "35",
+     "jockey": "Danny Gilligan",
+     "trainer": "Gordon Elliott"
+    },
+    {
+     "horse": "Bossy Bird",
+     "rpr": 118,
+     "ts": 108,
+     "or": 100,
+     "nr": false,
+     "days": "32",
+     "jockey": "James Smith",
+     "trainer": "Thomas Gibney"
+    },
+    {
+     "horse": "Just For One",
+     "rpr": 117,
+     "ts": 106,
+     "or": 101,
+     "nr": false,
+     "days": "20",
+     "jockey": "Sam Ewing",
+     "trainer": "Daniel G Murphy"
+    },
+    {
+     "horse": "Grandy Lane",
+     "rpr": 115,
+     "ts": 52,
+     "or": 105,
+     "nr": false,
+     "days": "39",
+     "jockey": "Keith Donoghue",
+     "trainer": "Gavin Cromwell"
+    }
+   ]
+  },
+  {
+   "course": "Navan",
+   "time": "13:02",
+   "race_id": 933295,
+   "country": "IRE",
+   "runners": [
+    {
+     "horse": "Radiator Springs",
+     "rpr": 133,
+     "ts": 114,
+     "or": 120,
+     "nr": false,
+     "days": "55",
+     "jockey": "Mike O'Connor",
+     "trainer": "Henry De Bromhead"
+    },
+    {
+     "horse": "Arch Empire",
+     "rpr": 131,
+     "ts": 112,
+     "or": 118,
+     "nr": false,
+     "days": "14",
+     "jockey": "Danny Gilligan",
+     "trainer": "Gordon Elliott"
+    },
+    {
+     "horse": "Simply Natural",
+     "rpr": 135,
+     "ts": 108,
+     "or": 114,
+     "nr": false,
+     "days": "20",
+     "jockey": "Conor Stone-Walsh",
+     "trainer": "Gavin Cromwell"
+    },
+    {
+     "horse": "Rightfolksplease",
+     "rpr": 135,
+     "ts": 92,
+     "or": 104,
+     "nr": false,
+     "days": "93",
+     "jockey": "Kevin Healy",
+     "trainer": "Declan Queally"
+    },
+    {
+     "horse": "Sommesky",
+     "rpr": 140,
+     "ts": 86,
+     "or": 125,
+     "nr": false,
+     "days": "318",
+     "jockey": "Danny Power",
+     "trainer": "Henry De Bromhead"
+    },
+    {
+     "horse": "Fiveonefive",
+     "rpr": 132,
+     "ts": 102,
+     "or": 129,
+     "nr": false,
+     "days": "22",
+     "jockey": "Jordan Gainford",
+     "trainer": "Cian Collins"
+    },
+    {
+     "horse": "Blue Train",
+     "rpr": 129,
+     "ts": 117,
+     "or": 117,
+     "nr": false,
+     "days": "20",
+     "jockey": "Philip Byrnes",
+     "trainer": "C Byrnes"
+    },
+    {
+     "horse": "Dont Go Yet",
+     "rpr": 135,
+     "ts": 74,
+     "or": 114,
+     "nr": false,
+     "days": "173",
+     "jockey": "Sarah Kavanagh",
+     "trainer": "Edward Cawley"
+    },
+    {
+     "horse": "Malbay Madness",
+     "rpr": 133,
+     "ts": 118,
+     "or": 118,
+     "nr": false,
+     "days": "14",
+     "jockey": "P J O'Hanlon",
+     "trainer": "Dermot A McLoughlin"
+    },
+    {
+     "horse": "This Songisforyou",
+     "rpr": 118,
+     "ts": 41,
+     "or": 112,
+     "nr": false,
+     "days": "19",
+     "jockey": "Donagh Meyler",
+     "trainer": "Emmet Mullins"
+    },
+    {
+     "horse": "St Denis's Well",
+     "rpr": 134,
+     "ts": 118,
+     "or": 113,
+     "nr": false,
+     "days": "44",
+     "jockey": "Caragh Monaghan",
+     "trainer": "Ian Patrick Donoghue"
+    },
+    {
+     "horse": "Catchabird",
+     "rpr": 138,
+     "ts": 96,
+     "or": 109,
+     "nr": false,
+     "days": "198",
+     "jockey": "Aidan Kelly",
+     "trainer": "Sarah Joanna Connell"
+    },
+    {
+     "horse": "Hesgonethatway",
+     "rpr": 137,
+     "ts": 111,
+     "or": 106,
+     "nr": false,
+     "days": "20",
+     "jockey": "Tiernan Power Roche",
+     "trainer": "P J Rothwell"
+    },
+    {
+     "horse": "Path d'Oroux",
+     "rpr": 137,
+     "ts": 95,
+     "or": 126,
+     "nr": false,
+     "days": "50",
+     "jockey": "Keith Donoghue",
+     "trainer": "Gavin Cromwell"
+    },
+    {
+     "horse": "Duke Of Leggagh",
+     "rpr": 131,
+     "ts": "-",
+     "or": 116,
+     "nr": false,
+     "days": "535 (45F)",
+     "jockey": "Luke Carberry",
+     "trainer": "Michael Mulvany"
+    },
+    {
+     "horse": "Solsbury Hill",
+     "rpr": 132,
+     "ts": "-",
+     "or": 110,
+     "nr": false,
+     "days": "98",
+     "jockey": "Charlie O'Dwyer",
+     "trainer": "Conor O'Dwyer"
+    }
+   ]
+  },
+  {
+   "course": "Navan",
+   "time": "13:35",
+   "race_id": 933296,
+   "country": "IRE",
+   "runners": [
+    {
+     "horse": "Thinkitdontjinxit",
+     "rpr": 139,
+     "ts": 102,
+     "or": "-",
+     "nr": false,
+     "days": "19",
+     "jockey": "Jack Kennedy",
+     "trainer": "Gordon Elliott"
+    },
+    {
+     "horse": "The Captain's Word",
+     "rpr": 126,
+     "ts": 98,
+     "or": "-",
+     "nr": false,
+     "days": "43",
+     "jockey": "Jordan Gainford",
+     "trainer": "Henry De Bromhead"
+    },
+    {
+     "horse": "City Of Cork",
+     "rpr": 143,
+     "ts": 126,
+     "or": "-",
+     "nr": false,
+     "days": "23",
+     "jockey": "Paul Townend",
+     "trainer": "Joseph Patrick O'Brien"
+    },
+    {
+     "horse": "State Pension",
+     "rpr": 133,
+     "ts": 106,
+     "or": "-",
+     "nr": false,
+     "days": "40",
+     "jockey": "Cian Quirke",
+     "trainer": "David Harry Kelly"
+    },
+    {
+     "horse": "Joe Cool",
+     "rpr": 124,
+     "ts": 58,
+     "or": "-",
+     "nr": false,
+     "days": "172 (13F)",
+     "jockey": "Donagh Meyler",
+     "trainer": "Noel Meade"
+    },
+    {
+     "horse": "It's Only A Game",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "248",
+     "jockey": "Mark Walsh",
+     "trainer": "Martin Brassil"
+    },
+    {
+     "horse": "Fiveandahalf",
+     "rpr": 125,
+     "ts": 84,
+     "or": "-",
+     "nr": false,
+     "days": "31",
+     "jockey": "Keith Donoghue",
+     "trainer": "Gavin Cromwell"
+    },
+    {
+     "horse": "Game Point",
+     "rpr": 131,
+     "ts": 107,
+     "or": 120,
+     "nr": false,
+     "days": "51 (27F)",
+     "jockey": "Sam Ewing",
+     "trainer": "R P Cody"
+    }
+   ]
+  },
+  {
+   "course": "Navan",
+   "time": "14:07",
+   "race_id": 933297,
+   "country": "IRE",
+   "runners": [
+    {
+     "horse": "Home By The Lee",
+     "rpr": 166,
+     "ts": 155,
+     "or": 161,
+     "nr": false,
+     "days": "182",
+     "jockey": "Richard Deegan",
+     "trainer": "Joseph Patrick O'Brien"
+    },
+    {
+     "horse": "Slade Steel",
+     "rpr": 159,
+     "ts": 138,
+     "or": 150,
+     "nr": false,
+     "days": "222",
+     "jockey": "Mark Walsh",
+     "trainer": "Henry De Bromhead"
+    },
+    {
+     "horse": "Feet Of A Dancer",
+     "rpr": 158,
+     "ts": 149,
+     "or": 144,
+     "nr": false,
+     "days": "247",
+     "jockey": "Sean O'Keeffe",
+     "trainer": "Paul Nolan"
+    },
+    {
+     "horse": "The Yellow Clay",
+     "rpr": 162,
+     "ts": 142,
+     "or": 153,
+     "nr": false,
+     "days": "222",
+     "jockey": "Jack Kennedy",
+     "trainer": "Gordon Elliott"
+    },
+    {
+     "horse": "Dawn Rising",
+     "rpr": 156,
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "728 (35F)",
+     "jockey": "Keith Donoghue",
+     "trainer": "Joseph Patrick O'Brien"
+    },
+    {
+     "horse": "I'll Sort That",
+     "rpr": 150,
+     "ts": 143,
+     "or": 144,
+     "nr": false,
+     "days": "248",
+     "jockey": "Mr D L Queally",
+     "trainer": "Declan Queally"
+    },
+    {
+     "horse": "Staffordshire Knot",
+     "rpr": 159,
+     "ts": 126,
+     "or": 149,
+     "nr": false,
+     "days": "194",
+     "jockey": "Sam Ewing",
+     "trainer": "Gordon Elliott"
+    },
+    {
+     "horse": "Casheldale Lad",
+     "rpr": 166,
+     "ts": 149,
+     "or": 151,
+     "nr": false,
+     "days": "107",
+     "jockey": "Danny Gilligan",
+     "trainer": "Gordon Elliott"
+    }
+   ]
+  },
+  {
+   "course": "Navan",
+   "time": "14:43",
+   "race_id": 933298,
+   "country": "IRE",
+   "runners": [
+    {
+     "horse": "Majborough",
+     "rpr": 179,
+     "ts": 166,
+     "or": 170,
+     "nr": false,
+     "days": "200",
+     "jockey": "Mark Walsh",
+     "trainer": "W P Mullins"
+    },
+    {
+     "horse": "Solness",
+     "rpr": 170,
+     "ts": 164,
+     "or": 164,
+     "nr": false,
+     "days": "107 (45F)",
+     "jockey": "Richard Deegan",
+     "trainer": "Joseph Patrick O'Brien"
+    },
+    {
+     "horse": "Found A Fifty",
+     "rpr": 170,
+     "ts": 159,
+     "or": 160,
+     "nr": false,
+     "days": "222",
+     "jockey": "Jack Kennedy",
+     "trainer": "Gordon Elliott"
+    },
+    {
+     "horse": "Only By Night",
+     "rpr": 174,
+     "ts": 148,
+     "or": 150,
+     "nr": false,
+     "days": "197",
+     "jockey": "Keith Donoghue",
+     "trainer": "Gavin Cromwell"
+    },
+    {
+     "horse": "Blood Destiny",
+     "rpr": 163,
+     "ts": 127,
+     "or": 154,
+     "nr": false,
+     "days": "42",
+     "jockey": "Paul Townend",
+     "trainer": "W P Mullins"
+    },
+    {
+     "horse": "Touch Me Not",
+     "rpr": 165,
+     "ts": 147,
+     "or": 150,
+     "nr": false,
+     "days": "200",
+     "jockey": "Danny Gilligan",
+     "trainer": "Gordon Elliott"
+    },
+    {
+     "horse": "Lady Doyanne",
+     "rpr": 131,
+     "ts": 123,
+     "or": 108,
+     "nr": false,
+     "days": "37",
+     "jockey": "Mike O'Connor",
+     "trainer": "Henry De Bromhead"
+    }
+   ]
+  },
+  {
+   "course": "Navan",
+   "time": "15:18",
+   "race_id": 933299,
+   "country": "IRE",
+   "runners": [
+    {
+     "horse": "Mighty Park",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "249",
+     "jockey": "Mark Walsh",
+     "trainer": "W P Mullins"
+    },
+    {
+     "horse": "Saint Baco",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "197",
+     "jockey": "Paul Townend",
+     "trainer": "W P Mullins"
+    },
+    {
+     "horse": "Bleu De Vassy",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "650",
+     "jockey": "Jack Kennedy",
+     "trainer": "Gordon Elliott"
+    },
+    {
+     "horse": "Powerful",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "200",
+     "jockey": "Simon Torrens",
+     "trainer": "Mrs John Harrington"
+    },
+    {
+     "horse": "Wingmen",
+     "rpr": 144,
+     "ts": 139,
+     "or": 138,
+     "nr": false,
+     "days": "197",
+     "jockey": "Sam Ewing",
+     "trainer": "Gordon Elliott"
+    },
+    {
+     "horse": "Largy Star",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "197",
+     "jockey": "Keith Donoghue",
+     "trainer": "Gavin Cromwell"
+    },
+    {
+     "horse": "Time Is A Thief",
+     "rpr": 128,
+     "ts": 62,
+     "or": "-",
+     "nr": false,
+     "days": "41",
+     "jockey": "Jordan Gainford",
+     "trainer": "Henry De Bromhead"
+    },
+    {
+     "horse": "Jet To Monte Carlo",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "200",
+     "jockey": "Donagh Meyler",
+     "trainer": "Emmet Mullins"
+    },
+    {
+     "horse": "Champagne Jury",
+     "rpr": 124,
+     "ts": 72,
+     "or": "-",
+     "nr": false,
+     "days": "251",
+     "jockey": "Kieren Buckley",
+     "trainer": "Gavin Cromwell"
+    },
+    {
+     "horse": "Workinonadream",
+     "rpr": 124,
+     "ts": 47,
+     "or": "-",
+     "nr": false,
+     "days": "356 (14P)",
+     "jockey": "Alix Balfe",
+     "trainer": "Tom Dreaper"
+    },
+    {
+     "horse": "Royal Soldier",
+     "rpr": 126,
+     "ts": 28,
+     "or": "-",
+     "nr": false,
+     "days": "6",
+     "jockey": "Conor Stone-Walsh",
+     "trainer": "Mrs Gillian Callaghan"
+    }
+   ]
+  },
+  {
+   "course": "Navan",
+   "time": "15:53",
+   "race_id": 933300,
+   "country": "IRE",
+   "runners": [
+    {
+     "horse": "Uncle Pad",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "(286P)",
+     "jockey": "Mr H C Swan",
+     "trainer": "Gordon Elliott"
+    },
+    {
+     "horse": "Kanzler",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "(644P)",
+     "jockey": "Miss J Townend",
+     "trainer": "W P Mullins"
+    },
+    {
+     "horse": "Sir Vinny",
+     "rpr": 108,
+     "ts": 99,
+     "or": "-",
+     "nr": false,
+     "days": "55",
+     "jockey": "Mr J L Gleeson",
+     "trainer": "David Harry Kelly"
+    },
+    {
+     "horse": "Certain Escape",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "(189P)",
+     "jockey": "Mr Jack Paddy Carroll",
+     "trainer": "Gordon Elliott"
+    },
+    {
+     "horse": "Airforce Marshal",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "(195P)",
+     "jockey": "Mr J Dunne",
+     "trainer": "Gordon Elliott"
+    },
+    {
+     "horse": "Nine Toes Tim",
+     "rpr": 108,
+     "ts": 40,
+     "or": "-",
+     "nr": false,
+     "days": "321",
+     "jockey": "Mr T A Halford",
+     "trainer": "S R B Crawford"
+    },
+    {
+     "horse": "Noble Indulgence",
+     "rpr": 77,
+     "ts": 40,
+     "or": "-",
+     "nr": false,
+     "days": "200",
+     "jockey": "Mr Finn Tegetmeier",
+     "trainer": "Noel Meade"
+    },
+    {
+     "horse": "Elusive Legend",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": null,
+     "jockey": "Mr Finian Maguire",
+     "trainer": "Barry Connell"
+    },
+    {
+     "horse": "Giomibe",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "(209P)",
+     "jockey": "Anna McGuinness",
+     "trainer": "Paul Traynor"
+    },
+    {
+     "horse": "Line Speed",
+     "rpr": 102,
+     "ts": 43,
+     "or": "-",
+     "nr": false,
+     "days": "223",
+     "jockey": "Mr Hugh Lillingston",
+     "trainer": "John E & Thomas Kiely"
+    }
+   ]
+  },
+  {
+   "course": "Auteuil",
+   "time": "15:07",
+   "race_id": 933414,
+   "country": "FR",
+   "runners": [
+    {
+     "horse": "Kingland",
+     "rpr": 172,
+     "ts": "-",
+     "or": 158,
+     "nr": false,
+     "days": "34",
+     "jockey": "Kevin Nabet",
+     "trainer": "Francois Nicolle"
+    },
+    {
+     "horse": "Theleme",
+     "rpr": 171,
+     "ts": "-",
+     "or": 160,
+     "nr": false,
+     "days": "34",
+     "jockey": "Gaetan Masure",
+     "trainer": "A Chaille-Chaille & F Pamart"
+    },
+    {
+     "horse": "Leader Sport",
+     "rpr": 160,
+     "ts": "-",
+     "or": 144,
+     "nr": false,
+     "days": "237",
+     "jockey": "Leo-Paul Brechet",
+     "trainer": "Daniela Mele"
+    },
+    {
+     "horse": "Zarakhan",
+     "rpr": 164,
+     "ts": "-",
+     "or": 136,
+     "nr": false,
+     "days": "34",
+     "jockey": "Angelo Zuliani",
+     "trainer": "E D'Andigne"
+    },
+    {
+     "horse": "Jet Blue",
+     "rpr": 162,
+     "ts": "-",
+     "or": 152,
+     "nr": false,
+     "days": "34",
+     "jockey": "Ludovic Philipperon",
+     "trainer": "M Seror"
+    },
+    {
+     "horse": "Coeur D'Amour",
+     "rpr": 161,
+     "ts": "-",
+     "or": 136,
+     "nr": false,
+     "days": "34",
+     "jockey": "Gwen Richard",
+     "trainer": "A Chaille-Chaille & F Pamart"
+    },
+    {
+     "horse": "Gardien De Musee",
+     "rpr": 156,
+     "ts": "-",
+     "or": 146,
+     "nr": false,
+     "days": "10",
+     "jockey": "Gabin Meunier",
+     "trainer": "Yannick Fouin"
+    },
+    {
+     "horse": "Style D'Emirs",
+     "rpr": 157,
+     "ts": "-",
+     "or": 140,
+     "nr": false,
+     "days": "21",
+     "jockey": "Alexandre Chesneau",
+     "trainer": "Yannick Fouin"
+    },
+    {
+     "horse": "Kirikou Des Mers",
+     "rpr": 139,
+     "ts": "-",
+     "or": 128,
+     "nr": false,
+     "days": "28",
+     "jockey": "Baptiste Le Clerc",
+     "trainer": "Giada Menato"
+    }
+   ]
+  },
+  {
+   "course": "San Siro",
+   "time": "13:35",
+   "race_id": 933372,
+   "country": "ITY",
+   "runners": [
+    {
+     "horse": "Flag's Up",
+     "rpr": 118,
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "42",
+     "jockey": "Maikol Arras",
+     "trainer": "Stefano Botti"
+    },
+    {
+     "horse": "Al Qareem",
+     "rpr": 129,
+     "ts": 119,
+     "or": "-",
+     "nr": false,
+     "days": "15",
+     "jockey": "Clifford Lee",
+     "trainer": "K R Burke"
+    },
+    {
+     "horse": "Tactician",
+     "rpr": 119,
+     "ts": 103,
+     "or": "-",
+     "nr": false,
+     "days": "35",
+     "jockey": "James Doyle",
+     "trainer": "Andrew Balding"
+    },
+    {
+     "horse": "Naisha",
+     "rpr": 115,
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "42",
+     "jockey": "Dario Vargiu",
+     "trainer": "Grizzetti Galoppo SRL"
+    },
+    {
+     "horse": "Amico",
+     "rpr": 105,
+     "ts": 99,
+     "or": "-",
+     "nr": false,
+     "days": "14",
+     "jockey": "Dario Di Tocco",
+     "trainer": "Henk Grewe"
+    },
+    {
+     "horse": "Almenkonig",
+     "rpr": 118,
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "35",
+     "jockey": "Eduardo Pedroza",
+     "trainer": "A Wohler"
+    },
+    {
+     "horse": "Saint Valantin",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "770",
+     "jockey": "Sibylle Vogt",
+     "trainer": "Marcel Weiss"
+    },
+    {
+     "horse": "Anno Solero",
+     "rpr": 122,
+     "ts": 110,
+     "or": "-",
+     "nr": false,
+     "days": "35",
+     "jockey": "Andrea Ricupa",
+     "trainer": "Carmen Bocskai"
+    },
+    {
+     "horse": "Baas",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": null,
+     "jockey": "Leon Wolff",
+     "trainer": "Henk Grewe"
+    }
+   ]
+  },
+  {
+   "course": "San Siro",
+   "time": "14:50",
+   "race_id": 933382,
+   "country": "ITY",
+   "runners": [
+    {
+     "horse": "New Emerald",
+     "rpr": 127,
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "41",
+     "jockey": "Sibylle Vogt",
+     "trainer": "Marcel Weiss"
+    },
+    {
+     "horse": "Native Warrior",
+     "rpr": 128,
+     "ts": 111,
+     "or": "-",
+     "nr": false,
+     "days": "84",
+     "jockey": "Clifford Lee",
+     "trainer": "K R Burke"
+    },
+    {
+     "horse": "Crown Board",
+     "rpr": 128,
+     "ts": 109,
+     "or": "-",
+     "nr": false,
+     "days": "20",
+     "jockey": "Marco Ghiani",
+     "trainer": "Jane Chapple-Hyam"
+    },
+    {
+     "horse": "Sommersby",
+     "rpr": 123,
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "41",
+     "jockey": "Eduardo Pedroza",
+     "trainer": "A Wohler"
+    },
+    {
+     "horse": "Diego Ventura",
+     "rpr": 124,
+     "ts": 100,
+     "or": "-",
+     "nr": false,
+     "days": "42",
+     "jockey": "James Doyle",
+     "trainer": "Hamad Al Jehani"
+    },
+    {
+     "horse": "Next Mine",
+     "rpr": 128,
+     "ts": 101,
+     "or": "-",
+     "nr": false,
+     "days": "41",
+     "jockey": "Dario Vargiu",
+     "trainer": "Waldemar Hickst"
+    },
+    {
+     "horse": "Kabir",
+     "rpr": 123,
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "20",
+     "jockey": "Dario Di Tocco",
+     "trainer": "Cristiana Brivio Sforza"
+    },
+    {
+     "horse": "Luna Rae",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "718",
+     "jockey": "Salvatore Sulas",
+     "trainer": "Salih Plavac"
+    },
+    {
+     "horse": "Grand Son Of Dark",
+     "rpr": 129,
+     "ts": 58,
+     "or": "-",
+     "nr": false,
+     "days": "35",
+     "jockey": "Alessio Satta",
+     "trainer": "Cristiana Brivio Sforza"
+    },
+    {
+     "horse": "Steller's Sea",
+     "rpr": 110,
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "35",
+     "jockey": "Fabio Branca",
+     "trainer": "Stefano Botti"
+    },
+    {
+     "horse": "Asker",
+     "rpr": 119,
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "20",
+     "jockey": "Leon Wolff",
+     "trainer": "Henk Grewe"
+    }
+   ]
+  },
+  {
+   "course": "Sha Tin",
+   "time": "04:30",
+   "race_id": 933349,
+   "country": "HK",
+   "runners": [
+    {
+     "horse": "Happy Pegasus",
+     "rpr": 77,
+     "ts": 49,
+     "or": 60,
+     "nr": false,
+     "days": "20",
+     "jockey": "Jerry Chau",
+     "trainer": "C S Shum"
+    },
+    {
+     "horse": "Saint Jose Patch",
+     "rpr": 77,
+     "ts": 51,
+     "or": 52,
+     "nr": false,
+     "days": "20",
+     "jockey": "Ellis Wong",
+     "trainer": "K L Man"
+    },
+    {
+     "horse": "Almighty Warrior",
+     "rpr": 92,
+     "ts": 54,
+     "or": 60,
+     "nr": false,
+     "days": "20",
+     "jockey": "Zac Purton",
+     "trainer": "K W Lui"
+    },
+    {
+     "horse": "I Am The Walrus",
+     "rpr": 69,
+     "ts": 44,
+     "or": 52,
+     "nr": false,
+     "days": "20",
+     "jockey": "K C Leung",
+     "trainer": "P C Ng"
+    },
+    {
+     "horse": "Spice Bag",
+     "rpr": 80,
+     "ts": 50,
+     "or": 57,
+     "nr": false,
+     "days": "167",
+     "jockey": "James Orman",
+     "trainer": "D J Hall"
+    },
+    {
+     "horse": "Sunny Boss",
+     "rpr": 70,
+     "ts": 45,
+     "or": 52,
+     "nr": false,
+     "days": "20",
+     "jockey": "Richard Kingscote",
+     "trainer": "Douglas Whyte"
+    },
+    {
+     "horse": "Majesticus",
+     "rpr": "-",
+     "ts": "-",
+     "or": 52,
+     "nr": false,
+     "days": null,
+     "jockey": "Nichola Yuen",
+     "trainer": "C H Yip"
+    },
+    {
+     "horse": "Da Da Da",
+     "rpr": "-",
+     "ts": "-",
+     "or": 52,
+     "nr": false,
+     "days": null,
+     "jockey": "Andrea Atzeni",
+     "trainer": "Mark Newnham"
+    },
+    {
+     "horse": "I Win I Win",
+     "rpr": "-",
+     "ts": "-",
+     "or": 52,
+     "nr": false,
+     "days": null,
+     "jockey": "L J Ferraris",
+     "trainer": "David Eustace"
+    },
+    {
+     "horse": "Rock Your Dream",
+     "rpr": "-",
+     "ts": "-",
+     "or": 52,
+     "nr": false,
+     "days": null,
+     "jockey": "Karis Teetan",
+     "trainer": "Brett Crawford"
+    },
+    {
+     "horse": "Secret Hedge",
+     "rpr": "-",
+     "ts": "-",
+     "or": 52,
+     "nr": false,
+     "days": null,
+     "jockey": "Matthew Chadwick",
+     "trainer": "J Size"
+    },
+    {
+     "horse": "Harmony N Joy",
+     "rpr": "-",
+     "ts": "-",
+     "or": 52,
+     "nr": false,
+     "days": null,
+     "jockey": "M L Yeung",
+     "trainer": "David A Hayes"
+    },
+    {
+     "horse": "Green Summit",
+     "rpr": 51,
+     "ts": 27,
+     "or": 52,
+     "nr": false,
+     "days": "20",
+     "jockey": "Matthew Poon",
+     "trainer": "C W Chang"
+    },
+    {
+     "horse": "Glorious Hero",
+     "rpr": 62,
+     "ts": "-",
+     "or": 48,
+     "nr": false,
+     "days": "189",
+     "jockey": "H T Mo",
+     "trainer": "Y S Tsui"
+    },
+    {
+     "horse": "Sharp Planet",
+     "rpr": 86,
+     "ts": 37,
+     "or": 49,
+     "nr": false,
+     "days": "26",
+     "jockey": null,
+     "trainer": "C Fownes"
+    },
+    {
+     "horse": "Ever Wealth",
+     "rpr": 81,
+     "ts": 55,
+     "or": 48,
+     "nr": false,
+     "days": "26",
+     "jockey": null,
+     "trainer": "P F Yiu"
+    }
+   ]
+  },
+  {
+   "course": "Sha Tin",
+   "time": "05:00",
+   "race_id": 933350,
+   "country": "HK",
+   "runners": [
+    {
+     "horse": "Incanto Star",
+     "rpr": 62,
+     "ts": 52,
+     "or": 36,
+     "nr": false,
+     "days": "20",
+     "jockey": "Brenton Avdulla",
+     "trainer": "D J Hall"
+    },
+    {
+     "horse": "Draco",
+     "rpr": 51,
+     "ts": 50,
+     "or": 32,
+     "nr": false,
+     "days": "20",
+     "jockey": "K C Leung",
+     "trainer": "W K Mo"
+    },
+    {
+     "horse": "Forever Fancy",
+     "rpr": 55,
+     "ts": 51,
+     "or": 39,
+     "nr": false,
+     "days": "48",
+     "jockey": "James Orman",
+     "trainer": "K W Lui"
+    },
+    {
+     "horse": "He Was Me",
+     "rpr": 51,
+     "ts": 52,
+     "or": 34,
+     "nr": false,
+     "days": "17",
+     "jockey": "Andrea Atzeni",
+     "trainer": "A S Cruz"
+    },
+    {
+     "horse": "Just Follow Me",
+     "rpr": 60,
+     "ts": 43,
+     "or": 40,
+     "nr": false,
+     "days": "26",
+     "jockey": "Zac Purton",
+     "trainer": "Brett Crawford"
+    },
+    {
+     "horse": "Star Figure",
+     "rpr": 62,
+     "ts": 50,
+     "or": 40,
+     "nr": false,
+     "days": "26",
+     "jockey": "Jerry Chau",
+     "trainer": "Jamie Richards"
+    },
+    {
+     "horse": "The All Rounder",
+     "rpr": 58,
+     "ts": 55,
+     "or": 33,
+     "nr": false,
+     "days": "31",
+     "jockey": "C Y Ho",
+     "trainer": "P C Ng"
+    },
+    {
+     "horse": "Alabama Song",
+     "rpr": 65,
+     "ts": 52,
+     "or": 39,
+     "nr": false,
+     "days": "10",
+     "jockey": "Karis Teetan",
+     "trainer": "J Size"
+    },
+    {
+     "horse": "Rattan Galaxy",
+     "rpr": 54,
+     "ts": 48,
+     "or": 38,
+     "nr": false,
+     "days": "41",
+     "jockey": "Saffie Osborne",
+     "trainer": "K L Man"
+    },
+    {
+     "horse": "My Flying Angel",
+     "rpr": 66,
+     "ts": 65,
+     "or": 25,
+     "nr": false,
+     "days": "17",
+     "jockey": "Matthew Poon",
+     "trainer": "F C Lor"
+    },
+    {
+     "horse": "Supreme Winner",
+     "rpr": 52,
+     "ts": 54,
+     "or": 25,
+     "nr": false,
+     "days": "20",
+     "jockey": "Alexis Badel",
+     "trainer": "Douglas Whyte"
+    },
+    {
+     "horse": "Circuit Duffy",
+     "rpr": 64,
+     "ts": 47,
+     "or": 28,
+     "nr": false,
+     "days": "26",
+     "jockey": "M L Yeung",
+     "trainer": "W Y So"
+    },
+    {
+     "horse": "Special Hedge",
+     "rpr": 73,
+     "ts": 63,
+     "or": 26,
+     "nr": false,
+     "days": "26",
+     "jockey": "Lyle Hewitson",
+     "trainer": "C W Chang"
+    },
+    {
+     "horse": "Marvel And Gold",
+     "rpr": 63,
+     "ts": 58,
+     "or": 34,
+     "nr": false,
+     "days": "13",
+     "jockey": "Harry Bentley",
+     "trainer": "C H Yip"
+    },
+    {
+     "horse": "Made For Life",
+     "rpr": 69,
+     "ts": 68,
+     "or": 32,
+     "nr": false,
+     "days": "31",
+     "jockey": null,
+     "trainer": "Mark Newnham"
+    },
+    {
+     "horse": "Joy Star",
+     "rpr": 58,
+     "ts": 52,
+     "or": 37,
+     "nr": false,
+     "days": "10",
+     "jockey": "H T Mo",
+     "trainer": "Y S Tsui"
+    }
+   ]
+  },
+  {
+   "course": "Sha Tin",
+   "time": "05:55",
+   "race_id": 933351,
+   "country": "HK",
+   "runners": [
+    {
+     "horse": "Happydearhappydeer",
+     "rpr": 51,
+     "ts": 50,
+     "or": 32,
+     "nr": false,
+     "days": "17",
+     "jockey": "Britney Wong",
+     "trainer": "A S Cruz"
+    },
+    {
+     "horse": "Glorious St Pauls",
+     "rpr": 52,
+     "ts": 51,
+     "or": 40,
+     "nr": false,
+     "days": "17",
+     "jockey": "Matthew Poon",
+     "trainer": "F C Lor"
+    },
+    {
+     "horse": "Speedy Trident",
+     "rpr": 57,
+     "ts": 44,
+     "or": 29,
+     "nr": false,
+     "days": "17",
+     "jockey": "M L Yeung",
+     "trainer": "Y S Tsui"
+    },
+    {
+     "horse": "Mazing Grace",
+     "rpr": 66,
+     "ts": 47,
+     "or": 24,
+     "nr": false,
+     "days": "17",
+     "jockey": "Richard Kingscote",
+     "trainer": "C W Chang"
+    },
+    {
+     "horse": "Hailtothevictors",
+     "rpr": 57,
+     "ts": 53,
+     "or": 33,
+     "nr": false,
+     "days": "17",
+     "jockey": "Jerry Chau",
+     "trainer": "David Eustace"
+    },
+    {
+     "horse": "Superb Guy",
+     "rpr": 72,
+     "ts": 53,
+     "or": 26,
+     "nr": false,
+     "days": "17",
+     "jockey": "Zac Purton",
+     "trainer": "K W Lui"
+    },
+    {
+     "horse": "Celestial Harmony",
+     "rpr": 58,
+     "ts": 54,
+     "or": 28,
+     "nr": false,
+     "days": "17",
+     "jockey": "Saffie Osborne",
+     "trainer": "Brett Crawford"
+    },
+    {
+     "horse": "Viva Taste",
+     "rpr": 70,
+     "ts": 57,
+     "or": 25,
+     "nr": false,
+     "days": "17",
+     "jockey": "Matthew Chadwick",
+     "trainer": "Jimmy Ting"
+    },
+    {
+     "horse": "Go Go Go",
+     "rpr": 55,
+     "ts": 53,
+     "or": 22,
+     "nr": false,
+     "days": "17",
+     "jockey": "Harry Bentley",
+     "trainer": "W Y So"
+    },
+    {
+     "horse": "Yee Cheong Raider",
+     "rpr": 64,
+     "ts": 66,
+     "or": 25,
+     "nr": false,
+     "days": "17",
+     "jockey": "Karis Teetan",
+     "trainer": "Brett Crawford"
+    },
+    {
+     "horse": "Vigor Elleegant",
+     "rpr": 52,
+     "ts": "-",
+     "or": 39,
+     "nr": false,
+     "days": "20",
+     "jockey": "James Orman",
+     "trainer": "K L Man"
+    },
+    {
+     "horse": "Setanta",
+     "rpr": 70,
+     "ts": "-",
+     "or": 26,
+     "nr": false,
+     "days": "6",
+     "jockey": "K C Leung",
+     "trainer": "Y S Tsui"
+    },
+    {
+     "horse": "View Of Cosmos",
+     "rpr": 40,
+     "ts": 14,
+     "or": 35,
+     "nr": false,
+     "days": "6",
+     "jockey": "Nichola Yuen",
+     "trainer": "C H Yip"
+    },
+    {
+     "horse": "Quick Money",
+     "rpr": 80,
+     "ts": 63,
+     "or": 23,
+     "nr": false,
+     "days": "17",
+     "jockey": "Andrea Atzeni",
+     "trainer": "C H Yip"
+    }
+   ]
+  },
+  {
+   "course": "Sha Tin",
+   "time": "06:25",
+   "race_id": 933352,
+   "country": "HK",
+   "runners": [
+    {
+     "horse": "Victor Supreme",
+     "rpr": 71,
+     "ts": "-",
+     "or": 60,
+     "nr": false,
+     "days": "26",
+     "jockey": "Zac Purton",
+     "trainer": "P F Yiu"
+    },
+    {
+     "horse": "Fast Speed",
+     "rpr": 66,
+     "ts": "-",
+     "or": 47,
+     "nr": false,
+     "days": "13",
+     "jockey": "Matthew Chadwick",
+     "trainer": "Y S Tsui"
+    },
+    {
+     "horse": "Good Good",
+     "rpr": 73,
+     "ts": "-",
+     "or": 48,
+     "nr": false,
+     "days": "13",
+     "jockey": "Andrea Atzeni",
+     "trainer": "J Size"
+    },
+    {
+     "horse": "Sky Deep",
+     "rpr": 72,
+     "ts": "-",
+     "or": 58,
+     "nr": false,
+     "days": "38",
+     "jockey": "Jerry Chau",
+     "trainer": "C Fownes"
+    },
+    {
+     "horse": "Dashing Maurison",
+     "rpr": 71,
+     "ts": "-",
+     "or": 46,
+     "nr": false,
+     "days": "13",
+     "jockey": "Harry Bentley",
+     "trainer": "David A Hayes"
+    },
+    {
+     "horse": "Dreaming Together",
+     "rpr": 76,
+     "ts": "-",
+     "or": 57,
+     "nr": false,
+     "days": "26",
+     "jockey": "Karis Teetan",
+     "trainer": "Brett Crawford"
+    },
+    {
+     "horse": "Storm Runner",
+     "rpr": 71,
+     "ts": "-",
+     "or": 48,
+     "nr": false,
+     "days": "17",
+     "jockey": "C Y Ho",
+     "trainer": "P C Ng"
+    },
+    {
+     "horse": "Young Bravo",
+     "rpr": 72,
+     "ts": "-",
+     "or": 55,
+     "nr": false,
+     "days": "17",
+     "jockey": "James Orman",
+     "trainer": "D J Hall"
+    },
+    {
+     "horse": "Shamz",
+     "rpr": 72,
+     "ts": "-",
+     "or": 58,
+     "nr": false,
+     "days": "6",
+     "jockey": "Britney Wong",
+     "trainer": "A S Cruz"
+    },
+    {
+     "horse": "Romantic Fantasy",
+     "rpr": 66,
+     "ts": "-",
+     "or": 48,
+     "nr": false,
+     "days": "13",
+     "jockey": "Saffie Osborne",
+     "trainer": "Jamie Richards"
+    },
+    {
+     "horse": "Lucky Balerion",
+     "rpr": 72,
+     "ts": "-",
+     "or": 49,
+     "nr": false,
+     "days": "26",
+     "jockey": "Matthew Poon",
+     "trainer": "F C Lor"
+    },
+    {
+     "horse": "Happy Tercentenary",
+     "rpr": 71,
+     "ts": "-",
+     "or": 54,
+     "nr": false,
+     "days": "17",
+     "jockey": "Alexis Badel",
+     "trainer": "James Cummings"
+    },
+    {
+     "horse": "Romantic Laos",
+     "rpr": 74,
+     "ts": "-",
+     "or": 46,
+     "nr": false,
+     "days": "13",
+     "jockey": "K C Leung",
+     "trainer": "C W Chang"
+    },
+    {
+     "horse": "Supreme Mastermind",
+     "rpr": 78,
+     "ts": "-",
+     "or": 43,
+     "nr": false,
+     "days": "17",
+     "jockey": "Richard Kingscote",
+     "trainer": "Mark Newnham"
+    },
+    {
+     "horse": "Luck Is Back",
+     "rpr": 78,
+     "ts": "-",
+     "or": 50,
+     "nr": false,
+     "days": "13",
+     "jockey": null,
+     "trainer": "P C Ng"
+    },
+    {
+     "horse": "Polar Patch",
+     "rpr": 76,
+     "ts": "-",
+     "or": 41,
+     "nr": false,
+     "days": "6",
+     "jockey": null,
+     "trainer": "Mark Newnham"
+    }
+   ]
+  },
+  {
+   "course": "Sha Tin",
+   "time": "06:55",
+   "race_id": 933353,
+   "country": "HK",
+   "runners": [
+    {
+     "horse": "Yee Cheong Bright",
+     "rpr": 85,
+     "ts": 34,
+     "or": 72,
+     "nr": false,
+     "days": "20",
+     "jockey": "Zac Purton",
+     "trainer": "James Cummings"
+    },
+    {
+     "horse": "Jumbo Blessing",
+     "rpr": 82,
+     "ts": 67,
+     "or": 66,
+     "nr": false,
+     "days": "13",
+     "jockey": "C Y Ho",
+     "trainer": "C Fownes"
+    },
+    {
+     "horse": "Full Metal",
+     "rpr": 81,
+     "ts": 30,
+     "or": 71,
+     "nr": false,
+     "days": "20",
+     "jockey": "Karis Teetan",
+     "trainer": "Brett Crawford"
+    },
+    {
+     "horse": "Green Superstar",
+     "rpr": "-",
+     "ts": "-",
+     "or": 65,
+     "nr": false,
+     "days": null,
+     "jockey": "James Orman",
+     "trainer": "J Size"
+    },
+    {
+     "horse": "Casa Of Honor",
+     "rpr": 92,
+     "ts": 70,
+     "or": 66,
+     "nr": false,
+     "days": "20",
+     "jockey": "Matthew Poon",
+     "trainer": "C W Chang"
+    },
+    {
+     "horse": "Lucky Candy",
+     "rpr": 86,
+     "ts": 58,
+     "or": 62,
+     "nr": false,
+     "days": "41",
+     "jockey": "Matthew Chadwick",
+     "trainer": "W K Mo"
+    },
+    {
+     "horse": "Highland Cross",
+     "rpr": 105,
+     "ts": 53,
+     "or": 66,
+     "nr": false,
+     "days": "195",
+     "jockey": "L J Ferraris",
+     "trainer": "K W Lui"
+    },
+    {
+     "horse": "Jin Sheng",
+     "rpr": 83,
+     "ts": 46,
+     "or": 61,
+     "nr": false,
+     "days": "20",
+     "jockey": "Saffie Osborne",
+     "trainer": "K L Man"
+    },
+    {
+     "horse": "Fast Responder",
+     "rpr": 87,
+     "ts": 70,
+     "or": 74,
+     "nr": false,
+     "days": "20",
+     "jockey": "Nichola Yuen",
+     "trainer": "Douglas Whyte"
+    },
+    {
+     "horse": "Bamboo Copter",
+     "rpr": "-",
+     "ts": "-",
+     "or": 70,
+     "nr": false,
+     "days": "394",
+     "jockey": "K C Leung",
+     "trainer": "Jamie Richards"
+    },
+    {
+     "horse": "Causeway King",
+     "rpr": 84,
+     "ts": 61,
+     "or": 68,
+     "nr": false,
+     "days": "17",
+     "jockey": "Ellis Wong",
+     "trainer": "P F Yiu"
+    },
+    {
+     "horse": "Happy Youmzain",
+     "rpr": "-",
+     "ts": "-",
+     "or": 65,
+     "nr": false,
+     "days": "525",
+     "jockey": "Andrea Atzeni",
+     "trainer": "D J Hall"
+    },
+    {
+     "horse": "Legend Red Hare",
+     "rpr": "-",
+     "ts": "-",
+     "or": 65,
+     "nr": false,
+     "days": null,
+     "jockey": "Britney Wong",
+     "trainer": "A S Cruz"
+    },
+    {
+     "horse": "Cala Dei Mori",
+     "rpr": 116,
+     "ts": 57,
+     "or": 60,
+     "nr": false,
+     "days": "13",
+     "jockey": "H T Mo",
+     "trainer": "C S Shum"
+    },
+    {
+     "horse": "Devas Twelve",
+     "rpr": 88,
+     "ts": 75,
+     "or": 60,
+     "nr": false,
+     "days": "20",
+     "jockey": null,
+     "trainer": "W Y So"
+    },
+    {
+     "horse": "Bear Champ",
+     "rpr": "-",
+     "ts": "-",
+     "or": 66,
+     "nr": false,
+     "days": "692",
+     "jockey": "Lyle Hewitson",
+     "trainer": "Mark Newnham"
+    }
+   ]
+  },
+  {
+   "course": "Sha Tin",
+   "time": "07:25",
+   "race_id": 933354,
+   "country": "HK",
+   "runners": [
+    {
+     "horse": "Yoda's Choice",
+     "rpr": 68,
+     "ts": "-",
+     "or": 58,
+     "nr": false,
+     "days": "17",
+     "jockey": "Nichola Yuen",
+     "trainer": "P C Ng"
+    },
+    {
+     "horse": "Hero Rising",
+     "rpr": 68,
+     "ts": "-",
+     "or": 49,
+     "nr": false,
+     "days": "17",
+     "jockey": "Lyle Hewitson",
+     "trainer": "Brett Crawford"
+    },
+    {
+     "horse": "Joltin",
+     "rpr": 76,
+     "ts": "-",
+     "or": 45,
+     "nr": false,
+     "days": "17",
+     "jockey": "Matthew Poon",
+     "trainer": "David A Hayes"
+    },
+    {
+     "horse": "Turin Mascot",
+     "rpr": 74,
+     "ts": "-",
+     "or": 58,
+     "nr": false,
+     "days": "17",
+     "jockey": "K C Leung",
+     "trainer": "Jimmy Ting"
+    },
+    {
+     "horse": "Enthralled",
+     "rpr": 68,
+     "ts": "-",
+     "or": 54,
+     "nr": false,
+     "days": "140",
+     "jockey": "Andrea Atzeni",
+     "trainer": "J Size"
+    },
+    {
+     "horse": "Family Knight",
+     "rpr": 69,
+     "ts": "-",
+     "or": 42,
+     "nr": false,
+     "days": "17",
+     "jockey": "Saffie Osborne",
+     "trainer": "Douglas Whyte"
+    },
+    {
+     "horse": "Chill Kaka",
+     "rpr": 78,
+     "ts": "-",
+     "or": 50,
+     "nr": false,
+     "days": "17",
+     "jockey": "Richard Kingscote",
+     "trainer": "P F Yiu"
+    },
+    {
+     "horse": "Quantum Legend",
+     "rpr": 68,
+     "ts": "-",
+     "or": 59,
+     "nr": false,
+     "days": "41",
+     "jockey": "Zac Purton",
+     "trainer": "Mark Newnham"
+    },
+    {
+     "horse": "Leslie",
+     "rpr": 67,
+     "ts": "-",
+     "or": 47,
+     "nr": false,
+     "days": "26",
+     "jockey": "Matthew Chadwick",
+     "trainer": "C W Chang"
+    },
+    {
+     "horse": "Perfect Team",
+     "rpr": 78,
+     "ts": "-",
+     "or": 45,
+     "nr": false,
+     "days": "17",
+     "jockey": "Karis Teetan",
+     "trainer": "C Fownes"
+    },
+    {
+     "horse": "California Star",
+     "rpr": 74,
+     "ts": "-",
+     "or": 46,
+     "nr": false,
+     "days": "17",
+     "jockey": "Brenton Avdulla",
+     "trainer": "A S Cruz"
+    },
+    {
+     "horse": "Hott Shott",
+     "rpr": 53,
+     "ts": "-",
+     "or": 60,
+     "nr": false,
+     "days": "17",
+     "jockey": "James Orman",
+     "trainer": "D J Hall"
+    },
+    {
+     "horse": "Another World",
+     "rpr": 73,
+     "ts": "-",
+     "or": 54,
+     "nr": false,
+     "days": "17",
+     "jockey": "C Y Ho",
+     "trainer": "C H Yip"
+    },
+    {
+     "horse": "Superb Kid",
+     "rpr": 71,
+     "ts": "-",
+     "or": 43,
+     "nr": false,
+     "days": "6",
+     "jockey": "M L Yeung",
+     "trainer": "Y S Tsui"
+    },
+    {
+     "horse": "Samarkand",
+     "rpr": 76,
+     "ts": "-",
+     "or": 60,
+     "nr": false,
+     "days": "13",
+     "jockey": null,
+     "trainer": "Jamie Richards"
+    },
+    {
+     "horse": "Lucky Together",
+     "rpr": 71,
+     "ts": "-",
+     "or": 42,
+     "nr": false,
+     "days": "10",
+     "jockey": null,
+     "trainer": "F C Lor"
+    }
+   ]
+  },
+  {
+   "course": "Sha Tin",
+   "time": "08:00",
+   "race_id": 933355,
+   "country": "HK",
+   "runners": [
+    {
+     "horse": "Megastar Heart",
+     "rpr": 107,
+     "ts": 80,
+     "or": 84,
+     "nr": false,
+     "days": "20",
+     "jockey": "L J Ferraris",
+     "trainer": "C Fownes"
+    },
+    {
+     "horse": "Solid State",
+     "rpr": 117,
+     "ts": 92,
+     "or": 81,
+     "nr": false,
+     "days": "41",
+     "jockey": "Alexis Badel",
+     "trainer": "F C Lor"
+    },
+    {
+     "horse": "On The Way",
+     "rpr": 108,
+     "ts": 80,
+     "or": 80,
+     "nr": false,
+     "days": "13",
+     "jockey": "H T Mo",
+     "trainer": "Y S Tsui"
+    },
+    {
+     "horse": "Turquoise Velocity",
+     "rpr": 106,
+     "ts": 72,
+     "or": 94,
+     "nr": false,
+     "days": "13",
+     "jockey": "Karis Teetan",
+     "trainer": "K W Lui"
+    },
+    {
+     "horse": "Son Pak Fu",
+     "rpr": 109,
+     "ts": 85,
+     "or": 85,
+     "nr": false,
+     "days": "13",
+     "jockey": "Britney Wong",
+     "trainer": "A S Cruz"
+    },
+    {
+     "horse": "Sight Hermoso",
+     "rpr": 107,
+     "ts": 87,
+     "or": 82,
+     "nr": false,
+     "days": "13",
+     "jockey": "Andrea Atzeni",
+     "trainer": "J Size"
+    },
+    {
+     "horse": "Young Champion",
+     "rpr": 116,
+     "ts": 82,
+     "or": 85,
+     "nr": false,
+     "days": "13",
+     "jockey": "Saffie Osborne",
+     "trainer": "J Size"
+    },
+    {
+     "horse": "Lucky With You",
+     "rpr": 117,
+     "ts": 89,
+     "or": 98,
+     "nr": false,
+     "days": "13",
+     "jockey": "Matthew Poon",
+     "trainer": "F C Lor"
+    },
+    {
+     "horse": "Beauty Waves",
+     "rpr": 96,
+     "ts": 81,
+     "or": 100,
+     "nr": false,
+     "days": "20",
+     "jockey": "Nichola Yuen",
+     "trainer": "A S Cruz"
+    },
+    {
+     "horse": "Tomodachi Kokoroe",
+     "rpr": 120,
+     "ts": 92,
+     "or": 98,
+     "nr": false,
+     "days": "20",
+     "jockey": "Jerry Chau",
+     "trainer": "David A Hayes"
+    },
+    {
+     "horse": "Blazing Wind",
+     "rpr": 114,
+     "ts": "-",
+     "or": 82,
+     "nr": false,
+     "days": "17",
+     "jockey": "Richard Kingscote",
+     "trainer": "C S Shum"
+    },
+    {
+     "horse": "Johannes Brahms",
+     "rpr": 113,
+     "ts": 63,
+     "or": 83,
+     "nr": false,
+     "days": "34",
+     "jockey": "C Y Ho",
+     "trainer": "P C Ng"
+    },
+    {
+     "horse": "Self Improvement",
+     "rpr": 116,
+     "ts": 68,
+     "or": 81,
+     "nr": false,
+     "days": "17",
+     "jockey": "M L Yeung",
+     "trainer": "K L Man"
+    },
+    {
+     "horse": "Rubylot",
+     "rpr": 120,
+     "ts": 68,
+     "or": 100,
+     "nr": false,
+     "days": "202",
+     "jockey": "Brenton Avdulla",
+     "trainer": "David A Hayes"
+    },
+    {
+     "horse": "Superb Capitalist",
+     "rpr": 114,
+     "ts": 84,
+     "or": 84,
+     "nr": false,
+     "days": "24",
+     "jockey": null,
+     "trainer": "A S Cruz"
+    }
+   ]
+  },
+  {
+   "course": "Sha Tin",
+   "time": "08:30",
+   "race_id": 933356,
+   "country": "HK",
+   "runners": [
+    {
+     "horse": "Noble Superior",
+     "rpr": 66,
+     "ts": 42,
+     "or": 51,
+     "nr": false,
+     "days": "34",
+     "jockey": "M L Yeung",
+     "trainer": "Jimmy Ting"
+    },
+    {
+     "horse": "Cirrus Speed",
+     "rpr": 65,
+     "ts": 70,
+     "or": 40,
+     "nr": false,
+     "days": "26",
+     "jockey": "Matthew Poon",
+     "trainer": "D J Hall"
+    },
+    {
+     "horse": "Supreme Win Win",
+     "rpr": "-",
+     "ts": "-",
+     "or": 52,
+     "nr": false,
+     "days": null,
+     "jockey": "Zac Purton",
+     "trainer": "Mark Newnham"
+    },
+    {
+     "horse": "Mabubu",
+     "rpr": 72,
+     "ts": 70,
+     "or": 51,
+     "nr": false,
+     "days": "34",
+     "jockey": "Nichola Yuen",
+     "trainer": "W Y So"
+    },
+    {
+     "horse": "Speedy Power",
+     "rpr": 60,
+     "ts": 45,
+     "or": 52,
+     "nr": false,
+     "days": "20",
+     "jockey": "Alexis Badel",
+     "trainer": "James Cummings"
+    },
+    {
+     "horse": "Double Alpha",
+     "rpr": 74,
+     "ts": 53,
+     "or": 46,
+     "nr": false,
+     "days": "20",
+     "jockey": "Britney Wong",
+     "trainer": "C S Shum"
+    },
+    {
+     "horse": "Aurora Phoenix",
+     "rpr": 62,
+     "ts": 28,
+     "or": 53,
+     "nr": false,
+     "days": "26",
+     "jockey": "C Y Ho",
+     "trainer": "P C Ng"
+    },
+    {
+     "horse": "Break Heaven",
+     "rpr": 56,
+     "ts": 23,
+     "or": 52,
+     "nr": false,
+     "days": "26",
+     "jockey": "Jerry Chau",
+     "trainer": "David Eustace"
+    },
+    {
+     "horse": "Blasted Talent",
+     "rpr": 63,
+     "ts": 46,
+     "or": 46,
+     "nr": false,
+     "days": "185",
+     "jockey": "Ellis Wong",
+     "trainer": "C Fownes"
+    },
+    {
+     "horse": "Circuit Crown",
+     "rpr": "-",
+     "ts": "-",
+     "or": 52,
+     "nr": false,
+     "days": null,
+     "jockey": "Andrea Atzeni",
+     "trainer": "K L Man"
+    },
+    {
+     "horse": "Little Gut",
+     "rpr": "-",
+     "ts": "-",
+     "or": 52,
+     "nr": false,
+     "days": null,
+     "jockey": "K C Leung",
+     "trainer": "W K Mo"
+    },
+    {
+     "horse": "Forest King I",
+     "rpr": 58,
+     "ts": 47,
+     "or": 48,
+     "nr": false,
+     "days": "286",
+     "jockey": "Saffie Osborne",
+     "trainer": "C H Yip"
+    },
+    {
+     "horse": "Vigor Fly",
+     "rpr": 56,
+     "ts": 44,
+     "or": 49,
+     "nr": false,
+     "days": "24",
+     "jockey": "Harry Bentley",
+     "trainer": "David A Hayes"
+    },
+    {
+     "horse": "Daily Fun",
+     "rpr": 58,
+     "ts": 43,
+     "or": 45,
+     "nr": false,
+     "days": "26",
+     "jockey": "Matthew Chadwick",
+     "trainer": "F C Lor"
+    },
+    {
+     "horse": "Handsome Hero",
+     "rpr": 67,
+     "ts": 40,
+     "or": 51,
+     "nr": false,
+     "days": "20",
+     "jockey": "Karis Teetan",
+     "trainer": "Brett Crawford"
+    },
+    {
+     "horse": "Kachow",
+     "rpr": "-",
+     "ts": "-",
+     "or": 52,
+     "nr": false,
+     "days": null,
+     "jockey": null,
+     "trainer": "Jamie Richards"
+    }
+   ]
+  },
+  {
+   "course": "Sha Tin",
+   "time": "09:00",
+   "race_id": 933357,
+   "country": "HK",
+   "runners": [
+    {
+     "horse": "Chill Partners",
+     "rpr": 68,
+     "ts": 59,
+     "or": 56,
+     "nr": false,
+     "days": "26",
+     "jockey": "Nichola Yuen",
+     "trainer": "K W Lui"
+    },
+    {
+     "horse": "Hot Air Ballon",
+     "rpr": 71,
+     "ts": 69,
+     "or": 49,
+     "nr": false,
+     "days": "26",
+     "jockey": "James Orman",
+     "trainer": "Douglas Whyte"
+    },
+    {
+     "horse": "Prestige Come",
+     "rpr": 69,
+     "ts": 48,
+     "or": 49,
+     "nr": false,
+     "days": "20",
+     "jockey": "Richard Kingscote",
+     "trainer": "P F Yiu"
+    },
+    {
+     "horse": "Solid Car",
+     "rpr": 71,
+     "ts": 65,
+     "or": 56,
+     "nr": false,
+     "days": "10",
+     "jockey": "Brenton Avdulla",
+     "trainer": "D J Hall"
+    },
+    {
+     "horse": "Not Usual Double",
+     "rpr": 69,
+     "ts": 52,
+     "or": 52,
+     "nr": false,
+     "days": "26",
+     "jockey": "Zac Purton",
+     "trainer": "Jamie Richards"
+    },
+    {
+     "horse": "Smart Fat Cat",
+     "rpr": 75,
+     "ts": 65,
+     "or": 46,
+     "nr": false,
+     "days": "20",
+     "jockey": "Karis Teetan",
+     "trainer": "P C Ng"
+    },
+    {
+     "horse": "Pegasus Elite",
+     "rpr": 67,
+     "ts": 50,
+     "or": 51,
+     "nr": false,
+     "days": "26",
+     "jockey": "L J Ferraris",
+     "trainer": "Mark Newnham"
+    },
+    {
+     "horse": "Tang Heart",
+     "rpr": 73,
+     "ts": 57,
+     "or": 58,
+     "nr": false,
+     "days": "20",
+     "jockey": "Ellis Wong",
+     "trainer": "C Fownes"
+    },
+    {
+     "horse": "Grouper",
+     "rpr": 75,
+     "ts": 72,
+     "or": 47,
+     "nr": false,
+     "days": "34",
+     "jockey": "Saffie Osborne",
+     "trainer": "C S Shum"
+    },
+    {
+     "horse": "Excellent Boy",
+     "rpr": 74,
+     "ts": 65,
+     "or": 41,
+     "nr": false,
+     "days": "199",
+     "jockey": "M L Yeung",
+     "trainer": "C W Chang"
+    },
+    {
+     "horse": "Positive Smile",
+     "rpr": 79,
+     "ts": 77,
+     "or": 51,
+     "nr": false,
+     "days": "26",
+     "jockey": "Matthew Chadwick",
+     "trainer": "David A Hayes"
+    },
+    {
+     "horse": "Gulu Gogo",
+     "rpr": 66,
+     "ts": 50,
+     "or": 60,
+     "nr": false,
+     "days": "34",
+     "jockey": "K C Leung",
+     "trainer": "W K Mo"
+    },
+    {
+     "horse": "Natural High",
+     "rpr": 73,
+     "ts": 42,
+     "or": 53,
+     "nr": false,
+     "days": "20",
+     "jockey": "Britney Wong",
+     "trainer": "C H Yip"
+    },
+    {
+     "horse": "Cosmo Dragon",
+     "rpr": 41,
+     "ts": "-",
+     "or": 52,
+     "nr": false,
+     "days": "26",
+     "jockey": "H T Mo",
+     "trainer": "Y S Tsui"
+    },
+    {
+     "horse": "Regency Dream",
+     "rpr": 67,
+     "ts": 52,
+     "or": 51,
+     "nr": false,
+     "days": "237",
+     "jockey": null,
+     "trainer": "W Y So"
+    },
+    {
+     "horse": "Glory Patch",
+     "rpr": 66,
+     "ts": 38,
+     "or": 51,
+     "nr": false,
+     "days": "20",
+     "jockey": null,
+     "trainer": "J Size"
+    }
+   ]
+  },
+  {
+   "course": "Sha Tin",
+   "time": "09:35",
+   "race_id": 933358,
+   "country": "HK",
+   "runners": [
+    {
+     "horse": "Pray For Justice",
+     "rpr": 90,
+     "ts": 74,
+     "or": 65,
+     "nr": false,
+     "days": "17",
+     "jockey": "Karis Teetan",
+     "trainer": "David Eustace"
+    },
+    {
+     "horse": "Loch Tay",
+     "rpr": 85,
+     "ts": 65,
+     "or": 78,
+     "nr": false,
+     "days": "10",
+     "jockey": "Jerry Chau",
+     "trainer": "David Eustace"
+    },
+    {
+     "horse": "Happy Universe",
+     "rpr": 87,
+     "ts": 71,
+     "or": 65,
+     "nr": false,
+     "days": "17",
+     "jockey": "K C Leung",
+     "trainer": "Jimmy Ting"
+    },
+    {
+     "horse": "Sky Vino",
+     "rpr": 91,
+     "ts": 60,
+     "or": 76,
+     "nr": false,
+     "days": "17",
+     "jockey": "Ellis Wong",
+     "trainer": "C Fownes"
+    },
+    {
+     "horse": "All Round Winner",
+     "rpr": 86,
+     "ts": 63,
+     "or": 65,
+     "nr": false,
+     "days": "17",
+     "jockey": "Harry Bentley",
+     "trainer": "David A Hayes"
+    },
+    {
+     "horse": "Endeared",
+     "rpr": 90,
+     "ts": 68,
+     "or": 70,
+     "nr": false,
+     "days": "20",
+     "jockey": "James Orman",
+     "trainer": "J Size"
+    },
+    {
+     "horse": "Forever Folks",
+     "rpr": 87,
+     "ts": 72,
+     "or": 63,
+     "nr": false,
+     "days": "31",
+     "jockey": "Zac Purton",
+     "trainer": "C S Shum"
+    },
+    {
+     "horse": "Supreme Agility",
+     "rpr": 87,
+     "ts": 80,
+     "or": 61,
+     "nr": false,
+     "days": "17",
+     "jockey": "Saffie Osborne",
+     "trainer": "P C Ng"
+    },
+    {
+     "horse": "Dragon Air Force",
+     "rpr": 95,
+     "ts": 71,
+     "or": 73,
+     "nr": false,
+     "days": "17",
+     "jockey": "Richard Kingscote",
+     "trainer": "P F Yiu"
+    },
+    {
+     "horse": "King Dance",
+     "rpr": 84,
+     "ts": 60,
+     "or": 61,
+     "nr": false,
+     "days": "41",
+     "jockey": "Andrea Atzeni",
+     "trainer": "K W Lui"
+    },
+    {
+     "horse": "Nezha",
+     "rpr": 87,
+     "ts": 75,
+     "or": 65,
+     "nr": false,
+     "days": "17",
+     "jockey": "Matthew Poon",
+     "trainer": "D J Hall"
+    },
+    {
+     "horse": "So Naive",
+     "rpr": 72,
+     "ts": "-",
+     "or": 66,
+     "nr": false,
+     "days": "26",
+     "jockey": "Lyle Hewitson",
+     "trainer": "Brett Crawford"
+    },
+    {
+     "horse": "Another Zonda",
+     "rpr": 90,
+     "ts": 64,
+     "or": 65,
+     "nr": false,
+     "days": "20",
+     "jockey": "Britney Wong",
+     "trainer": "Y S Tsui"
+    },
+    {
+     "horse": "Voyage Horizon",
+     "rpr": 64,
+     "ts": "-",
+     "or": 61,
+     "nr": false,
+     "days": "48",
+     "jockey": "M L Yeung",
+     "trainer": "F C Lor"
+    },
+    {
+     "horse": "Highland Rahy",
+     "rpr": 95,
+     "ts": "-",
+     "or": 66,
+     "nr": false,
+     "days": "24",
+     "jockey": null,
+     "trainer": "K W Lui"
+    },
+    {
+     "horse": "Stay Cosmic",
+     "rpr": 115,
+     "ts": "-",
+     "or": 65,
+     "nr": false,
+     "days": "10",
+     "jockey": null,
+     "trainer": "David A Hayes"
+    }
+   ]
+  },
+  {
+   "course": "Sha Tin",
+   "time": "10:10",
+   "race_id": 933359,
+   "country": "HK",
+   "runners": [
+    {
+     "horse": "Joyful Joy",
+     "rpr": 86,
+     "ts": 77,
+     "or": 67,
+     "nr": false,
+     "days": "26",
+     "jockey": "Zac Purton",
+     "trainer": "Mark Newnham"
+    },
+    {
+     "horse": "Jolly Brilliant",
+     "rpr": 83,
+     "ts": 72,
+     "or": 65,
+     "nr": false,
+     "days": "34",
+     "jockey": "Andrea Atzeni",
+     "trainer": "P F Yiu"
+    },
+    {
+     "horse": "Complete Unknown",
+     "rpr": 88,
+     "ts": 69,
+     "or": 71,
+     "nr": false,
+     "days": "26",
+     "jockey": "Karis Teetan",
+     "trainer": "W K Mo"
+    },
+    {
+     "horse": "Sky Heart",
+     "rpr": 97,
+     "ts": 64,
+     "or": 78,
+     "nr": false,
+     "days": "26",
+     "jockey": "Ellis Wong",
+     "trainer": "C Fownes"
+    },
+    {
+     "horse": "Power Of Vitam",
+     "rpr": 93,
+     "ts": 72,
+     "or": 71,
+     "nr": false,
+     "days": "20",
+     "jockey": "James Orman",
+     "trainer": "D J Hall"
+    },
+    {
+     "horse": "Shamus Storm",
+     "rpr": 89,
+     "ts": 72,
+     "or": 65,
+     "nr": false,
+     "days": "26",
+     "jockey": "Harry Bentley",
+     "trainer": "David A Hayes"
+    },
+    {
+     "horse": "Monopolistic",
+     "rpr": 110,
+     "ts": "-",
+     "or": 80,
+     "nr": false,
+     "days": "168",
+     "jockey": "Brenton Avdulla",
+     "trainer": "J Size"
+    },
+    {
+     "horse": "Willie Oppa",
+     "rpr": "-",
+     "ts": "-",
+     "or": 73,
+     "nr": false,
+     "days": "941",
+     "jockey": "C Y Ho",
+     "trainer": "K W Lui"
+    },
+    {
+     "horse": "Family Jewel",
+     "rpr": 88,
+     "ts": 61,
+     "or": 72,
+     "nr": false,
+     "days": "13",
+     "jockey": "Saffie Osborne",
+     "trainer": "C Fownes"
+    },
+    {
+     "horse": "Gallant Dream",
+     "rpr": "-",
+     "ts": "-",
+     "or": 74,
+     "nr": false,
+     "days": null,
+     "jockey": "K C Leung",
+     "trainer": "David Eustace"
+    },
+    {
+     "horse": "Beauty Swift",
+     "rpr": 110,
+     "ts": "-",
+     "or": 75,
+     "nr": false,
+     "days": "168",
+     "jockey": "Alexis Badel",
+     "trainer": "A S Cruz"
+    },
+    {
+     "horse": "King Equine",
+     "rpr": 112,
+     "ts": 65,
+     "or": 64,
+     "nr": false,
+     "days": "41",
+     "jockey": "Matthew Poon",
+     "trainer": "C S Shum"
+    },
+    {
+     "horse": "Smart Avenue",
+     "rpr": 90,
+     "ts": 66,
+     "or": 76,
+     "nr": false,
+     "days": "26",
+     "jockey": "Nichola Yuen",
+     "trainer": "C H Yip"
+    }
+   ]
+  },
+  {
+   "course": "Sandown (Aus)",
+   "time": "05:25",
+   "race_id": 933327,
+   "country": "AUS",
+   "runners": [
+    {
+     "horse": "Beiwacht",
+     "rpr": 133,
+     "ts": "-",
+     "or": 117,
+     "nr": false,
+     "days": "14",
+     "jockey": "James McDonald",
+     "trainer": "Chris Waller"
+    },
+    {
+     "horse": "Angel Capital",
+     "rpr": 129,
+     "ts": "-",
+     "or": 114,
+     "nr": false,
+     "days": "28",
+     "jockey": "Ben Melham",
+     "trainer": "Chris Waller"
+    },
+    {
+     "horse": "Shadhavar",
+     "rpr": 124,
+     "ts": "-",
+     "or": 106,
+     "nr": false,
+     "days": "11",
+     "jockey": "Kerrin McEvoy",
+     "trainer": "Tom Dabernig"
+    },
+    {
+     "horse": "Jimmysstar",
+     "rpr": 132,
+     "ts": "-",
+     "or": 117,
+     "nr": false,
+     "days": "14",
+     "jockey": "Ethan Brown",
+     "trainer": "Ciaron Maher"
+    },
+    {
+     "horse": "Pericles",
+     "rpr": 130,
+     "ts": "-",
+     "or": 115,
+     "nr": false,
+     "days": "14",
+     "jockey": "Craig A Williams",
+     "trainer": "Bjorn Baker"
+    },
+    {
+     "horse": "Splash Back",
+     "rpr": 130,
+     "ts": "-",
+     "or": 109,
+     "nr": false,
+     "days": "21",
+     "jockey": "Jordan Childs",
+     "trainer": "Grahame Begg"
+    },
+    {
+     "horse": "War Machine",
+     "rpr": 125,
+     "ts": "-",
+     "or": 112,
+     "nr": false,
+     "days": "28",
+     "jockey": "Mark Zahra",
+     "trainer": "Ben, Will & JD Hayes"
+    },
+    {
+     "horse": "Desert Lightning",
+     "rpr": 124,
+     "ts": "-",
+     "or": 108,
+     "nr": false,
+     "days": "14",
+     "jockey": "Luke Nolen",
+     "trainer": "Peter G Moody & Katherine Coleman"
+    }
+   ]
+  },
+  {
+   "course": "Sandown (Aus)",
+   "time": "06:05",
+   "race_id": 933328,
+   "country": "AUS",
+   "runners": [
+    {
+     "horse": "Small Fry",
+     "rpr": 125,
+     "ts": "-",
+     "or": 101,
+     "nr": false,
+     "days": "24",
+     "jockey": "Mark Zahra",
+     "trainer": "Joseph Patrick O'Brien"
+    },
+    {
+     "horse": "Travolta",
+     "rpr": 123,
+     "ts": "-",
+     "or": 103,
+     "nr": false,
+     "days": "56",
+     "jockey": "James McDonald",
+     "trainer": "Chris Waller"
+    },
+    {
+     "horse": "Kingswood",
+     "rpr": 128,
+     "ts": "-",
+     "or": 115,
+     "nr": false,
+     "days": "28",
+     "jockey": "John Allen",
+     "trainer": "Gavin Bedggood"
+    },
+    {
+     "horse": "Juja Kibo",
+     "rpr": 123,
+     "ts": "-",
+     "or": 109,
+     "nr": false,
+     "days": "11",
+     "jockey": "Sam Clipperton",
+     "trainer": "Ciaron Maher"
+    },
+    {
+     "horse": "Darkbonee",
+     "rpr": 114,
+     "ts": "-",
+     "or": 95,
+     "nr": false,
+     "days": "11",
+     "jockey": "Craig A Williams",
+     "trainer": "Symon Wilde"
+    },
+    {
+     "horse": "Vauban",
+     "rpr": 125,
+     "ts": "-",
+     "or": 108,
+     "nr": false,
+     "days": "11",
+     "jockey": "Blake Shinn",
+     "trainer": "Gai Waterhouse & Adrian Bott"
+    },
+    {
+     "horse": "She's A Hustler",
+     "rpr": 126,
+     "ts": "-",
+     "or": 107,
+     "nr": false,
+     "days": "28",
+     "jockey": "Jordan Childs",
+     "trainer": "Grahame Begg"
+    },
+    {
+     "horse": "Asterix",
+     "rpr": 125,
+     "ts": "-",
+     "or": 105,
+     "nr": false,
+     "days": "28",
+     "jockey": "Damian Lane",
+     "trainer": "Chris Waller"
+    },
+    {
+     "horse": "Knight's Choice",
+     "rpr": 123,
+     "ts": "-",
+     "or": 107,
+     "nr": false,
+     "days": "11",
+     "jockey": "Robbie Dolan",
+     "trainer": "John Symons & Sheila Laxon"
+    },
+    {
+     "horse": "Torranzino",
+     "rpr": 114,
+     "ts": "-",
+     "or": 100,
+     "nr": false,
+     "days": "7",
+     "jockey": "Billy Egan",
+     "trainer": "Paul Preusker"
+    },
+    {
+     "horse": "Middle Earth",
+     "rpr": 122,
+     "ts": "-",
+     "or": 108,
+     "nr": false,
+     "days": "11",
+     "jockey": "Ethan Brown",
+     "trainer": "Ciaron Maher"
+    },
+    {
+     "horse": "Smokin' Romans",
+     "rpr": 120,
+     "ts": "-",
+     "or": 97,
+     "nr": false,
+     "days": "31",
+     "jockey": "Jabez Johnstone",
+     "trainer": "Ciaron Maher"
+    },
+    {
+     "horse": "Strictly Business",
+     "rpr": 122,
+     "ts": "-",
+     "or": 100,
+     "nr": false,
+     "days": "11",
+     "jockey": "Declan Bates",
+     "trainer": "Thomas D Carberry"
+    }
+   ]
+  },
+  {
+   "course": "Jebel Ali",
+   "time": "10:00",
+   "race_id": 933399,
+   "country": "UAE",
+   "runners": [
+    {
+     "horse": "Homespin",
+     "rpr": "-",
+     "ts": "-",
+     "or": 75,
+     "nr": false,
+     "days": "666",
+     "jockey": "Jose Santiago",
+     "trainer": "Salem bin Ghadayer"
+    },
+    {
+     "horse": "Fight Zone",
+     "rpr": 90,
+     "ts": "-",
+     "or": 83,
+     "nr": false,
+     "days": "14",
+     "jockey": "Qais Bin Saif Al Busaidi",
+     "trainer": "Abubakar Daud"
+    },
+    {
+     "horse": "Wanees",
+     "rpr": 85,
+     "ts": "-",
+     "or": 84,
+     "nr": false,
+     "days": "16",
+     "jockey": "Jamie Powell",
+     "trainer": "Doug Watson"
+    },
+    {
+     "horse": "Border Edge",
+     "rpr": 91,
+     "ts": "-",
+     "or": 83,
+     "nr": false,
+     "days": "14",
+     "jockey": "Ray Dawson",
+     "trainer": "Bhupat Seemar"
+    },
+    {
+     "horse": "Kubrick",
+     "rpr": 67,
+     "ts": "-",
+     "or": 85,
+     "nr": false,
+     "days": "14",
+     "jockey": "Jules Mobian",
+     "trainer": "Musabbeh Al Mheiri"
+    },
+    {
+     "horse": "Ocean Runner",
+     "rpr": 77,
+     "ts": "-",
+     "or": 77,
+     "nr": false,
+     "days": "14",
+     "jockey": "Hamed Al Busaidi",
+     "trainer": "Qaiss Aboud"
+    },
+    {
+     "horse": "Tifareeh",
+     "rpr": 40,
+     "ts": "-",
+     "or": 85,
+     "nr": false,
+     "days": "217",
+     "jockey": "Richard Mullen",
+     "trainer": "Ali Al Badwawi"
+    },
+    {
+     "horse": "Procrastinate",
+     "rpr": 51,
+     "ts": "-",
+     "or": 85,
+     "nr": false,
+     "days": "14",
+     "jockey": "Connor Beasley",
+     "trainer": "A bin Harmash"
+    },
+    {
+     "horse": "Inspired Idea",
+     "rpr": 80,
+     "ts": "-",
+     "or": 85,
+     "nr": false,
+     "days": "14",
+     "jockey": "Pat Dobbs",
+     "trainer": "Doug Watson"
+    },
+    {
+     "horse": "The Trickster",
+     "rpr": "-",
+     "ts": "-",
+     "or": 81,
+     "nr": false,
+     "days": "23",
+     "jockey": "Silvestre De Sousa",
+     "trainer": "Musabbeh Al Mheiri"
+    },
+    {
+     "horse": "On The Way",
+     "rpr": 87,
+     "ts": "-",
+     "or": 80,
+     "nr": false,
+     "days": "14",
+     "jockey": "Bernardo Pinheiro",
+     "trainer": "Salem bin Ghadayer"
+    },
+    {
+     "horse": "Wedonttelllies",
+     "rpr": "-",
+     "ts": "-",
+     "or": 83,
+     "nr": false,
+     "days": "133",
+     "jockey": "Daniel Tudhope",
+     "trainer": "Antonio Cintra & Julio Olascoaga"
+    },
+    {
+     "horse": "Wezzeer",
+     "rpr": "-",
+     "ts": "-",
+     "or": 85,
+     "nr": false,
+     "days": "80",
+     "jockey": "Oisin Murphy",
+     "trainer": "Ed Crisford"
+    }
+   ]
+  },
+  {
+   "course": "Jebel Ali",
+   "time": "10:30",
+   "race_id": 933400,
+   "country": "UAE",
+   "runners": [
+    {
+     "horse": "Recolonize",
+     "rpr": "-",
+     "ts": "-",
+     "or": 67,
+     "nr": false,
+     "days": "14",
+     "jockey": "Jose Santiago",
+     "trainer": "Salem bin Ghadayer"
+    },
+    {
+     "horse": "Rakaan",
+     "rpr": 78,
+     "ts": "-",
+     "or": 80,
+     "nr": false,
+     "days": "316",
+     "jockey": "Daniel Tudhope",
+     "trainer": "Antonio Cintra & Julio Olascoaga"
+    },
+    {
+     "horse": "Malzoom",
+     "rpr": 78,
+     "ts": "-",
+     "or": 82,
+     "nr": false,
+     "days": "272",
+     "jockey": "Oisin Murphy",
+     "trainer": "Ed Crisford"
+    },
+    {
+     "horse": "Secret Star",
+     "rpr": 59,
+     "ts": "-",
+     "or": 70,
+     "nr": false,
+     "days": "14",
+     "jockey": "Silvestre De Sousa",
+     "trainer": "Musabbeh Al Mheiri"
+    },
+    {
+     "horse": "Alameed",
+     "rpr": 73,
+     "ts": "-",
+     "or": 80,
+     "nr": false,
+     "days": "14",
+     "jockey": "Ray Dawson",
+     "trainer": "Bhupat Seemar"
+    },
+    {
+     "horse": "Brute Strength",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": null,
+     "jockey": "Qais Bin Saif Al Busaidi",
+     "trainer": "Salem bin Ghadayer"
+    },
+    {
+     "horse": "Isle Go",
+     "rpr": 74,
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "14",
+     "jockey": "Bernardo Pinheiro",
+     "trainer": "Salem bin Ghadayer"
+    },
+    {
+     "horse": "Leno",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": null,
+     "jockey": "Jamie Powell",
+     "trainer": "Doug Watson"
+    }
+   ]
+  },
+  {
+   "course": "Jebel Ali",
+   "time": "11:00",
+   "race_id": 933401,
+   "country": "UAE",
+   "runners": [
+    {
+     "horse": "Al Leith Glory",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": null,
+     "jockey": "Pat Dobbs",
+     "trainer": "Doug Watson"
+    },
+    {
+     "horse": "Golden Orator",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": null,
+     "jockey": "Bernardo Pinheiro",
+     "trainer": "Salem bin Ghadayer"
+    },
+    {
+     "horse": "Good Rate",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": null,
+     "jockey": "Connor Beasley",
+     "trainer": "A bin Harmash"
+    },
+    {
+     "horse": "Mooeadd",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": null,
+     "jockey": "Oisin Murphy",
+     "trainer": "Ed Crisford"
+    },
+    {
+     "horse": "Shamall",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": null,
+     "jockey": "Daniel Tudhope",
+     "trainer": "Ed Crisford"
+    },
+    {
+     "horse": "Wasl Azteca",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": null,
+     "jockey": "Ray Dawson",
+     "trainer": "A bin Harmash"
+    }
+   ]
+  },
+  {
+   "course": "Jebel Ali",
+   "time": "11:30",
+   "race_id": 933402,
+   "country": "UAE",
+   "runners": [
+    {
+     "horse": "City Walk",
+     "rpr": "-",
+     "ts": "-",
+     "or": 88,
+     "nr": false,
+     "days": "8",
+     "jockey": "Bernardo Pinheiro",
+     "trainer": "Kareem Ramadan"
+    },
+    {
+     "horse": "Mutafawwig",
+     "rpr": "-",
+     "ts": "-",
+     "or": 95,
+     "nr": false,
+     "days": "1501",
+     "jockey": "Daniel Tudhope",
+     "trainer": "Antonio Cintra & Julio Olascoaga"
+    },
+    {
+     "horse": "Tourist",
+     "rpr": 84,
+     "ts": "-",
+     "or": 90,
+     "nr": false,
+     "days": "14",
+     "jockey": "Pat Dobbs",
+     "trainer": "Doug Watson"
+    },
+    {
+     "horse": "Rafid",
+     "rpr": 90,
+     "ts": "-",
+     "or": 90,
+     "nr": false,
+     "days": "244",
+     "jockey": "Oisin Murphy",
+     "trainer": "Doug Watson"
+    },
+    {
+     "horse": "Law Of Pharoahs",
+     "rpr": 90,
+     "ts": "-",
+     "or": 77,
+     "nr": false,
+     "days": "14",
+     "jockey": "Silvestre De Sousa",
+     "trainer": "Musabbeh Al Mheiri"
+    },
+    {
+     "horse": "Ashwaan",
+     "rpr": 93,
+     "ts": "-",
+     "or": 89,
+     "nr": false,
+     "days": "14",
+     "jockey": "Ray Dawson",
+     "trainer": "Bhupat Seemar"
+    }
+   ]
+  },
+  {
+   "course": "Jebel Ali",
+   "time": "12:00",
+   "race_id": 933403,
+   "country": "UAE",
+   "runners": [
+    {
+     "horse": "Goldspur",
+     "rpr": 91,
+     "ts": "-",
+     "or": 73,
+     "nr": false,
+     "days": "8",
+     "jockey": "Hamed Al Busaidi",
+     "trainer": "Qaiss Aboud"
+    },
+    {
+     "horse": "Western Writer",
+     "rpr": "-",
+     "ts": "-",
+     "or": 85,
+     "nr": false,
+     "days": "16",
+     "jockey": "Jules Mobian",
+     "trainer": "Maciej Kacprzyk"
+    },
+    {
+     "horse": "Deciduous",
+     "rpr": 82,
+     "ts": "-",
+     "or": 80,
+     "nr": false,
+     "days": "217",
+     "jockey": "Qais Bin Saif Al Busaidi",
+     "trainer": "Salem bin Ghadayer"
+    },
+    {
+     "horse": "Run With The Cash",
+     "rpr": 87,
+     "ts": "-",
+     "or": 68,
+     "nr": false,
+     "days": "244",
+     "jockey": "Andrew Slattery",
+     "trainer": "Osama Refai"
+    },
+    {
+     "horse": "Truth Explained",
+     "rpr": 87,
+     "ts": "-",
+     "or": 82,
+     "nr": false,
+     "days": "246",
+     "jockey": "Pat Dobbs",
+     "trainer": "Doug Watson"
+    },
+    {
+     "horse": "Kibo Misaki",
+     "rpr": 87,
+     "ts": "-",
+     "or": 76,
+     "nr": false,
+     "days": "244",
+     "jockey": "Bernardo Pinheiro",
+     "trainer": "Salem bin Ghadayer"
+    },
+    {
+     "horse": "Inner Wisdom",
+     "rpr": 63,
+     "ts": "-",
+     "or": 72,
+     "nr": false,
+     "days": "274",
+     "jockey": "Jack Mitchell",
+     "trainer": "Kareem Ramadan"
+    },
+    {
+     "horse": "Inner Peace",
+     "rpr": 88,
+     "ts": "-",
+     "or": 75,
+     "nr": false,
+     "days": "16",
+     "jockey": "Jose Santiago",
+     "trainer": "Salem bin Ghadayer"
+    },
+    {
+     "horse": "Run With It",
+     "rpr": 85,
+     "ts": "-",
+     "or": 79,
+     "nr": false,
+     "days": "217",
+     "jockey": "Sandro Paiva",
+     "trainer": "Khalifa Almarri"
+    },
+    {
+     "horse": "Mr Haiiro",
+     "rpr": 81,
+     "ts": "-",
+     "or": 80,
+     "nr": false,
+     "days": "259",
+     "jockey": "Connor Beasley",
+     "trainer": "A bin Harmash"
+    },
+    {
+     "horse": "Frostfire",
+     "rpr": 85,
+     "ts": "-",
+     "or": 77,
+     "nr": false,
+     "days": "244",
+     "jockey": "Ray Dawson",
+     "trainer": "Bhupat Seemar"
+    }
+   ]
+  },
+  {
+   "course": "Jebel Ali",
+   "time": "12:30",
+   "race_id": 933404,
+   "country": "UAE",
+   "runners": [
+    {
+     "horse": "Tolmount",
+     "rpr": 75,
+     "ts": "-",
+     "or": 69,
+     "nr": false,
+     "days": "251",
+     "jockey": "Bernardo Pinheiro",
+     "trainer": "Salem bin Ghadayer"
+    },
+    {
+     "horse": "Chosen Mark",
+     "rpr": 69,
+     "ts": "-",
+     "or": 62,
+     "nr": false,
+     "days": "9",
+     "jockey": "Saif Al Balushi",
+     "trainer": "Qaiss Aboud"
+    },
+    {
+     "horse": "Perfect Balance",
+     "rpr": 62,
+     "ts": "-",
+     "or": 63,
+     "nr": false,
+     "days": "9",
+     "jockey": "Ray Dawson",
+     "trainer": "Bhupat Seemar"
+    },
+    {
+     "horse": "Poster Paint",
+     "rpr": 74,
+     "ts": "-",
+     "or": 69,
+     "nr": false,
+     "days": "9",
+     "jockey": "Richard Mullen",
+     "trainer": "Bhupat Seemar"
+    },
+    {
+     "horse": "Trip To Rome",
+     "rpr": 67,
+     "ts": "-",
+     "or": 65,
+     "nr": false,
+     "days": "14",
+     "jockey": "Jules Mobian",
+     "trainer": "Osama Refai"
+    },
+    {
+     "horse": "Lajooje",
+     "rpr": 65,
+     "ts": "-",
+     "or": 68,
+     "nr": false,
+     "days": "16",
+     "jockey": "Allaia Tiar",
+     "trainer": "Hemidy Alhamida"
+    },
+    {
+     "horse": "Important Role",
+     "rpr": 68,
+     "ts": "-",
+     "or": 60,
+     "nr": false,
+     "days": "9",
+     "jockey": "Mohamed Dahani",
+     "trainer": "Mohamed Al Mazrouei"
+    },
+    {
+     "horse": "Global Asset",
+     "rpr": 38,
+     "ts": "-",
+     "or": 63,
+     "nr": false,
+     "days": "9",
+     "jockey": "Andrew Slattery",
+     "trainer": "Maitha Alsuwaidi"
+    },
+    {
+     "horse": "Velvet Cactus",
+     "rpr": 68,
+     "ts": "-",
+     "or": 64,
+     "nr": false,
+     "days": "14",
+     "jockey": "Jose Santiago",
+     "trainer": "Salem bin Ghadayer"
+    },
+    {
+     "horse": "Fayadh",
+     "rpr": 69,
+     "ts": "-",
+     "or": 70,
+     "nr": false,
+     "days": "14",
+     "jockey": "Silvestre De Sousa",
+     "trainer": "Qaiss Aboud"
+    },
+    {
+     "horse": "Political Truth",
+     "rpr": 74,
+     "ts": "-",
+     "or": 63,
+     "nr": false,
+     "days": "14",
+     "jockey": "Qais Bin Saif Al Busaidi",
+     "trainer": "Salem bin Ghadayer"
+    },
+    {
+     "horse": "Imarat",
+     "rpr": 46,
+     "ts": "-",
+     "or": 70,
+     "nr": false,
+     "days": "253",
+     "jockey": "Pat Dobbs",
+     "trainer": "Doug Watson"
+    },
+    {
+     "horse": "Goldamal",
+     "rpr": 50,
+     "ts": "-",
+     "or": 63,
+     "nr": false,
+     "days": "14",
+     "jockey": "Connor Beasley",
+     "trainer": "A bin Harmash"
+    },
+    {
+     "horse": "Questor",
+     "rpr": 73,
+     "ts": "-",
+     "or": 69,
+     "nr": false,
+     "days": "246",
+     "jockey": "Hamed Al Busaidi",
+     "trainer": "Raphael E Freire"
+    }
+   ]
+  },
+  {
+   "course": "Jebel Ali",
+   "time": "13:00",
+   "race_id": 933405,
+   "country": "UAE",
+   "runners": [
+    {
+     "horse": "Nature Watch",
+     "rpr": 60,
+     "ts": "-",
+     "or": 57,
+     "nr": false,
+     "days": "14",
+     "jockey": "Jules Mobian",
+     "trainer": "Osama Refai"
+    },
+    {
+     "horse": "Sensatiable",
+     "rpr": "-",
+     "ts": "-",
+     "or": 60,
+     "nr": false,
+     "days": "665",
+     "jockey": "Bernardo Pinheiro",
+     "trainer": "Salem bin Ghadayer"
+    },
+    {
+     "horse": "Peninsula Power",
+     "rpr": "-",
+     "ts": "-",
+     "or": 55,
+     "nr": false,
+     "days": "252",
+     "jockey": "Silvestre De Sousa",
+     "trainer": "Mohammed Al Mahrooqi"
+    },
+    {
+     "horse": "Native Spirit",
+     "rpr": 84,
+     "ts": "-",
+     "or": 79,
+     "nr": false,
+     "days": "266",
+     "jockey": "Connor Beasley",
+     "trainer": "A bin Harmash"
+    },
+    {
+     "horse": "Veritable",
+     "rpr": "-",
+     "ts": "-",
+     "or": 72,
+     "nr": false,
+     "days": "197",
+     "jockey": "Sandro Paiva",
+     "trainer": "Khalifa Almarri"
+    },
+    {
+     "horse": "Tewkesbury",
+     "rpr": "-",
+     "ts": "-",
+     "or": 73,
+     "nr": false,
+     "days": "211",
+     "jockey": "Pat Dobbs",
+     "trainer": "Doug Watson"
+    },
+    {
+     "horse": "Abyroy",
+     "rpr": 30,
+     "ts": "-",
+     "or": 60,
+     "nr": false,
+     "days": "244",
+     "jockey": "Andrew Slattery",
+     "trainer": "Doug Watson"
+    },
+    {
+     "horse": "Heart Of Libya",
+     "rpr": 82,
+     "ts": "-",
+     "or": 76,
+     "nr": false,
+     "days": "14",
+     "jockey": "Daniel Tudhope",
+     "trainer": "Antonio Cintra & Julio Olascoaga"
+    },
+    {
+     "horse": "Global View",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "301",
+     "jockey": "Hamed Al Busaidi",
+     "trainer": "Raphael E Freire"
+    },
+    {
+     "horse": "Lobaaster",
+     "rpr": "-",
+     "ts": "-",
+     "or": 50,
+     "nr": false,
+     "days": "251",
+     "jockey": "Reserve",
+     "trainer": "Salem bin Ghadayer"
+    },
+    {
+     "horse": "Concert Tour",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "301",
+     "jockey": "Richard Mullen",
+     "trainer": "Bhupat Seemar"
+    },
+    {
+     "horse": "Saleett",
+     "rpr": 89,
+     "ts": "-",
+     "or": 83,
+     "nr": false,
+     "days": "244",
+     "jockey": "Oisin Murphy",
+     "trainer": "Ed Crisford"
+    },
+    {
+     "horse": "Sucette",
+     "rpr": 89,
+     "ts": "-",
+     "or": 80,
+     "nr": false,
+     "days": "246",
+     "jockey": "Ray Dawson",
+     "trainer": "Bhupat Seemar"
+    },
+    {
+     "horse": "Brenbar Boy",
+     "rpr": 50,
+     "ts": "-",
+     "or": 71,
+     "nr": false,
+     "days": "14",
+     "jockey": "Jamie Powell",
+     "trainer": "Doug Watson"
+    },
+    {
+     "horse": "Catstyle",
+     "rpr": 35,
+     "ts": "-",
+     "or": 47,
+     "nr": false,
+     "days": "14",
+     "jockey": "Qais Bin Saif Al Busaidi",
+     "trainer": "Salem bin Ghadayer"
+    }
+   ]
+  },
+  {
+   "course": "Uttoxeter",
+   "time": "13:15",
+   "race_id": 930645,
+   "country": "GB",
+   "runners": [
+    {
+     "horse": "Malina Road",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "259",
+     "jockey": "Jack Hogan",
+     "trainer": "Fergal O'Brien"
+    },
+    {
+     "horse": "Boombox",
+     "rpr": 117,
+     "ts": 101,
+     "or": "-",
+     "nr": false,
+     "days": "24",
+     "jockey": "Harry Reed",
+     "trainer": "Harry Derham"
+    },
+    {
+     "horse": "Port And Brandy",
+     "rpr": 117,
+     "ts": 98,
+     "or": "-",
+     "nr": false,
+     "days": "174",
+     "jockey": "Shane Fenelon",
+     "trainer": "Mickey Bowen"
+    },
+    {
+     "horse": "Kentford Legacy",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "174",
+     "jockey": "Daniel Sansom",
+     "trainer": "Seamus Mullins"
+    },
+    {
+     "horse": "Crystal Connemara",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "29",
+     "jockey": "David Bass",
+     "trainer": "Max Comley"
+    },
+    {
+     "horse": "Millady",
+     "rpr": 96,
+     "ts": 73,
+     "or": 102,
+     "nr": false,
+     "days": "213",
+     "jockey": "Charlie Deutsch",
+     "trainer": "Mel Rowley"
+    },
+    {
+     "horse": "Britway Belle",
+     "rpr": 81,
+     "ts": 60,
+     "or": "-",
+     "nr": false,
+     "days": "174",
+     "jockey": "Kielan Woods",
+     "trainer": "Henry Oliver"
+    }
+   ]
+  },
+  {
+   "course": "Uttoxeter",
+   "time": "15:00",
+   "race_id": 930646,
+   "country": "GB",
+   "runners": [
+    {
+     "horse": "Kalhandrion",
+     "rpr": 121,
+     "ts": 114,
+     "or": 111,
+     "nr": false,
+     "days": "242",
+     "jockey": "James Best",
+     "trainer": "Richard Hobson"
+    },
+    {
+     "horse": "Seven Kites",
+     "rpr": "-",
+     "ts": "-",
+     "or": 110,
+     "nr": false,
+     "days": "15",
+     "jockey": "Stan Sheppard",
+     "trainer": "Tom Lacey"
+    },
+    {
+     "horse": "Orderoftheday",
+     "rpr": 127,
+     "ts": 102,
+     "or": 119,
+     "nr": false,
+     "days": "30",
+     "jockey": "Robert Dunne",
+     "trainer": "Olly Murphy"
+    },
+    {
+     "horse": "Warriors Destiny",
+     "rpr": "-",
+     "ts": "-",
+     "or": 120,
+     "nr": false,
+     "days": "245",
+     "jockey": "Jack Hogan",
+     "trainer": "Fergal O'Brien"
+    },
+    {
+     "horse": "Torrent",
+     "rpr": "-",
+     "ts": "-",
+     "or": 108,
+     "nr": false,
+     "days": "35",
+     "jockey": "Charlie Deutsch",
+     "trainer": "Nigel Hawke"
+    },
+    {
+     "horse": "Kahavari",
+     "rpr": 123,
+     "ts": 111,
+     "or": 117,
+     "nr": false,
+     "days": "14",
+     "jockey": "Toby Wynne",
+     "trainer": "Oliver Greenall & Josh Guerriero"
+    },
+    {
+     "horse": "Shy Love",
+     "rpr": "-",
+     "ts": "-",
+     "or": 112,
+     "nr": false,
+     "days": "702",
+     "jockey": "David Bass",
+     "trainer": "Fergal O'Brien"
+    },
+    {
+     "horse": "Stone's Throw",
+     "rpr": "-",
+     "ts": "-",
+     "or": 119,
+     "nr": false,
+     "days": "246",
+     "jockey": "Kielan Woods",
+     "trainer": "Billy Aprahamian"
+    }
+   ]
+  },
+  {
+   "course": "Uttoxeter",
+   "time": "14:25",
+   "race_id": 930647,
+   "country": "GB",
+   "runners": [
+    {
+     "horse": "Pismo Beach",
+     "rpr": "-",
+     "ts": "-",
+     "or": 114,
+     "nr": false,
+     "days": "238",
+     "jockey": "Charlie Hammond",
+     "trainer": "Stuart Edmunds"
+    },
+    {
+     "horse": "Lau And Shaz",
+     "rpr": "-",
+     "ts": "-",
+     "or": 119,
+     "nr": false,
+     "days": "219",
+     "jockey": "Charlie Deutsch",
+     "trainer": "Kayley Woollacott"
+    },
+    {
+     "horse": "Irish Chorus",
+     "rpr": 131,
+     "ts": 114,
+     "or": 116,
+     "nr": false,
+     "days": "13",
+     "jockey": "Kielan Woods",
+     "trainer": "Alan King"
+    },
+    {
+     "horse": "Lady Tadita",
+     "rpr": 124,
+     "ts": 71,
+     "or": 117,
+     "nr": false,
+     "days": "29",
+     "jockey": "Conor O'Farrell",
+     "trainer": "Jamie Snowden"
+    }
+   ]
+  },
+  {
+   "course": "Uttoxeter",
+   "time": "12:42",
+   "race_id": 930648,
+   "country": "GB",
+   "runners": [
+    {
+     "horse": "Spanish Darling",
+     "rpr": 134,
+     "ts": 119,
+     "or": 128,
+     "nr": false,
+     "days": "22",
+     "jockey": "Kielan Woods",
+     "trainer": "Alex Hales"
+    },
+    {
+     "horse": "Made For Mary",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": null,
+     "jockey": "Jack Hogan",
+     "trainer": "Jonjo & A J O'Neill"
+    },
+    {
+     "horse": "Montevallo",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "(266P)",
+     "jockey": "Toby Wynne",
+     "trainer": "Oliver Greenall & Josh Guerriero"
+    },
+    {
+     "horse": "Port Isaac",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "21",
+     "jockey": "Robert Dunne",
+     "trainer": "Toby Bulgin"
+    },
+    {
+     "horse": "Rose Warrior",
+     "rpr": 107,
+     "ts": 61,
+     "or": "-",
+     "nr": false,
+     "days": "41",
+     "jockey": "Luke Scott",
+     "trainer": "Jennie Candlish"
+    },
+    {
+     "horse": "For Her Glory",
+     "rpr": 97,
+     "ts": 50,
+     "or": "-",
+     "nr": false,
+     "days": "134",
+     "jockey": "Harry Reed",
+     "trainer": "David Brace"
+    },
+    {
+     "horse": "Carrigane",
+     "rpr": 92,
+     "ts": 73,
+     "or": "-",
+     "nr": false,
+     "days": "102",
+     "jockey": "Finn Lambert",
+     "trainer": "T Ellis"
+    },
+    {
+     "horse": "Ocean View",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "12",
+     "jockey": "Jack Andrews",
+     "trainer": "T Ellis"
+    },
+    {
+     "horse": "Avatar Jet",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "7",
+     "jockey": "Nathan Moscrop",
+     "trainer": "Declan Carroll"
+    }
+   ]
+  },
+  {
+   "course": "Uttoxeter",
+   "time": "12:07",
+   "race_id": 930649,
+   "country": "GB",
+   "runners": [
+    {
+     "horse": "Spartan Times",
+     "rpr": 108,
+     "ts": 103,
+     "or": 105,
+     "nr": false,
+     "days": "46",
+     "jockey": "Luke Scott",
+     "trainer": "Jennie Candlish"
+    },
+    {
+     "horse": "Lunar Orbit",
+     "rpr": 108,
+     "ts": 94,
+     "or": 105,
+     "nr": false,
+     "days": "19",
+     "jockey": "Billy Marshall",
+     "trainer": "Dan Skelton"
+    },
+    {
+     "horse": "Mooserwirt",
+     "rpr": 106,
+     "ts": 98,
+     "or": 90,
+     "nr": false,
+     "days": "238",
+     "jockey": "Ben Smith",
+     "trainer": "Oliver Greenall & Josh Guerriero"
+    },
+    {
+     "horse": "Zeus Forlonge",
+     "rpr": 99,
+     "ts": "-",
+     "or": 104,
+     "nr": false,
+     "days": "172",
+     "jockey": "Lewis Stones",
+     "trainer": "Olly Murphy"
+    },
+    {
+     "horse": "Tao Enki",
+     "rpr": 111,
+     "ts": 103,
+     "or": 103,
+     "nr": false,
+     "days": "28",
+     "jockey": "Jay Tidball",
+     "trainer": "Alastair Ralph"
+    },
+    {
+     "horse": "Back In The Bay",
+     "rpr": 111,
+     "ts": 85,
+     "or": 101,
+     "nr": false,
+     "days": "17",
+     "jockey": "Finn Lambert",
+     "trainer": "James Owen"
+    },
+    {
+     "horse": "Rumi Rock",
+     "rpr": 100,
+     "ts": 83,
+     "or": 105,
+     "nr": false,
+     "days": "96",
+     "jockey": "Shane Fenelon",
+     "trainer": "Gary Hanmer"
+    },
+    {
+     "horse": "Getaway With You",
+     "rpr": 111,
+     "ts": 50,
+     "or": 90,
+     "nr": false,
+     "days": "24",
+     "jockey": "Nick Slatter",
+     "trainer": "David Killahena & Graeme McPherson"
+    }
+   ]
+  },
+  {
+   "course": "Uttoxeter",
+   "time": "13:50",
+   "race_id": 930650,
+   "country": "GB",
+   "runners": [
+    {
+     "horse": "Chambers",
+     "rpr": 98,
+     "ts": 29,
+     "or": 80,
+     "nr": false,
+     "days": "164 (16F)",
+     "jockey": "Jack O'Neill",
+     "trainer": "Faye Bramley"
+    },
+    {
+     "horse": "Savanna Storm",
+     "rpr": 90,
+     "ts": 66,
+     "or": 90,
+     "nr": false,
+     "days": "47",
+     "jockey": "Stan Sheppard",
+     "trainer": "Tom Lacey"
+    },
+    {
+     "horse": "Arcon",
+     "rpr": 96,
+     "ts": 84,
+     "or": 89,
+     "nr": false,
+     "days": "41",
+     "jockey": "Mr Jamie Neild",
+     "trainer": "Jennie Candlish"
+    },
+    {
+     "horse": "Stone Cold",
+     "rpr": 97,
+     "ts": 85,
+     "or": 94,
+     "nr": false,
+     "days": "251",
+     "jockey": "Ned Fox",
+     "trainer": "Matt Sheppard"
+    },
+    {
+     "horse": "Pink 'n Purple",
+     "rpr": 94,
+     "ts": 82,
+     "or": 94,
+     "nr": false,
+     "days": "27",
+     "jockey": "Daniel Sansom",
+     "trainer": "Seamus Mullins"
+    },
+    {
+     "horse": "Josh Central",
+     "rpr": 96,
+     "ts": 66,
+     "or": 86,
+     "nr": false,
+     "days": "229",
+     "jockey": "Kielan Woods",
+     "trainer": "Tom George"
+    },
+    {
+     "horse": "Prince Phil",
+     "rpr": 82,
+     "ts": 42,
+     "or": 83,
+     "nr": false,
+     "days": "206",
+     "jockey": "Robert Dunne",
+     "trainer": "Sam England"
+    },
+    {
+     "horse": "Moi Mon Vieux",
+     "rpr": 88,
+     "ts": 54,
+     "or": 80,
+     "nr": false,
+     "days": "30",
+     "jockey": "James Best",
+     "trainer": "Richard Hobson"
+    },
+    {
+     "horse": "Both Of Us",
+     "rpr": 93,
+     "ts": 83,
+     "or": 93,
+     "nr": false,
+     "days": "136",
+     "jockey": "Conor O'Farrell",
+     "trainer": "Kerry Lee"
+    },
+    {
+     "horse": "Lady Blackmore",
+     "rpr": 95,
+     "ts": 52,
+     "or": 79,
+     "nr": false,
+     "days": "34",
+     "jockey": "Jack Hogan",
+     "trainer": "Alastair Ralph"
+    },
+    {
+     "horse": "Famous Shoes",
+     "rpr": 85,
+     "ts": 29,
+     "or": 80,
+     "nr": false,
+     "days": "38",
+     "jockey": "Harriet Tucker",
+     "trainer": "Neil Mulholland"
+    },
+    {
+     "horse": "Bargain Hunter",
+     "rpr": 87,
+     "ts": 55,
+     "or": 73,
+     "nr": false,
+     "days": "148",
+     "jockey": "Nick Slatter",
+     "trainer": "D J Jeffreys"
+    }
+   ]
+  },
+  {
+   "course": "Uttoxeter",
+   "time": "15:35",
+   "race_id": 930651,
+   "country": "GB",
+   "runners": [
+    {
+     "horse": "Ma Wang Des Bois",
+     "rpr": 117,
+     "ts": 105,
+     "or": "-",
+     "nr": false,
+     "days": "266",
+     "jockey": "Jack Hogan",
+     "trainer": "Emma Lavelle"
+    },
+    {
+     "horse": "Hannah's Kitchen",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": null,
+     "jockey": "Robert Dunne",
+     "trainer": "Olly Murphy"
+    },
+    {
+     "horse": "Lady Coco",
+     "rpr": 107,
+     "ts": 70,
+     "or": "-",
+     "nr": false,
+     "days": "175",
+     "jockey": "David Bass",
+     "trainer": "Henry Daly"
+    },
+    {
+     "horse": "Bateleur",
+     "rpr": 112,
+     "ts": 93,
+     "or": "-",
+     "nr": false,
+     "days": "27",
+     "jockey": "Charlie Price",
+     "trainer": "Oliver Signy"
+    },
+    {
+     "horse": "Menasha",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "(209P)",
+     "jockey": "Kielan Woods",
+     "trainer": "Henry Oliver"
+    },
+    {
+     "horse": "Weafers Cross",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "(189P)",
+     "jockey": "Charlie Hammond",
+     "trainer": "Laura Horsfall"
+    },
+    {
+     "horse": "Miretix Du Moulin",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": null,
+     "jockey": "Mr Hugo Hunt",
+     "trainer": "Richard Hobson"
+    },
+    {
+     "horse": "Brave Bard",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": null,
+     "jockey": "Stan Sheppard",
+     "trainer": "Ben Case"
+    },
+    {
+     "horse": "Jimmy Gatz",
+     "rpr": 103,
+     "ts": 38,
+     "or": "-",
+     "nr": false,
+     "days": "258",
+     "jockey": "Hugh Horgan",
+     "trainer": "Olly Murphy"
+    },
+    {
+     "horse": "Chasing Honors",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": null,
+     "jockey": "Charlie Deutsch",
+     "trainer": "Mel Rowley"
+    },
+    {
+     "horse": "Pdq Workspace",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": null,
+     "jockey": "James Best",
+     "trainer": "Sarah Hollinshead"
+    },
+    {
+     "horse": "Bands Of Courage",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "(190P)",
+     "jockey": "Callum Bewley",
+     "trainer": "John Norton"
+    }
+   ]
+  },
+  {
+   "course": "Wetherby",
+   "time": "13:55",
+   "race_id": 930652,
+   "country": "GB",
+   "runners": [
+    {
+     "horse": "Velvet Outlaw",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "30",
+     "jockey": "Brian Hughes",
+     "trainer": "Olly Murphy"
+    },
+    {
+     "horse": "Yashin",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "(110F)",
+     "jockey": "Conor Rabbitt",
+     "trainer": "Jessica Bedi"
+    },
+    {
+     "horse": "Static Charm",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "210",
+     "jockey": "Joshua Thompson",
+     "trainer": "Micky Hammond & Becky Smith"
+    },
+    {
+     "horse": "Recobella",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "(42F)",
+     "jockey": "Joe Williamson",
+     "trainer": "Philip Kirby"
+    }
+   ]
+  },
+  {
+   "course": "Wetherby",
+   "time": "12:13",
+   "race_id": 930653,
+   "country": "GB",
+   "runners": [
+    {
+     "horse": "Loriko",
+     "rpr": 138,
+     "ts": 127,
+     "or": 132,
+     "nr": false,
+     "days": "11",
+     "jockey": "Dominic Lewis",
+     "trainer": "Dan Skelton"
+    },
+    {
+     "horse": "Combs",
+     "rpr": 125,
+     "ts": 94,
+     "or": 119,
+     "nr": false,
+     "days": "14",
+     "jockey": "Danny McMenamin",
+     "trainer": "Gordon Elliott"
+    },
+    {
+     "horse": "Some Good Men Gone",
+     "rpr": 73,
+     "ts": 30,
+     "or": "-",
+     "nr": false,
+     "days": "14",
+     "jockey": "Craig Nichol",
+     "trainer": "Jessica Bedi"
+    }
+   ]
+  },
+  {
+   "course": "Wetherby",
+   "time": "14:30",
+   "race_id": 930654,
+   "country": "GB",
+   "runners": [
+    {
+     "horse": "Tommy's Oscar",
+     "rpr": 148,
+     "ts": 103,
+     "or": 142,
+     "nr": false,
+     "days": "20",
+     "jockey": "Danny McMenamin",
+     "trainer": "Ann Hamilton"
+    },
+    {
+     "horse": "The Bluesman",
+     "rpr": 147,
+     "ts": 125,
+     "or": 132,
+     "nr": false,
+     "days": "213",
+     "jockey": "Troy Walsh",
+     "trainer": "Olly Murphy"
+    },
+    {
+     "horse": "Palamon",
+     "rpr": 150,
+     "ts": 133,
+     "or": 124,
+     "nr": false,
+     "days": "14",
+     "jockey": "Dominic Lewis",
+     "trainer": "Dan Skelton"
+    },
+    {
+     "horse": "Geryville",
+     "rpr": 147,
+     "ts": 111,
+     "or": 117,
+     "nr": false,
+     "days": "14",
+     "jockey": "Brian Hughes",
+     "trainer": "Micky Hammond & Becky Smith"
+    },
+    {
+     "horse": "Gunsight Ridge",
+     "rpr": 145,
+     "ts": 92,
+     "or": 130,
+     "nr": false,
+     "days": "119",
+     "jockey": "Charlie Maggs",
+     "trainer": "Mike Sowersby"
+    }
+   ]
+  },
+  {
+   "course": "Wetherby",
+   "time": "13:20",
+   "race_id": 930655,
+   "country": "GB",
+   "runners": [
+    {
+     "horse": "Florida Dreams",
+     "rpr": 143,
+     "ts": 111,
+     "or": 122,
+     "nr": false,
+     "days": "15",
+     "jockey": "Brian Hughes",
+     "trainer": "Sandy Thomson"
+    },
+    {
+     "horse": "Spadestep",
+     "rpr": 145,
+     "ts": 135,
+     "or": 116,
+     "nr": false,
+     "days": "237",
+     "jockey": "Derek Fox",
+     "trainer": "Lucinda Russell & Michael Scudamore"
+    },
+    {
+     "horse": "Le Beau Madrik",
+     "rpr": 139,
+     "ts": 99,
+     "or": 134,
+     "nr": false,
+     "days": "15",
+     "jockey": "Charlie Todd",
+     "trainer": "Dan Skelton"
+    },
+    {
+     "horse": "Smart Decision",
+     "rpr": "-",
+     "ts": "-",
+     "or": 117,
+     "nr": false,
+     "days": "224",
+     "jockey": "Jamie Hamilton",
+     "trainer": "Tim Easterby"
+    }
+   ]
+  },
+  {
+   "course": "Wetherby",
+   "time": "12:48",
+   "race_id": 930656,
+   "country": "GB",
+   "runners": [
+    {
+     "horse": "The Kalooki Kid",
+     "rpr": 128,
+     "ts": "-",
+     "or": 124,
+     "nr": false,
+     "days": "229",
+     "jockey": "Danny McMenamin",
+     "trainer": "Nicky Richards"
+    },
+    {
+     "horse": "Jericoacoara",
+     "rpr": 126,
+     "ts": 110,
+     "or": 118,
+     "nr": false,
+     "days": "192",
+     "jockey": "Brian Hughes",
+     "trainer": "Micky Hammond & Becky Smith"
+    },
+    {
+     "horse": "Who's Going",
+     "rpr": 118,
+     "ts": 96,
+     "or": 106,
+     "nr": false,
+     "days": "102",
+     "jockey": "Craig Nichol",
+     "trainer": "Gordon Elliott"
+    },
+    {
+     "horse": "Nopresentliketime",
+     "rpr": 120,
+     "ts": 94,
+     "or": 111,
+     "nr": false,
+     "days": "222",
+     "jockey": "Charlie Maggs",
+     "trainer": "Chris Grant"
+    },
+    {
+     "horse": "Shantwopointfive",
+     "rpr": 127,
+     "ts": 105,
+     "or": 120,
+     "nr": false,
+     "days": "119",
+     "jockey": "Oscar Palmer",
+     "trainer": "Sam England"
+    },
+    {
+     "horse": "Fine Thing",
+     "rpr": 126,
+     "ts": 110,
+     "or": 111,
+     "nr": false,
+     "days": "15",
+     "jockey": "Tom Midgley",
+     "trainer": "Sam England"
+    }
+   ]
+  },
+  {
+   "course": "Wetherby",
+   "time": "15:05",
+   "race_id": 930657,
+   "country": "GB",
+   "runners": [
+    {
+     "horse": "Centurion's Sister",
+     "rpr": 134,
+     "ts": 116,
+     "or": 113,
+     "nr": false,
+     "days": "31",
+     "jockey": "Danny McMenamin",
+     "trainer": "Nicky Richards"
+    },
+    {
+     "horse": "Filibustering",
+     "rpr": 132,
+     "ts": 111,
+     "or": 130,
+     "nr": false,
+     "days": "14",
+     "jockey": "Ryan Mania",
+     "trainer": "Harry Derham"
+    },
+    {
+     "horse": "Needs Must",
+     "rpr": 131,
+     "ts": 87,
+     "or": 118,
+     "nr": false,
+     "days": "64",
+     "jockey": "Brian Hughes",
+     "trainer": "Gordon Elliott"
+    },
+    {
+     "horse": "Roarin' Success",
+     "rpr": 131,
+     "ts": 123,
+     "or": 104,
+     "nr": false,
+     "days": "18",
+     "jockey": "Peter Kavanagh",
+     "trainer": "Donald McCain"
+    },
+    {
+     "horse": "Down To Business",
+     "rpr": 124,
+     "ts": 84,
+     "or": 112,
+     "nr": false,
+     "days": "42",
+     "jockey": "Charlie Todd",
+     "trainer": "Dan Skelton"
+    }
+   ]
+  },
+  {
+   "course": "Wetherby",
+   "time": "15:40",
+   "race_id": 930658,
+   "country": "GB",
+   "runners": [
+    {
+     "horse": "Camarrate",
+     "rpr": 121,
+     "ts": 84,
+     "or": 106,
+     "nr": false,
+     "days": "29",
+     "jockey": "Harry Brown",
+     "trainer": "Donald McCain"
+    },
+    {
+     "horse": "Safe Destination",
+     "rpr": 114,
+     "ts": 106,
+     "or": 106,
+     "nr": false,
+     "days": "29",
+     "jockey": "Jamie Brace",
+     "trainer": "Nigel & Willy Twiston-Davies"
+    },
+    {
+     "horse": "Slaney Opera",
+     "rpr": 112,
+     "ts": 100,
+     "or": 102,
+     "nr": false,
+     "days": "14",
+     "jockey": "James Murray",
+     "trainer": "John Wainwright"
+    },
+    {
+     "horse": "Peckforton Hills",
+     "rpr": 119,
+     "ts": 108,
+     "or": 91,
+     "nr": false,
+     "days": "210",
+     "jockey": "Charlie Maggs",
+     "trainer": "Oliver Greenall & Josh Guerriero"
+    },
+    {
+     "horse": "Check The Score",
+     "rpr": 118,
+     "ts": 78,
+     "or": 97,
+     "nr": false,
+     "days": "13",
+     "jockey": "Fern O'Brien",
+     "trainer": "Fergal O'Brien"
+    },
+    {
+     "horse": "Trac",
+     "rpr": 114,
+     "ts": 101,
+     "or": 109,
+     "nr": false,
+     "days": "237",
+     "jockey": "Joshua Thompson",
+     "trainer": "Micky Hammond & Becky Smith"
+    }
+   ]
+  },
+  {
+   "course": "Windsor",
+   "time": "13:25",
+   "race_id": 930659,
+   "country": "GB",
+   "runners": [
+    {
+     "horse": "Kildinan Prince",
+     "rpr": 127,
+     "ts": 98,
+     "or": 120,
+     "nr": false,
+     "days": "237",
+     "jockey": "Ben Jones",
+     "trainer": "Emma Lavelle"
+    },
+    {
+     "horse": "Doctor On Call",
+     "rpr": 124,
+     "ts": 122,
+     "or": 119,
+     "nr": false,
+     "days": "269",
+     "jockey": "Dylan Johnston",
+     "trainer": "Sam Thomas"
+    },
+    {
+     "horse": "Surrey Lord",
+     "rpr": 125,
+     "ts": 122,
+     "or": 116,
+     "nr": false,
+     "days": "301",
+     "jockey": "Kevin Brogan",
+     "trainer": "Toby Lawes"
+    },
+    {
+     "horse": "Tzarmix",
+     "rpr": 125,
+     "ts": 112,
+     "or": 117,
+     "nr": false,
+     "days": "35",
+     "jockey": "Sean Houlihan",
+     "trainer": "Alastair Ralph"
+    },
+    {
+     "horse": "Reallyntruthfully",
+     "rpr": 124,
+     "ts": 99,
+     "or": 120,
+     "nr": false,
+     "days": "35",
+     "jockey": "Ciaran Gethings",
+     "trainer": "Kim Bailey & Mat Nicholls"
+    },
+    {
+     "horse": "Mount Anglesby",
+     "rpr": 126,
+     "ts": 89,
+     "or": 120,
+     "nr": false,
+     "days": "28",
+     "jockey": "Joe Anderson",
+     "trainer": "Tom Britten"
+    },
+    {
+     "horse": "Thank You Ma'am",
+     "rpr": 124,
+     "ts": 113,
+     "or": 124,
+     "nr": false,
+     "days": "21",
+     "jockey": "Lorcan Murtagh",
+     "trainer": "Georgina Nicholls"
+    },
+    {
+     "horse": "Speed Davis",
+     "rpr": 127,
+     "ts": 114,
+     "or": 113,
+     "nr": false,
+     "days": "18",
+     "jockey": "Theo Gillard",
+     "trainer": "Donald McCain"
+    },
+    {
+     "horse": "Lucky Bere",
+     "rpr": 125,
+     "ts": 109,
+     "or": 117,
+     "nr": false,
+     "days": "21",
+     "jockey": "Rex Dingle",
+     "trainer": "Kayley Woollacott"
+    },
+    {
+     "horse": "Libre De Choeur",
+     "rpr": 123,
+     "ts": 107,
+     "or": 116,
+     "nr": false,
+     "days": "23",
+     "jockey": "Adam Wedge",
+     "trainer": "Clive Boultbee-Brooks"
+    },
+    {
+     "horse": "Crack Ops",
+     "rpr": 120,
+     "ts": 97,
+     "or": 108,
+     "nr": false,
+     "days": "44",
+     "jockey": "Jack Tudor",
+     "trainer": "Oliver Greenall & Josh Guerriero"
+    },
+    {
+     "horse": "Inoui Machin",
+     "rpr": "-",
+     "ts": "-",
+     "or": 115,
+     "nr": false,
+     "days": "730",
+     "jockey": "Bradley Harris",
+     "trainer": "Neil Mulholland"
+    },
+    {
+     "horse": "Our Dylan",
+     "rpr": 124,
+     "ts": 120,
+     "or": 113,
+     "nr": false,
+     "days": "210",
+     "jockey": "Ben Godfrey",
+     "trainer": "Kayley Woollacott"
+    },
+    {
+     "horse": "Corsican Caper",
+     "rpr": 124,
+     "ts": 79,
+     "or": 103,
+     "nr": false,
+     "days": "174 (18F)",
+     "jockey": "Lee Edwards",
+     "trainer": "Kevin & Lauren Frost"
+    },
+    {
+     "horse": "Bold Endeavour",
+     "rpr": 124,
+     "ts": 97,
+     "or": 116,
+     "nr": false,
+     "days": "21",
+     "jockey": "David Noonan",
+     "trainer": "Chris Honour"
+    }
+   ]
+  },
+  {
+   "course": "Windsor",
+   "time": "15:10",
+   "race_id": 930660,
+   "country": "GB",
+   "runners": [
+    {
+     "horse": "Secret Squirrel",
+     "rpr": 132,
+     "ts": 108,
+     "or": 126,
+     "nr": false,
+     "days": "210 (10F)",
+     "jockey": "Tom Cannon",
+     "trainer": "Hughie Morrison"
+    },
+    {
+     "horse": "Zarakerjack",
+     "rpr": 133,
+     "ts": 121,
+     "or": 102,
+     "nr": false,
+     "days": "9",
+     "jockey": "Freddie Mitchell",
+     "trainer": "Jamie Moore & Josh Moore"
+    },
+    {
+     "horse": "Watamu",
+     "rpr": 133,
+     "ts": 117,
+     "or": 126,
+     "nr": false,
+     "days": "28",
+     "jockey": "Adam Wedge",
+     "trainer": "Emma Lavelle"
+    },
+    {
+     "horse": "Misterdoc",
+     "rpr": 127,
+     "ts": 122,
+     "or": 125,
+     "nr": false,
+     "days": "28",
+     "jockey": "Liam Harrison",
+     "trainer": "Dan Skelton"
+    },
+    {
+     "horse": "Anniversary",
+     "rpr": 129,
+     "ts": 108,
+     "or": 114,
+     "nr": false,
+     "days": "26",
+     "jockey": "Callum Pritchard",
+     "trainer": "Philip Hobbs & Johnson White"
+    },
+    {
+     "horse": "Kapitein Kool",
+     "rpr": 133,
+     "ts": 106,
+     "or": 117,
+     "nr": false,
+     "days": "22",
+     "jockey": "Benjamin Macey",
+     "trainer": "Seamus Mullins"
+    },
+    {
+     "horse": "Fasol",
+     "rpr": 127,
+     "ts": 111,
+     "or": 118,
+     "nr": false,
+     "days": "14",
+     "jockey": "Freddie Gingell",
+     "trainer": "Paul Nicholls"
+    },
+    {
+     "horse": "Moves Like Mason",
+     "rpr": 128,
+     "ts": 103,
+     "or": 101,
+     "nr": false,
+     "days": "15",
+     "jockey": "Ben Jones",
+     "trainer": "Ben Pauling"
+    },
+    {
+     "horse": "Tunisya",
+     "rpr": 117,
+     "ts": 68,
+     "or": 108,
+     "nr": false,
+     "days": "21",
+     "jockey": "Jack Tudor",
+     "trainer": "Faye Bramley"
+    },
+    {
+     "horse": "Into The Park",
+     "rpr": 132,
+     "ts": 93,
+     "or": 112,
+     "nr": false,
+     "days": "35",
+     "jockey": "Sean Clarke",
+     "trainer": "Max Comley"
+    },
+    {
+     "horse": "Demoiselle Kap",
+     "rpr": 133,
+     "ts": 103,
+     "or": 100,
+     "nr": false,
+     "days": "144",
+     "jockey": "Roisin Leech",
+     "trainer": "Sophie Leech"
+    }
+   ]
+  },
+  {
+   "course": "Windsor",
+   "time": "12:55",
+   "race_id": 930661,
+   "country": "GB",
+   "runners": [
+    {
+     "horse": "Scavengers Reign",
+     "rpr": 130,
+     "ts": 118,
+     "or": 113,
+     "nr": false,
+     "days": "17",
+     "jockey": "Callum Pritchard",
+     "trainer": "James Owen"
+    },
+    {
+     "horse": "Le Tiep's Sacre",
+     "rpr": "-",
+     "ts": "-",
+     "or": 118,
+     "nr": false,
+     "days": "245",
+     "jockey": "Caoilin Quinn",
+     "trainer": "Jamie Moore & Josh Moore"
+    },
+    {
+     "horse": "Admiral Stewart",
+     "rpr": 130,
+     "ts": 114,
+     "or": 115,
+     "nr": false,
+     "days": "210",
+     "jockey": "Isabelle Ryder",
+     "trainer": "Jamie Snowden"
+    },
+    {
+     "horse": "Piping Rock",
+     "rpr": "-",
+     "ts": "-",
+     "or": 116,
+     "nr": false,
+     "days": "204",
+     "jockey": "Adam Wedge",
+     "trainer": "Emma Lavelle"
+    },
+    {
+     "horse": "Legal Weapon",
+     "rpr": 124,
+     "ts": "-",
+     "or": 110,
+     "nr": false,
+     "days": "17",
+     "jockey": "Ben Jones",
+     "trainer": "Ben Pauling"
+    },
+    {
+     "horse": "King Jon Oliver",
+     "rpr": "-",
+     "ts": "-",
+     "or": 114,
+     "nr": false,
+     "days": "205",
+     "jockey": "Kevin Brogan",
+     "trainer": "Olly Murphy"
+    }
+   ]
+  },
+  {
+   "course": "Windsor",
+   "time": "14:35",
+   "race_id": 930662,
+   "country": "GB",
+   "runners": [
+    {
+     "horse": "King Califet",
+     "rpr": 122,
+     "ts": 105,
+     "or": 114,
+     "nr": false,
+     "days": "239",
+     "jockey": "Ben Jones",
+     "trainer": "Emma Lavelle"
+    },
+    {
+     "horse": "Dangerous Touch",
+     "rpr": 118,
+     "ts": 96,
+     "or": 109,
+     "nr": false,
+     "days": "223",
+     "jockey": "Tom Hutsby",
+     "trainer": "Olly Murphy"
+    },
+    {
+     "horse": "Joe Cotton",
+     "rpr": 118,
+     "ts": 112,
+     "or": 109,
+     "nr": false,
+     "days": "273",
+     "jockey": "Lorcan Williams",
+     "trainer": "Jeremy Scott"
+    },
+    {
+     "horse": "Jet Smart",
+     "rpr": 120,
+     "ts": 104,
+     "or": 108,
+     "nr": false,
+     "days": "32",
+     "jockey": "Rian Corcoran",
+     "trainer": "D Summersby"
+    },
+    {
+     "horse": "Loki's Mischief",
+     "rpr": 121,
+     "ts": 91,
+     "or": 107,
+     "nr": false,
+     "days": "16",
+     "jockey": "Jack Stenhouse",
+     "trainer": "Chester Williams"
+    },
+    {
+     "horse": "Doctor Midas",
+     "rpr": 115,
+     "ts": 79,
+     "or": 103,
+     "nr": false,
+     "days": "262",
+     "jockey": "Adam Wedge",
+     "trainer": "Henrietta C Knight"
+    },
+    {
+     "horse": "Le Galli Bier",
+     "rpr": 118,
+     "ts": 97,
+     "or": 102,
+     "nr": false,
+     "days": "232",
+     "jockey": "Caoilin Quinn",
+     "trainer": "Jamie Moore & Josh Moore"
+    },
+    {
+     "horse": "Diligent Militia",
+     "rpr": 116,
+     "ts": 58,
+     "or": 104,
+     "nr": false,
+     "days": "194",
+     "jockey": "Rex Dingle",
+     "trainer": "Mitchell Hunt & Tim Vaughan"
+    }
+   ]
+  },
+  {
+   "course": "Windsor",
+   "time": "12:20",
+   "race_id": 930663,
+   "country": "GB",
+   "runners": [
+    {
+     "horse": "Ti'mamzel",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "219",
+     "jockey": "Caoilin Quinn",
+     "trainer": "Jamie Moore & Josh Moore"
+    },
+    {
+     "horse": "Jem's Lilly",
+     "rpr": 114,
+     "ts": 97,
+     "or": 109,
+     "nr": false,
+     "days": "285",
+     "jockey": "Calum Hogan",
+     "trainer": "Harry Derham"
+    },
+    {
+     "horse": "Magika Bella",
+     "rpr": 105,
+     "ts": 89,
+     "or": "-",
+     "nr": false,
+     "days": "15",
+     "jockey": "Ben Jones",
+     "trainer": "Ben Pauling"
+    },
+    {
+     "horse": "Unflappable",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "32",
+     "jockey": "David Noonan",
+     "trainer": "Ben Clarke"
+    },
+    {
+     "horse": "Secret Des Lune",
+     "rpr": 96,
+     "ts": 93,
+     "or": "-",
+     "nr": false,
+     "days": "16",
+     "jockey": "Rex Dingle",
+     "trainer": "Ben Clarke"
+    },
+    {
+     "horse": "Iconic Elsa",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "35",
+     "jockey": "James Turner",
+     "trainer": "Nigel & Willy Twiston-Davies"
+    },
+    {
+     "horse": "Sorgean",
+     "rpr": 94,
+     "ts": 58,
+     "or": "-",
+     "nr": false,
+     "days": "36",
+     "jockey": "Ben Godfrey",
+     "trainer": "Kayley Woollacott"
+    },
+    {
+     "horse": "Maxi Mirage",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "(181P)",
+     "jockey": "Benjamin Macey",
+     "trainer": "Seamus Mullins"
+    },
+    {
+     "horse": "Private Project",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "(30F)",
+     "jockey": "Sean Houlihan",
+     "trainer": "Pat Phelan"
+    },
+    {
+     "horse": "Kurios Lady",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "(10F)",
+     "jockey": "Marc Goldstein",
+     "trainer": "Michael Madgwick"
+    },
+    {
+     "horse": "On The Cobbles",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "222",
+     "jockey": "Ciaran Gethings",
+     "trainer": "Ben Case"
+    },
+    {
+     "horse": "The Tenpercentclub",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": null,
+     "jockey": "Rian Corcoran",
+     "trainer": "Tom Gretton"
+    },
+    {
+     "horse": "The Rarest Hour",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "14",
+     "jockey": "Jack Tudor",
+     "trainer": "Christian Williams"
+    },
+    {
+     "horse": "Detroit Bay",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "36",
+     "jockey": "Lorcan Williams",
+     "trainer": "Jeremy Scott"
+    },
+    {
+     "horse": "She's A Driver",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "250",
+     "jockey": "Tom Cannon",
+     "trainer": "David Bridgwater"
+    },
+    {
+     "horse": "West Hill Rosie",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "19",
+     "jockey": "Callum Pritchard",
+     "trainer": "Seamus Mullins"
+    }
+   ]
+  },
+  {
+   "course": "Windsor",
+   "time": "14:00",
+   "race_id": 930664,
+   "country": "GB",
+   "runners": [
+    {
+     "horse": "Independent Lady",
+     "rpr": 104,
+     "ts": 94,
+     "or": 95,
+     "nr": false,
+     "days": "29",
+     "jockey": "Freddie Gordon",
+     "trainer": "Nicky Henderson"
+    },
+    {
+     "horse": "Barafundle Bay",
+     "rpr": 98,
+     "ts": 77,
+     "or": 78,
+     "nr": false,
+     "days": "32",
+     "jockey": "Jack Tudor",
+     "trainer": "Christian Williams"
+    },
+    {
+     "horse": "Eliza Dolittle",
+     "rpr": 99,
+     "ts": 95,
+     "or": 82,
+     "nr": false,
+     "days": "26",
+     "jockey": "Tabitha Worsley",
+     "trainer": "Nick Gifford"
+    },
+    {
+     "horse": "Border Gem",
+     "rpr": 101,
+     "ts": 66,
+     "or": 89,
+     "nr": false,
+     "days": "24",
+     "jockey": "Rex Dingle",
+     "trainer": "Jeremy Scott"
+    },
+    {
+     "horse": "Mavis Pike",
+     "rpr": 104,
+     "ts": 92,
+     "or": 97,
+     "nr": false,
+     "days": "19",
+     "jockey": "Amber Jackson-Fennell",
+     "trainer": "Nigel & Willy Twiston-Davies"
+    },
+    {
+     "horse": "Shanagolden Girl",
+     "rpr": 100,
+     "ts": 76,
+     "or": 91,
+     "nr": false,
+     "days": "16",
+     "jockey": "Adam Wedge",
+     "trainer": "Emma Lavelle"
+    },
+    {
+     "horse": "Mistress Fox",
+     "rpr": 96,
+     "ts": 94,
+     "or": 84,
+     "nr": false,
+     "days": "157",
+     "jockey": "Bradley Harris",
+     "trainer": "Neil Mulholland"
+    },
+    {
+     "horse": "Morissette",
+     "rpr": 96,
+     "ts": 56,
+     "or": 90,
+     "nr": false,
+     "days": "30",
+     "jockey": "Ben Jones",
+     "trainer": "D Summersby"
+    },
+    {
+     "horse": "Mrs Biddle",
+     "rpr": 97,
+     "ts": 71,
+     "or": 87,
+     "nr": false,
+     "days": "83",
+     "jockey": "Ben Godfrey",
+     "trainer": "Kayley Woollacott"
+    },
+    {
+     "horse": "Dalcassian Girl",
+     "rpr": 94,
+     "ts": 41,
+     "or": 78,
+     "nr": false,
+     "days": "16",
+     "jockey": "David Noonan",
+     "trainer": "Chris Honour"
+    },
+    {
+     "horse": "Sophie Power",
+     "rpr": 103,
+     "ts": 67,
+     "or": 89,
+     "nr": false,
+     "days": "217",
+     "jockey": "Isabelle Ryder",
+     "trainer": "Harriet Dickin"
+    },
+    {
+     "horse": "Georgie's Lady",
+     "rpr": 97,
+     "ts": 49,
+     "or": 90,
+     "nr": false,
+     "days": "13",
+     "jockey": "Rian Corcoran",
+     "trainer": "David Dennis"
+    },
+    {
+     "horse": "Kenny's Jewel",
+     "rpr": 92,
+     "ts": "-",
+     "or": 98,
+     "nr": true,
+     "days": "13",
+     "jockey": "NON-RUNNER",
+     "trainer": "Dylan Cunha"
+    }
+   ]
+  },
+  {
+   "course": "Windsor",
+   "time": "15:45",
+   "race_id": 930665,
+   "country": "GB",
+   "runners": [
+    {
+     "horse": "Noe Le Dun",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": null,
+     "jockey": "Lorcan Williams",
+     "trainer": "Chester Williams"
+    },
+    {
+     "horse": "Waverley",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": null,
+     "jockey": "Tom Cannon",
+     "trainer": "Alan King"
+    },
+    {
+     "horse": "New Addington Boy",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": null,
+     "jockey": "Caoilin Quinn",
+     "trainer": "Jamie Moore & Josh Moore"
+    },
+    {
+     "horse": "Hosiery",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": null,
+     "jockey": "Jack Tudor",
+     "trainer": "Syd Hosie"
+    },
+    {
+     "horse": "Folkham",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": null,
+     "jockey": "Ben Jones",
+     "trainer": "Jonathan Portman"
+    },
+    {
+     "horse": "Victory V",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": null,
+     "jockey": "Ciaran Gethings",
+     "trainer": "Robert Stephens"
+    },
+    {
+     "horse": "James Dean",
+     "rpr": 91,
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": "39",
+     "jockey": "Sean Houlihan",
+     "trainer": "Pat Phelan"
+    },
+    {
+     "horse": "By Your Leave",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": null,
+     "jockey": "Adam Wedge",
+     "trainer": "Alex Hales"
+    },
+    {
+     "horse": "Arco Sancho",
+     "rpr": "-",
+     "ts": "-",
+     "or": "-",
+     "nr": false,
+     "days": null,
+     "jockey": "Ian Power",
+     "trainer": "Ivan Furtado"
+    }
+   ]
+  }
+ ]
+}

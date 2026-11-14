@@ -1,0 +1,2 @@
+# Only scrape_punters (Australia) needs this; the UK/IRE/US/HK path uses urllib.
+requests>=2.31

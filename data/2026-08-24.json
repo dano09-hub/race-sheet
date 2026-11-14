@@ -1,0 +1,2928 @@
+{
+ "date": "24-08-26",
+ "meetings": [
+  {
+   "course": "Ballinrobe",
+   "date": "24-08-26",
+   "races": [
+    {
+     "time": "16:51",
+     "title": "Adare Manor Opportunity Maiden Hurdle",
+     "going": "GOOD (Watered)",
+     "distance": "2m 2f 44y",
+     "meta": {
+      "Off Time 16": "51",
+      "Winning Time 04": "19",
+      "Race Status": "WeighedIn"
+     },
+     "runners": [
+      {
+       "pos": "1st",
+       "horse": "Colliers Quay",
+       "sp": "11/2",
+       "dec": 6.5,
+       "tips": 0,
+       "jockey": "Thomas O'Connor",
+       "trainer": "Eoin Christopher McCarthy",
+       "btn": "",
+       "comment": "prominent, raced in fourth halfway, ridden after 2 out, went third approaching last, not fluent last, ridden and went second final 110yds, ran on well on inner to lead towards finish"
+      },
+      {
+       "pos": "2nd",
+       "horse": "Minella Post",
+       "sp": "5/2",
+       "dec": 3.5,
+       "tips": 2,
+       "jockey": "James Smith",
+       "trainer": "Thomas Gibney",
+       "btn": "\u00bd",
+       "comment": "led, faced challenge last, kept on but hung left inside final 110yds, headed towards finish"
+      },
+      {
+       "pos": "3rd",
+       "horse": "Coolishael",
+       "sp": "8/15 F",
+       "dec": 1.5333333333333,
+       "tips": 3,
+       "jockey": "Eoin Staples",
+       "trainer": "Ross O'Sullivan",
+       "btn": "2 \u00bd",
+       "comment": "prominent, raced in second halfway, challenging last, no impression and lost second run-in"
+      },
+      {
+       "pos": "4th",
+       "horse": "Beyond Forgiveness",
+       "sp": "40/1",
+       "dec": 41.0,
+       "tips": 0,
+       "jockey": "Richard Condon",
+       "trainer": "David Harry Kelly",
+       "btn": "6 \u00bd",
+       "comment": "took keen hold, prominent, mistake 3 out, outpaced and lost third approaching last, no extra run-in"
+      },
+      {
+       "pos": "5th",
+       "horse": "Noharmintrying",
+       "sp": "8/1",
+       "dec": 9.0,
+       "tips": 0,
+       "jockey": "Peter Smithers",
+       "trainer": "Aidan Anthony Howard",
+       "btn": "7",
+       "comment": "midfield, headway after 2 out, kept on from last, not reach leaders"
+      },
+      {
+       "pos": "6th",
+       "horse": "Vargas",
+       "sp": "50/1",
+       "dec": 51.0,
+       "tips": 0,
+       "jockey": "Josh Williamson",
+       "trainer": "Gordon Elliott",
+       "btn": "1 \u00bc",
+       "comment": "in touch with leaders, outpaced after 2 out"
+      },
+      {
+       "pos": "7th",
+       "horse": "Green Grass",
+       "sp": "250/1",
+       "dec": 251.0,
+       "tips": 0,
+       "jockey": "Kevin Healy",
+       "trainer": "Paul W Flynn",
+       "btn": "23",
+       "comment": "never better than midfield, no extra 2 out (jockey said gelding jumped novicey)"
+      },
+      {
+       "pos": "8th",
+       "horse": "Nothintodowithme",
+       "sp": "200/1",
+       "dec": 201.0,
+       "tips": 0,
+       "jockey": "Jack G Gilligan",
+       "trainer": "Barry T Murphy",
+       "btn": "6",
+       "comment": "never better than midfield, no extra from 2 out"
+      },
+      {
+       "pos": "9th",
+       "horse": "Leva Deva",
+       "sp": "300/1",
+       "dec": 301.0,
+       "tips": 0,
+       "jockey": "Calum Hogan",
+       "trainer": "Darren Collins",
+       "btn": "2 \u00bc",
+       "comment": "never better than midfield"
+      },
+      {
+       "pos": "10th",
+       "horse": "Discrete",
+       "sp": "150/1",
+       "dec": 151.0,
+       "tips": 0,
+       "jockey": "Tom Kelly",
+       "trainer": "Mrs Grainne M O'Connor",
+       "btn": "1 \u00bc",
+       "comment": "towards rear throughout"
+      },
+      {
+       "pos": "11th",
+       "horse": "Lastofthenatives",
+       "sp": "200/1",
+       "dec": 201.0,
+       "tips": 0,
+       "jockey": "Eoghan Finegan",
+       "trainer": "W J Burke",
+       "btn": "3 \u00bc",
+       "comment": "never better than midfield, weakened before 2 out"
+      },
+      {
+       "pos": "12th",
+       "horse": "Elusive Truce",
+       "sp": "150/1",
+       "dec": 151.0,
+       "tips": 0,
+       "jockey": "Conor Smithers",
+       "trainer": "Charlie Keegan",
+       "btn": "\u00bd",
+       "comment": "towards rear throughout"
+      },
+      {
+       "pos": "13th",
+       "horse": "Roll It Roisin",
+       "sp": "50/1",
+       "dec": 51.0,
+       "tips": 0,
+       "jockey": "Anna McGuinness",
+       "trainer": "David Harry Kelly",
+       "btn": "4 \u00bd",
+       "comment": "in rear throughout"
+      },
+      {
+       "pos": "PU",
+       "horse": "Myhero La Colmine",
+       "sp": "40/1",
+       "dec": 99999.0,
+       "tips": 0,
+       "jockey": "Dylan O'Connor",
+       "trainer": "Paul John Gilligan",
+       "btn": "",
+       "comment": "midfield, towards rear 3 out, looked to go wrong and pulled up before 2 out (jockey said gelding pulled up injured down the back straight)"
+      },
+      {
+       "pos": "U",
+       "horse": "Tommy Go Maith",
+       "sp": "200/1",
+       "dec": 99999.0,
+       "tips": 0,
+       "jockey": "Shane Markey",
+       "trainer": "Thomas Patrick McGettigan",
+       "btn": "",
+       "comment": "towards rear, mistake and unseated 1st"
+      },
+      {
+       "pos": "NR",
+       "horse": "Lexenna",
+       "sp": "",
+       "dec": 99999.0,
+       "tips": 0,
+       "jockey": "Niall Moore",
+       "trainer": "Darren Collins",
+       "btn": "",
+       "comment": "reserve"
+      },
+      {
+       "pos": "NR",
+       "horse": "Don't Tell Paddy",
+       "sp": "",
+       "dec": 99999.0,
+       "tips": 0,
+       "jockey": "",
+       "trainer": "Eoin Christopher McCarthy",
+       "btn": "",
+       "comment": "reserve"
+      },
+      {
+       "pos": "NR",
+       "horse": "Sankofa",
+       "sp": "",
+       "dec": 99999.0,
+       "tips": 0,
+       "jockey": "Richard Condon",
+       "trainer": "David Harry Kelly",
+       "btn": "",
+       "comment": "coughing"
+      }
+     ]
+    },
+    {
+     "time": "17:26",
+     "title": "Hollymount Nursing Home Handicap Hurdle",
+     "going": "GOOD (Watered)",
+     "distance": "2m 2f 44y",
+     "meta": {
+      "Off Time 17": "27",
+      "Winning Time 04": "13",
+      "Race Status": "WeighedIn"
+     },
+     "runners": [
+      {
+       "pos": "1st",
+       "horse": "Ocean Murphy",
+       "sp": "5/2",
+       "dec": 3.5,
+       "tips": 1,
+       "jockey": "Darragh O'keeffe",
+       "trainer": "P J Rothwell",
+       "btn": "",
+       "comment": "made all, ridden before last, kept on"
+      },
+      {
+       "pos": "2nd",
+       "horse": "Houndsworth",
+       "sp": "15/2",
+       "dec": 8.5,
+       "tips": 0,
+       "jockey": "Alan King",
+       "trainer": "Mark Michael McNiff",
+       "btn": "2 \u00bc",
+       "comment": "raced in last, headway before 3 out, not fluent 2 out, went second before last, no extra inside final 110yds"
+      },
+      {
+       "pos": "3rd",
+       "horse": "Manoir De Mirande",
+       "sp": "4/1",
+       "dec": 5.0,
+       "tips": 4,
+       "jockey": "Joshua Halford",
+       "trainer": "Gordon Elliott",
+       "btn": "7",
+       "comment": "pressed leader, not fluent 3 out, weakened before last"
+      },
+      {
+       "pos": "4th",
+       "horse": "Nile Star",
+       "sp": "18/1",
+       "dec": 19.0,
+       "tips": 0,
+       "jockey": "Shane Markey",
+       "trainer": "Ross O'Sullivan",
+       "btn": "3 \u00bd",
+       "comment": "in touch with leaders, not fluent 1st, not fluent 4 out, weakened before last"
+      },
+      {
+       "pos": "5th",
+       "horse": "O'Grady Cracker",
+       "sp": "6/5 F",
+       "dec": 2.2,
+       "tips": 3,
+       "jockey": "J J Slevin",
+       "trainer": "Andrew Slattery",
+       "btn": "8 \u00bd",
+       "comment": "prominent, dropped to last before 3 out, weakening when not fluent last (vet reported gelding to be post race normal)"
+      },
+      {
+       "pos": "NR",
+       "horse": "William F Browne",
+       "sp": "",
+       "dec": 99999.0,
+       "tips": 0,
+       "jockey": "Daniel King",
+       "trainer": "Paul W Flynn",
+       "btn": "",
+       "comment": "coughing"
+      }
+     ]
+    },
+    {
+     "time": "18:00",
+     "title": "Paddy Smyth Memorial Mares Maiden Hurdle",
+     "going": "GOOD (Watered)",
+     "distance": "2m 6f 61y",
+     "meta": {
+      "Off Time 18": "00",
+      "Winning Time 05": "20",
+      "Race Status": "WeighedIn"
+     },
+     "runners": [
+      {
+       "pos": "1st",
+       "horse": "Amina",
+       "sp": "6/4 F",
+       "dec": 2.5,
+       "tips": 1,
+       "jockey": "Alex Harvey",
+       "trainer": "John C McConnell",
+       "btn": "",
+       "comment": "prominent, challenging 3 out, hung right and hampered rival after last, ridden to lead run-in, kept on, always doing enough"
+      },
+      {
+       "pos": "2nd",
+       "horse": "Ronnie's Rascal",
+       "sp": "7/2",
+       "dec": 4.5,
+       "tips": 0,
+       "jockey": "Brian Hayes",
+       "trainer": "W P Mullins",
+       "btn": "1 \u00bc",
+       "comment": "soon led, faced challenge 3 out, slightly hampered after last, headed run-in, kept on and went clear with winner inside final 110yds (jockey said filly suffered interference)"
+      },
+      {
+       "pos": "3rd",
+       "horse": "I Dont Really Care",
+       "sp": "28/1",
+       "dec": 29.0,
+       "tips": 0,
+       "jockey": "Daniel King",
+       "trainer": "Ray Hackett",
+       "btn": "6 \u00bd",
+       "comment": "in touch with leaders, prominent 2 out, soon raced in third behind clear leaders, kept on run-in, no match for first two"
+      },
+      {
+       "pos": "4th",
+       "horse": "Labondance",
+       "sp": "2/1",
+       "dec": 3.0,
+       "tips": 0,
+       "jockey": "Donagh Meyler",
+       "trainer": "Emmet Mullins",
+       "btn": "3 \u00bc",
+       "comment": "in touch with leaders, prominent after 4 out, outpaced after 2 out"
+      },
+      {
+       "pos": "5th",
+       "horse": "Clash Gold",
+       "sp": "22/1",
+       "dec": 23.0,
+       "tips": 0,
+       "jockey": "Mike O'Connor",
+       "trainer": "Francis J Flood",
+       "btn": "2 \u00bc",
+       "comment": "prominent, weakened from 2 out"
+      },
+      {
+       "pos": "6th",
+       "horse": "Run For Power",
+       "sp": "12/1",
+       "dec": 13.0,
+       "tips": 0,
+       "jockey": "Philip Byrnes",
+       "trainer": "C Byrnes",
+       "btn": "nk",
+       "comment": "midfield, brief headway 2 out, no impression after last"
+      },
+      {
+       "pos": "7th",
+       "horse": "Free A Minute",
+       "sp": "250/1",
+       "dec": 251.0,
+       "tips": 0,
+       "jockey": "Conor Smithers",
+       "trainer": "Charlie Keegan",
+       "btn": "15",
+       "comment": "towards rear, some headway approaching last, kept on, never near to challenge"
+      },
+      {
+       "pos": "8th",
+       "horse": "Gunner Girl",
+       "sp": "80/1",
+       "dec": 81.0,
+       "tips": 0,
+       "jockey": "Conor Stone-Walsh",
+       "trainer": "S G Carey",
+       "btn": "3",
+       "comment": "midfield, outpaced from 2 out"
+      },
+      {
+       "pos": "9th",
+       "horse": "Castle Garden",
+       "sp": "66/1",
+       "dec": 67.0,
+       "tips": 0,
+       "jockey": "J J Slevin",
+       "trainer": "Donal Hassett",
+       "btn": "34",
+       "comment": "towards rear throughout"
+      },
+      {
+       "pos": "10th",
+       "horse": "Doesthatmakesense",
+       "sp": "250/1",
+       "dec": 251.0,
+       "tips": 0,
+       "jockey": "Thomas O'Connor",
+       "trainer": "E Seymour",
+       "btn": "nk",
+       "comment": "midfield, weakened 3 out"
+      },
+      {
+       "pos": "11th",
+       "horse": "Goodgollymissholly",
+       "sp": "9/1",
+       "dec": 10.0,
+       "tips": 0,
+       "jockey": "Jordan Gainford",
+       "trainer": "Gordon Elliott",
+       "btn": "8",
+       "comment": "midfield on inner, weakened 2 out"
+      },
+      {
+       "pos": "PU",
+       "horse": "Daphne Blake",
+       "sp": "150/1",
+       "dec": 99999.0,
+       "tips": 0,
+       "jockey": "John Shinnick",
+       "trainer": "Peter Maher",
+       "btn": "",
+       "comment": "towards rear throughout, detached halfway, pulled up 3 out"
+      },
+      {
+       "pos": "NR",
+       "horse": "Cool Native",
+       "sp": "",
+       "dec": 99999.0,
+       "tips": 3,
+       "jockey": "Jack Kennedy",
+       "trainer": "Gordon Elliott",
+       "btn": "",
+       "comment": "in season"
+      }
+     ]
+    },
+    {
+     "time": "18:30",
+     "title": "Jerry McDonnell Memorial Handicap Hurdle",
+     "going": "GOOD (Watered)",
+     "distance": "2m 6f 61y",
+     "meta": {
+      "Off Time 18": "32",
+      "Winning Time 05": "25",
+      "Race Status": "WeighedIn"
+     },
+     "runners": [
+      {
+       "pos": "1st",
+       "horse": "Princess Felicia",
+       "sp": "3/1 F",
+       "dec": 4.0,
+       "tips": 0,
+       "jockey": "Peter Smithers",
+       "trainer": "David Harry Kelly",
+       "btn": "",
+       "comment": "in touch with leaders, headway before 2 out, ridden and led run-in, readily"
+      },
+      {
+       "pos": "2nd",
+       "horse": "Joshua Chamberlain",
+       "sp": "9/1",
+       "dec": 10.0,
+       "tips": 1,
+       "jockey": "Eoghan Finegan",
+       "trainer": "Gerard Keane",
+       "btn": "2 \u00be",
+       "comment": "in touch with leaders, headway before 2 out, went second and no extra inside final 110yds"
+      },
+      {
+       "pos": "3rd",
+       "horse": "Fine Print",
+       "sp": "16/1",
+       "dec": 17.0,
+       "tips": 0,
+       "jockey": "Alex Harvey",
+       "trainer": "John C McConnell",
+       "btn": "\u00be",
+       "comment": "midfield, headway before 2 out, went third and no extra run-in"
+      },
+      {
+       "pos": "4th",
+       "horse": "Gerrys Wish",
+       "sp": "7/1",
+       "dec": 8.0,
+       "tips": 0,
+       "jockey": "Jack Kennedy",
+       "trainer": "Gordon Elliott",
+       "btn": "1 \u00bc",
+       "comment": "in rear, headway before 2 out, went fourth inside final 110yds, kept on"
+      },
+      {
+       "pos": "5th",
+       "horse": "Tawny Lea",
+       "sp": "50/1",
+       "dec": 51.0,
+       "tips": 0,
+       "jockey": "Philip Byrnes",
+       "trainer": "Thomas Coyle",
+       "btn": "\u00be",
+       "comment": "midfield, headway before last, not clear run and switched left run-in, no extra inside final 110yds"
+      },
+      {
+       "pos": "6th",
+       "horse": "Ballyminnion Boy",
+       "sp": "66/1",
+       "dec": 67.0,
+       "tips": 0,
+       "jockey": "Daniel King",
+       "trainer": "Eoin Christopher McCarthy",
+       "btn": "nse",
+       "comment": "raced in last, headway before 2 out, no impression"
+      },
+      {
+       "pos": "7th",
+       "horse": "Ancient Myth",
+       "sp": "18/1",
+       "dec": 19.0,
+       "tips": 0,
+       "jockey": "Shane Fitzgerald",
+       "trainer": "N F Glynn",
+       "btn": "\u00bd",
+       "comment": "took keen hold, led, not fluent 6th, not fluent 2 out, headed and weakened run-in"
+      },
+      {
+       "pos": "8th",
+       "horse": "Blackwater Soldier",
+       "sp": "25/1",
+       "dec": 26.0,
+       "tips": 0,
+       "jockey": "Darragh O'keeffe",
+       "trainer": "David Richard Barry",
+       "btn": "1 \u00be",
+       "comment": "prominent, jumped right 5th, not fluent and lost position 3 out, rallied before last, weakened run-in"
+      },
+      {
+       "pos": "9th",
+       "horse": "My Good Pal",
+       "sp": "17/2",
+       "dec": 9.5,
+       "tips": 2,
+       "jockey": "Mr B M Coonan",
+       "trainer": "Gavin Cromwell",
+       "btn": "1 \u00bc",
+       "comment": "towards rear, outpaced after 2 out, slightly hampered and weakened last"
+      },
+      {
+       "pos": "10th",
+       "horse": "Giorgia Rose",
+       "sp": "22/1",
+       "dec": 23.0,
+       "tips": 0,
+       "jockey": "Donagh Meyler",
+       "trainer": "Emmet Mullins",
+       "btn": "nk",
+       "comment": "in touch with leaders, headway and pressed leaders before 2 out, weakened before last"
+      },
+      {
+       "pos": "11th",
+       "horse": "Phildante",
+       "sp": "6/1",
+       "dec": 7.0,
+       "tips": 0,
+       "jockey": "Joshua Halford",
+       "trainer": "Eoin Doyle",
+       "btn": "3",
+       "comment": "towards rear, not fluent 4 out, weakened 2 out"
+      },
+      {
+       "pos": "12th",
+       "horse": "Chanceitlucky",
+       "sp": "9/2",
+       "dec": 5.5,
+       "tips": 1,
+       "jockey": "Sean Flanagan",
+       "trainer": "Adrian Murray",
+       "btn": "49",
+       "comment": "towards rear, weakening when not fluent 2 out"
+      },
+      {
+       "pos": "13th",
+       "horse": "Ranger Billy",
+       "sp": "12/1",
+       "dec": 13.0,
+       "tips": 0,
+       "jockey": "J J Slevin",
+       "trainer": "K A Heffernan",
+       "btn": "1",
+       "comment": "prominent, dropped to rear when not fluent and weakened 2 out"
+      },
+      {
+       "pos": "14th",
+       "horse": "Barryroe Madam",
+       "sp": "12/1",
+       "dec": 13.0,
+       "tips": 0,
+       "jockey": "John Shinnick",
+       "trainer": "Terence O'Brien",
+       "btn": "\u00be",
+       "comment": "in touch with leaders, lost position before 4 out, weakened before 2 out"
+      },
+      {
+       "pos": "PU",
+       "horse": "It's Time Again",
+       "sp": "16/1",
+       "dec": 99999.0,
+       "tips": 1,
+       "jockey": "Liam McKenna",
+       "trainer": "David Richard Barry",
+       "btn": "",
+       "comment": "in rear, jumped left 6th, jumped left and lost touch 4 out, weakened and pulled up before 3 out"
+      },
+      {
+       "pos": "FELL",
+       "horse": "The Vegas Raider",
+       "sp": "22/1",
+       "dec": 99999.0,
+       "tips": 0,
+       "jockey": "Danny Gilligan",
+       "trainer": "K A Heffernan",
+       "btn": "",
+       "comment": "in rear, headway before 2 out, weakening when fell last"
+      },
+      {
+       "pos": "NR",
+       "horse": "St Anthonys Corner",
+       "sp": "",
+       "dec": 99999.0,
+       "tips": 0,
+       "jockey": "",
+       "trainer": "Norman Lee",
+       "btn": "",
+       "comment": "reserve"
+      },
+      {
+       "pos": "NR",
+       "horse": "Tantrum Boy",
+       "sp": "",
+       "dec": 99999.0,
+       "tips": 0,
+       "jockey": "Phillip Enright",
+       "trainer": "Brian M McMahon",
+       "btn": "",
+       "comment": "reserve"
+      },
+      {
+       "pos": "NR",
+       "horse": "But What About Me",
+       "sp": "",
+       "dec": 99999.0,
+       "tips": 0,
+       "jockey": "",
+       "trainer": "Barry T Murphy",
+       "btn": "",
+       "comment": "reserve"
+      }
+     ]
+    },
+    {
+     "time": "19:00",
+     "title": "BOYLE Sports Home Of The Early Payout Chase",
+     "going": "GOOD (Watered)",
+     "distance": "2m 1f 55y",
+     "meta": {
+      "Off Time 19": "00",
+      "Winning Time 04": "06",
+      "Race Status": "WeighedIn"
+     },
+     "runners": [
+      {
+       "pos": "1st",
+       "horse": "Bunting",
+       "sp": "10/11 F",
+       "dec": 1.9090909090909,
+       "tips": 0,
+       "jockey": "Danny Mullins",
+       "trainer": "W P Mullins",
+       "btn": "",
+       "comment": "prominent, led narrowly 3rd, not fluent 4 out, clear after 3 out, went further clear approaching last, easily"
+      },
+      {
+       "pos": "2nd",
+       "horse": "Runcok",
+       "sp": "8/1",
+       "dec": 9.0,
+       "tips": 0,
+       "jockey": "J J Slevin",
+       "trainer": "John C McConnell",
+       "btn": "15",
+       "comment": "led, headed but pressed leader 3rd, not fluent 4th, dropped to rear 6th, keeping on when jumped left but went modest second 2 out, kept on, no match for winner (jockey said gelding jumped left and stayed on in the closing stages)"
+      },
+      {
+       "pos": "3rd",
+       "horse": "Addragoole",
+       "sp": "5/4",
+       "dec": 2.25,
+       "tips": 3,
+       "jockey": "Keith Donoghue",
+       "trainer": "Gavin Cromwell",
+       "btn": "34",
+       "comment": "prominent, went second 6th, weakened after 3 out"
+      },
+      {
+       "pos": "NR",
+       "horse": "Bowensonfire",
+       "sp": "",
+       "dec": 99999.0,
+       "tips": 1,
+       "jockey": "Jack Kennedy",
+       "trainer": "Gordon Elliott",
+       "btn": "",
+       "comment": "stiff"
+      },
+      {
+       "pos": "NR",
+       "horse": "Jazzy Matty",
+       "sp": "",
+       "dec": 99999.0,
+       "tips": 2,
+       "jockey": "Danny Gilligan",
+       "trainer": "Cian Collins",
+       "btn": "",
+       "comment": "coughing"
+      },
+      {
+       "pos": "NR",
+       "horse": "Ma Jacks Hill",
+       "sp": "",
+       "dec": 99999.0,
+       "tips": 0,
+       "jockey": "Joshua Halford",
+       "trainer": "Gordon Elliott",
+       "btn": "",
+       "comment": "stone bruise"
+      }
+     ]
+    },
+    {
+     "time": "19:30",
+     "title": "Corrib Oil Beginners Chase",
+     "going": "GOOD (Watered)",
+     "distance": "2m 7f 73y",
+     "meta": {
+      "Off Time 19": "30",
+      "Winning Time 05": "43",
+      "Race Status": "WeighedIn"
+     },
+     "runners": [
+      {
+       "pos": "1st",
+       "horse": "Rusty Harkness",
+       "sp": "5/2 JF",
+       "dec": 3.5,
+       "tips": 2,
+       "jockey": "Darragh O'keeffe",
+       "trainer": "Henry De Bromhead",
+       "btn": "",
+       "comment": "jumped well, pressed leader, led 3rd, good jump and went clear 5 out, reduced lead 3 out, pushed along before 2 out, ridden out run-in"
+      },
+      {
+       "pos": "2nd",
+       "horse": "Fou De Toi",
+       "sp": "17/2",
+       "dec": 9.5,
+       "tips": 0,
+       "jockey": "Daniel King",
+       "trainer": "W P Mullins",
+       "btn": "1 \u00bd",
+       "comment": "in touch with leaders, headway and went third 2 out, ran on well from last, went second final strides"
+      },
+      {
+       "pos": "3rd",
+       "horse": "Jolie Jewel",
+       "sp": "100/30",
+       "dec": 4.3333333333333,
+       "tips": 0,
+       "jockey": "Phillip Enright",
+       "trainer": "Brian M McMahon",
+       "btn": "nse",
+       "comment": "towards rear, good headway and prominent after 4 out, went second 3 out, kept on well run-in, lost second final strides"
+      },
+      {
+       "pos": "4th",
+       "horse": "Jeroboam Machin",
+       "sp": "5/2 JF",
+       "dec": 3.5,
+       "tips": 2,
+       "jockey": "Donagh Meyler",
+       "trainer": "Emmet Mullins",
+       "btn": "13",
+       "comment": "prominent, lost third 2 out, weakened approaching last"
+      },
+      {
+       "pos": "5th",
+       "horse": "Donnie Devito",
+       "sp": "4/1",
+       "dec": 5.0,
+       "tips": 0,
+       "jockey": "Danny Gilligan",
+       "trainer": "Ross O'Sullivan",
+       "btn": "6",
+       "comment": "novicey jumping, midfield, weakened from 2 out (jockey said his saddle slipped)"
+      },
+      {
+       "pos": "6th",
+       "horse": "Maverick Mack",
+       "sp": "40/1",
+       "dec": 41.0,
+       "tips": 0,
+       "jockey": "Sam Ewing",
+       "trainer": "Gordon Elliott",
+       "btn": "nse",
+       "comment": "led but pestered, headed and raced in second 3rd, not fluent 5 out, weakened before 2 out"
+      },
+      {
+       "pos": "7th",
+       "horse": "Slurricane",
+       "sp": "25/1",
+       "dec": 26.0,
+       "tips": 0,
+       "jockey": "Keith Donoghue",
+       "trainer": "Ross O'Sullivan",
+       "btn": "5 \u00bd",
+       "comment": "in rear throughout"
+      },
+      {
+       "pos": "NR",
+       "horse": "Mickie Angel",
+       "sp": "",
+       "dec": 99999.0,
+       "tips": 2,
+       "jockey": "Sean Flanagan",
+       "trainer": "Denis Gerard Hogan",
+       "btn": "",
+       "comment": "coughing"
+      },
+      {
+       "pos": "NR",
+       "horse": "Kevin's Pride",
+       "sp": "",
+       "dec": 99999.0,
+       "tips": 0,
+       "jockey": "J J Slevin",
+       "trainer": "John C McConnell",
+       "btn": "",
+       "comment": "coughing"
+      }
+     ]
+    },
+    {
+     "time": "20:00",
+     "title": "Irish Stallion Farms EBF Fillies INH Flat Race",
+     "going": "GOOD (Watered)",
+     "distance": "2m 0f 54y",
+     "meta": {
+      "Off Time 20": "00",
+      "Winning Time 03": "47",
+      "Race Status": "WeighedIn"
+     },
+     "runners": [
+      {
+       "pos": "1st",
+       "horse": "Elegantemente",
+       "sp": "8/1",
+       "dec": 9.0,
+       "tips": 2,
+       "jockey": "Mr J L Gleeson",
+       "trainer": "Henry De Bromhead",
+       "btn": "",
+       "comment": "led early, soon raced in second, pushed along and led again 2f out, soon ran green but went clear, ridden out, readily"
+      },
+      {
+       "pos": "2nd",
+       "horse": "She Was The One",
+       "sp": "5/2",
+       "dec": 3.5,
+       "tips": 0,
+       "jockey": "Mr H C Swan",
+       "trainer": "Denis Gerard Hogan",
+       "btn": "6",
+       "comment": "prominent, soon led, headed 2f out, kept on but no match for winner"
+      },
+      {
+       "pos": "3rd",
+       "horse": "Indoor Sport",
+       "sp": "66/1",
+       "dec": 67.0,
+       "tips": 0,
+       "jockey": "Mr Finian Maguire",
+       "trainer": "Miss Hilary McLoughlin",
+       "btn": "9",
+       "comment": "took keen hold, in touch with leaders, went modest third 3f out, kept on but no match for first two"
+      },
+      {
+       "pos": "4th",
+       "horse": "Mastertown Miss",
+       "sp": "8/1",
+       "dec": 9.0,
+       "tips": 0,
+       "jockey": "Mr A P Ryan",
+       "trainer": "David Harry Kelly",
+       "btn": "2 \u00bc",
+       "comment": "in rear, headway on outer 4f out, pushed along and went modest fourth 2f out, kept on"
+      },
+      {
+       "pos": "5th",
+       "horse": "Zara's Dream",
+       "sp": "7/4 F",
+       "dec": 2.75,
+       "tips": 1,
+       "jockey": "Mr P W Mullins",
+       "trainer": "W P Mullins",
+       "btn": "4 \u00be",
+       "comment": "ran in snatches, prominent, weakened 3f out"
+      },
+      {
+       "pos": "6th",
+       "horse": "She Means Business",
+       "sp": "33/1",
+       "dec": 34.0,
+       "tips": 0,
+       "jockey": "Mr D G Lavery",
+       "trainer": "Peter Fahey",
+       "btn": "2 \u00bd",
+       "comment": "in rear, some headway 4f out, no impression (jockey said filly hung right throughout)"
+      },
+      {
+       "pos": "7th",
+       "horse": "Hee Hiles",
+       "sp": "8/1",
+       "dec": 9.0,
+       "tips": 0,
+       "jockey": "Mr L P Shanahan",
+       "trainer": "T M Walsh",
+       "btn": "6",
+       "comment": "prominent on outer, weakened over 3f out"
+      },
+      {
+       "pos": "8th",
+       "horse": "Queens Counsel",
+       "sp": "12/1",
+       "dec": 13.0,
+       "tips": 0,
+       "jockey": "Mr B T Stone",
+       "trainer": "Emmet Mullins",
+       "btn": "6 \u00bd",
+       "comment": "towards rear throughout"
+      },
+      {
+       "pos": "9th",
+       "horse": "River Moy",
+       "sp": "22/1",
+       "dec": 23.0,
+       "tips": 0,
+       "jockey": "Mr B M Coonan",
+       "trainer": "Thomas Coyle",
+       "btn": "8",
+       "comment": "kicked before start, towards rear throughout"
+      },
+      {
+       "pos": "10th",
+       "horse": "Rathnaleen Aj",
+       "sp": "80/1",
+       "dec": 81.0,
+       "tips": 0,
+       "jockey": "Mr D Doyle",
+       "trainer": "Eoin Christopher McCarthy",
+       "btn": "nse",
+       "comment": "always behind (jockey said filly hung left throughout)"
+      },
+      {
+       "pos": "11th",
+       "horse": "The Lodge Lane",
+       "sp": "12/1",
+       "dec": 13.0,
+       "tips": 1,
+       "jockey": "Mr S Connor",
+       "trainer": "Peter Lawlor",
+       "btn": "51",
+       "comment": "fractious at the post and reared and unseated rider before start, took keen hold, in touch with leaders, weakened 6f out, tailed off (jockey said filly hung left)"
+      },
+      {
+       "pos": "NR",
+       "horse": "Ailbhes Gift",
+       "sp": "",
+       "dec": 99999.0,
+       "tips": 0,
+       "jockey": "Miss A B O'Connor",
+       "trainer": "Padraig Roche",
+       "btn": "",
+       "comment": "injury"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "course": "Brighton",
+   "date": "24-08-26",
+   "races": [
+    {
+     "time": "14:30",
+     "title": "Blackmore Building Contractors Handicap",
+     "going": "GOOD TO FIRM (Good in places; watered; 6.4)",
+     "distance": "0m 5f 60y",
+     "meta": {
+      "Off Time 14": "30",
+      "Winning Time 01": "00",
+      "Race Status": "WeighedIn"
+     },
+     "runners": [
+      {
+       "pos": "1st",
+       "horse": "Em Four",
+       "sp": "4/1",
+       "dec": 5.0,
+       "tips": 1,
+       "jockey": "Saffie Osborne",
+       "trainer": "Jamie Osborne",
+       "btn": "",
+       "comment": "unseated rider on the way to the start, prominent, ridden 1f out, led final 110yds, kept on"
+      },
+      {
+       "pos": "2nd",
+       "horse": "South Shore",
+       "sp": "2/1 F",
+       "dec": 3.0,
+       "tips": 3,
+       "jockey": "Marco Ghiani",
+       "trainer": "Robert Cowell",
+       "btn": "\u00be",
+       "comment": "took keen hold, in touch with leaders, headway 3f out, kept on and went second final stride"
+      },
+      {
+       "pos": "3rd",
+       "horse": "Kento",
+       "sp": "12/1",
+       "dec": 13.0,
+       "tips": 3,
+       "jockey": "Ray Dawson",
+       "trainer": "Tony Carroll",
+       "btn": "shd",
+       "comment": "took keen hold, pressed leader, ridden and briefly led inside final furlong, no extra towards finish"
+      },
+      {
+       "pos": "4th",
+       "horse": "Merrimack",
+       "sp": "15/2",
+       "dec": 8.5,
+       "tips": 0,
+       "jockey": "Olivia Haines",
+       "trainer": "Stuart Williams",
+       "btn": "nk",
+       "comment": "in touch with leaders, switched right 3f out, headway when towards near side 1f out, kept on well towards finish"
+      },
+      {
+       "pos": "5th",
+       "horse": "Secret Handsheikh",
+       "sp": "13/2",
+       "dec": 7.5,
+       "tips": 3,
+       "jockey": "Joe Leavy",
+       "trainer": "John Gallagher",
+       "btn": "nk",
+       "comment": "prominent, no extra inside final furlong"
+      },
+      {
+       "pos": "6th",
+       "horse": "Nogo's Dream",
+       "sp": "3/1",
+       "dec": 4.0,
+       "tips": 5,
+       "jockey": "Billy Loughnane",
+       "trainer": "Richard Hughes",
+       "btn": "1",
+       "comment": "took keen hold, soon led, ridden over 1f out, headed inside final furlong, soon no extra"
+      }
+     ]
+    },
+    {
+     "time": "15:00",
+     "title": "Cognitive Law EBF Maiden Stakes (GBB Race)",
+     "going": "GOOD TO FIRM (Good in places; watered; 6.4)",
+     "distance": "0m 5f 215y",
+     "meta": {
+      "Off Time 15": "00",
+      "Winning Time 01": "09",
+      "Race Status": "WeighedIn"
+     },
+     "runners": [
+      {
+       "pos": "1st",
+       "horse": "Rogue Imperial",
+       "sp": "15/8",
+       "dec": 2.875,
+       "tips": 3,
+       "jockey": "Harry Davies",
+       "trainer": "Archie Watson",
+       "btn": "",
+       "comment": "made all, ridden 1f out, kept on final 110yds"
+      },
+      {
+       "pos": "2nd",
+       "horse": "Roll Up Raymond",
+       "sp": "13/8 F",
+       "dec": 2.625,
+       "tips": 3,
+       "jockey": "Ray Dawson",
+       "trainer": "Gihan Arnolda",
+       "btn": "1",
+       "comment": "took keen hold, prominent, ridden and went second inside final furlong, kept on"
+      },
+      {
+       "pos": "3rd",
+       "horse": "I Am Royal",
+       "sp": "6/1",
+       "dec": 7.0,
+       "tips": 2,
+       "jockey": "Billy Loughnane",
+       "trainer": "Richard Hughes",
+       "btn": "shd",
+       "comment": "in touch with leaders, headway on near side of group over 2f out, outpaced over 1f out, rallied inside final furlong"
+      },
+      {
+       "pos": "4th",
+       "horse": "Major Looktwice",
+       "sp": "4/1",
+       "dec": 5.0,
+       "tips": 4,
+       "jockey": "Tom Queally",
+       "trainer": "Gary & Josh Moore",
+       "btn": "2 \u00bc",
+       "comment": "prominent, pressed leader over 1f out, weakened final 110yds"
+      },
+      {
+       "pos": "5th",
+       "horse": "Happy Daisy",
+       "sp": "25/1",
+       "dec": 26.0,
+       "tips": 0,
+       "jockey": "Marco Ghiani",
+       "trainer": "Stuart Williams",
+       "btn": "2 \u00bd",
+       "comment": "took keen hold, in touch with leaders, weakened inside final furlong"
+      },
+      {
+       "pos": "NR",
+       "horse": "From Me To You",
+       "sp": "",
+       "dec": 99999.0,
+       "tips": 0,
+       "jockey": "Joe Leavy",
+       "trainer": "Richard Hannon",
+       "btn": "",
+       "comment": "unsuitable ground"
+      }
+     ]
+    },
+    {
+     "time": "15:30",
+     "title": "Ian Carnaby Handicap",
+     "going": "GOOD TO FIRM (Good in places; watered; 6.4)",
+     "distance": "0m 5f 215y",
+     "meta": {
+      "Off Time 15": "30",
+      "Winning Time 01": "08",
+      "Race Status": "WeighedIn"
+     },
+     "runners": [
+      {
+       "pos": "1st",
+       "horse": "Dark Sun",
+       "sp": "5/1",
+       "dec": 6.0,
+       "tips": 0,
+       "jockey": "Laura Coughlan",
+       "trainer": "James Bennett",
+       "btn": "",
+       "comment": "took keen hold, prominent, cajoled along when led over 1f out, kept on"
+      },
+      {
+       "pos": "2nd",
+       "horse": "Be An Angel",
+       "sp": "4/1",
+       "dec": 5.0,
+       "tips": 2,
+       "jockey": "George Wood",
+       "trainer": "Rod Millman",
+       "btn": "1 \u00bc",
+       "comment": "took keen hold, led, headed over 3f out, hung left when rallying over 1f out, soon went second, no extra final 110yds"
+      },
+      {
+       "pos": "3rd",
+       "horse": "Blue Anthem",
+       "sp": "5/6 F",
+       "dec": 1.8333333333333,
+       "tips": 1,
+       "jockey": "Billy Loughnane",
+       "trainer": "Gerard O'Leary",
+       "btn": "nk",
+       "comment": "pressed leader, ridden when briefly led over 1f out, soon slightly hampered, kept on towards finish"
+      },
+      {
+       "pos": "4th",
+       "horse": "Nordic Glory",
+       "sp": "14/1",
+       "dec": 15.0,
+       "tips": 2,
+       "jockey": "Owen Lewis",
+       "trainer": "Michael Attwater",
+       "btn": "2",
+       "comment": "took keen hold, pressed leader, hung right and lost ground over 4f out, raced awkwardly towards near side over 1f out, weakened final 110yds (jockey said gelding ran too free and hung right-handed on the bend)"
+      },
+      {
+       "pos": "5th",
+       "horse": "The Organiser",
+       "sp": "13/2",
+       "dec": 7.5,
+       "tips": 1,
+       "jockey": "Pat Cosgrave",
+       "trainer": "Mark Pattinson",
+       "btn": "nk",
+       "comment": "pressed leader, led narrowly over 3f out, headed over 1f out, soon weakened"
+      },
+      {
+       "pos": "NR",
+       "horse": "Rye",
+       "sp": "",
+       "dec": 99999.0,
+       "tips": 4,
+       "jockey": "Marco Ghiani",
+       "trainer": "Tony Carroll",
+       "btn": "",
+       "comment": "unsuitable ground"
+      },
+      {
+       "pos": "NR",
+       "horse": "Von Krolock",
+       "sp": "",
+       "dec": 99999.0,
+       "tips": 5,
+       "jockey": "Christian Howarth",
+       "trainer": "James Owen",
+       "btn": "",
+       "comment": "unsuitable ground"
+      },
+      {
+       "pos": "NR",
+       "horse": "Unico",
+       "sp": "",
+       "dec": 99999.0,
+       "tips": 0,
+       "jockey": "Harry Davies",
+       "trainer": "Chris Gordon",
+       "btn": "",
+       "comment": "unsuitable ground"
+      }
+     ]
+    },
+    {
+     "time": "16:00",
+     "title": "Ian Carnaby 30 Years Of Sponsorship Handicap",
+     "going": "GOOD TO FIRM (Good in places; watered; 6.4)",
+     "distance": "1m 1f 207y",
+     "meta": {
+      "Off Time 16": "00",
+      "Winning Time 02": "01",
+      "Race Status": "WeighedIn"
+     },
+     "runners": [
+      {
+       "pos": "1st",
+       "horse": "Liberate",
+       "sp": "7/2",
+       "dec": 4.5,
+       "tips": 1,
+       "jockey": "George Wood",
+       "trainer": "Jim & Suzi Best",
+       "btn": "",
+       "comment": "raced in second, led over 2f out, ridden over 1f out, faced challenge 1f out, joined post"
+      },
+      {
+       "pos": "1st",
+       "horse": "Crimson Road",
+       "sp": "4/1",
+       "dec": 5.0,
+       "tips": 6,
+       "jockey": "William Carson",
+       "trainer": "John & Rhys Flint",
+       "btn": "dht",
+       "comment": "in touch with leaders, headway over 2f out, ridden and challenging final furlong, forced dead-heat"
+      },
+      {
+       "pos": "3rd",
+       "horse": "Bohemian Breeze",
+       "sp": "6/1",
+       "dec": 7.0,
+       "tips": 4,
+       "jockey": "Tom Queally",
+       "trainer": "Gary & Josh Moore",
+       "btn": "2",
+       "comment": "in touch with leaders, switched right 3f out, soon some headway, switched left 2f out, went third 1f out, no extra inside final 110yds"
+      },
+      {
+       "pos": "4th",
+       "horse": "Bownder",
+       "sp": "13/2",
+       "dec": 7.5,
+       "tips": 1,
+       "jockey": "Olivia Tubb",
+       "trainer": "Jonathan Portman",
+       "btn": "nk",
+       "comment": "in touch with leaders, outpaced over 1f out, rallied inside final furlong"
+      },
+      {
+       "pos": "5th",
+       "horse": "It's Life",
+       "sp": "3/1 F",
+       "dec": 4.0,
+       "tips": 1,
+       "jockey": "Billy Loughnane",
+       "trainer": "Kathy Turner",
+       "btn": "2 \u00be",
+       "comment": "ran in snatches, in touch with leaders, weakened inside final furlong"
+      },
+      {
+       "pos": "6th",
+       "horse": "Star Mind",
+       "sp": "33/1",
+       "dec": 34.0,
+       "tips": 0,
+       "jockey": "Danny O'Leary",
+       "trainer": "Gerard O'Leary",
+       "btn": "2",
+       "comment": "slowly away, always behind"
+      },
+      {
+       "pos": "7th",
+       "horse": "Bobacious",
+       "sp": "9/2",
+       "dec": 5.5,
+       "tips": 2,
+       "jockey": "Liam Wright",
+       "trainer": "Mark Hoad",
+       "btn": "\u00be",
+       "comment": "in rear, soon clear, reduced lead over 7f out, headed over 2f out, weakened inside final furlong"
+      },
+      {
+       "pos": "NR",
+       "horse": "Twilight Guest",
+       "sp": "",
+       "dec": 99999.0,
+       "tips": 1,
+       "jockey": "Kieran O'Neill",
+       "trainer": "George Margarson",
+       "btn": "",
+       "comment": "unsuitable ground"
+      }
+     ]
+    },
+    {
+     "time": "16:30",
+     "title": "Streamline Taxis Always Going The Distance Handicap",
+     "going": "GOOD TO FIRM (Good in places; watered; 6.4)",
+     "distance": "0m 7f 216y",
+     "meta": {
+      "Off Time 16": "31",
+      "Winning Time 01": "33",
+      "Race Status": "WeighedIn"
+     },
+     "runners": [
+      {
+       "pos": "1st",
+       "horse": "Dalmally",
+       "sp": "9/2",
+       "dec": 5.5,
+       "tips": 2,
+       "jockey": "Thomas Greatrex",
+       "trainer": "Mark Pattinson",
+       "btn": "",
+       "comment": "in touch with leaders, carried head awkwardly but headway over 1f out, soon ridden, hung left inside final furlong, led final strides (trainer said, regarding the apparent improvement in form, gelding may have benefitted from the drop in Class, from a Class 5 to a Class 6; gelding was routine tested)"
+      },
+      {
+       "pos": "2nd",
+       "horse": "King David",
+       "sp": "16/1",
+       "dec": 17.0,
+       "tips": 0,
+       "jockey": "Saffie Osborne",
+       "trainer": "Gay Kelleway",
+       "btn": "1",
+       "comment": "took keen hold, pressed leader, led over 5f out, ridden inside final furlong, headed final strides"
+      },
+      {
+       "pos": "3rd",
+       "horse": "Chloe's Courage",
+       "sp": "5/1",
+       "dec": 6.0,
+       "tips": 1,
+       "jockey": "Darragh Keenan",
+       "trainer": "John Ryan",
+       "btn": "1",
+       "comment": "prominent, outpaced over 4f out, headway over 2f out, went second over 1f out, no extra towards finish"
+      },
+      {
+       "pos": "4th",
+       "horse": "River Wharfe",
+       "sp": "2/1 F",
+       "dec": 3.0,
+       "tips": 7,
+       "jockey": "Billy Loughnane",
+       "trainer": "Tony Carroll",
+       "btn": "1 \u00be",
+       "comment": "in touch with leaders, some headway over 1f out, no extra inside final 110yds"
+      },
+      {
+       "pos": "5th",
+       "horse": "Sangara",
+       "sp": "18/1",
+       "dec": 19.0,
+       "tips": 1,
+       "jockey": "George Bass",
+       "trainer": "Sheena West",
+       "btn": "2 \u00bd",
+       "comment": "led but pestered, headed over 5f out, weakened final furlong"
+      },
+      {
+       "pos": "6th",
+       "horse": "Monks Mead",
+       "sp": "15/2",
+       "dec": 8.5,
+       "tips": 1,
+       "jockey": "Nicola Currie",
+       "trainer": "Mark Usher",
+       "btn": "4 \u00be",
+       "comment": "in touch with leaders, some headway over 2f out, weakened inside final furlong"
+      },
+      {
+       "pos": "7th",
+       "horse": "Celtic John",
+       "sp": "12/1",
+       "dec": 13.0,
+       "tips": 0,
+       "jockey": "Rhys Clutterbuck",
+       "trainer": "Pat Phelan",
+       "btn": "1",
+       "comment": "in rear but in touch with leaders, headway over 1f out, weakened inside final furlong"
+      },
+      {
+       "pos": "8th",
+       "horse": "Heer's Sadie",
+       "sp": "14/1",
+       "dec": 15.0,
+       "tips": 3,
+       "jockey": "Christian Howarth",
+       "trainer": "Julia & Shelley Birkett",
+       "btn": "3",
+       "comment": "always behind"
+      },
+      {
+       "pos": "9th",
+       "horse": "Winemaker",
+       "sp": "13/2",
+       "dec": 7.5,
+       "tips": 0,
+       "jockey": "Finley Marsh",
+       "trainer": "Richard Hughes",
+       "btn": "16",
+       "comment": "pressed leader, lost ground over 5f out, weakened over 3f out (jockey said gelding moved poorly; vet examined gelding post-race and had nothing to report)"
+      }
+     ]
+    },
+    {
+     "time": "17:00",
+     "title": "Brighton Racecourse Antiques And Vintage Fair Handicap",
+     "going": "GOOD TO FIRM (Good in places; watered; 6.4)",
+     "distance": "0m 6f 210y",
+     "meta": {
+      "Off Time 17": "01",
+      "Winning Time 01": "20",
+      "Race Status": "WeighedIn"
+     },
+     "runners": [
+      {
+       "pos": "1st",
+       "horse": "Berning Hot",
+       "sp": "22/1",
+       "dec": 23.0,
+       "tips": 0,
+       "jockey": "William Carson",
+       "trainer": "Michael Attwater",
+       "btn": "",
+       "comment": "in touch with leaders, headway over 1f out, soon ridden, hung left inside final furlong, led inside final 110yds, kept on (trainer said, regarding the apparent improvement in form, filly may have benefitted from being ridden more patiently on this occasion)"
+      },
+      {
+       "pos": "2nd",
+       "horse": "Superstorm",
+       "sp": "4/1",
+       "dec": 5.0,
+       "tips": 9,
+       "jockey": "Mikkel Mortensen",
+       "trainer": "Charlie Fellowes",
+       "btn": "nk",
+       "comment": "prominent, ridden and led over 1f out, drifted right inside final furlong, jockey dropped rein briefly inside final 110yds, soon headed, kept on"
+      },
+      {
+       "pos": "3rd",
+       "horse": "Kondratiev Wave",
+       "sp": "3/1 F",
+       "dec": 4.0,
+       "tips": 2,
+       "jockey": "Billy Loughnane",
+       "trainer": "Tony Carroll",
+       "btn": "3 \u00be",
+       "comment": "anticipated start, prominent, outpaced over 2f out, rallied inside final furlong, went third inside final 110yds"
+      },
+      {
+       "pos": "4th",
+       "horse": "Neat And Tidy",
+       "sp": "10/1",
+       "dec": 11.0,
+       "tips": 0,
+       "jockey": "Finley Marsh",
+       "trainer": "Richard Hughes",
+       "btn": "1",
+       "comment": "soon led, headed over 1f out, keeping on when hampered inside final furlong, soon no extra"
+      },
+      {
+       "pos": "5th",
+       "horse": "Barry The Worm",
+       "sp": "25/1",
+       "dec": 26.0,
+       "tips": 0,
+       "jockey": "Alistair Rawlinson",
+       "trainer": "Edward Smyth-Osbourne",
+       "btn": "\u00bd",
+       "comment": "in touch with leaders, headway over 4f out, on near side of group when weakened gradually over 1f out"
+      },
+      {
+       "pos": "6th",
+       "horse": "Mister Sandman",
+       "sp": "9/2",
+       "dec": 5.5,
+       "tips": 2,
+       "jockey": "Darragh Keenan",
+       "trainer": "Gary & Josh Moore",
+       "btn": "1 \u00be",
+       "comment": "in rear but in touch with leaders, some headway inside final furlong, never dangerous"
+      },
+      {
+       "pos": "7th",
+       "horse": "Nautical Sky",
+       "sp": "11/2",
+       "dec": 6.5,
+       "tips": 1,
+       "jockey": "Cieren Fallon",
+       "trainer": "James Owen",
+       "btn": "1 \u00bd",
+       "comment": "prominent, weakened over 1f out"
+      },
+      {
+       "pos": "8th",
+       "horse": "Thanks Dad",
+       "sp": "11/2",
+       "dec": 6.5,
+       "tips": 2,
+       "jockey": "Kieran O'Neill",
+       "trainer": "Scott Dixon",
+       "btn": "\u00be",
+       "comment": "in touch with leaders, weakened inside final furlong"
+      },
+      {
+       "pos": "9th",
+       "horse": "Girls Allowed",
+       "sp": "14/1",
+       "dec": 15.0,
+       "tips": 2,
+       "jockey": "Dylan Hogan",
+       "trainer": "Julia & Shelley Birkett",
+       "btn": "18",
+       "comment": "in touch with leaders, weakened over 1f out (jockey said filly was never travelling; vet examined filly post-race and had nothing to report)"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "course": "Musselburgh",
+   "date": "24-08-26",
+   "races": [
+    {
+     "time": "14:15",
+     "title": "Irish EBF Maiden Stakes (GBB Race)",
+     "going": "GOOD (Good to soft in places on Straight course)",
+     "distance": "0m 5f 1y",
+     "meta": {
+      "Off Time 14": "16",
+      "Winning Time 00": "59",
+      "Race Status": "WeighedIn"
+     },
+     "runners": [
+      {
+       "pos": "1st",
+       "horse": "The Mean Fiddler",
+       "sp": "1/3 F",
+       "dec": 1.3333333333333,
+       "tips": 12,
+       "jockey": "Jason Hart",
+       "trainer": "John & Sean Quinn",
+       "btn": "",
+       "comment": "pressed leader, disputed lead and ridden over 1f out, led clearly inside final 110yds, kept on"
+      },
+      {
+       "pos": "2nd",
+       "horse": "By Jove Grace",
+       "sp": "18/1",
+       "dec": 19.0,
+       "tips": 2,
+       "jockey": "Oisin Orr",
+       "trainer": "Richard & Peter Fahey",
+       "btn": "\u00be",
+       "comment": "in rear, soon pushed along, headway on outer over 1f out, kept on final furlong, went second final strides"
+      },
+      {
+       "pos": "3rd",
+       "horse": "Sable Noir",
+       "sp": "80/1",
+       "dec": 81.0,
+       "tips": 0,
+       "jockey": "Tom Eaves",
+       "trainer": "Kevin Ryan",
+       "btn": "nk",
+       "comment": "pressed leaders on outer, disputed lead over 1f out, ridden and edged right inside final furlong, no extra and lost second final strides"
+      },
+      {
+       "pos": "4th",
+       "horse": "Classyfied",
+       "sp": "33/1",
+       "dec": 34.0,
+       "tips": 0,
+       "jockey": "Sean Kirrane",
+       "trainer": "Tim Easterby",
+       "btn": "2",
+       "comment": "towards rear but in touch with leaders, kept on inside final furlong"
+      },
+      {
+       "pos": "5th",
+       "horse": "Paphos",
+       "sp": "11/2",
+       "dec": 6.5,
+       "tips": 1,
+       "jockey": "Zak Wheatley",
+       "trainer": "Declan Carroll",
+       "btn": "\u00be",
+       "comment": "led narrowly, headed from over 1f out, weakened inside final furlong"
+      },
+      {
+       "pos": "6th",
+       "horse": "Calef",
+       "sp": "4/1",
+       "dec": 5.0,
+       "tips": 1,
+       "jockey": "Daniel Tudhope",
+       "trainer": "David O'Meara",
+       "btn": "1 \u00bd",
+       "comment": "slowly into stride, soon in touch with leaders, weakened inside final furlong"
+      },
+      {
+       "pos": "7th",
+       "horse": "La Flor Granada",
+       "sp": "150/1",
+       "dec": 151.0,
+       "tips": 0,
+       "jockey": "Cam Hardie",
+       "trainer": "Richard & Peter Fahey",
+       "btn": "\u00bd",
+       "comment": "in touch with leaders, pushed along before halfway, weakened final furlong"
+      },
+      {
+       "pos": "8th",
+       "horse": "Pivotal Star",
+       "sp": "80/1",
+       "dec": 81.0,
+       "tips": 0,
+       "jockey": "Billy Garritty",
+       "trainer": "Michael & David Easterby",
+       "btn": "hd",
+       "comment": "always behind (jockey said gelding hung right-handed)"
+      }
+     ]
+    },
+    {
+     "time": "14:45",
+     "title": "National Racehorse Week Nursery Handicap",
+     "going": "GOOD (Good to soft in places on Straight course)",
+     "distance": "1m 0f 2y",
+     "meta": {
+      "Off Time 14": "46",
+      "Winning Time 01": "41",
+      "Race Status": "WeighedIn"
+     },
+     "runners": [
+      {
+       "pos": "1st",
+       "horse": "Forest Berry",
+       "sp": "4/5 F",
+       "dec": 1.8,
+       "tips": 9,
+       "jockey": "Luke Morris",
+       "trainer": "Sir Mark Prescott Bt",
+       "btn": "",
+       "comment": "in touch with leaders, took keen hold early, headway over 2f out, led over 1f out, edged right and ridden out inside final furlong, always doing enough"
+      },
+      {
+       "pos": "2nd",
+       "horse": "Astral Calling",
+       "sp": "17/2",
+       "dec": 9.5,
+       "tips": 0,
+       "jockey": "Jack Nicholls",
+       "trainer": "K R Burke",
+       "btn": "1",
+       "comment": "towards rear, some headway and ridden over 1f out, kept on and went second inside final 110yds"
+      },
+      {
+       "pos": "3rd",
+       "horse": "Bluestone Lady",
+       "sp": "7/1",
+       "dec": 8.0,
+       "tips": 4,
+       "jockey": "Paul Mulrennan",
+       "trainer": "Phillip Makin",
+       "btn": "2 \u00bd",
+       "comment": "slowly into stride, took keen hold, in rear, headway on outer over 2f out, edged right and no extra inside final furlong, went third towards finish"
+      },
+      {
+       "pos": "4th",
+       "horse": "Bonjour Belle",
+       "sp": "12/1",
+       "dec": 13.0,
+       "tips": 0,
+       "jockey": "Mikey Sheehy",
+       "trainer": "Brian Ellison",
+       "btn": "nk",
+       "comment": "raced in second, weakened inside final furlong"
+      },
+      {
+       "pos": "5th",
+       "horse": "Le Grand Etoile",
+       "sp": "7/1",
+       "dec": 8.0,
+       "tips": 0,
+       "jockey": "Andrew Mullen",
+       "trainer": "Charlie Johnston",
+       "btn": "5 \u00bd",
+       "comment": "led, headed over 1f out, soon weakened"
+      },
+      {
+       "pos": "6th",
+       "horse": "The Resdev Rocket",
+       "sp": "11/1",
+       "dec": 12.0,
+       "tips": 0,
+       "jockey": "Billy Garritty",
+       "trainer": "Michael & David Easterby",
+       "btn": "9",
+       "comment": "in touch with leaders against near rail, weakened over 1f out (jockey said gelding made a respiratory noise)"
+      },
+      {
+       "pos": "7th",
+       "horse": "Rule Of The Agency",
+       "sp": "18/1",
+       "dec": 19.0,
+       "tips": 1,
+       "jockey": "Jason Hart",
+       "trainer": "Tim Easterby",
+       "btn": "13",
+       "comment": "in touch with leaders on outer, soon pushed along, lost position and towards rear 5f out, weakened over 1f out"
+      }
+     ]
+    },
+    {
+     "time": "15:15",
+     "title": "'Celebrating Veteran Armed Forces' Selling Handicap",
+     "going": "GOOD (Good to soft in places on Straight course)",
+     "distance": "1m 0f 208y",
+     "meta": {
+      "Off Time 15": "16",
+      "Winning Time 01": "52",
+      "Race Status": "WeighedIn"
+     },
+     "runners": [
+      {
+       "pos": "1st",
+       "horse": "Runninsonofagun",
+       "sp": "9/4 F",
+       "dec": 3.25,
+       "tips": 3,
+       "jockey": "Jason Hart",
+       "trainer": "Tristan Davidson",
+       "btn": "",
+       "comment": "made all, took keen hold, switched right and against rail after 1f, went clear and ridden 1f out, edged left and reduced lead towards finish, always doing enough"
+      },
+      {
+       "pos": "2nd",
+       "horse": "Motawaared",
+       "sp": "7/1",
+       "dec": 8.0,
+       "tips": 4,
+       "jockey": "Paul Mulrennan",
+       "trainer": "Jim Goldie",
+       "btn": "\u00be",
+       "comment": "held up in midfield, switched left and on outer over 2f out, headway over 1f out, ridden and went second inside final furlong, kept on"
+      },
+      {
+       "pos": "3rd",
+       "horse": "Princess Niyla",
+       "sp": "14/1",
+       "dec": 15.0,
+       "tips": 1,
+       "jockey": "Tom Eaves",
+       "trainer": "Alan Brown",
+       "btn": "1 \u00bd",
+       "comment": "pressed leader, outpaced 1f out, lost second and no extra inside final furlong"
+      },
+      {
+       "pos": "4th",
+       "horse": "Miners Gamble",
+       "sp": "7/1",
+       "dec": 8.0,
+       "tips": 2,
+       "jockey": "Mikey Sheehy",
+       "trainer": "Brian Ellison",
+       "btn": "\u00be",
+       "comment": "dwelt start, towards rear, switched right and headway over 1f out, no extra inside final furlong"
+      },
+      {
+       "pos": "5th",
+       "horse": "Mayor Of Maghera",
+       "sp": "12/1",
+       "dec": 13.0,
+       "tips": 2,
+       "jockey": "Rhys Elliott",
+       "trainer": "R Mike Smith",
+       "btn": "1 \u00bc",
+       "comment": "dwelt start, in rear, kept on final furlong (jockey said gelding missed break)"
+      },
+      {
+       "pos": "6th",
+       "horse": "Yermanthere",
+       "sp": "9/1",
+       "dec": 10.0,
+       "tips": 3,
+       "jockey": "Jake Dickson",
+       "trainer": "Tim Easterby",
+       "btn": "1 \u00be",
+       "comment": "never better than midfield, short of room 2f out"
+      },
+      {
+       "pos": "7th",
+       "horse": "Theme Park",
+       "sp": "12/1",
+       "dec": 13.0,
+       "tips": 0,
+       "jockey": "Faye McManoman",
+       "trainer": "Nigel Tinkler",
+       "btn": "shd",
+       "comment": "slowly away, towards rear, bit short of room 1f out, never on terms (jockey said gelding was slowly away)"
+      },
+      {
+       "pos": "8th",
+       "horse": "Falcon Nine",
+       "sp": "9/2",
+       "dec": 5.5,
+       "tips": 1,
+       "jockey": "Oisin Orr",
+       "trainer": "Iain Jardine",
+       "btn": "\u00be",
+       "comment": "prominent on outer, weakened final furlong"
+      },
+      {
+       "pos": "9th",
+       "horse": "Titainium",
+       "sp": "6/1",
+       "dec": 7.0,
+       "tips": 1,
+       "jockey": "Oliver Stammers",
+       "trainer": "Grant Tuer",
+       "btn": "3 \u00bd",
+       "comment": "prominent on inner, weakened over 1f out"
+      },
+      {
+       "pos": "10th",
+       "horse": "Simple Star",
+       "sp": "50/1",
+       "dec": 51.0,
+       "tips": 0,
+       "jockey": "Sam James",
+       "trainer": "Gary Rutherford",
+       "btn": "1 \u00bc",
+       "comment": "reluctant to race and lost many lengths start, always behind (jockey said gelding was reluctant to race and was slowly away as a result)"
+      },
+      {
+       "pos": "11th",
+       "horse": "Langton Wold",
+       "sp": "80/1",
+       "dec": 81.0,
+       "tips": 0,
+       "jockey": "Cam Hardie",
+       "trainer": "Brian Ellison",
+       "btn": "2",
+       "comment": "prominent, weakened over 1f out"
+      }
+     ]
+    },
+    {
+     "time": "15:45",
+     "title": "Ina And Ella MacGregor Handicap",
+     "going": "GOOD (Good to soft in places on Straight course)",
+     "distance": "0m 7f 15y",
+     "meta": {
+      "Off Time 15": "46",
+      "Winning Time 01": "26",
+      "Race Status": "WeighedIn"
+     },
+     "runners": [
+      {
+       "pos": "1st",
+       "horse": "Two Commanders",
+       "sp": "3/1",
+       "dec": 4.0,
+       "tips": 8,
+       "jockey": "Oisin Orr",
+       "trainer": "Edward Bethell",
+       "btn": "",
+       "comment": "in touch with leaders, smooth headway over 2f out, ridden and led narrowly over 1f out, kept on well"
+      },
+      {
+       "pos": "2nd",
+       "horse": "Blakefell",
+       "sp": "9/4 F",
+       "dec": 3.25,
+       "tips": 3,
+       "jockey": "Jason Hart",
+       "trainer": "Ivan Furtado",
+       "btn": "nk",
+       "comment": "took keen hold, prominent on outer, joined leader 5f out, ridden over 1f out, kept on well, just held"
+      },
+      {
+       "pos": "3rd",
+       "horse": "Velvet Rhythm",
+       "sp": "13/2",
+       "dec": 7.5,
+       "tips": 0,
+       "jockey": "Connor Beasley",
+       "trainer": "Charlie Johnston",
+       "btn": "1 \u00bc",
+       "comment": "midfield on outer, headway and switched right over 1f out, ridden and against rail final furlong, no extra inside final 110yds"
+      },
+      {
+       "pos": "4th",
+       "horse": "The Resdev Scholar",
+       "sp": "4/1",
+       "dec": 5.0,
+       "tips": 3,
+       "jockey": "Joanna Mason",
+       "trainer": "Michael & David Easterby",
+       "btn": "1",
+       "comment": "towards rear, some headway over 1f out, kept on inside final furlong"
+      },
+      {
+       "pos": "5th",
+       "horse": "Light The Night Up",
+       "sp": "18/1",
+       "dec": 19.0,
+       "tips": 2,
+       "jockey": "Jack Nicholls",
+       "trainer": "K R Burke",
+       "btn": "hd",
+       "comment": "dwelt start, soon midfield, kept on inside final furlong"
+      },
+      {
+       "pos": "6th",
+       "horse": "Viper",
+       "sp": "10/1",
+       "dec": 11.0,
+       "tips": 0,
+       "jockey": "Mikey Sheehy",
+       "trainer": "Brian Ellison",
+       "btn": "1 \u00bc",
+       "comment": "dwelt start, towards rear, kept on final furlong, never dangerous"
+      },
+      {
+       "pos": "7th",
+       "horse": "Siouxpersonic",
+       "sp": "14/1",
+       "dec": 15.0,
+       "tips": 1,
+       "jockey": "Sam James",
+       "trainer": "Julie Camacho",
+       "btn": "2",
+       "comment": "midfield, weakened over 1f out"
+      },
+      {
+       "pos": "8th",
+       "horse": "Carmel Valley",
+       "sp": "28/1",
+       "dec": 29.0,
+       "tips": 0,
+       "jockey": "Cam Hardie",
+       "trainer": "Katie Scott",
+       "btn": "1 \u00bd",
+       "comment": "in touch with leaders, weakened final furlong"
+      },
+      {
+       "pos": "9th",
+       "horse": "Beyond The Bar",
+       "sp": "22/1",
+       "dec": 23.0,
+       "tips": 0,
+       "jockey": "Paul Mulrennan",
+       "trainer": "Tim Easterby",
+       "btn": "3",
+       "comment": "led narrowly, joined 5f out, weakened over 1f out"
+      },
+      {
+       "pos": "10th",
+       "horse": "Yy Spirit",
+       "sp": "200/1",
+       "dec": 201.0,
+       "tips": 0,
+       "jockey": "Rhys Elliott",
+       "trainer": "Susan Corbett",
+       "btn": "1 \u00bd",
+       "comment": "slowly into stride, always behind"
+      }
+     ]
+    },
+    {
+     "time": "16:15",
+     "title": "Ocean Scotland Outdoor Advertising Handicap",
+     "going": "GOOD (Good to soft in places on Straight course)",
+     "distance": "0m 5f 1y",
+     "meta": {
+      "Off Time 16": "21",
+      "Winning Time 00": "59",
+      "Race Status": "WeighedIn"
+     },
+     "runners": [
+      {
+       "pos": "1st",
+       "horse": "Lady Bouquet",
+       "sp": "9/1",
+       "dec": 10.0,
+       "tips": 0,
+       "jockey": "Kevin Stott",
+       "trainer": "Philip Kirby",
+       "btn": "",
+       "comment": "prominent on outer, led narrowly over 1f out, ridden and edged left inside final furlong, kept on (trainer had no explanation for the apparent improvement in form)"
+      },
+      {
+       "pos": "2nd",
+       "horse": "Ski Angel",
+       "sp": "12/1",
+       "dec": 13.0,
+       "tips": 0,
+       "jockey": "Cam Hardie",
+       "trainer": "R Mike Smith",
+       "btn": "\u00be",
+       "comment": "in touch with leaders on inner, waiting for room over 1f out, switched right 1f out, went second and ridden final 110yds, kept on"
+      },
+      {
+       "pos": "3rd",
+       "horse": "Gwen Tennyson",
+       "sp": "11/1",
+       "dec": 12.0,
+       "tips": 0,
+       "jockey": "Connor Beasley",
+       "trainer": "Gemma Tutty",
+       "btn": "1",
+       "comment": "towards rear, switched right and smooth headway over 1f out, waiting for room 1f out, kept on final 110yds"
+      },
+      {
+       "pos": "4th",
+       "horse": "Opal Storm",
+       "sp": "9/1",
+       "dec": 10.0,
+       "tips": 1,
+       "jockey": "Faye McManoman",
+       "trainer": "Brian Rothwell",
+       "btn": "\u00be",
+       "comment": "in touch with leaders, headway and challenging 1f out, weakened inside final 110yds"
+      },
+      {
+       "pos": "5th",
+       "horse": "Sands Of Seve",
+       "sp": "20/1",
+       "dec": 21.0,
+       "tips": 1,
+       "jockey": "Billy Garritty",
+       "trainer": "Gary Harrison",
+       "btn": "nk",
+       "comment": "took keen hold, pressed leader, no extra inside final furlong"
+      },
+      {
+       "pos": "6th",
+       "horse": "Sixcor",
+       "sp": "15/2",
+       "dec": 8.5,
+       "tips": 0,
+       "jockey": "Tom Kiely Marshall",
+       "trainer": "Linda Perratt",
+       "btn": "nk",
+       "comment": "in touch with leaders, no extra inside final furlong"
+      },
+      {
+       "pos": "7th",
+       "horse": "Royal Duke",
+       "sp": "8/1",
+       "dec": 9.0,
+       "tips": 0,
+       "jockey": "Rhys Elliott",
+       "trainer": "R Mike Smith",
+       "btn": "hd",
+       "comment": "slowly into stride, towards rear on outer, headway 2f out, no extra inside final furlong"
+      },
+      {
+       "pos": "8th",
+       "horse": "So Grateful",
+       "sp": "7/2",
+       "dec": 4.5,
+       "tips": 7,
+       "jockey": "Joanna Mason",
+       "trainer": "Michael & David Easterby",
+       "btn": "1 \u00be",
+       "comment": "in touch with leaders on outer, weakening when hampered inside final 110yds"
+      },
+      {
+       "pos": "9th",
+       "horse": "Breeze Star",
+       "sp": "80/1",
+       "dec": 81.0,
+       "tips": 0,
+       "jockey": "Andrew Mullen",
+       "trainer": "Linda Perratt",
+       "btn": "shd",
+       "comment": "slowly away, always behind"
+      },
+      {
+       "pos": "10th",
+       "horse": "Wee Mary",
+       "sp": "2/1 F",
+       "dec": 3.0,
+       "tips": 6,
+       "jockey": "Paul Mulrennan",
+       "trainer": "Jim Goldie",
+       "btn": "1 \u00be",
+       "comment": "led narrowly, headed over 1f out, soon weakened (trainer had no explanation for the poor form shown)"
+      }
+     ]
+    },
+    {
+     "time": "16:45",
+     "title": "Watch On Racing TV Handicap",
+     "going": "GOOD (Good to soft in places on Straight course)",
+     "distance": "1m 0f 2y",
+     "meta": {
+      "Off Time 16": "47",
+      "Winning Time 01": "39",
+      "Race Status": "WeighedIn"
+     },
+     "runners": [
+      {
+       "pos": "1st",
+       "horse": "Misemerald",
+       "sp": "3/1 F",
+       "dec": 4.0,
+       "tips": 3,
+       "jockey": "Kevin Stott",
+       "trainer": "Philip Kirby",
+       "btn": "",
+       "comment": "in touch with leaders, going okay but waiting for room over 2f out, switched left and headway under 2f out, led 1f out, soon ridden, kept on"
+      },
+      {
+       "pos": "2nd",
+       "horse": "Abu Royal",
+       "sp": "16/1",
+       "dec": 17.0,
+       "tips": 0,
+       "jockey": "Billy Garritty",
+       "trainer": "L J Morgan",
+       "btn": "\u00be",
+       "comment": "prominent, ridden and challenging over 1f out, kept on"
+      },
+      {
+       "pos": "3rd",
+       "horse": "Thats My Boy Luke",
+       "sp": "4/1",
+       "dec": 5.0,
+       "tips": 1,
+       "jockey": "Sean Kirrane",
+       "trainer": "Tim Easterby",
+       "btn": "3 \u00bd",
+       "comment": "prominent, challenging 2f out, edged right 1f out, weakened inside final furlong"
+      },
+      {
+       "pos": "4th",
+       "horse": "Jewel Maker",
+       "sp": "18/1",
+       "dec": 19.0,
+       "tips": 0,
+       "jockey": "Duran Fentiman",
+       "trainer": "Tim Easterby",
+       "btn": "nk",
+       "comment": "dwelt start, held up in midfield, some headway 2f out, bit short of room inside final furlong, soon switched left, kept on final 110yds"
+      },
+      {
+       "pos": "5th",
+       "horse": "Approaching Dawn",
+       "sp": "9/2",
+       "dec": 5.5,
+       "tips": 2,
+       "jockey": "Lauren Young",
+       "trainer": "Jim Goldie",
+       "btn": "\u00bd",
+       "comment": "dwelt start, in rear, some headway and switched left over 1f out, kept on inside final furlong, never dangerous"
+      },
+      {
+       "pos": "6th",
+       "horse": "Hostelry",
+       "sp": "7/2",
+       "dec": 4.5,
+       "tips": 6,
+       "jockey": "Joanna Mason",
+       "trainer": "Ruth Carr",
+       "btn": "\u00be",
+       "comment": "dwelt start, towards rear, never on terms"
+      },
+      {
+       "pos": "7th",
+       "horse": "Bantz",
+       "sp": "22/1",
+       "dec": 23.0,
+       "tips": 0,
+       "jockey": "Tom Eaves",
+       "trainer": "Alan Brown",
+       "btn": "nk",
+       "comment": "in touch with leaders, weakened over 1f out"
+      },
+      {
+       "pos": "8th",
+       "horse": "Due Respect",
+       "sp": "9/1",
+       "dec": 10.0,
+       "tips": 1,
+       "jockey": "Jake Dickson",
+       "trainer": "Gary Rutherford",
+       "btn": "nk",
+       "comment": "pressed leader on outer, led over 2f out, headed 1f out, hung right and weakened inside final furlong"
+      },
+      {
+       "pos": "9th",
+       "horse": "Joshuas Dream",
+       "sp": "18/1",
+       "dec": 19.0,
+       "tips": 1,
+       "jockey": "Paul Mulrennan",
+       "trainer": "Jim Goldie",
+       "btn": "1 \u00bc",
+       "comment": "dwelt start, in rear, never on terms"
+      },
+      {
+       "pos": "10th",
+       "horse": "Caledonian Dream",
+       "sp": "66/1",
+       "dec": 67.0,
+       "tips": 0,
+       "jockey": "Andrew Mullen",
+       "trainer": "John Dawson",
+       "btn": "5",
+       "comment": "towards rear on outer, weakened 2f out"
+      },
+      {
+       "pos": "11th",
+       "horse": "Serengeti Sunrise",
+       "sp": "40/1",
+       "dec": 41.0,
+       "tips": 0,
+       "jockey": "Rhys Elliott",
+       "trainer": "R K Watson",
+       "btn": "6 \u00bd",
+       "comment": "led narrowly, headed over 2f out, soon weakened"
+      },
+      {
+       "pos": "12th",
+       "horse": "Elizabeth Bay",
+       "sp": "16/1",
+       "dec": 17.0,
+       "tips": 0,
+       "jockey": "Jason Hart",
+       "trainer": "Katie Scott",
+       "btn": "3 \u00bc",
+       "comment": "held up in midfield, weakened 2f out"
+      },
+      {
+       "pos": "13th",
+       "horse": "Sievier",
+       "sp": "125/1",
+       "dec": 126.0,
+       "tips": 0,
+       "jockey": "Connor Beasley",
+       "trainer": "John Dawson",
+       "btn": "12",
+       "comment": "in touch with leaders on outer, weakened quickly 3f out"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "course": "Windsor",
+   "date": "24-08-26",
+   "races": [
+    {
+     "time": "17:13",
+     "title": "Matchbook Betting Exchange Supporting UK Racing Fillies' Novice Stakes (GBB Race)",
+     "going": "GOOD TO FIRM (Good in places; watered; 6.8)",
+     "distance": "0m 6f 12y",
+     "meta": {
+      "Off Time 17": "13",
+      "Winning Time 01": "13",
+      "Race Status": "WeighedIn"
+     },
+     "runners": [
+      {
+       "pos": "1st",
+       "horse": "Sunday Girl",
+       "sp": "15/8",
+       "dec": 2.875,
+       "tips": 13,
+       "jockey": "Kieran Shoemark",
+       "trainer": "Ed Walker",
+       "btn": "",
+       "comment": "disputed lead, going best and led clearly over 2f out, went clear and ridden briefly over 1f out, pushed out, readily"
+      },
+      {
+       "pos": "2nd",
+       "horse": "Encore",
+       "sp": "Evens F",
+       "dec": 2.0,
+       "tips": 3,
+       "jockey": "Tom Marquand",
+       "trainer": "William Haggas",
+       "btn": "4 \u00bc",
+       "comment": "dwelt start, in rear but in touch with leaders, headway and went second over 1f out, kept on but no match for winner"
+      },
+      {
+       "pos": "3rd",
+       "horse": "Cercis",
+       "sp": "6/1",
+       "dec": 7.0,
+       "tips": 0,
+       "jockey": "Benoit De La Sayette",
+       "trainer": "Mrs Ilka Gansera-Leveque",
+       "btn": "4",
+       "comment": "in touch with leaders, kept on from over 1f out, no match for first two"
+      },
+      {
+       "pos": "4th",
+       "horse": "Just Dreaming",
+       "sp": "20/1",
+       "dec": 21.0,
+       "tips": 1,
+       "jockey": "Oliver Carmichael",
+       "trainer": "Eve Johnson Houghton",
+       "btn": "6 \u00bd",
+       "comment": "disputed lead, weakened over 2f out"
+      },
+      {
+       "pos": "5th",
+       "horse": "Queen Of Hope",
+       "sp": "14/1",
+       "dec": 15.0,
+       "tips": 0,
+       "jockey": "Hector Crouch",
+       "trainer": "Jack Jones",
+       "btn": "6",
+       "comment": "in rear but in touch with leaders, not clear run 2f out, soon ran green and hung right against rail, eased inside final furlong"
+      }
+     ]
+    },
+    {
+     "time": "17:48",
+     "title": "Juddmonte EBF Restricted Novice Stakes (Bands B, C and D) (EBF Qualifier) (GBB/GBBPlus Race)",
+     "going": "GOOD TO FIRM (Good in places; watered; 6.8)",
+     "distance": "1m 0f 31y",
+     "meta": {
+      "Off Time 17": "48",
+      "Winning Time 01": "44",
+      "Race Status": "WeighedIn"
+     },
+     "runners": [
+      {
+       "pos": "1st",
+       "horse": "Nakila Sun",
+       "sp": "13/8",
+       "dec": 2.625,
+       "tips": 6,
+       "jockey": "Oisin Murphy",
+       "trainer": "Andrew Balding",
+       "btn": "",
+       "comment": "took keen hold, made all, soon clear, ridden 2f out, kept on well, unchallenged"
+      },
+      {
+       "pos": "2nd",
+       "horse": "Camarda Rc",
+       "sp": "4/5 F",
+       "dec": 1.8,
+       "tips": 9,
+       "jockey": "Sean Levey",
+       "trainer": "Richard Hannon",
+       "btn": "3 \u00bc",
+       "comment": "raced in second behind clear leader, some headway over 2f out, no extra inside final furlong"
+      },
+      {
+       "pos": "3rd",
+       "horse": "Aethelstan Gold",
+       "sp": "22/1",
+       "dec": 23.0,
+       "tips": 0,
+       "jockey": "Lewis Edmunds",
+       "trainer": "Harry Charlton",
+       "btn": "nk",
+       "comment": "soon in touch with leaders, went modest third over 3f out, some headway but ran green over 1f out, no extra inside final furlong, just held third"
+      },
+      {
+       "pos": "4th",
+       "horse": "Biscaysian",
+       "sp": "22/1",
+       "dec": 23.0,
+       "tips": 1,
+       "jockey": "Hector Crouch",
+       "trainer": "Michael Bell",
+       "btn": "hd",
+       "comment": "slowly away, in rear, plenty to do but headway 3f out, ridden and ran on from over 1f out, nearest finish, eyecatcher"
+      },
+      {
+       "pos": "5th",
+       "horse": "The Sergeon",
+       "sp": "33/1",
+       "dec": 34.0,
+       "tips": 0,
+       "jockey": "Kieran Shoemark",
+       "trainer": "Oliver Cole",
+       "btn": "3 \u00bc",
+       "comment": "in rear, ran green but steady headway from over 2f out, kept on"
+      },
+      {
+       "pos": "6th",
+       "horse": "Regalism",
+       "sp": "10/1",
+       "dec": 11.0,
+       "tips": 0,
+       "jockey": "Tom Marquand",
+       "trainer": "William Haggas",
+       "btn": "5",
+       "comment": "in touch with leaders, weakened 3f out"
+      },
+      {
+       "pos": "7th",
+       "horse": "Son Of A Fish",
+       "sp": "33/1",
+       "dec": 34.0,
+       "tips": 0,
+       "jockey": "Pat Dobbs",
+       "trainer": "Richard Hannon",
+       "btn": "1 \u00bc",
+       "comment": "took keen hold, in touch with leaders early, steadied and towards rear after 2f, no impression"
+      },
+      {
+       "pos": "8th",
+       "horse": "Banged Up",
+       "sp": "100/1",
+       "dec": 101.0,
+       "tips": 0,
+       "jockey": "Oliver Carmichael",
+       "trainer": "Eve Johnson Houghton",
+       "btn": "2",
+       "comment": "held up in rear, no impression"
+      },
+      {
+       "pos": "9th",
+       "horse": "Distant Sun",
+       "sp": "50/1",
+       "dec": 51.0,
+       "tips": 0,
+       "jockey": "Jason Watson",
+       "trainer": "Ed Dunlop",
+       "btn": "20",
+       "comment": "slowly into stride, soon detached in rear, never on terms"
+      },
+      {
+       "pos": "10th",
+       "horse": "Hoosthat",
+       "sp": "250/1",
+       "dec": 251.0,
+       "tips": 0,
+       "jockey": "Callum Shepherd",
+       "trainer": "William Muir & Chris Grassick",
+       "btn": "4 \u00bc",
+       "comment": "never better than midfield, weakened quickly over 3f out"
+      }
+     ]
+    },
+    {
+     "time": "18:18",
+     "title": "Play The Free \u00a320,000 Matchbook Match 6 Handicap (GBBPlus Race)",
+     "going": "GOOD TO FIRM (Good in places; watered; 6.8)",
+     "distance": "1m 3f 99y",
+     "meta": {
+      "Off Time 18": "18",
+      "Winning Time 02": "26",
+      "Race Status": "WeighedIn"
+     },
+     "runners": [
+      {
+       "pos": "1st",
+       "horse": "Cape Fear",
+       "sp": "2/1 F",
+       "dec": 3.0,
+       "tips": 7,
+       "jockey": "Oisin Murphy",
+       "trainer": "Andrew Balding",
+       "btn": "",
+       "comment": "towards rear, switched left and good headway over 2f out, led and ridden over 1f out, kept on well, won going away"
+      },
+      {
+       "pos": "2nd",
+       "horse": "Morcar",
+       "sp": "11/1",
+       "dec": 12.0,
+       "tips": 3,
+       "jockey": "Pat Dobbs",
+       "trainer": "Richard Hannon",
+       "btn": "5 \u00bd",
+       "comment": "in touch with leaders, went second over 1f out, kept on but no match for winner"
+      },
+      {
+       "pos": "3rd",
+       "horse": "Tai Hang Pegasus",
+       "sp": "100/30",
+       "dec": 4.3333333333333,
+       "tips": 5,
+       "jockey": "Paddy Bradley",
+       "trainer": "Charlie Fellowes",
+       "btn": "1",
+       "comment": "soon led, lost two places over 1f out, kept on"
+      },
+      {
+       "pos": "4th",
+       "horse": "Just An Hour",
+       "sp": "9/2",
+       "dec": 5.5,
+       "tips": 1,
+       "jockey": "Lewis Edmunds",
+       "trainer": "Rod Millman",
+       "btn": "2 \u00bc",
+       "comment": "led early, soon prominent, outpaced when squeezed out under 2f out, weakened gradually inside final furlong"
+      },
+      {
+       "pos": "5th",
+       "horse": "Percival",
+       "sp": "9/2",
+       "dec": 5.5,
+       "tips": 1,
+       "jockey": "David Egan",
+       "trainer": "Dylan Cunha",
+       "btn": "hd",
+       "comment": "prominent, lost position over 2f out, weakened gradually inside final furlong"
+      },
+      {
+       "pos": "6th",
+       "horse": "Melek Alreeh",
+       "sp": "20/1",
+       "dec": 21.0,
+       "tips": 1,
+       "jockey": "Rossa Ryan",
+       "trainer": "David Simcock",
+       "btn": "15",
+       "comment": "in rear throughout, weakened quickly inside final furlong"
+      },
+      {
+       "pos": "7th",
+       "horse": "Raulin",
+       "sp": "11/1",
+       "dec": 12.0,
+       "tips": 0,
+       "jockey": "Jason Watson",
+       "trainer": "Gary & Josh Moore",
+       "btn": "18",
+       "comment": "in rear throughout, lost touch over 1f out"
+      }
+     ]
+    },
+    {
+     "time": "18:48",
+     "title": "Bet \u00a320 Get \u00a340 In Free Bets At matchbook.com Handicap",
+     "going": "GOOD TO FIRM (Good in places; watered; 6.8)",
+     "distance": "1m 0f 31y",
+     "meta": {
+      "Off Time 18": "48",
+      "Winning Time 01": "44",
+      "Race Status": "WeighedIn"
+     },
+     "runners": [
+      {
+       "pos": "1st",
+       "horse": "Ecclefechan",
+       "sp": "5/1",
+       "dec": 6.0,
+       "tips": 1,
+       "jockey": "Jack Mitchell",
+       "trainer": "John Ryan",
+       "btn": "",
+       "comment": "towards rear, good headway on outer and challenging 1f out, led towards finish"
+      },
+      {
+       "pos": "2nd",
+       "horse": "Buckland Belle",
+       "sp": "7/4 F",
+       "dec": 2.75,
+       "tips": 6,
+       "jockey": "Tom Marquand",
+       "trainer": "Ollie Sangster",
+       "btn": "nk",
+       "comment": "in touch with leaders, headway and led narrowly 1f out, kept on but headed towards finish"
+      },
+      {
+       "pos": "3rd",
+       "horse": "Berkshire Boom",
+       "sp": "2/1",
+       "dec": 3.0,
+       "tips": 6,
+       "jockey": "Oisin Murphy",
+       "trainer": "Andrew Balding",
+       "btn": "5",
+       "comment": "took keen hold, disputed lead, led 2f out, lost two places 1f out, soon no extra"
+      },
+      {
+       "pos": "4th",
+       "horse": "Torbados",
+       "sp": "9/2",
+       "dec": 5.5,
+       "tips": 5,
+       "jockey": "Rob Hornby",
+       "trainer": "Charles Hills",
+       "btn": "1 \u00bc",
+       "comment": "took keen hold, led narrowly or disputed lead, headed 2f out, weakened 1f out"
+      },
+      {
+       "pos": "5th",
+       "horse": "Who Is Alice",
+       "sp": "28/1",
+       "dec": 29.0,
+       "tips": 0,
+       "jockey": "Rossa Ryan",
+       "trainer": "Grace Harris",
+       "btn": "1 \u00bc",
+       "comment": "in touch with leaders, weakened gradually from over 1f out"
+      },
+      {
+       "pos": "6th",
+       "horse": "Sup Of Red",
+       "sp": "20/1",
+       "dec": 21.0,
+       "tips": 1,
+       "jockey": "David Egan",
+       "trainer": "Adrian Wintle",
+       "btn": "3",
+       "comment": "raced in last, no impression"
+      }
+     ]
+    },
+    {
+     "time": "19:18",
+     "title": "Matchbook Loves Racing Handicap",
+     "going": "GOOD TO FIRM (Good in places; watered; 6.8)",
+     "distance": "0m 6f 12y",
+     "meta": {
+      "Off Time 19": "18",
+      "Winning Time 01": "13",
+      "Race Status": "WeighedIn"
+     },
+     "runners": [
+      {
+       "pos": "1st",
+       "horse": "Cape Toronada",
+       "sp": "100/30",
+       "dec": 4.3333333333333,
+       "tips": 0,
+       "jockey": "Rossa Ryan",
+       "trainer": "Tony Carroll",
+       "btn": "",
+       "comment": "in touch with leaders, steady headway and led narrowly 1f out, ran on, always doing enough"
+      },
+      {
+       "pos": "2nd",
+       "horse": "Angel Summer",
+       "sp": "12/1",
+       "dec": 13.0,
+       "tips": 2,
+       "jockey": "Benoit De La Sayette",
+       "trainer": "Patrick Owens",
+       "btn": "hd",
+       "comment": "held up in rear, steady headway on outer from over 2f out, challenging 1f out, kept on well, just held"
+      },
+      {
+       "pos": "3rd",
+       "horse": "Beach Partee",
+       "sp": "28/1",
+       "dec": 29.0,
+       "tips": 0,
+       "jockey": "Tyler Heard",
+       "trainer": "Scott Dixon",
+       "btn": "1 \u00be",
+       "comment": "towards rear but in touch with leaders, switched right and against rail over 1f out, kept on and went third final strides"
+      },
+      {
+       "pos": "4th",
+       "horse": "Koffee And Kale",
+       "sp": "11/2",
+       "dec": 6.5,
+       "tips": 1,
+       "jockey": "Hector Crouch",
+       "trainer": "Michael Bell",
+       "btn": "nk",
+       "comment": "in touch with leaders on outer, ridden and challenging 1f out, weakened final 110yds"
+      },
+      {
+       "pos": "5th",
+       "horse": "Molly Mac",
+       "sp": "11/8 F",
+       "dec": 2.375,
+       "tips": 12,
+       "jockey": "Grace McEntee",
+       "trainer": "Micky Fenton",
+       "btn": "1",
+       "comment": "taken down early, took keen hold, prominent, led after 2f, lost three places 1f out, soon no extra"
+      },
+      {
+       "pos": "6th",
+       "horse": "Venetian Romance",
+       "sp": "20/1",
+       "dec": 21.0,
+       "tips": 0,
+       "jockey": "Kieren Fox",
+       "trainer": "Michael Attwater",
+       "btn": "3",
+       "comment": "slowly into stride, in rear, some headway over 1f out, kept on inside final furlong"
+      },
+      {
+       "pos": "7th",
+       "horse": "Magic Lady Mae",
+       "sp": "66/1",
+       "dec": 67.0,
+       "tips": 0,
+       "jockey": "Alec Voikhansky",
+       "trainer": "Lawrence Mullaney",
+       "btn": "2 \u00bd",
+       "comment": "in touch with leaders, dropped to rear halfway, no impression"
+      },
+      {
+       "pos": "8th",
+       "horse": "Star Obsession",
+       "sp": "11/2",
+       "dec": 6.5,
+       "tips": 2,
+       "jockey": "Tom Marquand",
+       "trainer": "William Haggas",
+       "btn": "5 \u00bd",
+       "comment": "wore earplugs, prominent, weakened 2f out"
+      },
+      {
+       "pos": "9th",
+       "horse": "Hellcat",
+       "sp": "66/1",
+       "dec": 67.0,
+       "tips": 0,
+       "jockey": "William Carver",
+       "trainer": "Ross Burdon",
+       "btn": "4",
+       "comment": "taken down early, led, headed after 2f, soon struggling, dropped to last over 1f out"
+      }
+     ]
+    },
+    {
+     "time": "19:48",
+     "title": "Windsor Handicap",
+     "going": "GOOD TO FIRM (Good in places; watered; 6.8)",
+     "distance": "0m 5f 21y",
+     "meta": {
+      "Off Time 19": "48",
+      "Winning Time 01": "01",
+      "Race Status": "WeighedIn"
+     },
+     "runners": [
+      {
+       "pos": "1st",
+       "horse": "Faustus",
+       "sp": "9/2",
+       "dec": 5.5,
+       "tips": 2,
+       "jockey": "Jack Mitchell",
+       "trainer": "Rachel Cook & John Bridger",
+       "btn": "",
+       "comment": "made all, ridden and ran on from over 1f out, just did enough, gamely"
+      },
+      {
+       "pos": "2nd",
+       "horse": "Darkened Edge",
+       "sp": "7/1",
+       "dec": 8.0,
+       "tips": 4,
+       "jockey": "Gina Mangan",
+       "trainer": "Christopher Mason",
+       "btn": "hd",
+       "comment": "prominent against rail, switched left over 1f out, pressed winner final 110yds, just held"
+      },
+      {
+       "pos": "3rd",
+       "horse": "Dragon God",
+       "sp": "11/2",
+       "dec": 6.5,
+       "tips": 5,
+       "jockey": "Tom Marquand",
+       "trainer": "Tony Carroll",
+       "btn": "1 \u00bd",
+       "comment": "towards rear, not clear run over 2f out, headway and ridden over 1f out, not clear run repeatedly inside final furlong, not recover (jockey said colt was denied a clear run in the closing stages)"
+      },
+      {
+       "pos": "4th",
+       "horse": "Em Jay Kay",
+       "sp": "66/1",
+       "dec": 67.0,
+       "tips": 0,
+       "jockey": "Grace McEntee",
+       "trainer": "Phil McEntee",
+       "btn": "1",
+       "comment": "in rear, ran on inside final furlong, nearest finish"
+      },
+      {
+       "pos": "5th",
+       "horse": "Trafalger",
+       "sp": "8/1",
+       "dec": 9.0,
+       "tips": 0,
+       "jockey": "Benoit De La Sayette",
+       "trainer": "Ben Case",
+       "btn": "hd",
+       "comment": "taken down early, in touch with leaders on outer, weakened gradually inside final furlong"
+      },
+      {
+       "pos": "6th",
+       "horse": "Our Planet",
+       "sp": "18/1",
+       "dec": 19.0,
+       "tips": 1,
+       "jockey": "Callum Shepherd",
+       "trainer": "Michael Keady",
+       "btn": "2 \u00be",
+       "comment": "raced in second, weakened under 2f out"
+      },
+      {
+       "pos": "7th",
+       "horse": "The Bear Of Saints",
+       "sp": "28/1",
+       "dec": 29.0,
+       "tips": 1,
+       "jockey": "Rob Hornby",
+       "trainer": "John O'Shea",
+       "btn": "1",
+       "comment": "always behind"
+      },
+      {
+       "pos": "8th",
+       "horse": "Desdemona",
+       "sp": "50/1",
+       "dec": 51.0,
+       "tips": 0,
+       "jockey": "Paddy Bradley",
+       "trainer": "Michael Attwater",
+       "btn": "4 \u00bc",
+       "comment": "took keen hold, in touch with leaders, weakened 2f out"
+      },
+      {
+       "pos": "-",
+       "horse": "Just Jump",
+       "sp": "11/10 F",
+       "dec": 99999.0,
+       "tips": 2,
+       "jockey": "Rossa Ryan",
+       "trainer": "Tony Carroll",
+       "btn": "",
+       "comment": "refused to race"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,360 @@
+{
+ "date": "2026-11-14",
+ "generated": "2026-11-13T21:59:53",
+ "note": "A/B of the twelve-factor model with and without the Racing TV Timeform rating in the rpr slot",
+ "cards": 35,
+ "same": 28,
+ "changed": 7,
+ "rows": [
+  {
+   "course": "Navan",
+   "time": "11:52",
+   "withRating": "Confidence Within",
+   "withoutRating": "Charismatic Kid",
+   "changed": true,
+   "usedWith": 48,
+   "usedWithout": 35,
+   "gap": 13.052500000000009
+  },
+  {
+   "course": "Navan",
+   "time": "13:02",
+   "withRating": "Rightfolksplease",
+   "withoutRating": "Rightfolksplease",
+   "changed": false,
+   "usedWith": 48,
+   "usedWithout": 35,
+   "gap": 5.148863913255354
+  },
+  {
+   "course": "Navan",
+   "time": "13:35",
+   "withRating": "Thinkitdontjinxit",
+   "withoutRating": "Thinkitdontjinxit",
+   "changed": false,
+   "usedWith": 46,
+   "usedWithout": 33,
+   "gap": 8.352482745442884
+  },
+  {
+   "course": "Navan",
+   "time": "14:07",
+   "withRating": "Slade Steel",
+   "withoutRating": "Slade Steel",
+   "changed": false,
+   "usedWith": 48,
+   "usedWithout": 35,
+   "gap": 2.3366200776562636
+  },
+  {
+   "course": "Navan",
+   "time": "14:43",
+   "withRating": "Only By Night",
+   "withoutRating": "Only By Night",
+   "changed": false,
+   "usedWith": 48,
+   "usedWithout": 35,
+   "gap": 8.747391679957474
+  },
+  {
+   "course": "Navan",
+   "time": "15:18",
+   "withRating": "Wingmen",
+   "withoutRating": "Mighty Park",
+   "changed": true,
+   "usedWith": 48,
+   "usedWithout": 35,
+   "gap": 8.08817616959064
+  },
+  {
+   "course": "Navan",
+   "time": "15:53",
+   "withRating": "Sir Vinny",
+   "withoutRating": "Uncle Pad",
+   "changed": true,
+   "usedWith": 36,
+   "usedWithout": 23,
+   "gap": 13.760501457139974
+  },
+  {
+   "course": "Uttoxeter",
+   "time": "12:07",
+   "withRating": "Spartan Times",
+   "withoutRating": "Spartan Times",
+   "changed": false,
+   "usedWith": 48,
+   "usedWithout": 35,
+   "gap": 3.7341008771929864
+  },
+  {
+   "course": "Uttoxeter",
+   "time": "12:42",
+   "withRating": "Spanish Darling",
+   "withoutRating": "Spanish Darling",
+   "changed": false,
+   "usedWith": 48,
+   "usedWithout": 35,
+   "gap": 20.51512367776057
+  },
+  {
+   "course": "Uttoxeter",
+   "time": "13:15",
+   "withRating": "Boombox",
+   "withoutRating": "Malina Road",
+   "changed": true,
+   "usedWith": 38,
+   "usedWithout": 25,
+   "gap": 10.177539242843963
+  },
+  {
+   "course": "Uttoxeter",
+   "time": "13:50",
+   "withRating": "Chambers",
+   "withoutRating": "Chambers",
+   "changed": false,
+   "usedWith": 48,
+   "usedWithout": 35,
+   "gap": 5.776576999934271
+  },
+  {
+   "course": "Uttoxeter",
+   "time": "14:25",
+   "withRating": "Irish Chorus",
+   "withoutRating": "Irish Chorus",
+   "changed": false,
+   "usedWith": 48,
+   "usedWithout": 35,
+   "gap": 9.053653309409896
+  },
+  {
+   "course": "Uttoxeter",
+   "time": "15:00",
+   "withRating": "Orderoftheday",
+   "withoutRating": "Orderoftheday",
+   "changed": false,
+   "usedWith": 48,
+   "usedWithout": 35,
+   "gap": 7.003642020076441
+  },
+  {
+   "course": "Uttoxeter",
+   "time": "15:35",
+   "withRating": "Bateleur",
+   "withoutRating": "Bateleur",
+   "changed": false,
+   "usedWith": 36,
+   "usedWithout": 23,
+   "gap": 9.047552373802375
+  },
+  {
+   "course": "Wetherby",
+   "time": "12:13",
+   "withRating": "Loriko",
+   "withoutRating": "Loriko",
+   "changed": false,
+   "usedWith": 45,
+   "usedWithout": 32,
+   "gap": 41.534695266812875
+  },
+  {
+   "course": "Wetherby",
+   "time": "12:48",
+   "withRating": "Jericoacoara",
+   "withoutRating": "Jericoacoara",
+   "changed": false,
+   "usedWith": 38,
+   "usedWithout": 25,
+   "gap": 8.354809721672595
+  },
+  {
+   "course": "Wetherby",
+   "time": "13:20",
+   "withRating": "Spadestep",
+   "withoutRating": "Spadestep",
+   "changed": false,
+   "usedWith": 48,
+   "usedWithout": 35,
+   "gap": 5.5114131401138025
+  },
+  {
+   "course": "Wetherby",
+   "time": "13:55",
+   "withRating": "Velvet Outlaw",
+   "withoutRating": "Velvet Outlaw",
+   "changed": false,
+   "usedWith": 35,
+   "usedWithout": 35,
+   "gap": 10.933595881595892
+  },
+  {
+   "course": "Wetherby",
+   "time": "14:30",
+   "withRating": "Geryville",
+   "withoutRating": "Tommy's Oscar",
+   "changed": true,
+   "usedWith": 48,
+   "usedWithout": 35,
+   "gap": 2.2227247807017534
+  },
+  {
+   "course": "Wetherby",
+   "time": "15:05",
+   "withRating": "Centurion's Sister",
+   "withoutRating": "Centurion's Sister",
+   "changed": false,
+   "usedWith": 48,
+   "usedWithout": 35,
+   "gap": 10.206586679037343
+  },
+  {
+   "course": "Wetherby",
+   "time": "15:40",
+   "withRating": "Slaney Opera",
+   "withoutRating": "Slaney Opera",
+   "changed": false,
+   "usedWith": 48,
+   "usedWithout": 35,
+   "gap": 6.698129873294349
+  },
+  {
+   "course": "Windsor",
+   "time": "12:20",
+   "withRating": "Jem's Lilly",
+   "withoutRating": "Ti'mamzel",
+   "changed": true,
+   "usedWith": 48,
+   "usedWithout": 35,
+   "gap": 4.781444982656879
+  },
+  {
+   "course": "Windsor",
+   "time": "12:55",
+   "withRating": "Scavengers Reign",
+   "withoutRating": "Scavengers Reign",
+   "changed": false,
+   "usedWith": 48,
+   "usedWithout": 35,
+   "gap": 14.603435672514607
+  },
+  {
+   "course": "Windsor",
+   "time": "13:25",
+   "withRating": "Tzarmix",
+   "withoutRating": "Tzarmix",
+   "changed": false,
+   "usedWith": 48,
+   "usedWithout": 35,
+   "gap": 1.703442005579035
+  },
+  {
+   "course": "Windsor",
+   "time": "14:00",
+   "withRating": "Independent Lady",
+   "withoutRating": "Independent Lady",
+   "changed": false,
+   "usedWith": 48,
+   "usedWithout": 35,
+   "gap": 2.798328448652782
+  },
+  {
+   "course": "Windsor",
+   "time": "14:35",
+   "withRating": "Jet Smart",
+   "withoutRating": "Jet Smart",
+   "changed": false,
+   "usedWith": 48,
+   "usedWithout": 35,
+   "gap": 1.5046753167641214
+  },
+  {
+   "course": "Windsor",
+   "time": "15:10",
+   "withRating": "Misterdoc",
+   "withoutRating": "Misterdoc",
+   "changed": false,
+   "usedWith": 48,
+   "usedWithout": 35,
+   "gap": 1.7627688896071163
+  },
+  {
+   "course": "Windsor",
+   "time": "15:45",
+   "withRating": "New Addington Boy",
+   "withoutRating": "New Addington Boy",
+   "changed": false,
+   "usedWith": 20,
+   "usedWithout": 20,
+   "gap": 8.333333333333336
+  },
+  {
+   "course": "Cheltenham",
+   "time": "12:35",
+   "withRating": "Little Ledgend",
+   "withoutRating": "Little Ledgend",
+   "changed": false,
+   "usedWith": 48,
+   "usedWithout": 35,
+   "gap": 11.363715277777771
+  },
+  {
+   "course": "Cheltenham",
+   "time": "13:10",
+   "withRating": "Charles Darnay",
+   "withoutRating": "Charles Darnay",
+   "changed": false,
+   "usedWith": 46,
+   "usedWithout": 33,
+   "gap": 7.8487166392259695
+  },
+  {
+   "course": "Cheltenham",
+   "time": "13:45",
+   "withRating": "Kabral Du Mathan",
+   "withoutRating": "Old Park Star",
+   "changed": true,
+   "usedWith": 48,
+   "usedWithout": 35,
+   "gap": 10.833457341269835
+  },
+  {
+   "course": "Cheltenham",
+   "time": "14:20",
+   "withRating": "Blueking D'oroux",
+   "withoutRating": "Blueking D'oroux",
+   "changed": false,
+   "usedWith": 48,
+   "usedWithout": 35,
+   "gap": 16.970434464785157
+  },
+  {
+   "course": "Cheltenham",
+   "time": "14:55",
+   "withRating": "William Yeats",
+   "withoutRating": "William Yeats",
+   "changed": false,
+   "usedWith": 48,
+   "usedWithout": 35,
+   "gap": 10.167476708541017
+  },
+  {
+   "course": "Cheltenham",
+   "time": "15:30",
+   "withRating": "Daylatedollarshort",
+   "withoutRating": "Daylatedollarshort",
+   "changed": false,
+   "usedWith": 48,
+   "usedWithout": 35,
+   "gap": 0.7194483604845487
+  },
+  {
+   "course": "Cheltenham",
+   "time": "16:00",
+   "withRating": "Elegantemente",
+   "withoutRating": "Elegantemente",
+   "changed": false,
+   "usedWith": 46,
+   "usedWithout": 33,
+   "gap": 7.15808128544424
+  }
+ ]
+}
