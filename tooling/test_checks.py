@@ -27,6 +27,7 @@ sys.path.insert(0, str(TOOLING))
 import ab_tally        # noqa: E402
 import collect_eachway_prices as cep  # noqa: E402
 import eachway         # noqa: E402
+import fetch_formfav as ff  # noqa: E402
 import refresh         # noqa: E402
 import recheck_market  # noqa: E402
 import settle          # noqa: E402
@@ -549,6 +550,150 @@ check("win-only cards record no place price",
           "2026-01-01", "test") or [{}])[0].get("place_odds") is None)
 check("fractional and EVS odds parse",
       cep.parse_decimal("8/1") == 9.0 and cep.parse_decimal("EVS") == 2.0)
+
+print("23. FormFav comparison")
+check("FormFav normalises a horse name",
+      ff.norm("O'Brien's Star (IRE)") == "obriens star", ff.norm("O'Brien's Star (IRE)"))
+check("FormFav converts UTC to a BST race clock",
+      ff.local_hhmm("2026-06-14T11:35:00Z", "Europe/London") == "12:35",
+      ff.local_hhmm("2026-06-14T11:35:00Z", "Europe/London"))
+_ff_meetings = [{"track": "Cheltenham", "slug": "cheltenham", "country": "gb",
+                 "races": [{"raceNumber": 1, "startTime": "2026-11-14T12:35:00Z"}]}]
+_ff_cards = [{"course": "Cheltenham", "time": "12:35", "runners": [{"horse": "Alpha"}]}]
+_ff_pairs, _ff_unmatched = ff.match_cards(_ff_cards, _ff_meetings)
+check("FormFav matches course and local clock",
+      len(_ff_pairs) == 1 and not _ff_unmatched, (_ff_pairs, _ff_unmatched))
+
+with tempfile.TemporaryDirectory(prefix="formfav-test-") as _d:
+    os.makedirs(Path(_d, "data", "cards"))
+    os.makedirs(Path(_d, "data", "picks_ab"))
+    _card = {"id": "cheltenham-1235", "course": "Cheltenham", "time": "12:35",
+             "day": "2026-11-14", "region": "GB", "race": "Test Race",
+             "runners": [{"horse": "Alpha", "form": "123", "or": "100"}]}
+    _path = Path(_d, "data", "cards", "2026-11-14.json")
+    _path.write_text(json.dumps({"GB": [_card]}))
+    _calls = []
+
+    def _fake_get(path, params, key):
+        _calls.append((path, params, key))
+        if path == "/form/meetings":
+            return {"date": "2026-11-14", "meetings": _ff_meetings}
+        if path == "/form":
+            return {"date": "2026-11-14", "track": "Cheltenham", "raceNumber": 1,
+                    "runners": [{"name": "Alpha", "form": "111", "last20Starts": "111",
+                                 "jockey": "J", "trainer": "T",
+                                 "stats": {"overall": {"starts": 10, "wins": 4,
+                                                       "places": 7, "winPercent": 0.4,
+                                                       "placePercent": 0.7},
+                                            "track": {"placePercent": 0.5},
+                                            "distance": {"placePercent": 0.6}}}]}
+        raise AssertionError("unexpected FormFav path " + path)
+
+    _old_root = ff.ROOT
+    ff.ROOT = _d
+    try:
+        _res = ff.collect_file(str(_path), "2026-11-14", key="test-key", getter=_fake_get)
+    finally:
+        ff.ROOT = _old_root
+    check("FormFav comparison reports one matched race",
+          _res.get("ok") and _res["races"] == 1 and _res["runners"] == 1, _res)
+    check("FormFav sends the key in the header argument, not the URL",
+          all(c[2] == "test-key" for c in _calls), _calls)
+    _csv = Path(_d, "data", "picks_ab", "formfav_compare_2026-11-14.csv")
+    _raw = Path(_d, "data", "cards", "2026-11-14_formfav.json")
+    check("FormFav writes the comparison CSV", _csv.exists(), _csv)
+    check("FormFav writes the raw response", _raw.exists(), _raw)
+    check("FormFav CSV carries form and stats",
+          _csv.exists() and all(x in _csv.read_text() for x in
+                                ("Alpha", "111", "0.7", "0.5", "0.6")))
+    check("FormFav raw response does not contain the key",
+          _raw.exists() and "test-key" not in _raw.read_text())
+    check("FormFav does not edit the card snapshot",
+          json.loads(_path.read_text()) == {"GB": [_card]})
+
+print("24. Pace experiment")
+try:
+    import backtest_pace as bp
+    check("pace: made all is a front-runner", bp.style_of("made all, soon clear") == 3)
+    check("pace: held-up run stays held-up despite a late lead",
+          bp.style_of("held up in rear, headway to lead towards finish") == 0)
+    check("pace: tracked leaders stays prominent",
+          bp.style_of("tracked leaders, led 2f out") == 2)
+    check("pace: mid-division stays mid", bp.style_of("mid-division, headway over 1f out") == 1)
+    check("pace: prominent stays prominent", bp.style_of("prominent, outpaced after 11th") == 2)
+    check("pace: non-race comment is missing", bp.style_of("self certificate") is None)
+    _p = bp.pace_features([3, 2, 1], 0.5)
+    check("pace: front-run rate uses prior runs",
+          abs(_p["pace_front"] - 2 / 3) < 1e-9 and abs(_p["pace_led"] - 1 / 3) < 1e-9, _p)
+    check("pace: no history is flagged missing",
+          bp.pace_features([], 0.5)["pace_missing"] == 1)
+
+    # Two races for one horse: the second race may use the first comment, but
+    # must not use its own comment. This is the no-look-ahead check.
+    with tempfile.TemporaryDirectory(prefix="pace-test-") as _d:
+        _raw = Path(_d, "2026-01-01.json")
+        _raw.write_text(json.dumps({"meetings": [{"course": "C", "races": [
+            {"time": "13:00", "runners": [{"horse": "A", "comment": "made all"}]},
+            {"time": "13:30", "runners": [{"horse": "A", "comment": "held up"}]},
+        ]}]}))
+        _old_glob = bp.RAW_GLOB
+        bp.RAW_GLOB = str(_raw)
+        try:
+            _idx, _counts = bp.build_pace_index()
+        finally:
+            bp.RAW_GLOB = _old_glob
+        _first = _idx[("2026-01-01", "c", "13:00", "a")]
+        _second = _idx[("2026-01-01", "c", "13:30", "a")]
+        check("pace: first run has no prior history", _first["pace_missing"] == 1, _first)
+        check("pace: second run uses the first race, not its own comment",
+              _second["pace_style"] == 3 and _second["pace_front"] == 1, _second)
+        check("pace: causal fixture counts two races and two runners",
+              _counts["races"] == 2 and _counts["runners"] == 2, dict(_counts))
+except Exception as exc:
+    check("pace experiment imports and parses", False, exc)
+
+print("25. Course/going front-runner bias")
+try:
+    import backtest_course_bias as cb
+    check("bias: going token strips the description",
+          cb.going_token("Good (Watered)") == "GOOD", cb.going_token("Good (Watered)"))
+    check("bias: blank going is missing", cb.going_token("") is None)
+    check("bias: empty cell returns the global prior",
+          cb.shrunk_excess(None, 0.1) == 0.1)
+    _one = cb.shrunk_excess({"runs": 1, "wins": 1, "market": 0.2}, 0.1, alpha=20)
+    check("bias: one-run cell is shrunk toward the global prior",
+          0.1 < _one < 0.2, _one)
+    check("bias: tenth place is not a winner",
+          cb.pos_num("10th") == 10 and cb.pos_num("1st") == 1)
+
+    with tempfile.TemporaryDirectory(prefix="bias-test-") as _d:
+        _raw = Path(_d, "2026-01-01.json")
+        _raw.write_text(json.dumps({"meetings": [{"course": "C", "races": [
+            {"time": "13:00", "going": "GOOD", "runners": [
+                {"horse": "A", "pos": "1st", "sp": "2/1"},
+                {"horse": "B", "pos": "2nd", "sp": "3/1"}]},
+            {"time": "13:30", "going": "GOOD", "runners": [
+                {"horse": "A", "pos": "2nd", "sp": "2/1"},
+                {"horse": "B", "pos": "1st", "sp": "3/1"}]},
+        ]}]}))
+        _pace = {
+            ("2026-01-01", "c", "13:00", "a"): {"pace_led": 1.0},
+            ("2026-01-01", "c", "13:00", "b"): {"pace_led": 0.0},
+            ("2026-01-01", "c", "13:30", "a"): {"pace_led": 1.0},
+            ("2026-01-01", "c", "13:30", "b"): {"pace_led": 0.0},
+        }
+        _old_glob = bp.RAW_GLOB
+        bp.RAW_GLOB = str(_raw)
+        try:
+            _idx, _counts = cb.build_bias_index(_pace)
+        finally:
+            bp.RAW_GLOB = _old_glob
+        check("bias: fixture marks the prior front-runner",
+              _idx[("2026-01-01", "c", "13:00", "a")]["front"] == 1.0)
+        check("bias: fixture updates two complete priced races",
+              _counts["complete_races"] == 2, dict(_counts))
+except Exception as exc:
+    check("course/going bias imports and parses", False, exc)
 
 print()
 print("passed %d, failed %d%s" % (

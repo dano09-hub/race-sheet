@@ -1,0 +1,307 @@
+{
+  "generated": "2026-11-14T15:43:56+00:00",
+  "source": "data/2026-*.json comments + data/dataset.csv.gz",
+  "purpose": "research-only test of market-adjusted course/going front-runner bias",
+  "method": {
+    "definition": "prior front-runner = horse led/disputed in at least half of its last-six starts",
+    "bias": "prior wins minus normalised SP probability for front-runners, shrunk toward global with alpha=20",
+    "features": [
+      "front",
+      "front_known",
+      "front_course_bias",
+      "front_going_bias",
+      "front_cg_bias"
+    ],
+    "base_factors": [
+      "market",
+      "form",
+      "tips",
+      "fitness",
+      "course",
+      "distance",
+      "connections"
+    ],
+    "splits": {
+      "train": "< 2026-09-01",
+      "calibration": "2026-09-01..2026-10-15",
+      "test": ">= 2026-10-16"
+    },
+    "model": "conditional logit, ridge 1.0, standardised on train"
+  },
+  "coverage": {
+    "raw_races": 11419,
+    "raw_runners": 114396,
+    "runners_with_prior_pace": 88526,
+    "front_runners": 9673,
+    "front_known": 81359,
+    "complete_priced_races": 10777,
+    "global_front_runs": 9192,
+    "courses_with_stats": 85,
+    "goings_with_stats": 12,
+    "cg_with_stats": 218,
+    "priced_races": 10777,
+    "train_races": 8079,
+    "calibration_races": 1717,
+    "test_races": 981
+  },
+  "metrics": {
+    "market": {
+      "races": 981,
+      "log_loss": 1.780626753741904,
+      "brier": 0.7703973988863285,
+      "top1": 35.77981651376147,
+      "top3": 69.52089704383282,
+      "roi_sp": -7.919020893027007,
+      "priced": 981
+    },
+    "current_fixed": {
+      "races": 981,
+      "top1": 33.53720693170234,
+      "top3": 63.710499490316,
+      "roi_sp": -10.477634552558113,
+      "priced": 981
+    },
+    "base": {
+      "races": 981,
+      "log_loss": 1.8382912118734795,
+      "brier": 0.7819683727525645,
+      "top1": 35.27013251783894,
+      "top3": 69.31702344546382,
+      "roi_sp": -9.581440193060986,
+      "priced": 981
+    },
+    "base_front": {
+      "races": 981,
+      "log_loss": 1.8383141394567157,
+      "brier": 0.7818850112310493,
+      "top1": 35.27013251783894,
+      "top3": 69.31702344546382,
+      "roi_sp": -9.603449274703092,
+      "priced": 981
+    },
+    "base_front_course": {
+      "races": 981,
+      "log_loss": 1.8391467714120384,
+      "brier": 0.7821533112634389,
+      "top1": 34.96432212028542,
+      "top3": 69.2150866462793,
+      "roi_sp": -10.83943296481522,
+      "priced": 981
+    },
+    "base_front_going": {
+      "races": 981,
+      "log_loss": 1.8382522847980767,
+      "brier": 0.7818346922588695,
+      "top1": 35.27013251783894,
+      "top3": 69.31702344546382,
+      "roi_sp": -9.603449274703092,
+      "priced": 981
+    },
+    "base_front_cg": {
+      "races": 981,
+      "log_loss": 1.8388617092325379,
+      "brier": 0.7820741446409619,
+      "top1": 35.06625891946993,
+      "top3": 69.41896024464832,
+      "roi_sp": -10.571848866955891,
+      "priced": 981
+    },
+    "base_front_all": {
+      "races": 981,
+      "log_loss": 1.8390750252144605,
+      "brier": 0.7821034692220921,
+      "top1": 34.96432212028542,
+      "top3": 69.2150866462793,
+      "roi_sp": -10.83943296481522,
+      "priced": 981
+    }
+  },
+  "calibration": {
+    "base": {
+      "races": 1717,
+      "log_loss": 1.8422307087233207,
+      "brier": 0.7805467417677651,
+      "top1": 33.89633080955154,
+      "top3": 69.19044845661037,
+      "roi_sp": -12.854942346206188,
+      "priced": 1717
+    },
+    "base_front": {
+      "races": 1717,
+      "log_loss": 1.8421729323104743,
+      "brier": 0.7805218122696651,
+      "top1": 33.95457192778101,
+      "top3": 69.01572510192196,
+      "roi_sp": -12.745740249525927,
+      "priced": 1717
+    },
+    "base_front_course": {
+      "races": 1717,
+      "log_loss": 1.8432712269792264,
+      "brier": 0.78089247193829,
+      "top1": 33.89633080955154,
+      "top3": 69.1322073383809,
+      "roi_sp": -12.869502625763552,
+      "priced": 1717
+    },
+    "base_front_going": {
+      "races": 1717,
+      "log_loss": 1.8421882818427953,
+      "brier": 0.78051334008476,
+      "top1": 33.95457192778101,
+      "top3": 68.95748398369248,
+      "roi_sp": -12.745740249525927,
+      "priced": 1717
+    },
+    "base_front_cg": {
+      "races": 1717,
+      "log_loss": 1.8427658853394981,
+      "brier": 0.780812639760998,
+      "top1": 33.89633080955154,
+      "top3": 69.01572510192196,
+      "roi_sp": -12.869502625763552,
+      "priced": 1717
+    },
+    "base_front_all": {
+      "races": 1717,
+      "log_loss": 1.8432526461434366,
+      "brier": 0.780887223319354,
+      "top1": 33.89633080955154,
+      "top3": 69.07396622015143,
+      "roi_sp": -12.869502625763552,
+      "priced": 1717
+    }
+  },
+  "deltas_test": {
+    "front_vs_base_log_loss": 2.2927583236187488e-05,
+    "course_vs_front_log_loss": 0.0008326319553226824,
+    "going_vs_front_log_loss": -6.185465863906003e-05,
+    "cg_vs_front_log_loss": 0.0005475697758221543,
+    "all_vs_front_log_loss": 0.0007608857577448003,
+    "front_vs_base_top1": 0.0,
+    "course_vs_front_top1": -0.3058103975535147,
+    "going_vs_front_top1": 0.0,
+    "cg_vs_front_top1": -0.20387359836900742,
+    "all_vs_front_top1": -0.3058103975535147,
+    "front_vs_base_top3": 0.0,
+    "course_vs_front_top3": -0.10193679918451437,
+    "going_vs_front_top3": 0.0,
+    "cg_vs_front_top3": 0.10193679918450016,
+    "all_vs_front_top3": -0.10193679918451437
+  },
+  "coefficients": {
+    "base": {
+      "market": 0.7197854677874667,
+      "market_missing": 0.0,
+      "form": 0.019988628995635374,
+      "form_missing": -0.036948738050212517,
+      "tips": 0.016967463213076742,
+      "tips_missing": 1.682787511351337e-14,
+      "fitness": -0.03143426910321355,
+      "fitness_missing": -6.788821222847013e-13,
+      "course": -0.025846057839142365,
+      "course_missing": -0.048747122852299866,
+      "distance": 0.018367872088664482,
+      "distance_missing": 0.040316036114591045,
+      "connections": 0.02864611122682829,
+      "connections_missing": 0.0028001036537398296
+    },
+    "base_front": {
+      "market": 0.7201685793375218,
+      "market_missing": 0.0,
+      "form": 0.019020584951767963,
+      "form_missing": 0.004387447189551179,
+      "tips": 0.017122258621612034,
+      "tips_missing": 2.8388619917041013e-14,
+      "fitness": -0.03675361656454347,
+      "fitness_missing": -1.0935159679260224e-12,
+      "course": -0.02566937205930525,
+      "course_missing": -0.04840963436758128,
+      "distance": 0.018548148861581685,
+      "distance_missing": 0.04073712654028104,
+      "connections": 0.028531497394591248,
+      "connections_missing": 0.00301743410123774,
+      "front": -0.00888642479388992,
+      "front_known": 0.052014018151715004
+    },
+    "base_front_course": {
+      "market": 0.720135864954981,
+      "market_missing": 0.0,
+      "form": 0.018798950260647592,
+      "form_missing": 0.004397261956440916,
+      "tips": 0.01717841754947563,
+      "tips_missing": 2.614319429478644e-14,
+      "fitness": -0.03669214220431512,
+      "fitness_missing": -1.0436571063027517e-12,
+      "course": -0.02561581007176817,
+      "course_missing": -0.04832273115619007,
+      "distance": 0.018691143031298648,
+      "distance_missing": 0.04085110290498258,
+      "connections": 0.028666553244261993,
+      "connections_missing": 0.00304465191998951,
+      "front": -0.009769105620900203,
+      "front_known": 0.052221410525399095,
+      "front_course_bias": -0.021436353561181135
+    },
+    "base_front_going": {
+      "market": 0.7201748434351237,
+      "market_missing": 0.0,
+      "form": 0.019132836518898005,
+      "form_missing": 0.004530203286164352,
+      "tips": 0.01710815791011909,
+      "tips_missing": 2.7767922802042875e-14,
+      "fitness": -0.036908861765998724,
+      "fitness_missing": -1.1133097701033207e-12,
+      "course": -0.025592024980730464,
+      "course_missing": -0.04826567382275625,
+      "distance": 0.018530178977156857,
+      "distance_missing": 0.04075746778565369,
+      "connections": 0.028549368259321424,
+      "connections_missing": 0.0029727443969804665,
+      "front": -0.010194863381336199,
+      "front_known": 0.0526246508245252,
+      "front_going_bias": -0.014227963703311537
+    },
+    "base_front_cg": {
+      "market": 0.7201429517352641,
+      "market_missing": 0.0,
+      "form": 0.01916522414528543,
+      "form_missing": 0.00431811204056435,
+      "tips": 0.017195456095034492,
+      "tips_missing": 2.6329292910736316e-14,
+      "fitness": -0.036781285153800476,
+      "fitness_missing": -1.0482274367519454e-12,
+      "course": -0.02537133298407137,
+      "course_missing": -0.04835385356933862,
+      "distance": 0.018641544438902334,
+      "distance_missing": 0.04080165938925924,
+      "connections": 0.028593909106793734,
+      "connections_missing": 0.0030638268113118055,
+      "front": -0.009521546262885651,
+      "front_known": 0.051972284187112354,
+      "front_cg_bias": -0.018077971781013495
+    },
+    "base_front_all": {
+      "market": 0.720142163340388,
+      "market_missing": 0.0,
+      "form": 0.018950002722456318,
+      "form_missing": 0.004521453928809657,
+      "tips": 0.017169871229304755,
+      "tips_missing": 2.7206910511442162e-14,
+      "fitness": -0.03684137825282087,
+      "fitness_missing": -1.1035529420849789e-12,
+      "course": -0.02551148552455809,
+      "course_missing": -0.048199208975587625,
+      "distance": 0.018669654339962656,
+      "distance_missing": 0.04086399896560311,
+      "connections": 0.028674038385864183,
+      "connections_missing": 0.0030076927795118073,
+      "front": -0.010932956017614681,
+      "front_known": 0.05273414063949121,
+      "front_course_bias": -0.01910323963745766,
+      "front_going_bias": -0.012671310279192933,
+      "front_cg_bias": -0.0024916713563351493
+    }
+  },
+  "caveat": "The live page has 12 factors; this is the seven-factor result-archive proxy. The bias is market-adjusted and shrunk (alpha=20), so small course/going cells cannot dominate. SP is a post-time benchmark. No live card, weight or pick changes."
+}

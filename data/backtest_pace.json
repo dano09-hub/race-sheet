@@ -1,0 +1,195 @@
+{
+  "generated": "2026-11-14T15:38:29+00:00",
+  "source": "data/2026-*.json comments + data/dataset.csv.gz",
+  "purpose": "research-only test of prior in-running pace; no production change",
+  "method": {
+    "style_labels": "0 hold-up/rear, 1 mid/in touch, 2 prominent/tracked, 3 led/disputed",
+    "history": "last six prior runs; current race comment applied only after all features are emitted",
+    "pace_features": [
+      "pace_style",
+      "pace_front",
+      "pace_led",
+      "pace_conflict",
+      "pace_front_x_pressure",
+      "pace_led_x_pressure"
+    ],
+    "base_factors": [
+      "market",
+      "form",
+      "tips",
+      "fitness",
+      "course",
+      "distance",
+      "connections"
+    ],
+    "base_weights_reference": {
+      "market": 18,
+      "tips": 12,
+      "form": 8,
+      "connections": 6,
+      "course": 4,
+      "distance": 3,
+      "fitness": 3
+    },
+    "splits": {
+      "train": "< 2026-09-01",
+      "calibration": "2026-09-01..2026-10-15",
+      "test": ">= 2026-10-16"
+    },
+    "model": "race-normalised conditional logit with ridge 1.0, standardised on train"
+  },
+  "coverage": {
+    "raw_races": 11419,
+    "raw_runners": 114396,
+    "usable_comments": 102688,
+    "runners_with_prior_pace": 88526,
+    "score_races": 11390,
+    "priced_races": 10777,
+    "train_races": 8079,
+    "calibration_races": 1717,
+    "test_races": 981
+  },
+  "metrics": {
+    "market": {
+      "races": 981,
+      "log_loss": 1.780626753741904,
+      "brier": 0.7703973988863285,
+      "top1": 35.77981651376147,
+      "top3": 69.52089704383282,
+      "roi_sp": -7.919020893027007,
+      "priced": 981
+    },
+    "current_fixed": {
+      "races": 981,
+      "top1": 33.53720693170234,
+      "top3": 63.710499490316,
+      "roi_sp": -10.477634552558113,
+      "priced": 981
+    },
+    "base": {
+      "races": 981,
+      "log_loss": 1.8382912118734795,
+      "brier": 0.7819683727525645,
+      "top1": 35.27013251783894,
+      "top3": 69.31702344546382,
+      "roi_sp": -9.581440193060986,
+      "priced": 981
+    },
+    "base_pace": {
+      "races": 981,
+      "log_loss": 1.8369491145011738,
+      "brier": 0.7818911945711224,
+      "top1": 34.96432212028542,
+      "top3": 69.1131498470948,
+      "roi_sp": -10.834413349703864,
+      "priced": 981
+    },
+    "pace_only": {
+      "races": 981,
+      "log_loss": 2.1628620635683546,
+      "brier": 0.8719221560894257,
+      "top1": 15.800203873598369,
+      "top3": 42.91539245667686,
+      "roi_sp": 1.9200925928754664,
+      "priced": 981
+    }
+  },
+  "calibration": {
+    "base": {
+      "races": 1717,
+      "log_loss": 1.8422307087233207,
+      "brier": 0.7805467417677651,
+      "top1": 33.89633080955154,
+      "top3": 69.19044845661037,
+      "roi_sp": -12.854942346206188,
+      "priced": 1717
+    },
+    "base_pace": {
+      "races": 1717,
+      "log_loss": 1.8418204361627215,
+      "brier": 0.7808538522823657,
+      "top1": 34.07105416423995,
+      "top3": 68.78276062900407,
+      "roi_sp": -12.17060920700992,
+      "priced": 1717
+    },
+    "pace_only": {
+      "races": 1717,
+      "log_loss": 2.1826534520511958,
+      "brier": 0.8753221044126335,
+      "top1": 15.084449621432732,
+      "top3": 42.05008736167734,
+      "roi_sp": -22.234778261277967,
+      "priced": 1717
+    }
+  },
+  "deltas_test": {
+    "base_vs_market_log_loss": 0.0576644581315755,
+    "base_pace_vs_market_log_loss": 0.056322360759269774,
+    "base_pace_vs_base_log_loss": -0.0013420973723057283,
+    "base_vs_market_top1": -0.5096839959225292,
+    "base_pace_vs_market_top1": -0.8154943934760439,
+    "base_pace_vs_base_top1": -0.3058103975535147,
+    "base_vs_market_top3": -0.20387359836900032,
+    "base_pace_vs_market_top3": -0.40774719673801485,
+    "base_pace_vs_base_top3": -0.20387359836901453
+  },
+  "coefficients": {
+    "base": {
+      "market": 0.7197854677874667,
+      "market_missing": 0.0,
+      "form": 0.019988628995635374,
+      "form_missing": -0.036948738050212517,
+      "tips": 0.016967463213076742,
+      "tips_missing": 1.682787511351337e-14,
+      "fitness": -0.03143426910321355,
+      "fitness_missing": -6.788821222847013e-13,
+      "course": -0.025846057839142365,
+      "course_missing": -0.048747122852299866,
+      "distance": 0.018367872088664482,
+      "distance_missing": 0.040316036114591045,
+      "connections": 0.02864611122682829,
+      "connections_missing": 0.0028001036537398296
+    },
+    "base_pace": {
+      "market": 0.7190766333942544,
+      "market_missing": 0.0,
+      "form": 0.014778138739255707,
+      "form_missing": 0.01353177295524114,
+      "tips": 0.01742756028951146,
+      "tips_missing": 1.0370756691667918e-13,
+      "fitness": -0.03452916607309036,
+      "fitness_missing": -4.007856053114739e-12,
+      "course": -0.025360635574525607,
+      "course_missing": -0.04856377798231593,
+      "distance": 0.01947891548113379,
+      "distance_missing": 0.042354579895280645,
+      "connections": 0.028195340450230935,
+      "connections_missing": 0.002623870698932179,
+      "pace_style": 0.061253866295703244,
+      "pace_front": 0.2006179256820143,
+      "pace_led": -0.09645435275590401,
+      "pace_conflict": -0.08005222432259826,
+      "pace_front_x_pressure": -0.1391269373171546,
+      "pace_led_x_pressure": 0.05917881443171435,
+      "pace_missing": -0.00894694322938901
+    },
+    "pace_only": {
+      "pace_style": 0.23595555727150666,
+      "pace_front": 0.23102068718341262,
+      "pace_led": -0.11605933060059659,
+      "pace_conflict": -0.12695231530493872,
+      "pace_front_x_pressure": -0.16453918722644242,
+      "pace_led_x_pressure": 0.040445790929234955,
+      "pace_missing": 0.004588843556830777
+    }
+  },
+  "current_fixed_all_priced": {
+    "races": 10777,
+    "top1": 32.45801243388698,
+    "top3": 66.43778416999164,
+    "roi_sp": -12.112758796367395,
+    "priced": 10777
+  },
+  "caveat": "The live page uses 12 factors, including pre-race OR/RPR/Topspeed, draw and weight. Those are not in the free result archive, so this test is a seven-factor proxy, not a test of the full production model. Comments are subjective and are used only from previous runs. SP is a post-time benchmark. No live card or pick is changed."
+}

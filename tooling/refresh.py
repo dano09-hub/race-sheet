@@ -575,6 +575,24 @@ def main():
     except Exception as e:
         print(f"  each-way:    snapshot skipped ({e})")
 
+    # FormFav is a read-only comparison feed. It does not touch cards, scores or
+    # picks; without a free key the refresh continues exactly as before.
+    try:
+        import fetch_formfav
+        if fetch_formfav.api_key():
+            cards_path = os.path.join(ROOT, "data", "cards", f"{iso}.json")
+            for day in (iso, (today + dt.timedelta(days=1)).isoformat()):
+                result = fetch_formfav.collect_file(cards_path, day, delay=1.0)
+                if result.get("ok"):
+                    print(f"  FormFav:     {result['races']} races / "
+                          f"{result['runners']} runners compared for {day}")
+                else:
+                    print(f"  FormFav:     skipped ({result.get('reason')})")
+        else:
+            print("  FormFav:     skipped (set FORMFAV_API_KEY or .formfav_key)")
+    except Exception as e:
+        print(f"  FormFav:     skipped ({e})")
+
     html = open(INDEX, encoding="utf-8").read()
     for name, cards, comment in (
         ("RACE_CARDS", uk_today, f"UK cards, {iso}"),

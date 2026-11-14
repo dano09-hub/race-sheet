@@ -462,6 +462,109 @@ The second command rebuilds `data/place_model_betfair.json` with the new dates.
 Until it is run from a host Betfair serves, the published report remains the
 2020–April 2024 test.
 
+### FormFav form comparison (free tier)
+
+[FormFav](https://formfav.com/) exposes GB/IE runner form and career stats on
+its free plan (1,000 requests/day). `tooling/fetch_formfav.py` matches the
+meetings and races to our archived cards and writes a side-by-side CSV. It is a
+**comparison only**: it never edits a card, changes a score, or changes a pick.
+
+1. Sign in at <https://formfav.com/get-api-key> and copy the free key.
+2. Put it in the environment as `FORMFAV_API_KEY` or `FORM_FAV` (the project
+   secret name), or in the untracked file `race-sheet/.formfav_key` (already
+   gitignored), never in a tracked file:
+
+```bash
+export FORMFAV_API_KEY=...   # FORM_FAV also works
+python3 tooling/fetch_formfav.py 2026-11-14
+```
+
+Outputs are `data/cards/<date>_formfav.json` and
+`data/picks_ab/formfav_compare_<date>.csv`. `refresh.py` runs the same comparison
+for today's and tomorrow's GB/IE cards when `FORMFAV_API_KEY` is set; without the
+key it prints a skip and the rest of the refresh is unchanged. The API's date
+window is only 30 days back to 7 days ahead, so this is not a historical odds
+source and cannot extend the Betfair report.
+
+### Pace feature back-test (research only)
+
+The free result pages include an in-running comment for almost every runner.
+`tooling/backtest_pace.py` turns the opening of each comment into an early-style
+label (held-up, mid-division, prominent, led), builds each horse's profile from
+its **previous** runs only, and tests a conditional-logit model on a chronological
+holdout. The current race's comment is applied only after every runner's features
+have been emitted, so there is no same-race leakage.
+
+```bash
+python3 tooling/backtest_pace.py   # -> data/backtest_pace.json
+```
+
+Coverage: 11,419 races / 114,396 runners; 102,688 usable comments; 88,526
+runners with prior pace history. The priced test set is 981 races, with 8,079
+training races and 1,717 calibration races.
+
+The base model below uses the seven factors that survive in the free result
+archive: market, form, tips, fitness, course, distance and connections. It is a
+proxy for the live page, not the twelve-factor production model: pre-race OR,
+RPR, Topspeed, draw and weight cannot be reconstructed from the result archive.
+
+| Model | Top pick won | Winner in top 3 | Log loss | Brier | SP ROI |
+|---|---:|---:|---:|---:|---:|
+| SP market | **35.8%** | **69.5%** | **1.7806** | **0.7704** | −7.9% |
+| Current seven-factor score | 33.5% | 63.7% | — | — | −10.5% |
+| Fitted base | 35.3% | 69.3% | 1.8383 | 0.7820 | −9.6% |
+| Base + pace | 35.0% | 69.1% | 1.8369 | 0.7819 | −10.8% |
+| Pace only | 15.8% | 42.9% | 2.1629 | 0.8719 | +1.9% |
+
+Adding pace changes test log loss by only **−0.0013**, while top-pick and top-3
+capture both fall slightly and SP ROI gets worse. The pace-only model is much
+weaker, and its positive ROI is not evidence of an edge at a 15.8% top-pick rate.
+
+**Decision: no pace factor is shipped.** The comments are subjective, the test
+is a seven-factor proxy, and SP is a post-time benchmark. A production change
+would need a larger incremental gain, not a rounding-level log-loss move.
+
+### Course/going front-runner bias (research only)
+
+`tooling/backtest_course_bias.py` tests a separate hypothesis: do prior
+front-runners beat their SP-implied chance more often at particular courses,
+goings, or course/going combinations? A front-runner is a horse that led or
+disputed the lead in at least half of its last six starts.
+
+The bias is **market-adjusted** and **shrunk**: prior front-runner wins minus
+the normalised SP probability those runners carried, blended toward the global
+front-runner excess with a pseudo-sample of 20 runners. This stops a course with
+a handful of front-runner runs from dominating. The current race is applied only
+after all features are emitted.
+
+```bash
+python3 tooling/backtest_course_bias.py   # -> data/backtest_course_bias.json
+```
+
+Coverage: **10,777 fully priced races**, **9,192 global front-runner runs**,
+**85 courses**, **12 going categories** and **218 course/going cells**. The test
+split is 981 races; the training and calibration windows are the same as the
+pace test.
+
+| Model | Top pick won | Winner in top 3 | Log loss | Brier | SP ROI |
+|---|---:|---:|---:|---:|---:|
+| SP market | **35.8%** | **69.5%** | **1.7806** | **0.7704** | −7.9% |
+| Base | 35.3% | 69.3% | 1.8383 | 0.7820 | −9.6% |
+| Base + front-runner flag | 35.3% | 69.3% | 1.8383 | 0.7819 | −9.6% |
+| Base + front + course bias | 35.0% | 69.2% | 1.8391 | 0.7822 | −10.8% |
+| Base + front + going bias | 35.3% | 69.3% | 1.8383 | 0.7818 | −9.6% |
+| Base + front + course/going bias | 35.1% | 69.4% | 1.8389 | 0.7821 | −10.6% |
+| Base + front + all biases | 35.0% | 69.2% | 1.8391 | 0.7821 | −10.8% |
+
+Against the base-plus-front model, course bias makes log loss **+0.0008 worse**,
+going bias is **−0.0001** (flat), course/going is **+0.0005 worse**, and all
+three together are **+0.0008 worse**. No variant beats the market. The
+front-runner flag itself is effectively neutral.
+
+**Decision: no course/going bias is shipped.** The free comments do not provide
+a reliable local front-runner edge, and the live twelve-factor page remains
+untested by this proxy. Cards, weights and picks are unchanged.
+
 ## Racing Post ratings (comparison only)
 
 ```bash
