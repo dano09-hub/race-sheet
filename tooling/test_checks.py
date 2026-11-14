@@ -712,14 +712,24 @@ with tempfile.TemporaryDirectory(prefix="factor-docs-test-") as _d:
     check("factor docs: baseline passes", _ok.returncode == 0,
           _ok.stdout + _ok.stderr)
     _readme = _root / "README.md"
+    _readme_text = _readme.read_text(encoding="utf-8")
     _readme.write_text(
-        _readme.read_text().replace("Twelve factors", "Eleven factors", 1),
+        _readme_text.replace("Twelve factors", "Eleven factors", 1),
         encoding="utf-8")
     _bad = subprocess.run([sys.executable, str(_checker)], cwd=_root,
                           capture_output=True, text=True)
     _out = _bad.stdout + _bad.stderr
     check("factor docs: wrong documented count is rejected",
           _bad.returncode != 0 and "factor count" in _out, _out)
+    _readme.write_text(
+        _readme_text.replace("full array totals 104", "full array totals 100", 1),
+        encoding="utf-8")
+    _total_bad = subprocess.run([sys.executable, str(_checker)], cwd=_root,
+                                capture_output=True, text=True)
+    _total_out = _total_bad.stdout + _total_bad.stderr
+    check("factor docs: wrong documented total is rejected",
+          _total_bad.returncode != 0 and "full total" in _total_out,
+          _total_out)
 
 print()
 print("passed %d, failed %d%s" % (
