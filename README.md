@@ -278,12 +278,19 @@ Baselines on this data: the favourite wins **37.6%**, the most-tipped horse
 ### The gap you must know about
 
 The source keeps only *results* for past dates — past racecards 301 redirect to
-the course page. Official rating, RPR and Topspeed are therefore **not
-recoverable historically**, which means the shipped 11-factor model cannot be
-back-tested on this dataset as-is. What can be tested: market, tips, form,
-days since run, course/distance record and jockey/trainer form — six of the
-eleven factors. To get the other three you have to snapshot racecards on the day;
-the scraper is the right place to add that.
+the course page. The **pre-race card figures** for OR, RPR and Topspeed are not
+recoverable from our own archive, which is why the shipped 11-factor model cannot
+be back-tested on `data/dataset.csv.gz` as-is. What can be tested there: market,
+tips, form, days since run, course/distance record and jockey/trainer form — six
+of the eleven factors. To get the other three prospectively, snapshot racecards
+on the day; `refresh.py` already archives what it scores.
+
+A free Kaggle archive, [Horse Racing results — UK/Ireland 1988–2026](https://www.kaggle.com/datasets/deltaromeo/horse-racing-results-ukireland-2015-2025),
+does include OR, RPR and Topspeed. Its RPR/TS are the figures **earned in that
+race**, not the figures printed on the pre-race card, so using the current row
+would leak the result. `tooling/backtest_ratings.py` therefore uses the official
+rating carried into the race plus each horse's **previous known** RPR/TS, form,
+days since a run and prior course/distance wins.
 
 One caveat on `dec`: it is the starting price, i.e. the sharpest version of the
 market. A model trained against it looks better than one betting at a price you
@@ -293,6 +300,35 @@ Data quality: 15 of 11,419 races (0.13%) have no parsed winner, almost all of
 them overseas meetings (Flemington) where positions are not rendered in the same
 markup. Filter them out with `won` when back-testing; the UK/Irish cards that
 matter here parse cleanly.
+
+### Rating-factor back-test (free archive)
+
+The free Kaggle database is not committed to this repo. To run the test:
+
+```bash
+pip install pandas numpy scipy
+python3 tooling/backtest_ratings.py --db /path/to/raceform.db
+```
+
+The script filters to GB/IRE, keeps non-finishers as losers, and uses only
+information available before the race. It fits a race-normalised conditional
+logit and compares it with the SP market, then chooses a market/model blend on a
+chronological calibration period and reports the untouched test period. Results
+are written to `data/backtest_ratings.json`.
+
+The first run (2016–2025, 18,504 priced test races) found:
+
+| Model | Top pick won | Log loss | SP ROI |
+|---|---:|---:|---:|
+| SP market | **34.9%** | **1.766** | −9.1% |
+| Ratings only | 24.9% | 2.031 | −12.9% |
+| Market + ratings blend | 34.9% | 1.766 | −9.1% |
+
+The blend weight selected on calibration was **0**, i.e. the rating factors added
+no out-of-sample value in this test. That is a warning, not a verdict: the test
+lacks tips, connections, going and current-card RPR/TS, and SP is a post-time
+price. It does show that a more complex model should have to beat the market
+baseline before it ships.
 
 ## Racing Post ratings (comparison only)
 

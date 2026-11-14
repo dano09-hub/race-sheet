@@ -1,0 +1,137 @@
+{
+  "generated": "2026-11-14T00:57:50+00:00",
+  "source": "raceform.db (free Kaggle UK/Ireland archive)",
+  "date_range": [
+    "2016-01-01",
+    "2025-12-31"
+  ],
+  "splits": {
+    "train": {
+      "races": 84950,
+      "runners": 809122
+    },
+    "calibration": {
+      "races": 18839,
+      "runners": 177101
+    },
+    "test": {
+      "races": 20501,
+      "runners": 193789
+    }
+  },
+  "features": {
+    "or_rating": {
+      "weight": 0.03348003205859619,
+      "lower_is_better": false
+    },
+    "prev_rpr": {
+      "weight": 0.35705639369357134,
+      "lower_is_better": false
+    },
+    "prev_ts": {
+      "weight": 0.10534821639763833,
+      "lower_is_better": false
+    },
+    "prev_pos": {
+      "weight": 0.17228519007287313,
+      "lower_is_better": true
+    },
+    "prev_pos2": {
+      "weight": 0.1487074070026198,
+      "lower_is_better": true
+    },
+    "days_since": {
+      "weight": 0.02204939019200043,
+      "lower_is_better": true
+    },
+    "weight_lb": {
+      "weight": -0.05577152938165046,
+      "lower_is_better": true
+    },
+    "draw": {
+      "weight": 0.03135564794365168,
+      "lower_is_better": true
+    },
+    "course_win_before": {
+      "weight": 0.05153456686621779,
+      "lower_is_better": false
+    },
+    "distance_win_before": {
+      "weight": 0.020992806892775565,
+      "lower_is_better": false
+    }
+  },
+  "missing_flags": {
+    "or_rating": -0.13783217418920163,
+    "prev_rpr": 0.06976858051637243,
+    "prev_ts": -0.23116800865400955,
+    "prev_pos": -0.05688666975600762,
+    "prev_pos2": 0.1011338941733679,
+    "days_since": 0.3863263834724372,
+    "weight_lb": 0.0,
+    "draw": 0.3996435237720864,
+    "course_win_before": 0.0,
+    "distance_win_before": 0.0
+  },
+  "caveat": "RPR/TS are the figures earned in the race, so the model uses the previous known figures. SP is a post-time benchmark, not a price available at the decision time.",
+  "calibration": {
+    "market": {
+      "races": 16984,
+      "log_loss": 1.7685586776618132,
+      "brier": 0.7708389334177476,
+      "top1": 34.43240697126708,
+      "top3": 67.94630240226095,
+      "roi_sp": -9.592151146466964,
+      "priced": 16984
+    },
+    "ratings_only": {
+      "races": 16984,
+      "log_loss": 2.0203350095235386,
+      "brier": 0.839385570860669,
+      "top1": 24.899905793688177,
+      "top3": 56.4707960433349,
+      "roi_sp": -13.7593732058228,
+      "priced": 16984
+    },
+    "blend": {
+      "races": 16984,
+      "log_loss": 1.7685586776618132,
+      "brier": 0.7708389334177476,
+      "top1": 34.43240697126708,
+      "top3": 67.94630240226095,
+      "roi_sp": -9.592151146466964,
+      "priced": 16984
+    }
+  },
+  "blend_weight": 0.0,
+  "test": {
+    "market": {
+      "races": 18504,
+      "log_loss": 1.7660313220381425,
+      "brier": 0.7688807549976521,
+      "top1": 34.889753566796365,
+      "top3": 68.8607868568958,
+      "roi_sp": -9.13957689731848,
+      "priced": 18504
+    },
+    "ratings_only": {
+      "races": 18504,
+      "log_loss": 2.0311261321947542,
+      "brier": 0.8403142289137416,
+      "top1": 24.864894076956332,
+      "top3": 55.84198011240813,
+      "roi_sp": -12.916156094050057,
+      "priced": 18504
+    },
+    "blend": {
+      "races": 18504,
+      "log_loss": 1.7660313220381425,
+      "brier": 0.7688807549976521,
+      "top1": 34.889753566796365,
+      "top3": 68.8607868568958,
+      "roi_sp": -9.13957689731848,
+      "priced": 18504
+    },
+    "blend_weight": 0.0
+  }
+}
