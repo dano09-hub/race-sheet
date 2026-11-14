@@ -330,6 +330,36 @@ lacks tips, connections, going and current-card RPR/TS, and SP is a post-time
 price. It does show that a more complex model should have to beat the market
 baseline before it ships.
 
+### Place model and each-way EV
+
+`tooling/backtest_places.py` fits a direct top-k place model on the same free
+archive, using standard GB/IRE each-way terms (2 places at 1/4 for 5–7 runners;
+3 at 1/5 for 8–11 handicaps; 3 at 1/4 for 12–15 handicaps; 4 at 1/4 for 16+
+handicaps; 3 at 1/5 for 8+ non-handicaps). It chooses a temperature and a
+per-race offset on a chronological calibration period so each race's place
+probabilities sum to the number of paid places.
+
+The first run (19,490 test races) found:
+
+| Measure | Result |
+|---|---:|
+| Place log loss | 0.551 |
+| Place Brier | 0.185 |
+| Calibration ECE | 0.004 |
+| Placed runners captured in model top-k | **44.2%** |
+| Placed runners captured by SP top-k | **53.1%** |
+| Each-way EV > 0: bets | 60,342 |
+| Each-way EV > 0: ROI at SP | **−32.4%** |
+
+The probabilities are calibrated but the ranking is worse than the market, and
+the positive-EV selection loses after correct settlement. It is therefore **not
+wired into the live page** and should not be used for staking. The reusable EV
+calculator is available from the command line:
+
+```bash
+python3 tooling/eachway.py --odds 8/1 --p-win 0.12 --p-place 0.35 --field 10 --handicap
+```
+
 ## Racing Post ratings (comparison only)
 
 ```bash

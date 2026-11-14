@@ -25,6 +25,7 @@ ROOT = TOOLING.parent
 sys.path.insert(0, str(TOOLING))
 
 import ab_tally        # noqa: E402
+import eachway         # noqa: E402
 import refresh         # noqa: E402
 import recheck_market  # noqa: E402
 import settle          # noqa: E402
@@ -497,6 +498,29 @@ try:
 finally:
     ab_tally.ROOT = old_root
     shutil.rmtree(btmp, ignore_errors=True)
+
+print("20. each-way terms and EV")
+check("5-7 runners: 2 places at 1/4", eachway.place_terms(7, False) == (2, 0.25),
+      eachway.place_terms(7, False))
+check("8-11 handicap: 3 places at 1/5", eachway.place_terms(10, True) == (3, 0.20),
+      eachway.place_terms(10, True))
+check("12-15 handicap: 3 places at 1/4", eachway.place_terms(14, True) == (3, 0.25),
+      eachway.place_terms(14, True))
+check("16+ handicap: 4 places at 1/4", eachway.place_terms(16, True) == (4, 0.25),
+      eachway.place_terms(16, True))
+check("8+ non-handicap: 3 places at 1/5", eachway.place_terms(16, False) == (3, 0.20),
+      eachway.place_terms(16, False))
+check("under 5 runners is win-only", eachway.place_terms(4, True) == (0, 0.0),
+      eachway.place_terms(4, True))
+check("8/1 at 1/4 gives 3.0 place decimal", eachway.place_decimal(9.0, 0.25) == 3.0,
+      eachway.place_decimal(9.0, 0.25))
+check("each-way EV example is +0.13",
+      abs(eachway.each_way_ev(0.12, 0.35, 9.0, 0.25) - 0.13) < 1e-12,
+      eachway.each_way_ev(0.12, 0.35, 9.0, 0.25))
+check("place-only EV example is +0.05",
+      abs(eachway.place_only_ev(0.35, 9.0, 0.25) - 0.05) < 1e-12,
+      eachway.place_only_ev(0.35, 9.0, 0.25))
+check("win-only EV is None", eachway.each_way_ev(0.2, 0.5, 3.0, 0.0) is None)
 
 print()
 print("passed %d, failed %d%s" % (

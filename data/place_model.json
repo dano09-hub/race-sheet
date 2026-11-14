@@ -1,0 +1,70 @@
+{
+  "generated": "2026-11-14T01:08:54+00:00",
+  "source": "raceform.db (free Kaggle UK/Ireland archive)",
+  "date_range": [
+    "2016-01-01",
+    "2025-12-31"
+  ],
+  "target": "finished in the paid places under standard GB/IRE each-way terms",
+  "splits": {
+    "train": {
+      "races": 80213,
+      "runners": 791800
+    },
+    "calibration": {
+      "races": 17931,
+      "runners": 173754
+    },
+    "test": {
+      "races": 19490,
+      "runners": 190073
+    }
+  },
+  "features": {
+    "or_rating_score": 0.009635443232029235,
+    "prev_rpr_score": 0.25177262420456514,
+    "prev_ts_score": 0.10893765021464386,
+    "prev_pos_score": 0.1676030277042306,
+    "prev_pos2_score": 0.13355423155019555,
+    "days_since_score": 0.038163112788784606,
+    "weight_lb_score": -0.06966074041983306,
+    "draw_score": 0.04051341110452907,
+    "course_win_before_score": 0.039249508794999395,
+    "distance_win_before_score": 0.0017204011675050878,
+    "or_rating_missing": -0.06054229531328456,
+    "prev_rpr_missing": 0.05750379396781172,
+    "prev_ts_missing": -0.08272687804974807,
+    "prev_pos_missing": -0.025457368837409382,
+    "prev_pos2_missing": 0.09864476962858214,
+    "days_since_missing": 0.21617218697701795,
+    "weight_lb_missing": 0.0,
+    "draw_missing": 0.0515518380942198,
+    "course_win_before_missing": 0.0,
+    "distance_win_before_missing": 0.0,
+    "field_size": -0.3389290784233779,
+    "handicap": -0.10466576422628807,
+    "place_places": 0.13578183624128956
+  },
+  "temperature": 0.7500000000000002,
+  "test": {
+    "races": 19490,
+    "placed_runners": 53729,
+    "model": {
+      "log_loss": 0.5513135059798335,
+      "brier": 0.1849989766416532,
+      "ece": 0.004229435010111417,
+      "topk_capture_pct": 44.19028829868414,
+      "topk_races": 19490
+    },
+    "priced_races": 17576,
+    "priced_model_capture_pct": 44.33568744063107,
+    "priced_market_capture_pct": 53.07892454466609,
+    "each_way": {
+      "positive_ev_bets": 60342,
+      "stake_units": 120684.0,
+      "profit_units": -39043.22666666685,
+      "roi_pct": -32.351617999624516
+    }
+  },
+  "caveat": "SP is a post-time benchmark. The archive's RPR/TS are earned in the race, so the model uses the previous known figures. Terms are standard GB/IRE terms; enhanced bookmaker terms differ."
+}
