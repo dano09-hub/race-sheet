@@ -1,0 +1,59 @@
+name: Progressive results
+
+on:
+  schedule:
+    # Update after each block of races; the 21:10 refresh is the final check.
+    - cron: "*/20 12-20 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: refresh
+  cancel-in-progress: false
+
+jobs:
+  results:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install tools
+        run: python3 -m pip install -r requirements.txt
+      - name: Add completed races
+        run: python3 tooling/settle_today.py --progressive
+      - name: Commit results
+        id: commit
+        run: |
+          git config user.name "racing-sheet-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/results index.html dist/public/index.html
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No new settled races"
+          else
+            git commit -m "Live results $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/configure-pages@v5
+        if: steps.commit.outputs.changed == 'true'
+      - uses: actions/upload-pages-artifact@v3
+        if: steps.commit.outputs.changed == 'true'
+        with:
+          path: dist/public
+      - name: Wait for the Pages artifact
+        if: steps.commit.outputs.changed == 'true'
+        run: sleep 15
+      - id: deployment
+        if: steps.commit.outputs.changed == 'true'
+        uses: actions/deploy-pages@v4

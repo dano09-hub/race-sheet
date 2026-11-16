@@ -7,6 +7,7 @@ the picks from today's archived cards, and rebuilds the Results tab. It never
 changes a pick that is already stored.
 
     python3 tooling/settle_today.py
+    python3 tooling/settle_today.py --progressive  # during racing
     python3 tooling/settle_today.py 2026-11-16   # force a date
 """
 import datetime as dt
@@ -159,11 +160,27 @@ def _replace(html, name, body):
                   body, html, count=1, flags=re.S)
 
 
+def _merge_old(rows, old_rows):
+    """Keep earlier races when a partial results feed omits them."""
+    seen = {(refresh._result_name(r.get("course")), _time(r)) for r in rows}
+    added = 0
+    for old in old_rows:
+        key = (refresh._result_name(old.get("course")), _time(old))
+        if key in seen:
+            continue
+        rows.append(old)
+        seen.add(key)
+        added += 1
+    return added
+
+
 def main(argv=None):
     argv = list(sys.argv[1:] if argv is None else argv)
+    progressive = "--progressive" in argv
+    argv = [a for a in argv if a != "--progressive"]
     forced = bool(argv)
     iso = argv[0] if forced else dt.date.today().isoformat()
-    if not forced and dt.datetime.now(dt.timezone.utc).hour < 21:
+    if not forced and not progressive and dt.datetime.now(dt.timezone.utc).hour < 21:
         print(f"  today:       {iso} not settled yet (before 21:00 UTC)")
         return 0
 
@@ -185,12 +202,15 @@ def main(argv=None):
         except (OSError, ValueError):
             old_rows = []
     kept = refresh.carry_picks(old_rows, rows)
+    added_old = _merge_old(rows, old_rows)
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         json.dump(rows, f, ensure_ascii=False)
     print(f"  results:     {len(rows)} races for {iso} -> data/results/{iso}.json")
     if kept:
         print(f"  picks kept:  {kept} settled races kept their original pick")
+    if added_old:
+        print(f"  results:     kept {added_old} earlier races missing from this feed")
 
     refresh.settle_day(iso)
     with open(path, encoding="utf-8") as f:
