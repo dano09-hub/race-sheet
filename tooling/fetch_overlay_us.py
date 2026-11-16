@@ -115,6 +115,65 @@ def build(payload, date):
     }
 
 
+
+def _norm(value):
+    text = re.sub(r"\(.*?\)", "", str(value or "")).lower()
+    text = re.sub(r"[^a-z0-9 ]", "", text)
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def backfill_from_cards(date, folder="overlay_us", force=False):
+    """Fill races missing from the live feed using the archived US card.
+
+    Parx is often absent from the live feed because its card has already
+    finished.  The archived card still has the morning-line prices, so the
+    same power-method de-vig can fill that gap.  These rows are marked
+    backfill so the page never presents them as a live Overlay snapshot.
+    """
+    base_path = os.path.join(ROOT, "data", folder, f"{date}.json")
+    cards_path = os.path.join(ROOT, "data", "cards", "by_date", f"{date}.json")
+    out_path = os.path.join(ROOT, "data", folder, f"{date}.backfill.json")
+    if (os.path.exists(out_path) and not force) or not os.path.exists(base_path) or not os.path.exists(cards_path):
+        return 0
+    try:
+        base = json.load(open(base_path, encoding="utf-8"))
+        card_data = json.load(open(cards_path, encoding="utf-8"))
+    except (OSError, ValueError):
+        return 0
+    cards = card_data.get("US") if isinstance(card_data, dict) else card_data
+    if not cards:
+        return 0
+    base_keys = {(_norm(r.get("course")), str(r.get("time") or "")[:5])
+                 for r in base.get("races") or []}
+    seen, races = set(), []
+    for card in cards:
+        key = (_norm(card.get("course")), str(card.get("time") or "")[:5])
+        if key in base_keys or key in seen:
+            continue
+        runners = [r for r in card.get("runners") or []
+                   if not r.get("scratched") and decimal_odds(r.get("odds"))]
+        if len(runners) < 2:
+            continue
+        probs, book, k, method = devig_power([decimal_odds(r["odds"]) for r in runners])
+        best = max(range(len(probs)), key=lambda i: probs[i])
+        runner = runners[best]
+        seen.add(key)
+        races.append({"course": card.get("course") or "", "time": card.get("time") or "",
+                      "race": card.get("race") or "", "overround": round(book, 4),
+                      "k": round(k, 4), "method": method,
+                      "favorite": runner.get("horse") or "",
+                      "favorite_odds": runner.get("odds") or "",
+                      "favorite_fair": round(100 * probs[best], 1),
+                      "runners": len(runners), "backfill": True})
+    if not races:
+        return 0
+    data = {"date": date, "source": "archived US card (Horse Racing Nation morning line)",
+            "generated": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
+            "races": races}
+    with open(out_path, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=1)
+    return len(races)
+
 def fetch():
     req = urllib.request.Request(URL, headers=HEADERS)
     with urllib.request.urlopen(req, timeout=30) as response:
@@ -137,6 +196,8 @@ def archive(date, force=False):
 
 if __name__ == "__main__":
     day = sys.argv[1] if len(sys.argv) > 1 else dt.date.today().isoformat()
-    count = archive(day, force="--force" in sys.argv[1:])
-    print(f"{day}: {count} US races with fair-chance snapshots")
-    sys.exit(0 if count or os.path.exists(os.path.join(ROOT, "data", "overlay_us", f"{day}.json")) else 1)
+    force = "--force" in sys.argv[1:]
+    count = archive(day, force=force)
+    filled = backfill_from_cards(day, force=force) if force else backfill_from_cards(day)
+    print(f"{day}: {count} live fair-chance snapshots, {filled} archived-card backfills")
+    sys.exit(0 if (count or filled or os.path.exists(os.path.join(ROOT, "data", "overlay_us", f"{day}.json"))) else 1)

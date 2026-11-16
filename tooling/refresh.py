@@ -552,9 +552,14 @@ def ab_block_html(t, iso, title="Rating A/B", subject="rating",
                       'for these races.</p>')
         if t.get("fair_races"):
             f = t["fair_races"]
+            b = t.get("fair_backfilled", 0)
+            coverage = f"<b>{f}</b> matched races"
+            if b:
+                coverage += (f" ({f-b} live Overlay snapshots + "
+                             f"{b} archived-card backfills)")
             inner += (f'<p class="k"><a href="https://theoverlay.co.uk/us-racing.html"'
                       f' target="_blank" rel="noopener">The Overlay</a> fair-chance '
-                      f'benchmark on <b>{f}</b> matched races: its favourite won '
+                      f'benchmark on {coverage}: its favourite won '
                       f'<b>{t["fair_fav_wins"]} of {f}</b> '
                       f'({100*t["fair_fav_wins"]/f:.1f}%), our pick won '
                       f'<b>{t["fair_pick_hits"]} of {f}</b> '
@@ -833,6 +838,9 @@ def main():
             n = fetch_overlay_us.archive(iso)
             if n:
                 print(f"  overlay:     {n} US fair-chance snapshots")
+        b = fetch_overlay_us.backfill_from_cards(iso)
+        if b:
+            print(f"  overlay:     +{b} archived-card backfills")
     except Exception as e:
         print(f"  overlay:     snapshot skipped ({e})")
 

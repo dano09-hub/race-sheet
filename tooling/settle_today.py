@@ -294,8 +294,15 @@ def main(argv=None):
         try:
             import fetch_overlay_us
             fetch_overlay_us.archive(iso)
+            fetch_overlay_us.backfill_from_cards(iso)
         except Exception as e:
             print(f"  overlay:     snapshot skipped ({e})")
+    else:
+        try:
+            import fetch_overlay_us
+            fetch_overlay_us.backfill_from_cards(iso)
+        except Exception as e:
+            print(f"  overlay:     backfill skipped ({e})")
     us_ab_result = ab_tally.collect(snap_dir="picks_ab_us", regions=("US",),
                                     subject="speed figure", overlay_dir="overlay_us")
     html = open(refresh.INDEX, encoding="utf-8").read()

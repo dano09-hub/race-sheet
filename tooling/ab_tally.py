@@ -94,19 +94,21 @@ def card_favourites(date, regions=("GB", "IRE")):
 
 
 def overlay_favourites(date, folder="overlay_us"):
-    """Fair-chance favourites from a saved The Overlay US snapshot."""
-    path = os.path.join(ROOT, "data", folder, f"{date}.json")
-    if not os.path.exists(path):
-        return {}
-    try:
-        data = json.load(open(path, encoding="utf-8"))
-    except (OSError, ValueError):
-        return {}
+    """Fair-chance favourites from the live snapshot and archived backfill."""
     out = {}
-    for race in data.get("races") or []:
-        fav = race.get("favorite")
-        if fav:
-            out.setdefault((norm(race.get("course")), time_key(race)), fav)
+    for suffix, backfill in (("", False), (".backfill", True)):
+        path = os.path.join(ROOT, "data", folder, f"{date}{suffix}.json")
+        if not os.path.exists(path):
+            continue
+        try:
+            data = json.load(open(path, encoding="utf-8"))
+        except (OSError, ValueError):
+            continue
+        for race in data.get("races") or []:
+            fav = race.get("favorite")
+            if fav:
+                out.setdefault((norm(race.get("course")), time_key(race)),
+                               {"favorite": fav, "backfill": backfill})
     return out
 
 
@@ -115,7 +117,7 @@ def collect(snap_dir="picks_ab", regions=("GB", "IRE"), subject="rating",
     out = {"days": [], "pending": [], "races": 0, "with": 0, "without": 0,
            "with_placed": 0, "without_placed": 0,
            "fair_races": 0, "fair_fav_wins": 0, "fair_pick_hits": 0,
-           "fair_pick_fav": 0, "fair_unmatched": 0,
+           "fair_pick_fav": 0, "fair_backfilled": 0, "fair_unmatched": 0,
            "changed": 0, "changed_won": 0, "changed_lost": 0,
            "bench_races": 0, "fav_wins": 0, "pick_hits": 0, "pick_fav": 0,
            "ci_with": (0.0, 0.0), "ci_without": (0.0, 0.0), "subject": subject,
@@ -154,10 +156,12 @@ def collect(snap_dir="picks_ab", regions=("GB", "IRE"), subject="rating",
             places = [norm(p) for p in (row.get("places") or [])][:3]
             n += 1
             if overlay_dir:
-                fair_fav = fair_favs.get(key)
-                if fair_fav:
+                fair_info = fair_favs.get(key)
+                if fair_info:
+                    fair_fav = fair_info["favorite"]
                     if row.get("pick"):
                         out["fair_races"] += 1
+                        out["fair_backfilled"] += bool(fair_info.get("backfill"))
                         out["fair_fav_wins"] += (norm(fair_fav) == norm(win))
                         out["fair_pick_hits"] += (norm(row.get("pick")) == norm(win))
                         out["fair_pick_fav"] += (norm(row.get("pick")) == norm(fair_fav))
