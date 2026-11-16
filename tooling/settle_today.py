@@ -289,8 +289,15 @@ def main(argv=None):
             ab_day.main(iso, metric="ts", out_dir="picks_ab_us", label="speed figure", regions=("US",))
         except (SystemExit, Exception) as e:
             print(f"  us ab:       snapshot skipped ({e})")
+    overlay_path = os.path.join(ROOT, "data", "overlay_us", f"{iso}.json")
+    if not os.path.exists(overlay_path):
+        try:
+            import fetch_overlay_us
+            fetch_overlay_us.archive(iso)
+        except Exception as e:
+            print(f"  overlay:     snapshot skipped ({e})")
     us_ab_result = ab_tally.collect(snap_dir="picks_ab_us", regions=("US",),
-                                    subject="speed figure")
+                                    subject="speed figure", overlay_dir="overlay_us")
     html = open(refresh.INDEX, encoding="utf-8").read()
     html = _replace(html, "RESULTS_SL",
                     refresh.results_block_all() or refresh.results_block(iso, rows))

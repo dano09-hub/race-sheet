@@ -93,9 +93,29 @@ def card_favourites(date, regions=("GB", "IRE")):
     return out
 
 
-def collect(snap_dir="picks_ab", regions=("GB", "IRE"), subject="rating"):
+def overlay_favourites(date, folder="overlay_us"):
+    """Fair-chance favourites from a saved The Overlay US snapshot."""
+    path = os.path.join(ROOT, "data", folder, f"{date}.json")
+    if not os.path.exists(path):
+        return {}
+    try:
+        data = json.load(open(path, encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+    out = {}
+    for race in data.get("races") or []:
+        fav = race.get("favorite")
+        if fav:
+            out.setdefault((norm(race.get("course")), time_key(race)), fav)
+    return out
+
+
+def collect(snap_dir="picks_ab", regions=("GB", "IRE"), subject="rating",
+            overlay_dir=None):
     out = {"days": [], "pending": [], "races": 0, "with": 0, "without": 0,
            "with_placed": 0, "without_placed": 0,
+           "fair_races": 0, "fair_fav_wins": 0, "fair_pick_hits": 0,
+           "fair_pick_fav": 0, "fair_unmatched": 0,
            "changed": 0, "changed_won": 0, "changed_lost": 0,
            "bench_races": 0, "fav_wins": 0, "pick_hits": 0, "pick_fav": 0,
            "ci_with": (0.0, 0.0), "ci_without": (0.0, 0.0), "subject": subject,
@@ -122,6 +142,7 @@ def collect(snap_dir="picks_ab", regions=("GB", "IRE"), subject="rating"):
                 continue
             winners.setdefault((norm(r.get("course")), time_key(r)), r)
         favs = card_favourites(date, regions=regions)
+        fair_favs = overlay_favourites(date, overlay_dir) if overlay_dir else {}
 
         n = w = wo = wp = wop = ch = cw = cl = 0
         for x in snap.get("rows", []):
@@ -132,6 +153,16 @@ def collect(snap_dir="picks_ab", regions=("GB", "IRE"), subject="rating"):
             win = row.get("winner")
             places = [norm(p) for p in (row.get("places") or [])][:3]
             n += 1
+            if overlay_dir:
+                fair_fav = fair_favs.get(key)
+                if fair_fav:
+                    if row.get("pick"):
+                        out["fair_races"] += 1
+                        out["fair_fav_wins"] += (norm(fair_fav) == norm(win))
+                        out["fair_pick_hits"] += (norm(row.get("pick")) == norm(win))
+                        out["fair_pick_fav"] += (norm(row.get("pick")) == norm(fair_fav))
+                else:
+                    out["fair_unmatched"] += 1
             a = norm(x.get("withRating")) == norm(win)
             b = norm(x.get("withoutRating")) == norm(win)
             w += a

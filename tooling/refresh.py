@@ -550,6 +550,19 @@ def ab_block_html(t, iso, title="Rating A/B", subject="rating",
         else:
             inner += ('<p class="k">Benchmark: no pre-race prices were archived '
                       'for these races.</p>')
+        if t.get("fair_races"):
+            f = t["fair_races"]
+            inner += (f'<p class="k"><a href="https://theoverlay.co.uk/us-racing.html"'
+                      f' target="_blank" rel="noopener">The Overlay</a> fair-chance '
+                      f'benchmark on <b>{f}</b> matched races: its favourite won '
+                      f'<b>{t["fair_fav_wins"]} of {f}</b> '
+                      f'({100*t["fair_fav_wins"]/f:.1f}%), our pick won '
+                      f'<b>{t["fair_pick_hits"]} of {f}</b> '
+                      f'({100*t["fair_pick_hits"]/f:.1f}%); we backed the fair '
+                      f'favourite in {t["fair_pick_fav"]}.</p>')
+            if t.get("fair_unmatched"):
+                inner += (f'<p class="k">No fair-chance match for '
+                          f'{t["fair_unmatched"]} settled races.</p>')
         rows = ''.join(
             f'<tr><td>{esc(d["date"])}</td><td class="num">{d["races"]}</td>'
             f'<td class="num">{d["with"]}</td><td class="num">{d.get("with_placed", 0)}</td>'
@@ -814,12 +827,22 @@ def main():
         print(f"  ab:          snapshot skipped ({e})")
 
     try:
+        import fetch_overlay_us
+        overlay_path = os.path.join(ROOT, "data", "overlay_us", f"{iso}.json")
+        if not os.path.exists(overlay_path):
+            n = fetch_overlay_us.archive(iso)
+            if n:
+                print(f"  overlay:     {n} US fair-chance snapshots")
+    except Exception as e:
+        print(f"  overlay:     snapshot skipped ({e})")
+
+    try:
         import ab_day, ab_tally
         us_snap = os.path.join(ROOT, "data", "picks_ab_us", f"{iso}.json")
         if not os.path.exists(us_snap):
             ab_day.main(iso, metric="ts", out_dir="picks_ab_us", label="speed figure", regions=("US",))
         us_ab_result = ab_tally.collect(snap_dir="picks_ab_us", regions=("US",),
-                                        subject="speed figure")
+                                        subject="speed figure", overlay_dir="overlay_us")
     except SystemExit:
         pass
     except Exception as e:
