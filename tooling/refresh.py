@@ -532,10 +532,13 @@ def ab_block_html(t, iso, title="Rating A/B", subject="rating",
         inner = (f'<h3>{esc(title)} &mdash; with and without a {esc(subject)}</h3>'
                  f'<p class="k">Across <b>{n}</b> settled races: '
                  f'<b>{t["with"]}</b> winners with the {esc(subject)} '
-                 f'({100*t["with"]/n:.1f}%), <b>{t["without"]}</b> without '
-                 f'({100*t["without"]/n:.1f}%). The {esc(subject)} changed the pick in '
-                 f'{t["changed"]} races (won {t["changed_won"]}, '
-                 f'lost {t["changed_lost"]}).</p>')
+                 f'({100*t["with"]/n:.1f}%) and <b>{t.get("with_placed", 0)}</b> '
+                 f'top-three ({100*t.get("with_placed", 0)/n:.1f}%); '
+                 f'<b>{t["without"]}</b> winners without '
+                 f'({100*t["without"]/n:.1f}%) and <b>{t.get("without_placed", 0)}</b> '
+                 f'top-three ({100*t.get("without_placed", 0)/n:.1f}%). The '
+                 f'{esc(subject)} changed the pick in {t["changed"]} races '
+                 f'(won {t["changed_won"]}, lost {t["changed_lost"]}).</p>')
         if t.get("bench_races"):
             b = t["bench_races"]
             inner += (f'<p class="k">Benchmark on the same races: the market '
@@ -549,10 +552,12 @@ def ab_block_html(t, iso, title="Rating A/B", subject="rating",
                       'for these races.</p>')
         rows = ''.join(
             f'<tr><td>{esc(d["date"])}</td><td class="num">{d["races"]}</td>'
-            f'<td class="num">{d["with"]}</td><td class="num">{d["without"]}</td>'
+            f'<td class="num">{d["with"]}</td><td class="num">{d.get("with_placed", 0)}</td>'
+            f'<td class="num">{d["without"]}</td><td class="num">{d.get("without_placed", 0)}</td>'
             f'<td class="num">{d["changed"]}</td></tr>' for d in t["days"])
         inner += ('<table class="abt"><thead><tr><th>Day</th><th>Races</th>'
-                  '<th>With</th><th>Without</th><th>Changed</th></tr></thead>'
+                  '<th>With win</th><th>With place</th><th>Without win</th>'
+                  '<th>Without place</th><th>Changed</th></tr></thead>'
                   f'<tbody>{rows}</tbody></table>')
         inner += f'<p class="k abverdict">{esc(t["verdict"])}</p>'
         if t.get("pending"):

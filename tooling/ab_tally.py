@@ -6,7 +6,7 @@ and says plainly whether the sample is large enough to conclude anything.
 
 usage: python3 tooling/ab_tally.py
 """
-import glob, json, math, os, re, sys
+import glob, html, json, math, os, re, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -16,7 +16,8 @@ MIN_CHANGED = 20
 
 
 def norm(s):
-    s = re.sub(r"\(.*?\)", "", str(s or "")).lower()
+    s = html.unescape(str(s or ""))
+    s = re.sub(r"\(.*?\)", "", s).lower()
     s = re.sub(r"[^a-z0-9 ]", "", s)
     return re.sub(r"\s+", " ", s).strip()
 
@@ -94,6 +95,7 @@ def card_favourites(date, regions=("GB", "IRE")):
 
 def collect(snap_dir="picks_ab", regions=("GB", "IRE"), subject="rating"):
     out = {"days": [], "pending": [], "races": 0, "with": 0, "without": 0,
+           "with_placed": 0, "without_placed": 0,
            "changed": 0, "changed_won": 0, "changed_lost": 0,
            "bench_races": 0, "fav_wins": 0, "pick_hits": 0, "pick_fav": 0,
            "ci_with": (0.0, 0.0), "ci_without": (0.0, 0.0), "subject": subject,
@@ -121,18 +123,21 @@ def collect(snap_dir="picks_ab", regions=("GB", "IRE"), subject="rating"):
             winners.setdefault((norm(r.get("course")), time_key(r)), r)
         favs = card_favourites(date, regions=regions)
 
-        n = w = wo = ch = cw = cl = 0
+        n = w = wo = wp = wop = ch = cw = cl = 0
         for x in snap.get("rows", []):
             key = (norm(x.get("course")), time_key(x))
             row = winners.get(key)
             if not row:
                 continue
             win = row.get("winner")
+            places = [norm(p) for p in (row.get("places") or [])][:3]
             n += 1
-            a = x.get("withRating") == win
-            b = x.get("withoutRating") == win
+            a = norm(x.get("withRating")) == norm(win)
+            b = norm(x.get("withoutRating")) == norm(win)
             w += a
             wo += b
+            wp += norm(x.get("withRating")) in places
+            wop += norm(x.get("withoutRating")) in places
             if x.get("changed"):
                 ch += 1
                 cw += (a and not b)
@@ -148,8 +153,10 @@ def collect(snap_dir="picks_ab", regions=("GB", "IRE"), subject="rating"):
             continue
         day_dates.add(date)
         out["days"].append({"date": date, "races": n, "with": w, "without": wo,
+                            "with_placed": wp, "without_placed": wop,
                             "changed": ch, "won": cw, "lost": cl})
         out["races"] += n; out["with"] += w; out["without"] += wo
+        out["with_placed"] += wp; out["without_placed"] += wop
         out["changed"] += ch; out["changed_won"] += cw; out["changed_lost"] += cl
 
     out["pending"] = sorted(snap_dates - day_dates)
