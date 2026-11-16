@@ -273,6 +273,13 @@ def main(argv=None):
     print(f"  placed:      {checked + checked_us} finishes checked for {iso}")
 
     import ab_tally
+    snap = os.path.join(ROOT, "data", "picks_ab", f"{iso}.json")
+    if not os.path.exists(snap):
+        try:
+            import ab_day
+            ab_day.main(iso)
+        except (SystemExit, Exception) as e:
+            print(f"  ab:          snapshot skipped ({e})")
     ab_result = ab_tally.collect()
     html = open(refresh.INDEX, encoding="utf-8").read()
     html = _replace(html, "RESULTS_SL",

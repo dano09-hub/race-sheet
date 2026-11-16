@@ -26,6 +26,10 @@ def main(date):
         print(f"{date}: cards carry no rating, A/B would be degenerate; skipped")
         return 1
 
+    # The comparison is about the rating, so only races with at least one
+    # rated runner belong in the snapshot. US cards in particular have no RPR.
+    cards = rated_cards
+
     with_rating = settle.score_cards(cards)
     stripped = []
     for c in cards:

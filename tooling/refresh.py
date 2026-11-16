@@ -669,7 +669,9 @@ def main():
             # fold it (and every earlier day) into the running tally
             try:
                 import ab_day, ab_tally
-                ab_day.main(yday)
+                snap = os.path.join(ROOT, "data", "picks_ab", f"{yday}.json")
+                if not os.path.exists(snap):
+                    ab_day.main(yday)
                 ab_tally.main()
                 ab_result = ab_tally.collect()
             except SystemExit:
@@ -692,6 +694,18 @@ def main():
     au = au_day()
     print(f"  AU card:     {len(au)} races")
     archive(iso, {"GB": uk_today, "GB_tomorrow": uk_tomorrow, "US": us, "HK": hk, "AU": au})
+    # Take the with/without-rating snapshot before the day settles. Later
+    # results refreshes only recalculate the tally; they never rewrite it.
+    try:
+        import ab_day, ab_tally
+        snap = os.path.join(ROOT, "data", "picks_ab", f"{iso}.json")
+        if not os.path.exists(snap):
+            ab_day.main(iso)
+        ab_result = ab_tally.collect()
+    except SystemExit:
+        pass
+    except Exception as e:
+        print(f"  ab:          snapshot skipped ({e})")
     try:
         import collect_eachway_prices
         n = collect_eachway_prices.collect_file(

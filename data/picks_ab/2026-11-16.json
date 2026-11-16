@@ -1,0 +1,103 @@
+{
+ "date": "2026-11-16",
+ "generated": "2026-11-16T21:37:29",
+ "note": "A/B of the twelve-factor model with and without a rating in the rpr slot",
+ "cards": 13,
+ "same": 11,
+ "changed": 2,
+ "ratedRunners": 87,
+ "runners": 131,
+ "rows": [
+  {
+   "course": "Plumpton",
+   "time": "13:15",
+   "withRating": "Market House",
+   "withoutRating": "Market House",
+   "changed": false
+  },
+  {
+   "course": "Plumpton",
+   "time": "13:45",
+   "withRating": "Icare Grandchamp",
+   "withoutRating": "Icare Grandchamp",
+   "changed": false
+  },
+  {
+   "course": "Plumpton",
+   "time": "14:15",
+   "withRating": "Kamille Au Kanada",
+   "withoutRating": "Kamille Au Kanada",
+   "changed": false
+  },
+  {
+   "course": "Plumpton",
+   "time": "14:45",
+   "withRating": "Anothermanicmonday",
+   "withoutRating": "Golly Gosh",
+   "changed": true
+  },
+  {
+   "course": "Plumpton",
+   "time": "15:15",
+   "withRating": "Uncle Al",
+   "withoutRating": "Uncle Al",
+   "changed": false
+  },
+  {
+   "course": "Plumpton",
+   "time": "15:45",
+   "withRating": "Kotari",
+   "withoutRating": "Kotari",
+   "changed": false
+  },
+  {
+   "course": "Wolverhampton",
+   "time": "16:30",
+   "withRating": "Lord Ragnar",
+   "withoutRating": "Harry's Pop",
+   "changed": true
+  },
+  {
+   "course": "Wolverhampton",
+   "time": "17:00",
+   "withRating": "Desert Romance",
+   "withoutRating": "Desert Romance",
+   "changed": false
+  },
+  {
+   "course": "Wolverhampton",
+   "time": "18:30",
+   "withRating": "Tan Rapido",
+   "withoutRating": "Tan Rapido",
+   "changed": false
+  },
+  {
+   "course": "Wolverhampton",
+   "time": "19:00",
+   "withRating": "Intervention",
+   "withoutRating": "Intervention",
+   "changed": false
+  },
+  {
+   "course": "Wolverhampton",
+   "time": "19:30",
+   "withRating": "R P McMurphy",
+   "withoutRating": "R P McMurphy",
+   "changed": false
+  },
+  {
+   "course": "Wolverhampton",
+   "time": "20:00",
+   "withRating": "Ted Le Saux",
+   "withoutRating": "Ted Le Saux",
+   "changed": false
+  },
+  {
+   "course": "Wolverhampton",
+   "time": "20:30",
+   "withRating": "Saxophonic",
+   "withoutRating": "Saxophonic",
+   "changed": false
+  }
+ ]
+}
