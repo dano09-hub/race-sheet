@@ -33,6 +33,7 @@ import refresh         # noqa: E402
 import recheck_market  # noqa: E402
 import settle          # noqa: E402
 import us_flags        # noqa: E402
+import us_angles       # noqa: E402
 
 PASSED, FAILED, SKIPPED = [], [], []
 
@@ -880,6 +881,68 @@ try:
               "US flags" in html and "Trainer 30d" in html and "Horse A" in html, html[:200])
         check("US flags: no scoring controls",
               "input" not in html.lower() and "button" not in html.lower(), html[:200])
+
+    check("US angles: fair fraction converts to the standard ladder",
+          us_angles.fair_fraction(15.0) == "14/1"
+          and us_angles.fair_fraction(1.5) == "1/2", us_angles.fair_fraction(15.0))
+
+    with tempfile.TemporaryDirectory(prefix="us-angles-test-") as ad:
+        def awrite(name, value):
+            path = Path(ad, name)
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(json.dumps(value), encoding="utf-8")
+        awrite("cards.json", {"US": [
+            {"course": "Alpha", "time": "17:00", "race": "Alpha Stakes",
+             "runners": [
+                 {"horse": "A", "odds": "2.00", "draw": "1", "form": "1",
+                  "trainer": "T", "jockey": "J", "ts": "111", "or": "90"},
+                 {"horse": "B", "odds": "3.00", "draw": "2", "form": "23",
+                  "trainer": "T", "jockey": "J", "ts": "90", "or": "80"}]},
+            {"course": "Beta", "time": "18:00", "race": "Beta Stakes",
+             "runners": [{"horse": "C", "odds": "1.50", "draw": "3", "form": "2",
+                          "trainer": "T", "jockey": "J", "ts": "95", "or": "70"},
+                         {"horse": "D", "odds": "4.00", "draw": "1", "form": "0",
+                          "trainer": "T", "jockey": "J", "ts": "80", "or": "60"}]},
+        ]})
+        awrite("angles.json", {"generated": "2026-11-16T12:00:00+00:00", "races": {
+            "alpha|17:00": {"course": "Alpha", "off": "17:00", "name": "Alpha Stakes",
+                            "surf": "dirt", "field": 2, "runners": {
+                                "a": {"h": "A", "draw": 1, "odds": "2.00",
+                                      "f": ["fav", "topor", "inside", "wonlto"],
+                                      "c": [["wonlto", "Won last time"]]},
+                                "b": {"h": "B", "draw": 2, "odds": "3.00",
+                                      "f": ["wide", "plclto"], "c": []}}}}})
+        awrite("picks.json", {"rows": [{"course": "Alpha", "time": "17:00",
+                                        "withRating": "A"}]})
+        awrite("inform.json", {"updated": "2026-11-09T04:01:23+00:00",
+                               "trainers": {}, "jockeys": {}, "horses": {}})
+        built = us_angles.build("2026-11-16", cards_path=str(Path(ad, "cards.json")),
+                                angles_path=str(Path(ad, "angles.json")),
+                                picks_path=str(Path(ad, "picks.json")),
+                                inform_path=str(Path(ad, "inform.json")))
+        check("US angles: card dedupe/race coverage",
+              built["total_races"] == 2 and built["live_races"] == 1
+              and built["card_only_races"] == 1, built)
+        check("US angles: feed flags are carried",
+              built["races"][0]["runners"][0]["flags"][0]["key"] == "fav"
+              and built["races"][0]["runners"][1]["flags"][0]["key"] == "wide",
+              built["races"][0]["runners"])
+        check("US angles: card-only flags are derived",
+              any(f["key"] == "fav" for f in built["races"][1]["runners"][0]["flags"]),
+              built["races"][1]["runners"][0])
+        check("US angles: pick is marked without changing it",
+              built["races"][0]["runners"][0]["pick"] is True
+              and built["races"][0]["runners"][0]["horse"] == "A",
+              built["races"][0]["runners"][0])
+        check("US angles: fair chance is present",
+              built["races"][0]["runners"][0]["fair"]["pct"] > 0,
+              built["races"][0]["runners"][0])
+        ahtml = us_angles.block_html(built)
+        check("US angles: tab includes catalog and runners",
+              "Filter flags" in ahtml and "Alpha Stakes" in ahtml
+              and 'data-angle-filter="fav"' in ahtml, ahtml[:200])
+        check("US angles: filter is an input, not a model control",
+              "<input" not in ahtml.lower() and "<form" not in ahtml.lower(), ahtml[:200])
 finally:
     refresh.ROOT = old_root
     shutil.rmtree(ptmp, ignore_errors=True)

@@ -691,6 +691,13 @@ def us_flags_block_html(t, iso):
     return ("<!-- US_FLAGS_SL_START -->\n" + us_flags.block_html(t)
             + "\n<!-- US_FLAGS_SL_END -->")
 
+
+def us_angles_block_html(t, iso):
+    """The read-only all-runner angle scan."""
+    import us_angles
+    return ("<!-- US_ANGLES_SL_START -->\n" + us_angles.block_html(t)
+            + "\n<!-- US_ANGLES_SL_END -->")
+
 def main():
     days = 2
     skip_checks = False
@@ -716,6 +723,7 @@ def main():
     ab_result = None
     us_ab_result = None
     us_flags_result = None
+    us_angles_result = None
     test_picks = os.path.join(ROOT, "data", "picks_ab", f"test_{iso}.json")
     test_cards = os.path.join(ROOT, "data", "cards", f"{iso}_two_meetings.json")
     if os.path.exists(test_picks) and os.path.exists(test_cards):
@@ -848,6 +856,7 @@ def main():
                 print(f"  overlay:     {n} US fair-chance snapshots")
         fetch_overlay_us.ensure_raw(iso)
         fetch_overlay_us.fetch_inform()
+        fetch_overlay_us.fetch_angles(iso)
         b = fetch_overlay_us.backfill_from_cards(iso)
         if b:
             print(f"  overlay:     +{b} archived-card backfills")
@@ -871,6 +880,12 @@ def main():
         print(f"  us flags:    {us_flags_result['total']} picks, {us_flags_result['live_detail']} with live detail")
     except Exception as e:
         print(f"  us flags:    build skipped ({e})")
+    try:
+        import us_angles
+        us_angles_result = us_angles.build(iso)
+        print(f"  us angles:   {us_angles_result['total_races']} races, {us_angles_result['runners']} runners")
+    except Exception as e:
+        print(f"  us angles:   build skipped ({e})")
     try:
         import collect_eachway_prices
         n = collect_eachway_prices.collect_file(
@@ -918,6 +933,8 @@ def main():
                   us_ab_block_html(us_ab_result, iso), html, count=1, flags=re.S)
     html = re.sub(r"<!-- US_FLAGS_SL_START -->.*?<!-- US_FLAGS_SL_END -->",
                   us_flags_block_html(us_flags_result, iso), html, count=1, flags=re.S)
+    html = re.sub(r"<!-- US_ANGLES_SL_START -->.*?<!-- US_ANGLES_SL_END -->",
+                  us_angles_block_html(us_angles_result, iso), html, count=1, flags=re.S)
 
     open(INDEX, "w", encoding="utf-8").write(html)
     os.makedirs(os.path.join(ROOT, "dist", "public"), exist_ok=True)

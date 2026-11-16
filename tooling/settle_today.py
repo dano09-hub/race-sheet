@@ -309,6 +309,7 @@ def main(argv=None):
         import fetch_overlay_us
         fetch_overlay_us.ensure_raw(iso)
         fetch_overlay_us.fetch_inform()
+        fetch_overlay_us.fetch_angles(iso)
     except Exception as e:
         print(f"  us flags:    live data skipped ({e})")
     try:
@@ -317,6 +318,12 @@ def main(argv=None):
     except Exception as e:
         print(f"  us flags:    build skipped ({e})")
         us_flags_result = None
+    try:
+        import us_angles
+        us_angles_result = us_angles.build(iso)
+    except Exception as e:
+        print(f"  us angles:   build skipped ({e})")
+        us_angles_result = None
     html = open(refresh.INDEX, encoding="utf-8").read()
     html = _replace(html, "RESULTS_SL",
                     refresh.results_block_all() or refresh.results_block(iso, rows))
@@ -326,6 +333,8 @@ def main(argv=None):
                     refresh.us_ab_block_html(us_ab_result, iso))
     html = _replace(html, "US_FLAGS_SL",
                     refresh.us_flags_block_html(us_flags_result, iso))
+    html = _replace(html, "US_ANGLES_SL",
+                    refresh.us_angles_block_html(us_angles_result, iso))
     open(refresh.INDEX, "w", encoding="utf-8").write(html)
     os.makedirs(os.path.join(ROOT, "dist", "public"), exist_ok=True)
     open(os.path.join(ROOT, "dist", "public", "index.html"),

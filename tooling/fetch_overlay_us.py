@@ -20,7 +20,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 URL = "https://theoverlay.co.uk/data_us.json"
 INFORM_URL = "https://theoverlay.co.uk/us_inform.json"
+ANGLE_URL = "https://theoverlay.co.uk/us_ab/{date}.json"
 RAW_DIR = os.path.join(ROOT, "data", "us_data")
+ANGLE_DIR = os.path.join(ROOT, "data", "us_angles")
 INFORM_PATH = os.path.join(ROOT, "data", "us_inform.json")
 HEADERS = {
     "User-Agent": ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -215,6 +217,23 @@ def ensure_raw(date):
     if os.path.exists(path):
         return 0
     return _save_raw(fetch(), date)
+
+
+def fetch_angles(date, force=False):
+    """Cache the public runner-flag feed used by the Angles tab."""
+    path = os.path.join(ANGLE_DIR, f"{date}.json")
+    if os.path.exists(path) and not force:
+        return 0
+    try:
+        payload = _fetch_url(ANGLE_URL.format(date=date))
+    except Exception:
+        return 0
+    if not payload.get("races"):
+        return 0
+    os.makedirs(ANGLE_DIR, exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(payload, f, ensure_ascii=False, indent=1)
+    return len(payload["races"])
 
 
 def fetch_inform(force=False):
