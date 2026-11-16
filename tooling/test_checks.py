@@ -764,6 +764,55 @@ with tempfile.TemporaryDirectory(prefix="factor-docs-test-") as _d:
           and "factor count" in _archive_out,
           _archive_out)
 
+print("27. placed status on settled results")
+ptmp = tempfile.mkdtemp(prefix="placed-test-")
+old_root = refresh.ROOT
+refresh.ROOT = ptmp
+try:
+    os.makedirs(os.path.join(ptmp, "data", "results"))
+
+    def _runner(pos, horse):
+        return {"pos": pos, "horse": horse}
+
+    full = {"meetings": [{"course": "C", "races": [
+        {"time": "13:00", "title": "Handicap Hurdle",
+         "runners": [_runner("%d" % i, "H%d" % i) for i in range(1, 17)]},
+        {"time": "14:00", "title": "Novices' Hurdle",
+         "runners": [_runner("%d" % i, "J%d" % i) for i in range(1, 8)]},
+        {"time": "15:00", "title": "Selling Hurdle",
+         "runners": [_runner("%d" % i, "K%d" % i) for i in range(1, 4)]},
+    ]}]}
+    with open(os.path.join(ptmp, "data", "2026-11-13.json"), "w") as f:
+        json.dump(full, f)
+    rows = [
+        {"course": "C", "time": "13:00", "race": "13:00 C", "winner": "H1",
+         "pick": "H4", "hit": False},
+        {"course": "C", "time": "14:00", "race": "14:00 C", "winner": "J1",
+         "pick": "J3", "hit": False},
+        {"course": "C", "time": "15:00", "race": "15:00 C", "winner": "K1",
+         "pick": "K1", "hit": True},
+        {"course": "C", "time": "16:00", "race": "16:00 C", "winner": "X",
+         "pick": "Y", "hit": False},
+    ]
+    annotated = refresh.annotate_result_rows("2026-11-13", rows)
+    check("placed: three races matched", annotated == 3, annotated)
+    check("placed: 16-runner handicap fourth is placed",
+          rows[0].get("placed") is True and rows[0].get("place_places") == 4, rows[0])
+    check("placed: 7-runner third misses two places",
+          rows[1].get("placed") is False and rows[1].get("place_places") == 2, rows[1])
+    check("placed: three-runner race is win only",
+          rows[2].get("place_places") == 0, rows[2])
+    check("placed: pick and win flag untouched",
+          rows[0].get("pick") == "H4" and rows[0].get("hit") is False, rows[0])
+    html = refresh.results_block("2026-11-13", rows)
+    check("placed: Results column is rendered", "Placed?" in html, html[:200])
+    check("placed: Yes, No and Win only are rendered",
+          "placed yes" in html and "placed no" in html and "placed winonly" in html,
+          html)
+finally:
+    refresh.ROOT = old_root
+    shutil.rmtree(ptmp, ignore_errors=True)
+
 print()
 print("passed %d, failed %d%s" % (
     len(PASSED), len(FAILED), (", skipped %d" % len(SKIPPED)) if SKIPPED else ""))

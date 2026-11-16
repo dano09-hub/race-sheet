@@ -86,10 +86,13 @@ def settle_day(iso):
         row["hit"] = (pick == row.get("winner"))
         row["pick_finish"] = ""
         filled += 1
-    if filled:
+    annotated = annotate_result_rows(iso, rows)
+    if filled or annotated:
         with open(rpath, "w", encoding="utf-8") as f:
             json.dump(rows, f, ensure_ascii=False)
     print(f"  settled:     {filled} picks written for {iso}")
+    if annotated:
+        print(f"  placed:      {annotated} finishes checked for {iso}")
     return filled
 
 
@@ -122,6 +125,88 @@ def carry_picks(old_rows, new_rows):
     return kept
 
 
+def _result_name(value):
+    """Normalise a horse/course name for matching result rows."""
+    import html as _html
+    s = _html.unescape(str(value or "")).lower()
+    s = re.sub(r"\(.*?\)", "", s)
+    s = re.sub(r"[^a-z0-9 ]", "", s)
+    return re.sub(r"\s+", " ", s).strip()
+
+
+def _result_pos(value):
+    """Return the numeric finish from values such as ``3rd`` or ``PU``."""
+    m = re.match(r"\s*(\d+)", str(value or ""))
+    return int(m.group(1)) if m else None
+
+
+def _is_handicap(race):
+    return bool(re.search(r"\b(handicap|hcp)\b", str(race.get("title", "")), re.I))
+
+
+def annotate_result_rows(iso, rows):
+    """Add finish and standard each-way place status to settled-result rows.
+
+    The full result file has every finishing position; the summary file only
+    stores the first three. This looks up the original pick in the full result
+    and marks whether it finished inside the paid places for its field size and
+    handicap status. It never changes ``pick`` or ``hit``.
+    """
+    full_path = os.path.join(ROOT, "data", f"{iso}.json")
+    if not os.path.exists(full_path):
+        return 0
+    try:
+        with open(full_path, encoding="utf-8") as f:
+            full = json.load(f)
+    except (OSError, ValueError):
+        return 0
+
+    by_course_winner = {}
+    for meeting in full.get("meetings", []):
+        course = meeting.get("course", "")
+        for race in meeting.get("races", []):
+            for runner in race.get("runners", []):
+                key = (_result_name(course), _result_name(runner.get("horse")))
+                by_course_winner.setdefault(key, []).append(race)
+
+    changed = 0
+    for row in rows or []:
+        pick = row.get("pick")
+        if not pick:
+            continue
+        key = (_result_name(row.get("course")), _result_name(row.get("winner")))
+        candidates = by_course_winner.get(key) or []
+        if not candidates:
+            continue
+        row_time = str(row.get("time") or "").strip()
+        if not row_time:
+            m = re.search(r"(\d{1,2}:\d{2})", str(row.get("race") or ""))
+            row_time = m.group(1) if m else ""
+        race = next((r for r in candidates
+                     if str(r.get("time", "")).strip() == row_time), None)
+        race = race or candidates[0]
+        runners = race.get("runners", [])
+        runner = next((r for r in runners
+                       if _result_name(r.get("horse")) == _result_name(pick)), None)
+        if not runner:
+            continue
+
+        finish = str(runner.get("pos") or "").strip()
+        if finish and not row.get("pick_finish"):
+            row["pick_finish"] = finish
+        if not row.get("places"):
+            row["places"] = [str(r.get("horse", "")) for r in runners[:3]]
+        field = len([r for r in runners
+                     if str(r.get("pos", "")).strip().upper() not in ("NR", "WD")])
+        places, fraction = eachway.place_terms(field, _is_handicap(race))
+        pos = _result_pos(finish)
+        row["place_places"] = places
+        row["place_fraction"] = fraction
+        row["placed"] = bool(places and pos is not None and pos <= places)
+        changed += 1
+    return changed
+
+
 #!/usr/bin/env python3
 """Refresh the page in one command: scrape, rebuild, stage for deploy.
 
@@ -150,6 +235,7 @@ sys.path.insert(0, HERE)
 
 from parse_cards import get, parse_course_page          # noqa: E402
 from scrape_us import get as us_get, parse_track        # noqa: E402
+import eachway                                          # noqa: E402
 import scrape_results                                   # noqa: E402
 try:
     import scrape_hk
@@ -300,6 +386,7 @@ def results_block(iso, rows):
     import html as _h
     rows = sorted(rows, key=lambda r: (r["course"], r.get("race", "")))
     hits_box, judged_box = [0], [0]
+    placed_box, place_judged = [0], [0]
     trs = []
     for r in rows:
         places = " &middot; ".join(_h.escape(p) for p in r.get("places", []))
@@ -315,23 +402,38 @@ def results_block(iso, rows):
             if r.get("hit"):
                 hits_box[0] += 1
             judged_box[0] += 1
+            place_places = r.get("place_places")
+            if place_places == 0:
+                place_cell = '<td class="placed winonly">Win only</td>'
+            elif r.get("placed") is True:
+                place_cell = '<td class="placed yes">Yes</td>'
+                placed_box[0] += 1
+                place_judged[0] += 1
+            elif r.get("placed") is False:
+                place_cell = '<td class="placed no">No</td>'
+                place_judged[0] += 1
+            else:
+                place_cell = '<td class="placed unknown">&mdash;</td>'
         else:
             cell = '<td class="pick none">card not kept</td>'
+            place_cell = '<td class="placed unknown">&mdash;</td>'
         trs.append('<tr data-course="%s" data-time="%s" data-winner="%s">'
-                   '<td><b>%s</b></td><td>%s</td><td>%s</td><td class="muted">%s</td>%s</tr>'
+                   '<td><b>%s</b></td><td>%s</td><td>%s</td><td class="muted">%s</td>%s%s</tr>'
                    % (_h.escape(r["course"]), m.group(1) if m else "", _h.escape(r["winner"]),
-                      _h.escape(r["course"]), _h.escape(t[:44]), _h.escape(r["winner"]), places, cell))
+                      _h.escape(r["course"]), _h.escape(t[:44]), _h.escape(r["winner"]), places, cell, place_cell))
     label = dt.datetime.strptime(iso, "%Y-%m-%d").strftime("%-d %B %Y")
+    placed_summary = (" <b>%d of %d</b> picks placed." % (placed_box[0], place_judged[0])
+                      if place_judged[0] else "")
     return (
         "<!-- RESULTS_SL_START -->\n"
         '<h3>Settled &mdash; %s</h3>\n'
         '<p class="method">%d races settled. %sWinner first, then the '
-        'first three home in finishing order.</p>\n'
+        'first three home in finishing order.%s</p>\n'
         '<div class="scroll"><table><thead><tr><th>Course</th><th>Race</th><th>Winner</th>'
-        '<th>Places</th><th>Our pick</th></tr></thead><tbody>%s</tbody></table></div>\n'
+        '<th>Places</th><th>Our pick</th><th>Placed?</th></tr></thead><tbody>%s</tbody></table></div>\n'
         "<!-- RESULTS_SL_END -->" % (label, len(rows),
               ("<b>%d of %d</b> winners were our top pick. " % (hits_box[0], judged_box[0])) if judged_box[0] else "",
-              "".join(trs))
+              placed_summary, "".join(trs))
     )
 
 
