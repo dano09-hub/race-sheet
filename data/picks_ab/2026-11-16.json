@@ -1,7 +1,9 @@
 {
  "date": "2026-11-16",
- "generated": "2026-11-16T21:37:29",
+ "generated": "2026-11-16T21:57:23",
  "note": "A/B of the twelve-factor model with and without a rating in the rpr slot",
+ "metric": "rpr",
+ "label": "rating",
  "cards": 13,
  "same": 11,
  "changed": 2,

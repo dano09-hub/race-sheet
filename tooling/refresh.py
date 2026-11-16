@@ -516,23 +516,24 @@ def market_block_html(res, iso):
             + '</div>\n<!-- MARKET_SL_END -->')
 
 
-def ab_block_html(t, iso):
-    """The rating A/B panel that sits beside the market re-check."""
+def ab_block_html(t, iso, title="Rating A/B", subject="rating",
+                  start="AB_SL_START", end="AB_SL_END"):
+    """A with/without-signal panel for a fixed model comparison."""
     import html as _html
     esc = lambda s: _html.escape(str(s or ""))
     if not t or not t.get("races"):
-        inner = ('<h3>Rating A/B</h3><p class="k pending">'
+        inner = (f'<h3>{esc(title)}</h3><p class="k pending">'
                  'No settled A/B days yet.</p>')
         if t and t.get("pending"):
             inner += (f'<p class="k">Waiting for results: '
                       f'{esc(", ".join(t["pending"]))}</p>')
     else:
         n = t["races"]
-        inner = (f'<h3>Rating A/B &mdash; with and without a rating</h3>'
+        inner = (f'<h3>{esc(title)} &mdash; with and without a {esc(subject)}</h3>'
                  f'<p class="k">Across <b>{n}</b> settled races: '
-                 f'<b>{t["with"]}</b> winners with the rating '
+                 f'<b>{t["with"]}</b> winners with the {esc(subject)} '
                  f'({100*t["with"]/n:.1f}%), <b>{t["without"]}</b> without '
-                 f'({100*t["without"]/n:.1f}%). The rating changed the pick in '
+                 f'({100*t["without"]/n:.1f}%). The {esc(subject)} changed the pick in '
                  f'{t["changed"]} races (won {t["changed_won"]}, '
                  f'lost {t["changed_lost"]}).</p>')
         if t.get("bench_races"):
@@ -557,9 +558,14 @@ def ab_block_html(t, iso):
         if t.get("pending"):
             inner += (f'<p class="k">Waiting for results: '
                       f'{esc(", ".join(t["pending"]))}</p>')
-    return ('<!-- AB_SL_START -->\n<div class="mktcheck abcheck">' + inner
-            + '</div>\n<!-- AB_SL_END -->')
+    return (f'<!-- {start} -->\n<div class="mktcheck abcheck">' + inner
+            + f'</div>\n<!-- {end} -->')
 
+
+def us_ab_block_html(t, iso):
+    """The US comparison: model with and without the HRN speed figure."""
+    return ab_block_html(t, iso, title="US A/B", subject="speed figure",
+                         start="US_AB_SL_START", end="US_AB_SL_END")
 
 def main():
     days = 2
@@ -584,6 +590,7 @@ def main():
     # prices are up, and print which picks survived contact with the market
     market_check = None
     ab_result = None
+    us_ab_result = None
     test_picks = os.path.join(ROOT, "data", "picks_ab", f"test_{iso}.json")
     test_cards = os.path.join(ROOT, "data", "cards", f"{iso}_two_meetings.json")
     if os.path.exists(test_picks) and os.path.exists(test_cards):
@@ -706,6 +713,18 @@ def main():
         pass
     except Exception as e:
         print(f"  ab:          snapshot skipped ({e})")
+
+    try:
+        import ab_day, ab_tally
+        us_snap = os.path.join(ROOT, "data", "picks_ab_us", f"{iso}.json")
+        if not os.path.exists(us_snap):
+            ab_day.main(iso, metric="ts", out_dir="picks_ab_us", label="speed figure", regions=("US",))
+        us_ab_result = ab_tally.collect(snap_dir="picks_ab_us", regions=("US",),
+                                        subject="speed figure")
+    except SystemExit:
+        pass
+    except Exception as e:
+        print(f"  us ab:       snapshot skipped ({e})")
     try:
         import collect_eachway_prices
         n = collect_eachway_prices.collect_file(
@@ -749,6 +768,8 @@ def main():
                   market_block_html(market_check, iso), html, count=1, flags=re.S)
     html = re.sub(r"<!-- AB_SL_START -->.*?<!-- AB_SL_END -->",
                   ab_block_html(ab_result, iso), html, count=1, flags=re.S)
+    html = re.sub(r"<!-- US_AB_SL_START -->.*?<!-- US_AB_SL_END -->",
+                  us_ab_block_html(us_ab_result, iso), html, count=1, flags=re.S)
 
     open(INDEX, "w", encoding="utf-8").write(html)
     os.makedirs(os.path.join(ROOT, "dist", "public"), exist_ok=True)

@@ -281,11 +281,23 @@ def main(argv=None):
         except (SystemExit, Exception) as e:
             print(f"  ab:          snapshot skipped ({e})")
     ab_result = ab_tally.collect()
+
+    us_snap = os.path.join(ROOT, "data", "picks_ab_us", f"{iso}.json")
+    if not os.path.exists(us_snap):
+        try:
+            import ab_day
+            ab_day.main(iso, metric="ts", out_dir="picks_ab_us", label="speed figure", regions=("US",))
+        except (SystemExit, Exception) as e:
+            print(f"  us ab:       snapshot skipped ({e})")
+    us_ab_result = ab_tally.collect(snap_dir="picks_ab_us", regions=("US",),
+                                    subject="speed figure")
     html = open(refresh.INDEX, encoding="utf-8").read()
     html = _replace(html, "RESULTS_SL",
                     refresh.results_block_all() or refresh.results_block(iso, rows))
     html = _replace(html, "AB_SL",
                     refresh.ab_block_html(ab_result, iso))
+    html = _replace(html, "US_AB_SL",
+                    refresh.us_ab_block_html(us_ab_result, iso))
     open(refresh.INDEX, "w", encoding="utf-8").write(html)
     os.makedirs(os.path.join(ROOT, "dist", "public"), exist_ok=True)
     open(os.path.join(ROOT, "dist", "public", "index.html"),

@@ -1,0 +1,315 @@
+{
+ "date": "2026-11-16",
+ "generated": "2026-11-16T21:57:23",
+ "note": "A/B of the twelve-factor model with and without a speed figure in the ts slot",
+ "metric": "ts",
+ "label": "speed figure",
+ "cards": 43,
+ "same": 34,
+ "changed": 9,
+ "ratedRunners": 338,
+ "runners": 355,
+ "rows": [
+  {
+   "course": "Finger Lakes",
+   "time": "17:10",
+   "withRating": "Hamilton's Reason",
+   "withoutRating": "B Provocateur",
+   "changed": true
+  },
+  {
+   "course": "Finger Lakes",
+   "time": "17:38",
+   "withRating": "Charlie My Boy",
+   "withoutRating": "Charlie My Boy",
+   "changed": false
+  },
+  {
+   "course": "Finger Lakes",
+   "time": "18:06",
+   "withRating": "Hot Gossip",
+   "withoutRating": "Hot Gossip",
+   "changed": false
+  },
+  {
+   "course": "Finger Lakes",
+   "time": "18:34",
+   "withRating": "Vino Rose",
+   "withoutRating": "Vino Rose",
+   "changed": false
+  },
+  {
+   "course": "Finger Lakes",
+   "time": "19:03",
+   "withRating": "Sunshine Lucile",
+   "withoutRating": "Tornado Control",
+   "changed": true
+  },
+  {
+   "course": "Finger Lakes",
+   "time": "19:32",
+   "withRating": "Follow Your Arrow",
+   "withoutRating": "Follow Your Arrow",
+   "changed": false
+  },
+  {
+   "course": "Finger Lakes",
+   "time": "20:01",
+   "withRating": "Hey Pal",
+   "withoutRating": "Serra",
+   "changed": true
+  },
+  {
+   "course": "Finger Lakes",
+   "time": "20:30",
+   "withRating": "Ty Ty Rose",
+   "withoutRating": "Ty Ty Rose",
+   "changed": false
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "17:15",
+   "withRating": "Hightail Fox",
+   "withoutRating": "Hightail Fox",
+   "changed": false
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "17:43",
+   "withRating": "Hot Ice",
+   "withoutRating": "Hot Ice",
+   "changed": false
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "18:11",
+   "withRating": "Sweeping Giant",
+   "withoutRating": "Puff'smagicdragon",
+   "changed": true
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "18:39",
+   "withRating": "She Stopped Short",
+   "withoutRating": "She Stopped Short",
+   "changed": false
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "19:07",
+   "withRating": "Quiet Amigo",
+   "withoutRating": "Quiet Amigo",
+   "changed": false
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "19:35",
+   "withRating": "Lady Catalina",
+   "withoutRating": "Red Royalty",
+   "changed": true
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "20:03",
+   "withRating": "The Miracle Kiut",
+   "withoutRating": "The Miracle Kiut",
+   "changed": false
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "20:31",
+   "withRating": "El Guty",
+   "withoutRating": "El Guty",
+   "changed": false
+  },
+  {
+   "course": "Mountaineer",
+   "time": "00:00",
+   "withRating": "Rocky Colavito",
+   "withoutRating": "Rocky Colavito",
+   "changed": false
+  },
+  {
+   "course": "Mountaineer",
+   "time": "00:25",
+   "withRating": "Opposite the Crowd",
+   "withoutRating": "Opposite the Crowd",
+   "changed": false
+  },
+  {
+   "course": "Mountaineer",
+   "time": "00:50",
+   "withRating": "Blue Ice",
+   "withoutRating": "Blue Ice",
+   "changed": false
+  },
+  {
+   "course": "Mountaineer",
+   "time": "01:15",
+   "withRating": "Beautriz",
+   "withoutRating": "Beautriz",
+   "changed": false
+  },
+  {
+   "course": "Mountaineer",
+   "time": "01:40",
+   "withRating": "Happy I Got It",
+   "withoutRating": "Happy I Got It",
+   "changed": false
+  },
+  {
+   "course": "Mountaineer",
+   "time": "02:05",
+   "withRating": "Shuler Gray",
+   "withoutRating": "Botita",
+   "changed": true
+  },
+  {
+   "course": "Mountaineer",
+   "time": "02:30",
+   "withRating": "Larimar",
+   "withoutRating": "Larimar",
+   "changed": false
+  },
+  {
+   "course": "Mountaineer",
+   "time": "02:55",
+   "withRating": "Estrella Silver",
+   "withoutRating": "Estrella Silver",
+   "changed": false
+  },
+  {
+   "course": "Parx Racing",
+   "time": "17:05",
+   "withRating": "Royalties Riches",
+   "withoutRating": "Royalties Riches",
+   "changed": false
+  },
+  {
+   "course": "Parx Racing",
+   "time": "17:32",
+   "withRating": "Pearls and Heels",
+   "withoutRating": "Pearls and Heels",
+   "changed": false
+  },
+  {
+   "course": "Parx Racing",
+   "time": "17:59",
+   "withRating": "Possum",
+   "withoutRating": "Possum",
+   "changed": false
+  },
+  {
+   "course": "Parx Racing",
+   "time": "18:26",
+   "withRating": "Hey Buddy",
+   "withoutRating": "Hey Buddy",
+   "changed": false
+  },
+  {
+   "course": "Parx Racing",
+   "time": "18:53",
+   "withRating": "Gordian Knot",
+   "withoutRating": "Gordian Knot",
+   "changed": false
+  },
+  {
+   "course": "Parx Racing",
+   "time": "19:20",
+   "withRating": "Pam Pam",
+   "withoutRating": "Pam Pam",
+   "changed": false
+  },
+  {
+   "course": "Parx Racing",
+   "time": "19:47",
+   "withRating": "Sweet Laura",
+   "withoutRating": "Sweet Laura",
+   "changed": false
+  },
+  {
+   "course": "Parx Racing",
+   "time": "20:14",
+   "withRating": "Humoresque",
+   "withoutRating": "Humoresque",
+   "changed": false
+  },
+  {
+   "course": "Parx Racing",
+   "time": "20:41",
+   "withRating": "Kuz It's Chilly",
+   "withoutRating": "Kuz It's Chilly",
+   "changed": false
+  },
+  {
+   "course": "Zia Park",
+   "time": "19:05",
+   "withRating": "Pleasin N Teasin",
+   "withoutRating": "Pleasin N Teasin",
+   "changed": false
+  },
+  {
+   "course": "Zia Park",
+   "time": "19:32",
+   "withRating": "Bernlet",
+   "withoutRating": "Bernlet",
+   "changed": false
+  },
+  {
+   "course": "Zia Park",
+   "time": "19:59",
+   "withRating": "Blameitonblantons",
+   "withoutRating": "Onefortheditch",
+   "changed": true
+  },
+  {
+   "course": "Zia Park",
+   "time": "20:26",
+   "withRating": "F S Liberty Belle",
+   "withoutRating": "F S Liberty Belle",
+   "changed": false
+  },
+  {
+   "course": "Zia Park",
+   "time": "20:53",
+   "withRating": "Daddys Favorite",
+   "withoutRating": "Daddys Favorite",
+   "changed": false
+  },
+  {
+   "course": "Zia Park",
+   "time": "21:20",
+   "withRating": "Unbridled Beauty",
+   "withoutRating": "Unbridled Beauty",
+   "changed": false
+  },
+  {
+   "course": "Zia Park",
+   "time": "21:47",
+   "withRating": "La Bella Bella",
+   "withoutRating": "La Bella Bella",
+   "changed": false
+  },
+  {
+   "course": "Zia Park",
+   "time": "22:14",
+   "withRating": "L Squared",
+   "withoutRating": "Senor Rojo",
+   "changed": true
+  },
+  {
+   "course": "Zia Park",
+   "time": "22:41",
+   "withRating": "Crossrighthands",
+   "withoutRating": "Crossrighthands",
+   "changed": false
+  },
+  {
+   "course": "Zia Park",
+   "time": "23:08",
+   "withRating": "Winning Big",
+   "withoutRating": "Rocks a Black Suit",
+   "changed": true
+  }
+ ]
+}

@@ -60,7 +60,7 @@ def decimal_odds(odds):
     return None
 
 
-def card_favourites(date):
+def card_favourites(date, regions=("GB", "IRE")):
     """Shortest-priced runner in the archived pre-race card, keyed by race."""
     path = os.path.join(ROOT, "data", "cards", "by_date", f"{date}.json")
     if not os.path.exists(path):
@@ -71,7 +71,7 @@ def card_favourites(date):
         return {}
     cards = []
     if isinstance(data, dict):
-        for reg in ("GB", "IRE"):
+        for reg in regions:
             cards += data.get(reg) or []
     else:
         cards = data or []
@@ -92,14 +92,14 @@ def card_favourites(date):
     return out
 
 
-def collect():
+def collect(snap_dir="picks_ab", regions=("GB", "IRE"), subject="rating"):
     out = {"days": [], "pending": [], "races": 0, "with": 0, "without": 0,
            "changed": 0, "changed_won": 0, "changed_lost": 0,
            "bench_races": 0, "fav_wins": 0, "pick_hits": 0, "pick_fav": 0,
-           "ci_with": (0.0, 0.0), "ci_without": (0.0, 0.0),
+           "ci_with": (0.0, 0.0), "ci_without": (0.0, 0.0), "subject": subject,
            "enough": False, "verdict": ""}
     snap_dates, day_dates = set(), set()
-    for p in sorted(glob.glob(os.path.join(ROOT, "data", "picks_ab", "*.json"))):
+    for p in sorted(glob.glob(os.path.join(ROOT, "data", snap_dir, "*.json"))):
         date = os.path.basename(p)[:-5]
         if not re.match(r"^\d{4}-\d{2}-\d{2}$", date):
             continue            # test_/alias snapshots are not whole days
@@ -113,9 +113,13 @@ def collect():
             rows = rows.get("races", [])
         winners = {}
         for r in rows:
-            if r.get("winner"):
-                winners.setdefault((norm(r.get("course")), time_key(r)), r)
-        favs = card_favourites(date)
+            if not r.get("winner"):
+                continue
+            reg = r.get("region")
+            if regions and reg is not None and reg not in regions:
+                continue
+            winners.setdefault((norm(r.get("course")), time_key(r)), r)
+        favs = card_favourites(date, regions=regions)
 
         n = w = wo = ch = cw = cl = 0
         for x in snap.get("rows", []):
@@ -157,18 +161,19 @@ def collect():
         lo_o, hi_o = out["ci_without"]
         if out["enough"]:
             if lo_w > hi_o:
-                out["verdict"] = ("The rating's interval sits above no-rating: it is "
+                out["verdict"] = (f"The {subject}'s interval sits above no-{subject}: it is "
                                   "adding winners, not just changing picks.")
             elif lo_o > hi_w:
-                out["verdict"] = "The rating is hurting: its interval sits below no-rating."
+                out["verdict"] = (f"The {subject} is hurting: its interval sits below "
+                                  f"no-{subject}.")
             else:
                 out["verdict"] = ("Large enough sample, no separation: the intervals "
-                                  "overlap, so the rating has not shown an edge either way.")
+                                  f"overlap, so the {subject} has not shown an edge either way.")
         else:
             need_r = max(0, MIN_RACES - out["races"])
             need_c = max(0, MIN_CHANGED - out["changed"])
             out["verdict"] = (f"Not yet meaningful: needs {need_r} more settled races and "
-                              f"{need_c} more races where the rating changes the pick.")
+                              f"{need_c} more races where the {subject} changes the pick.")
     else:
         out["verdict"] = "No settled A/B days yet."
     return out
