@@ -1,0 +1,152 @@
+{
+ "date": "2026-11-15",
+ "generated": "2026-11-16T13:10:01",
+ "note": "A/B of the twelve-factor model with and without a rating in the rpr slot",
+ "cards": 20,
+ "same": 17,
+ "changed": 3,
+ "ratedRunners": 121,
+ "runners": 267,
+ "rows": [
+  {
+   "course": "Cheltenham",
+   "time": "12:50",
+   "withRating": "Wolf Rayet",
+   "withoutRating": "Wolf Rayet",
+   "changed": false
+  },
+  {
+   "course": "Cheltenham",
+   "time": "13:25",
+   "withRating": "Spectacularsunrise",
+   "withoutRating": "Crystal Island",
+   "changed": true
+  },
+  {
+   "course": "Cheltenham",
+   "time": "14:00",
+   "withRating": "Highlands Legacy",
+   "withoutRating": "Highlands Legacy",
+   "changed": false
+  },
+  {
+   "course": "Cheltenham",
+   "time": "14:35",
+   "withRating": "King Of Answers",
+   "withoutRating": "Havaila",
+   "changed": true
+  },
+  {
+   "course": "Cheltenham",
+   "time": "15:10",
+   "withRating": "Pioneer Pete",
+   "withoutRating": "Pioneer Pete",
+   "changed": false
+  },
+  {
+   "course": "Cheltenham",
+   "time": "15:45",
+   "withRating": "Cameron De Fiacre",
+   "withoutRating": "Cameron De Fiacre",
+   "changed": false
+  },
+  {
+   "course": "Fontwell",
+   "time": "12:30",
+   "withRating": "Bridge",
+   "withoutRating": "Bridge",
+   "changed": false
+  },
+  {
+   "course": "Fontwell",
+   "time": "13:05",
+   "withRating": "Mask Of Zorro",
+   "withoutRating": "Mask Of Zorro",
+   "changed": false
+  },
+  {
+   "course": "Fontwell",
+   "time": "13:43",
+   "withRating": "Bass Hunter",
+   "withoutRating": "Bass Hunter",
+   "changed": false
+  },
+  {
+   "course": "Fontwell",
+   "time": "14:20",
+   "withRating": "Pass The Buck",
+   "withoutRating": "Pass The Buck",
+   "changed": false
+  },
+  {
+   "course": "Fontwell",
+   "time": "14:50",
+   "withRating": "Majestic Moment",
+   "withoutRating": "Majestic Moment",
+   "changed": false
+  },
+  {
+   "course": "Fontwell",
+   "time": "15:25",
+   "withRating": "County Champs",
+   "withoutRating": "County Champs",
+   "changed": false
+  },
+  {
+   "course": "Navan",
+   "time": "11:40",
+   "withRating": "Green Soul",
+   "withoutRating": "Green Soul",
+   "changed": false
+  },
+  {
+   "course": "Navan",
+   "time": "12:10",
+   "withRating": "Holly's Thunder",
+   "withoutRating": "Holly's Thunder",
+   "changed": false
+  },
+  {
+   "course": "Navan",
+   "time": "12:40",
+   "withRating": "Mr Caulfield",
+   "withoutRating": "Mr Caulfield",
+   "changed": false
+  },
+  {
+   "course": "Navan",
+   "time": "13:15",
+   "withRating": "Reaching High",
+   "withoutRating": "Reaching High",
+   "changed": false
+  },
+  {
+   "course": "Navan",
+   "time": "13:50",
+   "withRating": "Mart Lane",
+   "withoutRating": "Mart Lane",
+   "changed": false
+  },
+  {
+   "course": "Navan",
+   "time": "14:25",
+   "withRating": "Classical Creek",
+   "withoutRating": "Classical Creek",
+   "changed": false
+  },
+  {
+   "course": "Navan",
+   "time": "15:00",
+   "withRating": "The Enabler",
+   "withoutRating": "Firefox",
+   "changed": true
+  },
+  {
+   "course": "Navan",
+   "time": "15:35",
+   "withRating": "Sarahs Lawn",
+   "withoutRating": "Sarahs Lawn",
+   "changed": false
+  }
+ ]
+}
