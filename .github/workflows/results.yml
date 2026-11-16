@@ -3,7 +3,8 @@ name: Progressive results
 on:
   schedule:
     # Update after each block of races; the 21:10 refresh is the final check.
-    - cron: "*/20 12-20 * * *"
+    # The early window settles the US races that finish after midnight UTC.
+    - cron: "*/20 0-3,12-20 * * *"
   workflow_dispatch:
 
 permissions:
@@ -30,7 +31,12 @@ jobs:
       - name: Install tools
         run: python3 -m pip install -r requirements.txt
       - name: Add completed races
-        run: python3 tooling/settle_today.py --progressive
+        run: |
+          day=$(date -u +%F)
+          if [ "$(date -u +%H)" -lt 12 ]; then
+            day=$(date -u -d 'yesterday' +%F)
+          fi
+          python3 tooling/settle_today.py "$day" --progressive
       - name: Commit results
         id: commit
         run: |

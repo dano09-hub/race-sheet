@@ -392,6 +392,8 @@ def results_block(iso, rows):
         places = " &middot; ".join(_h.escape(p) for p in r.get("places", []))
         t = r.get("race", "")
         m = re.search(r"(\d{1,2}:\d{2})", t)
+        time_attr = r.get("time") or (m.group(1) if m else "")
+        course_cell = ('<span class="rtag">USA</span> ' if r.get("region") == "US" else '') + _h.escape(r["course"])
         pk = r.get("pick", "")
         if pk:
             fin = r.get("pick_finish", "")
@@ -419,8 +421,8 @@ def results_block(iso, rows):
             place_cell = '<td class="placed unknown">&mdash;</td>'
         trs.append('<tr data-course="%s" data-time="%s" data-winner="%s">'
                    '<td><b>%s</b></td><td>%s</td><td>%s</td><td class="muted">%s</td>%s%s</tr>'
-                   % (_h.escape(r["course"]), m.group(1) if m else "", _h.escape(r["winner"]),
-                      _h.escape(r["course"]), _h.escape(t[:44]), _h.escape(r["winner"]), places, cell, place_cell))
+                   % (_h.escape(r["course"]), time_attr, _h.escape(r["winner"]),
+                      course_cell, _h.escape(t[:44]), _h.escape(r["winner"]), places, cell, place_cell))
     label = dt.datetime.strptime(iso, "%Y-%m-%d").strftime("%-d %B %Y")
     placed_summary = (" <b>%d of %d</b> picks placed." % (placed_box[0], place_judged[0])
                       if place_judged[0] else "")

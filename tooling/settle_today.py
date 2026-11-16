@@ -24,6 +24,7 @@ sys.path.insert(0, HERE)
 import eachway                                           # noqa: E402
 import refresh                                           # noqa: E402
 import fetch_results_sl as sl                            # noqa: E402
+import fetch_results_us                                # noqa: E402
 
 
 def _ordinal(pos):
@@ -155,6 +156,47 @@ def _merge_irish(iso, rows):
     return added
 
 
+def _merge_us(rows, us_rows, cards):
+    """Add completed US races that have an archived card to score."""
+    have = {(refresh._result_name(r.get("course")), _time(r)) for r in rows}
+    added = 0
+    for r in us_rows:
+        if not _card_for(cards, r):
+            continue
+        key = (refresh._result_name(r.get("course")), _time(r))
+        if key in have:
+            continue
+        rows.append(r)
+        have.add(key)
+        added += 1
+    return added
+
+
+def _annotate_us(iso, rows):
+    """Finish status for US picks: win/place/show, i.e. top three."""
+    cards = _cards(iso)
+    changed = 0
+    for row in rows:
+        if not isinstance(row.get("finish"), dict):
+            continue
+        card = _card_for(cards, row)
+        if not card:
+            continue
+        if not row.get("race"):
+            row["race"] = f"{row.get('time', '')} {card.get('course', '')}".strip()
+        pick = row.get("pick")
+        if not pick:
+            continue
+        pos = next((n for h, n in row["finish"].items()
+                    if refresh._result_name(h) == refresh._result_name(pick)), None)
+        row["pick_finish"] = _ordinal(pos) if pos else "unplaced"
+        row["place_places"] = 3
+        row["place_fraction"] = 0.2
+        row["placed"] = bool(pos and pos <= 3)
+        changed += 1
+    return changed
+
+
 def _replace(html, name, body):
     return re.sub(rf"<!-- {name}_START -->.*?<!-- {name}_END -->",
                   body, html, count=1, flags=re.S)
@@ -185,11 +227,20 @@ def main(argv=None):
         return 0
 
     rows = _clean(sl.fetch_day(iso))
-    if not rows:
-        print(f"  today:       no completed GB/IRE races for {iso}")
+    if rows:
+        _merge_irish(iso, rows)
+    try:
+        us_rows = _clean(fetch_results_us.fetch_day(iso))
+    except Exception as e:
+        us_rows = []
+        print(f"  results us:  skipped ({e})")
+    if not rows and not us_rows:
+        print(f"  today:       no completed races for {iso}")
         return 0
-    _merge_irish(iso, rows)
+    added_us = _merge_us(rows, us_rows, _cards(iso))
     _clean(rows)
+    if added_us:
+        print(f"  results us:  +{added_us} completed US races")
 
     path = os.path.join(ROOT, "data", "results", f"{iso}.json")
     old_rows = []
@@ -216,9 +267,10 @@ def main(argv=None):
     with open(path, encoding="utf-8") as f:
         rows = json.load(f)
     checked = _annotate(iso, rows)
+    checked_us = _annotate_us(iso, rows)
     with open(path, "w", encoding="utf-8") as f:
         json.dump(rows, f, ensure_ascii=False)
-    print(f"  placed:      {checked} finishes checked for {iso}")
+    print(f"  placed:      {checked + checked_us} finishes checked for {iso}")
 
     import ab_tally
     ab_result = ab_tally.collect()
