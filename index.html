@@ -186,6 +186,15 @@
   #bestTable .num{text-align:right; font-variant-numeric:tabular-nums}
   #bestTable .score{font-weight:700; color:var(--green)}
   #bestTable .horse{font-weight:600}
+  #lateTable{width:100%; border-collapse:collapse; font-size:13px; min-width:760px}
+  #lateTable th{text-align:left; font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); border-bottom:1px solid var(--line); padding:0 8px 7px; white-space:nowrap}
+  #lateTable td{padding:8px; border-bottom:1px solid var(--line); vertical-align:top}
+  #lateTable tr:last-child td{border-bottom:none}
+  #lateTable tbody tr[data-card]{cursor:pointer}
+  #lateTable tbody tr[data-card]:hover td{background:rgba(0,0,0,.03)}
+  #lateTable .num{text-align:right; font-variant-numeric:tabular-nums}
+  #lateTable .score{font-weight:700; color:var(--green)}
+  #lateTable .horse{font-weight:600}
 
   @media print{
     body{background:#fff}
@@ -473,6 +482,28 @@
     <details class="note"><summary>How Clear and Runners work</summary><p><b>Gap</b> is the margin over the second-rated horse. <b>Clear</b> divides that gap by the spread of the field, so picks are comparable between races of any size. <b>Runners</b> is the field size, which tells you how hard the race is to win and whether the place terms run to three.</p></details>
   </section>
 
+  <section class="panel" data-panel="late">
+    <h2>Late races</h2>
+    <p class="method">US cards still to come, with the model&rsquo;s top pick for each race. These are the races that follow the UK and Ireland card.</p>
+    <p class="method" id="lateCount"></p>
+    <div class="scroll">
+      <table id="lateTable">
+        <thead>
+          <tr>
+            <th>Time (UTC)</th>
+            <th>Course</th>
+            <th>Race</th>
+            <th>Pick</th>
+            <th>Score</th>
+            <th>Price</th>
+            <th>Runners</th>
+          </tr>
+        </thead>
+        <tbody id="lateBody"></tbody>
+      </table>
+    </div>
+  </section>
+
   <section class="panel" data-panel="card">
     <h2>Race</h2>
     <div class="racepick">
@@ -681,6 +712,7 @@ Results</h2>
 
   var TABS = [
     ['today', 'Today'],
+    ['late', 'Late Races'],
     ['card', 'Card'],
     ['ranked', 'Ranked'],
     ['past', 'Past'],
@@ -4422,6 +4454,7 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_FRI);  // UK/IRE today, US lat
       btn.setAttribute('aria-selected', on ? 'true' : 'false');
     });
 
+    if (name === 'late') renderLateRaces();
     try { localStorage.setItem(TAB_STORE, name); } catch (e) { /* storage may be unavailable */ }
   }
 
@@ -4493,6 +4526,14 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_FRI);  // UK/IRE today, US lat
     window.scrollTo({top: 0, behavior: 'smooth'});
   });
 
+  $('lateBody').addEventListener('click', function (e) {
+    var tr = e.target.closest ? e.target.closest('tr[data-card]') : null;
+    if (!tr) return;
+    openCard(tr.getAttribute('data-card'));
+    setTab('card');
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  });
+
   $('tabbar').addEventListener('click', function (e) {
     var btn = e.target.closest ? e.target.closest('[data-tab]') : null;
     if (btn) setTab(btn.getAttribute('data-tab'));
@@ -4549,6 +4590,37 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_FRI);  // UK/IRE today, US lat
     window.scrollTo({top: 0, behavior: 'smooth'});
   });
 
+  function renderLateRaces() {
+    var body = $('lateBody');
+    if (!body) return;
+    var now = new Date();
+    var races = CARDS_US.filter(function (c) { return !isResulted(c); })
+      .sort(function (a, b) { return cardWhen(a) - cardWhen(b); });
+    var count = $('lateCount');
+    if (!races.length) {
+      body.innerHTML = '<tr><td colspan="7" class="empty">No US races left in this build.</td></tr>';
+      if (count) count.textContent = 'No US races still to come.';
+      return;
+    }
+    if (count) count.textContent = races.length + ' US races still to come.';
+    body.innerHTML = races.map(function (card) {
+      var rows = computeCard(card).rows.slice().sort(function (a, b) { return b.total - a.total; });
+      var top = rows[0] || null;
+      var mins = Math.round((cardWhen(card) - now) / 60000);
+      var when = mins < 90 ? ('in ' + mins + ' min') : ('in ' + Math.round(mins / 60) + 'h');
+      return '<tr data-card="' + esc(card.id) + '">' +
+        '<td class="num">' + esc(card.time) + '</td>' +
+        '<td><span class="rtag">USA</span> <b>' + esc(card.course) + '</b>' +
+          '<div style="font-size:11px;color:var(--muted)">' + esc(when) + '</div></td>' +
+        '<td>' + esc(card.race) + '</td>' +
+        '<td class="horse">' + esc(top && top.r.horse ? top.r.horse : '—') + '</td>' +
+        '<td class="num score">' + (top ? top.total.toFixed(1) : '—') + '</td>' +
+        '<td class="num">' + esc(top && top.r.odds ? top.r.odds : '—') + '</td>' +
+        '<td class="num">' + card.runners.length + '</td>' +
+      '</tr>';
+    }).join('');
+  }
+
   function renderAll() {
     renderRacePicker();
     renderMeta();
@@ -4557,6 +4629,7 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_FRI);  // UK/IRE today, US lat
     renderResults();
     renderPast();
     renderNextRace();
+    renderLateRaces();
     renderBanner();
   }
 
