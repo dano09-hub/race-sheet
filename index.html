@@ -490,7 +490,7 @@
       <table id="lateTable">
         <thead>
           <tr>
-            <th>Time (UTC)</th>
+            <th>Time (UK / UTC)</th>
             <th>Course</th>
             <th>Race</th>
             <th>Pick</th>
@@ -4590,6 +4590,16 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_FRI);  // UK/IRE today, US lat
     window.scrollTo({top: 0, behavior: 'smooth'});
   });
 
+  function ukClock(d) {
+    try {
+      return d.toLocaleTimeString('en-GB', {
+        timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit', hour12: false
+      });
+    } catch (e) {
+      return '';
+    }
+  }
+
   function renderLateRaces() {
     var body = $('lateBody');
     if (!body) return;
@@ -4609,7 +4619,8 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_FRI);  // UK/IRE today, US lat
       var mins = Math.round((cardWhen(card) - now) / 60000);
       var when = mins < 90 ? ('in ' + mins + ' min') : ('in ' + Math.round(mins / 60) + 'h');
       return '<tr data-card="' + esc(card.id) + '">' +
-        '<td class="num">' + esc(card.time) + '</td>' +
+        '<td class="num">' + esc(ukClock(cardWhen(card))) +
+          '<div style="font-size:11px;color:var(--muted)">UTC ' + esc(card.time) + '</div></td>' +
         '<td><span class="rtag">USA</span> <b>' + esc(card.course) + '</b>' +
           '<div style="font-size:11px;color:var(--muted)">' + esc(when) + '</div></td>' +
         '<td>' + esc(card.race) + '</td>' +
