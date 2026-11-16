@@ -21,6 +21,15 @@ def norm(s):
     return re.sub(r"\s+", " ", s).strip()
 
 
+def time_key(row):
+    """Race time, falling back to the time embedded in the race label."""
+    t = str(row.get("time") or "").strip()
+    if not t:
+        m = re.search(r"(\d{1,2}:\d{2})", str(row.get("race") or ""))
+        t = m.group(1) if m else ""
+    return t[:5]
+
+
 def wilson(hits, n, z=1.96):
     if n == 0:
         return (0.0, 0.0)
@@ -105,12 +114,12 @@ def collect():
         winners = {}
         for r in rows:
             if r.get("winner"):
-                winners.setdefault((norm(r.get("course")), str(r.get("time", ""))[:5]), r)
+                winners.setdefault((norm(r.get("course")), time_key(r)), r)
         favs = card_favourites(date)
 
         n = w = wo = ch = cw = cl = 0
         for x in snap.get("rows", []):
-            key = (norm(x.get("course")), str(x.get("time", ""))[:5])
+            key = (norm(x.get("course")), time_key(x))
             row = winners.get(key)
             if not row:
                 continue

@@ -809,6 +809,9 @@ try:
     check("placed: Yes, No and Win only are rendered",
           "placed yes" in html and "placed no" in html and "placed winonly" in html,
           html)
+    check("A/B: race-label time fallback",
+          ab_tally.time_key({"time": "", "race": "14:35 Cheltenham"}) == "14:35",
+          ab_tally.time_key({"time": "", "race": "14:35 Cheltenham"}))
 finally:
     refresh.ROOT = old_root
     shutil.rmtree(ptmp, ignore_errors=True)
