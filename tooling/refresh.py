@@ -593,8 +593,8 @@ def ab_place_chart(t, subject):
         except (TypeError, ValueError):
             return str(value or "")
 
-    parts = [f'<svg viewBox="0 0 {W} {H}" role="img" aria-label="Daily win and top-three place rate">',
-             '<title>Daily win and top-three place rate</title>']
+    parts = [f'<svg viewBox="0 0 {W} {H}" role="img" aria-label="Daily win/place rate and 7-day place trend">',
+             '<title>Daily win/place rate and 7-day place trend</title>']
     for pct in (0, 25, 50, 75, 100):
         yy = y(pct)
         parts.append(f'<line class="grid" x1="{left}" y1="{yy:.1f}" x2="{W-right}" y2="{yy:.1f}"/>')
@@ -609,6 +609,32 @@ def ab_place_chart(t, subject):
     parts.append(f'<text x="{left+22}" y="41">Place</text>')
     parts.append(f'<line x1="{left+90}" y1="38" x2="{left+106}" y2="38" stroke="#63756e" stroke-width="2.5" stroke-dasharray="6 4"/>')
     parts.append(f'<text x="{left+112}" y="41">Win</text>')
+    parts.append(f'<line x1="{left+170}" y1="38" x2="{left+186}" y2="38" stroke="#63756e" stroke-width="6" opacity=".28"/>')
+    parts.append(f'<text x="{left+192}" y="41">7-day place</text>')
+
+    def day_value(value):
+        try:
+            return dt.date.fromisoformat(value)
+        except (TypeError, ValueError):
+            return None
+
+    for arm, field in (("with", "with_placed"), ("without", "without_placed")):
+        pts = []
+        for i, d in enumerate(days):
+            end = day_value(d["date"])
+            if end is None:
+                window = days[:i + 1]
+            else:
+                start = end - dt.timedelta(days=6)
+                window = [x for x in days[:i + 1]
+                          if (day_value(x["date"]) or end) >= start]
+            races = sum(x["races"] for x in window)
+            placed = sum(x.get(field, 0) for x in window)
+            rate = 100 * placed / races if races else 0
+            pts.append((xs[i], y(rate), rate, races, placed))
+        if n > 1:
+            path = " ".join(f"{x:.1f},{yy:.1f}" for x, yy, _, _, _ in pts)
+            parts.append(f'<polyline class="rolling {arm}" points="{path}"/>')
 
     for arm, colour in (("with", "#14453d"), ("without", "#a9761c")):
         for kind, field in (("place", f"{arm}_placed"), ("win", arm)):
@@ -628,8 +654,8 @@ def ab_place_chart(t, subject):
     for x, d in zip(xs, days):
         parts.append(f'<text x="{x:.1f}" y="{H-8}" text-anchor="middle">{esc(label(d["date"]))}</text>')
     parts.append('</svg>')
-    note = "One settled day; the trend starts with the next day." if n == 1 else ""
-    return ('<div class="abchart"><p class="k abchartnote">Daily win and top-three place rate</p>'
+    note = "One settled day; the 7-day trend starts with the next day." if n == 1 else ""
+    return ('<div class="abchart"><p class="k abchartnote">Daily win/place rate and 7-day place trend</p>'
             + "".join(parts) + (f'<p class="k abchartnote">{esc(note)}</p>' if note else '')
             + '</div>')
 
