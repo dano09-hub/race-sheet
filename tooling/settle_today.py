@@ -305,6 +305,18 @@ def main(argv=None):
             print(f"  overlay:     backfill skipped ({e})")
     us_ab_result = ab_tally.collect(snap_dir="picks_ab_us", regions=("US",),
                                     subject="speed figure", overlay_dir="overlay_us")
+    try:
+        import fetch_overlay_us
+        fetch_overlay_us.ensure_raw(iso)
+        fetch_overlay_us.fetch_inform()
+    except Exception as e:
+        print(f"  us flags:    live data skipped ({e})")
+    try:
+        import us_flags
+        us_flags_result = us_flags.build(iso)
+    except Exception as e:
+        print(f"  us flags:    build skipped ({e})")
+        us_flags_result = None
     html = open(refresh.INDEX, encoding="utf-8").read()
     html = _replace(html, "RESULTS_SL",
                     refresh.results_block_all() or refresh.results_block(iso, rows))
@@ -312,6 +324,8 @@ def main(argv=None):
                     refresh.ab_block_html(ab_result, iso))
     html = _replace(html, "US_AB_SL",
                     refresh.us_ab_block_html(us_ab_result, iso))
+    html = _replace(html, "US_FLAGS_SL",
+                    refresh.us_flags_block_html(us_flags_result, iso))
     open(refresh.INDEX, "w", encoding="utf-8").write(html)
     os.makedirs(os.path.join(ROOT, "dist", "public"), exist_ok=True)
     open(os.path.join(ROOT, "dist", "public", "index.html"),

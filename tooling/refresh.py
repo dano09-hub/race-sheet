@@ -684,6 +684,13 @@ def us_ab_block_html(t, iso):
     return ab_block_html(t, iso, title="US A/B", subject="speed figure",
                          start="US_AB_SL_START", end="US_AB_SL_END")
 
+
+def us_flags_block_html(t, iso):
+    """The read-only US runner-context tab."""
+    import us_flags
+    return ("<!-- US_FLAGS_SL_START -->\n" + us_flags.block_html(t)
+            + "\n<!-- US_FLAGS_SL_END -->")
+
 def main():
     days = 2
     skip_checks = False
@@ -708,6 +715,7 @@ def main():
     market_check = None
     ab_result = None
     us_ab_result = None
+    us_flags_result = None
     test_picks = os.path.join(ROOT, "data", "picks_ab", f"test_{iso}.json")
     test_cards = os.path.join(ROOT, "data", "cards", f"{iso}_two_meetings.json")
     if os.path.exists(test_picks) and os.path.exists(test_cards):
@@ -838,6 +846,8 @@ def main():
             n = fetch_overlay_us.archive(iso)
             if n:
                 print(f"  overlay:     {n} US fair-chance snapshots")
+        fetch_overlay_us.ensure_raw(iso)
+        fetch_overlay_us.fetch_inform()
         b = fetch_overlay_us.backfill_from_cards(iso)
         if b:
             print(f"  overlay:     +{b} archived-card backfills")
@@ -855,6 +865,12 @@ def main():
         pass
     except Exception as e:
         print(f"  us ab:       snapshot skipped ({e})")
+    try:
+        import us_flags
+        us_flags_result = us_flags.build(iso)
+        print(f"  us flags:    {us_flags_result['total']} picks, {us_flags_result['live_detail']} with live detail")
+    except Exception as e:
+        print(f"  us flags:    build skipped ({e})")
     try:
         import collect_eachway_prices
         n = collect_eachway_prices.collect_file(
@@ -900,6 +916,8 @@ def main():
                   ab_block_html(ab_result, iso), html, count=1, flags=re.S)
     html = re.sub(r"<!-- US_AB_SL_START -->.*?<!-- US_AB_SL_END -->",
                   us_ab_block_html(us_ab_result, iso), html, count=1, flags=re.S)
+    html = re.sub(r"<!-- US_FLAGS_SL_START -->.*?<!-- US_FLAGS_SL_END -->",
+                  us_flags_block_html(us_flags_result, iso), html, count=1, flags=re.S)
 
     open(INDEX, "w", encoding="utf-8").write(html)
     os.makedirs(os.path.join(ROOT, "dist", "public"), exist_ok=True)

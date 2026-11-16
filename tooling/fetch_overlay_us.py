@@ -19,6 +19,9 @@ import urllib.request
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 URL = "https://theoverlay.co.uk/data_us.json"
+INFORM_URL = "https://theoverlay.co.uk/us_inform.json"
+RAW_DIR = os.path.join(ROOT, "data", "us_data")
+INFORM_PATH = os.path.join(ROOT, "data", "us_inform.json")
 HEADERS = {
     "User-Agent": ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
                    "AppleWebKit/537.36 Chrome/122 Safari/537.36"),
@@ -174,10 +177,58 @@ def backfill_from_cards(date, folder="overlay_us", force=False):
         json.dump(data, f, ensure_ascii=False, indent=1)
     return len(races)
 
-def fetch():
-    req = urllib.request.Request(URL, headers=HEADERS)
+def _fetch_url(url):
+    req = urllib.request.Request(url, headers=HEADERS)
     with urllib.request.urlopen(req, timeout=30) as response:
         return json.loads(response.read().decode("utf-8"))
+
+
+def fetch():
+    return _fetch_url(URL)
+
+
+def _raw_day(payload, date):
+    for key in ("today", "tomorrow"):
+        day = payload.get(key) or {}
+        if day.get("date") == date:
+            return day
+    return None
+
+
+def _save_raw(payload, date):
+    day = _raw_day(payload, date)
+    if not day:
+        return 0
+    os.makedirs(RAW_DIR, exist_ok=True)
+    data = {"date": date, "generated": payload.get("generated") or "",
+            "source": "The Overlay /data_us.json",
+            "url": "https://theoverlay.co.uk/us-racing.html",
+            "meetings": day.get("meetings") or []}
+    with open(os.path.join(RAW_DIR, f"{date}.json"), "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=1)
+    return sum(len(m.get("races") or []) for m in data["meetings"])
+
+
+def ensure_raw(date):
+    """Cache the live US runner detail used by the read-only flags tab."""
+    path = os.path.join(RAW_DIR, f"{date}.json")
+    if os.path.exists(path):
+        return 0
+    return _save_raw(fetch(), date)
+
+
+def fetch_inform(force=False):
+    """Refresh the weekly trainer/jockey/horse inform snapshot at most daily."""
+    if os.path.exists(INFORM_PATH) and not force:
+        age = dt.datetime.now().timestamp() - os.path.getmtime(INFORM_PATH)
+        if age < 20 * 3600:
+            return 0
+    payload = _fetch_url(INFORM_URL)
+    if not payload.get("ok"):
+        return 0
+    with open(INFORM_PATH, "w", encoding="utf-8") as f:
+        json.dump(payload, f, ensure_ascii=False, indent=1)
+    return len(payload.get("trainers") or {})
 
 
 def archive(date, force=False):
@@ -185,6 +236,7 @@ def archive(date, force=False):
     if os.path.exists(path) and not force:
         return 0
     payload = fetch()
+    _save_raw(payload, date)
     data = build(payload, date)
     if not data:
         return 0

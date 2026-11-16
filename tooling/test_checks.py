@@ -32,6 +32,7 @@ import fetch_formfav as ff  # noqa: E402
 import refresh         # noqa: E402
 import recheck_market  # noqa: E402
 import settle          # noqa: E402
+import us_flags        # noqa: E402
 
 PASSED, FAILED, SKIPPED = [], [], []
 
@@ -812,6 +813,73 @@ try:
     check("A/B: race-label time fallback",
           ab_tally.time_key({"time": "", "race": "14:35 Cheltenham"}) == "14:35",
           ab_tally.time_key({"time": "", "race": "14:35 Cheltenham"}))
+
+    check("US flags: form 2 is second", us_flags.last_run("233412") == "2nd",
+          us_flags.last_run("233412"))
+    check("US flags: pulled-up form is named", us_flags.last_run("P") == "Pulled up",
+          us_flags.last_run("P"))
+    check("US flags: no form is blank", us_flags.last_run("") == "")
+    check("US flags: days since last run", us_flags.days_since("2026-09-25", "2026-11-16") == 52)
+    check("US flags: rating rank with a tie",
+          us_flags.rating_rank([{"horse": "A", "or": 90},
+                                {"horse": "B", "or": 90},
+                                {"horse": "C", "or": 80}], "C") == "3rd of 3",
+          us_flags.rating_rank([{"horse": "A", "or": 90},
+                                {"horse": "B", "or": 90},
+                                {"horse": "C", "or": 80}], "C"))
+    name, stats = us_flags.match_person({"R Rodriguez": {"sr30": 20, "r30": 10}},
+                                        "Rudy R. Rodriguez")
+    check("US flags: trainer initial is matched", name == "R Rodriguez" and stats["sr30"] == 20,
+          (name, stats))
+    name, stats = us_flags.match_person({"J Smith": {}, "Johnny Smith": {}}, "John Smith")
+    check("US flags: ambiguous surname is rejected", name is None and stats is None,
+          (name, stats))
+    name, stats = us_flags.match_person({"M Ferraro": {"sr30": 12.5, "r30": 16},
+                                         "Michael Ferraro": {"sr30": 9.1, "r30": 11}},
+                                        "M Ferraro")
+    check("US flags: exact name wins over surname variant",
+          name == "M Ferraro" and stats["sr30"] == 12.5, (name, stats))
+
+    with tempfile.TemporaryDirectory(prefix="us-flags-test-") as fd:
+        def write(name, value):
+            path = Path(fd, name)
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(json.dumps(value), encoding="utf-8")
+        write("cards.json", {"US": [{
+            "course": "Test Park", "time": "17:00", "race": "Test Stakes",
+            "runners": [{"horse": "Horse A", "trainer": "Rudy R. Rodriguez",
+                         "jockey": "J. M. Rohena", "form": "233", "draw": "3"}]}]})
+        write("picks.json", {"rows": [{"course": "Test Park", "time": "17:00",
+                                       "withRating": "Horse A"}]})
+        write("raw.json", {"date": "2026-11-16", "meetings": [{
+            "course": "Test Park", "races": [{
+                "time": "17:00", "race": "Test Stakes",
+                "runners": [
+                    {"horse": "Horse A", "horse_id": 1, "trainer": "R Rodriguez",
+                     "jockey": "J Rohena", "form": "233", "or": 90, "draw": 3},
+                    {"horse": "Horse B", "horse_id": 2, "trainer": "Other",
+                     "jockey": "Other", "form": "1", "or": 95, "draw": 1}]}]}]})
+        write("inform.json", {"updated": "2026-11-09T04:01:23+00:00",
+                              "trainers": {"R Rodriguez": {"sr30": 20, "r30": 10}},
+                              "jockeys": {"J Rohena": {"sr30": 25, "r30": 4}},
+                              "horses": {"1": {"last": "2026-09-25"}}})
+        built = us_flags.build("2026-11-16", cards_path=str(Path(fd, "cards.json")),
+                               picks_path=str(Path(fd, "picks.json")),
+                               raw_path=str(Path(fd, "raw.json")),
+                               inform_path=str(Path(fd, "inform.json")))
+        row = built["rows"][0]
+        check("US flags: build keeps the pick", row["pick"] == "Horse A", row)
+        check("US flags: build ranks the runner", row["rank"] == "2nd of 2", row)
+        check("US flags: build matches trainer and jockey",
+              row["trainer_form"] == {"sr": 20, "runs": 10}
+              and row["jockey_form"] == {"sr": 25, "runs": 4}, row)
+        check("US flags: build gets last run and days",
+              row["last_run"] == "2nd" and row["days"] == 52, row)
+        html = refresh.us_flags_block_html(built, "2026-11-16")
+        check("US flags: read-only tab is rendered",
+              "US flags" in html and "Trainer 30d" in html and "Horse A" in html, html[:200])
+        check("US flags: no scoring controls",
+              "input" not in html.lower() and "button" not in html.lower(), html[:200])
 finally:
     refresh.ROOT = old_root
     shutil.rmtree(ptmp, ignore_errors=True)
