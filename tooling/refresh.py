@@ -570,15 +570,15 @@ def ab_block_html(t, iso, title="Rating A/B", subject="rating",
 
 
 def ab_place_chart(t, subject):
-    """Simple SVG trend of the daily top-three place rate for both A/B arms."""
+    """SVG trend of daily win and top-three place rates for both A/B arms."""
     import html as _html
     days = [d for d in (t.get("days") or []) if d.get("races")]
     if not days:
         return ""
     esc = lambda s: _html.escape(str(s or ""))
 
-    W, H = 640, 205
-    left, right, top, bottom = 40, 14, 48, 28
+    W, H = 640, 225
+    left, right, top, bottom = 40, 14, 60, 28
     pw, ph = W - left - right, H - top - bottom
     n = len(days)
     xs = [left + (pw * (i / (n - 1) if n > 1 else 0.5)) for i in range(n)]
@@ -593,39 +593,46 @@ def ab_place_chart(t, subject):
         except (TypeError, ValueError):
             return str(value or "")
 
-    parts = [f'<svg viewBox="0 0 {W} {H}" role="img" aria-label="Daily top-three place rate">',
-             '<title>Daily top-three place rate</title>']
+    parts = [f'<svg viewBox="0 0 {W} {H}" role="img" aria-label="Daily win and top-three place rate">',
+             '<title>Daily win and top-three place rate</title>']
     for pct in (0, 25, 50, 75, 100):
         yy = y(pct)
         parts.append(f'<line class="grid" x1="{left}" y1="{yy:.1f}" x2="{W-right}" y2="{yy:.1f}"/>')
         parts.append(f'<text x="{left-6}" y="{yy+3:.1f}" text-anchor="end">{pct}%</text>')
 
-    series = (("With", "with_placed", "#14453d", "with"),
-              ("Without", "without_placed", "#a9761c", "without"))
-    for i, (name, field, colour, css) in enumerate(series):
-        pts = []
-        for x, d in zip(xs, days):
-            rate = 100 * d.get(field, 0) / d["races"]
-            pts.append((x, y(rate), rate, d))
-        if n > 1:
-            path = " ".join(f"{x:.1f},{yy:.1f}" for x, yy, _, _ in pts)
-            parts.append(f'<polyline class="{css}" points="{path}"/>')
-        for x, yy, rate, d in pts:
-            parts.append(
-                f'<circle class="{css}" cx="{x:.1f}" cy="{yy:.1f}" r="4">'
-                f'<title>{esc(name)} {esc(subject)}: {rate:.1f}% '
-                f'({d.get(field, 0)}/{d["races"]}) on {esc(d["date"])}</title></circle>')
-        lx = left + i * 190
-        parts.append(f'<line x1="{lx}" y1="22" x2="{lx+18}" y2="22" stroke="{colour}" stroke-width="2.5"/>')
-        parts.append(f'<text x="{lx+24}" y="26">{esc(name)} {esc(subject)}</text>')
+    # Colour identifies the arm; solid/dashed identifies place/win.
+    for i, (name, colour) in enumerate((("With", "#14453d"), ("Without", "#a9761c"))):
+        lx = left + i * 180
+        parts.append(f'<line x1="{lx}" y1="18" x2="{lx+16}" y2="18" stroke="{colour}" stroke-width="2.5"/>')
+        parts.append(f'<text x="{lx+22}" y="21">{esc(name)} {esc(subject)}</text>')
+    parts.append(f'<line x1="{left}" y1="38" x2="{left+16}" y2="38" stroke="#63756e" stroke-width="2.5"/>')
+    parts.append(f'<text x="{left+22}" y="41">Place</text>')
+    parts.append(f'<line x1="{left+90}" y1="38" x2="{left+106}" y2="38" stroke="#63756e" stroke-width="2.5" stroke-dasharray="6 4"/>')
+    parts.append(f'<text x="{left+112}" y="41">Win</text>')
+
+    for arm, colour in (("with", "#14453d"), ("without", "#a9761c")):
+        for kind, field in (("place", f"{arm}_placed"), ("win", arm)):
+            pts = []
+            for x, d in zip(xs, days):
+                rate = 100 * d.get(field, 0) / d["races"]
+                pts.append((x, y(rate), rate, d))
+            if n > 1:
+                path = " ".join(f"{x:.1f},{yy:.1f}" for x, yy, _, _ in pts)
+                parts.append(f'<polyline class="{arm} {kind}" points="{path}"/>')
+            for x, yy, rate, d in pts:
+                parts.append(
+                    f'<circle class="{arm} {kind}" cx="{x:.1f}" cy="{yy:.1f}" r="4">'
+                    f'<title>{arm.capitalize()} {esc(subject)} {kind}: {rate:.1f}% '
+                    f'({d.get(field, 0)}/{d["races"]}) on {esc(d["date"])}</title></circle>')
 
     for x, d in zip(xs, days):
         parts.append(f'<text x="{x:.1f}" y="{H-8}" text-anchor="middle">{esc(label(d["date"]))}</text>')
     parts.append('</svg>')
     note = "One settled day; the trend starts with the next day." if n == 1 else ""
-    return ('<div class="abchart"><p class="k abchartnote">Daily top-three place rate</p>'
+    return ('<div class="abchart"><p class="k abchartnote">Daily win and top-three place rate</p>'
             + "".join(parts) + (f'<p class="k abchartnote">{esc(note)}</p>' if note else '')
             + '</div>')
+
 
 
 def us_ab_block_html(t, iso):
