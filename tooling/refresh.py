@@ -424,16 +424,37 @@ def results_block(iso, rows):
                    % (_h.escape(r["course"]), time_attr, _h.escape(r["winner"]),
                       course_cell, _h.escape(t[:44]), _h.escape(r["winner"]), places, cell, place_cell))
     label = dt.datetime.strptime(iso, "%Y-%m-%d").strftime("%-d %B %Y")
+
+    def _split_stats(subset):
+        judged = sum(1 for r in subset if r.get("pick"))
+        hits = sum(1 for r in subset if r.get("hit"))
+        place_judged = sum(1 for r in subset
+                           if r.get("pick") and r.get("placed") is not None)
+        placed = sum(1 for r in subset if r.get("placed") is True)
+        return hits, judged, placed, place_judged
+
+    uk_rows = [r for r in rows if r.get("region") != "US"]
+    us_rows = [r for r in rows if r.get("region") == "US"]
+    split_bits = []
+    for name, subset in (("UK/IRE", uk_rows), ("US", us_rows)):
+        if not subset:
+            continue
+        h, j, p, pj = _split_stats(subset)
+        split_bits.append(
+            "<b>%s</b> %d of %d winners, %d of %d placed." % (name, h, j, p, pj))
+    split_summary = (" " + " ".join(split_bits)) if split_bits else ""
+
     placed_summary = (" <b>%d of %d</b> picks placed." % (placed_box[0], place_judged[0])
                       if place_judged[0] else "")
     return (
         "<!-- RESULTS_SL_START -->\n"
         '<h3>Settled &mdash; %s</h3>\n'
-        '<p class="method">%d races settled. %sWinner first, then the '
+        '<p class="method">%d races settled.%s %sWinner first, then the '
         'first three home in finishing order.%s</p>\n'
         '<div class="scroll"><table><thead><tr><th>Course</th><th>Race</th><th>Winner</th>'
         '<th>Places</th><th>Our pick</th><th>Placed?</th></tr></thead><tbody>%s</tbody></table></div>\n'
         "<!-- RESULTS_SL_END -->" % (label, len(rows),
+              split_summary,
               ("<b>%d of %d</b> winners were our top pick. " % (hits_box[0], judged_box[0])) if judged_box[0] else "",
               placed_summary, "".join(trs))
     )
