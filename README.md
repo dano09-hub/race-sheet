@@ -343,9 +343,21 @@ future backfill reads what the model saw at the off instead of re-scraping a
 card that may have moved. Rows settled before this change have no snapshot, and
 the twenty above will simply stay blank.
 
+The pick is only one horse per race, so `tooling/field_audit.py` checks every
+runner instead: it buckets the printed chance and compares each bucket with how
+often those runners actually won, with a Wilson interval per bucket. It reads
+the frozen card snapshots once fifty races carry them (the Results block adds a
+whole-field line at that point) and can read the archive CSV for an immediate
+answer. On the live archive's 117 races / 1,266 runners at scale 0.04 it gives
+ECE 0.7 points and Brier 0.0777 per runner, with every band holding: 0-5%
+stated 3.5% and won 3.8%, 5-15% stated 8.6% and won 8.6%, 15-30% stated 19.8%
+and won 17.2%, 30%+ stated 41.1% and won 50.0% (each inside its interval).
+
 ```bash
-python3 tooling/chance_audit.py     # the same numbers, on the command line
-python3 tooling/backfill_chance.py  # reattach chances where a card agrees
+python3 tooling/chance_audit.py                  # pick-level, on the command line
+python3 tooling/field_audit.py                   # every runner, from snapshots
+python3 tooling/field_audit.py --csv data/training/runners.csv
+python3 tooling/backfill_chance.py               # reattach chances where a card agrees
 ```
 
 ## Checks

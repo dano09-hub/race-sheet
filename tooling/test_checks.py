@@ -1596,6 +1596,50 @@ finally:
     shutil.rmtree(_stmp)
 
 print()
+print("whole-field calibration")
+import field_audit
+_aud = field_audit.audit([(np.array([0.5, 0.5]), 0), (np.array([0.2, 0.8]), 1)])
+check("field: counts races and runners",
+      _aud["races"] == 2 and _aud["runners"] == 4, _aud.get("runners"))
+check("field: counts top-1 hits", _aud["hits"] == 2, _aud.get("hits"))
+check("field: log loss per race", abs(_aud["nll"] - 0.4581) < 1e-3, _aud["nll"])
+check("field: brier per runner", abs(_aud["brier"] - 0.145) < 1e-9, _aud["brier"])
+check("field: ECE weights the bands", abs(_aud["ece"] - 10.0) < 1e-9, _aud["ece"])
+check("field: every band carries its own interval",
+      len(_aud["bands"]) == 2
+      and all(b["lo"] <= b["won"] <= b["hi"] for b in _aud["bands"]),
+      _aud["bands"])
+_ftmp = tempfile.mkdtemp()
+try:
+    with open(os.path.join(_ftmp, "2026-11-17.json"), "w", encoding="utf-8") as f:
+        json.dump({"races": [
+            {"region": "GB", "winner": "A",
+             "card": {"runners": [{"horse": "A", "share": 0.6},
+                                   {"horse": "B", "share": 0.4}]}},
+            {"region": "US", "winner": "A",
+             "card": {"runners": [{"horse": "A", "share": 0.9}]}},
+            {"region": "GB", "winner": "C"},
+        ]}, f)
+    _frows = field_audit.from_snapshots(_ftmp)
+    check("field: snapshots skip US and cards without a share",
+          len(_frows) == 1 and abs(float(_frows[0][0][0]) - 0.6) < 1e-9)
+    check("field: no summary before the minimum sample",
+          chance_audit.field_summary(_ftmp) is None)
+finally:
+    shutil.rmtree(_ftmp)
+_block = refresh.chance_block_html({
+    "races": 60, "wins": 17, "rate": 17 / 60, "stated": 18.0,
+    "lo": 11.0, "hi": 25.0, "half": 7.0, "first": "2026-11-18",
+    "last": "2026-12-30", "inside": True, "more_early": 0,
+    "more_decisive": 1580,
+    "field": {"races": 60, "runners": 600, "hits": 17, "nll": 2.1,
+              "brier": 0.077, "ece": 0.9, "stated": 18.0, "rate": 17 / 60,
+              "bands": [{"label": "5-15%", "runners": 300, "stated": 9.0,
+                         "won": 8.0, "lo": 5.0, "hi": 12.0}]}})
+check("audit block: whole-field line when snapshots exist",
+      "Whole field" in _block, _block[:150])
+
+print()
 print("passed %d, failed %d%s" % (
     len(PASSED), len(FAILED), (", skipped %d" % len(SKIPPED)) if SKIPPED else ""))
 sys.exit(1 if FAILED else 0)

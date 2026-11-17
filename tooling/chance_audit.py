@@ -22,20 +22,24 @@ import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
+sys.path.insert(0, HERE)
+
+from calibrate_share import wilson  # noqa: E402  (percentages, one definition)
 
 EARLY = 350
 DECISIVE = 1600
 
 
-def wilson(wins, n, z=1.96):
-    """Wilson score interval for a binomial rate, as fractions."""
-    if not n:
-        return (0.0, 0.0)
-    p = wins / n
-    den = 1 + z * z / n
-    centre = (p + z * z / (2 * n)) / den
-    margin = z * ((p * (1 - p) / n + z * z / (4 * n * n)) ** 0.5) / den
-    return (max(0.0, centre - margin), min(1.0, centre + margin))
+def field_summary(results_dir=None, minimum=50):
+    """Whole-field calibration from frozen cards, once there is enough of it."""
+    try:
+        import field_audit
+    except Exception:
+        return None
+    rows = field_audit.from_snapshots(results_dir)
+    if len(rows) < minimum:
+        return None
+    return field_audit.audit(rows)
 
 
 def collect(results_dir=None):
@@ -65,12 +69,13 @@ def collect(results_dir=None):
     lo, hi = wilson(wins, n)
     return {
         "races": n, "wins": wins, "rate": wins / n, "stated": stated,
-        "lo": lo * 100, "hi": hi * 100, "half": (hi - lo) * 50,
+        "lo": lo, "hi": hi, "half": (hi - lo) / 2,
         "first": rows[0]["date"], "last": rows[-1]["date"],
-        "inside": lo * 100 <= stated <= hi * 100,
+        "inside": lo <= stated <= hi,
         "more_early": max(0, EARLY - n),
         "more_decisive": max(0, DECISIVE - n),
         "target": EARLY,
+        "field": field_summary(results_dir),
     }
 
 

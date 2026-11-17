@@ -755,6 +755,16 @@ def chance_block_html(a, iso=None):
                  f'<b>{a["stated"]:.1f}%</b> and won <b>{a["wins"]}</b> '
                  f'({a["rate"]*100:.1f}%, 95% CI {a["lo"]:.1f}-{a["hi"]:.1f}%, '
                  f'a half-width of {a["half"]:.1f} points). {fit}</p>')
+        field = a.get("field")
+        if field:
+            band = max(field["bands"], key=lambda b: abs(b["stated"] - b["won"]))
+            inner += (f'<p class="k">Whole field, from the frozen cards: '
+                      f'<b>{field["runners"]}</b> runners in <b>{field["races"]}</b> '
+                      f'races, printed share vs actual win rate within '
+                      f'<b>{field["ece"]:.1f}</b> points (ECE); Brier '
+                      f'{field["brier"]:.4f}. The widest band is '
+                      f'{band["label"]}: stated {band["stated"]:.1f}%, won '
+                      f'{band["won"]:.1f}% (95% CI {band["lo"]:.1f}-{band["hi"]:.1f}%).</p>')
         if a.get("more_early"):
             inner += (f'<p class="k">Not yet informative: needs '
                       f'<b>{a["more_early"]}</b> more settled races. An interval '
