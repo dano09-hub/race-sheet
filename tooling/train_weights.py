@@ -33,7 +33,10 @@ def load_races(path):
     rows = list(csv.DictReader(open(path, encoding="utf-8")))
     groups = {}
     for row in rows:
-        groups.setdefault((row["date"], row["course"], row["time"]), []).append(row)
+        # race_id separates two divisions off at the same time; older exports
+        # without one still group by date, course and off time.
+        groups.setdefault((row["date"], row["course"], row["time"],
+                           row.get("race_id") or ""), []).append(row)
     races = []
     for key in sorted(groups):
         group = groups[key]

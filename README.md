@@ -242,7 +242,21 @@ races the fit is a pipeline test, not evidence, and a weight vector only becomes
 candidate after it wins on a much larger sample and then through the shadow arm.
 
 Scaling up needs an external history. The free Delta Romeo GB/IRE set on Kaggle is
-the natural next input, and a Kaggle API token is the only missing piece.
+the natural input: `tooling/fetch_kaggle.py` downloads it with a Kaggle API token
+(account name plus key, from `kaggle.json`), and `tooling/import_kaggle.py` turns
+the raceform rows into the same runner file, deriving form, days, course and trip
+record, won-last-time-out and jockey/trainer form from each horse's earlier runs
+only, so no row can see its own race.
+
+```bash
+python3 tooling/fetch_kaggle.py --dataset deltaromeo/horse-racing-results-ukireland-2015-2025
+python3 tooling/import_kaggle.py --db data/kaggle/raceform.db --since 2023-01-01
+python3 tooling/train_weights.py --csv data/training/kaggle_runners.csv
+```
+
+That source carries no tipster counts, so the page drops Tips as "the same for
+every runner" and a fit on it says nothing about that weight: it stays at its live
+value.
 
 ## Checks
 
