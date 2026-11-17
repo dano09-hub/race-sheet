@@ -1638,6 +1638,9 @@ _block = refresh.chance_block_html({
                          "won": 8.0, "lo": 5.0, "hi": 12.0}]}})
 check("audit block: whole-field line when snapshots exist",
       "Whole field" in _block, _block[:150])
+check("audit block: whole-field band table",
+      "<th>Printed</th>" in _block and "5-15%" in _block
+      and "300" in _block and "9.0%" in _block, _block[-400:])
 
 print()
 print("passed %d, failed %d%s" % (

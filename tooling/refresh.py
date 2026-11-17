@@ -765,6 +765,18 @@ def chance_block_html(a, iso=None):
                       f'{field["brier"]:.4f}. The widest band is '
                       f'{band["label"]}: stated {band["stated"]:.1f}%, won '
                       f'{band["won"]:.1f}% (95% CI {band["lo"]:.1f}-{band["hi"]:.1f}%).</p>')
+            band_rows = ''.join(
+                f'<tr><td>{esc(b["label"])}</td>'
+                f'<td class="num">{b["runners"]}</td>'
+                f'<td class="num">{b["won"]:.1f}%</td>'
+                f'<td class="num">{b["lo"]:.1f}-{b["hi"]:.1f}%</td>'
+                f'<td class="num">{b["stated"]:.1f}%</td></tr>'
+                for b in field.get("bands", []))
+            if band_rows:
+                inner += ('<table class="abt"><thead><tr><th>Printed</th>'
+                          '<th>Runners</th><th>Won</th><th>95% CI</th>'
+                          '<th>Stated</th></tr></thead><tbody>'
+                          + band_rows + '</tbody></table>')
         if a.get("more_early"):
             inner += (f'<p class="k">Not yet informative: needs '
                       f'<b>{a["more_early"]}</b> more settled races. An interval '
