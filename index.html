@@ -1095,14 +1095,36 @@
   /* Generated audit blocks sit inside a panel: separate them with a rule
      rather than a second card. */
   .panel .mktcheck {
-    margin: 22px 0 0; padding: 18px 0 0; border: 0; border-top: 1px solid var(--line);
-    border-radius: 0; background: transparent; box-shadow: none;
+    margin: 22px 0 0; padding: 18px 0 0;
+    border: 0 !important; border-top: 1px solid var(--line) !important;
+    border-radius: 0 !important; background: transparent !important;
+    box-shadow: none !important;
   }
   .panel .mktcheck:first-of-type { margin-top: 12px; }
+  @media (max-width: 900px) {
+    /* The best-of-the-day grid must be allowed to shrink below its content's
+       intrinsic width on very small phones (320px). */
+    .best-grid { grid-template-columns: minmax(0, 1fr) !important; }
+    .best-card, .best-head, .best-stats { min-width: 0 !important; }
+  }
+  @media (max-width: 720px) {
+    /* Wide audit tables scroll inside their block instead of stretching the
+       page; tap targets get to the 44px minimum. */
+    .mktcheck { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .panel .mktcheck .abt { min-width: 620px !important; width: auto !important; }
+    .panel .mktcheck .abt th { font-size: 10.5px !important; padding: 7px 8px !important; }
+    .panel .mktcheck .abt td { padding: 7px 8px !important; }
+    .panel .angchip { min-height: 40px !important; }
+    .tabs .tab { min-height: 44px !important; }
+    .panel button { min-height: 42px; }
+    .angchip { min-height: 36px; }
+    details > summary { min-height: 44px; display: flex; align-items: center; }
+  }
   @media (max-width: 480px) {
     /* Five tabs fit on one row at phone width instead of scrolling. */
     .tabs { gap: 2px !important; }
-    .tabs .tab { padding: 0 10px !important; font-size: 12.5px !important; }
+    .tabs { gap: 1px !important; }
+    .tabs .tab { padding: 0 8px !important; font-size: 12px !important; }
   }
   @media (max-width: 720px) {
     .panel { padding: 16px 15px; border-radius: 12px; }
