@@ -230,6 +230,42 @@ def _date_files(folder):
     return sorted(out)
 
 
+def result_card_gaps():
+    """Return result rows whose winner is absent from the same-day cards.
+
+    This is deliberately an all-results audit, not just the settled picks.
+    Most historical gaps are card-not-kept rows; exposing them keeps the page
+    honest without changing a pick or a result.
+    """
+    gaps = []
+    total = 0
+    for day in _date_files("results"):
+        rows = _load(os.path.join(ROOT, "data", "results", f"{day}.json"), [])
+        if isinstance(rows, dict):
+            rows = rows.get("races")
+        rows = rows or []
+        card_data = _load(os.path.join(ROOT, "data", "cards", "by_date", f"{day}.json"), {})
+        card_keys = set()
+        if isinstance(card_data, dict):
+            for cards in card_data.values():
+                if not isinstance(cards, list):
+                    continue
+                for card in cards:
+                    course = _norm(card.get("course"))
+                    for runner in card.get("runners") or []:
+                        card_keys.add((course, _norm(runner.get("horse"))))
+        for row in rows:
+            if not isinstance(row, dict):
+                continue
+            total += 1
+            course = _norm(row.get("course"))
+            winner = _norm(row.get("winner"))
+            if (course, winner) not in card_keys:
+                gaps.append({"date": day, "course": course, "winner": winner,
+                             "picked": bool(row.get("pick"))})
+    return {"rows": total, "gaps": gaps}
+
+
 def health(date):
     """A small, honest freshness/coverage check for the generated page."""
     cards = _date_files("cards/by_date")
@@ -238,6 +274,7 @@ def health(date):
     angles = _date_files("us_angles")
     through = [d for d in cards if d <= date]
     window = [d for d in through if d >= (dt.date.fromisoformat(date) - dt.timedelta(days=6)).isoformat()]
+    result_audit = result_card_gaps()
     return {
         "cards_days": cards,
         "results_days": results,
@@ -252,6 +289,8 @@ def health(date):
         # began on 16 Nov and older days are not expected to have one.
         "missing_picks": ([d for d in window if d >= picks[0] and d not in picks]
                           if picks else []),
+        "result_rows": result_audit["rows"],
+        "result_card_gaps": result_audit["gaps"],
         "inform_updated": _load(os.path.join(ROOT, "data", "us_inform.json"), {}).get("updated", ""),
     }
 
@@ -471,6 +510,21 @@ def block_html(data):
                    + f'; results {audit.get("result_rows", 0)} rows, '
                    f'{audit.get("result_with_picks", 0)} with picks, '
                    f'{audit.get("result_matched", 0)} winners found in the cards.')
+    result_gaps = checks.get("result_card_gaps") or []
+    if result_gaps:
+        picked_gaps = sum(1 for g in result_gaps if g.get("picked"))
+        by_place = collections.Counter((g["date"], g["course"]) for g in result_gaps)
+        places = []
+        for (day, course), n in sorted(by_place.items()):
+            try:
+                day = dt.date.fromisoformat(day).strftime("%-d %b")
+            except (TypeError, ValueError):
+                pass
+            places.append(f"{esc(day)} {esc(str(course).title())} {n}")
+        latest += (f'<br><span class="angwarn"><b>Result card audit:</b> '
+                   f'{len(result_gaps)} result rows have no archived card'
+                   + (f' ({picked_gaps} with picks)' if picked_gaps else ', all unpicked')
+                   + f': {esc(", ".join(places))}.</span>')
     return (
         '<div class="angbox">'
         '<h3>US Angles — every runner, every available flag</h3>'

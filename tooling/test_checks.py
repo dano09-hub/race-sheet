@@ -1089,6 +1089,11 @@ try:
               and 'data-angle-filter="fav"' in ahtml, ahtml[:200])
         check("US angles: filter is an input, not a model control",
               "<input" not in ahtml.lower() and "<form" not in ahtml.lower(), ahtml[:200])
+        built["health"]["result_card_gaps"] = [
+            {"date": "2026-11-13", "course": "dundalk", "winner": "x", "picked": False}]
+        ahtml = us_angles.block_html(built)
+        check("US angles: all-result card audit is rendered",
+              "Result card audit:" in ahtml and "all unpicked" in ahtml, ahtml[:200])
 finally:
     refresh.ROOT = old_root
     shutil.rmtree(ptmp, ignore_errors=True)
