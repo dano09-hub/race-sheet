@@ -609,6 +609,8 @@ def audit_rows():
                     break
         if str(price) == "9999999":
             price = ""
+        if not price:
+            price = row.get("sp") or ""
         if row.get("hit"):
             verdict = "hit"
         elif row.get("placed") is True:

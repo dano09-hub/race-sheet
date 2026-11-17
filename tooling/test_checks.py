@@ -1162,7 +1162,7 @@ with tempfile.TemporaryDirectory(prefix="audit-test-") as ad:
         {"course": "C", "time": "13:00", "winner": "A", "pick": "A", "hit": True,
          "placed": True, "pick_finish": "1st", "region": "GB"},
         {"course": "C", "time": "13:00", "winner": "B", "pick": "A", "hit": False,
-         "placed": False, "pick_finish": "2nd", "region": "GB"}]), encoding="utf-8")
+         "placed": False, "pick_finish": "2nd", "region": "GB", "sp": "7.50"}]), encoding="utf-8")
     refresh.ROOT = str(_ar)
     settle._cards_for = lambda iso: [{"id": "c1", "course": "C", "time": "13:00",
                                       "runners": [{"horse": "A"}, {"horse": "B"}]}]
@@ -1170,7 +1170,7 @@ with tempfile.TemporaryDirectory(prefix="audit-test-") as ad:
     settle.score_cards = lambda cards: [{
         "course": "C", "time": "13:00", "pick": "A",
         "runners": [{"horse": "A", "rank": 1, "odds": "2.00", "mktRank": 1},
-                    {"horse": "B", "rank": 2, "odds": "4.00", "mktRank": 2}]}]
+                    {"horse": "B", "rank": 2, "odds": "", "mktRank": None}]}]
     _audit = [json.loads(x) for x in refresh.audit_rows()]
     check("audit: latest UK day is selected", len(_audit) == 2, _audit)
     check("audit: winner rank and field size",
@@ -1183,11 +1183,15 @@ with tempfile.TemporaryDirectory(prefix="audit-test-") as ad:
           _audit[0]["p"] == "A" and _audit[0]["pf"] == "1st", _audit[0])
     check("audit: US-only later day is skipped",
           all(x["c"] != "US C" for x in _audit), _audit)
+    check("audit: settled SP fills a blank card price",
+          _audit[1]["sp"] == "7.50" and _audit[1]["m"] is None, _audit[1])
 refresh.ROOT = _old_root
 settle._cards_for, settle._enrich, settle.score_cards = _old_cards, _old_enrich, _old_score
 check("audit: day label is dynamic", 'id="auditDay"' in _page)
 check("audit: fixed snapshot removed", "fixed 12 November snapshot" not in _page)
-check("audit: card price header", "<th>Card price</th>" in _page)
+check("audit: price header", "<th>Price</th>" in _page)
+check("audit: starting-price fallback is documented",
+      "settled starting price where the card had none" in _page)
 check("audit: market favourite wording", "market favourite" in _page)
 check("audit: generator wired",
       "audit = audit_rows()" in (ROOT / "tooling" / "refresh.py").read_text(encoding="utf-8")
@@ -1236,6 +1240,12 @@ check("parse: positions pair with their own horse",
       _frunners)
 
 print("30d. card prices")
+check("sp: fractional odds become decimal",
+      [st._decimal_sp(v) for v in ("2/1fav", "14/1", "4/11Jfav", "evens", "9/2")]
+      == ["3", "15", "1.36", "2", "5.50"],
+      [st._decimal_sp(v) for v in ("2/1fav", "14/1", "4/11Jfav", "evens", "9/2")])
+check("sp: an unusable price stays blank",
+      st._decimal_sp("") == "" and st._decimal_sp("fav") == "")
 _prows = [{"odds": "4.50"} for _ in range(6)]
 check("cards: an all-round default price is dropped",
       pcards._blank_placeholder_odds(_prows) == 6

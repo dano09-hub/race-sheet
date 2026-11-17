@@ -151,6 +151,50 @@ def _dedupe(rows):
     return removed
 
 
+def _decimal_sp(value):
+    """'2/1fav' -> '3', '4/11' -> '1.36'; '' when there is no usable price."""
+    raw = str(value or "").strip()
+    if re.search(r"\bevens?\b", raw, re.I):
+        return "2"
+    m = re.search(r"(\d+)\s*/\s*(\d+)", raw)
+    if m and int(m.group(2)):
+        v = int(m.group(1)) / int(m.group(2)) + 1
+    else:
+        m = re.search(r"\d+(?:\.\d+)?", raw)
+        if not m:
+            return ""
+        v = float(m.group(0))
+    if v <= 1:
+        return ""
+    return str(int(round(v))) if abs(v - round(v)) < 1e-9 else f"{v:.2f}"
+
+
+def _attach_sp(iso, rows):
+    """Store the settled SP where the card had no price (the Irish meetings)."""
+    try:
+        import fetch_results_ir
+        extra = fetch_results_ir.fetch_day(iso)
+    except Exception as e:
+        print(f"  sp:          skipped ({e})")
+        return 0
+    by_winner = {}
+    for r in extra or []:
+        key = (refresh._result_name(r.get("course")),
+               refresh._result_name(r.get("winner")))
+        by_winner.setdefault(key, r.get("sp"))
+    filled = 0
+    for row in rows:
+        if row.get("sp"):
+            continue
+        key = (refresh._result_name(row.get("course")),
+               refresh._result_name(row.get("winner")))
+        sp = _decimal_sp(by_winner.get(key))
+        if sp:
+            row["sp"] = sp
+            filled += 1
+    return filled
+
+
 def _finish_for(pick, runners, places):
     """Finish position of the pick, falling back to the published first three."""
     runner = next((r for r in runners
@@ -305,9 +349,12 @@ def main(argv=None):
     checked = _annotate(iso, rows)
     checked_us = _annotate_us(iso, rows)
     _dedupe(rows)
+    added_sp = _attach_sp(iso, rows)
     with open(path, "w", encoding="utf-8") as f:
         json.dump(rows, f, ensure_ascii=False)
     print(f"  placed:      {checked + checked_us} finishes checked for {iso}")
+    if added_sp:
+        print(f"  sp:          {added_sp} settled prices stored")
 
     import ab_tally
     snap = os.path.join(ROOT, "data", "picks_ab", f"{iso}.json")
