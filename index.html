@@ -876,6 +876,68 @@
   .pastrow .pname{flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
   .pastrow .prun{color:var(--muted)!important; font-size:10.5px!important; white-space:nowrap}
   .empty{padding:26px 12px!important; color:var(--muted)!important; font-size:12px!important; text-align:center!important}
+
+  /* best-of-day and unmissable cards */
+  .best-grid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin:0 0 14px}
+  .best-card{
+    position:relative; display:flex; flex-direction:column; gap:9px;
+    padding:15px 16px 13px; background:var(--card); border:1px solid var(--line);
+    border-radius:14px; box-shadow:var(--shadow); cursor:pointer;
+    transition:border-color .15s, box-shadow .15s, transform .15s;
+  }
+  .best-card:hover, .best-card:focus-visible{
+    border-color:#b7c9bf; box-shadow:0 8px 24px rgba(16,24,40,.08);
+    transform:translateY(-1px); outline:none;
+  }
+  .best-card.is-featured{box-shadow:inset 3px 0 0 var(--brand), var(--shadow)}
+  .best-card.is-standout{border-color:#c5dccd; background:linear-gradient(135deg,#fff 55%,#f2faf4)}
+  .best-card.is-standout.is-featured{box-shadow:inset 4px 0 0 var(--accent), 0 8px 24px rgba(11,59,46,.08)}
+  .best-head{display:flex; align-items:center; gap:8px; min-width:0}
+  .best-rank{
+    display:grid; place-items:center; flex:none; width:28px; height:28px; border-radius:50%;
+    background:#f2f4f7; color:var(--muted); font:700 10.5px var(--mono);
+  }
+  .best-card.is-featured .best-rank{background:var(--brand); color:#fff}
+  .best-race{min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:var(--muted); font-size:11.5px}
+  .best-race .rtag{font-size:9px; vertical-align:0}
+  .best-clear{
+    flex:none; margin-left:auto; padding:4px 7px; border-radius:999px;
+    background:#e9f7ef; color:var(--success); font:700 9.5px var(--mono);
+    letter-spacing:.02em; white-space:nowrap;
+  }
+  .best-card h3.best-horse{
+    margin:0!important; color:var(--ink)!important; font-family:var(--sans)!important;
+    font-size:18px!important; line-height:1.18!important; font-weight:700!important;
+    letter-spacing:-.02em!important;
+  }
+  .best-why{margin:0; color:#475467; font-size:12.5px; line-height:1.55}
+  .best-why b{
+    display:inline-block; margin-right:4px; color:var(--brand); font-size:9px;
+    letter-spacing:.13em; text-transform:uppercase; vertical-align:1px;
+  }
+  .best-label{display:flex; align-items:baseline; gap:10px; min-width:0; color:var(--subtle); font-size:10.5px; line-height:1.3}
+  .best-label span:first-child{min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  .best-open{flex:none; margin-left:auto; color:var(--brand-2); font-weight:700}
+  .best-stats{display:flex; flex-wrap:wrap; gap:15px; margin-top:auto; padding-top:9px; border-top:1px solid var(--line)}
+  .best-stat{display:flex; flex-direction:column; gap:1px; min-width:38px}
+  .best-stat b{color:var(--ink); font:700 13.5px var(--mono); line-height:1.15}
+  .best-stat small{color:var(--muted); font-size:8.5px; letter-spacing:.08em; text-transform:uppercase; white-space:nowrap}
+  .best-stat.best-score b{color:var(--brand); font-size:19px}
+  .standout-grid{grid-template-columns:1fr}
+  .best-count{margin:-2px 0 14px!important; color:var(--muted); font-size:12px}
+  .best-empty{
+    padding:26px 16px!important; border:1px dashed var(--line-strong); border-radius:12px;
+    background:var(--card); color:var(--muted); font-size:13px; text-align:center;
+  }
+  @media(max-width:900px){.best-grid{grid-template-columns:1fr}}
+  @media(max-width:560px){
+    .best-card{padding:14px}
+    .best-card h3.best-horse{font-size:17px!important}
+    .best-clear{font-size:9px}
+    .best-stats{gap:12px}
+    .best-stat b{font-size:12.5px}
+    .best-stat.best-score b{font-size:18px}
+  }
   footer{
     margin-top:8px!important; padding:18px 0 0!important; border-top:1px solid var(--line)!important;
     color:var(--muted)!important; font-size:11px!important; line-height:1.6!important;
@@ -988,25 +1050,18 @@
     <div id="nextCard" class="nextcard"></div>
     <div class="kpi-grid" id="kpiStrip"></div>
     <h2>Best of the day</h2>
-    <p class="method">Every race still to come &mdash; one row per card, showing the top-rated horse, how clear it stands of its own field, and its price. This rolls into the US card after the UK and Ireland races. Tap a row to open the race.</p>
-    <div class="scroll">
-      <table id="bestTable">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Race</th>
-            <th>Horse</th>
-            <th>Score</th>
-            <th>Runners</th>
-            <th>Price</th>
-            <th>Gap</th>
-            <th>Clear</th>
-          </tr>
-        </thead>
-        <tbody id="bestBody"></tbody>
-      </table>
-    </div>
-    <details class="note"><summary>How Clear and Runners work</summary><p><b>Gap</b> is the margin over the second-rated horse. <b>Clear</b> divides that gap by the spread of the field, so picks are comparable between races of any size. <b>Runners</b> is the field size, which tells you how hard the race is to win and whether the place terms run to three.</p></details>
+    <p class="method">Every race still to come, ranked by how much of its own field the top pick clears. Each card gives the model&rsquo;s one-line case: the factors it tops and the margin over the second-rated horse. Tap a card to open the full race.</p>
+    <p class="best-count" id="bestCount"></p>
+    <div class="best-grid" id="bestBody"></div>
+    <details class="note"><summary>How the ranking works</summary><p><b>Score</b> is the model&rsquo;s 0&ndash;100 rating. <b>Gap</b> is the margin over the second-rated horse. <b>Clear</b> divides that gap by the spread of the field, so picks are comparable between races of any size. <b>Factors</b> is how many model inputs were available; thin cards are not treated as strong evidence.</p></details>
+  </section>
+
+  <section class="panel" data-panel="unmissable">
+    <h2>Unmissable</h2>
+    <p class="method">The model&rsquo;s absolute standouts: top picks that combine a high rating with a wide, dominant margin over their own field. These are the races worth a closer look before the off.</p>
+    <p class="best-count" id="unmissableCount"></p>
+    <div class="best-grid standout-grid" id="unmissableBody"></div>
+    <details class="note"><summary>What makes a horse unmissable?</summary><p>All five tests must pass: a score of <b>80 or higher</b>, a gap of at least <b>15 points</b> to the second-rated horse, a <b>Clear</b> figure of at least <b>30%</b>, at least <b>six factors</b> available, and a field of at least <b>five runners</b>. Thin-data cards are excluded rather than promoted. This is still a rating, not a guarantee.</p></details>
   </section>
 
   <section class="panel" data-panel="late">
@@ -1264,6 +1319,7 @@
 
   var TABS = [
     ['today', 'Today', 'Overview', "Today's best-rated horses and the next race to run."],
+    ['unmissable', 'Unmissable', 'Overview', "The model's absolute standouts: high score, wide gap and deep data."],
     ['late', 'Late races', 'Overview', 'US races still to come, with the model top pick for each.'],
     ['past', 'Past races', 'Overview', 'Resulted races and how the card was rated before the off.'],
     ['card', 'Racecard', 'Racing', 'Select a race and inspect the field the model scored.'],
@@ -5021,6 +5077,7 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_FRI);  // UK/IRE today, US lat
     document.title = meta[1] + ' — Race Sheet';
 
     if (name === 'late') renderLateRaces();
+    if (name === 'unmissable') renderUnmissable();
     try { localStorage.setItem(TAB_STORE, name); } catch (e) { /* storage may be unavailable */ }
   }
 
@@ -5075,7 +5132,56 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_FRI);  // UK/IRE today, US lat
     return rows.length ? rows[0].r.horse : null;
   };
 
-  function renderLeaderboard() {
+  var FACTOR_PHRASES = {
+    market: 'market', form: 'form', tips: 'tipsters', rpr: 'Timeform',
+    rating: 'official rating', cd: 'course and trip', draw: 'draw',
+    speed: 'speed figures', going: 'going', fitness: 'fitness',
+    weight: 'weights', connections: 'connections'
+  };
+  var boardCache = null;
+
+  function joinWords(words) {
+    if (words.length === 1) return words[0];
+    if (words.length === 2) return words[0] + ' and ' + words[1];
+    return words.slice(0, -1).join(', ') + ' and ' + words[words.length - 1];
+  }
+
+  // A model-derived sentence, never a tip: name the factors the top horse
+  // actually leads and state its real margin over the second-rated horse.
+  function whyLine(p) {
+    var top = p.top, second = p.second;
+    if (!second) return 'The only runner in this field with enough data to rate.';
+    if (p.gap <= 0.05) {
+      return 'Shares the top rating with ' + esc(second.r.horse || 'the next horse') +
+        '; the model has no clear edge.';
+    }
+
+    var leaders = [];
+    FACTORS.forEach(function (f) {
+      var value = top.parts[f[0]];
+      if (value === null || value === undefined) return;
+      var bestOther = null;
+      p.rows.slice(1).forEach(function (row) {
+        var other = row.parts[f[0]];
+        if (other !== null && other !== undefined && (bestOther === null || other > bestOther)) bestOther = other;
+      });
+      if (bestOther !== null && value > bestOther + 0.05) {
+        leaders.push({name: FACTOR_PHRASES[f[0]] || f[1].toLowerCase(), value: value, margin: value - bestOther});
+      }
+    });
+    leaders.sort(function (a, b) { return (b.value - a.value) || (b.margin - a.margin); });
+
+    var lead;
+    if (leaders.length) {
+      lead = 'Tops the field on ' + joinWords(leaders.slice(0, 3).map(function (x) { return x.name; }));
+    } else {
+      lead = 'Leads on the overall model balance';
+    }
+    return lead + '; ' + p.gap.toFixed(1) + ' points clear of ' +
+      esc(second.r.horse || 'the second-rated horse') + '.';
+  }
+
+  function buildLeaderboard() {
     var picks = [];
     ALL_CARDS.forEach(function (card) {
       if (isResulted(card)) return;
@@ -5089,39 +5195,115 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_FRI);  // UK/IRE today, US lat
       var spread = rows[0].total - rows[rows.length - 1].total;
       var gap = second ? (top.total - second.total) : spread;
 
-      picks.push({card: card, top: top, second: second, used: used, gap: gap,
+      picks.push({card: card, top: top, second: second, used: used, gap: gap, rows: rows,
                   clear: spread > 0.001 ? gap / spread : 0});
     });
     picks.sort(function (a, b) { return (b.clear - a.clear) || (b.gap - a.gap); });
+    picks.forEach(function (p) { p.why = whyLine(p); });
+    return picks;
+  }
 
+  function leaderboardPicks() {
+    if (!boardCache) boardCache = buildLeaderboard();
+    return boardCache;
+  }
+
+  function boardTag(region) {
+    if (region === 'US') return 'USA';
+    if (region === 'AU') return 'AUS';
+    if (region === 'HK') return 'HK';
+    return 'GB';
+  }
+
+  function bestCardHtml(p, idx, standout) {
+    var r = p.top.r;
+    var rank = idx + 1;
+    var runners = p.card.runners ? p.card.runners.length : '—';
+    var price = r.odds ? esc(r.odds) : '—';
+    var gap = p.second ? p.gap.toFixed(1) : '—';
+    var clear = (p.clear * 100).toFixed(0) + '%';
+    return '<article class="best-card' + (idx < 3 ? ' is-featured' : '') + (standout ? ' is-standout' : '') +
+      '" data-card="' + esc(p.card.id) + '" tabindex="0" role="button" aria-label="Open ' +
+      esc(r.horse || 'race') + ' at ' + esc(p.card.course + ' ' + p.card.time) + '">' +
+      '<div class="best-head">' +
+        '<span class="best-rank">' + (rank < 10 ? '0' : '') + rank + '</span>' +
+        '<span class="best-race"><span class="rtag">' + boardTag(p.card.region) + '</span> ' +
+          esc(p.card.course) + ' ' + esc(p.card.time) + '</span>' +
+        '<span class="best-clear" title="Gap to second as a share of the field spread">' + clear + ' clear</span>' +
+      '</div>' +
+      '<h3 class="best-horse">' + esc(r.horse || '—') + '</h3>' +
+      '<p class="best-why"><b>Why</b> ' + p.why + '</p>' +
+      '<div class="best-stats">' +
+        '<span class="best-stat best-score"><b>' + p.top.total.toFixed(1) + '</b><small>score</small></span>' +
+        '<span class="best-stat"><b>' + gap + '</b><small>gap to 2nd</small></span>' +
+        '<span class="best-stat"><b>' + price + '</b><small>price</small></span>' +
+        '<span class="best-stat"><b>' + runners + '</b><small>runners</small></span>' +
+        '<span class="best-stat"><b>' + p.used + '</b><small>factors</small></span>' +
+      '</div>' +
+      '<div class="best-label"><span>' + esc(p.card.label || p.card.race || '') + '</span>' +
+        '<span class="best-open">Open race &rarr;</span></div>' +
+    '</article>';
+  }
+
+  function isUnmissable(p) {
+    return p.used >= 6 &&
+      p.card.runners && p.card.runners.length >= 5 &&
+      p.top.total >= 80 &&
+      p.gap >= 15 &&
+      p.clear >= 0.30;
+  }
+
+  function renderLeaderboard() {
+    var picks = leaderboardPicks();
     if (!picks.length) {
-      $('bestBody').innerHTML = '<tr><td colspan="8" class="empty">No races left to rate in this build.</td></tr>';
+      $('bestBody').innerHTML = '<div class="best-empty">No races left to rate in this build.</div>';
+      if ($('bestCount')) $('bestCount').textContent = '';
       return;
     }
-
+    if ($('bestCount')) {
+      $('bestCount').textContent = picks.length + ' races rated · top three highlighted by Clear';
+    }
     $('bestBody').innerHTML = picks.map(function (p, idx) {
-      var r = p.top.r;
-      var tag = p.card.region === 'US' ? 'USA' : (p.card.region === 'AU' ? 'AUS' : 'GB');
-      return '<tr data-card="' + esc(p.card.id) + '">' +
-        '<td class="num"><span class="rank">' + (idx + 1) + '</span></td>' +
-        '<td><span class="rtag">' + tag + '</span> ' + esc(p.card.course) + ' ' + esc(p.card.time) +
-          '<div style="font-size:11px;color:var(--muted)">' + esc(p.card.label) + '</div></td>' +
-        '<td class="horse">' + esc(r.horse || '—') + '</td>' +
-        '<td class="num score">' + p.top.total.toFixed(1) + '</td>' +
-        '<td class="num">' + ((p.card && p.card.runners) ? p.card.runners.length : '—') + '</td>' +
-        '<td class="num">' + (r.odds ? esc(r.odds) : '—') + '</td>' +
-        '<td class="num">' + (p.second ? p.gap.toFixed(1) : '—') + '</td>' +
-        '<td class="num">' + (p.clear * 100).toFixed(0) + '%</td>' +
-      '</tr>';
+      return bestCardHtml(p, idx, false);
     }).join('');
   }
 
-  $('bestBody').addEventListener('click', function (e) {
-    var tr = e.target.closest ? e.target.closest('tr[data-card]') : null;
-    if (!tr) return;
-    openCard(tr.getAttribute('data-card'));
+  function renderUnmissable() {
+    var box = $('unmissableBody');
+    if (!box) return;
+    var picks = leaderboardPicks().filter(isUnmissable);
+    if (!picks.length) {
+      if ($('unmissableCount')) $('unmissableCount').textContent = 'No qualifiers today';
+      box.innerHTML = '<div class="best-empty">No runner clears all five tests today. The bar is deliberately strict; <b>Best of the day</b> still ranks every card.</div>';
+      return;
+    }
+    if ($('unmissableCount')) {
+      $('unmissableCount').textContent = picks.length + (picks.length === 1 ? ' horse meets' : ' horses meet') + ' every test';
+    }
+    box.innerHTML = picks.map(function (p, idx) {
+      return bestCardHtml(p, idx, true);
+    }).join('');
+  }
+
+  function openBoardCard(e) {
+    var card = e.target.closest ? e.target.closest('[data-card]') : null;
+    if (!card) return;
+    openCard(card.getAttribute('data-card'));
     setTab('ranked');
     window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+
+  ['bestBody', 'unmissableBody'].forEach(function (id) {
+    var el = $(id);
+    if (!el) return;
+    el.addEventListener('click', openBoardCard);
+    el.addEventListener('keydown', function (e) {
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      var card = e.target.closest ? e.target.closest('[data-card]') : null;
+      if (!card) return;
+      e.preventDefault();
+      openBoardCard(e);
+    });
   });
 
   $('lateBody').addEventListener('click', function (e) {
