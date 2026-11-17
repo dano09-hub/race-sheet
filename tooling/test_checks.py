@@ -1482,6 +1482,65 @@ check("page: the chance is a softmax, not a raw share",
       "x.share = Math.exp(CALIBRATION_SCALE * (x.total - peak)) / mass" in page)
 check("page: the footer no longer calls the percentages raw shares",
       "percentages are shares of the field's total rating" not in page)
+check("page: the Results tab carries a chance audit block",
+      "<!-- CAL_SL_START -->" in page and "<!-- CAL_SL_END -->" in page)
+
+print()
+print("model chance audit")
+import chance_audit
+_tmp = tempfile.mkdtemp()
+try:
+    with open(os.path.join(_tmp, "2026-11-17.json"), "w", encoding="utf-8") as f:
+        json.dump({"races": [
+            {"region": "GB", "pick": "A", "chance": 30.0, "hit": True},
+            {"region": "GB", "pick": "B", "chance": 20.0, "hit": False},
+            {"region": "US", "pick": "C", "chance": 40.0, "hit": True},
+            {"region": "GB", "pick": "D", "hit": False},
+        ]}, f)
+    audit = chance_audit.collect(_tmp)
+    check("audit: counts GB/IRE races carrying a chance",
+          audit["races"] == 2, audit.get("races"))
+    check("audit: averages the stated chance",
+          abs(audit["stated"] - 25.0) < 1e-9, audit.get("stated"))
+    check("audit: counts the wins", audit["wins"] == 1, audit.get("wins"))
+    check("audit: a two-race sample cannot settle the scale",
+          audit["more_decisive"] > 0)
+    check("audit: the interval widens for a tiny sample",
+          audit["half"] > 20.0, audit.get("half"))
+    check("audit: verdict accepts an interval that contains the figure",
+          chance_audit.verdict({"races": 1, "inside": True}) == "inside")
+    check("audit: verdict catches a figure above the interval",
+          chance_audit.verdict({"races": 1, "inside": False,
+                                "stated": 30.0, "lo": 20.0}) == "high")
+    block = refresh.chance_block_html(audit)
+    check("audit block: reports the sample", "2</b> settled" in block)
+    check("audit block: waits for a decisive sample",
+          "Not yet informative" in block, block[:120])
+    big = {"races": 400, "wins": 104, "rate": 0.26, "stated": 25.8,
+           "lo": 21.9, "hi": 30.4, "half": 4.25, "first": "2026-11-12",
+           "last": "2027-02-01", "inside": True, "more_early": 0,
+           "more_decisive": 1200}
+    block2 = refresh.chance_block_html(big)
+    check("audit block: informative is not decisive",
+          "Informative but not decisive" in block2)
+    check("audit block: says the interval contains the figure",
+          "contains the stated figure" in block2)
+finally:
+    shutil.rmtree(_tmp)
+
+ledger = refresh._results_inner("2026-11-17", [
+    {"course": "Carlisle", "race": "12:20 Carlisle", "winner": "Bossman Jack",
+     "places": ["Bossman Jack", "Kettledrum", "Hurlyburly"],
+     "pick": "Bossman Jack", "hit": True, "pick_finish": "1st", "chance": 26.4},
+], "UK/IRE")
+check("ledger: the pick carries its stated chance", "26.4%" in ledger, ledger[:90])
+check("ledger: the chance is labelled", "pickchance" in ledger)
+plain = refresh._results_inner("2026-11-17", [
+    {"course": "Carlisle", "race": "12:20 Carlisle", "winner": "Bossman Jack",
+     "places": ["Bossman Jack"], "pick": "Bossman Jack", "hit": True,
+     "pick_finish": "1st"},
+], "UK/IRE")
+check("ledger: no stored chance, no printed number", "pickchance" not in plain)
 
 print()
 print("passed %d, failed %d%s" % (

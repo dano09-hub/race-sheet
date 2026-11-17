@@ -41,7 +41,11 @@ const out = cards.map(c => {
   try { info = window.SCORE_CARD(c); } catch (e) { info = null; }
   const rows = ((info && info.rows) || []).slice().sort((a, b) => b.total - a.total);
   const pick = rows.length ? (rows[0].r.horse || '') : '';
-  return {id: c.id || '', course: c.course, time: c.time, pick,
+  // The page's own Model chance for the pick, as a percentage. Kept as null
+  // when the page does not return a share, so settlement cannot invent one.
+  const chance = rows.length && Number.isFinite(rows[0].share)
+    ? Math.round(rows[0].share * 1000) / 10 : null;
+  return {id: c.id || '', course: c.course, time: c.time, pick, chance,
           runners: rows.map((x, i) => ({
             horse: x.r.horse || '', rank: i + 1,
             total: Math.round(x.total * 10) / 10,

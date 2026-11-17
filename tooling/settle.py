@@ -91,10 +91,11 @@ def score_cards(cards):
 
 
 def pick_for(card):
-    """Single-card convenience wrapper: (horse, None)."""
+    """Single-card convenience wrapper: (horse, chance percentage)."""
     got = score_cards([card])
     pick = got[0]["pick"] if got else ""
-    return (pick or None), None
+    chance = got[0].get("chance") if got else None
+    return (pick or None), chance
 
 
 def main(date):

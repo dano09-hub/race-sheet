@@ -416,6 +416,12 @@ def main(argv=None):
     except Exception as e:
         print(f"  us angles:   build skipped ({e})")
         us_angles_result = None
+    try:
+        import chance_audit
+        chance_result = chance_audit.collect()
+    except Exception as e:
+        print(f"  chance audit: skipped ({e})")
+        chance_result = None
     html = open(refresh.INDEX, encoding="utf-8").read()
     html = _replace(html, "RESULTS_SL",
                     refresh.results_block_all() or refresh.results_block(iso, rows))
@@ -429,6 +435,8 @@ def main(argv=None):
                                           subject="market-heavy weighting",
                                           start="MKT_ARM_SL_START",
                                           end="MKT_ARM_SL_END"))
+    html = _replace(html, "CAL_SL",
+                    refresh.chance_block_html(chance_result))
     html = _replace(html, "US_AB_SL",
                     refresh.us_ab_block_html(us_ab_result, iso))
     html = _replace(html, "US_FLAGS_SL",

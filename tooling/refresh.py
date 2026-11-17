@@ -101,26 +101,37 @@ def settle_day(iso):
     with open(rpath, encoding="utf-8") as f:
         rows = json.load(f)
     filled = 0
+    chances = 0
     for row in rows:
-        if row.get("pick"):
+        if row.get("pick") and row.get("chance") is not None:
             continue
         card = next((c for c in cards
                      if c.get("course") == row.get("course")
                      and any(r.get("horse") == row.get("winner") for r in c.get("runners", []))), None)
         if not card:
             continue
-        pick, score = settle.pick_for(card)
+        pick, chance = settle.pick_for(card)
         if not pick:
             continue
-        row["pick"], row["score"] = pick, score
+        if row.get("pick"):
+            # A stored pick is never rewritten. The chance can be attached only
+            # when the archived card gives back exactly the pick on record.
+            if pick == row["pick"] and chance is not None:
+                row["chance"] = chance
+                chances += 1
+            continue
+        row["pick"], row["score"] = pick, None
+        row["chance"] = chance
         row["hit"] = (pick == row.get("winner"))
         row["pick_finish"] = ""
         filled += 1
     annotated = annotate_result_rows(iso, rows)
-    if filled or annotated:
+    if filled or chances or annotated:
         with open(rpath, "w", encoding="utf-8") as f:
             json.dump(rows, f, ensure_ascii=False)
     print(f"  settled:     {filled} picks written for {iso}")
+    if chances:
+        print(f"  chances:     {chances} stored picks given the chance they were shown at")
     if annotated:
         print(f"  placed:      {annotated} finishes checked for {iso}")
     return filled
@@ -474,10 +485,15 @@ def _results_inner(iso, rows, region):
         pk = r.get("pick", "")
         if pk:
             fin = r.get("pick_finish", "")
-            cell = '<td class="pick %s">%s%s%s</td>' % (
+            chance = r.get("chance")
+            chance_html = ""
+            if chance is not None and r.get("region") != "US":
+                chance_html = (' <span class="pickchance" title="Model win chance '
+                               'before the off">%.1f%%</span>' % float(chance))
+            cell = '<td class="pick %s">%s%s%s%s</td>' % (
                 "hit" if r.get("hit") else "miss",
                 "\u2713 " if r.get("hit") else "\u2717 ", _h.escape(pk),
-                (" (%s)" % _h.escape(fin)) if fin else "")
+                (" (%s)" % _h.escape(fin)) if fin else "", chance_html)
             if r.get("hit"):
                 hits_box[0] += 1
             judged_box[0] += 1
@@ -707,6 +723,48 @@ def market_block_html(res, iso):
             inner += '<p class="k">Every pick held.</p>'
     return ('<!-- MARKET_SL_START -->\n<div class="mktcheck">' + inner
             + '</div>\n<!-- MARKET_SL_END -->')
+
+
+def chance_block_html(a, iso=None):
+    """The Model chance audit: the printed percentage against the record."""
+    import html as _html
+    esc = lambda s: _html.escape(str(s or ""))
+    if not a or not a.get("races"):
+        inner = ('<h3>Model chance audit</h3><p class="k pending">'
+                 'No settled race has a stored chance yet. From now on every '
+                 'settled pick records the chance it was shown at.</p>')
+    else:
+        n = a["races"]
+        if a["inside"]:
+            fit = "The interval contains the stated figure."
+        elif a["stated"] < a["lo"]:
+            fit = ("The stated figure sits below the interval: the Model "
+                   "percentage is reading low.")
+        else:
+            fit = ("The stated figure sits above the interval: the Model "
+                   "percentage is reading high.")
+        inner = (f'<h3>Model chance audit &mdash; the Model percentage against the record</h3>'
+                 f'<p class="k">Across <b>{n}</b> settled GB/IRE races '
+                 f'({esc(a["first"])} to {esc(a["last"])}) the pick was shown at '
+                 f'<b>{a["stated"]:.1f}%</b> and won <b>{a["wins"]}</b> '
+                 f'({a["rate"]*100:.1f}%, 95% CI {a["lo"]:.1f}-{a["hi"]:.1f}%, '
+                 f'a half-width of {a["half"]:.1f} points). {fit}</p>')
+        if a.get("more_early"):
+            inner += (f'<p class="k">Not yet informative: needs '
+                      f'<b>{a["more_early"]}</b> more settled races. An interval '
+                      f'this wide can catch a gross error, but it cannot choose '
+                      f'between the 0.04 and 0.0498 scales, whose pick chances '
+                      f'differ by about four points.</p>')
+        elif a.get("more_decisive"):
+            inner += (f'<p class="k">Informative but not decisive: needs '
+                      f'<b>{a["more_decisive"]}</b> more settled races before the '
+                      f'interval is about two points wide and the 0.04 and 0.0498 '
+                      f'scales can be told apart.</p>')
+        else:
+            inner += ('<p class="k">At this sample the interval is narrow '
+                      'enough to test the scale it was fitted on.</p>')
+    return ('<!-- CAL_SL_START -->\n<div class="mktcheck calc">' + inner
+            + '</div>\n<!-- CAL_SL_END -->')
 
 
 def ab_block_html(t, iso, title="Rating A/B", subject="rating",
@@ -1180,6 +1238,14 @@ def main():
                                 subject="market-heavy weighting",
                                 start="MKT_ARM_SL_START", end="MKT_ARM_SL_END"),
                   html, count=1, flags=re.S)
+    try:
+        import chance_audit
+        chance_result = chance_audit.collect()
+    except Exception as e:
+        print(f"  chance audit: skipped ({e})")
+        chance_result = None
+    html = re.sub(r"<!-- CAL_SL_START -->.*?<!-- CAL_SL_END -->",
+                  chance_block_html(chance_result), html, count=1, flags=re.S)
     us_results = (results_block_all_us()
                   or "<!-- US_RESULTS_SL_START -->\n<p class=\"method\">No US results yet.</p>\n<!-- US_RESULTS_SL_END -->")
     html = re.sub(r"<!-- US_RESULTS_SL_START -->.*?<!-- US_RESULTS_SL_END -->",

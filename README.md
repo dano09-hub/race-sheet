@@ -310,6 +310,27 @@ the pick reads 26.0%, at 0.0498 it reads 30.1%. 117 races cannot separate those
 scales, so the applied scale sits between the two at 0.04 and should be re-checked
 as the archive grows.
 
+That re-check is now automatic. Every settled pick stores the chance it was shown
+at (`chance` in `data/results/<date>.json`), and the Results tab carries a
+**Model chance audit** block: the average stated chance, the pick's actual win
+rate, and a Wilson interval around it. The block is staged rather than
+triumphant. At 350 races the interval is about +/-4.5 points, enough to catch a
+gross error but not to separate the 0.04 and 0.0498 scales, whose pick chances
+differ by about four points; at 1,600 races it narrows to about +/-2 points and
+the question can be settled. The block says which stage the sample is in, and
+whether the stated chance sits inside or outside the interval.
+
+Days settled before the column existed were backfilled by
+`tooling/backfill_chance.py` from the archived cards, and only where the rebuilt
+pick matched the stored pick exactly. A race whose card cannot reproduce its own
+pick is left blank rather than given a number the page never showed. Only seven
+days still have their cards, so the rest of the record carries no chance.
+
+```bash
+python3 tooling/chance_audit.py     # the same numbers, on the command line
+python3 tooling/backfill_chance.py  # reattach chances where a card agrees
+```
+
 ## Checks
 
 ```bash
