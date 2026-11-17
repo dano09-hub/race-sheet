@@ -288,9 +288,9 @@ ceiling is the information a card supplies, not the sample size: this source
 cannot see the pre-race tips, RPR and Topspeed figures the page's cards carry,
 so those weights stay at their live values and the fit cannot learn what the
 market already knows. That is
-not a candidate for the page. The useful finding is the other way round: on four
-years of racing the twelve fixed weights are already close to the best available,
-and the market is the ceiling.
+not a candidate for the page. The useful finding is the other way round: across
+the whole history the twelve fixed weights are already close to the best
+available, and the market is the ceiling.
 
 So the vector runs as a shadow instead. `tooling/market_arm_day.py` snapshots its
 pick for each day's GB/IRE cards — the page's own factor scores, simply
