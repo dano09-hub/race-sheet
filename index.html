@@ -1101,6 +1101,25 @@
     box-shadow: none !important;
   }
   .panel .mktcheck:first-of-type { margin-top: 12px; }
+  /* The dark next-race card needs lighter supporting text, and a tablet in
+     landscape has room for four KPI tiles rather than two. */
+  .nc-meta, .nc-sub { color: rgba(255, 255, 255, .72) !important; }
+  @media (min-width: 901px) {
+    .kpi-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
+  /* A phone turned sideways has little height: put the brand and tabs on one
+     line and drop the supporting chrome so the card is reachable. */
+  @media (max-width: 900px) and (max-height: 500px) {
+    .sidebar { flex-direction: row !important; align-items: center; gap: 10px !important; padding: 8px 12px !important; }
+    .brand-copy small { display: none; }
+    .brand-mark { width: 30px; height: 30px; }
+    .sidebar .tabs { flex: 1; overflow-x: auto; }
+    .topbar { padding: 8px 14px 6px !important; gap: 4px !important; }
+    .page-eyebrow { display: none; }
+    .page-title { font-size: 21px !important; }
+    .page-subtitle { display: none; }
+    .topbar-meta { display: none !important; }
+  }
   @media (max-width: 900px) {
     /* The best-of-the-day grid must be allowed to shrink below its content's
        intrinsic width on very small phones (320px). */
