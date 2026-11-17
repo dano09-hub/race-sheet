@@ -31,6 +31,7 @@ import eachway         # noqa: E402
 import fetch_formfav as ff  # noqa: E402
 import fetch_results_sl as sl  # noqa: E402
 import refresh         # noqa: E402
+import parse_cards as pcards  # noqa: E402
 import recheck_market  # noqa: E402
 import settle          # noqa: E402
 import us_flags        # noqa: E402
@@ -1233,6 +1234,15 @@ check("parse: race name", _fname == "12:10 Limerick", _fname)
 check("parse: positions pair with their own horse",
       _frunners == [(1, "Poet&#x27;s Duke"), (2, "Con Did It"), (3, "Storm Bresie")],
       _frunners)
+
+print("30d. card prices")
+_prows = [{"odds": "4.50"} for _ in range(6)]
+check("cards: an all-round default price is dropped",
+      pcards._blank_placeholder_odds(_prows) == 6
+      and all(r["odds"] == "" for r in _prows), _prows)
+_prows = [{"odds": o} for o in ("2", "3.5", "6", "9")]
+check("cards: a real market is kept",
+      pcards._blank_placeholder_odds(_prows) == 0 and _prows[0]["odds"] == "2", _prows)
 
 print()
 print("passed %d, failed %d%s" % (

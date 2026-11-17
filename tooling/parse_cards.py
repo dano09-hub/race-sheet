@@ -27,6 +27,22 @@ def clean(s):
     return re.sub(r"\s+", " ", html.unescape(s or "")).strip()
 
 
+def _blank_placeholder_odds(runners):
+    """Drop the single default price a race carries before its market forms.
+
+    Horseracing.net writes the same price on every runner when a race has no
+    market yet (Irish cards have arrived as 4.50 all round). Storing that would
+    invent a favourite and a price, so a race with four or more runners and one
+    identical price is treated as unpriced.
+    """
+    prices = {r.get("odds") for r in runners if r.get("odds")}
+    if len(runners) >= 4 and len(prices) == 1:
+        for r in runners:
+            r["odds"] = ""
+        return len(runners)
+    return 0
+
+
 def parse_time(t):
     m = re.match(r"(\d{1,2}):(\d{2})", t or "")
     return f"{int(m.group(1)):02d}:{m.group(2)}" if m else (t or "")
@@ -104,6 +120,7 @@ def parse_course_page(page, course, date):
 
         if not runners:
             continue
+        _blank_placeholder_odds(runners)
         cards.append({
             "id": f"{course.lower().replace(' ', '-')}-{tm.replace(':', '')}",
             "label": f"{course} {tm}",
