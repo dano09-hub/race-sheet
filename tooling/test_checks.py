@@ -508,6 +508,63 @@ check("every settled result with a pick maps to an archived card", not unmapped,
 print(f"  checked {picked_rows} picked result rows; "
       f"{card_not_kept} unpicked card-not-kept rows were left out")
 
+print("16d. all-results audit of cards not kept")
+# These are historical result rows where no card was archived.  They were
+# never settled with a pick; list them explicitly so a future gap can fail
+# without pretending the known 13 Nov rows are model-settled.
+known_gap_courses = {
+    ("2026-11-13", "dundalk"),
+    ("2026-11-13", "sedgefield"),
+    ("2026-11-13", "southwell"),
+}
+known_gaps, unexpected_gaps = [], []
+all_result_rows = 0
+if os.path.isdir(results_dir):
+    for name in sorted(os.listdir(results_dir)):
+        if not name.endswith(".json"):
+            continue
+        with open(os.path.join(results_dir, name), encoding="utf-8") as f:
+            rows = json.load(f)
+        if isinstance(rows, dict):
+            rows = rows.get("races", [])
+        cards_path = os.path.join(bdir, name)
+        card_keys = set()
+        if os.path.exists(cards_path):
+            try:
+                with open(cards_path, encoding="utf-8") as f:
+                    day = json.load(f)
+            except (OSError, ValueError):
+                day = {}
+            if isinstance(day, dict):
+                for cards in day.values():
+                    if not isinstance(cards, list):
+                        continue
+                    for card in cards:
+                        course = refresh._result_name(card.get("course"))
+                        for runner in card.get("runners") or []:
+                            card_keys.add((course, refresh._result_name(runner.get("horse"))))
+        for row in rows or []:
+            if not isinstance(row, dict):
+                continue
+            all_result_rows += 1
+            course = refresh._result_name(row.get("course"))
+            key = (course, refresh._result_name(row.get("winner")))
+            if key in card_keys:
+                continue
+            gap = {"date": name[:-5], "course": course,
+                   "winner": key[1], "picked": bool(row.get("pick"))}
+            if not gap["picked"] and (gap["date"], course) in known_gap_courses:
+                known_gaps.append(gap)
+            else:
+                unexpected_gaps.append(gap)
+check("all result rows were audit-scanned", all_result_rows > 0, all_result_rows)
+check("no unexpected result rows lack an archived card", not unexpected_gaps, unexpected_gaps[:5])
+check("the known 13 Nov card gaps are still unpicked",
+      all(not g["picked"] for g in known_gaps), known_gaps[:3])
+check("the known 13 Nov card gap set is exactly 20 rows", len(known_gaps) == 20, len(known_gaps))
+print(f"  all-result audit: {all_result_rows} rows; {len(known_gaps)} known 13 Nov "
+      f"card gaps, {len(unexpected_gaps)} unexpected")
+
 print("17. settled picks survive a results re-scrape")
 old_rows = [{"course": "Cheltenham", "time": "14:55", "winner": "Thunder Rock",
              "pick": "Mahons Glory", "hit": False, "pick_finish": "3rd"}]
