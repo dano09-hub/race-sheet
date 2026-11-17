@@ -1,0 +1,322 @@
+{
+ "date": "2026-11-17",
+ "generated": "2026-11-17T03:43:46",
+ "note": "A/B of the twelve-factor model with and without a speed figure in the ts slot",
+ "metric": "ts",
+ "label": "speed figure",
+ "cards": 44,
+ "same": 34,
+ "changed": 10,
+ "ratedRunners": 329,
+ "runners": 341,
+ "rows": [
+  {
+   "course": "Finger Lakes",
+   "time": "17:10",
+   "withRating": "Lord King",
+   "withoutRating": "Lord King",
+   "changed": false
+  },
+  {
+   "course": "Finger Lakes",
+   "time": "17:38",
+   "withRating": "Good Cop",
+   "withoutRating": "Good Cop",
+   "changed": false
+  },
+  {
+   "course": "Finger Lakes",
+   "time": "18:06",
+   "withRating": "Free Dance",
+   "withoutRating": "Free Dance",
+   "changed": false
+  },
+  {
+   "course": "Finger Lakes",
+   "time": "18:34",
+   "withRating": "Solo Belle",
+   "withoutRating": "Solo Belle",
+   "changed": false
+  },
+  {
+   "course": "Finger Lakes",
+   "time": "19:03",
+   "withRating": "Tiz Goldy",
+   "withoutRating": "Tiz Goldy",
+   "changed": false
+  },
+  {
+   "course": "Finger Lakes",
+   "time": "19:32",
+   "withRating": "Froghollowsummer",
+   "withoutRating": "Froghollowsummer",
+   "changed": false
+  },
+  {
+   "course": "Finger Lakes",
+   "time": "20:01",
+   "withRating": "Jamaica Redd",
+   "withoutRating": "Bargain Purchase",
+   "changed": true
+  },
+  {
+   "course": "Finger Lakes",
+   "time": "20:30",
+   "withRating": "Specialagentjonson",
+   "withoutRating": "Probability",
+   "changed": true
+  },
+  {
+   "course": "Finger Lakes",
+   "time": "20:59",
+   "withRating": "Raisuli",
+   "withoutRating": "Escape Hall",
+   "changed": true
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "17:15",
+   "withRating": "Honor Quest",
+   "withoutRating": "Honor Quest",
+   "changed": false
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "17:43",
+   "withRating": "Thee New Beginning",
+   "withoutRating": "Thee New Beginning",
+   "changed": false
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "18:11",
+   "withRating": "Rhythm 'n Blues",
+   "withoutRating": "Rhythm 'n Blues",
+   "changed": false
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "18:39",
+   "withRating": "Some Kinda Warrior",
+   "withoutRating": "Some Kinda Warrior",
+   "changed": false
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "19:07",
+   "withRating": "Right On the Munny",
+   "withoutRating": "Right On the Munny",
+   "changed": false
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "19:35",
+   "withRating": "Loco Coco",
+   "withoutRating": "Jac's Cocoabella",
+   "changed": true
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "20:03",
+   "withRating": "Reckless L J",
+   "withoutRating": "Reckless L J",
+   "changed": false
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "20:31",
+   "withRating": "Cowgirl Chic",
+   "withoutRating": "Cowgirl Chic",
+   "changed": false
+  },
+  {
+   "course": "Mountaineer",
+   "time": "00:00",
+   "withRating": "Ante Antman",
+   "withoutRating": "Ante Antman",
+   "changed": false
+  },
+  {
+   "course": "Mountaineer",
+   "time": "00:25",
+   "withRating": "El Dandi",
+   "withoutRating": "El Dandi",
+   "changed": false
+  },
+  {
+   "course": "Mountaineer",
+   "time": "00:50",
+   "withRating": "Magic Connection",
+   "withoutRating": "Magic Connection",
+   "changed": false
+  },
+  {
+   "course": "Mountaineer",
+   "time": "01:15",
+   "withRating": "Yalina",
+   "withoutRating": "Yalina",
+   "changed": false
+  },
+  {
+   "course": "Mountaineer",
+   "time": "01:40",
+   "withRating": "North Warden",
+   "withoutRating": "North Warden",
+   "changed": false
+  },
+  {
+   "course": "Mountaineer",
+   "time": "02:05",
+   "withRating": "Catholic Guilt",
+   "withoutRating": "Catholic Guilt",
+   "changed": false
+  },
+  {
+   "course": "Mountaineer",
+   "time": "02:30",
+   "withRating": "Back On Track",
+   "withoutRating": "Back On Track",
+   "changed": false
+  },
+  {
+   "course": "Mountaineer",
+   "time": "02:55",
+   "withRating": "Christensen",
+   "withoutRating": "Fregon",
+   "changed": true
+  },
+  {
+   "course": "Parx Racing",
+   "time": "17:05",
+   "withRating": "World Wide Web",
+   "withoutRating": "World Wide Web",
+   "changed": false
+  },
+  {
+   "course": "Parx Racing",
+   "time": "17:32",
+   "withRating": "Peridot Pendant",
+   "withoutRating": "Peridot Pendant",
+   "changed": false
+  },
+  {
+   "course": "Parx Racing",
+   "time": "17:59",
+   "withRating": "Biagio",
+   "withoutRating": "Biagio",
+   "changed": false
+  },
+  {
+   "course": "Parx Racing",
+   "time": "18:26",
+   "withRating": "America's Honor",
+   "withoutRating": "America's Honor",
+   "changed": false
+  },
+  {
+   "course": "Parx Racing",
+   "time": "18:53",
+   "withRating": "Chelonian",
+   "withoutRating": "Jackson Road",
+   "changed": true
+  },
+  {
+   "course": "Parx Racing",
+   "time": "19:20",
+   "withRating": "Tug",
+   "withoutRating": "Snookie Bear",
+   "changed": true
+  },
+  {
+   "course": "Parx Racing",
+   "time": "19:47",
+   "withRating": "Drum Roll Please",
+   "withoutRating": "Drum Roll Please",
+   "changed": false
+  },
+  {
+   "course": "Parx Racing",
+   "time": "20:14",
+   "withRating": "Rock Me Gently",
+   "withoutRating": "Rock Me Gently",
+   "changed": false
+  },
+  {
+   "course": "Parx Racing",
+   "time": "20:41",
+   "withRating": "Call Me Toni",
+   "withoutRating": "Rhee Wall",
+   "changed": true
+  },
+  {
+   "course": "Zia Park",
+   "time": "19:05",
+   "withRating": "Best Beach",
+   "withoutRating": "Best Beach",
+   "changed": false
+  },
+  {
+   "course": "Zia Park",
+   "time": "19:32",
+   "withRating": "Ez Iz Onzaway",
+   "withoutRating": "Ez Iz Onzaway",
+   "changed": false
+  },
+  {
+   "course": "Zia Park",
+   "time": "19:59",
+   "withRating": "Looknfonobikini",
+   "withoutRating": "Looknfonobikini",
+   "changed": false
+  },
+  {
+   "course": "Zia Park",
+   "time": "20:26",
+   "withRating": "Amazing Music",
+   "withoutRating": "Amazing Music",
+   "changed": false
+  },
+  {
+   "course": "Zia Park",
+   "time": "20:53",
+   "withRating": "Classic Moment",
+   "withoutRating": "Classic Moment",
+   "changed": false
+  },
+  {
+   "course": "Zia Park",
+   "time": "21:20",
+   "withRating": "Leonas Girl",
+   "withoutRating": "Go Water",
+   "changed": true
+  },
+  {
+   "course": "Zia Park",
+   "time": "21:47",
+   "withRating": "Zactoattack",
+   "withoutRating": "Zactoattack",
+   "changed": false
+  },
+  {
+   "course": "Zia Park",
+   "time": "22:14",
+   "withRating": "It's a Factor",
+   "withoutRating": "It's a Factor",
+   "changed": false
+  },
+  {
+   "course": "Zia Park",
+   "time": "22:41",
+   "withRating": "Bango Gal",
+   "withoutRating": "Poquito Lady",
+   "changed": true
+  },
+  {
+   "course": "Zia Park",
+   "time": "23:08",
+   "withRating": "Hold My Scotch",
+   "withoutRating": "Hold My Scotch",
+   "changed": false
+  }
+ ]
+}

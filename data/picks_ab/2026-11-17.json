@@ -1,0 +1,147 @@
+{
+ "date": "2026-11-17",
+ "generated": "2026-11-17T03:43:46",
+ "note": "A/B of the twelve-factor model with and without a rating in the rpr slot",
+ "metric": "rpr",
+ "label": "rating",
+ "cards": 19,
+ "same": 15,
+ "changed": 4,
+ "ratedRunners": 164,
+ "runners": 249,
+ "rows": [
+  {
+   "course": "Carlisle",
+   "time": "13:55",
+   "withRating": "Ebselysees",
+   "withoutRating": "Ebselysees",
+   "changed": false
+  },
+  {
+   "course": "Carlisle",
+   "time": "14:25",
+   "withRating": "Double Digits",
+   "withoutRating": "Double Digits",
+   "changed": false
+  },
+  {
+   "course": "Carlisle",
+   "time": "15:00",
+   "withRating": "Zamond",
+   "withoutRating": "Zamond",
+   "changed": false
+  },
+  {
+   "course": "Carlisle",
+   "time": "15:30",
+   "withRating": "Mr Lincoln",
+   "withoutRating": "Mr Lincoln",
+   "changed": false
+  },
+  {
+   "course": "Limerick",
+   "time": "12:10",
+   "withRating": "Poet's Duke",
+   "withoutRating": "Poet's Duke",
+   "changed": false
+  },
+  {
+   "course": "Limerick",
+   "time": "12:40",
+   "withRating": "Detroit Maverick",
+   "withoutRating": "Detroit Maverick",
+   "changed": false
+  },
+  {
+   "course": "Limerick",
+   "time": "13:10",
+   "withRating": "Jumbos Jet",
+   "withoutRating": "Jumbos Jet",
+   "changed": false
+  },
+  {
+   "course": "Limerick",
+   "time": "13:40",
+   "withRating": "The Monkey Pole",
+   "withoutRating": "The Monkey Pole",
+   "changed": false
+  },
+  {
+   "course": "Limerick",
+   "time": "14:10",
+   "withRating": "Johnny Cakes",
+   "withoutRating": "Johnny Cakes",
+   "changed": false
+  },
+  {
+   "course": "Limerick",
+   "time": "14:40",
+   "withRating": "Depalma",
+   "withoutRating": "Finnicky Filly",
+   "changed": true
+  },
+  {
+   "course": "Limerick",
+   "time": "15:15",
+   "withRating": "Chanceitlucky",
+   "withoutRating": "Chasing Crowns",
+   "changed": true
+  },
+  {
+   "course": "Southwell",
+   "time": "16:30",
+   "withRating": "Lion's House",
+   "withoutRating": "Beaumadier",
+   "changed": true
+  },
+  {
+   "course": "Southwell",
+   "time": "17:00",
+   "withRating": "Urumita",
+   "withoutRating": "Urumita",
+   "changed": false
+  },
+  {
+   "course": "Southwell",
+   "time": "17:30",
+   "withRating": "Fahidi",
+   "withoutRating": "Fahidi",
+   "changed": false
+  },
+  {
+   "course": "Southwell",
+   "time": "18:00",
+   "withRating": "Allaire",
+   "withoutRating": "Allaire",
+   "changed": false
+  },
+  {
+   "course": "Southwell",
+   "time": "18:30",
+   "withRating": "Anthropologist",
+   "withoutRating": "Anthropologist",
+   "changed": false
+  },
+  {
+   "course": "Southwell",
+   "time": "19:00",
+   "withRating": "Red Hat Eagle",
+   "withoutRating": "Red Hat Eagle",
+   "changed": false
+  },
+  {
+   "course": "Southwell",
+   "time": "19:30",
+   "withRating": "Strong Voice",
+   "withoutRating": "Edmond Halley",
+   "changed": true
+  },
+  {
+   "course": "Southwell",
+   "time": "20:30",
+   "withRating": "Methgal",
+   "withoutRating": "Methgal",
+   "changed": false
+  }
+ ]
+}
