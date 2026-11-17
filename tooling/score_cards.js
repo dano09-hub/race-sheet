@@ -46,7 +46,11 @@ const out = cards.map(c => {
             horse: x.r.horse || '', rank: i + 1,
             total: Math.round(x.total * 10) / 10,
             mktRank: x.mktRank || null,
-            odds: x.r.odds || ''
+            odds: x.r.odds || '',
+            // The page's own 0-100 factor scores, so a training export fits
+            // weights against exactly the inputs the model uses.
+            parts: Object.fromEntries(Object.entries(x.parts || {}).map(
+              ([k, v]) => [k, v === null ? null : Math.round(v * 10) / 10]))
           }))};
 });
 fs.writeFileSync(outPath, JSON.stringify(out));

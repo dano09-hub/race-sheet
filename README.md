@@ -95,6 +95,9 @@ Known gaps section for what that would take.
 | Australia / NZ | `punters.com.au` form guide | free | **no** — 403, Cloudflare | form, barrier, weight, their rating, win/place %, price |
 | Hong Kong | `info.cld.hkjc.com/graphql/base/` (see `tooling/scrape_hk.py`) | free | **yes, plain POST** | rating, last six, barrier, weight, jockey, trainer |
 | Anything else | `punters.com.au` covers GB, IRE, US, CA, AUS, NZ, HK, JP, ZA, FR, TR, AE | free | no, same Cloudflare wall | same block as Australia |
+| Training history, GB/IRE | Delta Romeo's results set on Kaggle | free | **no** — needs a Kaggle API token | 1988 onwards: OR, RPR, Topspeed, SP, finishing position |
+| Starting prices | `promo.betfair.com/betfairsp/prices` | free | **no** — 403 from this sandbox | Betfair SP per runner, 2008 onwards |
+| Racecards and results | `racingpost.com`, via `rpscrape` | free | **no** — 406 to a plain request | full form and result history |
 
 **The wall is the network, not the code.** Punters and HRN horse profiles refuse
 datacenter IPs. From an ordinary home connection the requests usually succeed
@@ -222,6 +225,24 @@ the APK to a GitHub Release. A Trusted Web Activity also needs
 `/.well-known/assetlinks.json` at the origin root, which a GitHub project page
 cannot serve without a custom domain. The installed PWA avoids that entirely and
 is the recommended first app.
+
+## Training from the archive
+
+`tooling/export_training.py` scores every archived card with the page's own model
+(`tooling/score_cards.js`) and joins each runner to its settled result, writing one
+row per runner to `data/training/runners.csv`: the twelve 0-100 factor scores, the
+finishing position, the pre-race price and a winner label. The file is derived, so
+it is not committed; regenerate it after a refresh.
+
+`tooling/train_weights.py` fits the twelve weights and one scale by conditional
+logit (one race is one choice), holds out the latest race days, and reports
+held-out log loss and top-1 against the live weights and the market. It writes
+nothing: no weight, pick or result is changed by training. With a few hundred
+races the fit is a pipeline test, not evidence, and a weight vector only becomes a
+candidate after it wins on a much larger sample and then through the shadow arm.
+
+Scaling up needs an external history. The free Delta Romeo GB/IRE set on Kaggle is
+the natural next input, and a Kaggle API token is the only missing piece.
 
 ## Checks
 
