@@ -5625,6 +5625,11 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_FRI);  // UK/IRE today, US lat
       placed: hit || /^[123](st|nd|rd)$/.test(pickFinish),
       savedAt: new Date().toISOString()
     };
+    // one manual entry per race: replacing an existing one wins
+    manualResults = manualResults.filter(function (m) {
+      return m.id === entry.id ||
+        manualRaceKey(m.day, m.course, m.time) !== manualRaceKey(entry.day, entry.course, entry.time);
+    });
     var found = false;
     manualResults = manualResults.map(function (m) {
       if (m.id !== entry.id) return m;
@@ -5635,6 +5640,7 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_FRI);  // UK/IRE today, US lat
     manualSave();
     manualShowForm(false);
     renderManualResults();
+    if ($('manualList')) $('manualList').scrollIntoView({behavior: 'smooth', block: 'nearest'});
   }
 
   function renderManualResults() {
