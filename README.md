@@ -29,12 +29,12 @@ var FACTORS = [
   ['market', 'Market', 18],      // Betfair/SP-derived implied probability, normalised to sum 100
   ['form', 'Form', 15],          // last-6 form string, position-weighted
   ['tips', 'Tipsters', 5],       // number of tipsters naming the horse
-  ['rpr', 'RPR', 13],            // Racing Post Rating
+  ['rpr', 'Card rating', 13],    // Racing Post Rating, or Timeform on Racing TV cards
   ['rating', 'Official rating', 15],
   ['cd', 'Course & trip', 10],   // course winner / distance winner flags
   ['draw', 'Draw', 4],            // post position; US cards only, null elsewhere so GB scores are untouched
   ['speed', 'Topspeed', 12],
-  ['going', 'Going', 4],
+  ['going', 'Won last time out', 4],  // the card's LTO flag, not a going preference
   ['fitness', 'Fitness', 3],     // days since last run
   ['weight', 'Weight', 2],
   ['connections', 'Stable form', 3]  // jockey + trainer 30-day strike rate
@@ -582,7 +582,7 @@ python3 -m venv .venv && .venv/bin/pip install curl_cffi
 Racing Post answers plain Python with 406 and Chrome-grade TLS with 200, hence
 `curl_cffi`. The tool reads one racecard page per race and writes RPR, Topspeed and
 official rating to `data/cards/<date>_rp.json`, then a per-runner CSV beside our
-picks at `data/picks_ab/rp_compare_<date>.csv` (our Timeform rating, RP RPR, RP TS, RP OR,
+picks at `data/picks_ab/rp_compare_<date>.csv` (our card rating, RP RPR, RP TS, RP OR,
 pick flag). It never edits the cards the model scores and is not imported by
 `refresh.py`, so no pick changes. Past-date racecards redirect to results and
 results carry no ratings, so it can only capture a card before its races run.

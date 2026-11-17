@@ -44,7 +44,9 @@ def _enrich(cards, date):
             src = pool.get((norm(c.get("course")), norm(r.get("horse"))))
             if not src:
                 continue
-            for k in ("rpr", "days", "form", "weight", "course", "distance", "tips"):
+            # Never merge "rpr" here: Racing TV's number is Timeform, not the
+            # Racing Post Rating the card's rpr field holds.
+            for k in ("days", "form", "weight", "course", "distance", "tips"):
                 if not str(r.get(k, "") or "").strip() and str(src.get(k, "") or "").strip():
                     r[k] = src[k]
             r.setdefault("tf_rating", src.get("tf_rating", ""))

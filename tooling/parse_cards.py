@@ -73,7 +73,11 @@ def parse_course_page(page, course, date):
             num = re.search(r'data-runnernumber="(\d+)"', blk)
             if not num:
                 continue
-            name = re.search(r'class="fri-name">\s*([^<]+?)(?:\s*<span|</div>)', blk)
+            # Current markup wraps the horse in a profile link; older pages
+            # rendered it as plain text. Accept both.
+            name = re.search(r'class="fri-name">\s*<a[^>]*>([^<]+)</a>', blk)
+            if not name:
+                name = re.search(r'class="fri-name">\s*([^<]+?)(?:\s*<span|</div>)', blk)
             if not name:
                 continue
             form = re.search(r'class="fs-form">\s*([^<]*?)\s*</div>', blk)
@@ -87,31 +91,48 @@ def parse_course_page(page, course, date):
             lastran = re.search(r'class="fir-last-ran">\s*([^<]*)<', blk)
             weight = re.search(r'Weight:\s*<span>([^<]*)</span>', blk)
             jt = re.findall(r"class='fi-tl'>([^<]*)<", blk)
-            ratings = re.search(r"OR:\s*([0-9-]*),\s*RPR:\s*([0-9-]*),\s*Topspeed:\s*([0-9-]*)", blk)
+            # Read the three figures independently: the card wraps Topspeed in
+            # a <span> on some runners, which breaks one combined regex and
+            # silently dropped the official rating.
+            or_m = re.search(r"\bOR:\s*([0-9-]+)", blk)
+            rpr_m = re.search(r"\bRPR:\s*([0-9-]+)", blk)
+            ts_m = re.search(r"\bTopspeed:\s*([0-9-]+)", blk)
             tips = re.search(r'class="fti-tips-total"[^>]*>\s*(\d*)', blk)
             naps = re.search(r'class="fs-tip-info"[^>]*>\s*(\d*)', blk)
 
             def num_or_blank(v):
-                return v if v and v != "-" else ""
+                # The card writes 0 where it has no figure; 0 is not a rating.
+                return v if v and v not in ("-", "0") else ""
 
-            orv = rprv = tsv = ""
-            if ratings:
-                orv = num_or_blank(ratings.group(1))
-                rprv = num_or_blank(ratings.group(2))
-                tsv = num_or_blank(ratings.group(3))
+            orv = num_or_blank(or_m.group(1)) if or_m else ""
+            rprv = num_or_blank(rpr_m.group(1)) if rpr_m else ""
+            tsv = num_or_blank(ts_m.group(1)) if ts_m else ""
+            # data-rating is the Racing Post Rating (the card's "Sort By RP
+            # Rating" field), never the official handicap mark. Only the
+            # "OR: ..." text carries the official rating.
+            if not rprv and rating:
+                rprv = num_or_blank(rating.group(1))
+            if not tsv and ts:
+                tsv = num_or_blank(ts.group(1))
+
+            oddsv = clean(odds.group(1)) if odds else ""
+            if oddsv and float(oddsv) >= 100000:
+                oddsv = ""       # 9999999 is the card's "no price yet" sentinel
 
             runners.append({
                 "horse": clean(name.group(1)),
                 "form": clean(form.group(1)) if form else "",
-                "odds": clean(odds.group(1)) if odds else "",
-                "or": orv or (rating.group(1) if rating and rating.group(1).isdigit() else ""),
+                "odds": oddsv,
+                "or": orv,
                 "rpr": rprv,
-                "ts": tsv or (ts.group(1) if ts else ""),
+                "ts": tsv,
                 "weight": clean(weight.group(1)) if weight else "",
                 "days": clean(lastran.group(1)) if lastran else "",
                 "course": "Y" if coursew and coursew.group(1) == "1" else "N",
                 "distance": "Y" if distw and distw.group(1) == "1" else "N",
-                "going": "Y" if wonlast and wonlast.group(1) == "1" else "?",
+                # renamed in the page from "Going" to "Won last time out":
+                # this attribute is the LTO flag, not a going preference.
+                "going": ("Y" if wonlast.group(1) == "1" else "N") if wonlast else "?",
                 "jp": clean(jt[0]).replace("%", "") if len(jt) > 0 else "",
                 "tp": clean(jt[1]).replace("%", "") if len(jt) > 1 else "",
                 "tips": tips.group(1) if tips and tips.group(1) else "",

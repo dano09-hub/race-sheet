@@ -1193,14 +1193,14 @@
             <th>Odds</th>
             <th>Form</th>
             <th>OR</th>
-            <th>Timeform</th>
+            <th>Rating</th>
             <th>T/S</th>
             <th>Tips</th>
             <th>Wt</th>
             <th>Days</th>
             <th>Course</th>
             <th>Dist</th>
-            <th>Going</th>
+            <th>LTO</th>
             <th></th>
           </tr>
         </thead>
@@ -1386,12 +1386,12 @@
         <dt>Market (18)</dt><dd>Implied probability from the price, scaled so the shortest-priced runner scores 100.</dd>
         <dt>Form (15)</dt><dd>Last six finishing positions, most recent weighted heaviest, blended 65/35 with how often the horse actually hits the frame. No top-three finish in its last six caps it at 55; one run caps it at 68, two at 76; no form scores 30.</dd>
         <dt>Tipsters (5)</dt><dd>How many of the card's tipsters have put the horse up, normalised across the field. Naps are shown in brackets next to the count but are not scored separately &mdash; a nap is one tipster's strongest view, not an extra vote.</dd>
-        <dt>Timeform (13)</dt><dd>Timeform's rating, normalised across the field &mdash; an independent view of the form it has actually produced. Cards built from Racing TV carry it; Sporting Life cards do not, and the factor drops out.</dd>
+        <dt>Card rating (13)</dt><dd>The rating printed on the card &mdash; Racing Post Rating on horseracing.net cards, Timeform on Racing TV cards &mdash; normalised across the field. One rating product is used per race, never a mix of the two.</dd>
         <dt>Official rating (15)</dt><dd>The handicapper's view of ability, normalised across the field.</dd>
         <dt>Course &amp; trip (10)</dt><dd>Whether it has won at the track and over the distance. A record like <code>1/3</code> is used as a rate; Y/N flags score 72/38.</dd>
         <dt>Draw (4)</dt><dd>Post position; used where the card carries a draw (US/HK), absent on GB/IE cards so the factor drops.</dd>
         <dt>Topspeed (12)</dt><dd>Speed figure, normalised across the field.</dd>
-        <dt>Going (4)</dt><dd>Whether the horse acts on today's surface. If nobody in the race is marked, the factor drops out rather than counting as neutral.</dd>
+        <dt>Won last time out (4)</dt><dd>Whether the horse won its latest start: Y scores 72, N scores 28. Cards that do not carry the flag drop the factor rather than guessing at the going.</dd>
         <dt>Fitness (3)</dt><dd>Days since last run: peak at 15&ndash;35, penalised for long absences and quick reappearances.</dd>
         <dt>Weight (2)</dt><dd>Lower weight scores higher &mdash; the point of a handicap.</dd>
         <dt>Stable form (3)</dt><dd>Trainer and jockey 30-day strike rates, straight from the card.</dd>
@@ -1437,12 +1437,12 @@
     ['market', 'Market', 18],
     ['form', 'Form', 15],
     ['tips', 'Tipsters', 5],
-    ['rpr', 'Timeform', 13],
+    ['rpr', 'Card rating', 13],
     ['rating', 'Official rating', 15],
     ['cd', 'Course & trip', 10],
     ['draw', 'Draw', 4],
     ['speed', 'Topspeed', 12],
-    ['going', 'Going', 4],
+    ['going', 'Won last time out', 4],
     ['fitness', 'Fitness', 3],
     ['weight', 'Weight', 2],
     ['connections', 'Stable form', 3]
@@ -4639,6 +4639,8 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_FRI);  // UK/IRE today, US lat
     if (s === 'evens' || s === 'evs') return 2;
     if (/^\d+(\.\d+)?$/.test(s)) {
       var n = parseFloat(s);
+      // 9999999 is the card's "no price yet" sentinel, not a 10-million-to-one shot.
+      if (n >= 100000) return null;
       return n > 1 ? n : null;
     }
     var m = s.match(/^(\d+)[\/-](\d+)$/);
@@ -4648,6 +4650,13 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_FRI);  // UK/IRE today, US lat
       return 1 + numerator / den;
     }
     return null;
+  }
+
+  // A card writes 0 where it has no figure. That is missing data, not a
+  // rating of zero: blank and zero must score the same way.
+  function figure(v) {
+    var n = num(v);
+    return (n === null || n <= 0) ? null : n;
   }
 
   function parseWeight(v) {
@@ -4792,15 +4801,15 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_FRI);  // UK/IRE today, US lat
     var maxP = 0;
     probs.forEach(function (p) { if (p !== null && p > maxP) maxP = p; });
 
-    var ors = rs.map(function (r) { return num(r.or); }).filter(function (v) { return v !== null; });
+    var ors = rs.map(function (r) { return figure(r.or); }).filter(function (v) { return v !== null; });
     var minOr = ors.length ? Math.min.apply(null, ors) : 0;
     var maxOr = ors.length ? Math.max.apply(null, ors) : 0;
 
-    var rprs = rs.map(function (r) { return num(r.rpr); }).filter(function (v) { return v !== null; });
+    var rprs = rs.map(function (r) { return figure(r.rpr); }).filter(function (v) { return v !== null; });
     var minRpr = rprs.length ? Math.min.apply(null, rprs) : 0;
     var maxRpr = rprs.length ? Math.max.apply(null, rprs) : 0;
 
-    var tss = rs.map(function (r) { return num(r.ts); }).filter(function (v) { return v !== null; });
+    var tss = rs.map(function (r) { return figure(r.ts); }).filter(function (v) { return v !== null; });
     var minTs = tss.length ? Math.min.apply(null, tss) : 0;
     var maxTs = tss.length ? Math.max.apply(null, tss) : 0;
 
@@ -4820,7 +4829,7 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_FRI);  // UK/IRE today, US lat
 
     var rows = rs.map(function (r, i) {
       var st = formStats(r.form);
-      var or = num(r.or), rpr = num(r.rpr), ts = num(r.ts), wt = parseWeight(r.weight);
+      var or = figure(r.or), rpr = figure(r.rpr), ts = figure(r.ts), wt = parseWeight(r.weight);
       var tcount = num(r.tips);
       if (tcount === null) tcount = 0;   // no tipster named him: that is zero tips, not missing data
 
@@ -4920,7 +4929,7 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_FRI);  // UK/IRE today, US lat
         '<td><input class="w-xs" data-i="' + i + '" data-k="days" value="' + esc(r.days) + '" placeholder="24" aria-label="Days since last run"></td>' +
         '<td><input class="w-xs" data-i="' + i + '" data-k="course" value="' + esc(r.course) + '" placeholder="Y/N" aria-label="Course record"></td>' +
         '<td><input class="w-xs" data-i="' + i + '" data-k="distance" value="' + esc(r.distance) + '" placeholder="Y/N" aria-label="Distance record"></td>' +
-        '<td><select data-i="' + i + '" data-k="going" aria-label="Acts on going">' + goOptions(r.going) + '</select></td>' +
+        '<td><select data-i="' + i + '" data-k="going" aria-label="Won last time out">' + goOptions(r.going) + '</select></td>' +
         '<td><button class="del" data-del="' + i + '" title="Remove runner" aria-label="Remove runner">&times;</button></td>' +
       '</tr>';
     }).join('');
@@ -5241,9 +5250,9 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_FRI);  // UK/IRE today, US lat
   };
 
   var FACTOR_PHRASES = {
-    market: 'market', form: 'form', tips: 'tipsters', rpr: 'Timeform',
+    market: 'market', form: 'form', tips: 'tipsters', rpr: 'card rating',
     rating: 'official rating', cd: 'course and trip', draw: 'draw',
-    speed: 'speed figures', going: 'going', fitness: 'fitness',
+    speed: 'speed figures', going: 'last-time-out form', fitness: 'fitness',
     weight: 'weights', connections: 'connections'
   };
   var boardCache = null;

@@ -1254,6 +1254,73 @@ _prows = [{"odds": o} for o in ("2", "3.5", "6", "9")]
 check("cards: a real market is kept",
       pcards._blank_placeholder_odds(_prows) == 0 and _prows[0]["odds"] == "2", _prows)
 
+print("30e. factor inputs are read as labelled")
+_page = (
+    '<section data-time="13:00">'
+    '<h4 class="chase-title">Test Hurdle</h4>'
+    '<span class="chase-text">4yo+, 6 Runners</span>'
+    '<span class="chase-text">Jumps,Turf , 2m , GOOD</span>'
+    '<div data-tip="0" data-coursewinner="0" data-distancewinner="0" '
+    'data-wonlasttimeout="0" data-oddsdecimal="9999999" data-runnernumber="1" '
+    'data-topspeed="0" data-rating="0" class="row-runner">'
+    '<div class="fs-form">7</div>'
+    '<div class="fri-name"><a href="/runners/alpha">Alpha</a> '
+    '<span class="fir-last-ran">21</span></div>'
+    '<span class=\'fi-tl\'>15%</span><span class=\'fi-tl\'>20%</span>'
+    '<div class="fi-item-weight">Weight: <span>11-4</span></div>'
+    '<div class="frd-ratings">RPR: -, Topspeed: -</div>'
+    '</div>'
+    '<div data-tip="1" data-coursewinner="1" data-distancewinner="0" '
+    'data-wonlasttimeout="1" data-oddsdecimal="3.5" data-runnernumber="2" '
+    'data-topspeed="88" data-rating="101" class="row-runner">'
+    '<div class="fs-form">1</div>'
+    '<div class="fri-name"><a href="/runners/beta">Beta</a> '
+    '<span class="fir-last-ran">14</span></div>'
+    '<div class="fti-tips-total">3 Tips</div>'
+    '<div class="fi-item-weight">Weight: <span>11-0</span></div>'
+    '<div class="frd-ratings">OR: 105, RPR: 101, Topspeed: 88</div>'
+    '</div>'
+    '<div data-tip="0" data-coursewinner="0" data-distancewinner="0" '
+    'data-wonlasttimeout="1" data-oddsdecimal="6" data-runnernumber="3" '
+    'data-topspeed="77" data-rating="99" class="row-runner">'
+    '<div class="fri-name"><a href="/runners/gamma">Gamma</a></div>'
+    '<div class="frd-ratings">RPR: 99, Topspeed: 77</div>'
+    '</div>'
+    '</section>')
+_cards = pcards.parse_course_page(_page, "Test", "01-01-26")
+check("cards: the linked-name markup parses", len(_cards) == 1 and len(_cards[0]["runners"]) == 3,
+      _cards)
+_r = _cards[0]["runners"] if _cards else []
+check("cards: 9999999 is no price", _r and _r[0]["odds"] == "", _r[:1])
+check("cards: a zero figure is missing, not a rating",
+      _r and (_r[0]["or"], _r[0]["rpr"], _r[0]["ts"]) == ("", "", ""), _r[:1])
+check("cards: won-last-time-out 0 is N", _r and _r[0]["going"] == "N", _r[:1])
+check("cards: a real price and figures survive",
+      _r and (_r[1]["odds"], _r[1]["or"], _r[1]["rpr"], _r[1]["ts"]) == ("3.5", "105", "101", "88"),
+      _r[1:2])
+check("cards: won-last-time-out 1 is Y", _r and _r[1]["going"] == "Y", _r[1:2])
+check("cards: data-rating is RPR, never the official rating",
+      _r and (_r[2]["or"], _r[2]["rpr"], _r[2]["ts"]) == ("", "99", "77"), _r[2:3] if _r else _r)
+
+print("30f. placeholders are not scored")
+_scard = {"id": "placeholders", "course": "Test", "time": "13:00", "runners": [
+    {"horse": "Priced", "odds": "2", "form": "1", "or": "100", "rpr": "100",
+     "ts": "100", "weight": "11-0", "days": "20", "course": "N", "distance": "N",
+     "going": "N", "jp": "10", "tp": "10", "tips": "2"},
+    {"horse": "NoPriceZero", "odds": "9999999", "form": "1", "or": "0", "rpr": "0",
+     "ts": "0", "weight": "11-0", "days": "20", "course": "N", "distance": "N",
+     "going": "N", "jp": "10", "tp": "10", "tips": "2"},
+    {"horse": "NoPriceBlank", "odds": "", "form": "1", "or": "", "rpr": "",
+     "ts": "", "weight": "11-0", "days": "20", "course": "N", "distance": "N",
+     "going": "N", "jp": "10", "tp": "10", "tips": "2"}]}
+_srows = {x["horse"]: x for x in settle.score_cards([_scard])[0]["runners"]}
+check("scorer: a zero figure scores the same as a blank",
+      _srows["NoPriceZero"]["total"] == _srows["NoPriceBlank"]["total"], _srows)
+check("scorer: the no-price sentinel is not a market price",
+      _srows["NoPriceZero"]["mktRank"] is None, _srows)
+check("scorer: a real price still ranks",
+      _srows["Priced"]["mktRank"] == 1 and _srows["Priced"]["odds"] == "2", _srows)
+
 print()
 print("passed %d, failed %d%s" % (
     len(PASSED), len(FAILED), (", skipped %d" % len(SKIPPED)) if SKIPPED else ""))

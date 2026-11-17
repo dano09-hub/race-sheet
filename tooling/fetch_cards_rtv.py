@@ -65,13 +65,15 @@ def _runner(r):
     distance = "Y" if ({"D", "CD"} & b) else "N"
     tip_rank = r.get("timeform_tipped_place")
     draw = r.get("barrier_number") or ""
+    tf = _num(r.get("timeform_rating"))
     return {
         "horse": (r.get("horse_name") or "").strip(),
         "odds": "",
         "form": str(r.get("form") or "").strip(),
         "or": "",
-        # legacy key name: this is Timeform's rating, not Racing Post's
-        "rpr": _num(r.get("timeform_rating")),
+        # legacy key name: this is Timeform's rating, not Racing Post's.
+        # 0 means the horse has no figure yet.
+        "rpr": tf if tf != "0" else "",
         "ts": "",
         "weight": str(r.get("format_weight") or "").strip(),
         "days": ("" if r.get("days_since_last_run") in (None, "") else str(r.get("days_since_last_run"))),
