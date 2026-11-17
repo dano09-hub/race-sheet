@@ -276,7 +276,18 @@ runners. Holding out the last 60 race days (2,251 races):
 
 The fit improves, but almost entirely by moving weight onto the market (18 to
 51): it becomes a market follower that only draws level with the favourite, and
-stops doing the sheet's job of disagreeing with the market on purpose. That is
+stops doing the sheet's job of disagreeing with the market on purpose.
+
+Pulling the older archives as well (1988-2004 and 2005-2014, same columns) puts
+426,000 GB/IRE races and 3.9 million runner rows behind the same fit, 1988-01-01
+to 2026-11-15. Holding out the same last 60 days (2,251 races) does not move the
+answer: live weights 1.8822 / 32.6%, fitted 1.8141 / 35.3%, market top-1 35.0%.
+Seven times the history buys nothing over the 2023+ run (1.8117 / 34.9%) — the
+fit is still market-led (18 to 43.8) and still only edges the favourite. The
+ceiling is the information a card supplies, not the sample size: this source
+cannot see the pre-race tips, RPR and Topspeed figures the page's cards carry,
+so those weights stay at their live values and the fit cannot learn what the
+market already knows. That is
 not a candidate for the page. The useful finding is the other way round: on four
 years of racing the twelve fixed weights are already close to the best available,
 and the market is the ceiling.
