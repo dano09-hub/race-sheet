@@ -932,6 +932,19 @@ def main():
     print(f"  UK tomorrow: {len(uk_tomorrow)} races")
     us = us_day(iso)
     print(f"  US today:    {len(us)} races")
+    # Live US form, official rating and layoff, archived under *_live keys.
+    # The page's serialiser does not emit those keys, so the pick is unchanged;
+    # tooling/us_form_day.py scores the shadow arm that uses the form string.
+    try:
+        import fetch_overlay_us
+        fetch_overlay_us.ensure_raw(iso)
+        fetch_overlay_us.fetch_angles(iso)
+        import us_form
+        filled = us_form.enrich_cards(us, iso)
+        runners = sum(len(c.get("runners") or []) for c in us)
+        print(f"  us form:     {filled} of {runners} runners archived with live form/rating")
+    except Exception as e:
+        print(f"  us form:     skipped ({e})")
     hk = hk_day(iso)
     print(f"  HK today:    {len(hk)} races")
 
@@ -1070,6 +1083,22 @@ def main():
         pass
     except Exception as e:
         print(f"  us ab:       snapshot skipped ({e})")
+    # Shadow arm for the live form string: same cards, same weights, one extra
+    # factor. It never changes the published pick; ab_tally judges it.
+    try:
+        import us_form_day
+        us_form_day.main(iso)
+        import ab_tally as _ab
+        shadow = _ab.collect(snap_dir="picks_ab_form", regions=("US",),
+                             subject=us_form_day.SUBJECT)
+        if shadow["races"]:
+            print(f"  us form ab:  {shadow['races']} races, {shadow['with']} with vs "
+                  f"{shadow['without']} without, {shadow['changed']} picks changed")
+        print(f"  us form ab:  {shadow['verdict']}")
+    except SystemExit:
+        pass
+    except Exception as e:
+        print(f"  us form ab:  snapshot skipped ({e})")
     try:
         import us_flags
         us_flags_result = us_flags.build(iso)

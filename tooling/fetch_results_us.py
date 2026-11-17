@@ -20,8 +20,15 @@ ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 
 import scrape_us  # noqa: E402
+import us_form  # noqa: E402
 
 BASE = "https://entries.horseracingnation.com"
+
+
+def _norm(value):
+    text = re.sub(r"\(.*?\)", "", str(value or "")).lower()
+    text = re.sub(r"[^a-z0-9 ]", "", text)
+    return re.sub(r"\s+", " ", text).strip()
 
 
 def clean(value):
@@ -108,7 +115,17 @@ def fetch_day(date):
             continue
         course = slug.replace("-", " ").title()
         out.extend(parse_page(page, course))
-    return out
+    # The payout table only names the first four home; the live feed knows where
+    # every starter finished, so a pick can be judged wherever it came. Refresh
+    # it first: races still to run at card time have no position until they go
+    # off, and /data_us.json only covers the current date.
+    if date == dt.date.today().isoformat():
+        try:
+            import fetch_overlay_us
+            fetch_overlay_us.refresh_raw(date)
+        except Exception:
+            pass
+    return us_form.merge_finish(out, date)
 
 
 def main():

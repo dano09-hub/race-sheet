@@ -219,6 +219,14 @@ def ensure_raw(date):
     return _save_raw(fetch(), date)
 
 
+def refresh_raw(date):
+    """Re-save the live feed so races that have since finished carry a position.
+
+    The feed only covers the current day, so a missing payload is not an error.
+    """
+    return _save_raw(fetch(), date)
+
+
 def fetch_angles(date, force=False):
     """Cache the public runner-flag feed used by the Angles tab."""
     path = os.path.join(ANGLE_DIR, f"{date}.json")

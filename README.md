@@ -134,8 +134,17 @@ you are harvesting through a browser. Output matches the card schema in
   pages did not render in time and remain names-only.
 * **`scrape_punters.py` price guard**: the parser used to read the `$0` in the
   prize column as a price. It now ignores anything below $1.01.
-* **US cards use 3 of 12 factors** (price, speed figure, draw). Form strings and
-  days-since-run sit behind HRN's horse profiles, which refuse this network.
+* **US cards use 3 of 12 factors** (price, speed figure, draw). The Overlay's
+  public feeds carry a form string, official rating and last-run date for almost
+  every US runner, so refresh archives them on the card as `form_live`,
+  `or_live` and `days_live`. Those keys are not runner keys in the page's
+  serialiser, so the published pick is unchanged. `tooling/us_form_day.py`
+  scores a shadow arm with the form string in the form slot and
+  `tooling/ab_tally.py` (snap dir `picks_ab_form`) judges it over time; the
+  weights only move if that tally separates.
+* **US results keep the full finishing order.** The payout table names the first
+  four home; `tooling/us_form.py` fills every other starter's position from the
+  live feed, so an unplaced pick is known rather than assumed.
 * The page is a **static build**: every number is baked at refresh time. The
   countdown is live; the cards are not.
 

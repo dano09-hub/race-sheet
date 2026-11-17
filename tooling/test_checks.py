@@ -36,6 +36,8 @@ import recheck_market  # noqa: E402
 import settle          # noqa: E402
 import us_flags        # noqa: E402
 import us_angles       # noqa: E402
+import us_form         # noqa: E402
+import us_form_day     # noqa: E402
 
 PASSED, FAILED, SKIPPED = [], [], []
 
@@ -1343,6 +1345,63 @@ with tempfile.TemporaryDirectory(prefix="archive-test-") as d:
     check("refresh: empty cards and other regions are left out",
           len(kept) == 1 and kept[0]["runners"][0]["horse"] == "One", kept)
     check("refresh: a day without an archive is not an error", missing == [], missing)
+
+print("32. US live form is archived, never scored")
+with tempfile.TemporaryDirectory(prefix="us-form-") as d:
+    os.makedirs(Path(d, "data", "us_data"))
+    os.makedirs(Path(d, "data", "us_angles"))
+    Path(d, "data", "us_data", "2026-11-17.json").write_text(json.dumps({
+        "meetings": [{"course": "Parx Racing", "races": [{
+            "time": "13:00",
+            "runners": [
+                {"horse": "Alpha", "form": "112", "or": 101, "finish_position": 1},
+                {"horse": "Beta", "form": "3-2", "or": 99, "finish_position": 2},
+                {"horse": "Gamma", "form": "555", "or": 95, "finish_position": 3},
+                {"horse": "Delta", "form": "4", "or": 90, "finish_position": 7},
+            ]}]}]}))
+    Path(d, "data", "us_angles", "2026-11-17.json").write_text(json.dumps({
+        "races": {"parx racing|13:00": {
+            "course": "Parx Racing", "off": "13:00",
+            "runners": {"alpha": {"h": "Alpha", "last": [
+                ["2026-10-01", "Parx Racing", "dirt", 1, 6, "2/1"]]}}}}}))
+    old_root = us_form.ROOT
+    us_form.ROOT = d
+    try:
+        cards = [{"course": "Parx Racing", "time": "13:00", "runners": [
+            {"horse": "Alpha", "form": "", "or": ""},
+            {"horse": "Beta", "form": "", "or": ""},
+            {"horse": "Epsilon", "form": "", "or": ""}]}]
+        filled = us_form.enrich_cards(cards, "2026-11-17")
+        positions = us_form.finish_positions("2026-11-17")
+        rows = [{"course": "Parx Racing", "time": "13:00",
+                 "finish": {"Alpha": 1}, "places": ["Alpha"], "field": 1}]
+        merged = us_form.merge_finish(rows, "2026-11-17")
+    finally:
+        us_form.ROOT = old_root
+    alpha, beta, epsilon = cards[0]["runners"]
+    check("us form: the live form lands under form_live",
+          alpha.get("form_live") == "112", alpha)
+    check("us form: the scored form and rating are untouched",
+          alpha.get("form") == "" and alpha.get("or") == "", cards[0]["runners"])
+    check("us form: the layoff is archived in days_live",
+          alpha.get("days_live") == 47, alpha)
+    check("us form: the live rating is archived separately",
+          alpha.get("or_live") == 101 and beta.get("or_live") == 99, cards[0]["runners"])
+    check("us form: a runner the live feed does not know gets no keys",
+          "form_live" not in epsilon and "or_live" not in epsilon and filled == 2,
+          epsilon)
+    check("us results: every starter gets a finishing position",
+          len(positions) == 4 and positions[("parx racing", "13:00", "delta")]["pos"] == 7,
+          positions)
+    check("us results: the payout table is extended to the full field",
+          merged[0]["finish"] == {"Alpha": 1, "Beta": 2, "Gamma": 3, "Delta": 7}
+          and merged[0]["places"] == ["Alpha", "Beta", "Gamma"]
+          and merged[0]["field"] == 7, merged)
+    check("us form shadow: a race with a runner missing form is not compared",
+          not us_form_day.complete(cards[0]), cards[0])
+    epsilon["form_live"] = "2"
+    check("us form shadow: a fully filled race is comparable",
+          us_form_day.complete(cards[0]), cards[0])
 
 print()
 print("passed %d, failed %d%s" % (
