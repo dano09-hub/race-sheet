@@ -327,6 +327,8 @@ def main(argv=None):
     html = open(refresh.INDEX, encoding="utf-8").read()
     html = _replace(html, "RESULTS_SL",
                     refresh.results_block_all() or refresh.results_block(iso, rows))
+    html = _replace(html, "US_RESULTS_SL",
+                    refresh.results_block_all_us() or refresh.results_block_us(iso, rows))
     html = _replace(html, "AB_SL",
                     refresh.ab_block_html(ab_result, iso))
     html = _replace(html, "US_AB_SL",

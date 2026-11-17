@@ -1114,6 +1114,39 @@ check("manual: entries use their own store",
 check("manual: the published RESULTS array is not written by the form",
       "RESULTS.push" not in _page and "RESULTS =" in _page)
 
+print("29. UK/IRE and US results split")
+_split_rows = [
+    {"course": "UK Test", "time": "13:05", "race": "13:05 UK Test", "winner": "UK Winner",
+     "pick": "UK Winner", "hit": True, "places": ["UK Winner"], "placed": True,
+     "place_places": 3, "region": "GB"},
+    {"course": "US Test", "time": "20:01", "race": "US Test Stakes", "winner": "US Winner",
+     "pick": "US Pick", "hit": False, "places": ["US Winner"], "placed": False,
+     "place_places": 3, "region": "US"},
+]
+_uk = refresh.results_block("2026-11-16", _split_rows)
+_us = refresh.results_block_us("2026-11-16", _split_rows)
+check("results split: UK block excludes US", "UK Test" in _uk and "US Test" not in _uk)
+check("results split: US block excludes UK", "US Test" in _us and "UK Test" not in _us)
+check("results split: off time is shown",
+      '<span class="rtime">13:05</span>' in _uk
+      and '<span class="rtime">20:01</span>' in _us)
+check("results split: block markers", "RESULTS_SL_START" in _uk
+      and "US_RESULTS_SL_START" in _us)
+check("results split: Course / off header", "Course / off" in _uk)
+check("results split: US summary is US-only", "1 US race settled" in _us)
+check("results split: page has a US results tab",
+      "['usresults', 'US results'" in _page)
+_us_panel = _page.split('<section class="panel" data-panel="usresults">', 1)[1].split(
+    '<section class="panel" data-panel="results">', 1)[0]
+_res_panel = _page.split('<section class="panel" data-panel="results">', 1)[1].split(
+    '<section class="panel" data-panel="method">', 1)[0]
+check("results split: US panel owns the US A/B", "US_AB_SL_START" in _us_panel)
+check("results split: Results no longer owns the US A/B",
+      "US_AB_SL_START" not in _res_panel)
+check("results split: US ledger marker is in the US panel",
+      "US_RESULTS_SL_START" in _us_panel)
+check("results split: off-time style is present", ".rtime{" in _page)
+
 print()
 print("passed %d, failed %d%s" % (
     len(PASSED), len(FAILED), (", skipped %d" % len(SKIPPED)) if SKIPPED else ""))

@@ -411,10 +411,10 @@ def au_day():
         return []
 
 
-def results_block(iso, rows):
-    """Build the Results panel HTML from a day's settled races."""
+def _results_inner(iso, rows, region):
+    """Build one day's ledger table for a single region group."""
     import html as _h
-    rows = sorted(rows, key=lambda r: (r["course"], r.get("race", "")))
+    rows = sorted(rows, key=lambda r: (r["course"], r.get("time", ""), r.get("race", "")))
     hits_box, judged_box = [0], [0]
     placed_box, place_judged = [0], [0]
     trs = []
@@ -423,7 +423,11 @@ def results_block(iso, rows):
         t = r.get("race", "")
         m = re.search(r"(\d{1,2}:\d{2})", t)
         time_attr = r.get("time") or (m.group(1) if m else "")
-        course_cell = ('<span class="rtag">USA</span> ' if r.get("region") == "US" else '') + _h.escape(r["course"])
+        course_html = (('<span class="rtag">USA</span> ' if r.get("region") == "US" else '')
+                       + _h.escape(r["course"]))
+        time_html = ""
+        if time_attr:
+            time_html = ' <span class="rtime">%s</span>' % _h.escape(str(time_attr)[:5])
         pk = r.get("pick", "")
         if pk:
             fin = r.get("pick_finish", "")
@@ -450,64 +454,87 @@ def results_block(iso, rows):
             cell = '<td class="pick none">card not kept</td>'
             place_cell = '<td class="placed unknown">&mdash;</td>'
         trs.append('<tr data-course="%s" data-time="%s" data-winner="%s">'
-                   '<td><b>%s</b></td><td>%s</td><td>%s</td><td class="muted">%s</td>%s%s</tr>'
-                   % (_h.escape(r["course"]), time_attr, _h.escape(r["winner"]),
-                      course_cell, _h.escape(t[:44]), _h.escape(r["winner"]), places, cell, place_cell))
+                   '<td><b>%s</b>%s</td><td>%s</td><td>%s</td><td class="muted">%s</td>%s%s</tr>'
+                   % (_h.escape(r["course"]), _h.escape(str(time_attr)), _h.escape(r["winner"]),
+                      course_html, time_html, _h.escape(t[:44]) or "&mdash;",
+                      _h.escape(r["winner"]), places, cell, place_cell))
     label = dt.datetime.strptime(iso, "%Y-%m-%d").strftime("%-d %B %Y")
-
-    def _split_stats(subset):
-        judged = sum(1 for r in subset if r.get("pick"))
-        hits = sum(1 for r in subset if r.get("hit"))
-        place_judged = sum(1 for r in subset
-                           if r.get("pick") and r.get("placed") is not None)
-        placed = sum(1 for r in subset if r.get("placed") is True)
-        return hits, judged, placed, place_judged
-
-    uk_rows = [r for r in rows if r.get("region") != "US"]
-    us_rows = [r for r in rows if r.get("region") == "US"]
-    split_bits = []
-    for name, subset in (("UK/IRE", uk_rows), ("US", us_rows)):
-        if not subset:
-            continue
-        h, j, p, pj = _split_stats(subset)
-        split_bits.append(
-            "<b>%s</b> %d of %d winners, %d of %d placed." % (name, h, j, p, pj))
-    split_summary = (" " + " ".join(split_bits)) if split_bits else ""
-
-    placed_summary = (" <b>%d of %d</b> picks placed." % (placed_box[0], place_judged[0])
-                      if place_judged[0] else "")
+    top_bit = ("<b>%d of %d</b> winners were our top pick. " % (hits_box[0], judged_box[0])
+               if judged_box[0] else "")
+    place_bit = ("<b>%d of %d</b> picks placed. " % (placed_box[0], place_judged[0])
+                 if place_judged[0] else "")
+    noun = "race" if len(rows) == 1 else "races"
     return (
-        "<!-- RESULTS_SL_START -->\n"
         '<h3>Settled &mdash; %s</h3>\n'
-        '<p class="method">%d races settled.%s %sWinner first, then the '
-        'first three home in finishing order.%s</p>\n'
-        '<div class="scroll"><table><thead><tr><th>Course</th><th>Race</th><th>Winner</th>'
-        '<th>Places</th><th>Our pick</th><th>Placed?</th></tr></thead><tbody>%s</tbody></table></div>\n'
-        "<!-- RESULTS_SL_END -->" % (label, len(rows),
-              split_summary,
-              ("<b>%d of %d</b> winners were our top pick. " % (hits_box[0], judged_box[0])) if judged_box[0] else "",
-              placed_summary, "".join(trs))
+        '<p class="method">%d %s %s settled. %s%sWinner first, then the '
+        'first three home in finishing order. Off time is shown beside each course.</p>\n'
+        '<div class="scroll"><table class="ledger"><thead><tr><th>Course / off</th><th>Race</th>'
+        '<th>Winner</th><th>Places</th><th>Our pick</th><th>Placed?</th></tr></thead>'
+        '<tbody>%s</tbody></table></div>\n'
+        % (label, len(rows), region, noun, top_bit, place_bit, "".join(trs))
     )
 
 
+def results_block(iso, rows):
+    """The UK/IRE ledger. US rows live in the US results tab."""
+    rows = [r for r in rows if r.get("region") != "US"]
+    if not rows:
+        return ('<!-- RESULTS_SL_START -->\n'
+                '<p class="method">No UK/IRE results for this day.</p>\n'
+                '<!-- RESULTS_SL_END -->')
+    return ("<!-- RESULTS_SL_START -->\n" + _results_inner(iso, rows, "UK/IRE")
+            + "\n<!-- RESULTS_SL_END -->")
 
-def results_block_all():
-    """Render every archived day in data/results, newest first."""
+
+def results_block_us(iso, rows):
+    """The US-only ledger, with the off time on every row."""
+    rows = [r for r in rows if r.get("region") == "US"]
+    if not rows:
+        return ('<!-- US_RESULTS_SL_START -->\n'
+                '<p class="method">No US results for this day.</p>\n'
+                '<!-- US_RESULTS_SL_END -->')
+    return ("<!-- US_RESULTS_SL_START -->\n" + _results_inner(iso, rows, "US")
+            + "\n<!-- US_RESULTS_SL_END -->")
+
+
+def _results_all(region):
     import glob
     files = sorted(glob.glob(os.path.join(ROOT, "data", "results", "*.json")), reverse=True)
-    if not files:
-        return None
     parts = []
     for path in files:
         iso = os.path.basename(path)[:-5]
         with open(path, encoding="utf-8") as f:
-            rows = json.load(f)
-        if not rows:
+            data = json.load(f)
+        rows = data.get("races", []) if isinstance(data, dict) else data
+        if not isinstance(rows, list):
             continue
-        parts.append(results_block(iso, rows).replace("<!-- RESULTS_SL_START -->", "").replace("<!-- RESULTS_SL_END -->", ""))
+        if region == "US":
+            rows = [r for r in rows if r.get("region") == "US"]
+            if rows:
+                parts.append(_results_inner(iso, rows, "US"))
+        else:
+            rows = [r for r in rows if r.get("region") != "US"]
+            if rows:
+                parts.append(_results_inner(iso, rows, "UK/IRE"))
+    return parts
+
+
+def results_block_all():
+    """Every archived day's UK/IRE ledger, newest first."""
+    parts = _results_all(None)
     if not parts:
         return None
-    return ("<!-- RESULTS_SL_START -->\n" + "\n".join(parts) + "\n<!-- RESULTS_SL_END -->")
+    return ("<!-- RESULTS_SL_START -->\n" + "\n".join(parts)
+            + "\n<!-- RESULTS_SL_END -->")
+
+
+def results_block_all_us():
+    """Every archived day's US ledger, newest first."""
+    parts = _results_all("US")
+    if not parts:
+        return None
+    return ("<!-- US_RESULTS_SL_START -->\n" + "\n".join(parts)
+            + "\n<!-- US_RESULTS_SL_END -->")
 
 
 def replace_block(html, name, body):
@@ -850,9 +877,12 @@ def main():
                 print(f"  ab:          skipped ({e})")
 
             block = results_block_all() or results_block(yday, rows)
+            us_block = results_block_all_us() or results_block_us(yday, rows)
             html_now = open(INDEX, encoding="utf-8").read()
             new = re.sub(r"<!-- RESULTS_SL_START -->.*?<!-- RESULTS_SL_END -->", block,
                          html_now, count=1, flags=re.S)
+            new = re.sub(r"<!-- US_RESULTS_SL_START -->.*?<!-- US_RESULTS_SL_END -->", us_block,
+                         new, count=1, flags=re.S)
             if new != html_now:
                 open(INDEX, "w", encoding="utf-8").write(new)
                 print("  results tab: rebuilt")
@@ -961,6 +991,10 @@ def main():
                   ab_block_html(ab_result, iso), html, count=1, flags=re.S)
     html = re.sub(r"<!-- US_AB_SL_START -->.*?<!-- US_AB_SL_END -->",
                   us_ab_block_html(us_ab_result, iso), html, count=1, flags=re.S)
+    us_results = (results_block_all_us()
+                  or "<!-- US_RESULTS_SL_START -->\n<p class=\"method\">No US results yet.</p>\n<!-- US_RESULTS_SL_END -->")
+    html = re.sub(r"<!-- US_RESULTS_SL_START -->.*?<!-- US_RESULTS_SL_END -->",
+                  us_results, html, count=1, flags=re.S)
     html = re.sub(r"<!-- US_FLAGS_SL_START -->.*?<!-- US_FLAGS_SL_END -->",
                   us_flags_block_html(us_flags_result, iso), html, count=1, flags=re.S)
     html = re.sub(r"<!-- US_ANGLES_SL_START -->.*?<!-- US_ANGLES_SL_END -->",
