@@ -1098,6 +1098,22 @@ finally:
     refresh.ROOT = old_root
     shutil.rmtree(ptmp, ignore_errors=True)
 
+print("28. manual results entry")
+_page = (ROOT / "index.html").read_text(encoding="utf-8")
+_dist = (ROOT / "dist" / "public" / "index.html").read_text(encoding="utf-8")
+check("manual: source and dist match", _page == _dist)
+for _needle in ('id="manualOpen"', 'id="manualForm"', 'id="manualRace"',
+                'id="manualWinner"', 'id="manualPickFinish"', 'id="manualList"'):
+    check("manual: %s is rendered" % _needle.split('"')[1], _needle in _page)
+check("manual: scheduled pull is linked", "actions/workflows/results.yml" in _page)
+check("manual: entries are labelled browser-local",
+      "saved in this browser only" in _page.lower())
+check("manual: entries use their own store",
+      "racing-sheet-manual-results-v1" in _page
+      and "localStorage.setItem(MANUAL_STORE" in _page)
+check("manual: the published RESULTS array is not written by the form",
+      "RESULTS.push" not in _page and "RESULTS =" in _page)
+
 print()
 print("passed %d, failed %d%s" % (
     len(PASSED), len(FAILED), (", skipped %d" % len(SKIPPED)) if SKIPPED else ""))

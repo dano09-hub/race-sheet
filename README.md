@@ -600,6 +600,11 @@ since `dist/public/index.html` is the whole site.
 * 21 races is a tiny sample. The weights were tuned in-sample; treat any
   improvement of one or two winners as noise.
 * The Results tab is a snapshot. It does not poll for new results.
+* **Add a result manually** on the Results tab keeps entries in this browser's
+  `localStorage`; it never edits the published ledger. Once the auto pull has
+  officially settled the same race, the entry is marked "auto result live". The
+  **Pull results now** button opens the scheduled results workflow on GitHub so it
+  can be run on demand; the 20-minute schedule is unchanged.
 
 ## Results: what is usable, and what is not
 

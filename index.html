@@ -862,6 +862,41 @@
   .findings{margin:10px 0 0!important; padding-left:19px!important; color:var(--muted)!important; font-size:12px!important; line-height:1.7!important}
   .findings li{margin-bottom:9px!important}
   .findings b{color:var(--ink)!important; font-weight:600!important}
+
+  /* manual results: browser-local additions, kept apart from the ledger */
+  .manualbar{display:flex; flex-wrap:wrap; gap:8px 10px; align-items:center; margin:0 0 14px}
+  .manualbar button, a.manuallink{
+    appearance:none; display:inline-block; padding:9px 13px; border:1px solid var(--ink);
+    background:var(--card); color:var(--ink); font-family:inherit; font-size:11px;
+    font-weight:700; line-height:1.2; letter-spacing:.1em; text-transform:uppercase;
+    text-decoration:none; cursor:pointer;
+  }
+  .manualbar button:hover, a.manuallink:hover{background:var(--ink); color:var(--card)}
+  .manualnote{color:var(--muted); font-size:11.5px; margin:0}
+  .manualform{margin:0 0 18px; padding:14px; border:1px solid var(--ink); background:var(--card)}
+  .manualform[hidden]{display:none !important}
+  .manualform h3{margin:0 0 10px !important; font-size:15px !important}
+  .manualgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:10px 14px; margin:0 0 10px}
+  .manualgrid label{display:flex; flex-direction:column; gap:5px; font-size:10px; font-weight:700;
+    letter-spacing:.13em; text-transform:uppercase; color:var(--muted)}
+  .manualgrid select, .manualgrid input{min-height:42px; padding:8px 10px; border:1px solid var(--line);
+    border-radius:0; background:#fff; color:var(--ink); font-family:inherit; font-size:14.5px}
+  .manualpick{margin:0 0 10px; font-size:12.5px; color:var(--muted)}
+  .manualpick b{color:var(--ink)}
+  .manualacts{display:flex; flex-wrap:wrap; gap:8px 10px; align-items:center}
+  .manualacts .manualnote{flex:1 1 220px}
+  #manualTable{min-width:760px; font-size:13.5px}
+  #manualTable td{padding:10px 12px}
+  #manualTable .manualsub{color:var(--muted); font-size:11px; margin-top:2px}
+  #manualTable td.num{text-align:right}
+  #manualTable td:last-child{white-space:nowrap; text-align:right}
+  #manualTable td:last-child button{padding:6px 9px; font-size:10.5px; letter-spacing:.08em; text-transform:uppercase}
+  .manualsup{display:inline-block; margin-left:6px; padding:1px 5px; border:1px solid var(--line);
+    color:var(--muted); font-size:9px; letter-spacing:.08em; text-transform:uppercase; vertical-align:1px}
+  @media (max-width:700px){
+    [data-panel="results"] #manualTable th:nth-child(2), [data-panel="results"] #manualTable td:nth-child(2),
+    [data-panel="results"] #manualTable th:nth-child(4), [data-panel="results"] #manualTable td:nth-child(4){display:table-cell}
+  }
   .pastgroup{margin:0 0 16px!important}
   .pastgroup h3{margin:0 0 7px!important; font-size:11px!important; letter-spacing:.08em!important; text-transform:uppercase; color:var(--muted)!important}
   .pastrow{
@@ -1208,6 +1243,54 @@
   <section class="panel" data-panel="results">
     <h2>Results overview</h2>
     <p class="method">Settled race results, model audits and market checks. The ledger records what the sheet said before the off; nothing here is re-fitted after the result.</p>
+    <div class="manualbar">
+      <button type="button" id="manualOpen">Add a result manually</button>
+      <a class="manuallink" href="https://github.com/dano09-hub/race-sheet/actions/workflows/results.yml" target="_blank" rel="noopener">Pull results now</a>
+      <span class="manualnote">Auto pull still runs every 20 minutes. A manual entry is saved in this browser only and never changes the published ledger.</span>
+    </div>
+    <form id="manualForm" class="manualform" hidden>
+      <h3>Add a result by hand</h3>
+      <div class="manualgrid">
+        <label for="manualRace">Race that has run
+          <select id="manualRace" required></select>
+        </label>
+        <label for="manualWinner">Winner
+          <select id="manualWinner" required></select>
+        </label>
+        <label for="manualSp">SP (optional)
+          <input id="manualSp" type="text" maxlength="12" placeholder="e.g. 5/2" autocomplete="off">
+        </label>
+        <label for="manualPickFinish">Sheet pick finished
+          <select id="manualPickFinish">
+            <option value="">Not recorded</option>
+            <option value="1st">1st</option>
+            <option value="2nd">2nd</option>
+            <option value="3rd">3rd</option>
+            <option value="4th">4th</option>
+            <option value="5th">5th</option>
+            <option value="6th">6th</option>
+            <option value="7th">7th</option>
+            <option value="8th">8th</option>
+            <option value="9th">9th</option>
+            <option value="10th+">10th or worse</option>
+            <option value="PU">Pulled up</option>
+            <option value="FELL">Fell</option>
+            <option value="UR">Unseated rider</option>
+            <option value="BD">Brought down</option>
+            <option value="RO">Ran out</option>
+            <option value="NR">Non-runner</option>
+          </select>
+        </label>
+      </div>
+      <p class="manualpick" id="manualPickLine"></p>
+      <div class="manualacts">
+        <button type="submit" id="manualSave">Save manual result</button>
+        <button type="button" id="manualCancel">Cancel</button>
+        <button type="button" class="ghost" id="manualDelete" hidden>Delete entry</button>
+        <span class="manualnote">Held apart from the official record. The auto pull is untouched.</span>
+      </div>
+    </form>
+    <div id="manualList"></div>
 <!-- MARKET_SL_START -->
 <div class="mktcheck"><h3>Market re-check</h3><p class="k pending">No re-check queued for this build.</p></div>
 <!-- MARKET_SL_END -->
@@ -5354,6 +5437,291 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_FRI);  // UK/IRE today, US lat
     }).join('');
   }
 
+
+  /* ---------- manual results (this browser only) ---------- */
+
+  var MANUAL_STORE = 'racing-sheet-manual-results-v1';
+  var manualResults = [];
+  var manualEditing = '';
+
+  function manualName(s) {
+    return String(s === null || s === undefined ? '' : s).toLowerCase().replace(/[^a-z0-9]/g, '');
+  }
+
+  function manualRaceKey(day, course, time) {
+    return manualName(day) + '|' + manualName(course) + '|' + manualName(time);
+  }
+
+  function manualLoad() {
+    try {
+      var raw = localStorage.getItem(MANUAL_STORE);
+      var list = raw ? JSON.parse(raw) : [];
+      manualResults = Array.isArray(list) ? list.filter(function (m) {
+        return m && m.cardId && m.winner;
+      }) : [];
+    } catch (e) { manualResults = []; }
+  }
+
+  function manualSave() {
+    try { localStorage.setItem(MANUAL_STORE, JSON.stringify(manualResults)); }
+    catch (e) { /* storage may be unavailable */ }
+  }
+
+  // Races the auto pull has already settled, read from the published ledger.
+  function manualOfficialRaceKeys() {
+    var keys = {};
+    var panel = document.querySelector('[data-panel="results"]');
+    if (!panel) return keys;
+    var months = {january: '01', february: '02', march: '03', april: '04', may: '05', june: '06',
+                  july: '07', august: '08', september: '09', october: '10', november: '11', december: '12'};
+    var day = '';
+    Array.prototype.forEach.call(panel.querySelectorAll('h3, table'), function (el) {
+      if (el.tagName === 'H3') {
+        var m = (el.textContent || '').match(/Settled\s*[\u2014\u2013-]\s*(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})/);
+        var mm = m ? months[m[2].toLowerCase()] : '';
+        day = mm ? m[3] + '-' + mm + '-' + ('0' + m[1]).slice(-2) : '';
+        return;
+      }
+      if (!day) return;
+      Array.prototype.forEach.call(el.querySelectorAll('tr[data-course][data-time]'), function (tr) {
+        keys[manualRaceKey(day, tr.getAttribute('data-course'), tr.getAttribute('data-time'))] = true;
+      });
+    });
+    return keys;
+  }
+
+  function manualCard(id) {
+    return ALL_CARDS.filter(function (c) { return c.id === id; })[0] || null;
+  }
+
+  function manualRows(card) {
+    if (!card) return [];
+    return computeCard(card).rows.slice().sort(function (a, b) { return b.total - a.total; });
+  }
+
+  function manualCards() {
+    var official = manualOfficialRaceKeys();
+    var seen = {};
+    return ALL_CARDS.filter(function (c) {
+      if (!c || !c.id || !isResulted(c)) return false;
+      if (!(c.runners || []).length) return false;
+      var k = manualRaceKey(c.day, c.course, c.time);
+      if (official[k] || seen[k]) return false;
+      seen[k] = true;
+      return true;
+    }).sort(function (a, b) { return cardWhen(b) - cardWhen(a); });
+  }
+
+  function manualFillRaces(selectedId) {
+    var sel = $('manualRace');
+    if (!sel) return;
+    var cards = manualCards();
+    var entry = manualResults.filter(function (m) { return m.id === manualEditing; })[0];
+    if (entry && !cards.some(function (c) { return c.id === entry.cardId; })) {
+      var card = manualCard(entry.cardId);
+      if (card) cards = [card].concat(cards);
+    }
+    sel.innerHTML = cards.length ? cards.map(function (c) {
+      var when = dayLabel(c.day);
+      return '<option value="' + esc(c.id) + '">' +
+        esc((when ? when + ' \u00b7 ' : '') + c.course + ' ' + c.time) + '</option>';
+    }).join('') : '<option value="">No finished races available</option>';
+    if (selectedId) sel.value = selectedId;
+    if (!sel.value && cards.length) sel.value = cards[0].id;
+    manualFillWinners();
+  }
+
+  function manualFillWinners() {
+    var card = manualCard($('manualRace').value);
+    var sel = $('manualWinner');
+    if (!sel) return;
+    var names = card ? (card.runners || []).map(function (r) { return r.horse; }).filter(Boolean) : [];
+    var entry = manualResults.filter(function (m) { return m.id === manualEditing; })[0];
+    if (entry && names.indexOf(entry.winner) < 0) names = [entry.winner].concat(names);
+    sel.innerHTML = names.length
+      ? '<option value="">Select the winner\u2026</option>' + names.map(function (n) {
+          return '<option value="' + esc(n) + '">' + esc(n) + '</option>';
+        }).join('')
+      : '<option value="">No runners on this card</option>';
+    if (entry && names.indexOf(entry.winner) >= 0) sel.value = entry.winner;
+    manualUpdatePick();
+  }
+
+  function manualUpdatePick() {
+    var card = manualCard($('manualRace').value);
+    var top = manualRows(card)[0] || null;
+    var line = $('manualPickLine');
+    var pf = $('manualPickFinish');
+    var winner = $('manualWinner').value;
+    if (!top) {
+      if (line) line.innerHTML = 'This race has no runners to rate.';
+      return;
+    }
+    var pick = top.r.horse || '';
+    var same = !!pick && manualName(pick) === manualName(winner);
+    if (line) {
+      line.innerHTML = 'Sheet pick before the off: <b>' + esc(pick) + '</b> (' + top.total.toFixed(1) + ')' +
+        (same ? ' \u2014 the winner you entered is the top pick.' : '');
+    }
+    if (same) pf.value = '1st';
+    else if (pf.value === '1st') pf.value = '';
+  }
+
+  function manualShowForm(on, entry) {
+    var form = $('manualForm');
+    if (!form) return;
+    if (!on) {
+      form.hidden = true;
+      manualEditing = '';
+      $('manualDelete').hidden = true;
+      $('manualSave').textContent = 'Save manual result';
+      return;
+    }
+    manualEditing = entry ? entry.id : '';
+    form.hidden = false;
+    $('manualDelete').hidden = !entry;
+    $('manualSave').textContent = entry ? 'Update manual result' : 'Save manual result';
+    manualFillRaces(entry ? entry.cardId : '');
+    if (entry) {
+      $('manualSp').value = entry.sp || '';
+      $('manualPickFinish').value = entry.pickFinish || '';
+      manualUpdatePick();
+    } else {
+      $('manualSp').value = '';
+      $('manualPickFinish').value = '';
+    }
+    form.scrollIntoView({behavior: 'smooth', block: 'nearest'});
+  }
+
+  function manualSubmit(e) {
+    e.preventDefault();
+    var card = manualCard($('manualRace').value);
+    var winner = $('manualWinner').value;
+    if (!card || !winner) return;
+    var rows = manualRows(card);
+    var top = rows[0] || null;
+    var pick = top ? (top.r.horse || '') : '';
+    var rank = 0;
+    rows.forEach(function (x, i) {
+      if (manualName(x.r.horse) === manualName(winner)) rank = i + 1;
+    });
+    var hit = !!pick && manualName(pick) === manualName(winner);
+    var pickFinish = $('manualPickFinish').value;
+    var entry = {
+      id: manualEditing || (card.id + '-' + Date.now()),
+      cardId: card.id,
+      day: card.day || '',
+      course: card.course || '',
+      time: card.time || '',
+      region: card.region || 'GB',
+      winner: winner,
+      sp: String($('manualSp').value || '').trim().slice(0, 12),
+      pick: pick,
+      pickFinish: pickFinish,
+      rank: rank || null,
+      runners: (card.runners || []).length,
+      score: top ? Math.round(top.total * 10) / 10 : null,
+      hit: hit,
+      placed: hit || /^[123](st|nd|rd)$/.test(pickFinish),
+      savedAt: new Date().toISOString()
+    };
+    var found = false;
+    manualResults = manualResults.map(function (m) {
+      if (m.id !== entry.id) return m;
+      found = true;
+      return entry;
+    });
+    if (!found) manualResults.push(entry);
+    manualSave();
+    manualShowForm(false);
+    renderManualResults();
+  }
+
+  function renderManualResults() {
+    var box = $('manualList');
+    if (!box) return;
+    if (!manualResults.length) { box.innerHTML = ''; return; }
+    var official = manualOfficialRaceKeys();
+    var rows = manualResults.slice().sort(function (a, b) {
+      var da = a.day || '', db = b.day || '';
+      if (da !== db) return da < db ? 1 : -1;
+      var ta = a.time || '', tb = b.time || '';
+      if (ta !== tb) return ta < tb ? 1 : -1;
+      return (a.course || '') < (b.course || '') ? -1 : 1;
+    });
+    var live = rows.filter(function (m) { return !official[manualRaceKey(m.day, m.course, m.time)]; });
+    var hits = live.filter(function (m) { return m.hit; }).length;
+    var placed = live.filter(function (m) { return m.placed; }).length;
+    var html = '<h3 class="subhead">Manual results <span>saved in this browser</span></h3>';
+    html += live.length
+      ? '<p class="method">' + live.length + ' ' + (live.length === 1 ? 'result is' : 'results are') +
+        ' waiting on the auto pull. <b>' + hits + ' of ' + live.length + '</b> winners were the sheet\'s top pick; <b>' +
+        placed + ' of ' + live.length + '</b> picks placed. Kept apart from the published ledger.</p>'
+      : '<p class="method">The auto pull now has an official result for every manual entry below. They stay here for reference and do not change the ledger.</p>';
+    html += '<div class="scroll"><table id="manualTable"><thead><tr><th>Race</th><th>Winner</th><th>SP</th>' +
+      '<th>Sheet pick</th><th>Pick finished</th><th>Verdict</th><th></th></tr></thead><tbody>';
+    rows.forEach(function (m) {
+      var covered = !!official[manualRaceKey(m.day, m.course, m.time)];
+      var verdict = covered ? '<span class="manualsub">Official</span>' :
+        (m.hit ? '<span class="v-hit">Found</span>' :
+        (m.placed ? '<span class="v-near">Close</span>' :
+        (m.pickFinish ? '<span class="v-miss">Missed</span>' : '<span class="manualsub">Result only</span>')));
+      var meta = dayLabel(m.day) || m.day || '';
+      if (m.rank) meta += (meta ? ' \u00b7 ' : '') + 'winner rated ' + m.rank + ' of ' + (m.runners || '?');
+      html += '<tr>' +
+        '<td><b>' + esc(m.course) + '</b> ' + esc(m.time) +
+          (covered ? '<span class="manualsup">auto result live</span>' : '') +
+          '<div class="manualsub">' + esc(meta) + '</div></td>' +
+        '<td><b>' + esc(m.winner) + '</b></td>' +
+        '<td class="num">' + esc(m.sp || '\u2014') + '</td>' +
+        '<td>' + esc(m.pick || '\u2014') + '</td>' +
+        '<td class="num">' + esc(m.pickFinish || '\u2014') + '</td>' +
+        '<td>' + verdict + '</td>' +
+        '<td><button type="button" data-manual-edit="' + esc(m.id) + '">Edit</button> ' +
+          '<button type="button" class="ghost" data-manual-del="' + esc(m.id) + '">Delete</button></td>' +
+        '</tr>';
+    });
+    html += '</tbody></table></div>';
+    box.innerHTML = html;
+  }
+
+  manualLoad();
+
+  $('manualOpen').addEventListener('click', function () {
+    var form = $('manualForm');
+    if (form && !form.hidden) manualShowForm(false);
+    else manualShowForm(true, null);
+  });
+  $('manualCancel').addEventListener('click', function () { manualShowForm(false); });
+  $('manualRace').addEventListener('change', manualFillWinners);
+  $('manualWinner').addEventListener('change', manualUpdatePick);
+  $('manualForm').addEventListener('submit', manualSubmit);
+  $('manualDelete').addEventListener('click', function () {
+    if (!manualEditing) return;
+    if (!window.confirm('Delete this manual result from this browser?')) return;
+    manualResults = manualResults.filter(function (m) { return m.id !== manualEditing; });
+    manualSave();
+    manualShowForm(false);
+    renderManualResults();
+  });
+  $('manualList').addEventListener('click', function (e) {
+    var edit = e.target.closest ? e.target.closest('[data-manual-edit]') : null;
+    if (edit) {
+      var id = edit.getAttribute('data-manual-edit');
+      var entry = manualResults.filter(function (m) { return m.id === id; })[0];
+      if (entry) manualShowForm(true, entry);
+      return;
+    }
+    var del = e.target.closest ? e.target.closest('[data-manual-del]') : null;
+    if (!del) return;
+    var delId = del.getAttribute('data-manual-del');
+    if (!window.confirm('Delete this manual result from this browser?')) return;
+    manualResults = manualResults.filter(function (m) { return m.id !== delId; });
+    manualSave();
+    if (manualEditing === delId) manualShowForm(false);
+    renderManualResults();
+  });
+
   $('resBody').addEventListener('click', function (e) {
     var tr = e.target.closest ? e.target.closest('tr[data-card]') : null;
     if (!tr) return;
@@ -5764,6 +6132,7 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_FRI);  // UK/IRE today, US lat
   setTab(savedTab());
   renderLeaderboard();
   renderResultsTab();
+  renderManualResults();
   renderAll();
 })();
 </script>
