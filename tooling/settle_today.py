@@ -101,11 +101,9 @@ def _annotate(iso, rows):
         pick = row.get("pick")
         if not pick:
             continue
-        runner = next((r for r in runners
-                       if refresh._result_name(r[1]) == refresh._result_name(pick)), None)
-        if not runner:
+        pos = _finish_for(pick, runners, row.get("places"))
+        if not pos:
             continue
-        pos, _ = runner
         row["pick_finish"] = _ordinal(pos)
 
         race_text = str((card or {}).get("race") or race_name)
@@ -128,11 +126,45 @@ def _clean(rows):
 
 
 def _time(row):
-    t = str(row.get("time") or "").strip()
+    t = str(row.get("time") or "").strip().replace(".", ":")
     if not t:
-        m = re.search(r"(\d{1,2}:\d{2})", str(row.get("race") or ""))
-        t = m.group(1) if m else ""
+        m = re.search(r"(\d{1,2})[:.](\d{2})", str(row.get("race") or ""))
+        t = f"{m.group(1)}:{m.group(2)}" if m else ""
     return t[:5]
+
+
+def _dedupe(rows):
+    """Drop a race stored twice, keeping the copy that carries the pick."""
+    out, by_race = [], {}
+    for row in rows:
+        key = (refresh._result_name(row.get("course")),
+               refresh._result_name(row.get("winner")))
+        prev = by_race.get(key)
+        if prev is None:
+            by_race[key] = row
+            out.append(row)
+        elif row.get("pick") and not prev.get("pick"):
+            out[out.index(prev)] = row
+            by_race[key] = row
+    removed = len(rows) - len(out)
+    rows[:] = out
+    return removed
+
+
+def _finish_for(pick, runners, places):
+    """Finish position of the pick, preferring the published first three.
+
+    Sporting Life's runner positions are not always parsed in row order, so a
+    pick in the published placings takes its place from that list; only a pick
+    outside the frame falls back to the parsed finishing order.
+    """
+    names = [refresh._result_name(h) for h in places or []]
+    key = refresh._result_name(pick)
+    if key in names:
+        return names.index(key) + 1
+    runner = next((r for r in runners
+                   if refresh._result_name(r[1]) == key), None)
+    return runner[0] if runner else None
 
 
 def _merge_irish(iso, rows):
@@ -205,13 +237,18 @@ def _replace(html, name, body):
 def _merge_old(rows, old_rows):
     """Keep earlier races when a partial results feed omits them."""
     seen = {(refresh._result_name(r.get("course")), _time(r)) for r in rows}
+    seen_runners = {(refresh._result_name(r.get("course")),
+                     refresh._result_name(r.get("winner"))) for r in rows}
     added = 0
     for old in old_rows:
         key = (refresh._result_name(old.get("course")), _time(old))
-        if key in seen:
+        runner = (refresh._result_name(old.get("course")),
+                  refresh._result_name(old.get("winner")))
+        if key in seen or runner in seen_runners:
             continue
         rows.append(old)
         seen.add(key)
+        seen_runners.add(runner)
         added += 1
     return added
 
@@ -254,6 +291,7 @@ def main(argv=None):
             old_rows = []
     kept = refresh.carry_picks(old_rows, rows)
     added_old = _merge_old(rows, old_rows)
+    dropped = _dedupe(rows)
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         json.dump(rows, f, ensure_ascii=False)
@@ -262,12 +300,15 @@ def main(argv=None):
         print(f"  picks kept:  {kept} settled races kept their original pick")
     if added_old:
         print(f"  results:     kept {added_old} earlier races missing from this feed")
+    if dropped:
+        print(f"  results:     dropped {dropped} duplicate races")
 
     refresh.settle_day(iso)
     with open(path, encoding="utf-8") as f:
         rows = json.load(f)
     checked = _annotate(iso, rows)
     checked_us = _annotate_us(iso, rows)
+    _dedupe(rows)
     with open(path, "w", encoding="utf-8") as f:
         json.dump(rows, f, ensure_ascii=False)
     print(f"  placed:      {checked + checked_us} finishes checked for {iso}")

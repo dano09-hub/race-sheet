@@ -1191,6 +1191,25 @@ check("audit: generator wired",
       "audit = audit_rows()" in (ROOT / "tooling" / "refresh.py").read_text(encoding="utf-8")
       and "refresh.audit_rows()" in (ROOT / "tooling" / "settle_today.py").read_text(encoding="utf-8"))
 
+print("30b. results merge guards")
+import settle_today as st
+check("merge: dot-time race label is read as a time",
+      st._time({"race": "11.50 Carlisle"}) == "11:50")
+_rows = [
+    {"course": "Carlisle", "time": "11:50", "winner": "Galatrona",
+     "pick": "They're Chancers", "hit": False},
+    {"course": "Carlisle", "race": "11.50 Carlisle", "winner": "Galatrona"},
+]
+_dropped = st._dedupe(_rows)
+check("merge: duplicate race is dropped", _dropped == 1 and len(_rows) == 1, _rows)
+check("merge: the copy with the pick survives",
+      _rows[0].get("pick") == "They're Chancers", _rows)
+check("merge: stale finish is read from the published places",
+      st._finish_for("Poet's Duke", [(1, "Poet's Duke")],
+                     ["Awordinyourear", "Poet's Duke", "Checkpoint Georgie"]) == 2)
+check("merge: a pick outside the frame uses the parsed order",
+      st._finish_for("Outsider", [(6, "Outsider")], ["A", "B", "C"]) == 6)
+
 print()
 print("passed %d, failed %d%s" % (
     len(PASSED), len(FAILED), (", skipped %d" % len(SKIPPED)) if SKIPPED else ""))
