@@ -254,9 +254,32 @@ python3 tooling/import_kaggle.py --db data/kaggle/raceform.db --since 2023-01-01
 python3 tooling/train_weights.py --csv data/training/kaggle_runners.csv
 ```
 
-That source carries no tipster counts, so the page drops Tips as "the same for
-every runner" and a fit on it says nothing about that weight: it stays at its live
-value.
+Two things in that source are not what a card would give the page. It carries no
+tipster counts, so Tips is the same for every runner and the page drops it; and
+its RPR and Topspeed columns are the figures **awarded for the run**, not the
+pre-race ratings a card carries — the winner holds the top RPR in about seven
+races out of ten. The importer therefore leaves RPR and Topspeed out, and a fit
+on this file says nothing about the tips, rpr or speed weights: those stay at
+their live values while the other nine are fitted around them. The database also
+carries French, Hong Kong and American meetings, some written without a country
+suffix and some sharing a name with a British track, so home meetings are
+recognised from a whitelist and everything else is dropped and reported.
+
+The first run over 2023-01-01 to 2026-11-15 covered 50,196 races and 468,903
+runners. Holding out the last 60 race days (2,251 races):
+
+| held-out | log loss | top-1 |
+| --- | --- | --- |
+| live weights | 1.8819 | 32.6% |
+| fitted | 1.8117 | 34.9% |
+| market | — | 35.0% |
+
+The fit improves, but almost entirely by moving weight onto the market (18 to
+51): it becomes a market follower that only draws level with the favourite, and
+stops doing the sheet's job of disagreeing with the market on purpose. That is
+not a candidate for the page. The useful finding is the other way round: on four
+years of racing the twelve fixed weights are already close to the best available,
+and the market is the ceiling.
 
 ## Checks
 

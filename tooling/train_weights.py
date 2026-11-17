@@ -173,11 +173,24 @@ def main(argv=None):
 
     base = live_weights()
     start = np.append(base / base.sum(), 0.1)
+    # A factor no runner carries cannot be fitted. Leaving it free lets the
+    # optimiser drift it and the final rescale quietly inflate it, so hold it at
+    # the live share and fit the rest around it.
+    coverage = (~np.isnan(np.vstack([r["X"] for r in train]))).mean(axis=0)
+    frozen = [i for i, c in enumerate(coverage) if c < 0.05]
+    bounds = [(start[i], start[i]) if i in frozen else (0.0, None)
+              for i in range(len(KEYS))] + [(1e-4, 20.0)]
     res = minimize(lambda t: nll_grad(t, train, args.l2), start, jac=True,
-                   method="L-BFGS-B",
-                   bounds=[(0.0, None)] * len(KEYS) + [(1e-4, 20.0)],
+                   method="L-BFGS-B", bounds=bounds,
                    options={"maxiter": 2000, "ftol": 1e-10})
     fit_w, fit_scale = _split(res.x)
+    free = [i for i in range(len(KEYS)) if i not in frozen]
+    if frozen and free:
+        fz = float(fit_w[frozen].sum())
+        rest = float(fit_w[free].sum())
+        if rest > 0:
+            fit_w = fit_w.copy()
+            fit_w[free] *= (1.0 - fz) / rest
     fit_w = fit_w / fit_w.sum() * base.sum()
 
     base_scale = calibrate(base / base.sum(), train)
@@ -189,6 +202,9 @@ def main(argv=None):
     print(f"train dates: {train[0]['date']} .. {train[-1]['date']}")
     print(f"test dates:  {test[0]['date']} .. {test[-1]['date']}")
     print(f"l2: {args.l2}   fitted scale: {fit_scale:.3f}   live scale: {base_scale:.3f}")
+    if frozen:
+        print("held at the live weight (under 5% coverage in training): "
+              + ", ".join(KEYS[i] for i in frozen))
     print(f"optimizer: {res.success} ({res.message})")
     print()
     print(f"{'':14}{'all NLL':>9}{'top-1':>8}{'priced NLL':>12}{'top-1':>8}")
