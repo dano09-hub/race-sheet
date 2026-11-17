@@ -326,6 +326,16 @@ pick matched the stored pick exactly. A race whose card cannot reproduce its own
 pick is left blank rather than given a number the page never showed. Only seven
 days still have their cards, so the rest of the record carries no chance.
 
+Twenty of the 118 recent races stay blank, and the reason is the archive rather
+than the model. The intraday results sweep wrote their picks from the card as it
+stood at the off; the next day's refresh overwrote `data/cards/by_date/`, and
+`results.yml` commits `data/results` but not `data/cards`. The surviving card
+versions are therefore post-off re-scrapes: re-scoring every git version of the
+card, or the page code as it stood on the day, gives a different horse in 17 of
+the 20 (3 are reproduced by an earlier version, which confirms the re-scrape).
+The stored pick remains the only contemporaneous record of those races, so a
+chance derived from a later card would be a reconstruction, not a record.
+
 ```bash
 python3 tooling/chance_audit.py     # the same numbers, on the command line
 python3 tooling/backfill_chance.py  # reattach chances where a card agrees
