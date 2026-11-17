@@ -406,15 +406,28 @@ try:
             "US": [{"id": "c", "course": "Belmont Park", "time": "18:00", "day": "2026-11-13", "race": "R3", "runners": []}],
             "GB": [{"id": "a", "course": "Cheltenham", "time": "13:10", "day": "2026-11-13", "race": "R1", "runners": [], "note": "prices added"}],
         })
+        snap_first = json.load(open(os.path.join(atmp, "data", "cards", "2026-11-13.json"), encoding="utf-8"))
+        refresh.archive("2026-11-13", {
+            "US": [{"id": "c", "course": "Belmont Park", "time": "18:00", "day": "2026-11-13", "race": "r3", "runners": [], "note": "case refresh"}],
+        })
     day13 = json.load(open(os.path.join(atmp, "data", "cards", "by_date", "2026-11-13.json"), encoding="utf-8"))
     day14 = json.load(open(os.path.join(atmp, "data", "cards", "by_date", "2026-11-14.json"), encoding="utf-8"))
     snap = json.load(open(os.path.join(atmp, "data", "cards", "2026-11-13.json"), encoding="utf-8"))
     check("later run keeps meetings an earlier run archived", "GB" in day13 and "US" in day13, list(day13))
     check("repeat run does not duplicate a race", len(day13.get("GB", [])) == 1, len(day13.get("GB", [])))
     check("repeat run refreshes the stored card", day13["GB"][0].get("note") == "prices added", day13["GB"][0].get("note"))
+    check("US case variant does not duplicate a race", len(day13.get("US", [])) == 1, len(day13.get("US", [])))
+    check("US case variant refreshes the stored card",
+          day13["US"][0].get("note") == "case refresh", day13["US"][0].get("note"))
+    check("US archive key treats 6 f and 6F as the same race",
+          refresh._archive_key({"course": "Zia Park", "time": "20:53", "race": "6 f, Dirt"}, "US")
+          == refresh._archive_key({"course": "Zia Park", "time": "20:53", "race": "6F, Dirt"}, "US"),
+          refresh._archive_key({"course": "Zia Park", "time": "20:53", "race": "6 f, Dirt"}, "US"))
     check("tomorrow's GB card is filed under the day it runs",
           len(day14.get("GB", [])) == 1 and day14["GB"][0]["course"] == "Navan", day14.get("GB"))
-    check("dated snapshot still written for the run", set(snap) == {"GB", "US"}, list(snap))
+    check("dated snapshot still written for the multi-region run",
+          set(snap_first) == {"GB", "US"}, list(snap_first))
+    check("dated snapshot for the later run has its own regions", set(snap) == {"US"}, list(snap))
 finally:
     refresh.ROOT = old_root
     shutil.rmtree(atmp, ignore_errors=True)

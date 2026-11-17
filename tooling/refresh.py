@@ -1,3 +1,20 @@
+def _archive_key(card, region):
+    """Stable identity for a card when merging an archive day.
+
+    US cards can arrive with cosmetic case changes in the distance label
+    (``6 f`` vs ``6F``), which are the same race.  Normalise only US here so
+    the separate GB source variants keep their richer card metadata.
+    """
+    course = str(card.get("course") or "").strip()
+    time = str(card.get("time") or "").strip()
+    race = str(card.get("race") or "").strip()
+    if str(region).upper() == "US":
+        # Drop case and spacing differences (``6 f`` / ``6F``) from the key.
+        race = re.sub(r"\s+", "", race).casefold()
+        course = course.casefold()
+    return (course, time, race)
+
+
 def archive(iso, sets):
     """Keep every pre-race card the run fetched, filed under the day it RUNS.
 
@@ -39,10 +56,23 @@ def archive(iso, sets):
             bucket = cur.setdefault(reg, [])
             if not isinstance(bucket, list):
                 bucket = cur[reg] = []
-            by_key = {(x.get("course"), x.get("time"), x.get("race")): i
-                      for i, x in enumerate(bucket)}
+            if str(reg).upper() == "US":
+                # Remove historical case-only duplicates as well as preventing
+                # new ones; keep the first card seen for each race.
+                seen = set()
+                clean = []
+                for x in bucket:
+                    key3 = _archive_key(x, reg)
+                    if key3 in seen:
+                        continue
+                    seen.add(key3)
+                    clean.append(x)
+                bucket[:] = clean
+            by_key = {}
+            for i, x in enumerate(bucket):
+                by_key.setdefault(_archive_key(x, reg), i)
             for c in cards:
-                key3 = (c.get("course"), c.get("time"), c.get("race"))
+                key3 = _archive_key(c, reg)
                 if key3 in by_key:
                     bucket[by_key[key3]] = c
                 else:
