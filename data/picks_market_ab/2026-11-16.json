@@ -1,0 +1,140 @@
+{
+ "date": "2026-11-16",
+ "generated": "2026-11-17T21:50:32+00:00",
+ "note": "Market-heavy shadow: the page's own factor scores re-weighted with the vector fitted on four years of results",
+ "metric": "weights",
+ "label": "market-heavy weighting",
+ "weights": {
+  "market": 50.8,
+  "form": 5.9,
+  "tips": 5.0,
+  "rpr": 13.0,
+  "rating": 3.4,
+  "cd": 3.6,
+  "draw": 0.9,
+  "speed": 12.0,
+  "going": 0.0,
+  "fitness": 3.4,
+  "weight": 0.0,
+  "connections": 6.1
+ },
+ "cards": 16,
+ "same": 14,
+ "changed": 2,
+ "ratedRunners": 155,
+ "runners": 155,
+ "rows": [
+  {
+   "course": "Plumpton",
+   "time": "12:45",
+   "withRating": "Ginolo",
+   "withoutRating": "Ginolo",
+   "changed": false
+  },
+  {
+   "course": "Plumpton",
+   "time": "13:15",
+   "withRating": "Market House",
+   "withoutRating": "Market House",
+   "changed": false
+  },
+  {
+   "course": "Plumpton",
+   "time": "13:45",
+   "withRating": "Ionian",
+   "withoutRating": "Icare Grandchamp",
+   "changed": true
+  },
+  {
+   "course": "Plumpton",
+   "time": "14:15",
+   "withRating": "Kamille Au Kanada",
+   "withoutRating": "Kamille Au Kanada",
+   "changed": false
+  },
+  {
+   "course": "Plumpton",
+   "time": "14:45",
+   "withRating": "Golly Gosh",
+   "withoutRating": "Anothermanicmonday",
+   "changed": true
+  },
+  {
+   "course": "Plumpton",
+   "time": "15:15",
+   "withRating": "Uncle Al",
+   "withoutRating": "Uncle Al",
+   "changed": false
+  },
+  {
+   "course": "Plumpton",
+   "time": "15:45",
+   "withRating": "Kotari",
+   "withoutRating": "Kotari",
+   "changed": false
+  },
+  {
+   "course": "Wolverhampton",
+   "time": "16:30",
+   "withRating": "Go Go Girl",
+   "withoutRating": "Go Go Girl",
+   "changed": false
+  },
+  {
+   "course": "Wolverhampton",
+   "time": "17:00",
+   "withRating": "Desert Romance",
+   "withoutRating": "Desert Romance",
+   "changed": false
+  },
+  {
+   "course": "Wolverhampton",
+   "time": "17:30",
+   "withRating": "Leading Role",
+   "withoutRating": "Leading Role",
+   "changed": false
+  },
+  {
+   "course": "Wolverhampton",
+   "time": "18:00",
+   "withRating": "Al Lahbab",
+   "withoutRating": "Al Lahbab",
+   "changed": false
+  },
+  {
+   "course": "Wolverhampton",
+   "time": "18:30",
+   "withRating": "Tan Rapido",
+   "withoutRating": "Tan Rapido",
+   "changed": false
+  },
+  {
+   "course": "Wolverhampton",
+   "time": "19:00",
+   "withRating": "Newsreader",
+   "withoutRating": "Newsreader",
+   "changed": false
+  },
+  {
+   "course": "Wolverhampton",
+   "time": "19:30",
+   "withRating": "R P McMurphy",
+   "withoutRating": "R P McMurphy",
+   "changed": false
+  },
+  {
+   "course": "Wolverhampton",
+   "time": "20:00",
+   "withRating": "Ted Le Saux",
+   "withoutRating": "Ted Le Saux",
+   "changed": false
+  },
+  {
+   "course": "Wolverhampton",
+   "time": "20:30",
+   "withRating": "Saxophonic",
+   "withoutRating": "Saxophonic",
+   "changed": false
+  }
+ ]
+}

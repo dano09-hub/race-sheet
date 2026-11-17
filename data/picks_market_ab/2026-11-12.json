@@ -1,0 +1,175 @@
+{
+ "date": "2026-11-12",
+ "generated": "2026-11-17T21:50:31+00:00",
+ "note": "Market-heavy shadow: the page's own factor scores re-weighted with the vector fitted on four years of results",
+ "metric": "weights",
+ "label": "market-heavy weighting",
+ "weights": {
+  "market": 50.8,
+  "form": 5.9,
+  "tips": 5.0,
+  "rpr": 13.0,
+  "rating": 3.4,
+  "cd": 3.6,
+  "draw": 0.9,
+  "speed": 12.0,
+  "going": 0.0,
+  "fitness": 3.4,
+  "weight": 0.0,
+  "connections": 6.1
+ },
+ "cards": 21,
+ "same": 17,
+ "changed": 4,
+ "ratedRunners": 198,
+ "runners": 198,
+ "rows": [
+  {
+   "course": "Hereford",
+   "time": "12:30",
+   "withRating": "Princess Of Habo",
+   "withoutRating": "Koala Rose",
+   "changed": true
+  },
+  {
+   "course": "Hereford",
+   "time": "13:05",
+   "withRating": "Governors Rock",
+   "withoutRating": "Governors Rock",
+   "changed": false
+  },
+  {
+   "course": "Hereford",
+   "time": "13:40",
+   "withRating": "Mr Jukebox",
+   "withoutRating": "Mr Jukebox",
+   "changed": false
+  },
+  {
+   "course": "Hereford",
+   "time": "14:15",
+   "withRating": "Oneinthewell",
+   "withoutRating": "Oneinthewell",
+   "changed": false
+  },
+  {
+   "course": "Hereford",
+   "time": "14:50",
+   "withRating": "Seraphic",
+   "withoutRating": "Seraphic",
+   "changed": false
+  },
+  {
+   "course": "Hereford",
+   "time": "15:25",
+   "withRating": "Ms Belle",
+   "withoutRating": "Ms Belle",
+   "changed": false
+  },
+  {
+   "course": "Market Rasen",
+   "time": "12:06",
+   "withRating": "Northern Olympian",
+   "withoutRating": "Northern Olympian",
+   "changed": false
+  },
+  {
+   "course": "Market Rasen",
+   "time": "12:41",
+   "withRating": "Eastern Rock",
+   "withoutRating": "Eastern Rock",
+   "changed": false
+  },
+  {
+   "course": "Market Rasen",
+   "time": "13:16",
+   "withRating": "Tell The Tale",
+   "withoutRating": "Tell The Tale",
+   "changed": false
+  },
+  {
+   "course": "Market Rasen",
+   "time": "13:51",
+   "withRating": "Crac De Megaudais",
+   "withoutRating": "Miss Denver",
+   "changed": true
+  },
+  {
+   "course": "Market Rasen",
+   "time": "14:26",
+   "withRating": "Teofimo",
+   "withoutRating": "Teofimo",
+   "changed": false
+  },
+  {
+   "course": "Market Rasen",
+   "time": "15:01",
+   "withRating": "Burning Embers",
+   "withoutRating": "Reflection Of You",
+   "changed": true
+  },
+  {
+   "course": "Market Rasen",
+   "time": "15:36",
+   "withRating": "Tilehurst",
+   "withoutRating": "Tilehurst",
+   "changed": false
+  },
+  {
+   "course": "Thurles",
+   "time": "11:43",
+   "withRating": "Kimy",
+   "withoutRating": "Kimy",
+   "changed": false
+  },
+  {
+   "course": "Thurles",
+   "time": "12:18",
+   "withRating": "Stoneyford Lady",
+   "withoutRating": "Stoneyford Lady",
+   "changed": false
+  },
+  {
+   "course": "Thurles",
+   "time": "12:53",
+   "withRating": "Way Down South",
+   "withoutRating": "Way Down South",
+   "changed": false
+  },
+  {
+   "course": "Thurles",
+   "time": "13:28",
+   "withRating": "Doctor Elvis",
+   "withoutRating": "Doctor Elvis",
+   "changed": false
+  },
+  {
+   "course": "Thurles",
+   "time": "14:03",
+   "withRating": "Gunnery Sergeant",
+   "withoutRating": "Gunnery Sergeant",
+   "changed": false
+  },
+  {
+   "course": "Thurles",
+   "time": "14:38",
+   "withRating": "Shoda",
+   "withoutRating": "Shoda",
+   "changed": false
+  },
+  {
+   "course": "Thurles",
+   "time": "15:15",
+   "withRating": "Max Meridius",
+   "withoutRating": "Max Meridius",
+   "changed": false
+  },
+  {
+   "course": "Thurles",
+   "time": "15:48",
+   "withRating": "Sinbad My Dad",
+   "withoutRating": "Mad Maxios",
+   "changed": true
+  }
+ ]
+}

@@ -281,6 +281,15 @@ not a candidate for the page. The useful finding is the other way round: on four
 years of racing the twelve fixed weights are already close to the best available,
 and the market is the ceiling.
 
+So the vector runs as a shadow instead. `tooling/market_arm_day.py` snapshots its
+pick for each day's GB/IRE cards — the page's own factor scores, simply
+re-weighted, so there is no second copy of any factor — and `tooling/ab_tally.py`
+scores both arms against the settled winners. The Results tab carries the running
+comparison under "Market-heavy shadow"; the published pick, the weights and the
+stored results are untouched. The six backfilled days give 123 races: 31 winners
+for the arm against 30 for the page, with 29 picks changed (won 4, lost 3). A
+tie, exactly as the fit predicted. It stays a shadow until it separates.
+
 ## Checks
 
 ```bash

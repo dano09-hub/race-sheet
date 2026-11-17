@@ -1,0 +1,168 @@
+{
+ "date": "2026-11-15",
+ "generated": "2026-11-17T21:50:32+00:00",
+ "note": "Market-heavy shadow: the page's own factor scores re-weighted with the vector fitted on four years of results",
+ "metric": "weights",
+ "label": "market-heavy weighting",
+ "weights": {
+  "market": 50.8,
+  "form": 5.9,
+  "tips": 5.0,
+  "rpr": 13.0,
+  "rating": 3.4,
+  "cd": 3.6,
+  "draw": 0.9,
+  "speed": 12.0,
+  "going": 0.0,
+  "fitness": 3.4,
+  "weight": 0.0,
+  "connections": 6.1
+ },
+ "cards": 20,
+ "same": 13,
+ "changed": 7,
+ "ratedRunners": 267,
+ "runners": 267,
+ "rows": [
+  {
+   "course": "Cheltenham",
+   "time": "12:50",
+   "withRating": "Made In Reugny",
+   "withoutRating": "Wolf Rayet",
+   "changed": true
+  },
+  {
+   "course": "Cheltenham",
+   "time": "13:25",
+   "withRating": "Crystal Island",
+   "withoutRating": "Crystal Island",
+   "changed": false
+  },
+  {
+   "course": "Cheltenham",
+   "time": "14:00",
+   "withRating": "Highlands Legacy",
+   "withoutRating": "Highlands Legacy",
+   "changed": false
+  },
+  {
+   "course": "Cheltenham",
+   "time": "14:35",
+   "withRating": "Havaila",
+   "withoutRating": "King Of Answers",
+   "changed": true
+  },
+  {
+   "course": "Cheltenham",
+   "time": "15:10",
+   "withRating": "Harry Lowes",
+   "withoutRating": "Idaho Sun",
+   "changed": true
+  },
+  {
+   "course": "Cheltenham",
+   "time": "15:45",
+   "withRating": "Cameron De Fiacre",
+   "withoutRating": "Cameron De Fiacre",
+   "changed": false
+  },
+  {
+   "course": "Fontwell",
+   "time": "12:30",
+   "withRating": "Bridge",
+   "withoutRating": "Bridge",
+   "changed": false
+  },
+  {
+   "course": "Fontwell",
+   "time": "13:05",
+   "withRating": "Jeu d'Opale",
+   "withoutRating": "Mask Of Zorro",
+   "changed": true
+  },
+  {
+   "course": "Fontwell",
+   "time": "13:43",
+   "withRating": "Bass Hunter",
+   "withoutRating": "Bass Hunter",
+   "changed": false
+  },
+  {
+   "course": "Fontwell",
+   "time": "14:20",
+   "withRating": "Silver State",
+   "withoutRating": "Pass The Buck",
+   "changed": true
+  },
+  {
+   "course": "Fontwell",
+   "time": "14:50",
+   "withRating": "Fay Ce Que Voudras",
+   "withoutRating": "Majestic Moment",
+   "changed": true
+  },
+  {
+   "course": "Fontwell",
+   "time": "15:25",
+   "withRating": "County Champs",
+   "withoutRating": "County Champs",
+   "changed": false
+  },
+  {
+   "course": "Navan",
+   "time": "11:40",
+   "withRating": "Green Soul",
+   "withoutRating": "Green Soul",
+   "changed": false
+  },
+  {
+   "course": "Navan",
+   "time": "12:10",
+   "withRating": "La Valserine",
+   "withoutRating": "Moonverrin",
+   "changed": true
+  },
+  {
+   "course": "Navan",
+   "time": "12:40",
+   "withRating": "Mr Caulfield",
+   "withoutRating": "Mr Caulfield",
+   "changed": false
+  },
+  {
+   "course": "Navan",
+   "time": "13:15",
+   "withRating": "Reaching High",
+   "withoutRating": "Reaching High",
+   "changed": false
+  },
+  {
+   "course": "Navan",
+   "time": "13:50",
+   "withRating": "Mart Lane",
+   "withoutRating": "Mart Lane",
+   "changed": false
+  },
+  {
+   "course": "Navan",
+   "time": "14:25",
+   "withRating": "Classical Creek",
+   "withoutRating": "Classical Creek",
+   "changed": false
+  },
+  {
+   "course": "Navan",
+   "time": "15:00",
+   "withRating": "The Enabler",
+   "withoutRating": "The Enabler",
+   "changed": false
+  },
+  {
+   "course": "Navan",
+   "time": "15:35",
+   "withRating": "Sarahs Lawn",
+   "withoutRating": "Sarahs Lawn",
+   "changed": false
+  }
+ ]
+}

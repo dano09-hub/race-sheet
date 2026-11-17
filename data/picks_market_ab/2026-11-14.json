@@ -1,0 +1,280 @@
+{
+ "date": "2026-11-14",
+ "generated": "2026-11-17T21:50:32+00:00",
+ "note": "Market-heavy shadow: the page's own factor scores re-weighted with the vector fitted on four years of results",
+ "metric": "weights",
+ "label": "market-heavy weighting",
+ "weights": {
+  "market": 50.8,
+  "form": 5.9,
+  "tips": 5.0,
+  "rpr": 13.0,
+  "rating": 3.4,
+  "cd": 3.6,
+  "draw": 0.9,
+  "speed": 12.0,
+  "going": 0.0,
+  "fitness": 3.4,
+  "weight": 0.0,
+  "connections": 6.1
+ },
+ "cards": 36,
+ "same": 29,
+ "changed": 7,
+ "ratedRunners": 692,
+ "runners": 692,
+ "rows": [
+  {
+   "course": "Navan",
+   "time": "11:52",
+   "withRating": "Charismatic Kid",
+   "withoutRating": "Charismatic Kid",
+   "changed": false
+  },
+  {
+   "course": "Navan",
+   "time": "13:02",
+   "withRating": "Sommesky",
+   "withoutRating": "Rightfolksplease",
+   "changed": true
+  },
+  {
+   "course": "Navan",
+   "time": "13:35",
+   "withRating": "Thinkitdontjinxit",
+   "withoutRating": "Thinkitdontjinxit",
+   "changed": false
+  },
+  {
+   "course": "Navan",
+   "time": "14:07",
+   "withRating": "The Yellow Clay",
+   "withoutRating": "Slade Steel",
+   "changed": true
+  },
+  {
+   "course": "Navan",
+   "time": "14:43",
+   "withRating": "Only By Night",
+   "withoutRating": "Only By Night",
+   "changed": false
+  },
+  {
+   "course": "Navan",
+   "time": "15:18",
+   "withRating": "Mighty Park",
+   "withoutRating": "Wingmen",
+   "changed": true
+  },
+  {
+   "course": "Navan",
+   "time": "15:53",
+   "withRating": "Sir Vinny",
+   "withoutRating": "Sir Vinny",
+   "changed": false
+  },
+  {
+   "course": "Uttoxeter",
+   "time": "12:07",
+   "withRating": "Spartan Times",
+   "withoutRating": "Spartan Times",
+   "changed": false
+  },
+  {
+   "course": "Uttoxeter",
+   "time": "12:42",
+   "withRating": "Spanish Darling",
+   "withoutRating": "Spanish Darling",
+   "changed": false
+  },
+  {
+   "course": "Uttoxeter",
+   "time": "13:15",
+   "withRating": "Boombox",
+   "withoutRating": "Boombox",
+   "changed": false
+  },
+  {
+   "course": "Uttoxeter",
+   "time": "13:50",
+   "withRating": "Chambers",
+   "withoutRating": "Chambers",
+   "changed": false
+  },
+  {
+   "course": "Uttoxeter",
+   "time": "14:25",
+   "withRating": "Irish Chorus",
+   "withoutRating": "Irish Chorus",
+   "changed": false
+  },
+  {
+   "course": "Uttoxeter",
+   "time": "15:00",
+   "withRating": "Orderoftheday",
+   "withoutRating": "Orderoftheday",
+   "changed": false
+  },
+  {
+   "course": "Uttoxeter",
+   "time": "15:35",
+   "withRating": "Bateleur",
+   "withoutRating": "Bateleur",
+   "changed": false
+  },
+  {
+   "course": "Wetherby",
+   "time": "12:13",
+   "withRating": "Loriko",
+   "withoutRating": "Loriko",
+   "changed": false
+  },
+  {
+   "course": "Wetherby",
+   "time": "12:48",
+   "withRating": "The Kalooki Kid",
+   "withoutRating": "The Kalooki Kid",
+   "changed": false
+  },
+  {
+   "course": "Wetherby",
+   "time": "13:20",
+   "withRating": "Spadestep",
+   "withoutRating": "Spadestep",
+   "changed": false
+  },
+  {
+   "course": "Wetherby",
+   "time": "13:55",
+   "withRating": "Velvet Outlaw",
+   "withoutRating": "Velvet Outlaw",
+   "changed": false
+  },
+  {
+   "course": "Wetherby",
+   "time": "14:30",
+   "withRating": "Geryville",
+   "withoutRating": "Geryville",
+   "changed": false
+  },
+  {
+   "course": "Wetherby",
+   "time": "15:05",
+   "withRating": "Centurion's Sister",
+   "withoutRating": "Centurion's Sister",
+   "changed": false
+  },
+  {
+   "course": "Wetherby",
+   "time": "15:40",
+   "withRating": "Slaney Opera",
+   "withoutRating": "Slaney Opera",
+   "changed": false
+  },
+  {
+   "course": "Windsor",
+   "time": "12:20",
+   "withRating": "Jem's Lilly",
+   "withoutRating": "Ti'mamzel",
+   "changed": true
+  },
+  {
+   "course": "Windsor",
+   "time": "12:55",
+   "withRating": "Scavengers Reign",
+   "withoutRating": "Scavengers Reign",
+   "changed": false
+  },
+  {
+   "course": "Windsor",
+   "time": "13:25",
+   "withRating": "Kildinan Prince",
+   "withoutRating": "Kildinan Prince",
+   "changed": false
+  },
+  {
+   "course": "Windsor",
+   "time": "14:00",
+   "withRating": "Independent Lady",
+   "withoutRating": "Independent Lady",
+   "changed": false
+  },
+  {
+   "course": "Windsor",
+   "time": "14:35",
+   "withRating": "King Califet",
+   "withoutRating": "Jet Smart",
+   "changed": true
+  },
+  {
+   "course": "Windsor",
+   "time": "15:10",
+   "withRating": "Anniversary",
+   "withoutRating": "Anniversary",
+   "changed": false
+  },
+  {
+   "course": "Windsor",
+   "time": "15:45",
+   "withRating": "New Addington Boy",
+   "withoutRating": "New Addington Boy",
+   "changed": false
+  },
+  {
+   "course": "Cheltenham",
+   "time": "12:35",
+   "withRating": "Herakles Westwood",
+   "withoutRating": "Little Ledgend",
+   "changed": true
+  },
+  {
+   "course": "Cheltenham",
+   "time": "13:10",
+   "withRating": "Charles Darnay",
+   "withoutRating": "Charles Darnay",
+   "changed": false
+  },
+  {
+   "course": "Cheltenham",
+   "time": "13:45",
+   "withRating": "Kabral Du Mathan",
+   "withoutRating": "Kabral Du Mathan",
+   "changed": false
+  },
+  {
+   "course": "Cheltenham",
+   "time": "14:20",
+   "withRating": "Blueking D'oroux",
+   "withoutRating": "Blueking D'oroux",
+   "changed": false
+  },
+  {
+   "course": "Cheltenham",
+   "time": "14:55",
+   "withRating": "Ifiwerearichman",
+   "withoutRating": "Ifiwerearichman",
+   "changed": false
+  },
+  {
+   "course": "Cheltenham",
+   "time": "15:30",
+   "withRating": "Moneygarrow",
+   "withoutRating": "Daylatedollarshort",
+   "changed": true
+  },
+  {
+   "course": "Cheltenham",
+   "time": "16:00",
+   "withRating": "Elegantemente",
+   "withoutRating": "Elegantemente",
+   "changed": false
+  },
+  {
+   "course": "Navan",
+   "time": "12:27",
+   "withRating": "Beckistine",
+   "withoutRating": "Beckistine",
+   "changed": false
+  }
+ ]
+}

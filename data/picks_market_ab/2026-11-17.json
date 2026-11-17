@@ -1,0 +1,203 @@
+{
+ "date": "2026-11-17",
+ "generated": "2026-11-17T21:50:32+00:00",
+ "note": "Market-heavy shadow: the page's own factor scores re-weighted with the vector fitted on four years of results",
+ "metric": "weights",
+ "label": "market-heavy weighting",
+ "weights": {
+  "market": 50.8,
+  "form": 5.9,
+  "tips": 5.0,
+  "rpr": 13.0,
+  "rating": 3.4,
+  "cd": 3.6,
+  "draw": 0.9,
+  "speed": 12.0,
+  "going": 0.0,
+  "fitness": 3.4,
+  "weight": 0.0,
+  "connections": 6.1
+ },
+ "cards": 25,
+ "same": 18,
+ "changed": 7,
+ "ratedRunners": 310,
+ "runners": 310,
+ "rows": [
+  {
+   "course": "Carlisle",
+   "time": "11:50",
+   "withRating": "They're Chancers",
+   "withoutRating": "They're Chancers",
+   "changed": false
+  },
+  {
+   "course": "Carlisle",
+   "time": "12:20",
+   "withRating": "Bossman Jack",
+   "withoutRating": "Bossman Jack",
+   "changed": false
+  },
+  {
+   "course": "Carlisle",
+   "time": "12:50",
+   "withRating": "Linalene",
+   "withoutRating": "Throatlash",
+   "changed": true
+  },
+  {
+   "course": "Carlisle",
+   "time": "13:25",
+   "withRating": "Turbocharged",
+   "withoutRating": "Turbocharged",
+   "changed": false
+  },
+  {
+   "course": "Carlisle",
+   "time": "13:55",
+   "withRating": "King Berry",
+   "withoutRating": "Wasdell Dundalk",
+   "changed": true
+  },
+  {
+   "course": "Carlisle",
+   "time": "14:25",
+   "withRating": "Double Digits",
+   "withoutRating": "Doyen Du Bar",
+   "changed": true
+  },
+  {
+   "course": "Carlisle",
+   "time": "15:00",
+   "withRating": "Bruce Banner",
+   "withoutRating": "Bruce Banner",
+   "changed": false
+  },
+  {
+   "course": "Carlisle",
+   "time": "15:30",
+   "withRating": "Air Apparent",
+   "withoutRating": "Air Apparent",
+   "changed": false
+  },
+  {
+   "course": "Limerick",
+   "time": "12:10",
+   "withRating": "Poet's Duke",
+   "withoutRating": "Poet's Duke",
+   "changed": false
+  },
+  {
+   "course": "Limerick",
+   "time": "12:40",
+   "withRating": "Detroit Maverick",
+   "withoutRating": "Detroit Maverick",
+   "changed": false
+  },
+  {
+   "course": "Limerick",
+   "time": "13:10",
+   "withRating": "Jumbos Jet",
+   "withoutRating": "Jumbos Jet",
+   "changed": false
+  },
+  {
+   "course": "Limerick",
+   "time": "13:40",
+   "withRating": "The Monkey Pole",
+   "withoutRating": "The Monkey Pole",
+   "changed": false
+  },
+  {
+   "course": "Limerick",
+   "time": "14:10",
+   "withRating": "The Cobblers Wife",
+   "withoutRating": "Talas Kera",
+   "changed": true
+  },
+  {
+   "course": "Limerick",
+   "time": "14:40",
+   "withRating": "No Big Deal",
+   "withoutRating": "Depalma",
+   "changed": true
+  },
+  {
+   "course": "Limerick",
+   "time": "15:15",
+   "withRating": "Political Stance",
+   "withoutRating": "Political Stance",
+   "changed": false
+  },
+  {
+   "course": "Limerick",
+   "time": "15:50",
+   "withRating": "Marble Hill",
+   "withoutRating": "Marble Hill",
+   "changed": false
+  },
+  {
+   "course": "Southwell",
+   "time": "16:30",
+   "withRating": "Managing Director",
+   "withoutRating": "Managing Director",
+   "changed": false
+  },
+  {
+   "course": "Southwell",
+   "time": "17:00",
+   "withRating": "Urumita",
+   "withoutRating": "Urumita",
+   "changed": false
+  },
+  {
+   "course": "Southwell",
+   "time": "17:30",
+   "withRating": "Fahidi",
+   "withoutRating": "Fahidi",
+   "changed": false
+  },
+  {
+   "course": "Southwell",
+   "time": "18:00",
+   "withRating": "Danseuse",
+   "withoutRating": "Allaire",
+   "changed": true
+  },
+  {
+   "course": "Southwell",
+   "time": "18:30",
+   "withRating": "Moving Shadow",
+   "withoutRating": "Anthropologist",
+   "changed": true
+  },
+  {
+   "course": "Southwell",
+   "time": "19:00",
+   "withRating": "Red Hat Eagle",
+   "withoutRating": "Red Hat Eagle",
+   "changed": false
+  },
+  {
+   "course": "Southwell",
+   "time": "19:30",
+   "withRating": "Edmond Halley",
+   "withoutRating": "Edmond Halley",
+   "changed": false
+  },
+  {
+   "course": "Southwell",
+   "time": "20:00",
+   "withRating": "Hayate",
+   "withoutRating": "Hayate",
+   "changed": false
+  },
+  {
+   "course": "Southwell",
+   "time": "20:30",
+   "withRating": "Methgal",
+   "withoutRating": "Methgal",
+   "changed": false
+  }
+ ]
+}

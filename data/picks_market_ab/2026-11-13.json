@@ -1,0 +1,70 @@
+{
+ "date": "2026-11-13",
+ "generated": "2026-11-17T21:50:31+00:00",
+ "note": "Market-heavy shadow: the page's own factor scores re-weighted with the vector fitted on four years of results",
+ "metric": "weights",
+ "label": "market-heavy weighting",
+ "weights": {
+  "market": 50.8,
+  "form": 5.9,
+  "tips": 5.0,
+  "rpr": 13.0,
+  "rating": 3.4,
+  "cd": 3.6,
+  "draw": 0.9,
+  "speed": 12.0,
+  "going": 0.0,
+  "fitness": 3.4,
+  "weight": 0.0,
+  "connections": 6.1
+ },
+ "cards": 6,
+ "same": 4,
+ "changed": 2,
+ "ratedRunners": 58,
+ "runners": 58,
+ "rows": [
+  {
+   "course": "Cheltenham",
+   "time": "13:10",
+   "withRating": "Glancing Jack",
+   "withoutRating": "Glancing Jack",
+   "changed": false
+  },
+  {
+   "course": "Cheltenham",
+   "time": "13:45",
+   "withRating": "Follow Your Luck",
+   "withoutRating": "Intosomethinggood",
+   "changed": true
+  },
+  {
+   "course": "Cheltenham",
+   "time": "14:20",
+   "withRating": "Jonbon",
+   "withoutRating": "Jonbon",
+   "changed": false
+  },
+  {
+   "course": "Cheltenham",
+   "time": "14:55",
+   "withRating": "Thunder Rock",
+   "withoutRating": "Thunder Rock",
+   "changed": false
+  },
+  {
+   "course": "Cheltenham",
+   "time": "15:30",
+   "withRating": "Ferocimo",
+   "withoutRating": "Ferocimo",
+   "changed": false
+  },
+  {
+   "course": "Cheltenham",
+   "time": "16:00",
+   "withRating": "Eben Zaabeel",
+   "withoutRating": "Crooked Path",
+   "changed": true
+  }
+ ]
+}

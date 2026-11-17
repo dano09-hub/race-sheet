@@ -26,6 +26,7 @@ ROOT = TOOLING.parent
 sys.path.insert(0, str(TOOLING))
 
 import ab_tally        # noqa: E402
+import market_arm_day  # noqa: E402
 import collect_eachway_prices as cep  # noqa: E402
 import eachway         # noqa: E402
 import fetch_formfav as ff  # noqa: E402
@@ -1402,6 +1403,46 @@ with tempfile.TemporaryDirectory(prefix="us-form-") as d:
     epsilon["form_live"] = "2"
     check("us form shadow: a fully filled race is comparable",
           us_form_day.complete(cards[0]), cards[0])
+
+print()
+print("market-heavy shadow arm")
+check("arm: the heavier weight decides the pick",
+      market_arm_day.rank([{"market": 10, "form": 90},
+                            {"market": 90, "form": 10}]) == 1)
+check("arm: a factor a runner lacks is not counted for or against him",
+      market_arm_day.rank([{"market": 100}, {"form": 100}],
+                          {"market": 1.0, "form": 1.0}) == 0)
+check("arm: zero-weight factors cannot decide",
+      market_arm_day.rank([{"market": 10}, {"market": 90}],
+                          {"market": 0.0, "going": 50.0}) is None)
+check("arm: nothing usable means no pick",
+      market_arm_day.rank([{}, {"market": None}]) is None)
+check("arm: an empty race has no pick",
+      market_arm_day.pick({"runners": []}) == "")
+check("arm: the arm is not the published weight vector",
+      market_arm_day.WEIGHTS["market"] != 18 and market_arm_day.WEIGHTS["market"] > 18,
+      market_arm_day.WEIGHTS)
+arm_dir = tempfile.mkdtemp(prefix="mktarm_")
+old_root = market_arm_day.ROOT
+try:
+    market_arm_day.ROOT = arm_dir
+    os.makedirs(os.path.join(arm_dir, "data", market_arm_day.OUT_DIR))
+    snap = os.path.join(arm_dir, "data", market_arm_day.OUT_DIR, "2026-11-18.json")
+    with open(snap, "w") as f:
+        f.write('{"date": "2026-11-18", "rows": []}')
+    before = open(snap).read()
+    rc = market_arm_day.main("2026-11-18")
+    after = open(snap).read()
+finally:
+    market_arm_day.ROOT = old_root
+check("arm: a snapshot is never rewritten", rc == 0 and before == after)
+arm_block = refresh.ab_block_html(toy, "2026-11-18", title="Market-heavy shadow",
+                                  subject="market-heavy weighting",
+                                  start="MKT_ARM_SL_START", end="MKT_ARM_SL_END")
+check("arm block: own markers only",
+      arm_block.count("MKT_ARM_SL_START") == 1 and "AB_SL_START" not in arm_block)
+check("arm block: names the subject",
+      "market-heavy weighting" in text_of(arm_block))
 
 print()
 print("passed %d, failed %d%s" % (

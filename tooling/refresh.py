@@ -917,6 +917,7 @@ def main():
     us_ab_result = None
     us_flags_result = None
     us_angles_result = None
+    market_arm_result = None
     test_picks = os.path.join(ROOT, "data", "picks_ab", f"test_{iso}.json")
     test_cards = os.path.join(ROOT, "data", "cards", f"{iso}_two_meetings.json")
     if os.path.exists(test_picks) and os.path.exists(test_cards):
@@ -1056,6 +1057,24 @@ def main():
     except Exception as e:
         print(f"  ab:          snapshot skipped ({e})")
 
+    # Shadow arm: the page's own factor scores re-weighted with the vector fitted
+    # on four years of results. It never changes the published pick.
+    try:
+        import market_arm_day
+        import ab_tally as _ab_tally
+        market_arm_day.main(iso)
+        market_arm_result = _ab_tally.collect(snap_dir=market_arm_day.OUT_DIR,
+                                              subject=market_arm_day.SUBJECT)
+        if market_arm_result["races"]:
+            print(f"  market arm:  {market_arm_result['races']} races, "
+                  f"{market_arm_result['with']} market-heavy vs "
+                  f"{market_arm_result['without']} page, "
+                  f"{market_arm_result['changed']} picks changed")
+    except SystemExit:
+        pass
+    except Exception as e:
+        print(f"  market arm:  snapshot skipped ({e})")
+
     try:
         import fetch_overlay_us
         overlay_path = os.path.join(ROOT, "data", "overlay_us", f"{iso}.json")
@@ -1156,6 +1175,11 @@ def main():
                   ab_block_html(ab_result, iso), html, count=1, flags=re.S)
     html = re.sub(r"<!-- US_AB_SL_START -->.*?<!-- US_AB_SL_END -->",
                   us_ab_block_html(us_ab_result, iso), html, count=1, flags=re.S)
+    html = re.sub(r"<!-- MKT_ARM_SL_START -->.*?<!-- MKT_ARM_SL_END -->",
+                  ab_block_html(market_arm_result, iso, title="Market-heavy shadow",
+                                subject="market-heavy weighting",
+                                start="MKT_ARM_SL_START", end="MKT_ARM_SL_END"),
+                  html, count=1, flags=re.S)
     us_results = (results_block_all_us()
                   or "<!-- US_RESULTS_SL_START -->\n<p class=\"method\">No US results yet.</p>\n<!-- US_RESULTS_SL_END -->")
     html = re.sub(r"<!-- US_RESULTS_SL_START -->.*?<!-- US_RESULTS_SL_END -->",

@@ -365,6 +365,14 @@ def main(argv=None):
         except (SystemExit, Exception) as e:
             print(f"  ab:          snapshot skipped ({e})")
     ab_result = ab_tally.collect()
+    try:
+        import market_arm_day
+        market_arm_day.main(iso)
+        market_arm_result = ab_tally.collect(snap_dir=market_arm_day.OUT_DIR,
+                                             subject=market_arm_day.SUBJECT)
+    except (SystemExit, Exception) as e:
+        print(f"  market arm:  snapshot skipped ({e})")
+        market_arm_result = None
 
     us_snap = os.path.join(ROOT, "data", "picks_ab_us", f"{iso}.json")
     if not os.path.exists(us_snap):
@@ -415,6 +423,12 @@ def main(argv=None):
                     refresh.results_block_all_us() or refresh.results_block_us(iso, rows))
     html = _replace(html, "AB_SL",
                     refresh.ab_block_html(ab_result, iso))
+    html = _replace(html, "MKT_ARM_SL",
+                    refresh.ab_block_html(market_arm_result, iso,
+                                          title="Market-heavy shadow",
+                                          subject="market-heavy weighting",
+                                          start="MKT_ARM_SL_START",
+                                          end="MKT_ARM_SL_END"))
     html = _replace(html, "US_AB_SL",
                     refresh.us_ab_block_html(us_ab_result, iso))
     html = _replace(html, "US_FLAGS_SL",
