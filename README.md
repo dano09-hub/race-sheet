@@ -290,6 +290,14 @@ stored results are untouched. The six backfilled days give 123 races: 31 winners
 for the arm against 30 for the page, with 29 picks changed (won 4, lost 3). A
 tie, exactly as the fit predicted. It stays a shadow until it separates.
 
+The share the page prints is a normalised score, and it is compressed. On the
+held-out 2,251 races the pick was shown at 19.2% and won 32.6%, and runners shown
+at 30% or more won 47.1% against a 36.3% claim. `tooling/calibrate_share.py`
+measures this: one softmax scale (0.0498) fitted on earlier races turns the same
+totals into probabilities within 0.6 points of the record, with the pick at 33.9%
+against 32.6%. The ranking does not move, so this is a display question rather
+than a model one, and nothing on the page has been changed by it.
+
 ## Checks
 
 ```bash

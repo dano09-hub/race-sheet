@@ -13,6 +13,7 @@ Exit status is 0 when every check passes, 1 otherwise.
 import contextlib
 import io
 import json
+import math
 import os
 import re
 import shutil
@@ -21,12 +22,15 @@ import sys
 import tempfile
 from pathlib import Path
 
+import numpy as np
+
 TOOLING = Path(__file__).resolve().parent
 ROOT = TOOLING.parent
 sys.path.insert(0, str(TOOLING))
 
 import ab_tally        # noqa: E402
 import market_arm_day  # noqa: E402
+import calibrate_share  # noqa: E402
 import collect_eachway_prices as cep  # noqa: E402
 import eachway         # noqa: E402
 import fetch_formfav as ff  # noqa: E402
@@ -1443,6 +1447,25 @@ check("arm block: own markers only",
       arm_block.count("MKT_ARM_SL_START") == 1 and "AB_SL_START" not in arm_block)
 check("arm block: names the subject",
       "market-heavy weighting" in text_of(arm_block))
+
+print()
+print("share calibration")
+cal = calibrate_share.report("toy", [{"y": np.array([1.0, 0.0, 0.0, 0.0])}],
+                             [np.array([0.5, 0.5, 0.0, 0.0])])
+check("calibration: a correct 50/50 pick scores log 2",
+      abs(cal["nll"] - math.log(2)) < 1e-9, cal["nll"])
+check("calibration: brier counts every runner",
+      abs(cal["brier"] - 0.5) < 1e-9, cal["brier"])
+check("calibration: a true 50/50 has no error", abs(cal["ece"]) < 1e-9, cal["ece"])
+bad = calibrate_share.report("toy", [{"y": np.array([0.0, 1.0])}],
+                             [np.array([0.9, 0.1])])
+check("calibration: confident and wrong is caught", abs(bad["ece"] - 90.0) < 1e-6, bad["ece"])
+check("calibration: a race too lightly priced has no market probability",
+      calibrate_share.market_probs({"odds": [2.0, None, None, None]}) is None)
+fair = calibrate_share.market_probs({"odds": [2.0, 4.0, 4.0, None]})
+check("calibration: the market book is normalised and keeps the blank",
+      fair is not None and abs(float(fair.sum()) - 1.0) < 1e-9 and fair[3] == 0.0,
+      list(fair) if fair is not None else None)
 
 print()
 print("passed %d, failed %d%s" % (
