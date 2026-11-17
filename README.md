@@ -411,6 +411,29 @@ python3 tooling/disagreement_audit.py --csv data/training/runners.csv
 python3 tooling/disagreement_audit.py --csv data/training/runners.csv --bins 200
 ```
 
+### Which factor carries it?
+
+`tooling/factor_audit.py` runs the same fixed-price comparison factor by factor:
+the top score band (80-100) against the bottom (0-20), inside the same market
+price band, over 366,516 priced races. Only factors with 100+ runners in both
+extremes of a price band can be measured:
+
+| factor | top minus bottom | 95% CI | runners |
+| --- | --- | --- | --- |
+| market | +5.47 points | +5.04 to +5.89 | 376,160 |
+| form | +0.64 points | +0.37 to +0.91 | 251,927 |
+| official rating | +0.19 points | +0.10 to +0.27 | 1,174,384 |
+| weight | 0.00 points | -0.05 to +0.05 | 1,799,746 |
+
+Tips, RPR and Topspeed are blank in this source (their weights stay at the live
+values), and course & trip, draw, going, fitness and stable form cluster too
+tightly to have both extremes present in one price band, so those eight cannot
+be measured this way. No measurable factor is anti-predictive on its own: the
+market factor carries most of the signal, form adds about half a point, official
+rating and weight add nothing. The sheet's large disagreements are therefore a
+combination effect rather than one bad factor - consistent with the disagreement
+audit above, and still not a reason to tune the weights by hand.
+
 ```bash
 python3 tooling/chance_audit.py                  # pick-level, on the command line
 python3 tooling/field_audit.py                   # every runner, from snapshots
@@ -797,6 +820,19 @@ The site is on Freebuff Sites (site id `2a8edd98-2d40-49b4-92b1-33f3df2436f0`).
 `dist/deploy.json` is a standard manifest; any static host works just as well,
 since `dist/public/index.html` is the whole site.
 
+## The page
+
+Five tabs, each a job rather than a data source. Old tab names still resolve to
+their new home, so saved links and the browser's remembered tab keep working.
+
+| Tab | What it is for |
+| --- | --- |
+| Today | The next race, the day's best-rated horses, the standouts and the US races still to come. |
+| Cards | Pick any race and inspect every runner the model scored, with the full rating table. |
+| Results | Settled UK/IRE results, market checks and the standing model audits. |
+| US racing | The US ledger, the US flags and the full angle board. |
+| Method | The fixed weights, how the chance is calibrated, and the evidence behind both. |
+
 ## Known caveats
 
 * The model is a favourite-ranker. On this card it found 10 of the 13 winning
@@ -804,7 +840,7 @@ since `dist/public/index.html` is the whole site.
 * 21 races is a tiny sample. The weights were tuned in-sample; treat any
   improvement of one or two winners as noise.
 * The Results tab is a snapshot. It does not poll for new results.
-* The Results tab is UK/IRE only. The **US results** tab holds the US ledger and
+* The Results tab is UK/IRE only. The **US racing** tab holds the US ledger and
   the US speed-figure A/B; both ledgers show the off time beside each course.
 * The race-by-race audit on Results is rebuilt from the latest settled UK/IRE
   day whenever the page or results are rebuilt; the model notes below it remain

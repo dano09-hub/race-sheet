@@ -1058,6 +1058,58 @@
     .nextcard *{color:#000!important}
   }
 </style>
+
+<style id="ui-refresh">
+  /* Readability pass: one type scale, calmer cards, denser data kept legible.
+     Scoped to the shell so generated blocks keep their own layout. */
+  body { font-size: 15.5px; line-height: 1.6; }
+  .panel { padding: 22px 24px; margin-bottom: 20px; box-shadow: 0 1px 2px rgba(12, 32, 26, .05); }
+  .panel h2 {
+    margin: 0 0 8px; font-size: 19px; font-weight: 700; letter-spacing: -.01em;
+    text-transform: none; color: var(--ink);
+  }
+  .panel h2 + .method, .panel h2 + p.k, .panel h2 + .best-count { margin-top: 2px; }
+  .panel .method, .panel p.k, .panel .best-count { font-size: 13.5px; line-height: 1.55; }
+  .panel h3 { font-size: 15px; letter-spacing: 0; text-transform: none; }
+  .method { max-width: 92ch; }
+  .topbar { padding-bottom: 14px; }
+  .page-title { letter-spacing: -.025em; }
+  .page-subtitle { max-width: 74ch; }
+  .kpi-grid { gap: 14px; }
+  .best-grid { gap: 14px; }
+  .nextcard { border-radius: 12px; }
+  table { font-variant-numeric: tabular-nums; }
+  .panel table thead th {
+    position: sticky; top: 0; z-index: 1; background: var(--card);
+    font-size: 10.5px; letter-spacing: .08em;
+  }
+  .panel table tbody tr:nth-child(even) td { background: rgba(20, 69, 61, .022); }
+  .panel table tbody tr:hover td { background: rgba(20, 69, 61, .05); }
+  .scroll { scrollbar-width: thin; }
+  details.note, details.angrace { border-radius: 10px; }
+  .sidebar .tab { min-height: 42px !important; font-size: 13.5px !important; }
+  .sidebar-foot span { font-size: 11.5px !important; line-height: 1.5 !important; }
+  a:focus-visible, button:focus-visible, summary:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px;
+  }
+  /* Generated audit blocks sit inside a panel: separate them with a rule
+     rather than a second card. */
+  .panel .mktcheck {
+    margin: 22px 0 0; padding: 18px 0 0; border: 0; border-top: 1px solid var(--line);
+    border-radius: 0; background: transparent; box-shadow: none;
+  }
+  .panel .mktcheck:first-of-type { margin-top: 12px; }
+  @media (max-width: 480px) {
+    /* Five tabs fit on one row at phone width instead of scrolling. */
+    .tabs { gap: 2px !important; }
+    .tabs .tab { padding: 0 10px !important; font-size: 12.5px !important; }
+  }
+  @media (max-width: 720px) {
+    .panel { padding: 16px 15px; border-radius: 12px; }
+    .panel h2 { font-size: 17px; }
+    .page-title { font-size: 26px !important; }
+  }
+</style>
 </head>
 <body>
 <div class="app-shell">
@@ -1126,6 +1178,22 @@
         <tbody id="lateBody"></tbody>
       </table>
     </div>
+  </section>
+
+  <section class="panel" data-panel="usresults">
+    <h2>US results</h2>
+    <p class="method">Settled US races with the off time, plus the speed-figure A/B. UK/IRE results are on the Results tab.</p>
+<!-- US_AB_SL_START -->
+<div class="mktcheck abcheck"><h3>US A/B &mdash; with and without a speed figure</h3><p class="k">Across <b>22</b> settled races: <b>7</b> winners with the speed figure (31.8%) and <b>16</b> top-three (72.7%); <b>6</b> winners without (27.3%) and <b>15</b> top-three (68.2%). The speed figure changed the pick in 3 races (won 1, lost 0).</p><p class="k">Benchmark on the same races: the market favourite won <b>6 of 22</b> (27.3%), our pick won <b>7 of 22</b> (31.8%); we backed the favourite in 19.</p><p class="k"><a href="https://theoverlay.co.uk/us-racing.html" target="_blank" rel="noopener">The Overlay</a> fair-chance benchmark on <b>22</b> matched races (15 live Overlay snapshots + 7 archived-card backfills): its favourite won <b>8 of 22</b> (36.4%), our pick won <b>7 of 22</b> (31.8%); we backed the fair favourite in 16.</p><table class="abt"><thead><tr><th>Day</th><th>Races</th><th>With win</th><th>With place</th><th>Without win</th><th>Without place</th><th>Changed</th></tr></thead><tbody><tr><td>2026-11-17</td><td class="num">22</td><td class="num">7</td><td class="num">16</td><td class="num">6</td><td class="num">15</td><td class="num">3</td></tr></tbody></table><div class="abchart"><p class="k abchartnote">Daily win/place rate and 7-day place trend</p><svg viewBox="0 0 640 225" role="img" aria-label="Daily win/place rate and 7-day place trend"><title>Daily win/place rate and 7-day place trend</title><line class="grid" x1="40" y1="197.0" x2="626" y2="197.0"/><text x="34" y="200.0" text-anchor="end">0%</text><line class="grid" x1="40" y1="162.8" x2="626" y2="162.8"/><text x="34" y="165.8" text-anchor="end">25%</text><line class="grid" x1="40" y1="128.5" x2="626" y2="128.5"/><text x="34" y="131.5" text-anchor="end">50%</text><line class="grid" x1="40" y1="94.2" x2="626" y2="94.2"/><text x="34" y="97.2" text-anchor="end">75%</text><line class="grid" x1="40" y1="60.0" x2="626" y2="60.0"/><text x="34" y="63.0" text-anchor="end">100%</text><line x1="40" y1="18" x2="56" y2="18" stroke="#14453d" stroke-width="2.5"/><text x="62" y="21">With speed figure</text><line x1="220" y1="18" x2="236" y2="18" stroke="#a9761c" stroke-width="2.5"/><text x="242" y="21">Without speed figure</text><line x1="40" y1="38" x2="56" y2="38" stroke="#63756e" stroke-width="2.5"/><text x="62" y="41">Place</text><line x1="130" y1="38" x2="146" y2="38" stroke="#63756e" stroke-width="2.5" stroke-dasharray="6 4"/><text x="152" y="41">Win</text><line x1="210" y1="38" x2="226" y2="38" stroke="#63756e" stroke-width="6" opacity=".28"/><text x="232" y="41">7-day place</text><circle class="with place" cx="333.0" cy="97.4" r="4"><title>With speed figure place: 72.7% (16/22) on 2026-11-17</title></circle><circle class="with win" cx="333.0" cy="153.4" r="4"><title>With speed figure win: 31.8% (7/22) on 2026-11-17</title></circle><circle class="without place" cx="333.0" cy="103.6" r="4"><title>Without speed figure place: 68.2% (15/22) on 2026-11-17</title></circle><circle class="without win" cx="333.0" cy="159.6" r="4"><title>Without speed figure win: 27.3% (6/22) on 2026-11-17</title></circle><text x="333.0" y="217" text-anchor="middle">17 Nov</text></svg><p class="k abchartnote">One settled day; the 7-day trend starts with the next day.</p></div><p class="k abverdict">The bar was fixed in advance: 2000 settled races, a lead of at least 3.0 points, and a one-sided McNemar p below 0.05. With 22 races and a lead of +4.5 points (p 0.50), 1978 more are needed. Nothing changes before then.</p><p class="k">Waiting for results: 2026-11-16</p></div>
+<!-- US_AB_SL_END -->
+    <div class="results-divider"></div>
+    <h3 class="subhead">US results ledger <span>by day</span></h3>
+<!-- US_RESULTS_SL_START -->
+<h3>Settled &mdash; 17 November 2026</h3>
+<p class="method">22 US races settled. <b>7 of 22</b> winners were our top pick. <b>16 of 22</b> picks placed. Winner first, then the first three home in finishing order. Off time is shown beside each course.</p>
+<div class="scroll"><table class="ledger"><thead><tr><th>Course / off</th><th>Race</th><th>Winner</th><th>Places</th><th>Our pick</th><th>Placed?</th></tr></thead><tbody><tr data-course="Finger Lakes" data-time="17:10" data-winner="Lord King"><td><b><span class="rtag">USA</span> Finger Lakes</b> <span class="rtime">17:10</span></td><td>6F, Dirt, Allowance</td><td>Lord King</td><td class="muted">Lord King &middot; Muscle Shoals &middot; Not for Hire</td><td class="pick hit">✓ Lord King (1st)</td><td class="placed yes">Yes</td></tr><tr data-course="Finger Lakes" data-time="17:38" data-winner="Noguchi"><td><b><span class="rtag">USA</span> Finger Lakes</b> <span class="rtime">17:38</span></td><td>1M 70Y, Dirt, $5,000 Claiming</td><td>Noguchi</td><td class="muted">Noguchi &middot; Propitious &middot; Good Cop</td><td class="pick miss">✗ Good Cop (3rd)</td><td class="placed yes">Yes</td></tr><tr data-course="Finger Lakes" data-time="18:06" data-winner="Free Dance"><td><b><span class="rtag">USA</span> Finger Lakes</b> <span class="rtime">18:06</span></td><td>1M, Dirt, $10,000 Allowance Optional Claimin</td><td>Free Dance</td><td class="muted">Free Dance &middot; Spettro &middot; Leftembehind</td><td class="pick hit">✓ Free Dance (1st)</td><td class="placed yes">Yes</td></tr><tr data-course="Finger Lakes" data-time="18:34" data-winner="Lady On the Lam"><td><b><span class="rtag">USA</span> Finger Lakes</b> <span class="rtime">18:34</span></td><td>5 1/2F, Dirt, $11,000 Maiden Claiming</td><td>Lady On the Lam</td><td class="muted">Lady On the Lam &middot; C Robin &middot; Solo Belle</td><td class="pick miss">✗ Solo Belle (3rd)</td><td class="placed yes">Yes</td></tr><tr data-course="Finger Lakes" data-time="19:03" data-winner="Well Documented"><td><b><span class="rtag">USA</span> Finger Lakes</b> <span class="rtime">19:03</span></td><td>1M 70Y, Dirt, $5,000 Claiming</td><td>Well Documented</td><td class="muted">Well Documented &middot; Tiz Goldy &middot; Lucky and Gorgeous</td><td class="pick miss">✗ Tiz Goldy (2nd)</td><td class="placed yes">Yes</td></tr><tr data-course="Finger Lakes" data-time="19:32" data-winner="Froghollowsummer"><td><b><span class="rtag">USA</span> Finger Lakes</b> <span class="rtime">19:32</span></td><td>5 1/2F, Dirt, $5,000 Maiden Claiming</td><td>Froghollowsummer</td><td class="muted">Froghollowsummer &middot; Adroit &middot; She&#x27;s a Goddess</td><td class="pick hit">✓ Froghollowsummer (1st)</td><td class="placed yes">Yes</td></tr><tr data-course="Mahoning Valley" data-time="17:15" data-winner="Chick With a Drill"><td><b><span class="rtag">USA</span> Mahoning Valley</b> <span class="rtime">17:15</span></td><td>6F, Dirt, $7,500 Maiden Claiming</td><td>Chick With a Drill</td><td class="muted">Chick With a Drill &middot; Honor Quest &middot; Oak Mirna</td><td class="pick miss">✗ Honor Quest (2nd)</td><td class="placed yes">Yes</td></tr><tr data-course="Mahoning Valley" data-time="17:43" data-winner="Pounds in Town"><td><b><span class="rtag">USA</span> Mahoning Valley</b> <span class="rtime">17:43</span></td><td>6F, Dirt, $5,000 Claiming</td><td>Pounds in Town</td><td class="muted">Pounds in Town &middot; Thee New Beginning &middot; Quick Recovery</td><td class="pick miss">✗ Thee New Beginning (2nd)</td><td class="placed yes">Yes</td></tr><tr data-course="Mahoning Valley" data-time="18:11" data-winner="Moreau"><td><b><span class="rtag">USA</span> Mahoning Valley</b> <span class="rtime">18:11</span></td><td>1M, Dirt, Ratings Handicap</td><td>Moreau</td><td class="muted">Moreau &middot; Rhythm &#x27;n Blues &middot; Chiron</td><td class="pick miss">✗ Rhythm &#x27;n Blues (2nd)</td><td class="placed yes">Yes</td></tr><tr data-course="Mahoning Valley" data-time="18:39" data-winner="Some Kinda Warrior"><td><b><span class="rtag">USA</span> Mahoning Valley</b> <span class="rtime">18:39</span></td><td>6F, Dirt, $7,500 Maiden Claiming</td><td>Some Kinda Warrior</td><td class="muted">Some Kinda Warrior &middot; Last Crafty &middot; Skiptheguilttrip</td><td class="pick hit">✓ Some Kinda Warrior (1st)</td><td class="placed yes">Yes</td></tr><tr data-course="Mahoning Valley" data-time="19:07" data-winner="Hite"><td><b><span class="rtag">USA</span> Mahoning Valley</b> <span class="rtime">19:07</span></td><td>6F, Dirt, $8,000 Claiming</td><td>Hite</td><td class="muted">Hite &middot; Color Bearer &middot; Right On the Munny</td><td class="pick miss">✗ Right On the Munny (3rd)</td><td class="placed yes">Yes</td></tr><tr data-course="Mahoning Valley" data-time="19:35" data-winner="Holiday Coal"><td><b><span class="rtag">USA</span> Mahoning Valley</b> <span class="rtime">19:35</span></td><td>1M, Dirt, Allowance</td><td>Holiday Coal</td><td class="muted">Holiday Coal &middot; Bionic Saint &middot; Anicetta</td><td class="pick miss">✗ Loco Coco (unplaced)</td><td class="placed no">No</td></tr><tr data-course="Parx Racing" data-time="17:05" data-winner="Basin Bay"><td><b><span class="rtag">USA</span> Parx Racing</b> <span class="rtime">17:05</span></td><td>6F, Dirt, $12,500 Claiming</td><td>Basin Bay</td><td class="muted">Basin Bay &middot; Johnny Bay Goode &middot; World Wide Web</td><td class="pick miss">✗ World Wide Web (3rd)</td><td class="placed yes">Yes</td></tr><tr data-course="Parx Racing" data-time="17:32" data-winner="Peridot Pendant"><td><b><span class="rtag">USA</span> Parx Racing</b> <span class="rtime">17:32</span></td><td>1M, Dirt, $10,000 Starter Optional Claiming</td><td>Peridot Pendant</td><td class="muted">Peridot Pendant &middot; Amy Mule &middot; Cruise Missile</td><td class="pick hit">✓ Peridot Pendant (1st)</td><td class="placed yes">Yes</td></tr><tr data-course="Parx Racing" data-time="17:59" data-winner="Capt. Candy"><td><b><span class="rtag">USA</span> Parx Racing</b> <span class="rtime">17:59</span></td><td>6F, Dirt, $5,000 Claiming</td><td>Capt. Candy</td><td class="muted">Capt. Candy &middot; Awesome for Sure &middot; My Mamba</td><td class="pick miss">✗ Biagio (unplaced)</td><td class="placed no">No</td></tr><tr data-course="Parx Racing" data-time="18:26" data-winner="America&#x27;s Honor"><td><b><span class="rtag">USA</span> Parx Racing</b> <span class="rtime">18:26</span></td><td>1M, Dirt, $40,000 Starter Optional Claiming</td><td>America&#x27;s Honor</td><td class="muted">America&#x27;s Honor &middot; Beale Street Boy &middot; Fiddling Felix</td><td class="pick hit">✓ America&#x27;s Honor (1st)</td><td class="placed yes">Yes</td></tr><tr data-course="Parx Racing" data-time="18:53" data-winner="Chelonian"><td><b><span class="rtag">USA</span> Parx Racing</b> <span class="rtime">18:53</span></td><td>1M 70Y, Dirt, $5,000 Claiming</td><td>Chelonian</td><td class="muted">Chelonian &middot; Jackson Road &middot; Patton&#x27;s Tizzy</td><td class="pick hit">✓ Chelonian (1st)</td><td class="placed yes">Yes</td></tr><tr data-course="Parx Racing" data-time="19:20" data-winner="Chain Lightning"><td><b><span class="rtag">USA</span> Parx Racing</b> <span class="rtime">19:20</span></td><td>1M, Dirt, $16,000 Starter Optional Claiming</td><td>Chain Lightning</td><td class="muted">Chain Lightning &middot; Tug &middot; Irish Mamba</td><td class="pick miss">✗ Tug (2nd)</td><td class="placed yes">Yes</td></tr><tr data-course="Parx Racing" data-time="19:47" data-winner="Donnelly&#x27;s Hollow"><td><b><span class="rtag">USA</span> Parx Racing</b> <span class="rtime">19:47</span></td><td>1M, Dirt, Allowance</td><td>Donnelly&#x27;s Hollow</td><td class="muted">Donnelly&#x27;s Hollow &middot; Our Notion &middot; L Golden Boy</td><td class="pick miss">✗ Drum Roll Please (4th)</td><td class="placed no">No</td></tr><tr data-course="Zia Park" data-time="19:05" data-winner="Mother of Pearl"><td><b><span class="rtag">USA</span> Zia Park</b> <span class="rtime">19:05</span></td><td>5 1/2F, Dirt, $20,000 Claiming</td><td>Mother of Pearl</td><td class="muted">Mother of Pearl &middot; Page &middot; Tucum Kari</td><td class="pick miss">✗ Best Beach (6th)</td><td class="placed no">No</td></tr><tr data-course="Zia Park" data-time="19:32" data-winner="Smoothwhskygoindwn"><td><b><span class="rtag">USA</span> Zia Park</b> <span class="rtime">19:32</span></td><td>6 1/2F, Dirt, $15,000 Claiming</td><td>Smoothwhskygoindwn</td><td class="muted">Smoothwhskygoindwn &middot; Gunflash &middot; Fifty Cinco</td><td class="pick miss">✗ Ez Iz Onzaway (4th)</td><td class="placed no">No</td></tr><tr data-course="Zia Park" data-time="19:59" data-winner="Shows Promise"><td><b><span class="rtag">USA</span> Zia Park</b> <span class="rtime">19:59</span></td><td>6F, Dirt, Maiden Special Weight</td><td>Shows Promise</td><td class="muted">Shows Promise &middot; Never Surrender &middot; Prince Marking</td><td class="pick miss">✗ Looknfonobikini (unplaced)</td><td class="placed no">No</td></tr></tbody></table></div>
+
+<!-- US_RESULTS_SL_END -->
   </section>
 
   <section class="panel" data-panel="flags">
@@ -1242,31 +1310,11 @@
     </div>
   </section>
 
-  <section class="panel" data-panel="past">
-    <h2>Past races</h2>
-    <p class="method">Races whose off time has passed. They are out of the picker and off the main page, but nothing is thrown away &mdash; open one to see how the card was rated before the off.</p>
-    <div id="pastList"></div>
-  </section>
-
-  <section class="panel" data-panel="usresults">
-    <h2>US results</h2>
-    <p class="method">Settled US races with the off time, plus the speed-figure A/B. UK/IRE results are on the Results tab.</p>
-<!-- US_AB_SL_START -->
-<div class="mktcheck abcheck"><h3>US A/B &mdash; with and without a speed figure</h3><p class="k">Across <b>22</b> settled races: <b>7</b> winners with the speed figure (31.8%) and <b>16</b> top-three (72.7%); <b>6</b> winners without (27.3%) and <b>15</b> top-three (68.2%). The speed figure changed the pick in 3 races (won 1, lost 0).</p><p class="k">Benchmark on the same races: the market favourite won <b>6 of 22</b> (27.3%), our pick won <b>7 of 22</b> (31.8%); we backed the favourite in 19.</p><p class="k"><a href="https://theoverlay.co.uk/us-racing.html" target="_blank" rel="noopener">The Overlay</a> fair-chance benchmark on <b>22</b> matched races (15 live Overlay snapshots + 7 archived-card backfills): its favourite won <b>8 of 22</b> (36.4%), our pick won <b>7 of 22</b> (31.8%); we backed the fair favourite in 16.</p><table class="abt"><thead><tr><th>Day</th><th>Races</th><th>With win</th><th>With place</th><th>Without win</th><th>Without place</th><th>Changed</th></tr></thead><tbody><tr><td>2026-11-17</td><td class="num">22</td><td class="num">7</td><td class="num">16</td><td class="num">6</td><td class="num">15</td><td class="num">3</td></tr></tbody></table><div class="abchart"><p class="k abchartnote">Daily win/place rate and 7-day place trend</p><svg viewBox="0 0 640 225" role="img" aria-label="Daily win/place rate and 7-day place trend"><title>Daily win/place rate and 7-day place trend</title><line class="grid" x1="40" y1="197.0" x2="626" y2="197.0"/><text x="34" y="200.0" text-anchor="end">0%</text><line class="grid" x1="40" y1="162.8" x2="626" y2="162.8"/><text x="34" y="165.8" text-anchor="end">25%</text><line class="grid" x1="40" y1="128.5" x2="626" y2="128.5"/><text x="34" y="131.5" text-anchor="end">50%</text><line class="grid" x1="40" y1="94.2" x2="626" y2="94.2"/><text x="34" y="97.2" text-anchor="end">75%</text><line class="grid" x1="40" y1="60.0" x2="626" y2="60.0"/><text x="34" y="63.0" text-anchor="end">100%</text><line x1="40" y1="18" x2="56" y2="18" stroke="#14453d" stroke-width="2.5"/><text x="62" y="21">With speed figure</text><line x1="220" y1="18" x2="236" y2="18" stroke="#a9761c" stroke-width="2.5"/><text x="242" y="21">Without speed figure</text><line x1="40" y1="38" x2="56" y2="38" stroke="#63756e" stroke-width="2.5"/><text x="62" y="41">Place</text><line x1="130" y1="38" x2="146" y2="38" stroke="#63756e" stroke-width="2.5" stroke-dasharray="6 4"/><text x="152" y="41">Win</text><line x1="210" y1="38" x2="226" y2="38" stroke="#63756e" stroke-width="6" opacity=".28"/><text x="232" y="41">7-day place</text><circle class="with place" cx="333.0" cy="97.4" r="4"><title>With speed figure place: 72.7% (16/22) on 2026-11-17</title></circle><circle class="with win" cx="333.0" cy="153.4" r="4"><title>With speed figure win: 31.8% (7/22) on 2026-11-17</title></circle><circle class="without place" cx="333.0" cy="103.6" r="4"><title>Without speed figure place: 68.2% (15/22) on 2026-11-17</title></circle><circle class="without win" cx="333.0" cy="159.6" r="4"><title>Without speed figure win: 27.3% (6/22) on 2026-11-17</title></circle><text x="333.0" y="217" text-anchor="middle">17 Nov</text></svg><p class="k abchartnote">One settled day; the 7-day trend starts with the next day.</p></div><p class="k abverdict">The bar was fixed in advance: 2000 settled races, a lead of at least 3.0 points, and a one-sided McNemar p below 0.05. With 22 races and a lead of +4.5 points (p 0.50), 1978 more are needed. Nothing changes before then.</p><p class="k">Waiting for results: 2026-11-16</p></div>
-<!-- US_AB_SL_END -->
-    <div class="results-divider"></div>
-    <h3 class="subhead">US results ledger <span>by day</span></h3>
-<!-- US_RESULTS_SL_START -->
-<h3>Settled &mdash; 17 November 2026</h3>
-<p class="method">22 US races settled. <b>7 of 22</b> winners were our top pick. <b>16 of 22</b> picks placed. Winner first, then the first three home in finishing order. Off time is shown beside each course.</p>
-<div class="scroll"><table class="ledger"><thead><tr><th>Course / off</th><th>Race</th><th>Winner</th><th>Places</th><th>Our pick</th><th>Placed?</th></tr></thead><tbody><tr data-course="Finger Lakes" data-time="17:10" data-winner="Lord King"><td><b><span class="rtag">USA</span> Finger Lakes</b> <span class="rtime">17:10</span></td><td>6F, Dirt, Allowance</td><td>Lord King</td><td class="muted">Lord King &middot; Muscle Shoals &middot; Not for Hire</td><td class="pick hit">✓ Lord King (1st)</td><td class="placed yes">Yes</td></tr><tr data-course="Finger Lakes" data-time="17:38" data-winner="Noguchi"><td><b><span class="rtag">USA</span> Finger Lakes</b> <span class="rtime">17:38</span></td><td>1M 70Y, Dirt, $5,000 Claiming</td><td>Noguchi</td><td class="muted">Noguchi &middot; Propitious &middot; Good Cop</td><td class="pick miss">✗ Good Cop (3rd)</td><td class="placed yes">Yes</td></tr><tr data-course="Finger Lakes" data-time="18:06" data-winner="Free Dance"><td><b><span class="rtag">USA</span> Finger Lakes</b> <span class="rtime">18:06</span></td><td>1M, Dirt, $10,000 Allowance Optional Claimin</td><td>Free Dance</td><td class="muted">Free Dance &middot; Spettro &middot; Leftembehind</td><td class="pick hit">✓ Free Dance (1st)</td><td class="placed yes">Yes</td></tr><tr data-course="Finger Lakes" data-time="18:34" data-winner="Lady On the Lam"><td><b><span class="rtag">USA</span> Finger Lakes</b> <span class="rtime">18:34</span></td><td>5 1/2F, Dirt, $11,000 Maiden Claiming</td><td>Lady On the Lam</td><td class="muted">Lady On the Lam &middot; C Robin &middot; Solo Belle</td><td class="pick miss">✗ Solo Belle (3rd)</td><td class="placed yes">Yes</td></tr><tr data-course="Finger Lakes" data-time="19:03" data-winner="Well Documented"><td><b><span class="rtag">USA</span> Finger Lakes</b> <span class="rtime">19:03</span></td><td>1M 70Y, Dirt, $5,000 Claiming</td><td>Well Documented</td><td class="muted">Well Documented &middot; Tiz Goldy &middot; Lucky and Gorgeous</td><td class="pick miss">✗ Tiz Goldy (2nd)</td><td class="placed yes">Yes</td></tr><tr data-course="Finger Lakes" data-time="19:32" data-winner="Froghollowsummer"><td><b><span class="rtag">USA</span> Finger Lakes</b> <span class="rtime">19:32</span></td><td>5 1/2F, Dirt, $5,000 Maiden Claiming</td><td>Froghollowsummer</td><td class="muted">Froghollowsummer &middot; Adroit &middot; She&#x27;s a Goddess</td><td class="pick hit">✓ Froghollowsummer (1st)</td><td class="placed yes">Yes</td></tr><tr data-course="Mahoning Valley" data-time="17:15" data-winner="Chick With a Drill"><td><b><span class="rtag">USA</span> Mahoning Valley</b> <span class="rtime">17:15</span></td><td>6F, Dirt, $7,500 Maiden Claiming</td><td>Chick With a Drill</td><td class="muted">Chick With a Drill &middot; Honor Quest &middot; Oak Mirna</td><td class="pick miss">✗ Honor Quest (2nd)</td><td class="placed yes">Yes</td></tr><tr data-course="Mahoning Valley" data-time="17:43" data-winner="Pounds in Town"><td><b><span class="rtag">USA</span> Mahoning Valley</b> <span class="rtime">17:43</span></td><td>6F, Dirt, $5,000 Claiming</td><td>Pounds in Town</td><td class="muted">Pounds in Town &middot; Thee New Beginning &middot; Quick Recovery</td><td class="pick miss">✗ Thee New Beginning (2nd)</td><td class="placed yes">Yes</td></tr><tr data-course="Mahoning Valley" data-time="18:11" data-winner="Moreau"><td><b><span class="rtag">USA</span> Mahoning Valley</b> <span class="rtime">18:11</span></td><td>1M, Dirt, Ratings Handicap</td><td>Moreau</td><td class="muted">Moreau &middot; Rhythm &#x27;n Blues &middot; Chiron</td><td class="pick miss">✗ Rhythm &#x27;n Blues (2nd)</td><td class="placed yes">Yes</td></tr><tr data-course="Mahoning Valley" data-time="18:39" data-winner="Some Kinda Warrior"><td><b><span class="rtag">USA</span> Mahoning Valley</b> <span class="rtime">18:39</span></td><td>6F, Dirt, $7,500 Maiden Claiming</td><td>Some Kinda Warrior</td><td class="muted">Some Kinda Warrior &middot; Last Crafty &middot; Skiptheguilttrip</td><td class="pick hit">✓ Some Kinda Warrior (1st)</td><td class="placed yes">Yes</td></tr><tr data-course="Mahoning Valley" data-time="19:07" data-winner="Hite"><td><b><span class="rtag">USA</span> Mahoning Valley</b> <span class="rtime">19:07</span></td><td>6F, Dirt, $8,000 Claiming</td><td>Hite</td><td class="muted">Hite &middot; Color Bearer &middot; Right On the Munny</td><td class="pick miss">✗ Right On the Munny (3rd)</td><td class="placed yes">Yes</td></tr><tr data-course="Mahoning Valley" data-time="19:35" data-winner="Holiday Coal"><td><b><span class="rtag">USA</span> Mahoning Valley</b> <span class="rtime">19:35</span></td><td>1M, Dirt, Allowance</td><td>Holiday Coal</td><td class="muted">Holiday Coal &middot; Bionic Saint &middot; Anicetta</td><td class="pick miss">✗ Loco Coco (unplaced)</td><td class="placed no">No</td></tr><tr data-course="Parx Racing" data-time="17:05" data-winner="Basin Bay"><td><b><span class="rtag">USA</span> Parx Racing</b> <span class="rtime">17:05</span></td><td>6F, Dirt, $12,500 Claiming</td><td>Basin Bay</td><td class="muted">Basin Bay &middot; Johnny Bay Goode &middot; World Wide Web</td><td class="pick miss">✗ World Wide Web (3rd)</td><td class="placed yes">Yes</td></tr><tr data-course="Parx Racing" data-time="17:32" data-winner="Peridot Pendant"><td><b><span class="rtag">USA</span> Parx Racing</b> <span class="rtime">17:32</span></td><td>1M, Dirt, $10,000 Starter Optional Claiming</td><td>Peridot Pendant</td><td class="muted">Peridot Pendant &middot; Amy Mule &middot; Cruise Missile</td><td class="pick hit">✓ Peridot Pendant (1st)</td><td class="placed yes">Yes</td></tr><tr data-course="Parx Racing" data-time="17:59" data-winner="Capt. Candy"><td><b><span class="rtag">USA</span> Parx Racing</b> <span class="rtime">17:59</span></td><td>6F, Dirt, $5,000 Claiming</td><td>Capt. Candy</td><td class="muted">Capt. Candy &middot; Awesome for Sure &middot; My Mamba</td><td class="pick miss">✗ Biagio (unplaced)</td><td class="placed no">No</td></tr><tr data-course="Parx Racing" data-time="18:26" data-winner="America&#x27;s Honor"><td><b><span class="rtag">USA</span> Parx Racing</b> <span class="rtime">18:26</span></td><td>1M, Dirt, $40,000 Starter Optional Claiming</td><td>America&#x27;s Honor</td><td class="muted">America&#x27;s Honor &middot; Beale Street Boy &middot; Fiddling Felix</td><td class="pick hit">✓ America&#x27;s Honor (1st)</td><td class="placed yes">Yes</td></tr><tr data-course="Parx Racing" data-time="18:53" data-winner="Chelonian"><td><b><span class="rtag">USA</span> Parx Racing</b> <span class="rtime">18:53</span></td><td>1M 70Y, Dirt, $5,000 Claiming</td><td>Chelonian</td><td class="muted">Chelonian &middot; Jackson Road &middot; Patton&#x27;s Tizzy</td><td class="pick hit">✓ Chelonian (1st)</td><td class="placed yes">Yes</td></tr><tr data-course="Parx Racing" data-time="19:20" data-winner="Chain Lightning"><td><b><span class="rtag">USA</span> Parx Racing</b> <span class="rtime">19:20</span></td><td>1M, Dirt, $16,000 Starter Optional Claiming</td><td>Chain Lightning</td><td class="muted">Chain Lightning &middot; Tug &middot; Irish Mamba</td><td class="pick miss">✗ Tug (2nd)</td><td class="placed yes">Yes</td></tr><tr data-course="Parx Racing" data-time="19:47" data-winner="Donnelly&#x27;s Hollow"><td><b><span class="rtag">USA</span> Parx Racing</b> <span class="rtime">19:47</span></td><td>1M, Dirt, Allowance</td><td>Donnelly&#x27;s Hollow</td><td class="muted">Donnelly&#x27;s Hollow &middot; Our Notion &middot; L Golden Boy</td><td class="pick miss">✗ Drum Roll Please (4th)</td><td class="placed no">No</td></tr><tr data-course="Zia Park" data-time="19:05" data-winner="Mother of Pearl"><td><b><span class="rtag">USA</span> Zia Park</b> <span class="rtime">19:05</span></td><td>5 1/2F, Dirt, $20,000 Claiming</td><td>Mother of Pearl</td><td class="muted">Mother of Pearl &middot; Page &middot; Tucum Kari</td><td class="pick miss">✗ Best Beach (6th)</td><td class="placed no">No</td></tr><tr data-course="Zia Park" data-time="19:32" data-winner="Smoothwhskygoindwn"><td><b><span class="rtag">USA</span> Zia Park</b> <span class="rtime">19:32</span></td><td>6 1/2F, Dirt, $15,000 Claiming</td><td>Smoothwhskygoindwn</td><td class="muted">Smoothwhskygoindwn &middot; Gunflash &middot; Fifty Cinco</td><td class="pick miss">✗ Ez Iz Onzaway (4th)</td><td class="placed no">No</td></tr><tr data-course="Zia Park" data-time="19:59" data-winner="Shows Promise"><td><b><span class="rtag">USA</span> Zia Park</b> <span class="rtime">19:59</span></td><td>6F, Dirt, Maiden Special Weight</td><td>Shows Promise</td><td class="muted">Shows Promise &middot; Never Surrender &middot; Prince Marking</td><td class="pick miss">✗ Looknfonobikini (unplaced)</td><td class="placed no">No</td></tr></tbody></table></div>
-
-<!-- US_RESULTS_SL_END -->
-  </section>
+  
 
   <section class="panel" data-panel="results">
     <h2>Results overview</h2>
-    <p class="method">Settled UK/IRE race results, model audits and market checks. US results and the US speed-figure A/B are on the <b>US results</b> tab. The ledger records what the sheet said before the off; nothing here is re-fitted after the result.</p>
+    <p class="method">Settled UK/IRE race results, model audits and market checks. US results and the US speed-figure A/B live on the <b>US racing</b> tab. The ledger records what the sheet said before the off; nothing here is re-fitted after the result.</p>
     <div class="manualbar">
       <button type="button" id="manualOpen">Add a result manually</button>
       <a class="manuallink" href="https://github.com/dano09-hub/race-sheet/actions/workflows/results.yml" target="_blank" rel="noopener">Pull results now</a>
@@ -1387,7 +1435,15 @@
     </ul>
   </section>
 
+  <section class="panel" data-panel="past">
+    <h2>Past races</h2>
+    <p class="method">Races whose off time has passed. They are out of the picker and off the main page, but nothing is thrown away &mdash; open one to see how the card was rated before the off.</p>
+    <div id="pastList"></div>
+  </section>
+
   <section class="panel" data-panel="method">
+    <h2>How the rating works</h2>
+    <p class="method">Twelve factors, fixed weights, one score per horse. Nothing is tuned per race or per card, so two identical horses always get the same rating.</p>
   <details class="notes" open>
     <summary>How the rating is calculated</summary>
     <div class="body">
@@ -1428,19 +1484,29 @@
   var STORE = 'racing-sheet-v4';
   var TAB_STORE = 'racing-sheet-tab-v1';
 
+  // Five destinations, each a group of panels. Keeping panels separate means
+  // the generated blocks and their markers never move.
   var TABS = [
-    ['today', 'Today', 'Overview', "Today's best-rated horses and the next race to run."],
-    ['unmissable', 'Unmissable', 'Overview', "The model's absolute standouts: high score, wide gap and deep data."],
-    ['late', 'Late races', 'Overview', 'US races still to come, with the model top pick for each.'],
-    ['past', 'Past races', 'Overview', 'Resulted races and how the card was rated before the off.'],
-    ['card', 'Racecard', 'Racing', 'Select a race and inspect the field the model scored.'],
-    ['ranked', 'Ratings', 'Racing', 'The full rating table and verdict for the selected race.'],
-    ['flags', 'US flags', 'US racing', 'Read-only context on the model US picks.'],
-    ['angles', 'US angles', 'US racing', 'Every US runner and every supported angle flag.'],
-    ['results', 'Results', 'Record', 'Settled results, model audits and market checks.'],
-    ['usresults', 'US results', 'Record', 'US settled results and the speed-figure A/B.'],
-    ['method', 'Method', 'About', 'The fixed weights and the data behind the rating.']
+    ['today', 'Today', 'Overview', 'The best-rated horses, the standouts and the races still to come.'],
+    ['card', 'Cards', 'Racing', 'Pick a race and inspect every runner the model scored.'],
+    ['results', 'Results', 'Record', 'Settled GB/IRE results, market checks and the model audit.'],
+    ['us', 'US racing', 'American racing', 'US results, flags and angles.'],
+    ['method', 'Method', 'About', 'The fixed weights and the evidence behind the rating.']
   ];
+
+  var TAB_PANELS = {
+    today: ['today', 'unmissable', 'late'],
+    card: ['card', 'ranked'],
+    results: ['results', 'past'],
+    us: ['usresults', 'flags', 'angles'],
+    method: ['method']
+  };
+
+  // Old links and stored tab names still land in the right place.
+  var TAB_ALIAS = {
+    unmissable: 'today', late: 'today', past: 'results',
+    ranked: 'card', flags: 'us', angles: 'us', usresults: 'us'
+  };
 
   var POS = {'1':100,'2':82,'3':68,'4':54,'5':44,'6':34,'7':26,'8':20,'9':16,'0':8,'P':4,'F':4,'U':4,'R':4,'D':12};
 
@@ -5498,25 +5564,23 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_FRI);  // UK/IRE today, US lat
   }
 
   function renderTabs() {
-    var html = '', group = '';
+    var html = '';
     TABS.forEach(function (t) {
-      if (t[2] !== group) {
-        group = t[2];
-        html += '<div class="nav-group-label" role="presentation">' + esc(group) + '</div>';
-      }
       html += '<button type="button" class="tab" role="tab" data-tab="' + t[0] + '" aria-selected="false" title="' + esc(t[3] || '') + '">' + t[1] + '</button>';
     });
     $('tabbar').innerHTML = html;
   }
 
   function setTab(name) {
+    name = TAB_ALIAS[name] || name;
     var known = false, meta = null;
     TABS.forEach(function (t) { if (t[0] === name) { known = true; meta = t; } });
     if (!known) name = 'today';
     meta = meta || TABS[0];
+    var panels = TAB_PANELS[name] || [name];
 
     document.querySelectorAll('[data-panel]').forEach(function (el) {
-      el.hidden = el.getAttribute('data-panel') !== name;
+      el.hidden = panels.indexOf(el.getAttribute('data-panel')) < 0;
     });
     document.querySelectorAll('[data-tab]').forEach(function (btn) {
       var on = btn.getAttribute('data-tab') === name;
@@ -5529,8 +5593,7 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_FRI);  // UK/IRE today, US lat
     if ($('pageSubtitle')) $('pageSubtitle').textContent = meta[3] || '';
     document.title = meta[1] + ' — Race Sheet';
 
-    if (name === 'late') renderLateRaces();
-    if (name === 'unmissable') renderUnmissable();
+    if (name === 'today') { renderLateRaces(); renderUnmissable(); }
     try { localStorage.setItem(TAB_STORE, name); } catch (e) { /* storage may be unavailable */ }
   }
 
@@ -5746,7 +5809,7 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_FRI);  // UK/IRE today, US lat
     var card = e.target.closest ? e.target.closest('[data-card]') : null;
     if (!card) return;
     openCard(card.getAttribute('data-card'));
-    setTab('ranked');
+    setTab('card');
     window.scrollTo({top: 0, behavior: 'smooth'});
   }
 
@@ -6121,7 +6184,7 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_FRI);  // UK/IRE today, US lat
     var tr = e.target.closest ? e.target.closest('tr[data-card]') : null;
     if (!tr) return;
     openCard(tr.getAttribute('data-card'));
-    setTab('ranked');
+    setTab('card');
     window.scrollTo({top: 0, behavior: 'smooth'});
   });
 
@@ -6239,7 +6302,7 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_FRI);  // UK/IRE today, US lat
     var btn = e.target.closest ? e.target.closest('[data-card]') : null;
     if (!btn) return;
     openCard(btn.getAttribute('data-card'));
-    setTab('ranked');
+    setTab('card');
   });
 
   var unratedIds = {};

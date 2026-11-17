@@ -1171,8 +1171,9 @@ check("results split: block markers", "RESULTS_SL_START" in _uk
       and "US_RESULTS_SL_START" in _us)
 check("results split: Course / off header", "Course / off" in _uk)
 check("results split: US summary is US-only", "1 US race settled" in _us)
-check("results split: page has a US results tab",
-      "['usresults', 'US results'" in _page)
+_tabs_js = _page.split("var TAB_PANELS", 1)[1][:500] if "var TAB_PANELS" in _page else ""
+check("results split: the US tab holds the US results panel",
+      "['us', 'US racing'" in _page and "usresults" in _tabs_js, _tabs_js[:120])
 _us_panel = _page.split('<section class="panel" data-panel="usresults">', 1)[1].split(
     '<section class="panel" data-panel="results">', 1)[0]
 _res_panel = _page.split('<section class="panel" data-panel="results">', 1)[1].split(
@@ -1657,6 +1658,20 @@ _pairs = [(30, 5, 1), (30, 5, 0), (30, -5, 0), (30, -5, 0),
 _st = da.stratified(_pairs, bins=2, minimum=1)
 check("stratified: splits by price, then compares the two sides",
       _st["bins"] == 2 and abs(_st["diff"] - 50.0) < 1e-9, _st)
+
+print()
+print("per-factor audit at a fixed price")
+import factor_audit as fa
+check("factor: score bands cover the edges",
+      fa.band(fa.SCORE_EDGES, 0.0) == 0 and fa.band(fa.SCORE_EDGES, 100.0) == 4
+      and fa.band(fa.SCORE_EDGES, None) is None)
+_cells = [[[200, 20], [0, 0], [0, 0], [0, 0], [200, 40]],
+          [[200, 60], [0, 0], [0, 0], [0, 0], [200, 80]]]
+_fc = fa.compare(_cells)
+check("factor: pools the bands by inverse variance",
+      _fc and _fc["bands"] == 2 and abs(_fc["diff"] - 10.0) < 1e-9, _fc)
+check("factor: reports no comparison without extremes",
+      fa.compare([[[10, 1], [0, 0], [0, 0], [0, 0], [10, 2]]]) is None)
 
 print()
 print("whole-field calibration")
