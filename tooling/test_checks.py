@@ -1472,6 +1472,18 @@ check("calibration: the market book is normalised and keeps the blank",
       list(fair) if fair is not None else None)
 
 print()
+print("model chance column")
+page = (ROOT / "index.html").read_text(encoding="utf-8")
+check("page: the card table prints a model chance", "<th>Model</th>" in page)
+check("page: the chance uses the held-out scale",
+      "CALIBRATION_SCALE = 0.04" in page)
+check("page: the chance is a softmax, not a raw share",
+      "x.share = x.total / sum" not in page and
+      "x.share = Math.exp(CALIBRATION_SCALE * (x.total - peak)) / mass" in page)
+check("page: the footer no longer calls the percentages raw shares",
+      "percentages are shares of the field's total rating" not in page)
+
+print()
 print("passed %d, failed %d%s" % (
     len(PASSED), len(FAILED), (", skipped %d" % len(SKIPPED)) if SKIPPED else ""))
 sys.exit(1 if FAILED else 0)

@@ -296,14 +296,19 @@ at 30% or more won 47.1% against a 36.3% claim. `tooling/calibrate_share.py`
 measures this: one softmax scale (0.0498) fitted on earlier races turns the same
 totals into probabilities within 0.6 points of the record, with the pick at 33.9%
 against 32.6%. The ranking does not move, so this is a display question rather
-than a model one, and nothing on the page has been changed by it.
+than a model one. The card table now carries it: a **Model** column prints
+`softmax(0.04 * total)` across the field, so the pick that used to be shown at
+19.2% reads about 30%. The scale is 0.04 rather than the fitted 0.0498 — it sits
+at the low end of the 0.0404-0.0498 range the two datasets allow — and the
+constant is display-only: the weights, the selection and the ranking are
+unchanged, and the Score column still shows the raw rating.
 
 The live archive agrees on the direction but not yet on the size. On its own 117
 GB/IRE races the pick is shown at 17.0% and won 24.8% (95% CI 17.8-33.3%), and
 the archive's own best scale is 0.0404 against the four-year 0.0498: at 0.0404
 the pick reads 26.0%, at 0.0498 it reads 30.1%. 117 races cannot separate those
-scales, so any applied scale should sit between the two and be re-checked as the
-archive grows.
+scales, so the applied scale sits between the two at 0.04 and should be re-checked
+as the archive grows.
 
 ## Checks
 

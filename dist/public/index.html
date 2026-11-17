@@ -396,9 +396,9 @@
   @media (max-width:700px){
     [data-panel="ranked"] table th:nth-child(3), [data-panel="ranked"] table td:nth-child(3),
     [data-panel="ranked"] table th:nth-child(4), [data-panel="ranked"] table td:nth-child(4),
-    [data-panel="ranked"] table th:nth-child(6), [data-panel="ranked"] table td:nth-child(6),
     [data-panel="ranked"] table th:nth-child(7), [data-panel="ranked"] table td:nth-child(7),
-    [data-panel="ranked"] table th:nth-child(8), [data-panel="ranked"] table td:nth-child(8){ display:none; }
+    [data-panel="ranked"] table th:nth-child(8), [data-panel="ranked"] table td:nth-child(8),
+    [data-panel="ranked"] table th:nth-child(9), [data-panel="ranked"] table td:nth-child(9){ display:none; }
     [data-panel="results"] table th:nth-child(2), [data-panel="results"] table td:nth-child(2){ display:none; }
     [data-panel="results"] table th:nth-child(4), [data-panel="results"] table td:nth-child(4){ display:none; }
     [data-panel="ranked"] table td:last-child, [data-panel="ranked"] table th:last-child{ white-space:normal; min-width:120px; }
@@ -1094,7 +1094,7 @@
     <p class="method">Every race still to come, in starting-time order. Each card gives the model&rsquo;s one-line case: the factors it tops and the margin over the second-rated horse; the badge is its rank by Clear, and the top three are highlighted. Tap a card to open the full race.</p>
     <p class="best-count" id="bestCount"></p>
     <div class="best-grid" id="bestBody"></div>
-    <details class="note"><summary>How the ranking works</summary><p><b>Score</b> is the model&rsquo;s 0&ndash;100 rating. <b>Gap</b> is the margin over the second-rated horse. <b>Clear</b> divides that gap by the spread of the field, so picks are comparable between races of any size. <b>Factors</b> is how many model inputs were available; thin cards are not treated as strong evidence.</p></details>
+    <details class="note"><summary>How the ranking works</summary><p><b>Score</b> is the model&rsquo;s 0&ndash;100 rating; <b>Model</b> is that rating turned into a win chance across the field. <b>Gap</b> is the margin over the second-rated horse. <b>Gap</b> is the margin over the second-rated horse. <b>Clear</b> divides that gap by the spread of the field, so picks are comparable between races of any size. <b>Factors</b> is how many model inputs were available; thin cards are not treated as strong evidence.</p></details>
   </section>
 
   <section class="panel" data-panel="unmissable">
@@ -1230,6 +1230,7 @@
             <th>Places</th>
             <th>Tips</th>
             <th>Score</th>
+            <th>Model</th>
             <th>Market</th>
             <th>Mkt rank</th>
             <th>Leads on</th>
@@ -1403,13 +1404,14 @@
         <dt>Stable form (3)</dt><dd>Trainer and jockey 30-day strike rates, straight from the card.</dd>
       </dl>
       <p style="margin-top:10px"><strong>Missing data:</strong> if a factor has no figure for a horse, or is identical for the whole field, it is dropped and the other weights renormalise for that runner. A race with no prices is ranked without the market at all, and says so.</p>
+      <p><strong>The Model percentage:</strong> the 0&ndash;100 rating turned into a win chance across the field (a softmax with a fixed scale of 0.04, fitted on 2,251 held-out races). It is a display figure: the selection is still the highest rating, and the ranking does not move with it.</p>
       <p><strong>What this is not:</strong> a forecast. It has no sectional times, no video, no gallops reports and no stable information. It applies the same reasoning consistently to every runner on the card &mdash; it does not make it correct.</p>
     </div>
   </details>
   </section>
 
   <footer>
-    <b>Race Sheet</b> is a fixed-weight rating model. Cards and results refresh automatically; percentages are shares of the field's total rating, not bookmaker probabilities.
+    <b>Race Sheet</b> is a fixed-weight rating model. Cards and results refresh automatically; the Model percentage is a calibrated win chance from the model's own rating, not a bookmaker probability, and the Market column is the chance the price implies.
   </footer>
     </div>
   </main>
@@ -1453,6 +1455,11 @@
     ['weight', 'Weight', 2],
     ['connections', 'Stable form', 3]
   ];
+  // Rating -> win chance for the Model column. 0.04 sits at the low end of the
+  // range the held-out races allow (0.0404 on the live archive, 0.0498 over four
+  // years; README "share calibration"). Display only: no weight, no pick, and no
+  // change to the ranking.
+  var CALIBRATION_SCALE = 0.04;
 
   var RACE_CARDS = [
   // UK cards, 2026-11-17,
@@ -5197,15 +5204,17 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_FRI);  // UK/IRE today, US lat
       x.total = den ? (total / den) : 50;
     });
 
-    var sum = 0;
-    rows.forEach(function (x) { sum += x.total; });
-    if (!sum) sum = 1;
-
     var marketSum = 0;
     rows.forEach(function (x) { if (probs[x.i]) marketSum += probs[x.i]; });
 
+    var peak = -Infinity;
+    rows.forEach(function (x) { if (x.total > peak) peak = x.total; });
+    var mass = 0;
+    rows.forEach(function (x) { mass += Math.exp(CALIBRATION_SCALE * (x.total - peak)); });
+    if (!mass) mass = 1;
+
     rows.forEach(function (x) {
-      x.share = x.total / sum;
+      x.share = Math.exp(CALIBRATION_SCALE * (x.total - peak)) / mass;
       x.implied = (probs[x.i] && marketSum) ? (probs[x.i] / marketSum) : null;
       x.edge = (x.implied !== null) ? (x.share - x.implied) : null;
     });
@@ -5383,6 +5392,7 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_FRI);  // UK/IRE today, US lat
           '<td class="num score">—</td>' +
           '<td class="num">—</td>' +
           '<td class="num">—</td>' +
+          '<td class="num">—</td>' +
           '<td class="leads">' + esc(x.r.jp || '—') + (x.r.tp ? ' · ' + esc(x.r.tp) : '') + '</td>' +
         '</tr>';
       }).join('');
@@ -5405,6 +5415,7 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_FRI);  // UK/IRE today, US lat
         '<td class="' + (x.runs && x.places === 0 ? 'num zero' : 'num') + '">' + (x.runs ? x.places + '/' + x.runs : '—') + '</td>' +
         '<td class="num">' + (x.tips === null ? '—' : (x.tips + (x.naps ? ' (' + x.naps + 'n)' : ''))) + '</td>' +
         '<td class="num score">' + x.total.toFixed(1) + '</td>' +
+        '<td class="num model">' + (x.share * 100).toFixed(1) + '%</td>' +
         '<td class="num">' + (x.implied === null ? '—' : (x.implied * 100).toFixed(1) + '%') + '</td>' +
         '<td class="num">' + (x.mktRank ? x.mktRank : '—') + '</td>' +
         '<td class="leads">' + leads + '</td>' +
