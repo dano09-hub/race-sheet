@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 /* Score cards with the sheet's own model.
  * Loads index.html, pulls out its inline script, runs it against a small DOM
- * stub and calls window.PICK_FOR for each card. This keeps settle.py on the
+ * stub and calls window.SCORE_CARD for each card. This keeps settle.py on the
  * exact twelve-factor scoring the page publishes, with no second copy to drift.
+ * The ordered model rows are included for the latest-day race audit.
  *
  * usage: node tooling/score_cards.js cards.json picks.json [index.html]
  */
@@ -36,9 +37,17 @@ eval(blocks[0]);
 
 const cards = JSON.parse(fs.readFileSync(inPath, 'utf8'));
 const out = cards.map(c => {
-  let pick = '';
-  try { pick = window.PICK_FOR(c) || ''; } catch (e) { pick = ''; }
-  return {id: c.id || '', course: c.course, time: c.time, pick};
+  let info = null;
+  try { info = window.SCORE_CARD(c); } catch (e) { info = null; }
+  const rows = ((info && info.rows) || []).slice().sort((a, b) => b.total - a.total);
+  const pick = rows.length ? (rows[0].r.horse || '') : '';
+  return {id: c.id || '', course: c.course, time: c.time, pick,
+          runners: rows.map((x, i) => ({
+            horse: x.r.horse || '', rank: i + 1,
+            total: Math.round(x.total * 10) / 10,
+            mktRank: x.mktRank || null,
+            odds: x.r.odds || ''
+          }))};
 });
 fs.writeFileSync(outPath, JSON.stringify(out));
 console.log('scored', out.length, 'cards,', out.filter(o => o.pick).length, 'with a pick');

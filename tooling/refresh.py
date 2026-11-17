@@ -537,6 +537,97 @@ def results_block_all_us():
             + "\n<!-- US_RESULTS_SL_END -->")
 
 
+def _audit_source():
+    """Latest results day that has at least one UK/IRE row."""
+    import glob
+    for path in sorted(glob.glob(os.path.join(ROOT, "data", "results", "*.json")), reverse=True):
+        iso = os.path.basename(path)[:-5]
+        try:
+            with open(path, encoding="utf-8") as f:
+                data = json.load(f)
+        except (OSError, ValueError):
+            continue
+        rows = data.get("races", []) if isinstance(data, dict) else data
+        if not isinstance(rows, list):
+            continue
+        uk = [r for r in rows if r.get("region") != "US"]
+        if uk:
+            return iso, uk
+    return None, []
+
+
+def audit_rows():
+    """The latest settled UK/IRE day, scored with the page's own model.
+
+    Returns a list of JSON object strings ready for replace_block("RESULTS").
+    The winner's rank, market rank and card price come from the archived card;
+    the pick, finish and fate are the pre-race values stored in data/results.
+    """
+    iso, rows = _audit_source()
+    if not iso:
+        return []
+    try:
+        import settle
+        cards = settle._enrich(settle._cards_for(iso), iso)
+        scored = settle.score_cards(cards)
+    except Exception as e:
+        print(f"  audit:       skipped ({e})")
+        return []
+    if not scored:
+        return []
+
+    by_time, by_course = {}, {}
+    for p in scored:
+        key = (_result_name(p.get("course")), str(p.get("time") or "")[:5])
+        by_time[key] = p
+        by_course.setdefault(_result_name(p.get("course")), []).append(p)
+
+    out = []
+    for row in rows:
+        course = row.get("course", "")
+        time = str(row.get("time") or "")[:5]
+        winner = row.get("winner", "")
+        pick = row.get("pick", "")
+        finish = row.get("pick_finish", "")
+        p = by_time.get((_result_name(course), time))
+        if not p:
+            for cand in by_course.get(_result_name(course), []):
+                if any(_result_name(r.get("horse")) == _result_name(winner)
+                       for r in cand.get("runners", [])):
+                    p = cand
+                    break
+
+        rank, field, market, price = None, 0, None, ""
+        if p:
+            runners = p.get("runners") or []
+            field = len(runners)
+            for x in runners:
+                if _result_name(x.get("horse")) == _result_name(winner):
+                    rank = x.get("rank")
+                    market = x.get("mktRank")
+                    price = x.get("odds") or ""
+                    break
+        if str(price) == "9999999":
+            price = ""
+        if row.get("hit"):
+            verdict = "hit"
+        elif row.get("placed") is True:
+            verdict = "near"
+        elif row.get("placed") is False:
+            verdict = "miss"
+        elif pick:
+            verdict = "miss"
+        else:
+            verdict = "none"
+        out.append({
+            "c": course, "t": time, "w": winner, "sp": price,
+            "r": rank, "n": field,
+            "m": market if market not in ("", 0) else None,
+            "p": pick, "pf": finish, "v": verdict,
+        })
+    return [json.dumps(x, ensure_ascii=False) for x in out]
+
+
 def replace_block(html, name, body):
     pattern = re.compile(rf"  var {name} = \[.*?\n  \];", re.S)
     if not pattern.search(html):
@@ -999,6 +1090,10 @@ def main():
                   us_flags_block_html(us_flags_result, iso), html, count=1, flags=re.S)
     html = re.sub(r"<!-- US_ANGLES_SL_START -->.*?<!-- US_ANGLES_SL_END -->",
                   us_angles_block_html(us_angles_result, iso), html, count=1, flags=re.S)
+
+    audit = audit_rows()
+    if audit:
+        html = replace_block(html, "RESULTS", audit)
 
     open(INDEX, "w", encoding="utf-8").write(html)
     os.makedirs(os.path.join(ROOT, "dist", "public"), exist_ok=True)

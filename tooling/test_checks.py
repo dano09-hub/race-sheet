@@ -1147,6 +1147,50 @@ check("results split: US ledger marker is in the US panel",
       "US_RESULTS_SL_START" in _us_panel)
 check("results split: off-time style is present", ".rtime{" in _page)
 
+print("30. latest settled race audit")
+_old_root = refresh.ROOT
+_old_cards, _old_enrich, _old_score = settle._cards_for, settle._enrich, settle.score_cards
+with tempfile.TemporaryDirectory(prefix="audit-test-") as ad:
+    _ar = Path(ad)
+    (_ar / "data" / "results").mkdir(parents=True)
+    (_ar / "data" / "results" / "2026-11-17.json").write_text(json.dumps([
+        {"course": "US C", "time": "20:00", "winner": "US Horse", "region": "US",
+         "pick": "US Horse", "hit": True, "placed": True}]), encoding="utf-8")
+    (_ar / "data" / "results" / "2026-11-16.json").write_text(json.dumps([
+        {"course": "C", "time": "13:00", "winner": "A", "pick": "A", "hit": True,
+         "placed": True, "pick_finish": "1st", "region": "GB"},
+        {"course": "C", "time": "13:00", "winner": "B", "pick": "A", "hit": False,
+         "placed": False, "pick_finish": "2nd", "region": "GB"}]), encoding="utf-8")
+    refresh.ROOT = str(_ar)
+    settle._cards_for = lambda iso: [{"id": "c1", "course": "C", "time": "13:00",
+                                      "runners": [{"horse": "A"}, {"horse": "B"}]}]
+    settle._enrich = lambda cards, iso: cards
+    settle.score_cards = lambda cards: [{
+        "course": "C", "time": "13:00", "pick": "A",
+        "runners": [{"horse": "A", "rank": 1, "odds": "2.00", "mktRank": 1},
+                    {"horse": "B", "rank": 2, "odds": "4.00", "mktRank": 2}]}]
+    _audit = [json.loads(x) for x in refresh.audit_rows()]
+    check("audit: latest UK day is selected", len(_audit) == 2, _audit)
+    check("audit: winner rank and field size",
+          _audit[0]["r"] == 1 and _audit[0]["n"] == 2, _audit[0])
+    check("audit: market rank and card price",
+          _audit[0]["m"] == 1 and _audit[0]["sp"] == "2.00", _audit[0])
+    check("audit: hit and miss verdicts",
+          _audit[0]["v"] == "hit" and _audit[1]["v"] == "miss", _audit)
+    check("audit: pick and finish carried",
+          _audit[0]["p"] == "A" and _audit[0]["pf"] == "1st", _audit[0])
+    check("audit: US-only later day is skipped",
+          all(x["c"] != "US C" for x in _audit), _audit)
+refresh.ROOT = _old_root
+settle._cards_for, settle._enrich, settle.score_cards = _old_cards, _old_enrich, _old_score
+check("audit: day label is dynamic", 'id="auditDay"' in _page)
+check("audit: fixed snapshot removed", "fixed 12 November snapshot" not in _page)
+check("audit: card price header", "<th>Card price</th>" in _page)
+check("audit: market favourite wording", "market favourite" in _page)
+check("audit: generator wired",
+      "audit = audit_rows()" in (ROOT / "tooling" / "refresh.py").read_text(encoding="utf-8")
+      and "refresh.audit_rows()" in (ROOT / "tooling" / "settle_today.py").read_text(encoding="utf-8"))
+
 print()
 print("passed %d, failed %d%s" % (
     len(PASSED), len(FAILED), (", skipped %d" % len(SKIPPED)) if SKIPPED else ""))

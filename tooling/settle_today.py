@@ -337,6 +337,9 @@ def main(argv=None):
                     refresh.us_flags_block_html(us_flags_result, iso))
     html = _replace(html, "US_ANGLES_SL",
                     refresh.us_angles_block_html(us_angles_result, iso))
+    audit = refresh.audit_rows()
+    if audit:
+        html = refresh.replace_block(html, "RESULTS", audit)
     open(refresh.INDEX, "w", encoding="utf-8").write(html)
     os.makedirs(os.path.join(ROOT, "dist", "public"), exist_ok=True)
     open(os.path.join(ROOT, "dist", "public", "index.html"),

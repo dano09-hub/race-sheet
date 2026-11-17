@@ -602,6 +602,9 @@ since `dist/public/index.html` is the whole site.
 * The Results tab is a snapshot. It does not poll for new results.
 * The Results tab is UK/IRE only. The **US results** tab holds the US ledger and
   the US speed-figure A/B; both ledgers show the off time beside each course.
+* The race-by-race audit on Results is rebuilt from the latest settled UK/IRE
+  day whenever the page or results are rebuilt; the model notes below it remain
+  the 12 November development note.
 * **Add a result manually** on the Results tab keeps entries in this browser's
   `localStorage`; it never edits the published ledger. Once the auto pull has
   officially settled the same race, the entry is marked "auto result live". The
