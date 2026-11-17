@@ -432,6 +432,34 @@ finally:
     refresh.ROOT = old_root
     shutil.rmtree(atmp, ignore_errors=True)
 
+print("16b. US by-date archives have no duplicate normalized races")
+bdir = os.path.join(refresh.ROOT, "data", "cards", "by_date")
+dupes = []
+archive_files = 0
+if os.path.isdir(bdir):
+    for name in sorted(os.listdir(bdir)):
+        if not name.endswith(".json"):
+            continue
+        archive_files += 1
+        path = os.path.join(bdir, name)
+        try:
+            with open(path, encoding="utf-8") as f:
+                day = json.load(f)
+        except (OSError, ValueError):
+            continue
+        cards = day.get("US", []) if isinstance(day, dict) else []
+        if not isinstance(cards, list):
+            continue
+        seen = {}
+        for card in cards:
+            key = refresh._archive_key(card, "US")
+            if key in seen:
+                dupes.append((name, key, seen[key].get("id"), card.get("id")))
+            else:
+                seen[key] = card
+check("US by-date archive files were found", archive_files > 0, bdir)
+check("US by-date archives contain no duplicate normalized races", not dupes, dupes[:3])
+
 print("17. settled picks survive a results re-scrape")
 old_rows = [{"course": "Cheltenham", "time": "14:55", "winner": "Thunder Rock",
              "pick": "Mahons Glory", "hit": False, "pick_finish": "3rd"}]
