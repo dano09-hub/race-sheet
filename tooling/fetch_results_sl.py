@@ -46,7 +46,7 @@ def parse_race(html):
         chunk = chunk[:2000]
         if "saddle-cloth-no" not in chunk:          # forecast/tipping widgets reuse the id
             continue
-        pos = re.match(r"[^>]*>.*?>(\d+)<", chunk, re.S)
+        pos = re.search(r"Ordinal__OrdinalWrapper[^>]*>(\d+)<", chunk)
         horse = re.search(r'/racing/profiles/horse/\d+">([^<]+)</a>', chunk)
         if pos and horse:
             name_ = horse.group(1).strip()

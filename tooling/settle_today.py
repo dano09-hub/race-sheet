@@ -152,19 +152,15 @@ def _dedupe(rows):
 
 
 def _finish_for(pick, runners, places):
-    """Finish position of the pick, preferring the published first three.
-
-    Sporting Life's runner positions are not always parsed in row order, so a
-    pick in the published placings takes its place from that list; only a pick
-    outside the frame falls back to the parsed finishing order.
-    """
-    names = [refresh._result_name(h) for h in places or []]
-    key = refresh._result_name(pick)
-    if key in names:
-        return names.index(key) + 1
+    """Finish position of the pick, falling back to the published first three."""
     runner = next((r for r in runners
-                   if refresh._result_name(r[1]) == key), None)
-    return runner[0] if runner else None
+                   if refresh._result_name(r[1]) == refresh._result_name(pick)), None)
+    if runner:
+        return runner[0]
+    names = [refresh._result_name(h) for h in places or []]
+    if refresh._result_name(pick) in names:
+        return names.index(refresh._result_name(pick)) + 1
+    return None
 
 
 def _merge_irish(iso, rows):

@@ -29,6 +29,7 @@ import ab_tally        # noqa: E402
 import collect_eachway_prices as cep  # noqa: E402
 import eachway         # noqa: E402
 import fetch_formfav as ff  # noqa: E402
+import fetch_results_sl as sl  # noqa: E402
 import refresh         # noqa: E402
 import recheck_market  # noqa: E402
 import settle          # noqa: E402
@@ -1204,11 +1205,34 @@ _dropped = st._dedupe(_rows)
 check("merge: duplicate race is dropped", _dropped == 1 and len(_rows) == 1, _rows)
 check("merge: the copy with the pick survives",
       _rows[0].get("pick") == "They're Chancers", _rows)
-check("merge: stale finish is read from the published places",
+check("merge: finish comes from the parsed order",
       st._finish_for("Poet's Duke", [(1, "Poet's Duke")],
-                     ["Awordinyourear", "Poet's Duke", "Checkpoint Georgie"]) == 2)
+                     ["Awordinyourear", "Poet's Duke", "Checkpoint Georgie"]) == 1)
 check("merge: a pick outside the frame uses the parsed order",
       st._finish_for("Outsider", [(6, "Outsider")], ["A", "B", "C"]) == 6)
+check("merge: a missed runner falls back to the placings",
+      st._finish_for("Poet's Duke", [], ["Awordinyourear", "Poet's Duke"]) == 2)
+
+print("30c. result-page position parsing")
+_fixture = (
+    '<div data-testid="racecard-title">12:10 Limerick</div>'
+    '<div data-test-id="position-no"><span class="Ordinal__OrdinalWrapper-sc-1">1'
+    '<sup class="Ordinal__OrdinalSup-sc-2">st</sup></span>'
+    '<div data-testid="saddle-cloth-no">8</div>'
+    '<a href="/racing/profiles/horse/1">Poet&#x27;s Duke</a></div>'
+    '<div data-test-id="position-no"><span class="Ordinal__OrdinalWrapper-sc-1">2'
+    '<sup class="Ordinal__OrdinalSup-sc-2">nd</sup></span>'
+    '<div>4 \u00bd</div><div data-testid="saddle-cloth-no">3</div>'
+    '<a href="/racing/profiles/horse/2">Con Did It</a></div>'
+    '<div data-test-id="position-no"><span class="Ordinal__OrdinalWrapper-sc-1">3'
+    '<sup class="Ordinal__OrdinalSup-sc-2">rd</sup></span>'
+    '<div>2 \u00be</div><div data-testid="saddle-cloth-no">9</div>'
+    '<a href="/racing/profiles/horse/3">Storm Bresie</a></div>')
+_fname, _frunners = sl.parse_race(_fixture)
+check("parse: race name", _fname == "12:10 Limerick", _fname)
+check("parse: positions pair with their own horse",
+      _frunners == [(1, "Poet&#x27;s Duke"), (2, "Con Did It"), (3, "Storm Bresie")],
+      _frunners)
 
 print()
 print("passed %d, failed %d%s" % (
