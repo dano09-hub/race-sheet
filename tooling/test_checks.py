@@ -460,6 +460,54 @@ if os.path.isdir(bdir):
 check("US by-date archive files were found", archive_files > 0, bdir)
 check("US by-date archives contain no duplicate normalized races", not dupes, dupes[:3])
 
+print("16c. every settled pick winner maps to an archived card")
+results_dir = os.path.join(refresh.ROOT, "data", "results")
+picked_rows = 0
+card_not_kept = 0
+unmapped = []
+result_files = 0
+if os.path.isdir(results_dir):
+    for name in sorted(os.listdir(results_dir)):
+        if not name.endswith(".json"):
+            continue
+        result_files += 1
+        path = os.path.join(results_dir, name)
+        with open(path, encoding="utf-8") as f:
+            rows = json.load(f)
+        if isinstance(rows, dict):
+            rows = rows.get("races", [])
+        rows = [r for r in (rows or []) if isinstance(r, dict)]
+        cards_path = os.path.join(bdir, name)
+        card_keys = set()
+        if os.path.exists(cards_path):
+            try:
+                with open(cards_path, encoding="utf-8") as f:
+                    day = json.load(f)
+            except (OSError, ValueError):
+                day = {}
+            if isinstance(day, dict):
+                for cards in day.values():
+                    if not isinstance(cards, list):
+                        continue
+                    for card in cards:
+                        course = refresh._result_name(card.get("course"))
+                        for runner in card.get("runners") or []:
+                            card_keys.add((course, refresh._result_name(runner.get("horse"))))
+        for row in rows:
+            if not row.get("pick"):
+                card_not_kept += 1
+                continue
+            picked_rows += 1
+            key = (refresh._result_name(row.get("course")),
+                   refresh._result_name(row.get("winner")))
+            if key not in card_keys:
+                unmapped.append((name, row.get("course"), row.get("winner")))
+check("settled result files were found", result_files > 0, results_dir)
+check("settled result picks were found", picked_rows > 0, picked_rows)
+check("every settled result with a pick maps to an archived card", not unmapped, unmapped[:5])
+print(f"  checked {picked_rows} picked result rows; "
+      f"{card_not_kept} unpicked card-not-kept rows were left out")
+
 print("17. settled picks survive a results re-scrape")
 old_rows = [{"course": "Cheltenham", "time": "14:55", "winner": "Thunder Rock",
              "pick": "Mahons Glory", "hit": False, "pick_finish": "3rd"}]
