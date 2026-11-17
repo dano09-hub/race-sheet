@@ -90,12 +90,38 @@ def score_cards(cards):
         return json.load(open(dst, encoding="utf-8"))
 
 
+def scored(card):
+    """The page's scored rows for one card, or None when it cannot rate it."""
+    got = score_cards([card])
+    return got[0] if got else None
+
+
+def snapshot_of(p):
+    """The page's own numbers for a card, kept beside the pick it produced.
+
+    Stored at settlement so a later backfill reads what the model saw at the off
+    — the totals and shares it printed, and the factor scores behind them —
+    instead of re-scraping a card that may have moved since.
+    """
+    runners = []
+    for r in p.get("runners", []):
+        share = r.get("share")
+        runners.append({
+            "horse": r.get("horse", ""),
+            "odds": r.get("odds", ""),
+            "total": r.get("total"),
+            "share": round(float(share), 5) if share is not None else None,
+            "parts": r.get("parts") or {},
+        })
+    return {"course": p.get("course", ""), "time": p.get("time", ""),
+            "pick": p.get("pick", ""), "chance": p.get("chance"),
+            "runners": runners}
+
+
 def pick_for(card):
     """Single-card convenience wrapper: (horse, chance percentage)."""
-    got = score_cards([card])
-    pick = got[0]["pick"] if got else ""
-    chance = got[0].get("chance") if got else None
-    return (pick or None), chance
+    p = scored(card) or {}
+    return (p.get("pick") or None), p.get("chance")
 
 
 def main(date):

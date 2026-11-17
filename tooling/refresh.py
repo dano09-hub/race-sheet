@@ -110,18 +110,24 @@ def settle_day(iso):
                      and any(r.get("horse") == row.get("winner") for r in c.get("runners", []))), None)
         if not card:
             continue
-        pick, chance = settle.pick_for(card)
-        if not pick:
+        scored = settle.scored(card)
+        if not scored or not scored.get("pick"):
             continue
+        pick, chance = scored["pick"], scored.get("chance")
         if row.get("pick"):
             # A stored pick is never rewritten. The chance can be attached only
-            # when the archived card gives back exactly the pick on record.
+            # when the archived card gives back exactly the pick on record, and
+            # no card snapshot is stored: this card is a re-scrape, not the one
+            # the pick was made from.
             if pick == row["pick"] and chance is not None:
                 row["chance"] = chance
                 chances += 1
             continue
         row["pick"], row["score"] = pick, None
         row["chance"] = chance
+        # Freeze the card the pick came from, so a later backfill never has to
+        # trust whatever the archive holds tomorrow.
+        row["card"] = settle.snapshot_of(scored)
         row["hit"] = (pick == row.get("winner"))
         row["pick_finish"] = ""
         filled += 1

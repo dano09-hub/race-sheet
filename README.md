@@ -336,6 +336,13 @@ the 20 (3 are reproduced by an earlier version, which confirms the re-scrape).
 The stored pick remains the only contemporaneous record of those races, so a
 chance derived from a later card would be a reconstruction, not a record.
 
+That gap cannot recur. Every pick settled from now on stores a compact card
+snapshot beside it (`card` in the results row): the pick, its chance, and every
+runner's total, share and factor scores exactly as the page produced them. A
+future backfill reads what the model saw at the off instead of re-scraping a
+card that may have moved. Rows settled before this change have no snapshot, and
+the twenty above will simply stay blank.
+
 ```bash
 python3 tooling/chance_audit.py     # the same numbers, on the command line
 python3 tooling/backfill_chance.py  # reattach chances where a card agrees

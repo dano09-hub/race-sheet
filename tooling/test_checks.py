@@ -1542,6 +1542,59 @@ plain = refresh._results_inner("2026-11-17", [
 ], "UK/IRE")
 check("ledger: no stored chance, no printed number", "pickchance" not in plain)
 
+snap = settle.snapshot_of({"course": "C", "time": "13:00", "pick": "A", "chance": 26.4,
+    "runners": [{"horse": "A", "odds": "2/1", "total": 64.2, "share": 0.26351,
+                 "parts": {"market": 80}},
+                {"horse": "B", "total": 11.0}]})
+check("snapshot: keeps the printed chance", snap["chance"] == 26.4)
+check("snapshot: keeps total and share",
+      snap["runners"][0]["total"] == 64.2
+      and abs(snap["runners"][0]["share"] - 0.26351) < 1e-9)
+check("snapshot: keeps the factor scores",
+      snap["runners"][0]["parts"] == {"market": 80})
+check("snapshot: a blank share stays blank", snap["runners"][1]["share"] is None)
+
+_stmp = tempfile.mkdtemp()
+try:
+    _sr = Path(_stmp)
+    (_sr / "data" / "cards" / "by_date").mkdir(parents=True)
+    (_sr / "data" / "results").mkdir(parents=True)
+    (_sr / "data" / "cards" / "by_date" / "2026-11-16.json").write_text(json.dumps(
+        {"GB": [{"course": "C", "time": "13:00", "runners": [{"horse": "A"}, {"horse": "B"}]},
+                {"course": "D", "time": "14:00", "runners": [{"horse": "X"}]}]}),
+        encoding="utf-8")
+    (_sr / "data" / "results" / "2026-11-16.json").write_text(json.dumps([
+        {"course": "C", "time": "13:00", "winner": "B", "region": "GB"},
+        {"course": "D", "time": "14:00", "winner": "X", "region": "GB", "pick": "X"}]),
+        encoding="utf-8")
+    _old_root3, _old_score3 = refresh.ROOT, settle.score_cards
+    refresh.ROOT = _stmp
+    settle.score_cards = lambda cards: [
+        {"course": c["course"], "time": c["time"],
+         "pick": "B" if c["course"] == "C" else "X", "chance": 22.5,
+         "runners": [{"horse": "A", "odds": "2/1", "total": 60.0, "share": 0.225,
+                      "parts": {"market": 70}},
+                     {"horse": "B", "odds": "", "total": 58.0, "share": 0.19,
+                      "parts": {"market": 60}}]}
+        for c in cards]
+    try:
+        refresh.settle_day("2026-11-16")
+    finally:
+        settle.score_cards = _old_score3
+        refresh.ROOT = _old_root3
+    with open(os.path.join(_stmp, "data", "results", "2026-11-16.json"), encoding="utf-8") as f:
+        _saved = json.load(f)
+    _new, _old = _saved[0], _saved[1]
+    check("settle: the new pick carries its chance",
+          _new.get("pick") == "B" and _new.get("chance") == 22.5, _new.get("chance"))
+    check("settle: the new pick freezes the card it came from",
+          abs((_new.get("card") or {}).get("runners", [{}])[0].get("share", 0) - 0.225) < 1e-9,
+          (_new.get("card") or {}).get("runners", [{}])[0].get("share"))
+    check("settle: a chance attached to an old pick stores no snapshot",
+          _old.get("chance") == 22.5 and "card" not in _old, _old.get("chance"))
+finally:
+    shutil.rmtree(_stmp)
+
 print()
 print("passed %d, failed %d%s" % (
     len(PASSED), len(FAILED), (", skipped %d" % len(SKIPPED)) if SKIPPED else ""))
