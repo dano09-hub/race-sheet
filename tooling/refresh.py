@@ -352,13 +352,51 @@ def serialise(cards, comment):
     return out, body
 
 
+def archived_cards(date_iso):
+    """GB cards already on file for a day, so a later run cannot lose a meeting.
+
+    horseracing.net stops listing a meeting on its card index once the last race
+    has run, so an afternoon or evening refresh used to replace the day's page
+    with only the meetings still to come. The by-date archive is filed under the
+    day a card runs, so those are the same day's cards, not stale data.
+    """
+    path = os.path.join(ROOT, "data", "cards", "by_date", f"{date_iso}.json")
+    try:
+        with open(path, encoding="utf-8") as f:
+            data = json.load(f) or {}
+    except (OSError, ValueError):
+        return []
+    if not isinstance(data, dict):
+        return []
+    out = []
+    for reg, cards in data.items():
+        if not str(reg).upper().startswith("GB") or not isinstance(cards, list):
+            continue
+        for c in cards:
+            if isinstance(c, dict) and c.get("runners"):
+                out.append(c)
+    return out
+
+
+def _card_key(card):
+    return (card.get("course"), card.get("time"), card.get("race"))
+
+
 def uk_day(date_iso):
     d = dt.date.fromisoformat(date_iso)
     slug_date = d.strftime("%d-%m-%y")
     index = get(f"https://www.horseracing.net/racecards/{slug_date}")
-    slugs = sorted(set(re.findall(rf'href="/([a-z0-9-]+)/{re.escape(slug_date)}"', index)))
-    cards = []
-    for slug in slugs:
+    slugs = set(re.findall(rf'href="/([a-z0-9-]+)/{re.escape(slug_date)}"', index))
+    cards = archived_cards(date_iso)
+    by_key = {_card_key(c): i for i, c in enumerate(cards)}
+    # Fetch a course page for every meeting the index still lists and for
+    # every meeting already archived today, so a finished meeting is refreshed
+    # rather than quietly dropped.
+    for c in cards:
+        course = re.sub(r"[^a-z0-9]+", "-", str(c.get("course") or "").lower()).strip("-")
+        if course:
+            slugs.add(course)
+    for slug in sorted(slugs):
         page = get(f"https://www.horseracing.net/{slug}/{slug_date}")
         if not page:
             continue
@@ -368,7 +406,12 @@ def uk_day(date_iso):
             c["label"] = (title[:44] + "…") if len(title) > 45 else title
             c["day"] = date_iso
             c["region"] = "GB"
-            cards.append(c)
+            key = _card_key(c)
+            if key in by_key:
+                cards[by_key[key]] = c
+            else:
+                by_key[key] = len(cards)
+                cards.append(c)
     return cards
 
 

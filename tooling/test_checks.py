@@ -1321,6 +1321,29 @@ check("scorer: the no-price sentinel is not a market price",
 check("scorer: a real price still ranks",
       _srows["Priced"]["mktRank"] == 1 and _srows["Priced"]["odds"] == "2", _srows)
 
+print("31. a late refresh keeps the day's archived meetings")
+with tempfile.TemporaryDirectory(prefix="archive-test-") as d:
+    os.makedirs(Path(d, "data", "cards", "by_date"))
+    Path(d, "data", "cards", "by_date", "2026-11-17.json").write_text(json.dumps({
+        "GB": [{"course": "Carlisle", "time": "12:50", "race": "A",
+                "runners": [{"horse": "One"}]},
+               {"course": "Limerick", "time": "13:10", "race": "B", "runners": []}],
+        "US": [{"course": "Parx Racing", "time": "18:00", "race": "C",
+                "runners": [{"horse": "Two"}]}],
+    }))
+    old_root = refresh.ROOT
+    refresh.ROOT = d
+    try:
+        kept = refresh.archived_cards("2026-11-17")
+        missing = refresh.archived_cards("2026-11-19")
+    finally:
+        refresh.ROOT = old_root
+    check("refresh: GB meetings already on file are kept",
+          [c["course"] for c in kept] == ["Carlisle"], kept)
+    check("refresh: empty cards and other regions are left out",
+          len(kept) == 1 and kept[0]["runners"][0]["horse"] == "One", kept)
+    check("refresh: a day without an archive is not an error", missing == [], missing)
+
 print()
 print("passed %d, failed %d%s" % (
     len(PASSED), len(FAILED), (", skipped %d" % len(SKIPPED)) if SKIPPED else ""))
