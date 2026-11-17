@@ -209,31 +209,59 @@ with project(days=[("2026-11-10", 4, 3, 2, 4), ("2026-11-11", 2, 0, 1, 1)]):
     check("changed won 1 lost 1", (t["changed_won"], t["changed_lost"]) == (1, 1),
           (t["changed_won"], t["changed_lost"]))
     check("one row per day", [x["date"] for x in t["days"]] == ["2026-11-10", "2026-11-11"])
-    check("short sample verdict", t["verdict"].startswith("Not yet meaningful"), t["verdict"])
-    check("shortfall maths 194/15", "194 more settled races and 15 more" in t["verdict"], t["verdict"])
+    check("short sample verdict", t["verdict"].startswith("The bar was fixed in advance"), t["verdict"])
+    check("shortfall maths 1994", "1994 more are needed" in t["verdict"], t["verdict"])
     html = refresh.ab_block_html(t, "2026-11-11")
     check("panel has both days", "2026-11-10" in html and "2026-11-11" in html)
     check("panel headline 50.0%", "50.0%" in text_of(html), text_of(html)[:120])
     check("one block only", html.count("AB_SL_START") == 1)
 
-print("4. 300 races, rating ahead -> says it is adding winners")
+print("4. 300 races ahead is still short of the pre-registered bar")
 with project(days=[("2026-11-0%d" % (i + 1), 60, 27, 15, 8) for i in range(5)]):
     t = ab_tally.collect()
     check("300 races", t["races"] == 300, t["races"])
-    check("enough flag", t["enough"] is True)
-    check("verdict positive", t["verdict"].startswith("The rating's interval sits above"), t["verdict"])
+    check("not enough at 300", t["enough"] is False, t["enough"])
+    check("verdict holds the bar", t["verdict"].startswith("The bar was fixed in advance"), t["verdict"])
+    check("lead reported as 20 points", "lead of +20.0 points" in t["verdict"], t["verdict"])
     check("CI with clears CI without", t["ci_with"][0] > t["ci_without"][1],
           "%s vs %s" % (t["ci_with"], t["ci_without"]))
 
-print("5. 300 races, rating behind -> says it is hurting")
-with project(days=[("2026-11-0%d" % (i + 1), 60, 12, 24, 8) for i in range(5)]):
+print("4b. 2,000 races ahead -> the bar is met")
+with project(days=[("2026-11-%02d" % (i + 1), 400, 280, 240, 40) for i in range(5)]):
     t = ab_tally.collect()
-    check("verdict negative", t["verdict"].startswith("The rating is hurting"), t["verdict"])
+    check("2,000 races", t["races"] == 2000, t["races"])
+    check("enough flag at the decision point", t["enough"] is True)
+    check("verdict adopts", t["verdict"].startswith("The rating cleared the pre-registered bar"), t["verdict"])
+    check("rule detail on the tally", t["rule"]["status"] == "adopt", t.get("rule"))
 
-print("6. 300 races, dead heat -> no separation")
-with project(days=[("2026-11-0%d" % (i + 1), 60, 21, 21, 8) for i in range(5)]):
+print("5. 2,000 races behind -> the arm is retired")
+with project(days=[("2026-11-%02d" % (i + 1), 400, 240, 280, 40) for i in range(5)]):
     t = ab_tally.collect()
-    check("verdict no separation", "no separation" in t["verdict"], t["verdict"])
+    check("verdict retires", t["verdict"].startswith("The rating missed the pre-registered bar"), t["verdict"])
+    check("retired arm is not enough", t["enough"] is True and t["rule"]["status"] == "retire")
+
+print("6. 2,000-race dead heat -> no adoption")
+with project(days=[("2026-11-%02d" % (i + 1), 400, 240, 240, 40) for i in range(5)]):
+    t = ab_tally.collect()
+    check("verdict no separation at 2,000", "missed the pre-registered bar" in t["verdict"], t["verdict"])
+
+print("6b. the pre-registered rule itself")
+import shadow_rule
+_d = shadow_rule.decide(123, 4, 3)
+check("rule: nothing adopted before the decision point",
+      _d["status"] == "not yet" and _d["need"] == 1877 and abs(_d["lead"] - 0.8) < 0.05, _d)
+check("rule: exact p for 4 v 3 is a coin flip", abs(shadow_rule.mcnemar(4, 3) - 0.5) < 1e-12,
+      shadow_rule.mcnemar(4, 3))
+check("rule: exact p for 10 v 0 is 1/1024", abs(shadow_rule.mcnemar(10, 0) - 1 / 1024) < 1e-12,
+      shadow_rule.mcnemar(10, 0))
+check("rule: a 3-point lead at 2,000 races adopts",
+      shadow_rule.decide(2000, 60, 0)["status"] == "adopt", shadow_rule.decide(2000, 60, 0))
+check("rule: 1.5 points is below the floor",
+      shadow_rule.decide(2000, 30, 0)["status"] == "retire", shadow_rule.decide(2000, 30, 0))
+check("rule: a tie retires the arm",
+      shadow_rule.decide(2000, 10, 10)["status"] == "retire", shadow_rule.decide(2000, 10, 10))
+check("rule: sentence names the bar before the sample",
+      "fixed in advance" in shadow_rule.sentence(_d, "rating"))
 
 print("7. real 35-race snapshot, simulated winners")
 with project(real_snapshot=True, alias_file="test_2026-11-14.json") as d:

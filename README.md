@@ -288,7 +288,21 @@ scores both arms against the settled winners. The Results tab carries the runnin
 comparison under "Market-heavy shadow"; the published pick, the weights and the
 stored results are untouched. The six backfilled days give 123 races: 31 winners
 for the arm against 30 for the page, with 29 picks changed (won 4, lost 3). A
-tie, exactly as the fit predicted. It stays a shadow until it separates.
+tie, exactly as the fit predicted.
+
+The arm does not get to win on a good week. Its decision rule is fixed in
+advance, in `tooling/shadow_rule.py`: judge it at 2,000 settled races; adopt
+only if its strike-rate lead over the page is at least 3.0 points and an exact
+one-sided McNemar test on the races where the two picks disagree gives p below
+0.05; retire it otherwise. Two thousand races is what one pick per race can
+resolve — with the arms disagreeing on about 30% of races, the 95% interval on
+the lead is about ±2.4 points there, so a three-point lead is detectable at
+roughly 80% power, while a 1.5-point gain would need about 8,300 races to see.
+There is no early stopping: an interim look that could end the test early would
+invalidate it, so the page prints the running lead, the p value and the races
+remaining rather than a verdict. The earlier 200-race, non-overlapping-interval
+rule was replaced by this one because at 200 races it would call a coin flip a
+result.
 
 The share the page prints is a normalised score, and it is compressed. On the
 held-out 2,251 races the pick was shown at 19.2% and won 32.6%, and runners shown

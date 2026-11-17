@@ -10,9 +10,9 @@ import glob, html, json, math, os, re, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
+sys.path.insert(0, HERE)
 
-MIN_RACES = 200
-MIN_CHANGED = 20
+import shadow_rule  # noqa: E402  (the pre-registered decision rule)
 
 
 def norm(s):
@@ -175,8 +175,11 @@ def collect(snap_dir="picks_ab", regions=("GB", "IRE"), subject="rating",
             wop += norm(x.get("withoutRating")) in places
             if x.get("changed"):
                 ch += 1
-                cw += (a and not b)
-                cl += (b and not a)
+            # Discordant pairs, counted from the two picks rather than trusting
+            # the snapshot's `changed` flag: exactly one arm can hit when the
+            # picks differ, so these are the McNemar pairs.
+            cw += (a and not b)
+            cl += (b and not a)
             fav = favs.get(key)
             pick = row.get("pick")
             if fav and pick:
@@ -198,24 +201,11 @@ def collect(snap_dir="picks_ab", regions=("GB", "IRE"), subject="rating",
     if out["races"]:
         out["ci_with"] = wilson(out["with"], out["races"])
         out["ci_without"] = wilson(out["without"], out["races"])
-        out["enough"] = (out["races"] >= MIN_RACES and out["changed"] >= MIN_CHANGED)
-        lo_w, hi_w = out["ci_with"]
-        lo_o, hi_o = out["ci_without"]
-        if out["enough"]:
-            if lo_w > hi_o:
-                out["verdict"] = (f"The {subject}'s interval sits above no-{subject}: it is "
-                                  "adding winners, not just changing picks.")
-            elif lo_o > hi_w:
-                out["verdict"] = (f"The {subject} is hurting: its interval sits below "
-                                  f"no-{subject}.")
-            else:
-                out["verdict"] = ("Large enough sample, no separation: the intervals "
-                                  f"overlap, so the {subject} has not shown an edge either way.")
-        else:
-            need_r = max(0, MIN_RACES - out["races"])
-            need_c = max(0, MIN_CHANGED - out["changed"])
-            out["verdict"] = (f"Not yet meaningful: needs {need_r} more settled races and "
-                              f"{need_c} more races where the {subject} changes the pick.")
+        rule = shadow_rule.decide(out["races"], out["changed_won"],
+                                  out["changed_lost"])
+        out["rule"] = rule
+        out["enough"] = rule["status"] != "not yet"
+        out["verdict"] = shadow_rule.sentence(rule, subject)
     else:
         out["verdict"] = "No settled A/B days yet."
     return out
