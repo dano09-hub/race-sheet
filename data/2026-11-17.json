@@ -3275,7 +3275,7 @@
        "jockey": "Tyler Heard",
        "trainer": "John Mackie",
        "btn": "1 \u00bc",
-       "comment": "pressed leader, switched to near side and led over 2f out, ridden over 1f out, headed but went clear with winner inside final furlong"
+       "comment": "blindfold off late, pressed leader, switched to near side and led over 2f out, ridden over 1f out, headed but went clear with winner inside final furlong"
       },
       {
        "pos": "3rd",
@@ -3286,7 +3286,7 @@
        "jockey": "Rhys Clutterbuck",
        "trainer": "Michael Appleby",
        "btn": "5",
-       "comment": "took keen hold, prominent, ridden 2f out, weakened inside final furlong"
+       "comment": "taken down early, took keen hold, prominent, ridden 2f out, weakened inside final furlong"
       },
       {
        "pos": "4th",
@@ -3363,7 +3363,7 @@
        "jockey": "Mikey Sheehy",
        "trainer": "David O'Meara",
        "btn": "shd",
-       "comment": "took keen hold, prominent on outer, ridden and weakened over 1f out"
+       "comment": "anticipated start, took keen hold, prominent on outer, ridden and weakened over 1f out"
       },
       {
        "pos": "11th",
@@ -3410,7 +3410,7 @@
        "jockey": "Ethan Tindall",
        "trainer": "Antony Brittain",
        "btn": "3 \u00bd",
-       "comment": "in touch"
+       "comment": "in touch, headway to lead over 1f out, headed and no extra inside final furlong"
       },
       {
        "pos": "3rd",
@@ -3421,7 +3421,7 @@
        "jockey": "Jack Dace",
        "trainer": "Michael Appleby",
        "btn": "2 \u00bd",
-       "comment": "led"
+       "comment": "taken down early, led, headed over 1f out, weakened inside final furlong"
       },
       {
        "pos": "4th",
@@ -3432,7 +3432,7 @@
        "jockey": "Jonny Peate",
        "trainer": "Mark Loughnane",
        "btn": "1",
-       "comment": "towards rear"
+       "comment": "towards rear, headway from over 1f out, kept on inside final furlong, not pace to challenge"
       },
       {
        "pos": "5th",
@@ -3443,7 +3443,7 @@
        "jockey": "Matthew Lloyd Slater",
        "trainer": "Kevin & Lauren Frost",
        "btn": "\u00bd",
-       "comment": "midfield"
+       "comment": "midfield, headway and prominent over 1f out, weakened inside final furlong"
       },
       {
        "pos": "6th",
@@ -3454,7 +3454,7 @@
        "jockey": "Ryan Sexton",
        "trainer": "Edward Bethell",
        "btn": "2",
-       "comment": "took keen hold, in touch"
+       "comment": "taken down early, took keen hold, in touch, prominent from over 2f out, weakened from over 1f out"
       },
       {
        "pos": "7th",
@@ -3465,7 +3465,7 @@
        "jockey": "Finlay Bassett",
        "trainer": "Michael & David Easterby",
        "btn": "\u00bd",
-       "comment": "pressed leader"
+       "comment": "pressed leader, weakened from over 2f out"
       },
       {
        "pos": "8th",
@@ -3476,7 +3476,7 @@
        "jockey": "Stevie Donohoe",
        "trainer": "James Horton",
        "btn": "\u00be",
-       "comment": "towards rear"
+       "comment": "towards rear throughout"
       },
       {
        "pos": "9th",
@@ -3487,7 +3487,7 @@
        "jockey": "William Pyle",
        "trainer": "David Loughnane",
        "btn": "\u00be",
-       "comment": "raced wide, in touch"
+       "comment": "raced wide, in touch, weakened from over 2f out"
       },
       {
        "pos": "NR",
@@ -3497,6 +3497,265 @@
        "tips": 1,
        "jockey": "Liam Wright",
        "trainer": "Paul Midgley",
+       "btn": "",
+       "comment": "self certificate, bad scope"
+      }
+     ]
+    },
+    {
+     "time": "20:00",
+     "title": "ARC All Weather Bonus Is Back Novice Stakes (Rider Restricted Race) (GBB Race)",
+     "going": "",
+     "distance": "0m 6f 16y",
+     "meta": {
+      "Going TAPETA": "STANDARD",
+      "Off Time 20": "00",
+      "Winning Time 01": "17",
+      "Race Status": "WeighedIn"
+     },
+     "runners": [
+      {
+       "pos": "1st",
+       "horse": "Hayate",
+       "sp": "1/4 F",
+       "dec": 1.25,
+       "tips": 11,
+       "jockey": "Robbie Downey",
+       "trainer": "Roger Varian",
+       "btn": "",
+       "comment": "took keen hold, pressed leader, ridden and led narrowly over 1f out, clear with one other final 110yds, ran on"
+      },
+      {
+       "pos": "2nd",
+       "horse": "Miss Deeds",
+       "sp": "6/1",
+       "dec": 7.0,
+       "tips": 4,
+       "jockey": "Mikey Sheehy",
+       "trainer": "William Haggas",
+       "btn": "\u00bd",
+       "comment": "took keen hold, in touch, headway against near rail and every chance over 1f out, went clear with winner final 110yds, kept on"
+      },
+      {
+       "pos": "3rd",
+       "horse": "Lehbab Prince",
+       "sp": "12/1",
+       "dec": 13.0,
+       "tips": 1,
+       "jockey": "William Carver",
+       "trainer": "Andrew Balding",
+       "btn": "4 \u00bc",
+       "comment": "led but pestered, ridden and headed over 1f out, weakened final 110yds"
+      },
+      {
+       "pos": "4th",
+       "horse": "Blue Cascade",
+       "sp": "22/1",
+       "dec": 23.0,
+       "tips": 0,
+       "jockey": "Dougie Costello",
+       "trainer": "Harry Eustace",
+       "btn": "4 \u00bc",
+       "comment": "in touch, ridden and weakened over 1f out"
+      },
+      {
+       "pos": "5th",
+       "horse": "Gut Reaction",
+       "sp": "18/1",
+       "dec": 19.0,
+       "tips": 0,
+       "jockey": "Oisin McSweeney",
+       "trainer": "Harriet Bethell",
+       "btn": "1 \u00bc",
+       "comment": "slowly away, raced in last, shaken up over 1f out, never dangerous"
+      },
+      {
+       "pos": "6th",
+       "horse": "Dubai Jimmy",
+       "sp": "33/1",
+       "dec": 34.0,
+       "tips": 0,
+       "jockey": "Christian Howarth",
+       "trainer": "James Owen",
+       "btn": "2 \u00bc",
+       "comment": "dwelt start, towards rear throughout"
+      },
+      {
+       "pos": "NR",
+       "horse": "Hal'way The Lads",
+       "sp": "",
+       "dec": 99999.0,
+       "tips": 0,
+       "jockey": "Laura Coughlan",
+       "trainer": "Gemma Tutty",
+       "btn": "",
+       "comment": "self certificate, coughing"
+      }
+     ]
+    },
+    {
+     "time": "20:30",
+     "title": "Midnite A Next Generation Betting App Handicap (Rider Restricted Race)",
+     "going": "",
+     "distance": "0m 6f 16y",
+     "meta": {
+      "Going TAPETA": "STANDARD",
+      "Off Time 20": "30",
+      "Winning Time 01": "15",
+      "Race Status": "WeighedIn"
+     },
+     "runners": [
+      {
+       "pos": "1st",
+       "horse": "Goldwork",
+       "sp": "5/1",
+       "dec": 6.0,
+       "tips": 2,
+       "jockey": "Oliver Carmichael",
+       "trainer": "Eve Johnson Houghton",
+       "btn": "",
+       "comment": ""
+      },
+      {
+       "pos": "2nd",
+       "horse": "Amazonian Dream",
+       "sp": "5/1",
+       "dec": 6.0,
+       "tips": 1,
+       "jockey": "Jonny Peate",
+       "trainer": "Rod Millman",
+       "btn": "3 \u00bd",
+       "comment": "taken down early"
+      },
+      {
+       "pos": "3rd",
+       "horse": "Methgal",
+       "sp": "3/1 F",
+       "dec": 4.0,
+       "tips": 5,
+       "jockey": "Christian Howarth",
+       "trainer": "Dylan Cunha",
+       "btn": "2",
+       "comment": ""
+      },
+      {
+       "pos": "4th",
+       "horse": "Courageous Sioux",
+       "sp": "8/1",
+       "dec": 9.0,
+       "tips": 3,
+       "jockey": "Georgia Dobie",
+       "trainer": "Clive Cox",
+       "btn": "1 \u00bd",
+       "comment": ""
+      },
+      {
+       "pos": "5th",
+       "horse": "Slot",
+       "sp": "11/1",
+       "dec": 12.0,
+       "tips": 2,
+       "jockey": "Harry Russell",
+       "trainer": "Antony Brittain",
+       "btn": "shd",
+       "comment": ""
+      },
+      {
+       "pos": "6th",
+       "horse": "Invincible Speed",
+       "sp": "16/1",
+       "dec": 17.0,
+       "tips": 1,
+       "jockey": "Taylor Fisher",
+       "trainer": "Mark Loughnane",
+       "btn": "\u00bd",
+       "comment": ""
+      },
+      {
+       "pos": "7th",
+       "horse": "Big Cyril",
+       "sp": "12/1",
+       "dec": 13.0,
+       "tips": 0,
+       "jockey": "Tom Eaves",
+       "trainer": "Roger Fell",
+       "btn": "\u00be",
+       "comment": ""
+      },
+      {
+       "pos": "8th",
+       "horse": "Ormolulu",
+       "sp": "9/1",
+       "dec": 10.0,
+       "tips": 2,
+       "jockey": "William Pyle",
+       "trainer": "Gemma Tutty",
+       "btn": "hd",
+       "comment": ""
+      },
+      {
+       "pos": "9th",
+       "horse": "Numero Vingt",
+       "sp": "50/1",
+       "dec": 51.0,
+       "tips": 0,
+       "jockey": "William Cox",
+       "trainer": "Robert Edwards",
+       "btn": "\u00be",
+       "comment": ""
+      },
+      {
+       "pos": "10th",
+       "horse": "Aberama Gold",
+       "sp": "13/2",
+       "dec": 7.5,
+       "tips": 0,
+       "jockey": "Mikey Sheehy",
+       "trainer": "David O'Meara",
+       "btn": "1 \u00bd",
+       "comment": ""
+      },
+      {
+       "pos": "11th",
+       "horse": "Perfect Location",
+       "sp": "33/1",
+       "dec": 34.0,
+       "tips": 0,
+       "jockey": "Jack Dace",
+       "trainer": "Tom Ward",
+       "btn": "4 \u00bc",
+       "comment": ""
+      },
+      {
+       "pos": "12th",
+       "horse": "Judgment Call",
+       "sp": "25/1",
+       "dec": 26.0,
+       "tips": 0,
+       "jockey": "Rhys Clutterbuck",
+       "trainer": "Linda Perratt",
+       "btn": "\u00bd",
+       "comment": ""
+      },
+      {
+       "pos": "13th",
+       "horse": "Project Wallace",
+       "sp": "14/1",
+       "dec": 15.0,
+       "tips": 0,
+       "jockey": "Zak Wheatley",
+       "trainer": "Declan Carroll",
+       "btn": "5 \u00bd",
+       "comment": ""
+      },
+      {
+       "pos": "NR",
+       "horse": "Veydari",
+       "sp": "",
+       "dec": 99999.0,
+       "tips": 0,
+       "jockey": "Ryan Sexton",
+       "trainer": "Julie Camacho",
        "btn": "",
        "comment": "self certificate, bad scope"
       }
