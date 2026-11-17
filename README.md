@@ -298,6 +298,13 @@ totals into probabilities within 0.6 points of the record, with the pick at 33.9
 against 32.6%. The ranking does not move, so this is a display question rather
 than a model one, and nothing on the page has been changed by it.
 
+The live archive agrees on the direction but not yet on the size. On its own 117
+GB/IRE races the pick is shown at 17.0% and won 24.8% (95% CI 17.8-33.3%), and
+the archive's own best scale is 0.0404 against the four-year 0.0498: at 0.0404
+the pick reads 26.0%, at 0.0498 it reads 30.1%. 117 races cannot separate those
+scales, so any applied scale should sit between the two and be re-checked as the
+archive grows.
+
 ## Checks
 
 ```bash

@@ -84,6 +84,17 @@ def print_report(res):
               f"{100*mean_p:11.1f}%{100*rate:7.1f}%{100*(rate-mean_p):+7.1f}")
 
 
+def wilson(hits, n, z=1.96):
+    """95% interval for a win rate, so a small sample cannot look precise."""
+    if not n:
+        return (0.0, 0.0)
+    p = hits / n
+    d = 1 + z * z / n
+    c = p + z * z / (2 * n)
+    m = z * math.sqrt(p * (1 - p) / n + z * z / (4 * n * n))
+    return ((c - m) / d * 100, (c + m) / d * 100)
+
+
 def market_probs(race):
     """Fair market probability per runner, or None when the race is unpriced."""
     odds = race["odds"]
@@ -100,33 +111,49 @@ def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--csv", default=os.path.join(ROOT, "data", "training", "kaggle_runners.csv"))
     ap.add_argument("--test-days", type=int, default=60)
+    ap.add_argument("--scale", type=float, default=None,
+                    help="apply this softmax scale to every race instead of fitting one")
     args = ap.parse_args(argv)
 
     races = load_races(args.csv)
     if len(races) < 100:
         print(f"only {len(races)} races; nothing to measure")
         return 1
-    days = sorted({r["date"] for r in races})
-    cutoff = days[-args.test_days]
-    train = [r for r in races if r["date"] < cutoff]
-    test = [r for r in races if r["date"] >= cutoff]
-    print(f"races {len(races)} ({len(train)} train / {len(test)} test)")
-    print(f"train {train[0]['date']} .. {train[-1]['date']}")
-    print(f"test  {test[0]['date']} .. {test[-1]['date']}")
-
     w = live_weights()
-    train_tot = totals(train, w)
-    test_tot = totals(test, w)
+
+    if args.scale is not None:
+        # Nothing is fitted here: the scale comes from another dataset, so every
+        # race in this file is a genuine out-of-sample test.
+        scale = float(args.scale)
+        test = races
+        test_tot = totals(test, w)
+        label = f"softmax, scale {scale:.4f} (fitted on the four-year history)"
+        print(f"races {len(races)}; scale {scale:.4f} supplied, so all of them are "
+              "scored, nothing fitted on this file")
+    else:
+        days = sorted({r["date"] for r in races})
+        if len(days) <= args.test_days:
+            print(f"need more than {args.test_days} race days, have {len(days)}")
+            return 1
+        cutoff = days[-args.test_days]
+        train = [r for r in races if r["date"] < cutoff]
+        test = [r for r in races if r["date"] >= cutoff]
+        print(f"races {len(races)} ({len(train)} train / {len(test)} test)")
+        print(f"train {train[0]['date']} .. {train[-1]['date']}")
+        print(f"test  {test[0]['date']} .. {test[-1]['date']}")
+        train_tot = totals(train, w)
+        test_tot = totals(test, w)
+
+        def nll(scale):
+            return -sum(math.log(max(float(softmax(scale * t)[
+                int(np.argmax(r["y"]))]), 1e-12)) for t, r in zip(train_tot, train))
+        best = minimize_scalar(nll, bounds=(1e-4, 2.0), method="bounded")
+        scale = float(best.x)
+        label = f"softmax over the same totals, scale {scale:.4f} (fitted on train)"
 
     # (a) exactly what the page prints: total / sum of totals
     shown = [t / t.sum() for t in test_tot]
-
-    # (b) a softmax over the same totals, with one scale fitted on train only
-    def nll(scale):
-        return -sum(math.log(max(float(softmax(scale * t)[int(np.argmax(r["y"]))]), 1e-12))
-                    for t, r in zip(train_tot, train))
-    best = minimize_scalar(nll, bounds=(1e-4, 2.0), method="bounded")
-    scale = float(best.x)
+    # (b) a softmax over the same totals
     fitted = [softmax(scale * t) for t in test_tot]
 
     # (c) the market, renormalised to a fair book
@@ -135,7 +162,7 @@ def main(argv=None):
     market = [p for _, p in mkt]
 
     a = report("displayed share (the page's total / sum of totals)", test, shown)
-    b = report(f"softmax over the same totals, scale {scale:.4f} (fitted on train)", test, fitted)
+    b = report(label, test, fitted)
     c = report("market, overround removed", [r for r, _ in mkt], market) if market else None
 
     for res in (a, b, c):
@@ -143,14 +170,16 @@ def main(argv=None):
             print_report(res)
 
     print("\nthe pick's own number:")
-    for label, probs in (("displayed share", shown), ("fitted", fitted)):
+    for name, probs in (("displayed share", shown), ("calibrated", fitted)):
         top_p, top_hits = [], 0
         for race, p in zip(test, probs):
             i = int(np.argmax(p))
             top_p.append(float(p[i]))
             top_hits += int(i == int(np.argmax(race["y"])))
-        print(f"  {label:16} mean pick share {100*np.mean(top_p):5.1f}%   "
-              f"actual win rate {100*top_hits/len(test):5.1f}%")
+        lo, hi = wilson(top_hits, len(test))
+        print(f"  {name:16} mean pick share {100*np.mean(top_p):5.1f}%   "
+              f"actual win rate {100*top_hits/len(test):5.1f}% "
+              f"(95% CI {lo:.1f}-{hi:.1f}%)")
 
     pick_share = 100 * float(np.mean([max(p) for p in shown]))
     fit_share = 100 * float(np.mean([max(p) for p in fitted]))

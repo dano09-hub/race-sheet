@@ -1462,6 +1462,10 @@ bad = calibrate_share.report("toy", [{"y": np.array([0.0, 1.0])}],
 check("calibration: confident and wrong is caught", abs(bad["ece"] - 90.0) < 1e-6, bad["ece"])
 check("calibration: a race too lightly priced has no market probability",
       calibrate_share.market_probs({"odds": [2.0, None, None, None]}) is None)
+lo, hi = calibrate_share.wilson(25, 100)
+check("calibration: a wide interval for a small sample",
+      17.0 < lo < 18.5 and 33.5 < hi < 35.0, (lo, hi))
+check("calibration: no races has no interval", calibrate_share.wilson(0, 0) == (0.0, 0.0))
 fair = calibrate_share.market_probs({"odds": [2.0, 4.0, 4.0, None]})
 check("calibration: the market book is normalised and keeps the blank",
       fair is not None and abs(float(fair.sum()) - 1.0) < 1e-9 and fair[3] == 0.0,
