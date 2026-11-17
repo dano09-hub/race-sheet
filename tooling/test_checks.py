@@ -1624,6 +1624,41 @@ finally:
     shutil.rmtree(_stmp)
 
 print()
+print("disagreement with the market")
+import disagreement_audit as da
+check("gap bands cover the line",
+      da.band_index(-10.01) == 0 and da.band_index(-10.0) == 1
+      and da.band_index(0.0) == 3 and da.band_index(9.99) == 4
+      and da.band_index(10.0) == 5)
+_dtmp = tempfile.mkdtemp()
+try:
+    with open(os.path.join(_dtmp, "runners.csv"), "w", newline="") as f:
+        f.write("date,course,time,race_id,horse,total,odds,win\n")
+        f.write("2026-01-01,C,13:00,R1,A,90,2.0,1\n")
+        f.write("2026-01-01,C,13:00,R1,B,50,4.0,0\n")
+        f.write("2026-01-01,C,14:00,R2,C,50,1.5,0\n")
+        f.write("2026-01-01,C,14:00,R2,D,50,3.0,1\n")
+    _da = da.audit(os.path.join(_dtmp, "runners.csv"))
+finally:
+    shutil.rmtree(_dtmp)
+check("disagreement: counts races and priced runners",
+      _da["races"] == 2 and _da["overall"]["n"] == 4, _da["races"])
+check("disagreement: above +10 won both and returned +150%",
+      _da["bands"][5]["n"] == 2 and _da["bands"][5]["wins"] == 2
+      and abs(da._stats(_da["bands"][5])["roi"] - 150.0) < 1e-9,
+      da._stats(_da["bands"][5]))
+check("disagreement: below -10 won none and returned -100%",
+      _da["bands"][0]["n"] == 2 and _da["bands"][0]["wins"] == 0
+      and abs(da._stats(_da["bands"][0])["roi"] + 100.0) < 1e-9)
+check("disagreement: above +10 spans 66.7% and 33.3% market chances",
+      abs(_da["bands"][5]["mkt"] / 2 - 50.0) < 0.1, _da["bands"][5]["mkt"] / 2)
+_pairs = [(30, 5, 1), (30, 5, 0), (30, -5, 0), (30, -5, 0),
+          (60, 5, 1), (60, 5, 1), (60, -5, 0), (60, -5, 1)]
+_st = da.stratified(_pairs, bins=2, minimum=1)
+check("stratified: splits by price, then compares the two sides",
+      _st["bins"] == 2 and abs(_st["diff"] - 50.0) < 1e-9, _st)
+
+print()
 print("whole-field calibration")
 import field_audit
 _aud = field_audit.audit([(np.array([0.5, 0.5]), 0), (np.array([0.2, 0.8]), 1)])

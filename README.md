@@ -378,6 +378,39 @@ ECE 0.7 points and Brier 0.0777 per runner, with every band holding: 0-5%
 stated 3.5% and won 3.8%, 5-15% stated 8.6% and won 8.6%, 15-30% stated 19.8%
 and won 17.2%, 30%+ stated 41.1% and won 50.0% (each inside its interval).
 
+## Does disagreeing with the market pay?
+
+The sheet's premise is that it disagrees with the price on purpose. That is
+testable: `tooling/disagreement_audit.py` compares each runner's printed chance
+with the de-vigged market chance from its SP, then asks what the disagreement was
+worth. On 3.5 million priced runners across 366,516 races (1988-2026):
+
+| at the same market price | gap between the page and the price | winners, page-above minus page-below |
+| --- | --- | --- |
+| any disagreement | > 0 points either way | between -0.1 and +0.2 points, depending on stratum width |
+| strong disagreement | 10+ points | -3.0 points (95% CI -3.6 to -2.3), stable at 50, 100 and 200 strata |
+
+The comparison is made inside price strata, so the market's own favourite-longshot
+bias cancels: two runners in one stratum have the same market chance, and the
+only difference is whether the page rates one above the other. Backing every
+priced runner at SP returns -26.0%, and the one bucket with a positive return
+(the page likes the horse by 10+ points: +20.4% on 34,832 runners) is carried by
+a handful of longshots: its strike rate is 3 points *below* comparable runners
+the page dislikes, so the return is payout skew, not skill. The mild-gap number
+is reported as a range because it moves with the width of the price strata -
+which is itself the answer: there is no stable effect to find there.
+
+The honest reading: there is no evidence the sheet beats the price, and its
+strongest disagreements are its weakest. Mild disagreement is worth about two
+tenths of a point, which is not a business. That is why the page shows a
+calibrated chance with an interval rather than a value claim, and why a weight
+change still has to clear the pre-registered shadow bar rather than a good week.
+
+```bash
+python3 tooling/disagreement_audit.py --csv data/training/runners.csv
+python3 tooling/disagreement_audit.py --csv data/training/runners.csv --bins 200
+```
+
 ```bash
 python3 tooling/chance_audit.py                  # pick-level, on the command line
 python3 tooling/field_audit.py                   # every runner, from snapshots
