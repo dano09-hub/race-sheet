@@ -1091,7 +1091,7 @@
     <div id="nextCard" class="nextcard"></div>
     <div class="kpi-grid" id="kpiStrip"></div>
     <h2>Best of the day</h2>
-    <p class="method">Every race still to come, ranked by how much of its own field the top pick clears. Each card gives the model&rsquo;s one-line case: the factors it tops and the margin over the second-rated horse. Tap a card to open the full race.</p>
+    <p class="method">Every race still to come, in starting-time order. Each card gives the model&rsquo;s one-line case: the factors it tops and the margin over the second-rated horse; the badge is its rank by Clear, and the top three are highlighted. Tap a card to open the full race.</p>
     <p class="best-count" id="bestCount"></p>
     <div class="best-grid" id="bestBody"></div>
     <details class="note"><summary>How the ranking works</summary><p><b>Score</b> is the model&rsquo;s 0&ndash;100 rating. <b>Gap</b> is the margin over the second-rated horse. <b>Clear</b> divides that gap by the spread of the field, so picks are comparable between races of any size. <b>Factors</b> is how many model inputs were available; thin cards are not treated as strong evidence.</p></details>
@@ -5318,14 +5318,14 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_FRI);  // UK/IRE today, US lat
     return 'GB';
   }
 
-  function bestCardHtml(p, idx, standout) {
+  function bestCardHtml(p, idx, standout, rank) {
     var r = p.top.r;
-    var rank = idx + 1;
+    rank = rank || (idx + 1);
     var runners = p.card.runners ? p.card.runners.length : '—';
     var price = r.odds ? esc(r.odds) : '—';
     var gap = p.second ? p.gap.toFixed(1) : '—';
     var clear = (p.clear * 100).toFixed(0) + '%';
-    return '<article class="best-card' + (idx < 3 ? ' is-featured' : '') + (standout ? ' is-standout' : '') +
+    return '<article class="best-card' + (rank <= 3 ? ' is-featured' : '') + (standout ? ' is-standout' : '') +
       '" data-card="' + esc(p.card.id) + '" tabindex="0" role="button" aria-label="Open ' +
       esc(r.horse || 'race') + ' at ' + esc(p.card.course + ' ' + p.card.time) + '">' +
       '<div class="best-head">' +
@@ -5364,10 +5364,14 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_FRI);  // UK/IRE today, US lat
       return;
     }
     if ($('bestCount')) {
-      $('bestCount').textContent = picks.length + ' races rated · top three highlighted by Clear';
+      $('bestCount').textContent = picks.length + ' races rated · in starting-time order; top three by Clear highlighted';
     }
-    $('bestBody').innerHTML = picks.map(function (p, idx) {
-      return bestCardHtml(p, idx, false);
+    var ranked = picks.slice();
+    var rankOf = {};
+    ranked.forEach(function (p, i) { rankOf[p.card.id] = i + 1; });
+    ranked.sort(function (a, b) { return cardWhen(a.card) - cardWhen(b.card); });
+    $('bestBody').innerHTML = ranked.map(function (p, idx) {
+      return bestCardHtml(p, idx, false, rankOf[p.card.id]);
     }).join('');
   }
 
