@@ -2342,6 +2342,60 @@ with tempfile.TemporaryDirectory(prefix="cl-stamp-") as fd:
         frmod.archived_cards, frmod.results_for = _old_arch, _old_res
         frmod._utcnow = _old_now
 
+_old_clock = refresh._utcnow
+try:
+    refresh._utcnow = lambda: "2026-11-18T20:00:00Z"
+    _old_us = [{"course": "Churchill Downs", "time": "18:00",
+                "winner": "Flaming Verdict", "pick": "Flaming Verdict",
+                "settled_at": "2026-11-17T23:00:00Z"}]
+    _new_us = [{"course": "Churchill Downs", "time": "18:00",
+                "winner": "Flaming Verdict"}]
+    refresh.carry_picks(_old_us, _new_us)
+    check("US ledger: a re-scraped race keeps its settlement time",
+          _new_us[0].get("settled_at") == "2026-11-17T23:00:00Z", _new_us[0])
+    _brand_new = [{"course": "Parx Racing", "time": "19:00", "winner": "Canuto"}]
+    refresh.carry_picks([], _brand_new)
+    check("US ledger: a newly filed race records the settlement time",
+          _brand_new[0].get("settled_at") == "2026-11-18T20:00:00Z",
+          _brand_new[0])
+    _legacy = [{"course": "Parx Racing", "time": "19:00", "winner": "Canuto"}]
+    _same = [{"course": "Parx Racing", "time": "19:00", "winner": "Canuto"}]
+    refresh.carry_picks(_legacy, _same)
+    check("US ledger: a legacy row is not given a made-up time",
+          "settled_at" not in _same[0], _same[0])
+finally:
+    refresh._utcnow = _old_clock
+_us_block = refresh.results_block_us("2026-11-18", [{
+    "region": "US", "course": "Churchill Downs", "time": "18:00",
+    "race": "5F", "winner": "Flaming Verdict",
+    "places": ["Flaming Verdict"], "settled_at": "2026-11-18T20:00:00Z"}])
+check("US ledger: the results tab shows the last-changed UTC time",
+      'id="usLedger"' in _us_block and "18 November 2026, 20:00 UTC" in _us_block,
+      _us_block[:200])
+
+_hk_dir, _hk_picks, _hk_clock = hkmod.OUT_DIR, hkmod._picks, hkmod._utcnow
+try:
+    with tempfile.TemporaryDirectory(prefix="hk-stamp-") as fd:
+        hkmod.OUT_DIR = os.path.join(fd, "results_hk")
+        hkmod._picks = lambda cards: {3: "Alpha"}
+        hkmod._utcnow = lambda: "2026-11-18T20:00:00Z"
+        _hk_card = {"id": "hk-2026-11-18-r3", "race_no": 3,
+                    "course": "Happy Valley", "time": "11:00", "race": "Test"}
+        _hk_off = {3: {"winner": "Alpha", "places": ["Alpha", "Bravo"],
+                       "finish": {"Alpha": 1, "Bravo": 2}, "field": 2}}
+        _hk_rows, _hk_added = hkmod.build("2026-11-18", [_hk_card], _hk_off, keep={})
+        check("HK ledger: a new settlement records the time",
+              _hk_added == 1
+              and _hk_rows[0].get("settled_at") == "2026-11-18T20:00:00Z",
+              _hk_rows)
+        hkmod.save("2026-11-18", _hk_rows)
+        _hk_blk = hkmod.results_block()
+        check("HK ledger: the results tab shows the last-changed UTC time",
+              'id="hkLedger"' in _hk_blk
+              and "18 November 2026, 20:00 UTC" in _hk_blk, _hk_blk[:200])
+finally:
+    hkmod.OUT_DIR, hkmod._picks, hkmod._utcnow = _hk_dir, _hk_picks, _hk_clock
+
 _report = {"measured": "2026-11-18T19:00:00+00:00", "rows": [
     {"country": "France", "code": "FR", "source": "PMU", "cards": True,
      "results": True, "prices": True, "verdict": "live",
@@ -2373,6 +2427,8 @@ check("Chile: the card block, result marker and renderer are present",
       and "function renderChile" in _fr_page)
 check("France and Chile: the results tabs show when the ledger last changed",
       'id="frLedger"' in _fr_page and 'id="clLedger"' in _fr_page)
+check("US and HK: the results tabs show when the ledger last changed",
+      'id="usLedger"' in _fr_page and 'id="hkLedger"' in _fr_page)
 check("France: the serve copy matches the page",
       _fr_page == (ROOT / "dist" / "public" / "index.html").read_text(encoding="utf-8"))
 _res_yml = (ROOT / ".github" / "workflows" / "results.yml").read_text(encoding="utf-8")

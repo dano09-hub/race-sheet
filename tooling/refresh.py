@@ -143,24 +143,44 @@ def settle_day(iso):
     return filled
 
 
+def _utcnow():
+    return (dt.datetime.now(dt.timezone.utc).replace(microsecond=0)
+            .isoformat().replace("+00:00", "Z"))
+
+
 def carry_picks(old_rows, new_rows):
     """Keep the original pick when a settled day is scraped again.
 
     A results refresh must never rewrite history: the pick was made before the
     race, so if the same race appears in the new scrape its stored pick, finish
     and fate are carried over. Only genuinely new races are left to settle.
+    The same match carries the settlement time; a race never seen before is
+    stamped now, while a row filed before timestamps existed stays unstamped
+    rather than being given a made-up time.
     """
     by_time, by_winner = {}, {}
+    all_time, all_winner = {}, {}
     for r in old_rows or []:
+        t = (r.get("time") or "").strip()
+        if t:
+            all_time[(r.get("course"), t)] = r
+        all_winner[(r.get("course"), r.get("winner"))] = r
         if not r.get("pick"):
             continue
-        t = (r.get("time") or "").strip()
         if t:
             by_time[(r.get("course"), t)] = r
         by_winner[(r.get("course"), r.get("winner"))] = r
+    now = _utcnow()
     kept = 0
     for r in new_rows:
         t = (r.get("time") or "").strip()
+        old = all_time.get((r.get("course"), t)) if t else None
+        old = old or all_winner.get((r.get("course"), r.get("winner")))
+        if old is not None:
+            if old.get("settled_at"):
+                r["settled_at"] = old["settled_at"]
+        elif not r.get("settled_at"):
+            r["settled_at"] = now
         prev = by_time.get((r.get("course"), t)) if t else None
         prev = prev or by_winner.get((r.get("course"), r.get("winner")))
         if not prev:
@@ -598,6 +618,55 @@ def results_block_ire(iso, rows):
             + "\n<!-- IRE_RESULTS_SL_END -->")
 
 
+def _ledger_line(updated, date_iso, ident):
+    """When a results ledger last changed, or the latest day if it predates this."""
+    import html as _h
+    if updated:
+        try:
+            when = dt.datetime.fromisoformat(updated.replace("Z", "+00:00"))
+            label = when.strftime("%-d %B %Y, %H:%M UTC")
+        except ValueError:
+            return ('<p class="method" id="%s">Ledger last changed <b>%s</b>.</p>\n'
+                    % (ident, _h.escape(updated)))
+        return ('<p class="method" id="%s">Ledger last changed '
+                '<time datetime="%s">%s</time>.</p>\n'
+                % (ident, _h.escape(updated), label))
+    if date_iso:
+        try:
+            label = dt.datetime.strptime(date_iso, "%Y-%m-%d").strftime("%-d %B %Y")
+        except ValueError:
+            return ""
+        return ('<p class="method" id="%s">Latest result '
+                '<time datetime="%s">%s</time>; the settlement time was not '
+                'recorded for rows filed before this change.</p>\n'
+                % (ident, _h.escape(date_iso), label))
+    return ""
+
+
+def _results_meta(kind):
+    """Latest settlement stamp and latest day for one region's rows."""
+    import glob
+    latest_updated, latest_date = "", ""
+    for path in sorted(glob.glob(os.path.join(ROOT, "data", "results", "*.json"))):
+        iso = os.path.basename(path)[:-5]
+        try:
+            with open(path, encoding="utf-8") as f:
+                data = json.load(f)
+        except (OSError, ValueError):
+            continue
+        rows = data.get("races", []) if isinstance(data, dict) else data
+        if not isinstance(rows, list):
+            continue
+        keep = [r for r in rows
+                if isinstance(r, dict) and _result_region(r) == kind]
+        if not keep:
+            continue
+        latest_date = max(latest_date, iso)
+        for r in keep:
+            latest_updated = max(latest_updated, r.get("settled_at") or "")
+    return latest_updated, latest_date
+
+
 def results_block_us(iso, rows):
     """The US-only ledger, with the off time on every row."""
     rows = [r for r in rows if r.get("region") == "US"]
@@ -605,7 +674,10 @@ def results_block_us(iso, rows):
         return ('<!-- US_RESULTS_SL_START -->\n'
                 '<p class="method">No US results for this day.</p>\n'
                 '<!-- US_RESULTS_SL_END -->')
-    return ("<!-- US_RESULTS_SL_START -->\n" + _results_inner(iso, rows, "US")
+    stamp = _ledger_line(max((r.get("settled_at") or "" for r in rows), default=""),
+                         iso, "usLedger")
+    return ("<!-- US_RESULTS_SL_START -->\n" + stamp
+            + _results_inner(iso, rows, "US")
             + "\n<!-- US_RESULTS_SL_END -->")
 
 
@@ -654,8 +726,10 @@ def results_block_all_us():
     parts = _results_all("US")
     if not parts:
         return None
-    return ("<!-- US_RESULTS_SL_START -->\n" + "\n".join(parts)
-            + "\n<!-- US_RESULTS_SL_END -->")
+    updated, date_iso = _results_meta("US")
+    return ("<!-- US_RESULTS_SL_START -->\n"
+            + _ledger_line(updated, date_iso, "usLedger")
+            + "\n".join(parts) + "\n<!-- US_RESULTS_SL_END -->")
 
 
 def _audit_source():

@@ -160,7 +160,8 @@ def build(date_iso, cards, official, keep=None):
         res = official.get(no)
         if not res:
             continue
-        if no in rows and rows[no].get("pick"):
+        old = rows.get(no)
+        if old and old.get("pick"):
             # A settled pick is history: never re-score or rewrite it.
             continue
         pick = scored.get(no) or ""
@@ -169,7 +170,7 @@ def build(date_iso, cards, official, keep=None):
             continue
         # Declared on the card but not in the official field: a non-runner.
         pick_finish = _ordinal(pos) if pos else "NR"
-        rows[no] = {
+        row = {
             "course": card.get("course", ""),
             "time": card.get("time", ""),
             "race": card.get("race", ""),
@@ -183,6 +184,10 @@ def build(date_iso, cards, official, keep=None):
             "pick_finish": pick_finish,
             "hit": bool(pos == 1),
         }
+        stamp = old.get("settled_at") if old else _utcnow()
+        if stamp:
+            row["settled_at"] = stamp
+        rows[no] = row
         added += 1
     ordered = sorted(rows.values(),
                      key=lambda r: (r.get("time", ""), r.get("race_no") or 0))
@@ -258,9 +263,39 @@ def _day_results(iso, rows):
         % (label, len(rows), noun, wins, len(judged), "".join(trs)))
 
 
+def _utcnow():
+    return (dt.datetime.now(dt.timezone.utc).replace(microsecond=0)
+            .isoformat().replace("+00:00", "Z"))
+
+
+def _ledger_line(updated, date_iso, ident):
+    """When the Hong Kong ledger last changed, or its latest day."""
+    if updated:
+        try:
+            when = dt.datetime.fromisoformat(updated.replace("Z", "+00:00"))
+            label = when.strftime("%-d %B %Y, %H:%M UTC")
+        except ValueError:
+            return ('<p class="method" id="%s">Ledger last changed <b>%s</b>.</p>\n'
+                    % (ident, html.escape(updated)))
+        return ('<p class="method" id="%s">Ledger last changed '
+                '<time datetime="%s">%s</time>.</p>\n'
+                % (ident, html.escape(updated), label))
+    if date_iso:
+        try:
+            label = dt.datetime.strptime(date_iso, "%Y-%m-%d").strftime("%-d %B %Y")
+        except ValueError:
+            return ""
+        return ('<p class="method" id="%s">Latest result '
+                '<time datetime="%s">%s</time>; the settlement time was not '
+                'recorded for rows filed before this change.</p>\n'
+                % (ident, html.escape(date_iso), label))
+    return ""
+
+
 def results_block():
     """The Hong Kong results tab: every settled HK day on file."""
     parts = []
+    latest_updated, latest_date = "", ""
     for path in sorted(glob.glob(os.path.join(OUT_DIR, "*.json")), reverse=True):
         iso = os.path.basename(path)[:-5]
         try:
@@ -270,8 +305,12 @@ def results_block():
             continue
         rows = data.get("races", []) if isinstance(data, dict) else data
         if isinstance(rows, list) and rows:
+            latest_date = max(latest_date, iso)
+            for r in rows:
+                latest_updated = max(latest_updated, r.get("settled_at") or "")
             parts.append(_day_results(iso, rows))
-    body = ("\n".join(parts) if parts else
+    stamp = _ledger_line(latest_updated, latest_date, "hkLedger")
+    body = ((stamp + "\n".join(parts)) if parts else
             '<p class="method">No Hong Kong results yet. A race appears here '
             'once the official HKJC result carries a finishing position for '
             'every declared runner.</p>')
