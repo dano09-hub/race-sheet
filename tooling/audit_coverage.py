@@ -199,6 +199,9 @@ def probe_ae(iso):
                    "connection timed out from this network" if not code else "HTML only")
 
 
+WIRED = {"GB/IE", "US", "HK", "FR", "CL"}
+
+
 def audit(iso):
     rows = [
         ("Great Britain & Ireland", "GB/IE", "horseracing.net", probe_home),
@@ -233,6 +236,7 @@ def audit(iso):
                 st = fn(iso)
             except Exception as e:
                 st = _status(verdict="probe failed", note=str(e))
+        st["wired"] = code in WIRED
         out.append({"country": label, "code": code, "source": source, **st})
     return {"date": iso, "measured": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
             "rows": out}
@@ -247,7 +251,7 @@ def _table(report):
                      f"{'yes' if r['cards'] else 'no':5} "
                      f"{'yes' if r['results'] else 'no':7} "
                      f"{'yes' if r['prices'] else 'no':6}  "
-                     f"{r['verdict']}; {r['note']}")
+                     f"{r['verdict']}{' [on page]' if r.get('wired') else ''}; {r['note']}")
     lines.append("")
     lines.append("A tab needs cards and a named result. Results-only and blocked sources are recorded")
     lines.append("here instead of being shown as an empty tab.")
@@ -264,14 +268,17 @@ def block_html(report):
         "<tr><td><b>%s</b></td><td class=\"num\">%s</td><td class=\"num\">%s</td>"
         "<td class=\"num\">%s</td><td>%s</td><td class=\"muted\">%s</td></tr>"
         % (esc(r["country"]), _badge(r["cards"]), _badge(r["results"]),
-           _badge(r["prices"]), esc(r["verdict"]), esc(r["note"]))
+           _badge(r["prices"]),
+           esc(r["verdict"]) + (" <b>on page</b>" if r.get("wired") else ""),
+           esc(r["note"]))
         for r in report["rows"])
     return (
         '<!-- COVERAGE_SL_START -->\n'
         '<h3>Which countries the sheet can actually follow</h3>\n'
         '<p class="method">Measured from the build network on %s UTC. A country earns a tab only '
-        'when a machine-readable card and a definitive result both name the field. A feed that is '
-        'blocked, HTML-only or results-only is recorded here rather than shown as an empty tab.</p>\n'
+        'when a machine-readable card and a definitive result both name the field; the rows marked '
+        '<b>on page</b> are the ones wired today. A feed that is blocked, HTML-only or results-only '
+        'is recorded here rather than shown as an empty tab.</p>\n'
         '<div class="scroll"><table class="ledger"><thead><tr><th>Country</th><th>Cards</th>'
         '<th>Results</th><th>Prices</th><th>Verdict</th><th>Evidence</th></tr></thead>'
         '<tbody>%s</tbody></table></div>\n'
