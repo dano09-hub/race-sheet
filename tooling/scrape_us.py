@@ -8,6 +8,10 @@ Each race carries the post time as an ISO UTC timestamp, the surface/distance
 line and a runner table (program number, horse, HRN speed figure, trainer,
 jockey, morning line). US cards do not publish OR/RPR/Topspeed, so those fields
 are left blank and the model scores them on price and speed figure only.
+
+Hong Kong meetings also appear in this feed. They are deliberately skipped:
+scrape_hk.py builds those cards from HKJC with the official rating, form and
+draw, so they are never shown or scored as US races.
 """
 
 import html
@@ -44,7 +48,16 @@ def to_decimal(ml):
     return m.group(1) if m else ""
 
 
+def is_hong_kong(course):
+    return str(course or "").strip().lower().startswith("hong kong")
+
+
 def parse_track(page, course, date):
+    # Hong Kong meetings are listed in this feed, but they are not US racing.
+    # They are built from the official HKJC card instead (scrape_hk.py), with
+    # the official rating, form, barrier draw and post times.
+    if is_hong_kong(course):
+        return []
     cards = []
     blocks = re.split(r'class="race-header"', page)[1:]
     for blk in blocks:

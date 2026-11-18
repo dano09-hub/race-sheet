@@ -93,7 +93,7 @@ Known gaps section for what that would take.
 | USA | `entries.horseracingnation.com` | free | yes, plain HTTP | morning-line price, HRN speed figure, draw, trainer, jockey |
 | USA (deeper) | `horseracingnation.com/horse/...` | free | **no** — 202 empty body | form lines, last-run dates (needs a browser) |
 | Australia / NZ | `punters.com.au` form guide | free | **no** — 403, Cloudflare | form, barrier, weight, their rating, win/place %, price |
-| Hong Kong | `info.cld.hkjc.com/graphql/base/` (see `tooling/scrape_hk.py`) | free | **yes, plain POST** | rating, last six, barrier, weight, jockey, trainer |
+| Hong Kong | HKJC GraphQL gateway plus the official race-card page (see `tooling/scrape_hk.py`) | free | **yes, plain HTTP** | official rating, last six, barrier, weight, connections, venue, race name, post time, going |
 | Anything else | `punters.com.au` covers GB, IRE, US, CA, AUS, NZ, HK, JP, ZA, FR, TR, AE | free | no, same Cloudflare wall | same block as Australia |
 | Training history, GB/IRE | Delta Romeo's results set on Kaggle | free | **no** — needs a Kaggle API token | 1988 onwards: OR, RPR, Topspeed, SP, finishing position |
 | Starting prices | `promo.betfair.com/betfairsp/prices` | free | **no** — 403 from this sandbox | Betfair SP per runner, 2008 onwards |
@@ -128,9 +128,12 @@ you are harvesting through a browser. Output matches the card schema in
 
 ### Known gaps
 
-* **Hong Kong is live** via the HKJC GraphQL gateway (`tooling/scrape_hk.py`) —
-  the one region that answers plain HTTP with no browser: rating, last six,
-  barrier, weight, connections. Odds arrive once betting opens.
+* **Hong Kong is live** via the HKJC GraphQL gateway plus the official
+  race-card page (`tooling/scrape_hk.py`) — the one region that answers plain
+  HTTP with no browser: rating, last six, barrier, weight, connections, venue,
+  race name, post time and going. Reserves are excluded from the field. Odds
+  arrive once betting opens. HK meetings also appear in the US feed;
+  `scrape_us.py` skips them so they are never shown or scored as US races.
 * **Australia/NZ now carry real fields.** 74 of 75 cards were filled from
   Punters' form guide harvested through a browser: last-ten form, barrier,
   weight (kg converted to stone-pounds), their rating and the price. Two race

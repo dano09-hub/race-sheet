@@ -262,10 +262,11 @@ def annotate_result_rows(iso, rows):
 
 Steps
   1. UK racecards  -> RACE_CARDS (today), CARDS_FRI (tomorrow)
-  2. US entries    -> CARDS_US (today)
-  3. settled results -> data/YYYY-MM-DD.json (feeds the back-test dataset)
-  4. rewrite the three JS blocks inside index.html
-  5. copy to dist/public/index.html
+  2. US entries    -> CARDS_US (today, US tracks only)
+  3. HKJC card     -> CARDS_HK (today, official rating/form/draw/post times)
+  4. settled results -> data/YYYY-MM-DD.json (feeds the back-test dataset)
+  5. rewrite the three JS blocks inside index.html
+  6. copy to dist/public/index.html
 
 A block that scrapes empty is left untouched, so a blocked or quiet day can
 never wipe a card that already works.
@@ -355,9 +356,15 @@ def serialise(cards, comment):
     name = "BLOCK"
     body = []
     for c in cards:
-        runners = ",\n".join(
-            "        {" + ", ".join(f"{k}:{js(r.get(k, ''))}" for k in RUNNER_KEYS) + "}"
-            for r in c["runners"])
+        # HK cards carry the official programme number and barrier draw, so the
+        # card view can show the draw the model scores. Other regions keep the
+        # block they already had: their draw was never part of the page's card.
+        extra = ("draw", "no") if str(c.get("region", "")).upper() == "HK" else ()
+        def runner(r):
+            keys = [f"{k}:{js(r.get(k, ''))}" for k in RUNNER_KEYS]
+            keys += [f"{k}:{js(r.get(k, ''))}" for k in extra]
+            return "        {" + ", ".join(keys) + "}"
+        runners = ",\n".join(runner(r) for r in c["runners"])
         head = (f'      id: {js(c["id"])}, label: {js(c["label"])}, course: {js(c["course"])}, '
                 f'time: {js(c["time"])},\n      day: {js(c["day"])}, region: {js(c["region"])},')
         if c.get("iso"):
@@ -447,12 +454,19 @@ def us_day(date_iso):
 
 
 def hk_day(date_iso):
-    """Sha Tin / Happy Valley card from the HKJC gateway (plain HTTP)."""
+    """Sha Tin / Happy Valley card from the official HKJC sources (plain HTTP).
+
+    The GraphQL gateway supplies the declared field, official rating, last-six
+    form, barrier draw, weight and price. The race-card page supplies the
+    meeting, race name and post time; a race without that header is skipped
+    rather than given a guessed time.
+    """
     if scrape_hk is None:
         return []
     try:
         payload = scrape_hk.fetch(date_iso.replace("-", "/"))
-        return scrape_hk.cards(payload, date_iso)
+        meta = scrape_hk.fetch_meta(date_iso, scrape_hk.race_numbers(payload))
+        return scrape_hk.cards(payload, date_iso, meta)
     except Exception as e:
         print(f"  HK: {e}")
         return []
