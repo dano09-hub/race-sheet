@@ -1303,6 +1303,30 @@
   .slip-index th { font-size:10px; }
   .slip-index tbody tr { cursor:default; }
   .slip-index tbody tr:hover td { background:transparent; }
+
+  /* Settled slips: the same card, with each leg's finish and the slip's fate. */
+  .slipres-daybar { display:flex; flex-wrap:wrap; gap:6px; margin:14px 0 0; }
+  .slipres-day { border:1px solid var(--line); background:#fff; border-radius:8px; padding:6px 10px; font:700 11px var(--mono); color:var(--ink); cursor:pointer; }
+  .slipres-day small { display:block; margin-top:1px; font:400 9px var(--mono); color:var(--muted); }
+  .slipres-day.on { background:#101318; border-color:#101318; color:#fff; }
+  .slipres-day.on small { color:#c8d2cc; }
+  .slipres-sum { display:flex; flex-wrap:wrap; gap:8px 18px; margin:14px 0 4px; color:var(--muted); font-size:12px; }
+  .slipres-sum b { color:var(--ink); }
+  .slip-res .slip-leg { cursor:default; }
+  .slip-leg.res-win { background:linear-gradient(90deg,#f2faf5,transparent 72%); }
+  .slip-leg.res-lost { opacity:.74; }
+  .slip-leg.res-win .slip-num b { color:#067647; }
+  .slip-leg.res-lost .slip-num b { color:#b42318; }
+  .slip-verdict { padding:2px 6px; border-radius:4px; font:700 9px var(--mono); letter-spacing:.08em; text-transform:uppercase; }
+  .slip-verdict.won { background:#e7f6ec; color:#067647; }
+  .slip-verdict.lost { background:#fdecea; color:#b42318; }
+  .slip-verdict.part { background:#fff4e5; color:#b54708; }
+  .slip-resline { display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px; }
+  .slip-resline span { color:var(--muted); font-size:10.5px; }
+  .slip-resline b { color:var(--ink); font:700 11px var(--mono); }
+  .next-list { margin:14px 0 18px; }
+  .next-list td { font-size:12px; }
+  .next-list td.num { font-family:var(--mono); }
   @media (max-width:520px) {
     .bet-stats { grid-template-columns:repeat(2,1fr); }
     .slip-grid { grid-template-columns:minmax(0,1fr); }
@@ -1313,6 +1337,11 @@
       text-overflow:clip;
       overflow-wrap:anywhere;
     }
+    /* The next-off table keeps off, pick, price and edge on a phone; the race
+       name and model chance are on the slip cards below it. */
+    .next-list th:nth-child(2), .next-list td:nth-child(2),
+    .next-list th:nth-child(5), .next-list td:nth-child(5) { display:none; }
+    .next-list th, .next-list td { padding:6px 4px; font-size:11px; }
   }
 
   /* Print the bet slips as individual, self-contained slips. The screen page is
@@ -1513,6 +1542,24 @@
     <p class="method">The standard composition of the named multiples, including the ones generated above. Every figure is the number of bets, not a recommended stake.</p>
     <div id="slipIndex"></div>
     <p class="bet-note">No stake is taken and no bet is placed. Prices are card prices in this build; a real slip may be shorter. If you bet, stake only what you can afford to lose; a multiple loses if any leg loses.</p>
+  </section>
+
+  <section class="panel" data-panel="upcoming">
+    <h2>Upcoming slips</h2>
+    <p class="method">The same win-only rule and the same eight-leg limit as <b>Bet slips</b>, but the legs are the races whose post time is still ahead, taken in <b>next-off order</b> rather than by edge. A race only enters once its card carries a price and the model ranks its top pick above the market&rsquo;s chance. Nothing is invented to fill a slip.</p>
+    <p class="best-count" id="nextSlipsCount"></p>
+    <div id="nextRaces"></div>
+    <div id="nextSlipsBody"></div>
+    <p class="bet-note">No stake is taken and no bet is placed. Prices are the card prices in this build; a real slip may be shorter. A multiple loses if any leg loses.</p>
+  </section>
+
+  <section class="panel" data-panel="slipresults">
+    <h2>Slip results</h2>
+    <p class="method">The win-only slip rule replayed on settled days from the <b>pre-race card held in this build</b>. A leg is used only when the archived card had a price, the model&rsquo;s top pick had a positive edge and the stored result names that same pick, so nothing is re-scored after the result. Each slip is settled at its card prices, one unit per bet: a named slip stakes every bet in its structure, and the footer shows what came back against what was staked. Only the page&rsquo;s settled UK, Irish and US ledger is replayed here; Hong Kong, French and Chilean results live in their own tabs and are not mixed in.</p>
+    <div class="slipres-daybar" id="slipResDays"></div>
+    <div class="slipres-sum" id="slipResSummary"></div>
+    <div id="slipResultsBody"></div>
+    <p class="bet-note">Settled history, not a tip or a staking plan. Card prices are the archived prices, not a quote; returns assume every bet in the structure was staked and win only. No stake is taken and no bet is placed.</p>
   </section>
 
   <section class="panel" data-panel="usresults">
@@ -2003,6 +2050,8 @@
     ['overhyped', 'Overhyped', 'Market', 'Market favourites the model doubts.'],
     ['placers', 'Place bankers', 'Place profile', 'Model top pick and market favourite, with each-way terms.'],
     ['slips', 'Bet slips', 'Slips', 'Model multiples and named bet structures, in slip form.'],
+    ['upcoming', 'Upcoming slips', 'Next off', 'The same win-only slips, built from the next races to go.'],
+    ['slipresults', 'Slip results', 'Settled slips', 'Every settled slip replayed from the archived pre-race card.'],
     ['card', 'Cards', 'Racing', 'Pick a race and inspect every runner the model scored.'],
     ['results', 'UK results', 'Record', 'Settled UK results, market checks and the model audit.'],
     ['ireresults', 'Irish results', 'Irish record', 'Settled Irish races: winner, first three and what the model pick did.'],
@@ -2023,6 +2072,8 @@
     overhyped: ['overhyped'],
     placers: ['placers'],
     slips: ['slips'],
+    upcoming: ['upcoming'],
+    slipresults: ['slipresults'],
     card: ['card', 'ranked'],
     results: ['results', 'past'],
     ireresults: ['ireresults'],
@@ -7224,6 +7275,10 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
 {"c": "Ffos Las", "t": "13:18", "w": "Diamond Street", "sp": "1.40", "r": 1, "n": 9, "m": null, "p": "Diamond Street", "pf": "1st", "v": "hit"}
   ];
 
+  /* SLIP_RESULTS_START */
+  var SLIP_RESULTS = [{"d":"2026-11-18","l":[{"c":"Parx Racing","t":"17:59","h":"Goldieness","r":"US","p":2.6,"f":"1st","w":1,"e":0.3588},{"c":"Mahoning Valley","t":"18:11","h":"Wicca Wisdom","r":"US","p":3.0,"f":"4th","w":0,"e":0.2583},{"c":"Churchill Downs","t":"18:00","h":"Flaming Verdict","r":"US","p":1.6,"f":"1st","w":1,"e":0.22},{"c":"Finger Lakes","t":"17:10","h":"Ry's Advantage","r":"US","p":4.0,"f":"2nd","w":0,"e":0.2046},{"c":"Mahoning Valley","t":"17:43","h":"Brick Ambush","r":"US","p":2.8,"f":"2nd","w":0,"e":0.1793},{"c":"Mahoning Valley","t":"19:07","h":"All My Life","r":"US","p":3.0,"f":"1st","w":1,"e":0.1736},{"c":"Parx Racing","t":"18:26","h":"Foil","r":"US","p":4.5,"f":"4th","w":0,"e":0.1506},{"c":"Churchill Downs","t":"18:29","h":"Golexgo","r":"US","p":4.0,"f":"unplaced","w":0,"e":0.1451}],"s":[{"y":"Single","n":1,"legs":[0],"b":1,"wb":1,"ret":2.6},{"y":"Single","n":2,"legs":[1],"b":1,"wb":0,"ret":0.0},{"y":"Single","n":3,"legs":[2],"b":1,"wb":1,"ret":1.6},{"y":"Double","n":4,"legs":[0,1],"b":1,"wb":0,"ret":0.0,"o":"lost"},{"y":"Treble","n":5,"legs":[0,1,2],"b":1,"wb":0,"ret":0.0,"o":"lost"},{"y":"Four-fold accumulator","n":6,"legs":[0,1,2,3],"b":1,"wb":0,"ret":0.0,"o":"lost"},{"y":"Lucky 15","n":7,"legs":[0,1,2,3],"b":15,"wb":3,"ret":8.36,"o":"part"},{"y":"Lucky 31","n":8,"legs":[0,1,2,3,4],"b":31,"wb":3,"ret":8.36,"o":"part"},{"y":"Lucky 63","n":9,"legs":[0,1,2,3,4,5],"b":63,"wb":7,"ret":36.44,"o":"part"},{"y":"Trixie","n":10,"legs":[0,1,2],"b":7,"wb":3,"ret":8.36,"o":"part"},{"y":"Patent","n":11,"legs":[0,1,2],"b":7,"wb":3,"ret":8.36,"o":"part"},{"y":"Yankee","n":12,"legs":[0,1,2,3],"b":15,"wb":3,"ret":8.36,"o":"part"},{"y":"Canadian","n":13,"legs":[0,1,2,3,4],"b":31,"wb":3,"ret":8.36,"o":"part"},{"y":"Heinz","n":14,"legs":[0,1,2,3,4,5],"b":63,"wb":7,"ret":36.44,"o":"part"},{"y":"Super Heinz","n":15,"legs":[0,1,2,3,4,5,6],"b":127,"wb":7,"ret":36.44,"o":"part"},{"y":"Goliath","n":16,"legs":[0,1,2,3,4,5,6,7],"b":255,"wb":7,"ret":36.44,"o":"part"}]},{"d":"2026-11-16","l":[{"c":"Plumpton","t":"13:45","h":"Icare Grandchamp","r":"GB/IRE","p":7.0,"f":"6th","w":0,"e":0.1416},{"c":"Plumpton","t":"15:15","h":"Uncle Al","r":"GB/IRE","p":2.5,"f":"2nd","w":0,"e":0.103},{"c":"Wolverhampton","t":"19:30","h":"R P McMurphy","r":"GB/IRE","p":5.8,"f":"12th","w":0,"e":0.1004},{"c":"Wolverhampton","t":"18:30","h":"Tan Rapido","r":"GB/IRE","p":5.6,"f":"3rd","w":0,"e":0.0417},{"c":"Plumpton","t":"14:15","h":"Kamille Au Kanada","r":"GB/IRE","p":3.4,"f":"2nd","w":0,"e":0.0415},{"c":"Plumpton","t":"13:15","h":"Market House","r":"GB/IRE","p":4.8,"f":"3rd","w":0,"e":0.0373},{"c":"Plumpton","t":"14:45","h":"Anothermanicmonday","r":"GB/IRE","p":5.4,"f":"7th","w":0,"e":0.0187},{"c":"Plumpton","t":"15:45","h":"Kotari","r":"GB/IRE","p":3.8,"f":"4th","w":0,"e":0.0055}],"s":[{"y":"Single","n":1,"legs":[0],"b":1,"wb":0,"ret":0.0},{"y":"Single","n":2,"legs":[1],"b":1,"wb":0,"ret":0.0},{"y":"Single","n":3,"legs":[2],"b":1,"wb":0,"ret":0.0},{"y":"Double","n":4,"legs":[0,1],"b":1,"wb":0,"ret":0.0,"o":"lost"},{"y":"Treble","n":5,"legs":[0,1,2],"b":1,"wb":0,"ret":0.0,"o":"lost"},{"y":"Four-fold accumulator","n":6,"legs":[0,1,2,3],"b":1,"wb":0,"ret":0.0,"o":"lost"},{"y":"Lucky 15","n":7,"legs":[0,1,2,3],"b":15,"wb":0,"ret":0.0,"o":"lost"},{"y":"Lucky 31","n":8,"legs":[0,1,2,3,4],"b":31,"wb":0,"ret":0.0,"o":"lost"},{"y":"Lucky 63","n":9,"legs":[0,1,2,3,4,5],"b":63,"wb":0,"ret":0.0,"o":"lost"},{"y":"Trixie","n":10,"legs":[0,1,2],"b":7,"wb":0,"ret":0.0,"o":"lost"},{"y":"Patent","n":11,"legs":[0,1,2],"b":7,"wb":0,"ret":0.0,"o":"lost"},{"y":"Yankee","n":12,"legs":[0,1,2,3],"b":15,"wb":0,"ret":0.0,"o":"lost"},{"y":"Canadian","n":13,"legs":[0,1,2,3,4],"b":31,"wb":0,"ret":0.0,"o":"lost"},{"y":"Heinz","n":14,"legs":[0,1,2,3,4,5],"b":63,"wb":0,"ret":0.0,"o":"lost"},{"y":"Super Heinz","n":15,"legs":[0,1,2,3,4,5,6],"b":127,"wb":0,"ret":0.0,"o":"lost"},{"y":"Goliath","n":16,"legs":[0,1,2,3,4,5,6,7],"b":255,"wb":0,"ret":0.0,"o":"lost"}]},{"d":"2026-11-15","l":[{"c":"Fontwell","t":"14:20","h":"Pass The Buck","r":"GB/IRE","p":6.0,"f":"2nd","w":0,"e":0.1402},{"c":"Navan","t":"14:25","h":"Classical Creek","r":"GB/IRE","p":4.5,"f":"2nd","w":0,"e":0.0892},{"c":"Navan","t":"15:35","h":"Sarahs Lawn","r":"GB/IRE","p":4.5,"f":"2nd","w":0,"e":0.087},{"c":"Fontwell","t":"14:50","h":"Majestic Moment","r":"GB/IRE","p":5.0,"f":"PU","w":0,"e":0.0631},{"c":"Cheltenham","t":"14:35","h":"King Of Answers","r":"GB/IRE","p":5.8,"f":"4th","w":0,"e":0.0356},{"c":"Cheltenham","t":"14:00","h":"Highlands Legacy","r":"GB/IRE","p":3.9,"f":"6th","w":0,"e":0.0334},{"c":"Cheltenham","t":"12:50","h":"Wolf Rayet","r":"GB/IRE","p":5.0,"f":"2nd","w":0,"e":0.0248},{"c":"Navan","t":"13:15","h":"Reaching High","r":"GB/IRE","p":4.5,"f":"6th","w":0,"e":0.0084}],"s":[{"y":"Single","n":1,"legs":[0],"b":1,"wb":0,"ret":0.0},{"y":"Single","n":2,"legs":[1],"b":1,"wb":0,"ret":0.0},{"y":"Single","n":3,"legs":[2],"b":1,"wb":0,"ret":0.0},{"y":"Double","n":4,"legs":[0,1],"b":1,"wb":0,"ret":0.0,"o":"lost"},{"y":"Treble","n":5,"legs":[0,1,2],"b":1,"wb":0,"ret":0.0,"o":"lost"},{"y":"Four-fold accumulator","n":6,"legs":[0,1,2,3],"b":1,"wb":0,"ret":0.0,"o":"lost"},{"y":"Lucky 15","n":7,"legs":[0,1,2,3],"b":15,"wb":0,"ret":0.0,"o":"lost"},{"y":"Lucky 31","n":8,"legs":[0,1,2,3,4],"b":31,"wb":0,"ret":0.0,"o":"lost"},{"y":"Lucky 63","n":9,"legs":[0,1,2,3,4,5],"b":63,"wb":0,"ret":0.0,"o":"lost"},{"y":"Trixie","n":10,"legs":[0,1,2],"b":7,"wb":0,"ret":0.0,"o":"lost"},{"y":"Patent","n":11,"legs":[0,1,2],"b":7,"wb":0,"ret":0.0,"o":"lost"},{"y":"Yankee","n":12,"legs":[0,1,2,3],"b":15,"wb":0,"ret":0.0,"o":"lost"},{"y":"Canadian","n":13,"legs":[0,1,2,3,4],"b":31,"wb":0,"ret":0.0,"o":"lost"},{"y":"Heinz","n":14,"legs":[0,1,2,3,4,5],"b":63,"wb":0,"ret":0.0,"o":"lost"},{"y":"Super Heinz","n":15,"legs":[0,1,2,3,4,5,6],"b":127,"wb":0,"ret":0.0,"o":"lost"},{"y":"Goliath","n":16,"legs":[0,1,2,3,4,5,6,7],"b":255,"wb":0,"ret":0.0,"o":"lost"}]},{"d":"2026-11-14","l":[{"c":"Navan","t":"15:53","h":"Sir Vinny","r":"GB/IRE","p":8.5,"f":"3","w":0,"e":0.1367}],"s":[{"y":"Single","n":1,"legs":[0],"b":1,"wb":0,"ret":0.0}]},{"d":"2026-11-13","l":[{"c":"Cheltenham","t":"14:20","h":"Jonbon","r":"GB/IRE","p":1.5,"f":"1st","w":1,"e":0.1458},{"c":"Cheltenham","t":"13:45","h":"Intosomethinggood","r":"GB/IRE","p":4.3333,"f":"2nd","w":0,"e":0.1249}],"s":[{"y":"Single","n":1,"legs":[0],"b":1,"wb":1,"ret":1.5},{"y":"Single","n":2,"legs":[1],"b":1,"wb":0,"ret":0.0},{"y":"Double","n":3,"legs":[0,1],"b":1,"wb":0,"ret":0.0,"o":"lost"}]},{"d":"2026-11-12","l":[{"c":"Hereford","t":"15:25","h":"Ms Belle","r":"GB/IRE","p":3.5,"f":"5th","w":0,"e":0.0872},{"c":"Market Rasen","t":"15:01","h":"Reflection Of You","r":"GB/IRE","p":7.0,"f":"8th","w":0,"e":0.0486},{"c":"Thurles","t":"15:48","h":"Mad Maxios","r":"GB/IRE","p":7.5,"f":"FELL","w":0,"e":0.0255}],"s":[{"y":"Single","n":1,"legs":[0],"b":1,"wb":0,"ret":0.0},{"y":"Single","n":2,"legs":[1],"b":1,"wb":0,"ret":0.0},{"y":"Single","n":3,"legs":[2],"b":1,"wb":0,"ret":0.0},{"y":"Double","n":4,"legs":[0,1],"b":1,"wb":0,"ret":0.0,"o":"lost"},{"y":"Treble","n":5,"legs":[0,1,2],"b":1,"wb":0,"ret":0.0,"o":"lost"},{"y":"Trixie","n":6,"legs":[0,1,2],"b":7,"wb":0,"ret":0.0,"o":"lost"},{"y":"Patent","n":7,"legs":[0,1,2],"b":7,"wb":0,"ret":0.0,"o":"lost"}]}];
+  /* SLIP_RESULTS_END */
+
   var state = null;
 
   function $(id) { return document.getElementById(id); }
@@ -8334,31 +8389,12 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
       }).join('') + '</tbody></table></div>';
   }
 
-  function renderSlips() {
-    var box = $('slipsBody');
-    if (!box) return;
-    var legs = betData().tops.filter(function (x) {
-      return x.dec !== null && betHasEdge(x) && x.row.edge > 0;
-    }).sort(function (a, b) { return b.row.edge - a.row.edge; });
-    var seen = {}, uniq = [];
-    legs.forEach(function (x) {
-      var k = x.card.id || '';
-      if (seen[k]) return;
-      seen[k] = 1;
-      uniq.push(x);
-    });
-    legs = uniq;
-    if ($('slipsCount')) {
-      var slipLabel = legs.length + (legs.length === 1 ? ' priced value leg' : ' priced value legs');
-      if (legs.length > 8) slipLabel += ' \u00b7 strongest eight used';
-      $('slipsCount').textContent = slipLabel;
-    }
-    if (legs.length < 2) {
-      box.innerHTML = '<p class="bet-empty">No priced value legs in this build. A slip needs at least two races whose top pick has a card price and a model chance above the market&rsquo;s; the page will not invent legs to fill one.</p>';
-      return;
-    }
+  // The same slip ladder for every view: singles, the straight multiples, the
+  // lucky slips and the full-cover slips. Legs arrive already chosen and ordered.
+  function slipSetHtml(legs, opts) {
+    opts = opts || {};
     var html = '', no = 1;
-    html += '<h3 class="slip-section">Value singles</h3><div class="slip-grid">';
+    html += '<h3 class="slip-section">' + (opts.singleHead || 'Value singles') + '</h3><div class="slip-grid">';
     legs.slice(0, 3).forEach(function (x) {
       html += slipHtml(('0' + no++).slice(-2), 'Single', '1 bet', [x],
         '<div class="slip-combined"><span>Return at 1 unit</span><b>' + x.dec.toFixed(2) + '</b></div>' +
@@ -8403,9 +8439,181 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
       lucky('Super Heinz', 7, '120 bets', '21 doubles, 35 trebles, 35 four-folds, 21 five-folds, 7 six-folds, 1 seven-fold.') +
       lucky('Goliath', 8, '247 bets', '28 doubles, 56 trebles, 70 four-folds, 56 five-folds, 28 six-folds, 8 seven-folds, 1 eight-fold.');
     if (coverHtml) html += '<h3 class="slip-section">Full-cover slips</h3><div class="slip-grid">' + coverHtml + '</div>';
+    return html;
+  }
 
-    html += '<p class="bet-note">No stake is taken and no bet is placed. Prices are the card prices in this build; a real slip may be shorter. If you bet, stake only what you can afford to lose, and a multiple loses if any leg loses.</p>';
-    box.innerHTML = html;
+  function renderSlips() {
+    var box = $('slipsBody');
+    if (!box) return;
+    var legs = betData().tops.filter(function (x) {
+      return x.dec !== null && betHasEdge(x) && x.row.edge > 0;
+    }).sort(function (a, b) { return b.row.edge - a.row.edge; });
+    var seen = {}, uniq = [];
+    legs.forEach(function (x) {
+      var k = x.card.id || '';
+      if (seen[k]) return;
+      seen[k] = 1;
+      uniq.push(x);
+    });
+    legs = uniq;
+    if ($('slipsCount')) {
+      var slipLabel = legs.length + (legs.length === 1 ? ' priced value leg' : ' priced value legs');
+      if (legs.length > 8) slipLabel += ' \u00b7 strongest eight used';
+      $('slipsCount').textContent = slipLabel;
+    }
+    if (legs.length < 2) {
+      box.innerHTML = '<p class="bet-empty">No priced value legs in this build. A slip needs at least two races whose top pick has a card price and a model chance above the market&rsquo;s; the page will not invent legs to fill one.</p>';
+      return;
+    }
+    box.innerHTML = slipSetHtml(legs) +
+      '<p class="bet-note">No stake is taken and no bet is placed. Prices are the card prices in this build; a real slip may be shorter. If you bet, stake only what you can afford to lose, and a multiple loses if any leg loses.</p>';
+  }
+
+  // The next races to go, in off-time order: the same leg test as the slip tab,
+  // but the queue is the clock rather than the strongest edge.
+  function renderUpcomingSlips() {
+    var box = $('nextSlipsBody');
+    if (!box) return;
+    var now = Date.now();
+    var pool = betData().tops.filter(function (x) {
+      return x.dec !== null && betHasEdge(x) && x.row.edge > 0 && cardWhen(x.card).getTime() > now;
+    }).sort(function (a, b) { return cardWhen(a.card) - cardWhen(b.card); });
+    var legs = pool.slice(0, 8);
+    if ($('nextSlipsCount')) {
+      var label = pool.length + (pool.length === 1 ? ' priced leg still to come' : ' priced legs still to come');
+      if (pool.length > 8) label += ' \u00b7 next eight used';
+      $('nextSlipsCount').textContent = label;
+    }
+    renderNextRaces(pool.slice(0, 10));
+    if (legs.length < 2) {
+      box.innerHTML = '<p class="bet-empty">No priced value legs are still to come in this build. A leg needs a card price, a model chance above the market&rsquo;s and a post time that has not passed; the page will not invent one.</p>';
+      return;
+    }
+    box.innerHTML = slipSetHtml(legs, {singleHead: 'Next-off singles'}) +
+      '<p class="bet-note">No stake is taken and no bet is placed. Prices are the card prices in this build; a real slip may be shorter. If you bet, stake only what you can afford to lose, and a multiple loses if any leg loses.</p>';
+  }
+
+  function renderNextRaces(list) {
+    var box = $('nextRaces');
+    if (!box) return;
+    if (!list.length) { box.innerHTML = ''; return; }
+    box.innerHTML = '<h3 class="slip-section">Next races to go</h3><div class="scroll">' +
+      '<table class="ledger next-list"><thead><tr><th>Off</th><th>Race</th><th>Model pick</th>' +
+      '<th>Price</th><th>Model</th><th>Edge</th></tr></thead><tbody>' +
+      list.map(function (x) {
+        return '<tr><td><b>' + esc(x.card.course) + '</b><br><span class="muted">' + esc(x.card.time) + '</span></td>' +
+          '<td>' + esc(x.card.label || x.card.race || '') + '</td>' +
+          '<td class="horse">' + esc(x.row.r.horse || '\u2014') + '</td>' +
+          '<td class="num">' + betPrice(x.dec) + '</td>' +
+          '<td class="num">' + betPct(x.row.share) + '</td>' +
+          '<td class="num">' + betPts(x.row.edge) + '</td></tr>';
+      }).join('') + '</tbody></table></div>';
+  }
+
+  /* ---------- settled slips ---------- */
+
+  var slipResDay = null;
+  var slipResBound = false;
+
+  function slipDayLabel(iso) {
+    var d = new Date(iso + 'T12:00:00');
+    return isNaN(d.getTime()) ? iso : d.toLocaleDateString('en-GB', {day: 'numeric', month: 'short'});
+  }
+
+  function slipResVerdict(s) {
+    if (s.o) return s.o;
+    return s.wb ? 'won' : 'lost';
+  }
+
+  function slipResLeg(l) {
+    var cls = l.w ? 'res-win' : 'res-lost';
+    return '<div class="slip-leg ' + cls + '">' +
+      '<div class="slip-sel"><span class="slip-tag">' + betTag(l.r) + '</span>' +
+        '<b>' + esc(l.h) + '</b>' +
+        '<small>' + esc(l.c) + ' ' + esc(l.t) + '</small></div>' +
+      '<div class="slip-num"><b>' + betPrice(l.p) + '</b><small>price</small></div>' +
+      '<div class="slip-num"><b>' + esc(l.f || (l.w ? 'Won' : 'Lost')) + '</b><small>' +
+        (l.w ? 'won' : 'lost') + '</small></div>' +
+      '</div>';
+  }
+
+  function slipResCard(d, s) {
+    var status = slipResVerdict(s);
+    var label = status === 'won' ? 'Landed' : (status === 'part' ? 'Partial' : 'Lost');
+    var legs = s.legs.map(function (i) { return d.l[i]; });
+    var net = s.ret - s.b;
+    return '<article class="slip slip-res">' +
+      '<header class="slip-head"><span class="slip-no">SLIP ' + ('0' + s.n).slice(-2) + '</span>' +
+        '<span class="slip-type">' + esc(s.y) + '</span>' +
+        '<span class="slip-bets">' + s.b + (s.b === 1 ? ' bet' : ' bets') + '</span></header>' +
+      '<div class="slip-legs">' + legs.map(slipResLeg).join('') + '</div>' +
+      '<footer class="slip-foot"><div class="slip-resline">' +
+        '<span class="slip-verdict ' + status + '">' + label + '</span>' +
+        '<span><b>' + s.wb + '</b> of ' + s.b + (s.b === 1 ? ' bet won' : ' bets won') + '</span>' +
+        '<span>returns <b>' + s.ret.toFixed(2) + '</b> / ' + s.b + ' staked</span>' +
+        '<span>net <b>' + (net >= 0 ? '+' : '\u2212') + Math.abs(net).toFixed(2) + '</b></span>' +
+      '</div></footer></article>';
+  }
+
+  function renderSlipResultDay(iso) {
+    var box = $('slipResultsBody');
+    if (!box) return;
+    var d = SLIP_RESULTS.filter(function (x) { return x.d === iso; })[0];
+    if (!d) {
+      box.innerHTML = '<p class="bet-empty">No settled slip on file. A day enters this tab only after its legs have a stored result and the archived pick matches the stored pick.</p>';
+      return;
+    }
+    var legsWon = d.l.filter(function (l) { return l.w; }).length;
+    var bets = 0, betsWon = 0, landed = 0;
+    d.s.forEach(function (s) {
+      bets += s.b; betsWon += s.wb;
+      if (slipResVerdict(s) === 'won') landed++;
+    });
+    var sum = $('slipResSummary');
+    if (sum) {
+      sum.innerHTML = '<span><b>' + legsWon + ' of ' + d.l.length + '</b> legs won</span>' +
+        '<span><b>' + landed + ' of ' + d.s.length + '</b> slips fully landed</span>' +
+        '<span><b>' + betsWon + ' of ' + bets + '</b> bets won</span>' +
+        '<span><b>' + d.l.length + '</b> priced value legs on the day</span>';
+    }
+    box.innerHTML = '<h3 class="slip-section">Settled ' + esc(slipDayLabel(d.d)) + '</h3>' +
+      '<div class="slip-grid">' + d.s.map(function (s) { return slipResCard(d, s); }).join('') + '</div>';
+  }
+
+  function renderSlipResultDays() {
+    var box = $('slipResDays');
+    if (!box) return;
+    box.innerHTML = SLIP_RESULTS.map(function (d) {
+      var on = d.d === slipResDay;
+      return '<button type="button" class="slipres-day' + (on ? ' on' : '') + '" data-slipday="' +
+        esc(d.d) + '" aria-pressed="' + (on ? 'true' : 'false') + '">' + esc(slipDayLabel(d.d)) +
+        '<small>' + d.s.length + (d.s.length === 1 ? ' slip' : ' slips') + '</small></button>';
+    }).join('');
+    if (!slipResBound) {
+      slipResBound = true;
+      box.addEventListener('click', function (e) {
+        var btn = e.target.closest ? e.target.closest('[data-slipday]') : null;
+        if (!btn) return;
+        slipResDay = btn.getAttribute('data-slipday');
+        renderSlipResultDays();
+        renderSlipResultDay(slipResDay);
+      });
+    }
+  }
+
+  function renderSlipResults() {
+    var box = $('slipResultsBody');
+    if (!box) return;
+    if (!SLIP_RESULTS.length) {
+      box.innerHTML = '<p class="bet-empty">No settled slip yet. A day enters this tab only after its legs have a stored result and the archived pick matches the stored pick.</p>';
+      if ($('slipResSummary')) $('slipResSummary').innerHTML = '';
+      return;
+    }
+    if (!slipResDay || !SLIP_RESULTS.some(function (d) { return d.d === slipResDay; })) {
+      slipResDay = SLIP_RESULTS[0].d;
+    }
+    renderSlipResultDays();
+    renderSlipResultDay(slipResDay);
   }
 
   function renderBetViews() {
@@ -8413,6 +8621,8 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
     renderOverhyped();
     renderPlacers();
     renderSlips();
+    renderUpcomingSlips();
+    renderSlipResults();
     renderSlipIndex();
   }
 
@@ -9166,6 +9376,10 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
     try { out = compute(); } finally { state = saved; }
     return out;
   };
+
+  // The page's own card-price parser, so settlement tools read a price exactly
+  // as the slip does and never keep a second copy of the odds rules.
+  window.DECIMAL_ODDS = decimalOdds;
 
   function emptyState() {
     var runners = [];

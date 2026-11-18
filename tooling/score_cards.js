@@ -51,6 +51,11 @@ const out = cards.map(c => {
             total: Math.round(x.total * 10) / 10,
             mktRank: x.mktRank || null,
             odds: x.r.odds || '',
+            // The chance and implied chance the page prints. Kept per runner so
+            // a settled slip can be rebuilt with the same edge test the tab uses.
+            share: Number.isFinite(x.share) ? Math.round(x.share * 1e6) / 1e6 : null,
+            implied: Number.isFinite(x.implied) ? Math.round(x.implied * 1e6) / 1e6 : null,
+            dec: window.DECIMAL_ODDS ? window.DECIMAL_ODDS(x.r.odds) : null,
             // The page's own 0-100 factor scores, so a training export fits
             // weights against exactly the inputs the model uses.
             parts: Object.fromEntries(Object.entries(x.parts || {}).map(

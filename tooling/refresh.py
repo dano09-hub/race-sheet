@@ -1524,6 +1524,14 @@ def main():
     except Exception as e:
         print(f"  PMU blocks:  skipped ({e})")
 
+    # Settled slips are replayed from the archived pre-race cards, so a refresh
+    # that only settles results still leaves the Slip results tab current.
+    try:
+        import slip_results
+        html = slip_results.replace_block(html)
+    except Exception as e:
+        print(f"  slip results: block skipped ({e})")
+
     open(INDEX, "w", encoding="utf-8").write(html)
     os.makedirs(os.path.join(ROOT, "dist", "public"), exist_ok=True)
     open(os.path.join(ROOT, "dist", "public", "index.html"), "w", encoding="utf-8").write(html)

@@ -2560,7 +2560,9 @@ print()
 print("Bet views")
 _bet_html = _page_now
 for _tid, _label in [("longshots", "Longshots"), ("overhyped", "Overhyped"),
-                     ("placers", "Place bankers"), ("slips", "Bet slips")]:
+                     ("placers", "Place bankers"), ("slips", "Bet slips"),
+                     ("upcoming", "Upcoming slips"),
+                     ("slipresults", "Slip results")]:
     check("bet views: the %s tab is declared" % _tid,
           "['%s', '%s'" % (_tid, _label) in _bet_html
           and "data-panel=\"%s\"" % _tid in _bet_html
@@ -2568,16 +2570,19 @@ for _tid, _label in [("longshots", "Longshots"), ("overhyped", "Overhyped"),
 check("bet views: each panel owns its render target",
       all(_id in _bet_html for _id in
           ['id="longshotBody"', 'id="overhypedBody"', 'id="placerBody"',
-           'id="slipsBody"', 'id="slipIndex"']))
+           'id="slipsBody"', 'id="slipIndex"', 'id="nextSlipsBody"',
+           'id="nextRaces"', 'id="slipResultsBody"', 'id="slipResDays"']))
 check("bet views: the tabs carry their own count lines",
       all(_id in _bet_html for _id in
           ['id="longshotCount"', 'id="overhypedCount"', 'id="placerCount"',
-           'id="slipsCount"']))
-check("bet views: all five renderers exist and are wired into renderAll",
+           'id="slipsCount"', 'id="nextSlipsCount"']))
+check("bet views: every renderer exists and is wired into renderAll",
       all(_fn in _bet_html for _fn in
           ['function renderLongshots', 'function renderOverhyped',
            'function renderPlacers', 'function renderSlips',
-           'function renderSlipIndex', 'function renderBetViews'])
+           'function renderSlipIndex', 'function renderUpcomingSlips',
+           'function renderSlipResults', 'function slipSetHtml',
+           'function renderBetViews'])
       and "renderBetViews();" in _bet_html)
 check("bet views: longshots need a price, top-four rank, 4% chance and positive edge",
       "x.dec >= 8" in _bet_html and "x.rank <= 4" in _bet_html
@@ -2638,6 +2643,108 @@ check("mobile slips: the race line wraps instead of clipping at phone width",
       and "text-overflow:clip;" in _bet_html)
 check("mobile slips: the slip leg uses the full race title, not the short label",
       "esc(x.card.race || x.card.label || '')" in _bet_html)
+
+print()
+print("Upcoming slips")
+check("upcoming slips: only races whose post time is still ahead enter",
+      "cardWhen(x.card).getTime() > now" in _bet_html
+      and "var now = Date.now();" in _bet_html)
+check("upcoming slips: legs are queued by the next off, not by edge",
+      "return cardWhen(a.card) - cardWhen(b.card);" in _bet_html)
+check("upcoming slips: the same ladder and eight-leg limit are used",
+      "pool.slice(0, 8)" in _bet_html
+      and "slipSetHtml(legs, {singleHead: 'Next-off singles'})" in _bet_html)
+check("upcoming slips: the next-race table names the pick, price and edge",
+      "Next races to go" in _bet_html
+      and "betPrice(x.dec)" in _bet_html
+      and "betPts(x.row.edge)" in _bet_html)
+
+print()
+print("Settled slips")
+import itertools as _it
+import json as _json
+import re as _re
+
+_m = _re.search(r"/\* SLIP_RESULTS_START \*/\s*var SLIP_RESULTS = (\[.*?\]);\s*/\* SLIP_RESULTS_END \*/",
+                _bet_html, _re.S)
+_sr = _json.loads(_m.group(1)) if _m else []
+
+_ALL_RESULTS = {}
+for _rp in sorted((ROOT / "data" / "results").glob("*.json")):
+    try:
+        _data = _json.loads(_rp.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        continue
+    _rows = _data.get("races", []) if isinstance(_data, dict) else _data
+    if isinstance(_rows, list):
+        _ALL_RESULTS[_rp.stem] = _rows
+
+
+def _stored_leg_ok(day, leg):
+    """The embedded leg must be a real stored pick on a real settled row."""
+    for r in _ALL_RESULTS.get(day["d"], []):
+        if r.get("course") != leg["c"] or str(r.get("pick") or "") != leg["h"]:
+            continue
+        rt = str(r.get("time") or "").strip()
+        if rt and leg["t"] and rt != leg["t"]:
+            continue
+        fin = str(r.get("pick_finish") or "").strip()
+        if fin and fin != leg["f"]:
+            continue
+        hit = r.get("hit")
+        if isinstance(hit, bool) and (1 if hit else 0) != leg["w"]:
+            continue
+        return True
+    return False
+
+
+def _slip_math_ok(days):
+    """Recompute every slip's winning bets and return from its own legs."""
+    for day in days:
+        for s in day["s"]:
+            legs = [day["l"][i] for i in s["legs"]]
+            n = len(legs)
+            if s["y"] == "Single":
+                combos = [(0,)]
+            elif s["b"] == 1:
+                combos = [tuple(range(n))]
+            else:
+                combos = [c for k in range(1, n + 1) for c in _it.combinations(range(n), k)]
+            if len(combos) != s["b"]:
+                return False
+            wb, ret = 0, 0.0
+            for c in combos:
+                if all(legs[i]["w"] for i in c):
+                    wb += 1
+                    prod = 1.0
+                    for i in c:
+                        prod *= legs[i]["p"]
+                    ret += prod
+            if wb != s["wb"] or abs(ret - s["ret"]) > 0.05:
+                return False
+    return True
+
+
+check("slip results: the page carries settled days", bool(_sr), len(_sr))
+check("slip results: days are newest first",
+      [d["d"] for d in _sr] == sorted([d["d"] for d in _sr], reverse=True))
+check("slip results: every leg carries a price and a stored finish",
+      all(l.get("p") and l.get("f") and l.get("w") in (0, 1)
+          for d in _sr for l in d["l"]))
+check("slip results: every slip only names legs from its own day",
+      all(0 <= i < len(d["l"]) for d in _sr for s in d["s"] for i in s["legs"]))
+check("slip results: every leg matches a stored pick and finish",
+      all(_stored_leg_ok(d, l) for d in _sr for l in d["l"]))
+check("slip results: the return is recomputable from its own legs",
+      _slip_math_ok(_sr))
+check("slip results: singles carry one leg and slips are numbered in order",
+      all(s["legs"] == [s["legs"][0]] for d in _sr for s in d["s"] if s["y"] == "Single")
+      and all([s["n"] for s in d["s"]] == list(range(1, len(d["s"]) + 1)) for d in _sr))
+check("slip results: a slip never claims more winning bets than it has",
+      all(0 <= s["wb"] <= s["b"] for d in _sr for s in d["s"]))
+check("slip results: the tab says returns are at archived card prices",
+      "settled at its card prices" in _bet_html
+      and "one unit per bet" in _bet_html)
 
 print()
 print("passed %d, failed %d%s" % (

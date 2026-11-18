@@ -830,7 +830,7 @@ since `dist/public/index.html` is the whole site.
 
 ## The page
 
-Seventeen destinations, each a job rather than a data source. Old tab names still
+Nineteen destinations, each a job rather than a data source. Old tab names still
 resolve to their new home, so saved links and the browser's remembered tab keep
 working.
 
@@ -841,6 +841,8 @@ working.
 | Overhyped | Market favourites the model ranks third or worse, or rates at least five points below the price. |
 | Place bankers | Model top picks that are also the market favourite, 20%+ win chance, field of five or more; the each-way terms are shown, not a place probability. |
 | Bet slips | Win-only singles, doubles, trebles, four-folds and Lucky 15/31/63 from the strongest priced value legs, plus the standard named-slip table. |
+| Upcoming slips | The same slips, with the legs queued by the next off instead of by edge, so the tab shows the races still to come. |
+| Slip results | The same rule replayed on settled days from the archived pre-race card, with every leg's finish and every slip's winning bets and return at card prices. |
 | Cards | Pick any race and inspect every runner the model scored, with the full rating table. |
 | UK results | Settled UK results, market checks and the standing model audits. |
 | Irish results | Settled Irish races, split from the UK ledger by course. |
@@ -871,12 +873,20 @@ working.
 * The **Chile** tab has no market factor at all: PMU publishes no price for
   Valparaíso. The price column stays blank rather than estimated, and the tab
   says the pick is scored on the factors the card carries.
-* The **Longshots**, **Overhyped**, **Place bankers** and **Bet slips** tabs are
-  screens over the same win model, not new probabilities. The place tab is a
-  place profile, not a place chance; the slips use card prices and never invent
-  a leg, a price or a stake. Printing from **Bet slips** prints only the slips,
-  each kept whole; the navigation, explanatory copy and reference table are
-  omitted.
+* The **Longshots**, **Overhyped**, **Place bankers**, **Bet slips** and
+  **Upcoming slips** tabs are screens over the same win model, not new
+  probabilities. The place tab is a place profile, not a place chance; the slips
+  use card prices and never invent a leg, a price or a stake. Printing from
+  **Bet slips** prints only the slips, each kept whole; the navigation,
+  explanatory copy and reference table are omitted.
+* **Slip results** is settled history, not a tip. It replays the slip rule from
+  `data/cards/by_date` for each day in `data/results`, uses a leg only when the
+  archived pick and the stored pick agree, and stakes every bet in the named
+  structure at the archived card price. Only the settled UK, Irish and US ledger
+  (`data/results`) is replayed; the Hong Kong, French and Chilean ledgers are
+  separate. A day without enough priced, positive-edge legs simply produces
+  fewer slips. `tooling/slip_results.py` rebuilds the block and `refresh.py`
+  runs it on every build.
 * The **Hong Kong** tab carries today's HKJC card from the official source and
   settles its picks from the same feed's official finishing positions. A race is
   only settled once every declared runner has a position, and a stored pick is
