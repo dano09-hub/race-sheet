@@ -911,9 +911,11 @@ snapshot per race between twenty and three minutes before its post time into
 `data/hk_preoff/<date>/r<N>.json`; the **Hong Kong pre-race odds** workflow runs
 it every ten minutes through the meeting. A filed snapshot is never overwritten
 and a race that has already gone off is never captured, so the archive cannot
-hold a price that only existed after the result. Nothing scores from these
-files yet: they are the history a Hong Kong factor has to be measured against
-before any weight changes.
+hold a price that only existed after the result. A feed that cannot be read
+while a race is inside its window fails the run and names it, rather than
+reporting the quiet zero that hid the earlier results outages. Nothing scores
+from these files yet: they are the history a Hong Kong factor has to be
+measured against before any weight changes.
 
 `tooling/audit_hk.py` is that measurement. It scores form, official rating,
 weight, barrier draw and price on a chronological split of the archive, reading the price only

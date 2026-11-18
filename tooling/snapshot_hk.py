@@ -12,12 +12,14 @@ price without ever reading a figure that only existed after the race.
     python3 tooling/snapshot_hk.py --print     # show what would be filed
     python3 tooling/snapshot_hk.py --lead 15   # a different lead time
 
-Three rules keep the archive honest:
+Four rules keep the archive honest:
 
 * a filed snapshot is never overwritten, so the first pre-off price stands;
 * a race whose post time has passed is never captured, whatever the feed says;
 * a race whose runners do not match the archived card is skipped rather than
-  stored against the wrong field.
+  stored against the wrong field;
+* a feed that cannot be read while a race is inside its window ends the run
+  red, because the window it missed will not come round again.
 
 Nothing scores from these files yet. They exist so a Hong Kong factor can be
 measured against a price that was actually available before the off.
@@ -32,6 +34,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 
+import feed                                               # noqa: E402
 import scrape_hk                                          # noqa: E402
 
 OUT_DIR = os.path.join(ROOT, "data", "hk_preoff")
@@ -171,16 +174,26 @@ def main(argv=None):
         except (IndexError, ValueError):
             print(f"  HK odds:     --lead needs a number of minutes", file=sys.stderr)
             return 2
-    date_iso = _now().date().isoformat()
+    now = _now()
+    date_iso = now.date().isoformat()
     cards = _cards(date_iso)
     if not cards:
         print(f"  HK odds:     no Hong Kong card filed for {date_iso}")
         return 0
+    # No race inside its window means there is nothing to file, and the feed
+    # cannot change that. Staying off the network here keeps an outage outside
+    # the betting day from turning every ten-minute run red over no snapshot.
+    if not any(due(_parse(c.get("iso")), now, lead) for c in cards):
+        print(f"  HK odds:     nothing due for {date_iso}")
+        return 0
     try:
         payload = scrape_hk.fetch(date_iso.replace("-", "/"))
-    except Exception as e:
-        print(f"  HK odds:     feed unavailable ({e}); nothing filed")
-        return 0
+    except feed.FeedError as e:
+        # The feed has already been retried. A race whose window is open loses
+        # its snapshot for good if this run goes quiet, so say so and go red.
+        print(f"  HK odds:     FAILED ({e})")
+        print(f"::error::HK pre-race odds feed unavailable for {date_iso}: {e}")
+        return 1
     now = _now()
     found = collect(cards, payload, now, lead)
     if not found:

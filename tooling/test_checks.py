@@ -1792,6 +1792,56 @@ check("HK odds: the capture has its own workflow",
 check("HK odds: the workflow commits what it files",
       "data/hk_preoff" in _hk_odds_wf and "git push" in _hk_odds_wf)
 
+_hk_due_card = {"id": "hk-happy-valley-1118-r3", "course": "Happy Valley",
+                "race": "Ngong Ping Handicap", "time": "11:40",
+                "iso": "2026-11-18T11:40:00.000Z",
+                "runners": [{"horse": "Matzden"}, {"horse": "Never Settle"}]}
+_hk_early = dt.datetime(2026, 11, 18, 9, 0, tzinfo=dt.timezone.utc)
+_hk_old_now, _hk_old_cards = shk._now, shk._cards
+_hk_old_fetch = shk.scrape_hk.fetch
+
+
+def _hk_dead_fetch(date):
+    raise shk.feed.FeedError("HKJC meeting: no response after 3 attempts")
+
+
+try:
+    shk._now, shk._cards = (lambda: _now), (lambda date_iso: [_hk_due_card])
+    shk.scrape_hk.fetch = _hk_dead_fetch
+    _hk_dead_out = io.StringIO()
+    with contextlib.redirect_stdout(_hk_dead_out):
+        _hk_dead_rc = shk.main([])
+    _hk_dead_log = _hk_dead_out.getvalue()
+    check("HK odds: a dead feed inside the capture window ends the run red",
+          _hk_dead_rc != 0, _hk_dead_rc)
+    check("HK odds: the failed capture is annotated, not a quiet zero",
+          "::error::HK pre-race odds feed unavailable" in _hk_dead_log,
+          _hk_dead_log)
+    check("HK odds: the failure is not reported as nothing due",
+          "nothing due" not in _hk_dead_log, _hk_dead_log)
+
+    def _hk_must_not_fetch(date):
+        raise AssertionError("feed read with nothing due")
+
+    shk._now = lambda: _hk_early
+    shk.scrape_hk.fetch = _hk_must_not_fetch
+    with contextlib.redirect_stdout(io.StringIO()):
+        _hk_early_rc = shk.main([])
+    check("HK odds: nothing due is a green run and no feed request",
+          _hk_early_rc == 0, _hk_early_rc)
+
+    shk._now = lambda: _now
+    shk.scrape_hk.fetch = lambda date: _hk_payload
+    _hk_ok_out = io.StringIO()
+    with contextlib.redirect_stdout(_hk_ok_out):
+        _hk_ok_rc = shk.main(["--print"])
+    check("HK odds: a readable feed still exits green", _hk_ok_rc == 0, _hk_ok_rc)
+    check("HK odds: the green run carries the capture",
+          "MATZDEN" in _hk_ok_out.getvalue(), _hk_ok_out.getvalue()[:120])
+finally:
+    shk._now, shk._cards = _hk_old_now, _hk_old_cards
+    shk.scrape_hk.fetch = _hk_old_fetch
+
 print()
 print("Hong Kong factor audit")
 import audit_hk as ahk
