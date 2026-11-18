@@ -825,7 +825,7 @@ since `dist/public/index.html` is the whole site.
 
 ## The page
 
-Five tabs, each a job rather than a data source. Old tab names still resolve to
+Six tabs, each a job rather than a data source. Old tab names still resolve to
 their new home, so saved links and the browser's remembered tab keep working.
 
 | Tab | What it is for |
@@ -834,6 +834,7 @@ their new home, so saved links and the browser's remembered tab keep working.
 | Cards | Pick any race and inspect every runner the model scored, with the full rating table. |
 | Results | Settled UK/IRE results, market checks and the standing model audits. |
 | US racing | The US ledger, the US flags and the full angle board. |
+| Hong Kong | Today's official HKJC card, with each race's model pick, official rating, last-six form and barrier draw. |
 | Method | The fixed weights, how the chance is calibrated, and the evidence behind both. |
 
 ## Known caveats
@@ -845,6 +846,9 @@ their new home, so saved links and the browser's remembered tab keep working.
 * The Results tab is a snapshot. It does not poll for new results.
 * The Results tab is UK/IRE only. The **US racing** tab holds the US ledger and
   the US speed-figure A/B; both ledgers show the off time beside each course.
+* The **Hong Kong** tab carries today's HKJC card from the official source. Hong
+  Kong results are not settled yet, and prices stay blank until HKJC betting
+  opens rather than being estimated.
 * The race-by-race audit on Results is rebuilt from the latest settled UK/IRE
   day whenever the page or results are rebuilt; the model notes below it remain
   the 12 November development note.
