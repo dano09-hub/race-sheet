@@ -73,6 +73,11 @@ jobs:
         # report failing must never hold back the results commit or the page.
         continue-on-error: true
         run: python3 tooling/audit_hk.py --out data/hk_audit/latest.txt
+      - name: Summarise ledger times
+        # Runs even after a red feed failure: the summary should say how fresh
+        # the UK and Irish ledgers are, not hide the partial run.
+        if: always()
+        run: python3 tooling/ledger_summary.py
       - name: Commit results
         id: commit
         # A failed US fetch ends the run red, but it must not strand the day's

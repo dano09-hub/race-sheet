@@ -1004,7 +1004,9 @@ called definitive; a race still in progress is left open for the next sweep.
 Every results tab also states when its ledger last changed in UTC. The time is
 written only when a race or pick actually changes, so a no-op sweep preserves
 it. Rows filed before that field existed show their latest day and say the
-settlement time was not recorded rather than guessing one.
+settlement time was not recorded rather than guessing one. The results
+workflow also writes the UK and Irish ledger times to its Actions run summary,
+so the same freshness is visible without opening the page.
 
 ## Which countries can we actually cover?
 

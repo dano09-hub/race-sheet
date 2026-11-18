@@ -36,6 +36,7 @@ import eachway         # noqa: E402
 import fetch_formfav as ff  # noqa: E402
 import fetch_results_sl as sl  # noqa: E402
 import refresh         # noqa: E402
+import ledger_summary as lsum  # noqa: E402
 import parse_cards as pcards  # noqa: E402
 import recheck_market  # noqa: E402
 import settle          # noqa: E402
@@ -2169,6 +2170,9 @@ check("results: the guard names the message the job actually writes",
       'git commit -m "Live results' in _res_yml)
 check("results: the cron covers the late evening meetings",
       "*/20 0-3,12-23 * * *" in _res_yml)
+check("results: the run summary reports the UK and Irish ledger times",
+      "tooling/ledger_summary.py" in _res_yml
+      and _res_yml.index("ledger_summary.py") < _res_yml.index("Commit results"))
 
 print()
 print("France (PMU)")
@@ -2430,6 +2434,43 @@ with tempfile.TemporaryDirectory(prefix="ledger-switch-") as fd:
               and "Latest result" not in _after_ire, _after_ire[:200])
     finally:
         refresh.ROOT, refresh._utcnow = _old_root, _old_clock
+
+with tempfile.TemporaryDirectory(prefix="ledger-summary-") as fd:
+    _old_root = refresh.ROOT
+    try:
+        refresh.ROOT = fd
+        os.makedirs(os.path.join(fd, "data", "results"))
+        _legacy = [
+            {"course": "Hereford", "time": "13:00", "race": "Old UK",
+             "winner": "A", "places": ["A"], "pick": "A"},
+            {"course": "Dundalk", "time": "14:00", "race": "Old IRE",
+             "winner": "B", "places": ["B"], "pick": "B"},
+        ]
+        with open(os.path.join(fd, "data", "results", "2026-11-18.json"),
+                  "w", encoding="utf-8") as f:
+            json.dump(_legacy, f)
+        _txt = lsum.render()
+        check("summary: the UK and Irish ledgers are both named",
+              "**UK:**" in _txt and "**Irish:**" in _txt, _txt)
+        check("summary: legacy rows show the latest day, not a made-up time",
+              "latest result **18 November 2026**" in _txt
+              and "last changed" not in _txt, _txt)
+        _fresh = [dict(r) for r in _legacy] + [
+            {"course": "Hereford", "time": "14:00", "race": "New UK",
+             "winner": "C", "places": ["C"], "pick": "C",
+             "settled_at": "2026-11-19T13:05:00Z"},
+            {"course": "Dundalk", "time": "15:00", "race": "New IRE",
+             "winner": "D", "places": ["D"], "pick": "D",
+             "settled_at": "2026-11-19T13:05:00Z"},
+        ]
+        with open(os.path.join(fd, "data", "results", "2026-11-19.json"),
+                  "w", encoding="utf-8") as f:
+            json.dump(_fresh, f)
+        _txt = lsum.render()
+        check("summary: a stamped ledger shows the exact UTC time",
+              "last changed **19 November 2026, 13:05 UTC**" in _txt, _txt)
+    finally:
+        refresh.ROOT = _old_root
 
 _hk_dir, _hk_picks, _hk_clock = hkmod.OUT_DIR, hkmod._picks, hkmod._utcnow
 try:
