@@ -2372,6 +2372,18 @@ _us_block = refresh.results_block_us("2026-11-18", [{
 check("US ledger: the results tab shows the last-changed UTC time",
       'id="usLedger"' in _us_block and "18 November 2026, 20:00 UTC" in _us_block,
       _us_block[:200])
+_uk_block = refresh.results_block("2026-11-18", [{
+    "course": "Hereford", "time": "13:00", "race": "X", "winner": "A",
+    "places": ["A"], "pick": "A", "settled_at": "2026-11-18T20:00:00Z"}])
+check("UK ledger: the results tab shows the last-changed UTC time",
+      'id="ukLedger"' in _uk_block and "18 November 2026, 20:00 UTC" in _uk_block,
+      _uk_block[:200])
+_ire_block = refresh.results_block_ire("2026-11-18", [{
+    "course": "Dundalk", "time": "14:00", "race": "Y", "winner": "B",
+    "places": ["B"], "pick": "B", "settled_at": "2026-11-18T20:00:00Z"}])
+check("Irish ledger: the results tab shows the last-changed UTC time",
+      'id="ireLedger"' in _ire_block and "18 November 2026, 20:00 UTC" in _ire_block,
+      _ire_block[:200])
 
 _hk_dir, _hk_picks, _hk_clock = hkmod.OUT_DIR, hkmod._picks, hkmod._utcnow
 try:
@@ -2429,6 +2441,8 @@ check("France and Chile: the results tabs show when the ledger last changed",
       'id="frLedger"' in _fr_page and 'id="clLedger"' in _fr_page)
 check("US and HK: the results tabs show when the ledger last changed",
       'id="usLedger"' in _fr_page and 'id="hkLedger"' in _fr_page)
+check("UK and Irish: the results tabs show when the ledger last changed",
+      'id="ukLedger"' in _fr_page and 'id="ireLedger"' in _fr_page)
 check("France: the serve copy matches the page",
       _fr_page == (ROOT / "dist" / "public" / "index.html").read_text(encoding="utf-8"))
 _res_yml = (ROOT / ".github" / "workflows" / "results.yml").read_text(encoding="utf-8")

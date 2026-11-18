@@ -1001,11 +1001,10 @@ meeting that finishes in the evening is settled the same night instead of
 waiting for the midnight run. Each run files only arrivals PMU has already
 called definitive; a race still in progress is left open for the next sweep.
 
-The France, Chile, US and Hong Kong results tabs also state when their ledger
-last changed in UTC. The time is written only when a race or pick actually
-changes, so a no-op sweep preserves it. Rows filed before that field existed
-show their latest day and say the settlement time was not recorded rather than
-guessing one.
+Every results tab also states when its ledger last changed in UTC. The time is
+written only when a race or pick actually changes, so a no-op sweep preserves
+it. Rows filed before that field existed show their latest day and say the
+settlement time was not recorded rather than guessing one.
 
 ## Which countries can we actually cover?
 

@@ -603,7 +603,10 @@ def results_block(iso, rows):
         return ('<!-- RESULTS_SL_START -->\n'
                 '<p class="method">No UK results for this day.</p>\n'
                 '<!-- RESULTS_SL_END -->')
-    return ("<!-- RESULTS_SL_START -->\n" + _results_inner(iso, rows, "UK")
+    stamp = _ledger_line(max((r.get("settled_at") or "" for r in rows), default=""),
+                         iso, "ukLedger")
+    return ("<!-- RESULTS_SL_START -->\n" + stamp
+            + _results_inner(iso, rows, "UK")
             + "\n<!-- RESULTS_SL_END -->")
 
 
@@ -614,7 +617,10 @@ def results_block_ire(iso, rows):
         return ('<!-- IRE_RESULTS_SL_START -->\n'
                 '<p class="method">No Irish results for this day.</p>\n'
                 '<!-- IRE_RESULTS_SL_END -->')
-    return ("<!-- IRE_RESULTS_SL_START -->\n" + _results_inner(iso, rows, "Irish")
+    stamp = _ledger_line(max((r.get("settled_at") or "" for r in rows), default=""),
+                         iso, "ireLedger")
+    return ("<!-- IRE_RESULTS_SL_START -->\n" + stamp
+            + _results_inner(iso, rows, "Irish")
             + "\n<!-- IRE_RESULTS_SL_END -->")
 
 
@@ -708,8 +714,10 @@ def results_block_all():
     parts = _results_all("GB")
     if not parts:
         return None
-    return ("<!-- RESULTS_SL_START -->\n" + "\n".join(parts)
-            + "\n<!-- RESULTS_SL_END -->")
+    updated, date_iso = _results_meta("GB")
+    return ("<!-- RESULTS_SL_START -->\n"
+            + _ledger_line(updated, date_iso, "ukLedger")
+            + "\n".join(parts) + "\n<!-- RESULTS_SL_END -->")
 
 
 def results_block_all_ire():
@@ -717,8 +725,10 @@ def results_block_all_ire():
     parts = _results_all("IRE")
     if not parts:
         return None
-    return ("<!-- IRE_RESULTS_SL_START -->\n" + "\n".join(parts)
-            + "\n<!-- IRE_RESULTS_SL_END -->")
+    updated, date_iso = _results_meta("IRE")
+    return ("<!-- IRE_RESULTS_SL_START -->\n"
+            + _ledger_line(updated, date_iso, "ireLedger")
+            + "\n".join(parts) + "\n<!-- IRE_RESULTS_SL_END -->")
 
 
 def results_block_all_us():
