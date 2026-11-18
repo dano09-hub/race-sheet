@@ -1503,7 +1503,7 @@ check("calibration: the market book is normalised and keeps the blank",
 print()
 print("model chance column")
 page = (ROOT / "index.html").read_text(encoding="utf-8")
-check("page: the card table prints a model chance", "<th>Model</th>" in page)
+check("page: the card table prints a model chance", "<th>Model %</th>" in page)
 check("page: the chance uses the held-out scale",
       "CALIBRATION_SCALE = 0.04" in page)
 check("page: the chance is a softmax, not a raw share",
