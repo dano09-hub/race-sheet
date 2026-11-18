@@ -842,7 +842,7 @@ working.
 | Place bankers | Model top picks that are also the market favourite, 20%+ win chance, field of five or more; the each-way terms are shown, not a place probability. |
 | Bet slips | Win-only singles, doubles, trebles, four-folds and Lucky 15/31/63 from the strongest priced value legs, plus the standard named-slip table. |
 | Upcoming slips | The same slips, with the legs queued by the next off instead of by edge, so the tab shows the races still to come. |
-| Slip results | The same rule replayed on settled days from the archived pre-race card, with every leg's finish and every slip's winning bets and return at card prices. |
+| Slip results | The same rule replayed on settled days from the archived pre-race card, with every leg's finish, every slip's winning bets and return at card prices, and a running strike rate across all settled days combined. |
 | Cards | Pick any race and inspect every runner the model scored, with the full rating table. |
 | UK results | Settled UK results, market checks and the standing model audits. |
 | Irish results | Settled Irish races, split from the UK ledger by course. |
@@ -885,8 +885,12 @@ working.
   structure at the archived card price. Only the settled UK, Irish and US ledger
   (`data/results`) is replayed; the Hong Kong, French and Chilean ledgers are
   separate. A day without enough priced, positive-edge legs simply produces
-  fewer slips. `tooling/slip_results.py` rebuilds the block and `refresh.py`
-  runs it on every build.
+  fewer slips. The running panel above the day buttons combines every settled
+  day, oldest first, with legs won, slips fully landed and winning bets against
+  the total, plus the net at card prices; it counts each generated slip in
+  full, so the same race can appear in more than one slip.
+  `tooling/slip_results.py` rebuilds the block and `refresh.py` runs it on every
+  build.
 * The **Hong Kong** tab carries today's HKJC card from the official source and
   settles its picks from the same feed's official finishing positions. A race is
   only settled once every declared runner has a position, and a stored pick is

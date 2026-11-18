@@ -1312,6 +1312,17 @@
   .slipres-day.on small { color:#c8d2cc; }
   .slipres-sum { display:flex; flex-wrap:wrap; gap:8px 18px; margin:14px 0 4px; color:var(--muted); font-size:12px; }
   .slipres-sum b { color:var(--ink); }
+  .sliprun { margin:16px 0 0; padding:14px 16px 12px; border:1px solid var(--line); border-radius:10px; background:#fbfaf6; }
+  .sliprun h3 { margin:0; font-size:13px; }
+  .sliprun-note { margin:4px 0 12px; color:var(--muted); font-size:11px; line-height:1.45; }
+  .sliprun-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:12px 18px; }
+  .sliprun-cell small { display:block; color:var(--muted); font-size:9.5px; text-transform:uppercase; letter-spacing:.06em; }
+  .sliprun-cell b { display:block; margin:2px 0; font:700 17px var(--mono); white-space:nowrap; }
+  .sliprun-cell span { display:block; color:var(--muted); font-size:10.5px; }
+  .sliprun-cap { margin:14px 0 5px; color:var(--muted); font-size:10px; text-transform:uppercase; letter-spacing:.06em; }
+  .sliprun-table td, .sliprun-table th { font-size:11.5px; white-space:nowrap; }
+  .sliprun-table td .pct { color:var(--muted); }
+  .sliprun-table tr.sliprun-total td { font-weight:700; background:#f3f1ea; }
   .slip-res .slip-leg { cursor:default; }
   .slip-leg.res-win { background:linear-gradient(90deg,#f2faf5,transparent 72%); }
   .slip-leg.res-lost { opacity:.74; }
@@ -1556,6 +1567,7 @@
   <section class="panel" data-panel="slipresults">
     <h2>Slip results</h2>
     <p class="method">The win-only slip rule replayed on settled days from the <b>pre-race card held in this build</b>. A leg is used only when the archived card had a price, the model&rsquo;s top pick had a positive edge and the stored result names that same pick, so nothing is re-scored after the result. Each slip is settled at its card prices, one unit per bet: a named slip stakes every bet in its structure, and the footer shows what came back against what was staked. Only the page&rsquo;s settled UK, Irish and US ledger is replayed here; Hong Kong, French and Chilean results live in their own tabs and are not mixed in.</p>
+    <div id="slipRunSummary"></div>
     <div class="slipres-daybar" id="slipResDays"></div>
     <div class="slipres-sum" id="slipResSummary"></div>
     <div id="slipResultsBody"></div>
@@ -8580,6 +8592,61 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
       '<div class="slip-grid">' + d.s.map(function (s) { return slipResCard(d, s); }).join('') + '</div>';
   }
 
+  /* Every settled day added together, oldest first: the day buttons show one
+     day at a time, and this tracks the ladder as a whole. */
+  function slipRunPct(part, whole) {
+    return whole ? (100 * part / whole).toFixed(1) + '%' : '\u2014';
+  }
+
+  function slipRunSigned(v, dp) {
+    return (v < 0 ? '\u2212' : '+') + Math.abs(v).toFixed(dp === undefined ? 2 : dp);
+  }
+
+  function slipRunHtml() {
+    var rows = SLIP_RESULTS.slice().sort(function (a, b) { return a.d < b.d ? -1 : 1; });
+    var run = {l: 0, lw: 0, s: 0, sw: 0, b: 0, bw: 0, ret: 0, staked: 0};
+    var body = rows.map(function (d) {
+      var lw = d.l.filter(function (l) { return l.w; }).length;
+      var sw = 0, b = 0, bw = 0, ret = 0;
+      d.s.forEach(function (s) {
+        b += s.b; bw += s.wb; ret += s.ret;
+        if (slipResVerdict(s) === 'won') sw++;
+      });
+      run.l += d.l.length; run.lw += lw;
+      run.s += d.s.length; run.sw += sw;
+      run.b += b; run.bw += bw; run.ret += ret; run.staked += b;
+      return '<tr><td><b>' + esc(slipDayLabel(d.d)) + '</b></td>' +
+        '<td class="num">' + run.lw + ' of ' + run.l + ' <span class="pct">' + slipRunPct(run.lw, run.l) + '</span></td>' +
+        '<td class="num">' + run.sw + ' of ' + run.s + ' <span class="pct">' + slipRunPct(run.sw, run.s) + '</span></td>' +
+        '<td class="num">' + run.bw + ' of ' + run.b + ' <span class="pct">' + slipRunPct(run.bw, run.b) + '</span></td>' +
+        '<td class="num">' + slipRunSigned(run.ret - run.staked) + '</td></tr>';
+    }).join('');
+    var net = run.ret - run.staked;
+    var roi = run.staked ? 100 * net / run.staked : 0;
+    var totalRow = '<tr class="sliprun-total"><td>All ' + rows.length + ' days</td>' +
+      '<td class="num">' + run.lw + ' of ' + run.l + ' <span class="pct">' + slipRunPct(run.lw, run.l) + '</span></td>' +
+      '<td class="num">' + run.sw + ' of ' + run.s + ' <span class="pct">' + slipRunPct(run.sw, run.s) + '</span></td>' +
+      '<td class="num">' + run.bw + ' of ' + run.b + ' <span class="pct">' + slipRunPct(run.bw, run.b) + '</span></td>' +
+      '<td class="num">' + slipRunSigned(net) + '</td></tr>';
+    return '<div class="sliprun"><h3>Running strike rate</h3>' +
+      '<p class="sliprun-note">Every settled day added together, oldest first. Each day stakes every slip the ladder generated that day in full, one unit per bet, so the same race can sit in more than one slip. Card prices, win only.</p>' +
+      '<div class="sliprun-grid">' +
+        '<div class="sliprun-cell"><small>Legs won</small><b>' + run.lw + ' of ' + run.l + '</b><span>' + slipRunPct(run.lw, run.l) + ' of legs</span></div>' +
+        '<div class="sliprun-cell"><small>Slips landed</small><b>' + run.sw + ' of ' + run.s + '</b><span>' + slipRunPct(run.sw, run.s) + ' fully landed</span></div>' +
+        '<div class="sliprun-cell"><small>Bets won</small><b>' + run.bw + ' of ' + run.b + '</b><span>' + slipRunPct(run.bw, run.b) + ' of bets</span></div>' +
+        '<div class="sliprun-cell"><small>Net</small><b>' + slipRunSigned(net) + '</b><span>' + slipRunSigned(roi, 1) + '% on ' + run.staked + ' staked</span></div>' +
+      '</div>' +
+      '<p class="sliprun-cap">Running totals after each day</p>' +
+      '<div class="scroll"><table class="ledger sliprun-table"><thead><tr><th>Day</th><th>Legs</th><th>Slips</th><th>Bets</th><th>Net</th></tr></thead><tbody>' +
+        body + totalRow + '</tbody></table></div></div>';
+  }
+
+  function renderSlipRun() {
+    var box = $('slipRunSummary');
+    if (!box) return;
+    box.innerHTML = SLIP_RESULTS.length ? slipRunHtml() : '';
+  }
+
   function renderSlipResultDays() {
     var box = $('slipResDays');
     if (!box) return;
@@ -8604,6 +8671,7 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
   function renderSlipResults() {
     var box = $('slipResultsBody');
     if (!box) return;
+    renderSlipRun();
     if (!SLIP_RESULTS.length) {
       box.innerHTML = '<p class="bet-empty">No settled slip yet. A day enters this tab only after its legs have a stored result and the archived pick matches the stored pick.</p>';
       if ($('slipResSummary')) $('slipResSummary').innerHTML = '';

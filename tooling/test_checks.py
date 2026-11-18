@@ -2745,6 +2745,23 @@ check("slip results: a slip never claims more winning bets than it has",
 check("slip results: the tab says returns are at archived card prices",
       "settled at its card prices" in _bet_html
       and "one unit per bet" in _bet_html)
+check("slip results: a running strike-rate panel sits above the days",
+      'id="slipRunSummary"' in _bet_html
+      and _bet_html.index('id="slipRunSummary"') < _bet_html.index('id="slipResDays"'))
+check("slip results: the running panel folds in every settled day, oldest first",
+      "function slipRunHtml" in _bet_html
+      and "SLIP_RESULTS.slice().sort(" in _bet_html
+      and "run.l += d.l.length" in _bet_html
+      and "run.b += b" in _bet_html
+      and "All ' + rows.length + ' days" in _bet_html)
+check("slip results: the running panel is rendered with the tab",
+      "function renderSlipRun" in _bet_html
+      and "renderSlipRun();" in _bet_html)
+check("slip results: the running panel counts legs, slips and bets and says so",
+      "Running strike rate" in _bet_html
+      and "Legs won" in _bet_html and "Slips landed" in _bet_html
+      and "Bets won" in _bet_html
+      and "one unit per bet, so the same race can sit in more than one slip" in _bet_html)
 
 print()
 print("passed %d, failed %d%s" % (
