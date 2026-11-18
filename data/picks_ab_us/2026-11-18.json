@@ -1,0 +1,595 @@
+{
+ "date": "2026-11-18",
+ "generated": "2026-11-18T02:52:04",
+ "note": "A/B of the twelve-factor model with and without a speed figure in the ts slot",
+ "metric": "ts",
+ "label": "speed figure",
+ "cards": 83,
+ "same": 64,
+ "changed": 19,
+ "ratedRunners": 638,
+ "runners": 655,
+ "rows": [
+  {
+   "course": "Charles Town",
+   "time": "00:00",
+   "withRating": "El Papacito",
+   "withoutRating": "Chucky Our Law",
+   "changed": true
+  },
+  {
+   "course": "Charles Town",
+   "time": "00:30",
+   "withRating": "Mi Dinero",
+   "withoutRating": "Daufuskie Island",
+   "changed": true
+  },
+  {
+   "course": "Charles Town",
+   "time": "00:57",
+   "withRating": "Coronation Time",
+   "withoutRating": "Coronation Time",
+   "changed": false
+  },
+  {
+   "course": "Charles Town",
+   "time": "01:25",
+   "withRating": "McDougal",
+   "withoutRating": "McDougal",
+   "changed": false
+  },
+  {
+   "course": "Charles Town",
+   "time": "01:53",
+   "withRating": "Devastating",
+   "withoutRating": "Devastating",
+   "changed": false
+  },
+  {
+   "course": "Charles Town",
+   "time": "02:21",
+   "withRating": "Delightful Dixie",
+   "withoutRating": "Delightful Dixie",
+   "changed": false
+  },
+  {
+   "course": "Charles Town",
+   "time": "02:49",
+   "withRating": "Malibu Years",
+   "withoutRating": "Malibu Years",
+   "changed": false
+  },
+  {
+   "course": "Charles Town",
+   "time": "03:17",
+   "withRating": "Hey Boots",
+   "withoutRating": "Hey Boots",
+   "changed": false
+  },
+  {
+   "course": "Churchill Downs",
+   "time": "18:00",
+   "withRating": "Flaming Verdict",
+   "withoutRating": "Flaming Verdict",
+   "changed": false
+  },
+  {
+   "course": "Churchill Downs",
+   "time": "18:29",
+   "withRating": "Golexgo",
+   "withoutRating": "Bamtwentyklater",
+   "changed": true
+  },
+  {
+   "course": "Churchill Downs",
+   "time": "18:58",
+   "withRating": "Big Star Bound",
+   "withoutRating": "Justico",
+   "changed": true
+  },
+  {
+   "course": "Churchill Downs",
+   "time": "19:27",
+   "withRating": "Diagram",
+   "withoutRating": "Diagram",
+   "changed": false
+  },
+  {
+   "course": "Churchill Downs",
+   "time": "19:57",
+   "withRating": "Golden Latte",
+   "withoutRating": "Golden Latte",
+   "changed": false
+  },
+  {
+   "course": "Churchill Downs",
+   "time": "20:26",
+   "withRating": "Mikelle",
+   "withoutRating": "Mikelle",
+   "changed": false
+  },
+  {
+   "course": "Churchill Downs",
+   "time": "20:55",
+   "withRating": "Night Kiss",
+   "withoutRating": "Night Kiss",
+   "changed": false
+  },
+  {
+   "course": "Churchill Downs",
+   "time": "21:25",
+   "withRating": "Pagode",
+   "withoutRating": "Pagode",
+   "changed": false
+  },
+  {
+   "course": "Churchill Downs",
+   "time": "21:55",
+   "withRating": "Batcycle",
+   "withoutRating": "Batcycle",
+   "changed": false
+  },
+  {
+   "course": "Delta Downs",
+   "time": "22:40",
+   "withRating": "Wild Bert",
+   "withoutRating": "Wild Bert",
+   "changed": false
+  },
+  {
+   "course": "Delta Downs",
+   "time": "23:08",
+   "withRating": "Emily's Boy",
+   "withoutRating": "Emily's Boy",
+   "changed": false
+  },
+  {
+   "course": "Delta Downs",
+   "time": "23:36",
+   "withRating": "Powerful Rose",
+   "withoutRating": "G's Soxy",
+   "changed": true
+  },
+  {
+   "course": "Delta Downs",
+   "time": "00:04",
+   "withRating": "Radiant Rebel",
+   "withoutRating": "Radiant Rebel",
+   "changed": false
+  },
+  {
+   "course": "Delta Downs",
+   "time": "00:32",
+   "withRating": "Nectar of the Gods",
+   "withoutRating": "Nectar of the Gods",
+   "changed": false
+  },
+  {
+   "course": "Delta Downs",
+   "time": "01:00",
+   "withRating": "Mo Diva",
+   "withoutRating": "Mo Diva",
+   "changed": false
+  },
+  {
+   "course": "Delta Downs",
+   "time": "01:28",
+   "withRating": "Loving Creed",
+   "withoutRating": "Loving Creed",
+   "changed": false
+  },
+  {
+   "course": "Delta Downs",
+   "time": "01:56",
+   "withRating": "Irish Punch",
+   "withoutRating": "Irish Punch",
+   "changed": false
+  },
+  {
+   "course": "Finger Lakes",
+   "time": "17:10",
+   "withRating": "Ry's Advantage",
+   "withoutRating": "Poppy's Ticket",
+   "changed": true
+  },
+  {
+   "course": "Finger Lakes",
+   "time": "17:38",
+   "withRating": "Rumblyoungmanrumbl",
+   "withoutRating": "Rumblyoungmanrumbl",
+   "changed": false
+  },
+  {
+   "course": "Finger Lakes",
+   "time": "18:06",
+   "withRating": "Straca",
+   "withoutRating": "Straca",
+   "changed": false
+  },
+  {
+   "course": "Finger Lakes",
+   "time": "18:34",
+   "withRating": "Striker Joe",
+   "withoutRating": "Striker Joe",
+   "changed": false
+  },
+  {
+   "course": "Finger Lakes",
+   "time": "19:03",
+   "withRating": "Ready Set Twirl",
+   "withoutRating": "Ready Set Twirl",
+   "changed": false
+  },
+  {
+   "course": "Finger Lakes",
+   "time": "19:32",
+   "withRating": "The Institute",
+   "withoutRating": "The Institute",
+   "changed": false
+  },
+  {
+   "course": "Finger Lakes",
+   "time": "20:01",
+   "withRating": "Bourbon Chase",
+   "withoutRating": "Bourbon Chase",
+   "changed": false
+  },
+  {
+   "course": "Finger Lakes",
+   "time": "20:30",
+   "withRating": "Wildcat Annie",
+   "withoutRating": "Wildcat Annie",
+   "changed": false
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "17:15",
+   "withRating": "King of Sheba",
+   "withoutRating": "King of Sheba",
+   "changed": false
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "17:43",
+   "withRating": "Brick Ambush",
+   "withoutRating": "Brick Ambush",
+   "changed": false
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "18:11",
+   "withRating": "Wicca Wisdom",
+   "withoutRating": "Wicca Wisdom",
+   "changed": false
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "18:39",
+   "withRating": "Kat Trax",
+   "withoutRating": "Kat Trax",
+   "changed": false
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "19:07",
+   "withRating": "All My Life",
+   "withoutRating": "All My Life",
+   "changed": false
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "19:35",
+   "withRating": "Emerson Jones",
+   "withoutRating": "Emerson Jones",
+   "changed": false
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "20:03",
+   "withRating": "Aye Aye Sir",
+   "withoutRating": "Undalay",
+   "changed": true
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "20:31",
+   "withRating": "Opalite",
+   "withoutRating": "The Way It Is",
+   "changed": true
+  },
+  {
+   "course": "Mountaineer",
+   "time": "00:00",
+   "withRating": "Replevin",
+   "withoutRating": "Replevin",
+   "changed": false
+  },
+  {
+   "course": "Mountaineer",
+   "time": "00:25",
+   "withRating": "True Patriot",
+   "withoutRating": "Gamay",
+   "changed": true
+  },
+  {
+   "course": "Mountaineer",
+   "time": "00:50",
+   "withRating": "Giacomo Casanova",
+   "withoutRating": "Zealous Storm",
+   "changed": true
+  },
+  {
+   "course": "Mountaineer",
+   "time": "01:15",
+   "withRating": "Hunts Promise",
+   "withoutRating": "Hunts Promise",
+   "changed": false
+  },
+  {
+   "course": "Mountaineer",
+   "time": "01:40",
+   "withRating": "Diamond Dancer",
+   "withoutRating": "Diamond Dancer",
+   "changed": false
+  },
+  {
+   "course": "Mountaineer",
+   "time": "02:05",
+   "withRating": "Mama Marge",
+   "withoutRating": "Mama Marge",
+   "changed": false
+  },
+  {
+   "course": "Mountaineer",
+   "time": "02:30",
+   "withRating": "Arapaho Nation",
+   "withoutRating": "Arapaho Nation",
+   "changed": false
+  },
+  {
+   "course": "Mountaineer",
+   "time": "02:55",
+   "withRating": "Tyrus",
+   "withoutRating": "Tyrus",
+   "changed": false
+  },
+  {
+   "course": "Parx Racing",
+   "time": "17:05",
+   "withRating": "Highway Patrol",
+   "withoutRating": "Highway Patrol",
+   "changed": false
+  },
+  {
+   "course": "Parx Racing",
+   "time": "17:32",
+   "withRating": "Youbetterbejoking",
+   "withoutRating": "Youbetterbejoking",
+   "changed": false
+  },
+  {
+   "course": "Parx Racing",
+   "time": "17:59",
+   "withRating": "Goldieness",
+   "withoutRating": "Goldieness",
+   "changed": false
+  },
+  {
+   "course": "Parx Racing",
+   "time": "18:26",
+   "withRating": "Foil",
+   "withoutRating": "Good Sal",
+   "changed": true
+  },
+  {
+   "course": "Parx Racing",
+   "time": "18:53",
+   "withRating": "Canuto",
+   "withoutRating": "Kunshan Bridge",
+   "changed": true
+  },
+  {
+   "course": "Parx Racing",
+   "time": "19:20",
+   "withRating": "Tiz It Is",
+   "withoutRating": "Tiz It Is",
+   "changed": false
+  },
+  {
+   "course": "Parx Racing",
+   "time": "19:47",
+   "withRating": "Missy Sixtysix",
+   "withoutRating": "Allenhurst",
+   "changed": true
+  },
+  {
+   "course": "Parx Racing",
+   "time": "20:14",
+   "withRating": "Red Zone Runner",
+   "withoutRating": "Red Zone Runner",
+   "changed": false
+  },
+  {
+   "course": "Parx Racing",
+   "time": "20:41",
+   "withRating": "Yautown",
+   "withoutRating": "Yautown",
+   "changed": false
+  },
+  {
+   "course": "Penn National",
+   "time": "22:45",
+   "withRating": "Holy Ground",
+   "withoutRating": "Holy Ground",
+   "changed": false
+  },
+  {
+   "course": "Penn National",
+   "time": "23:14",
+   "withRating": "Bossbabe Vibes",
+   "withoutRating": "Royal Mist",
+   "changed": true
+  },
+  {
+   "course": "Penn National",
+   "time": "23:43",
+   "withRating": "Whisper Roar",
+   "withoutRating": "Whisper Roar",
+   "changed": false
+  },
+  {
+   "course": "Penn National",
+   "time": "00:12",
+   "withRating": "Heaven Street",
+   "withoutRating": "Heaven Street",
+   "changed": false
+  },
+  {
+   "course": "Penn National",
+   "time": "00:41",
+   "withRating": "Midsummer Mo",
+   "withoutRating": "Midsummer Mo",
+   "changed": false
+  },
+  {
+   "course": "Penn National",
+   "time": "01:10",
+   "withRating": "National Law",
+   "withoutRating": "National Law",
+   "changed": false
+  },
+  {
+   "course": "Penn National",
+   "time": "01:39",
+   "withRating": "Broadway Musical",
+   "withoutRating": "Broadway Musical",
+   "changed": false
+  },
+  {
+   "course": "Penn National",
+   "time": "02:08",
+   "withRating": "Frosty the Giant",
+   "withoutRating": "Mad Banker",
+   "changed": true
+  },
+  {
+   "course": "Remington Park",
+   "time": "00:30",
+   "withRating": "Frizzle",
+   "withoutRating": "Frizzle",
+   "changed": false
+  },
+  {
+   "course": "Remington Park",
+   "time": "00:58",
+   "withRating": "Protomagic",
+   "withoutRating": "Protomagic",
+   "changed": false
+  },
+  {
+   "course": "Remington Park",
+   "time": "01:26",
+   "withRating": "Powerchord",
+   "withoutRating": "Powerchord",
+   "changed": false
+  },
+  {
+   "course": "Remington Park",
+   "time": "01:54",
+   "withRating": "Compressed",
+   "withoutRating": "Compressed",
+   "changed": false
+  },
+  {
+   "course": "Remington Park",
+   "time": "02:22",
+   "withRating": "Wise Decision",
+   "withoutRating": "Wise Decision",
+   "changed": false
+  },
+  {
+   "course": "Remington Park",
+   "time": "02:50",
+   "withRating": "Big Tech",
+   "withoutRating": "Big Tech",
+   "changed": false
+  },
+  {
+   "course": "Remington Park",
+   "time": "03:18",
+   "withRating": "One Time Mark",
+   "withoutRating": "Kitty Code",
+   "changed": true
+  },
+  {
+   "course": "Remington Park",
+   "time": "03:46",
+   "withRating": "Cant Stop Munnings",
+   "withoutRating": "Cant Stop Munnings",
+   "changed": false
+  },
+  {
+   "course": "Tampa Bay Downs",
+   "time": "17:35",
+   "withRating": "Veronika Z",
+   "withoutRating": "Mithril",
+   "changed": true
+  },
+  {
+   "course": "Tampa Bay Downs",
+   "time": "18:12",
+   "withRating": "Lightscape",
+   "withoutRating": "Lightscape",
+   "changed": false
+  },
+  {
+   "course": "Tampa Bay Downs",
+   "time": "18:42",
+   "withRating": "Miss Interpatation",
+   "withoutRating": "Miss Interpatation",
+   "changed": false
+  },
+  {
+   "course": "Tampa Bay Downs",
+   "time": "19:11",
+   "withRating": "Funky See Funky Do",
+   "withoutRating": "Funky See Funky Do",
+   "changed": false
+  },
+  {
+   "course": "Tampa Bay Downs",
+   "time": "19:42",
+   "withRating": "Stillthinkingofyou",
+   "withoutRating": "Stillthinkingofyou",
+   "changed": false
+  },
+  {
+   "course": "Tampa Bay Downs",
+   "time": "20:13",
+   "withRating": "Top Recruit",
+   "withoutRating": "No Bees",
+   "changed": true
+  },
+  {
+   "course": "Tampa Bay Downs",
+   "time": "20:43",
+   "withRating": "Zarafa",
+   "withoutRating": "Aibell",
+   "changed": true
+  },
+  {
+   "course": "Tampa Bay Downs",
+   "time": "21:13",
+   "withRating": "Pining",
+   "withoutRating": "Pining",
+   "changed": false
+  },
+  {
+   "course": "Tampa Bay Downs",
+   "time": "21:43",
+   "withRating": "Tocayo",
+   "withoutRating": "Tocayo",
+   "changed": false
+  }
+ ]
+}

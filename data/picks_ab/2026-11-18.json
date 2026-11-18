@@ -1,0 +1,224 @@
+{
+ "date": "2026-11-18",
+ "generated": "2026-11-18T02:52:04",
+ "note": "A/B of the twelve-factor model with and without a rating in the rpr slot",
+ "metric": "rpr",
+ "label": "rating",
+ "cards": 30,
+ "same": 30,
+ "changed": 0,
+ "ratedRunners": 273,
+ "runners": 348,
+ "rows": [
+  {
+   "course": "Dundalk",
+   "time": "14:00",
+   "withRating": "Coloursofthewind",
+   "withoutRating": "Coloursofthewind",
+   "changed": false
+  },
+  {
+   "course": "Dundalk",
+   "time": "14:30",
+   "withRating": "Pocket Jacks",
+   "withoutRating": "Pocket Jacks",
+   "changed": false
+  },
+  {
+   "course": "Dundalk",
+   "time": "15:00",
+   "withRating": "Jazzit",
+   "withoutRating": "Jazzit",
+   "changed": false
+  },
+  {
+   "course": "Dundalk",
+   "time": "15:30",
+   "withRating": "Rock On Johnny",
+   "withoutRating": "Rock On Johnny",
+   "changed": false
+  },
+  {
+   "course": "Dundalk",
+   "time": "16:00",
+   "withRating": "Otsana",
+   "withoutRating": "Otsana",
+   "changed": false
+  },
+  {
+   "course": "Dundalk",
+   "time": "16:30",
+   "withRating": "Go Out",
+   "withoutRating": "Go Out",
+   "changed": false
+  },
+  {
+   "course": "Dundalk",
+   "time": "17:07",
+   "withRating": "Rhapsodic",
+   "withoutRating": "Rhapsodic",
+   "changed": false
+  },
+  {
+   "course": "Dundalk",
+   "time": "17:40",
+   "withRating": "Prada's World",
+   "withoutRating": "Prada's World",
+   "changed": false
+  },
+  {
+   "course": "Ffos Las",
+   "time": "12:48",
+   "withRating": "No Walkover",
+   "withoutRating": "No Walkover",
+   "changed": false
+  },
+  {
+   "course": "Ffos Las",
+   "time": "13:18",
+   "withRating": "Diamond Street",
+   "withoutRating": "Diamond Street",
+   "changed": false
+  },
+  {
+   "course": "Ffos Las",
+   "time": "14:18",
+   "withRating": "Wannabe",
+   "withoutRating": "Wannabe",
+   "changed": false
+  },
+  {
+   "course": "Ffos Las",
+   "time": "14:48",
+   "withRating": "Merry Away",
+   "withoutRating": "Merry Away",
+   "changed": false
+  },
+  {
+   "course": "Ffos Las",
+   "time": "15:18",
+   "withRating": "No Boundaries",
+   "withoutRating": "No Boundaries",
+   "changed": false
+  },
+  {
+   "course": "Ffos Las",
+   "time": "15:48",
+   "withRating": "Unleash The Beast",
+   "withoutRating": "Unleash The Beast",
+   "changed": false
+  },
+  {
+   "course": "Hexham",
+   "time": "12:33",
+   "withRating": "Lord Du Gouet",
+   "withoutRating": "Lord Du Gouet",
+   "changed": false
+  },
+  {
+   "course": "Hexham",
+   "time": "13:03",
+   "withRating": "Derryhassen Paddy",
+   "withoutRating": "Derryhassen Paddy",
+   "changed": false
+  },
+  {
+   "course": "Hexham",
+   "time": "13:33",
+   "withRating": "De Deli Counter",
+   "withoutRating": "De Deli Counter",
+   "changed": false
+  },
+  {
+   "course": "Hexham",
+   "time": "14:08",
+   "withRating": "Ratemenow",
+   "withoutRating": "Ratemenow",
+   "changed": false
+  },
+  {
+   "course": "Hexham",
+   "time": "14:38",
+   "withRating": "Wal Buck's",
+   "withoutRating": "Wal Buck's",
+   "changed": false
+  },
+  {
+   "course": "Hexham",
+   "time": "15:08",
+   "withRating": "Scairp Dubh",
+   "withoutRating": "Scairp Dubh",
+   "changed": false
+  },
+  {
+   "course": "Hexham",
+   "time": "15:38",
+   "withRating": "Max Potential",
+   "withoutRating": "Max Potential",
+   "changed": false
+  },
+  {
+   "course": "Kempton",
+   "time": "16:25",
+   "withRating": "Tredegar Square",
+   "withoutRating": "Tredegar Square",
+   "changed": false
+  },
+  {
+   "course": "Kempton",
+   "time": "17:00",
+   "withRating": "Angel Footsteps",
+   "withoutRating": "Angel Footsteps",
+   "changed": false
+  },
+  {
+   "course": "Kempton",
+   "time": "17:30",
+   "withRating": "Divine Whisper",
+   "withoutRating": "Divine Whisper",
+   "changed": false
+  },
+  {
+   "course": "Kempton",
+   "time": "18:00",
+   "withRating": "Divine Rhythm",
+   "withoutRating": "Divine Rhythm",
+   "changed": false
+  },
+  {
+   "course": "Kempton",
+   "time": "18:30",
+   "withRating": "Sterling Cooper",
+   "withoutRating": "Sterling Cooper",
+   "changed": false
+  },
+  {
+   "course": "Kempton",
+   "time": "19:00",
+   "withRating": "Palladas",
+   "withoutRating": "Palladas",
+   "changed": false
+  },
+  {
+   "course": "Kempton",
+   "time": "19:30",
+   "withRating": "Zachary Hickes",
+   "withoutRating": "Zachary Hickes",
+   "changed": false
+  },
+  {
+   "course": "Kempton",
+   "time": "20:00",
+   "withRating": "Caragio",
+   "withoutRating": "Caragio",
+   "changed": false
+  },
+  {
+   "course": "Kempton",
+   "time": "20:30",
+   "withRating": "Crown Of Crowns",
+   "withoutRating": "Crown Of Crowns",
+   "changed": false
+  }
+ ]
+}
