@@ -2385,6 +2385,52 @@ check("Irish ledger: the results tab shows the last-changed UTC time",
       'id="ireLedger"' in _ire_block and "18 November 2026, 20:00 UTC" in _ire_block,
       _ire_block[:200])
 
+with tempfile.TemporaryDirectory(prefix="ledger-switch-") as fd:
+    _old_root, _old_clock = refresh.ROOT, refresh._utcnow
+    try:
+        refresh.ROOT = fd
+        os.makedirs(os.path.join(fd, "data", "results"))
+        _legacy = [
+            {"course": "Hereford", "time": "13:00", "race": "Old UK",
+             "winner": "A", "places": ["A"], "pick": "A"},
+            {"course": "Dundalk", "time": "14:00", "race": "Old IRE",
+             "winner": "B", "places": ["B"], "pick": "B"},
+        ]
+        with open(os.path.join(fd, "data", "results", "2026-11-18.json"),
+                  "w", encoding="utf-8") as f:
+            json.dump(_legacy, f)
+        _before_uk = refresh.results_block_all()
+        _before_ire = refresh.results_block_all_ire()
+        check("ledger switch: a legacy UK day shows the fallback",
+              "Latest result" in _before_uk and "Ledger last changed" not in _before_uk,
+              _before_uk[:180])
+        check("ledger switch: a legacy Irish day shows the fallback",
+              "Latest result" in _before_ire and "Ledger last changed" not in _before_ire,
+              _before_ire[:180])
+        refresh._utcnow = lambda: "2026-11-19T13:05:00Z"
+        _fresh = [dict(r) for r in _legacy] + [
+            {"course": "Hereford", "time": "14:00", "race": "New UK",
+             "winner": "C", "places": ["C"], "pick": "C"},
+            {"course": "Dundalk", "time": "15:00", "race": "New IRE",
+             "winner": "D", "places": ["D"], "pick": "D"},
+        ]
+        refresh.carry_picks(_legacy, _fresh)
+        with open(os.path.join(fd, "data", "results", "2026-11-19.json"),
+                  "w", encoding="utf-8") as f:
+            json.dump(_fresh, f)
+        _after_uk = refresh.results_block_all()
+        _after_ire = refresh.results_block_all_ire()
+        check("ledger switch: the first new UK result shows an exact UTC time",
+              "Ledger last changed" in _after_uk
+              and "19 November 2026, 13:05 UTC" in _after_uk
+              and "Latest result" not in _after_uk, _after_uk[:200])
+        check("ledger switch: the first new Irish result shows an exact UTC time",
+              "Ledger last changed" in _after_ire
+              and "19 November 2026, 13:05 UTC" in _after_ire
+              and "Latest result" not in _after_ire, _after_ire[:200])
+    finally:
+        refresh.ROOT, refresh._utcnow = _old_root, _old_clock
+
 _hk_dir, _hk_picks, _hk_clock = hkmod.OUT_DIR, hkmod._picks, hkmod._utcnow
 try:
     with tempfile.TemporaryDirectory(prefix="hk-stamp-") as fd:
