@@ -27,6 +27,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 
+import feed                                               # noqa: E402
 import refresh                                            # noqa: E402
 import scrape_hk                                          # noqa: E402
 import settle                                             # noqa: E402
@@ -315,9 +316,14 @@ def main(argv=None):
         return 0
     try:
         payload = scrape_hk.fetch(date_iso.replace("-", "/"))
+    except feed.FeedError as e:
+        # An outage is not "no result yet". This run must go red so nobody
+        # publishes a page whose Hong Kong ledger was silently skipped.
+        print(f"  HK results:  FAILED ({e})")
+        raise
     except Exception as e:
-        print(f"  HK results:  feed unavailable ({e}); nothing changed")
-        return 0
+        print(f"  HK results:  FAILED ({e})")
+        raise feed.FeedError(f"HKJC meeting for {date_iso}: {e}") from e
     official = parse(payload, cards)
     rows, added = build(date_iso, cards, official)
     if added:

@@ -2014,10 +2014,11 @@ check("results: the scheduled build writes the Irish ledger",
 print()
 print("US results feed")
 import fetch_results_us as fru
+import feed as feedmod
 _real_get = fru.scrape_us.get
-_real_sleep = fru.time.sleep
+_real_sleep = feedmod.time.sleep
 try:
-    fru.time.sleep = lambda _s: None
+    feedmod.time.sleep = lambda _s: None
     _calls = []
 
     def _dead(url):
@@ -2053,10 +2054,54 @@ try:
           _raised2)
 finally:
     fru.scrape_us.get = _real_get
-    fru.time.sleep = _real_sleep
+    feedmod.time.sleep = _real_sleep
+
+# The UK/IRE and Hong Kong feeds answer an empty string on failure too.
+import fetch_results_sl as slmod
+import fetch_results_ir as irmod
+import settle_hk as hkmod
+
+
+def _dead_get(url, tries=3):
+    raise feedmod.FeedError("dead feed")
+
+
+_old_sl_get = slmod.get
+_old_ir_get = irmod.get
+_old_hk_fetch = hkmod.scrape_hk.fetch
+try:
+    slmod.get = _dead_get
+    try:
+        slmod.fetch_day("2026-11-10")
+        _uk_raised = False
+    except feedmod.FeedError:
+        _uk_raised = True
+    irmod.get = _dead_get
+    try:
+        irmod.fetch_day("2026-11-10")
+        _ir_raised = False
+    except feedmod.FeedError:
+        _ir_raised = True
+    hkmod.scrape_hk.fetch = _dead_get
+    try:
+        hkmod.main([])
+        _hk_raised = False
+    except feedmod.FeedError:
+        _hk_raised = True
+finally:
+    slmod.get = _old_sl_get
+    irmod.get = _old_ir_get
+    hkmod.scrape_hk.fetch = _old_hk_fetch
+check("uk/ire feed: an unreachable index raises", _uk_raised)
+check("irish feed: an unreachable index raises", _ir_raised)
+check("hk feed: an unreachable meeting raises, not a quiet zero", _hk_raised)
 _st_us = (ROOT / "tooling" / "settle_today.py").read_text(encoding="utf-8")
-check("us feed: a failed fetch ends the run red",
-      "::error::US results feed unavailable" in _st_us)
+check("results feeds: a failed fetch ends the run red",
+      "::error::results feed unavailable" in _st_us)
+check("hk settlement: the feed failure is not swallowed",
+      "raise" in (ROOT / "tooling" / "settle_hk.py").read_text(encoding="utf-8")
+      and "feed unavailable" not in
+      (ROOT / "tooling" / "settle_hk.py").read_text(encoding="utf-8"))
 _wf_res = (ROOT / ".github" / "workflows" / "results.yml").read_text(encoding="utf-8")
 check("us feed: a red run still commits the day's results",
       "if: always()" in _wf_res.split("name: Commit results", 1)[1][:220])

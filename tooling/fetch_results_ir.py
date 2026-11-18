@@ -6,6 +6,8 @@ feature cards Sporting Life carries.
 """
 import datetime as dt, json, os, re, sys, urllib.request
 
+import feed
+
 BASE = "https://www.irishracing.com"
 UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/131.0 Safari/537.36")
@@ -14,14 +16,14 @@ ORD = {"1": 1, "2": 2, "3": 3, "4": 4, "5": 5}
 
 
 def get(url, tries=3):
-    for _ in range(tries):
-        try:
-            req = urllib.request.Request(url, headers={"User-Agent": UA})
-            with urllib.request.urlopen(req, timeout=30) as r:
-                return r.read().decode("utf-8", "ignore")
-        except Exception:
-            continue
-    return ""
+    """Fetch a page, retrying with a growing wait, then raise FeedError."""
+    return feed.get_page(_open, url, tries, label="irishracing results")
+
+
+def _open(url):
+    req = urllib.request.Request(url, headers={"User-Agent": UA})
+    with urllib.request.urlopen(req, timeout=30) as r:
+        return r.read().decode("utf-8", "ignore")
 
 
 def day_slug(iso):
@@ -88,11 +90,22 @@ def fetch_day(iso):
     idx = get(f"{BASE}/fast-results")
     meetings = sorted(set(re.findall(rf'href="(/fast-results/{slug}/[^"]+)"', idx)))
     print(f"{len(meetings)} meetings on {slug}")
-    rows = []
+    rows, failed = [], 0
     for href in meetings:
         course = href.rsplit("/", 1)[-1].replace("-", " ")
-        rows += parse_meeting(get(BASE + href), course)
+        try:
+            page = get(BASE + href)
+        except feed.FeedError:
+            failed += 1
+            continue
+        rows += parse_meeting(page, course)
         print(f"  {course:20} {sum(1 for r in rows if r['course']==course)} races")
+    if meetings and failed == len(meetings):
+        raise feed.FeedError(f"irishracing: every one of {len(meetings)} meetings "
+                             f"failed for {iso}")
+    if failed:
+        print(f"  {failed} of {len(meetings)} meetings failed for {iso}",
+              file=sys.stderr)
     return rows
 
 

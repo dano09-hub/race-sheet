@@ -25,6 +25,8 @@ import re
 import sys
 import urllib.request
 
+import feed
+
 URL = "https://info.cld.hkjc.com/graphql/base/"
 CARD_URL = "https://racing.hkjc.com/racing/information/English/Racing/RaceCard.aspx"
 UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
@@ -62,12 +64,17 @@ def fetch(date):
     body = json.dumps({"operationName": "racing",
                        "variables": {"date": date, "venueCode": "ST"},
                        "query": QUERY}).encode()
-    raw = _request(URL, data=body, headers={
+    raw = feed.get_page(lambda url: _request(url, data=body, headers={
         "Content-Type": "application/json",
         "Origin": "https://bet.hkjc.com",
         "Referer": "https://bet.hkjc.com/",
-    })
-    return json.loads(raw)
+    }), URL, label="HKJC meeting")
+    try:
+        return json.loads(raw)
+    except ValueError as e:
+        # A blocked request comes back as a page, not JSON: that is an outage,
+        # not an empty meeting.
+        raise feed.FeedError(f"HKJC meeting: unreadable payload ({e})") from e
 
 
 def race_numbers(payload):

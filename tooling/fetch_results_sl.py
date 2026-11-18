@@ -18,6 +18,8 @@ import re
 import sys
 import urllib.request
 
+import feed
+
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 OUT = os.path.join(ROOT, "data", "results")
 UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
@@ -26,14 +28,19 @@ BASE = "https://www.sportinglife.com"
 
 
 def get(url, tries=3):
-    for _ in range(tries):
-        try:
-            req = urllib.request.Request(url, headers={"User-Agent": UA})
-            with urllib.request.urlopen(req, timeout=30) as r:
-                return r.read().decode("utf-8", "ignore")
-        except Exception:
-            continue
-    return ""
+    """Fetch a page, retrying with a growing wait, then raise FeedError.
+
+    It used to answer "" for every failure, which is why a blocked feed and a
+    quiet day looked identical and a run could finish green with nothing in the
+    ledger.
+    """
+    return feed.get_page(_open, url, tries, label="UK/IRE results")
+
+
+def _open(url):
+    req = urllib.request.Request(url, headers={"User-Agent": UA})
+    with urllib.request.urlopen(req, timeout=30) as r:
+        return r.read().decode("utf-8", "ignore")
 
 
 def parse_race(html):
@@ -69,14 +76,16 @@ def country_of(html):
 def fetch_day(date):
     """Return a de-duplicated list of settled races for one ISO date."""
     index = get(f"{BASE}/racing/results/{date}")
-    if not index:
-        return []
     links = sorted(set(re.findall(rf'href="(/racing/results/{date}/[^"]+)"', index)))
-    out, seen = [], set()
+    out, seen, failed = [], set(), 0
     for href in links:
         parts = href.strip("/").split("/")
         course = parts[3].replace("-", " ").title() if len(parts) > 3 else ""
-        page = get(BASE + href)
+        try:
+            page = get(BASE + href)
+        except feed.FeedError:
+            failed += 1
+            continue
         cc = country_of(page)
         if cc and cc not in GB_IRE:          # France, USA, South Africa: not our patch
             continue
@@ -89,6 +98,12 @@ def fetch_day(date):
         seen.add(key)
         out.append({"course": course, "time": "", "race": name,
                     "winner": runners[0][1], "places": [h for _, h in runners[:3]]})
+    if links and failed == len(links):
+        raise feed.FeedError(f"UK/IRE results: every one of {len(links)} meeting "
+                             f"pages failed for {date}")
+    if failed:
+        print(f"  results:     {failed} of {len(links)} meeting pages failed "
+              f"for {date}", file=sys.stderr)
     return out
 
 

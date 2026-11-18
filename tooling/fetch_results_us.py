@@ -14,7 +14,8 @@ import json
 import os
 import re
 import sys
-import time
+
+import feed
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -25,32 +26,19 @@ import us_form  # noqa: E402
 
 BASE = "https://entries.horseracingnation.com"
 
-TRIES = 3
-BACKOFF = (2, 6, 18)          # seconds to wait before each further attempt
-
-
-class FeedError(RuntimeError):
-    """The US results feed could not be read at all, as opposed to having no races."""
+TRIES = feed.TRIES
+BACKOFF = feed.BACKOFF
+FeedError = feed.FeedError
 
 
 def get_page(url, tries=TRIES, backoff=BACKOFF):
-    """Fetch a page, retrying a transport failure with a growing wait.
+    """Fetch a US results page, retrying and then raising.
 
     scrape_us.get answers "" for every failure, so an unreachable feed and an
-    empty one are the same thing there. That is how the US ledger stayed empty
-    through runs that reported success. This retries, then raises.
+    empty one look the same there. That is how the US ledger stayed empty
+    through runs that reported success.
     """
-    for attempt in range(1, tries + 1):
-        page = scrape_us.get(url)
-        if page:
-            return page
-        if attempt == tries:
-            break
-        delay = backoff[min(attempt - 1, len(backoff) - 1)]
-        print(f"  us feed:     {url} gave nothing, retrying in {delay}s "
-              f"({attempt}/{tries})", file=sys.stderr)
-        time.sleep(delay)
-    raise FeedError(f"no response from {url} after {tries} attempts")
+    return feed.get_page(scrape_us.get, url, tries, backoff, label="US results")
 
 
 def _norm(value):

@@ -208,12 +208,13 @@ def _finish_for(pick, runners, places):
 
 
 def _merge_irish(iso, rows):
+    """Merge the irishracing meetings; returns (added, failure or None)."""
     try:
         import fetch_results_ir
         extra = fetch_results_ir.fetch_day(iso)
     except Exception as e:
-        print(f"  results ir:  skipped ({e})")
-        return 0
+        print(f"  results ir:  FAILED ({e})")
+        return 0, e
     have = {(refresh._result_name(r.get("course")), _time(r)) for r in rows}
     added = 0
     for r in extra:
@@ -225,7 +226,7 @@ def _merge_irish(iso, rows):
                      "places": r.get("places", [])})
         have.add(key)
         added += 1
-    return added
+    return added, None
 
 
 def _merge_us(rows, us_rows, cards):
@@ -293,6 +294,15 @@ def _merge_old(rows, old_rows):
     return added
 
 
+def _feed_problem(iso, problems):
+    """One red-run annotation naming every feed that could not be read."""
+    failed = [p for p in problems if p]
+    if not failed:
+        return None
+    return (f"::error::results feed unavailable for {iso}: "
+            + "; ".join(str(p) for p in failed))
+
+
 def main(argv=None):
     argv = list(sys.argv[1:] if argv is None else argv)
     progressive = "--progressive" in argv
@@ -310,9 +320,16 @@ def main(argv=None):
         print(f"  today:       {iso} not settled yet (before 21:00 UTC)")
         return 0
 
-    rows = _clean(sl.fetch_day(iso))
+    sl_problem = None
+    try:
+        rows = _clean(sl.fetch_day(iso))
+    except Exception as e:
+        rows = []
+        sl_problem = e
+        print(f"  results:     FAILED ({e})")
+    ir_problem = None
     if rows:
-        _merge_irish(iso, rows)
+        _ir_added, ir_problem = _merge_irish(iso, rows)
     # An outage is not a quiet day: the feed retries, and if it still cannot be
     # read the run ends red so nobody mistakes an empty US ledger for success.
     us_problem = None
@@ -327,8 +344,9 @@ def main(argv=None):
         print(f"  results us:  FAILED ({e})")
     if not rows and not us_rows:
         print(f"  today:       no completed races for {iso}")
-        if us_problem:
-            print(f"::error::US results feed unavailable for {iso}: {us_problem}")
+        problem = _feed_problem(iso, (sl_problem, ir_problem, us_problem))
+        if problem:
+            print(problem)
             return 1
         return 0
     added_us = _merge_us(rows, us_rows, _cards(iso))
@@ -492,9 +510,10 @@ def main(argv=None):
     place_judged = sum(1 for r in rows if r.get("pick") and r.get("placed") is not None)
     print(f"  summary:     {judged} picks, {hits} winners, "
           f"{placed}/{place_judged} placed")
-    if us_problem:
-        # Everything else is written and committed; the red run is the alarm.
-        print(f"::error::US results feed unavailable for {iso}: {us_problem}")
+    # Everything else is written and committed; the red run is the alarm.
+    problem = _feed_problem(iso, (sl_problem, ir_problem, us_problem))
+    if problem:
+        print(problem)
         return 1
     return 0
 
