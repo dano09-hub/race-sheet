@@ -47,31 +47,12 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 import settle  # noqa: E402
+from courses import HOME_COURSES, IRISH_COURSES, course_base  # noqa: E402
 from export_training import FACTOR_KEYS, decimal_odds  # noqa: E402
 
 COLS = ["date", "course", "race_id", "off", "race_name", "type", "going", "ran",
         "num", "pos", "draw", "horse", "wgt", "sp", "jockey", "trainer",
         "or", "rpr", "ts", "dist"]
-HOME_COURSES = {
-    "Aintree", "Ascot", "Ayr", "Bangor-on-Dee", "Bath", "Beverley", "Brighton",
-    "Carlisle", "Cartmel", "Catterick", "Chelmsford", "Chelmsford City",
-    "Cheltenham", "Chepstow", "Chester", "Doncaster", "Epsom", "Epsom Downs",
-    "Exeter", "Fakenham", "Ffos Las", "Fontwell", "Goodwood", "Hamilton",
-    "Haydock", "Hereford", "Hexham", "Huntingdon", "Kelso", "Kempton",
-    "Leicester", "Lingfield", "Ludlow", "Market Rasen", "Musselburgh",
-    "Newbury", "Newcastle", "Newmarket", "Newton Abbot", "Nottingham", "Perth",
-    "Plumpton", "Pontefract", "Redcar", "Ripon", "Royal Ascot", "Salisbury",
-    "Sandown", "Sedgefield", "Southwell", "Stratford", "Taunton", "Thirsk",
-    "Uttoxeter", "Warwick", "Wetherby", "Wincanton", "Windsor", "Wolverhampton",
-    "Worcester", "Yarmouth", "York",
-}
-IRISH_COURSES = {
-    "Ballinrobe", "Bellewstown", "Clonmel", "Cork", "Curragh", "Down Royal",
-    "Downpatrick", "Dundalk", "Fairyhouse", "Galway", "Gowran Park", "Kilbeggan",
-    "Killarney", "Laytown", "Leopardstown", "Limerick", "Listowel", "Naas",
-    "Navan", "Punchestown", "Roscommon", "Sligo", "Thurles", "Tipperary",
-    "Tramore", "Wexford",
-}
 SKIPPED = {}
 
 
@@ -102,8 +83,7 @@ def suffix_tokens(value):
     return [t.upper() for t in re.findall(r"\(([A-Za-z]{2,4})\)", str(value or ""))]
 
 
-def course_base(value):
-    return re.sub(r"\s*\([A-Za-z]{2,4}\)", "", str(value or "")).strip()
+
 
 
 def split_course(value):

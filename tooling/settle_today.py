@@ -434,6 +434,8 @@ def main(argv=None):
                     refresh.results_block_all() or refresh.results_block(iso, rows))
     html = _replace(html, "US_RESULTS_SL",
                     refresh.results_block_all_us() or refresh.results_block_us(iso, rows))
+    html = _replace(html, "IRE_RESULTS_SL",
+                    refresh.results_block_all_ire() or refresh.results_block_ire(iso, rows))
     html = _replace(html, "AB_SL",
                     refresh.ab_block_html(ab_result, iso))
     html = _replace(html, "MKT_ARM_SL",

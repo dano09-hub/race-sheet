@@ -562,15 +562,39 @@ def _results_inner(iso, rows, region):
     )
 
 
+def _result_region(row):
+    """Which results tab a row belongs on, decided by its course.
+
+    US rows are stamped when they are merged. British and Irish courses come
+    from one shared list, so a day mixing Hexham and Dundalk splits cleanly. A
+    course on neither list counts as British, which is where it sat before.
+    """
+    import courses
+    if str(row.get("region") or "").upper() == "US":
+        return "US"
+    return courses.region_of(row.get("course")) or "GB"
+
+
 def results_block(iso, rows):
-    """The UK/IRE ledger. US rows live in the US results tab."""
-    rows = [r for r in rows if r.get("region") != "US"]
+    """The UK ledger. Irish and US rows have their own tabs."""
+    rows = [r for r in rows if _result_region(r) == "GB"]
     if not rows:
         return ('<!-- RESULTS_SL_START -->\n'
-                '<p class="method">No UK/IRE results for this day.</p>\n'
+                '<p class="method">No UK results for this day.</p>\n'
                 '<!-- RESULTS_SL_END -->')
-    return ("<!-- RESULTS_SL_START -->\n" + _results_inner(iso, rows, "UK/IRE")
+    return ("<!-- RESULTS_SL_START -->\n" + _results_inner(iso, rows, "UK")
             + "\n<!-- RESULTS_SL_END -->")
+
+
+def results_block_ire(iso, rows):
+    """The Irish ledger, same table and the same pre-race picks."""
+    rows = [r for r in rows if _result_region(r) == "IRE"]
+    if not rows:
+        return ('<!-- IRE_RESULTS_SL_START -->\n'
+                '<p class="method">No Irish results for this day.</p>\n'
+                '<!-- IRE_RESULTS_SL_END -->')
+    return ("<!-- IRE_RESULTS_SL_START -->\n" + _results_inner(iso, rows, "Irish")
+            + "\n<!-- IRE_RESULTS_SL_END -->")
 
 
 def results_block_us(iso, rows):
@@ -584,7 +608,7 @@ def results_block_us(iso, rows):
             + "\n<!-- US_RESULTS_SL_END -->")
 
 
-def _results_all(region):
+def _results_all(kind):
     import glob
     files = sorted(glob.glob(os.path.join(ROOT, "data", "results", "*.json")), reverse=True)
     parts = []
@@ -595,24 +619,33 @@ def _results_all(region):
         rows = data.get("races", []) if isinstance(data, dict) else data
         if not isinstance(rows, list):
             continue
-        if region == "US":
-            rows = [r for r in rows if r.get("region") == "US"]
-            if rows:
-                parts.append(_results_inner(iso, rows, "US"))
+        if kind == "US":
+            keep, label = [r for r in rows if _result_region(r) == "US"], "US"
+        elif kind == "IRE":
+            keep, label = [r for r in rows if _result_region(r) == "IRE"], "Irish"
         else:
-            rows = [r for r in rows if r.get("region") != "US"]
-            if rows:
-                parts.append(_results_inner(iso, rows, "UK/IRE"))
+            keep, label = [r for r in rows if _result_region(r) == "GB"], "UK"
+        if keep:
+            parts.append(_results_inner(iso, keep, label))
     return parts
 
 
 def results_block_all():
-    """Every archived day's UK/IRE ledger, newest first."""
-    parts = _results_all(None)
+    """Every archived day's UK ledger, newest first."""
+    parts = _results_all("GB")
     if not parts:
         return None
     return ("<!-- RESULTS_SL_START -->\n" + "\n".join(parts)
             + "\n<!-- RESULTS_SL_END -->")
+
+
+def results_block_all_ire():
+    """Every archived day's Irish ledger, newest first."""
+    parts = _results_all("IRE")
+    if not parts:
+        return None
+    return ("<!-- IRE_RESULTS_SL_START -->\n" + "\n".join(parts)
+            + "\n<!-- IRE_RESULTS_SL_END -->")
 
 
 def results_block_all_us():
@@ -1357,6 +1390,12 @@ def main():
                   or "<!-- US_RESULTS_SL_START -->\n<p class=\"method\">No US results yet.</p>\n<!-- US_RESULTS_SL_END -->")
     html = re.sub(r"<!-- US_RESULTS_SL_START -->.*?<!-- US_RESULTS_SL_END -->",
                   us_results, html, count=1, flags=re.S)
+    ire_results = (results_block_all_ire()
+                   or "<!-- IRE_RESULTS_SL_START -->\n"
+                      "<p class=\"method\">No Irish results yet.</p>\n"
+                      "<!-- IRE_RESULTS_SL_END -->")
+    html = re.sub(r"<!-- IRE_RESULTS_SL_START -->.*?<!-- IRE_RESULTS_SL_END -->",
+                  ire_results, html, count=1, flags=re.S)
     html = re.sub(r"<!-- US_FLAGS_SL_START -->.*?<!-- US_FLAGS_SL_END -->",
                   us_flags_block_html(us_flags_result, iso), html, count=1, flags=re.S)
     html = re.sub(r"<!-- US_ANGLES_SL_START -->.*?<!-- US_ANGLES_SL_END -->",

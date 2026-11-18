@@ -1982,6 +1982,36 @@ check("HK audit: the audit runs after Hong Kong is settled and the page written"
       and _res_wf.index("Add completed races") < _res_wf.index("tooling/audit_hk.py"))
 
 print()
+print("Results tabs by region")
+check("results: the course decides the region",
+      refresh._result_region({"course": "Dundalk"}) == "IRE"
+      and refresh._result_region({"course": "Dundalk (AW)"}) == "IRE"
+      and refresh._result_region({"course": "Ffos Las"}) == "GB"
+      and refresh._result_region({"course": "Charles Town", "region": "US"}) == "US")
+_rows3 = [{"course": "Dundalk", "time": "14:30", "race": "A",
+           "winner": "Hastily", "places": ["Hastily"]},
+          {"course": "Hexham", "time": "13:00", "race": "B",
+           "winner": "Aubisque", "places": ["Aubisque"]},
+          {"course": "Charles Town", "time": "23:00", "race": "C",
+           "winner": "Nova", "places": ["Nova"], "region": "US"}]
+_uk = refresh.results_block("2026-11-18", _rows3)
+_ie = refresh.results_block_ire("2026-11-18", _rows3)
+check("results: the UK tab drops Irish and US rows",
+      "Hexham" in _uk and "Dundalk" not in _uk and "Charles Town" not in _uk, _uk)
+check("results: the Irish tab holds only Irish rows",
+      "Dundalk" in _ie and "Hexham" not in _ie and "Charles Town" not in _ie, _ie)
+check("results: each region has its own tab",
+      "'Irish results'" in _hk_page and "'US results'" in _hk_page
+      and "us: ['flags', 'angles']" in _hk_page
+      and "usresults: ['usresults']" in _hk_page
+      and 'data-panel="ireresults"' in _hk_page)
+check("results: the Irish ledger is built into both copies",
+      "IRE_RESULTS_SL_START" in _hk_page
+      and _hk_page == (ROOT / "dist" / "public" / "index.html").read_text(encoding="utf-8"))
+check("results: the scheduled build writes the Irish ledger",
+      "IRE_RESULTS_SL" in (ROOT / "tooling" / "settle_today.py").read_text(encoding="utf-8"))
+
+print()
 print("passed %d, failed %d%s" % (
     len(PASSED), len(FAILED), (", skipped %d" % len(SKIPPED)) if SKIPPED else ""))
 sys.exit(1 if FAILED else 0)
