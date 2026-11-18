@@ -1934,6 +1934,20 @@ check("HK audit: the scheduled page build injects the block too",
       "HK_AUDIT_SL" in _hk_st_src and "hk_audit_block_html" in _hk_st_src)
 check("HK audit: the block sits in the Method panel",
       _hk_page.index('data-panel="method"') < _hk_page.index("HK_AUDIT_SL_START") < _hk_page.index("</footer>"))
+_hk_tab = refresh.hk_audit_block_html({"races": 45, "meetings": 5,
+                                       "holdout_races": 18, "holdout_meetings": 2,
+                                       "last": "2026-12-02"},
+                                      marker="HK_AUDIT_TAB", css=' class="method"')
+check("HK audit: the same line can be written under its own marker",
+      "<!-- HK_AUDIT_TAB_START -->" in _hk_tab and "<!-- HK_AUDIT_TAB_END -->" in _hk_tab
+      and '<p class="method">' in _hk_tab and "45 races at 5 meetings" in _hk_tab, _hk_tab)
+check("HK audit: the Hong Kong tab carries the line beside the pick",
+      _hk_page.index('data-panel="hk"') < _hk_page.index("HK_AUDIT_TAB_START")
+      < _hk_page.index('id="hkTable"')
+      and "no Hong Kong market factor can be tested" in _hk_page)
+_hk_st_tab = (ROOT / "tooling" / "settle_today.py").read_text(encoding="utf-8")
+check("HK audit: the scheduled build writes the Hong Kong tab line too",
+      "HK_AUDIT_TAB" in _hk_st_tab)
 _hk_small = _hk_fake[:27]
 _hk_out3 = io.StringIO()
 with contextlib.redirect_stdout(_hk_out3):

@@ -724,7 +724,7 @@ def replace_block(html, name, body):
     return pattern.sub(lambda m: f"  var {name} = [\n" + ",\n".join(body) + "\n  ];", html, count=1)
 
 
-def hk_audit_block_html(stats):
+def hk_audit_block_html(stats, marker="HK_AUDIT_SL", css=""):
     """What the Hong Kong price archive holds, and what the audit still needs.
 
     The Hong Kong card carries no prices when the pick is made, so the market
@@ -736,12 +736,12 @@ def hk_audit_block_html(stats):
     s = stats or {}
     races = int(s.get("races") or 0)
     if not races:
-        return ('<!-- HK_AUDIT_SL_START -->\n<p><strong>Hong Kong market:</strong> '
+        return (f'<!-- {marker}_START -->\n<p{css}><strong>Hong Kong market:</strong> '
                 'HKJC cards are filed before betting opens, so a Hong Kong pick is '
                 'scored on the factors the card carries and not on the price. Win '
                 'odds are now archived from twenty minutes before each off; none '
                 'has been filed yet, so no Hong Kong market factor can be tested.'
-                '</p>\n<!-- HK_AUDIT_SL_END -->')
+                f'</p>\n<!-- {marker}_END -->')
     held = int(s.get("holdout_races") or 0)
     met = int(s.get("holdout_meetings") or 0)
     reached = (held >= _ahk.MIN_HOLDOUT_RACES and met >= _ahk.MIN_HOLDOUT_MEETINGS)
@@ -749,7 +749,7 @@ def hk_audit_block_html(stats):
             "weights still only change through a pre-registered shadow arm."
             if reached else
             "until that is reached the market factor stays out of the model.")
-    return ('<!-- HK_AUDIT_SL_START -->\n<p><strong>Hong Kong market:</strong> '
+    return (f'<!-- {marker}_START -->\n<p{css}><strong>Hong Kong market:</strong> '
             'HKJC cards are filed before betting opens, so a Hong Kong pick is '
             'scored on the factors the card carries and not on the price. Win odds '
             f'are now archived before each off: {races} races at '
@@ -758,7 +758,7 @@ def hk_audit_block_html(stats):
             'factor audit, which will not call a verdict below '
             f'{_ahk.MIN_HOLDOUT_RACES} held-back races at '
             f'{_ahk.MIN_HOLDOUT_MEETINGS} meetings; ' + tail + '</p>\n'
-            '<!-- HK_AUDIT_SL_END -->')
+            f'<!-- {marker}_END -->')
 
 
 def market_block_html(res, iso):
@@ -1348,6 +1348,11 @@ def main():
         hk_audit_stats = None
     html = re.sub(r"<!-- HK_AUDIT_SL_START -->.*?<!-- HK_AUDIT_SL_END -->",
                   hk_audit_block_html(hk_audit_stats), html, count=1, flags=re.S)
+    # The same line sits on the Hong Kong tab, where the pick is shown.
+    html = re.sub(r"<!-- HK_AUDIT_TAB_START -->.*?<!-- HK_AUDIT_TAB_END -->",
+                  hk_audit_block_html(hk_audit_stats, marker="HK_AUDIT_TAB",
+                                      css=' class="method"'),
+                  html, count=1, flags=re.S)
     us_results = (results_block_all_us()
                   or "<!-- US_RESULTS_SL_START -->\n<p class=\"method\">No US results yet.</p>\n<!-- US_RESULTS_SL_END -->")
     html = re.sub(r"<!-- US_RESULTS_SL_START -->.*?<!-- US_RESULTS_SL_END -->",

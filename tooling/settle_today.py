@@ -454,6 +454,9 @@ def main(argv=None):
         hk_audit_stats = None
     html = _replace(html, "HK_AUDIT_SL",
                     refresh.hk_audit_block_html(hk_audit_stats))
+    html = _replace(html, "HK_AUDIT_TAB",
+                    refresh.hk_audit_block_html(hk_audit_stats, marker="HK_AUDIT_TAB",
+                                                css=' class="method"'))
     html = _replace(html, "US_AB_SL",
                     refresh.us_ab_block_html(us_ab_result, iso))
     html = _replace(html, "US_FLAGS_SL",
