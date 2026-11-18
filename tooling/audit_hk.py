@@ -203,6 +203,20 @@ def split(races, dev=0.5):
             [r for r in races if r["date"] not in early])
 
 
+def readiness(root=ROOT):
+    """How much pre-off Hong Kong evidence the archive holds, no scoring needed."""
+    meetings, _ = load(root)
+    races = [{"date": m["date"]} for m in meetings for _ in m["races"]]
+    if not races:
+        return {"races": 0, "meetings": 0, "holdout_races": 0,
+                "holdout_meetings": 0, "last": ""}
+    _, late = split(races)
+    return {"races": len(races), "meetings": len(_dates(races)),
+            "holdout_races": len(late),
+            "holdout_meetings": len(_dates(late)) if late else 0,
+            "last": _dates(races)[-1]}
+
+
 def stats(races, name):
     rows = [r for r in races if name in r["picks"]]
     if not rows:

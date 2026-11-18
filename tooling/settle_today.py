@@ -444,6 +444,16 @@ def main(argv=None):
                                           end="MKT_ARM_SL_END"))
     html = _replace(html, "CAL_SL",
                     refresh.chance_block_html(chance_result))
+    # How far the Hong Kong price archive has got, so the Method tab can say
+    # the market factor is waiting on evidence rather than missing it.
+    try:
+        import audit_hk
+        hk_audit_stats = audit_hk.readiness()
+    except Exception as e:
+        print(f"  HK audit:    block skipped ({e})")
+        hk_audit_stats = None
+    html = _replace(html, "HK_AUDIT_SL",
+                    refresh.hk_audit_block_html(hk_audit_stats))
     html = _replace(html, "US_AB_SL",
                     refresh.us_ab_block_html(us_ab_result, iso))
     html = _replace(html, "US_FLAGS_SL",

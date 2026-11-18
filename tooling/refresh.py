@@ -724,6 +724,43 @@ def replace_block(html, name, body):
     return pattern.sub(lambda m: f"  var {name} = [\n" + ",\n".join(body) + "\n  ];", html, count=1)
 
 
+def hk_audit_block_html(stats):
+    """What the Hong Kong price archive holds, and what the audit still needs.
+
+    The Hong Kong card carries no prices when the pick is made, so the market
+    factor drops and the page says so. This block tells the reader how far the
+    evidence for changing that has got: odds are now filed before each off, and
+    the audit will not call a verdict on the thinnest of samples.
+    """
+    import audit_hk as _ahk
+    s = stats or {}
+    races = int(s.get("races") or 0)
+    if not races:
+        return ('<!-- HK_AUDIT_SL_START -->\n<p><strong>Hong Kong market:</strong> '
+                'HKJC cards are filed before betting opens, so a Hong Kong pick is '
+                'scored on the factors the card carries and not on the price. Win '
+                'odds are now archived from twenty minutes before each off; none '
+                'has been filed yet, so no Hong Kong market factor can be tested.'
+                '</p>\n<!-- HK_AUDIT_SL_END -->')
+    held = int(s.get("holdout_races") or 0)
+    met = int(s.get("holdout_meetings") or 0)
+    reached = (held >= _ahk.MIN_HOLDOUT_RACES and met >= _ahk.MIN_HOLDOUT_MEETINGS)
+    tail = ("that floor is now behind it, so the audit can call a verdict; the "
+            "weights still only change through a pre-registered shadow arm."
+            if reached else
+            "until that is reached the market factor stays out of the model.")
+    return ('<!-- HK_AUDIT_SL_START -->\n<p><strong>Hong Kong market:</strong> '
+            'HKJC cards are filed before betting opens, so a Hong Kong pick is '
+            'scored on the factors the card carries and not on the price. Win odds '
+            f'are now archived before each off: {races} races at '
+            f'{int(s.get("meetings") or 0)} meetings, the latest on '
+            f'{s.get("last") or "-"}. {held} of those races are held back for the '
+            'factor audit, which will not call a verdict below '
+            f'{_ahk.MIN_HOLDOUT_RACES} held-back races at '
+            f'{_ahk.MIN_HOLDOUT_MEETINGS} meetings; ' + tail + '</p>\n'
+            '<!-- HK_AUDIT_SL_END -->')
+
+
 def market_block_html(res, iso):
     """The market re-check panel that sits at the top of the Results tab."""
     import html as _html
@@ -1303,6 +1340,14 @@ def main():
         chance_result = None
     html = re.sub(r"<!-- CAL_SL_START -->.*?<!-- CAL_SL_END -->",
                   chance_block_html(chance_result), html, count=1, flags=re.S)
+    try:
+        import audit_hk
+        hk_audit_stats = audit_hk.readiness()
+    except Exception as e:
+        print(f"  HK audit:    block skipped ({e})")
+        hk_audit_stats = None
+    html = re.sub(r"<!-- HK_AUDIT_SL_START -->.*?<!-- HK_AUDIT_SL_END -->",
+                  hk_audit_block_html(hk_audit_stats), html, count=1, flags=re.S)
     us_results = (results_block_all_us()
                   or "<!-- US_RESULTS_SL_START -->\n<p class=\"method\">No US results yet.</p>\n<!-- US_RESULTS_SL_END -->")
     html = re.sub(r"<!-- US_RESULTS_SL_START -->.*?<!-- US_RESULTS_SL_END -->",

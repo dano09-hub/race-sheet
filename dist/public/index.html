@@ -1652,6 +1652,9 @@
         <dt>Stable form (3)</dt><dd>Trainer and jockey 30-day strike rates, straight from the card.</dd>
       </dl>
       <p style="margin-top:10px"><strong>Missing data:</strong> if a factor has no figure for a horse, or is identical for the whole field, it is dropped and the other weights renormalise for that runner. A race with no prices is ranked without the market at all, and says so.</p>
+      <!-- HK_AUDIT_SL_START -->
+<p><strong>Hong Kong market:</strong> HKJC cards are filed before betting opens, so a Hong Kong pick is scored on the factors the card carries and not on the price. Win odds are now archived from twenty minutes before each off; none has been filed yet, so no Hong Kong market factor can be tested.</p>
+<!-- HK_AUDIT_SL_END -->
       <p><strong>The Model percentage:</strong> the 0&ndash;100 rating turned into a win chance across the field (a softmax with a fixed scale of 0.04, fitted on 2,251 held-out races). It is a display figure: the selection is still the highest rating, and the ranking does not move with it.</p>
       <p><strong>What this is not:</strong> a forecast. It has no sectional times, no video, no gallops reports and no stable information. It applies the same reasoning consistently to every runner on the card &mdash; it does not make it correct.</p>
     </div>

@@ -1843,6 +1843,11 @@ with tempfile.TemporaryDirectory(prefix="hk-audit-") as _aroot:
         {"race_no": 4, "winner": "Echo",
          "finish": {"Echo": 1, "Foxtrot": 2, "Golf": 3, "Hotel": 4}}]})
     _hk_meets, _hk_skip = ahk.load(_aroot)
+    _hk_ready = ahk.readiness(_aroot)
+    check("HK audit: readiness counts the archive without scoring it",
+          _hk_ready["races"] == 1 and _hk_ready["meetings"] == 1
+          and _hk_ready["holdout_races"] == 0 and _hk_ready["last"] == "2026-11-18",
+          _hk_ready)
     check("HK audit: a snapshot filed after the off is skipped",
           _hk_skip["late"] == 1, _hk_skip)
     check("HK audit: only races with a pre-off snapshot enter",
@@ -1903,6 +1908,32 @@ _hk_draw = {"A": {"parts": {"draw": 90}}, "B": {"parts": {"draw": 90}},
             "C": {"parts": {"draw": 10}}}
 check("HK audit: draw ranks like any factor and ties on the saddlecloth",
       ahk.rank(_hk_draw, {"A": 9, "B": 1, "C": 4}, "draw") == ["B", "A", "C"])
+_hk_empty = refresh.hk_audit_block_html({"races": 0})
+check("HK audit: the Method block says plainly when no price is archived",
+      "no Hong Kong market factor can be tested" in _hk_empty)
+_hk_block = refresh.hk_audit_block_html({"races": 45, "meetings": 5,
+                                         "holdout_races": 18, "holdout_meetings": 2,
+                                         "last": "2026-12-02"})
+check("HK audit: the Method block states the archive and the held-back sample",
+      "45 races at 5 meetings" in _hk_block
+      and "the latest on 2026-12-02" in _hk_block
+      and "18 of those races are held back" in _hk_block
+      and "stays out of the model" in _hk_block, _hk_block)
+_hk_met = refresh.hk_audit_block_html({"races": 90, "meetings": 10,
+                                       "holdout_races": 45, "holdout_meetings": 5,
+                                       "last": "2027-01-10"})
+check("HK audit: the Method block changes only when the floor is reached",
+      "floor is now behind it" in _hk_met and "stays out of the model" not in _hk_met,
+      _hk_met)
+_hk_page = (ROOT / "index.html").read_text(encoding="utf-8")
+check("HK audit: the Method tab carries the block in both copies",
+      "<!-- HK_AUDIT_SL_START -->" in _hk_page
+      and _hk_page == (ROOT / "dist" / "public" / "index.html").read_text(encoding="utf-8"))
+_hk_st_src = (ROOT / "tooling" / "settle_today.py").read_text(encoding="utf-8")
+check("HK audit: the scheduled page build injects the block too",
+      "HK_AUDIT_SL" in _hk_st_src and "hk_audit_block_html" in _hk_st_src)
+check("HK audit: the block sits in the Method panel",
+      _hk_page.index('data-panel="method"') < _hk_page.index("HK_AUDIT_SL_START") < _hk_page.index("</footer>"))
 _hk_small = _hk_fake[:27]
 _hk_out3 = io.StringIO()
 with contextlib.redirect_stdout(_hk_out3):
