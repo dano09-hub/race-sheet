@@ -42,7 +42,7 @@ jobs:
         run: |
           git config user.name "racing-sheet-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data/results index.html dist/public/index.html
+          git add data/results data/results_hk index.html dist/public/index.html
           if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "No new settled races"

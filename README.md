@@ -82,7 +82,8 @@ button (or one tool call).
 
 **Weights are not re-tuned per region.** The 18/15/5/13/15/10/12/4/3/2/3/4 split
 was fitted on British results only. US, Australian and Hong Kong cards now carry
-enough fields to test, but there is no settled history for them yet — see the
+enough fields to test. Hong Kong settles from the official HKJC result feed;
+that history is still one meeting, so nothing is re-tuned for it — see the
 Known gaps section for what that would take.
 
 ## Where the data comes from, and how to continue
@@ -834,7 +835,7 @@ their new home, so saved links and the browser's remembered tab keep working.
 | Cards | Pick any race and inspect every runner the model scored, with the full rating table. |
 | Results | Settled UK/IRE results, market checks and the standing model audits. |
 | US racing | The US ledger, the US flags and the full angle board. |
-| Hong Kong | Today's official HKJC card, with each race's model pick, official rating, last-six form and barrier draw. |
+| Hong Kong | Today's official HKJC card, with each race's model pick, official rating, last-six form, barrier draw and the settled official outcome once the race has run. |
 | Method | The fixed weights, how the chance is calibrated, and the evidence behind both. |
 
 ## Known caveats
@@ -846,9 +847,11 @@ their new home, so saved links and the browser's remembered tab keep working.
 * The Results tab is a snapshot. It does not poll for new results.
 * The Results tab is UK/IRE only. The **US racing** tab holds the US ledger and
   the US speed-figure A/B; both ledgers show the off time beside each course.
-* The **Hong Kong** tab carries today's HKJC card from the official source. Hong
-  Kong results are not settled yet, and prices stay blank until HKJC betting
-  opens rather than being estimated.
+* The **Hong Kong** tab carries today's HKJC card from the official source and
+  settles its picks from the same feed's official finishing positions. A race is
+  only settled once every declared runner has a position, and a stored pick is
+  never rewritten. Prices stay blank until HKJC betting opens rather than being
+  estimated.
 * The race-by-race audit on Results is rebuilt from the latest settled UK/IRE
   day whenever the page or results are rebuilt; the model notes below it remain
   the 12 November development note.
@@ -868,7 +871,7 @@ as the cards. Current state, honestly:
 | Racing Post `/results/YYYY-MM-DD/` | loads, but the table is client-gated: 0 rows reachable, results not in the HTML |
 | Equibase | free summary results, but its terms **prohibit automated access** - do not scrape |
 | horse racing nation `entries-results` | past dates return the *entries* table (morning line), never finishing positions |
-| HKJC GraphQL | `date` variable is ignored - every call returns the current meeting; `finalPosition` is always 0 |
+| HKJC GraphQL | official card and, once a race is off, every runner's finishing position; the `date` variable is honoured for the current meeting |
 | horseracingapi.org | free key, **yesterday's** results for US + GB + IRE + FR + SA, 50 calls/day - the workable route |
 
 Using the API (key is yours, never commit it):
@@ -883,6 +886,16 @@ python3 tooling/measure.py 2026-11-12
 
 `measure.py` prints top-pick winners, places and "winner in our top 3", per region.
 Until it has run on real settled cards, no accuracy claim is made anywhere in this project.
+
+### Hong Kong settlement
+
+`python3 tooling/settle_hk.py [YYYY-MM-DD]` reads the official HKJC meeting again
+and takes every runner's finishing position from the feed's `finalPosition`. A
+race is settled only when the whole declared field has one, so a partial feed
+leaves it open. The pick is the page's own model pick, scored from the archived
+card, and a pick already on file is never rewritten. Outcomes are written to
+`data/results_hk/<date>.json` and embedded in the Hong Kong tab; the scheduled
+results pass (`tooling/settle_today.py`) refreshes them during racing.
 
 ## Back-test: what the British history actually says
 

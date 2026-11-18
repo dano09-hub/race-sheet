@@ -198,6 +198,10 @@
   #lateTable .num,#hkTable .num{text-align:right; font-variant-numeric:tabular-nums}
   #lateTable .score,#hkTable .score{font-weight:700; color:var(--green)}
   #lateTable .horse,#hkTable .horse{font-weight:600}
+  #hkTable .hkres{white-space:nowrap}
+  #hkTable .hkres.win{color:var(--green); font-weight:700}
+  #hkTable .hkres.loss{color:var(--red); font-weight:700}
+  #hkTable .hksub{font-size:11px; font-weight:400; color:var(--muted)}
 
   @media print{
     body{background:#fff}
@@ -1353,7 +1357,7 @@
 
   <section class="panel" data-panel="hk">
     <h2>Hong Kong races</h2>
-    <p class="method">Today&rsquo;s Hong Kong card, built from the official HKJC race card and declarations: official rating, last-six form, barrier draw and declared weight. The model scores it the same fixed way as every other card; tap a row to open the full field. Prices appear once HKJC betting opens.</p>
+    <p class="method">Today&rsquo;s Hong Kong card, built from the official HKJC race card and declarations: official rating, last-six form, barrier draw and declared weight. The model scores it the same fixed way as every other card; tap a row to open the full field. Once a race is off, its model pick is settled against the official HKJC finishing positions &mdash; a race is only settled when every declared runner has a position, and a stored pick is never rewritten. Prices appear once HKJC betting opens.</p>
     <p class="method" id="hkCount"></p>
     <div class="scroll">
       <table id="hkTable">
@@ -1363,6 +1367,7 @@
             <th>Course</th>
             <th>Race</th>
             <th>Pick</th>
+            <th>Outcome</th>
             <th>OR</th>
             <th>Form</th>
             <th>Draw</th>
@@ -5809,6 +5814,7 @@
       day: "2026-11-18", region: "HK",
       iso: "2026-11-18T10:40:00.000Z",
       race: "Cheung Sha Handicap", going: "Good", klass: "2200M · Class 5", note: "HKJC card: official rating, last six, barrier draw, weight.",
+      result: {"winner":"Star Brose","places":["Star Brose","Young Fighter","Kasa Papa"],"finish":{"Star Brose":1,"Young Fighter":2,"Kasa Papa":3,"Golden Fortune":4,"Our Lucky Glory":5,"Perfect Pairing":6,"Massive Glory":7,"Grand Turbo":8,"Ocean Impact":9,"Smiling One":10,"Sharpen Bright":11,"Super Hong Kong":12},"field":12,"pick":"Star Brose","pick_finish":"1st","hit":true},
       runners: [
         {horse:"Star Brose", odds:"3.1", form:"257324", or:"40", rpr:"", ts:"", weight:"135", days:"", course:"N", distance:"N", going:"?", jp:"Z Purton", tp:"D A Hayes", tips:"", naps:"", draw:"5", no:"1"},
         {horse:"Golden Fortune", odds:"16", form:"071652", or:"39", rpr:"", ts:"", weight:"134", days:"", course:"N", distance:"N", going:"?", jp:"H Y Yuen", tp:"K L Man", tips:"", naps:"", draw:"12", no:"2"},
@@ -5829,6 +5835,7 @@
       day: "2026-11-18", region: "HK",
       iso: "2026-11-18T11:10:00.000Z",
       race: "Fan Lau Handicap", going: "Good", klass: "1000M · Class 5", note: "HKJC card: official rating, last six, barrier draw, weight.",
+      result: {"winner":"Golden Friendship","places":["Golden Friendship","Lean Master","Diriya"],"finish":{"Golden Friendship":1,"Lean Master":2,"Diriya":3,"Always My Folks":4,"Thousand Cups":5,"Mapogo":6,"Always Fluke":7,"Spicy Spangle":8,"Diamond Sparkle":9,"Tactical Command":10,"Zeta Hedge":11,"Gimme Five":12},"field":12,"pick":"Golden Friendship","pick_finish":"1st","hit":true},
       runners: [
         {horse:"Golden Friendship", odds:"", form:"406262", or:"38", rpr:"", ts:"", weight:"135", days:"", course:"N", distance:"N", going:"?", jp:"C L Chau", tp:"K H Ting", tips:"", naps:"", draw:"7", no:"1"},
         {horse:"Mapogo", odds:"", form:"558450", or:"38", rpr:"", ts:"", weight:"135", days:"", course:"N", distance:"N", going:"?", jp:"Z Purton", tp:"K L Man", tips:"", naps:"", draw:"1", no:"2"},
@@ -5849,6 +5856,7 @@
       day: "2026-11-18", region: "HK",
       iso: "2026-11-18T11:40:00.000Z",
       race: "Ngong Ping Handicap", going: "Good", klass: "1200M · Class 4", note: "HKJC card: official rating, last six, barrier draw, weight.",
+      result: {"winner":"Better And Better","places":["Better And Better","Never Settle","Show Me Your Love"],"finish":{"Better And Better":1,"Never Settle":2,"Show Me Your Love":3,"Vigor Eye":4,"Super Sixty":5,"Agent":6,"Matzden":7,"Bullish Nova":8,"Gallant Triumph":9,"Star Of Hearts":10,"Lunar Dash":11,"Speed Baby":12},"field":12,"pick":"Matzden","pick_finish":"7th","hit":false},
       runners: [
         {horse:"Super Sixty", odds:"", form:"019085", or:"55", rpr:"", ts:"", weight:"135", days:"", course:"N", distance:"N", going:"?", jp:"E C W Wong", tp:"C Fownes", tips:"", naps:"", draw:"5", no:"1"},
         {horse:"Matzden", odds:"", form:"602452", or:"54", rpr:"", ts:"", weight:"134", days:"", course:"N", distance:"N", going:"?", jp:"J Orman", tp:"J Richards", tips:"", naps:"", draw:"12", no:"2"},
@@ -5869,6 +5877,7 @@
       day: "2026-11-18", region: "HK",
       iso: "2026-11-18T12:10:00.000Z",
       race: "Mui Wo Handicap", going: "Good", klass: "1650M · Class 4", note: "HKJC card: official rating, last six, barrier draw, weight.",
+      result: {"winner":"Gazeley","places":["Gazeley","Red Brick Warrior","Flying Amani"],"finish":{"Gazeley":1,"Red Brick Warrior":2,"Flying Amani":3,"Class":4,"Lucky Together":5,"Super Unicorn":6,"Well Enough":7,"Poet'S Reign":8,"Refusetobeenglish":9,"Comic":10,"Joy Together":11,"Morgan Success":12},"field":12,"pick":"Super Unicorn","pick_finish":"6th","hit":false},
       runners: [
         {horse:"Super Unicorn", odds:"", form:"003926", or:"60", rpr:"", ts:"", weight:"135", days:"", course:"N", distance:"N", going:"?", jp:"Z Purton", tp:"M Newnham", tips:"", naps:"", draw:"11", no:"1"},
         {horse:"Refusetobeenglish", odds:"", form:"570428", or:"58", rpr:"", ts:"", weight:"133", days:"", course:"N", distance:"N", going:"?", jp:"J Orman", tp:"P C Ng", tips:"", naps:"", draw:"10", no:"2"},
@@ -5889,6 +5898,7 @@
       day: "2026-11-18", region: "HK",
       iso: "2026-11-18T12:40:00.000Z",
       race: "Ngong Ping Handicap", going: "Good", klass: "1200M · Class 4", note: "HKJC card: official rating, last six, barrier draw, weight.",
+      result: {"winner":"Falcon Hunter","places":["Falcon Hunter","Private Wealth","King Lotus"],"finish":{"Falcon Hunter":1,"Private Wealth":2,"King Lotus":3,"My Day My Say":4,"Navas G":5,"Phoenix Light":6,"Spicy Bonus":7,"Turf Quest":8,"Enjoy Golf":9,"Word Of Kindness":10,"Bossanova":11,"Ever Wealth":12},"field":12,"pick":"King Lotus","pick_finish":"3rd","hit":false},
       runners: [
         {horse:"King Lotus", odds:"", form:"957597", or:"60", rpr:"", ts:"", weight:"135", days:"", course:"N", distance:"N", going:"?", jp:"Z Purton", tp:"M Newnham", tips:"", naps:"", draw:"1", no:"1"},
         {horse:"Bossanova", odds:"", form:"", or:"52", rpr:"", ts:"", weight:"127", days:"", course:"N", distance:"N", going:"?", jp:"K C Leung", tp:"W K Mo", tips:"", naps:"", draw:"7", no:"2"},
@@ -5909,6 +5919,7 @@
       day: "2026-11-18", region: "HK",
       iso: "2026-11-18T13:10:00.000Z",
       race: "Pui O Handicap", going: "Good", klass: "1000M · Class 4", note: "HKJC card: official rating, last six, barrier draw, weight.",
+      result: {"winner":"Georgian Sigma","places":["Georgian Sigma","Country Pride","Looking Bright"],"finish":{"Georgian Sigma":1,"Country Pride":2,"Looking Bright":3,"Harmony Fire":4,"Copper Core":5,"Superb King":6,"Everstar":7,"Happy United":8,"Master Resolute":9,"I Am Back":10,"Boltz":11,"Perfect One":12},"field":12,"pick":"Georgian Sigma","pick_finish":"1st","hit":true},
       runners: [
         {horse:"Superb King", odds:"", form:"153264", or:"60", rpr:"", ts:"", weight:"135", days:"", course:"N", distance:"N", going:"?", jp:"H Y Yuen", tp:"K W Lui", tips:"", naps:"", draw:"12", no:"1"},
         {horse:"Georgian Sigma", odds:"", form:"321237", or:"57", rpr:"", ts:"", weight:"132", days:"", course:"N", distance:"N", going:"?", jp:"Z Purton", tp:"A S Cruz", tips:"", naps:"", draw:"1", no:"2"},
@@ -5929,6 +5940,7 @@
       day: "2026-11-18", region: "HK",
       iso: "2026-11-18T13:45:00.000Z",
       race: "Siu Ho Wan Handicap", going: "Good", klass: "1650M · Class 3", note: "HKJC card: official rating, last six, barrier draw, weight.",
+      result: {"winner":"Windlord","places":["Windlord","Prestige Good","Turin Champions"],"finish":{"Windlord":1,"Prestige Good":2,"Turin Champions":3,"Riding Together":4,"A Americ Te Specso":5,"Mighty Commander":6,"My Day My Way":7,"Highland Rahy":8,"Lions Spirit":9,"Call Me Topseed":10,"Wrote A New Page":11,"Prime Success":12},"field":12,"pick":"My Day My Way","pick_finish":"7th","hit":false},
       runners: [
         {horse:"My Day My Way", odds:"", form:"801102", or:"75", rpr:"", ts:"", weight:"130", days:"", course:"N", distance:"N", going:"?", jp:"C L Chau", tp:"C S Shum", tips:"", naps:"", draw:"6", no:"1"},
         {horse:"Prestige Good", odds:"", form:"433060", or:"73", rpr:"", ts:"", weight:"128", days:"", course:"N", distance:"N", going:"?", jp:"H Y Yuen", tp:"P F Yiu", tips:"", naps:"", draw:"2", no:"2"},
@@ -5949,6 +5961,7 @@
       day: "2026-11-18", region: "HK",
       iso: "2026-11-18T14:15:00.000Z",
       race: "Tai O Handicap", going: "Good", klass: "1200M · Class 3", note: "HKJC card: official rating, last six, barrier draw, weight.",
+      result: {"winner":"Amazing Kid","places":["Amazing Kid","Motor","Virtus Glory"],"finish":{"Amazing Kid":1,"Motor":2,"Virtus Glory":3,"Greater Bae":4,"Invincible Steed":5,"Aurora Lady":6,"Aurio":7,"Gustosisimo":8,"Majestic St Paul'S":9,"Royal Blitz":10,"Saint Of The Sea":11,"Devas Twelve":12},"field":12,"pick":"Aurora Lady","pick_finish":"6th","hit":false},
       runners: [
         {horse:"Aurora Lady", odds:"", form:"440034", or:"79", rpr:"", ts:"", weight:"135", days:"", course:"N", distance:"N", going:"?", jp:"J Orman", tp:"P C Ng", tips:"", naps:"", draw:"5", no:"1"},
         {horse:"Aurio", odds:"", form:"833753", or:"74", rpr:"", ts:"", weight:"130", days:"", course:"N", distance:"N", going:"?", jp:"S Osborne", tp:"K L Man", tips:"", naps:"", draw:"2", no:"2"},
@@ -7382,29 +7395,54 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI);  // UK/IRE tod
     }).join('');
   }
 
+  function hkOrdinal(n) {
+    if (n === 1) return '1st';
+    if (n === 2) return '2nd';
+    if (n === 3) return '3rd';
+    return n + 'th';
+  }
+
   function renderHongKong() {
     var body = $('hkBody');
     if (!body) return;
     var now = new Date();
     var races = CARDS_HK.slice().sort(function (a, b) { return cardWhen(a) - cardWhen(b); });
     var count = $('hkCount');
-    var left = races.filter(function (c) { return !isResulted(c); }).length;
+    var settled = races.filter(function (c) { return c.result && c.result.finish; }).length;
+    var wins = races.filter(function (c) { return c.result && c.result.hit; }).length;
     if (count) {
-      count.textContent = !races.length ? 'No Hong Kong cards in this build.' :
-        races.length + ' race' + (races.length === 1 ? '' : 's') + ', ' +
-        (left ? left + ' still to come.' : 'all finished.');
+      if (!races.length) count.textContent = 'No Hong Kong cards in this build.';
+      else if (settled === races.length) count.textContent = races.length + ' race' + (races.length === 1 ? '' : 's') + ', all settled. ' + wins + ' of ' + settled + ' pick' + (settled === 1 ? '' : 's') + ' won.';
+      else if (settled) count.textContent = races.length + ' race' + (races.length === 1 ? '' : 's') + ', ' + settled + ' settled, ' + (races.length - settled) + ' to come. ' + wins + ' of ' + settled + ' pick' + (settled === 1 ? '' : 's') + ' won.';
+      else count.textContent = races.length + ' race' + (races.length === 1 ? '' : 's') + ', no official results yet.';
     }
     if (!races.length) {
-      body.innerHTML = '<tr><td colspan="10" class="empty">No Hong Kong races in this build.</td></tr>';
+      body.innerHTML = '<tr><td colspan="11" class="empty">No Hong Kong races in this build.</td></tr>';
       return;
     }
     body.innerHTML = races.map(function (card) {
       var rows = computeCard(card).rows.slice().sort(function (a, b) { return b.total - a.total; });
+      var res = card.result && card.result.finish ? card.result : null;
       var top = rows[0] || null;
+      var pick = res && res.pick ? res.pick : (top && top.r ? top.r.horse : '');
+      var pickRow = null;
+      rows.forEach(function (x) { if (x.r && x.r.horse === pick) pickRow = x; });
+      top = pickRow || (res && res.pick ? null : top);
       var r = top && top.r ? top.r : null;
       var off = isResulted(card);
       var mins = Math.round((cardWhen(card) - now) / 60000);
-      var when = off ? 'off' : (mins < 90 ? ('in ' + mins + ' min') : ('in ' + Math.round(mins / 60) + 'h'));
+      var when = (res || off) ? 'off' : (mins < 90 ? ('in ' + mins + ' min') : ('in ' + Math.round(mins / 60) + 'h'));
+      var outcome = '<td class="hkres">—</td>';
+      if (res) {
+        var pos = pick && Object.prototype.hasOwnProperty.call(res.finish, pick) ? res.finish[pick] : null;
+        var sub = res.winner ? '<div class="hksub">Winner: ' + esc(res.winner) + '</div>' : '';
+        if (pos) {
+          outcome = '<td class="hkres ' + (pos === 1 ? 'win' : 'loss') + '" title="Official HKJC finishing position">' +
+            (pos === 1 ? '✓ ' : '✗ ') + hkOrdinal(pos) + sub + '</td>';
+        } else {
+          outcome = '<td class="hkres loss" title="Official HKJC result">' + esc(res.pick_finish || '—') + sub + '</td>';
+        }
+      }
       return '<tr data-card="' + esc(card.id) + '">' +
         '<td class="num">' + esc(ukClock(cardWhen(card))) +
           '<div style="font-size:11px;color:var(--muted)">UTC ' + esc(card.time) + '</div></td>' +
@@ -7412,7 +7450,8 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI);  // UK/IRE tod
           '<div style="font-size:11px;color:var(--muted)">' + esc(card.klass || '') + ' &middot; ' + esc(when) + '</div></td>' +
         '<td>' + esc(card.race) + '</td>' +
         '<td class="horse">' + (r && r.no ? '<span class="rno">' + esc(r.no) + '</span> ' : '') +
-          esc(r && r.horse ? r.horse : '—') + '</td>' +
+          esc(pick || '—') + '</td>' +
+        outcome +
         '<td class="num">' + esc(r && r.or ? r.or : '—') + '</td>' +
         '<td class="num">' + esc(r && r.form ? r.form : '—') + '</td>' +
         '<td class="num">' + esc(r && r.draw ? r.draw : '—') + '</td>' +

@@ -1,0 +1,254 @@
+{
+ "date": "2026-11-18",
+ "source": "HKJC official race result",
+ "races": [
+  {
+   "course": "Happy Valley",
+   "time": "10:40",
+   "race": "Cheung Sha Handicap",
+   "race_no": 1,
+   "region": "HK",
+   "winner": "Star Brose",
+   "places": [
+    "Star Brose",
+    "Young Fighter",
+    "Kasa Papa"
+   ],
+   "finish": {
+    "Star Brose": 1,
+    "Young Fighter": 2,
+    "Kasa Papa": 3,
+    "Golden Fortune": 4,
+    "Our Lucky Glory": 5,
+    "Perfect Pairing": 6,
+    "Massive Glory": 7,
+    "Grand Turbo": 8,
+    "Ocean Impact": 9,
+    "Smiling One": 10,
+    "Sharpen Bright": 11,
+    "Super Hong Kong": 12
+   },
+   "field": 12,
+   "pick": "Star Brose",
+   "pick_finish": "1st",
+   "hit": true
+  },
+  {
+   "course": "Happy Valley",
+   "time": "11:10",
+   "race": "Fan Lau Handicap",
+   "race_no": 2,
+   "region": "HK",
+   "winner": "Golden Friendship",
+   "places": [
+    "Golden Friendship",
+    "Lean Master",
+    "Diriya"
+   ],
+   "finish": {
+    "Golden Friendship": 1,
+    "Lean Master": 2,
+    "Diriya": 3,
+    "Always My Folks": 4,
+    "Thousand Cups": 5,
+    "Mapogo": 6,
+    "Always Fluke": 7,
+    "Spicy Spangle": 8,
+    "Diamond Sparkle": 9,
+    "Tactical Command": 10,
+    "Zeta Hedge": 11,
+    "Gimme Five": 12
+   },
+   "field": 12,
+   "pick": "Golden Friendship",
+   "pick_finish": "1st",
+   "hit": true
+  },
+  {
+   "course": "Happy Valley",
+   "time": "11:40",
+   "race": "Ngong Ping Handicap",
+   "race_no": 3,
+   "region": "HK",
+   "winner": "Better And Better",
+   "places": [
+    "Better And Better",
+    "Never Settle",
+    "Show Me Your Love"
+   ],
+   "finish": {
+    "Better And Better": 1,
+    "Never Settle": 2,
+    "Show Me Your Love": 3,
+    "Vigor Eye": 4,
+    "Super Sixty": 5,
+    "Agent": 6,
+    "Matzden": 7,
+    "Bullish Nova": 8,
+    "Gallant Triumph": 9,
+    "Star Of Hearts": 10,
+    "Lunar Dash": 11,
+    "Speed Baby": 12
+   },
+   "field": 12,
+   "pick": "Matzden",
+   "pick_finish": "7th",
+   "hit": false
+  },
+  {
+   "course": "Happy Valley",
+   "time": "12:10",
+   "race": "Mui Wo Handicap",
+   "race_no": 4,
+   "region": "HK",
+   "winner": "Gazeley",
+   "places": [
+    "Gazeley",
+    "Red Brick Warrior",
+    "Flying Amani"
+   ],
+   "finish": {
+    "Gazeley": 1,
+    "Red Brick Warrior": 2,
+    "Flying Amani": 3,
+    "Class": 4,
+    "Lucky Together": 5,
+    "Super Unicorn": 6,
+    "Well Enough": 7,
+    "Poet'S Reign": 8,
+    "Refusetobeenglish": 9,
+    "Comic": 10,
+    "Joy Together": 11,
+    "Morgan Success": 12
+   },
+   "field": 12,
+   "pick": "Super Unicorn",
+   "pick_finish": "6th",
+   "hit": false
+  },
+  {
+   "course": "Happy Valley",
+   "time": "12:40",
+   "race": "Ngong Ping Handicap",
+   "race_no": 5,
+   "region": "HK",
+   "winner": "Falcon Hunter",
+   "places": [
+    "Falcon Hunter",
+    "Private Wealth",
+    "King Lotus"
+   ],
+   "finish": {
+    "Falcon Hunter": 1,
+    "Private Wealth": 2,
+    "King Lotus": 3,
+    "My Day My Say": 4,
+    "Navas G": 5,
+    "Phoenix Light": 6,
+    "Spicy Bonus": 7,
+    "Turf Quest": 8,
+    "Enjoy Golf": 9,
+    "Word Of Kindness": 10,
+    "Bossanova": 11,
+    "Ever Wealth": 12
+   },
+   "field": 12,
+   "pick": "King Lotus",
+   "pick_finish": "3rd",
+   "hit": false
+  },
+  {
+   "course": "Happy Valley",
+   "time": "13:10",
+   "race": "Pui O Handicap",
+   "race_no": 6,
+   "region": "HK",
+   "winner": "Georgian Sigma",
+   "places": [
+    "Georgian Sigma",
+    "Country Pride",
+    "Looking Bright"
+   ],
+   "finish": {
+    "Georgian Sigma": 1,
+    "Country Pride": 2,
+    "Looking Bright": 3,
+    "Harmony Fire": 4,
+    "Copper Core": 5,
+    "Superb King": 6,
+    "Everstar": 7,
+    "Happy United": 8,
+    "Master Resolute": 9,
+    "I Am Back": 10,
+    "Boltz": 11,
+    "Perfect One": 12
+   },
+   "field": 12,
+   "pick": "Georgian Sigma",
+   "pick_finish": "1st",
+   "hit": true
+  },
+  {
+   "course": "Happy Valley",
+   "time": "13:45",
+   "race": "Siu Ho Wan Handicap",
+   "race_no": 7,
+   "region": "HK",
+   "winner": "Windlord",
+   "places": [
+    "Windlord",
+    "Prestige Good",
+    "Turin Champions"
+   ],
+   "finish": {
+    "Windlord": 1,
+    "Prestige Good": 2,
+    "Turin Champions": 3,
+    "Riding Together": 4,
+    "A Americ Te Specso": 5,
+    "Mighty Commander": 6,
+    "My Day My Way": 7,
+    "Highland Rahy": 8,
+    "Lions Spirit": 9,
+    "Call Me Topseed": 10,
+    "Wrote A New Page": 11,
+    "Prime Success": 12
+   },
+   "field": 12,
+   "pick": "My Day My Way",
+   "pick_finish": "7th",
+   "hit": false
+  },
+  {
+   "course": "Happy Valley",
+   "time": "14:15",
+   "race": "Tai O Handicap",
+   "race_no": 8,
+   "region": "HK",
+   "winner": "Amazing Kid",
+   "places": [
+    "Amazing Kid",
+    "Motor",
+    "Virtus Glory"
+   ],
+   "finish": {
+    "Amazing Kid": 1,
+    "Motor": 2,
+    "Virtus Glory": 3,
+    "Greater Bae": 4,
+    "Invincible Steed": 5,
+    "Aurora Lady": 6,
+    "Aurio": 7,
+    "Gustosisimo": 8,
+    "Majestic St Paul'S": 9,
+    "Royal Blitz": 10,
+    "Saint Of The Sea": 11,
+    "Devas Twelve": 12
+   },
+   "field": 12,
+   "pick": "Aurora Lady",
+   "pick_finish": "6th",
+   "hit": false
+  }
+ ]
+}

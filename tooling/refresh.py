@@ -369,9 +369,17 @@ def serialise(cards, comment):
                 f'time: {js(c["time"])},\n      day: {js(c["day"])}, region: {js(c["region"])},')
         if c.get("iso"):
             head += f'\n      iso: {js(c["iso"])},'
+        result_line = ""
+        if c.get("result"):
+            # HK cards carry the official outcome so the tab can show what the
+            # settled pick did, without a runtime fetch.
+            result_line = ("\n      result: "
+                           + json.dumps(c["result"], ensure_ascii=False,
+                                        separators=(",", ":")) + ",")
         body.append("    {\n" + head +
                     f'\n      race: {js(c["race"])}, going: {js(c["going"])}, '
-                    f'klass: {js(c["klass"])}, note: {js(c.get("note", ""))},\n'
+                    f'klass: {js(c["klass"])}, note: {js(c.get("note", ""))},'
+                    f'{result_line}\n'
                     "      runners: [\n" + runners + "\n      ]\n    }")
     return out, body
 
@@ -1047,6 +1055,13 @@ def main():
     except Exception as e:
         print(f"  us form:     skipped ({e})")
     hk = hk_day(iso)
+    try:
+        import settle_hk
+        attached = settle_hk.attach(hk, iso)
+        if attached:
+            print(f"  HK results:  {attached} settled races attached")
+    except Exception as e:
+        print(f"  HK results:  skipped ({e})")
     print(f"  HK today:    {len(hk)} races")
 
     try:

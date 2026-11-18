@@ -422,6 +422,13 @@ def main(argv=None):
     except Exception as e:
         print(f"  chance audit: skipped ({e})")
         chance_result = None
+    # Hong Kong settles from the official HKJC result feed. A stored pick is
+    # never rewritten; races whose official result is incomplete stay open.
+    try:
+        import settle_hk
+        settle_hk.main(iso)
+    except Exception as e:
+        print(f"  HK results:  skipped ({e})")
     html = open(refresh.INDEX, encoding="utf-8").read()
     html = _replace(html, "RESULTS_SL",
                     refresh.results_block_all() or refresh.results_block(iso, rows))
