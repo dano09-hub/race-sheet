@@ -4,7 +4,7 @@
 The daily source is The Overlay's public US angle feed, which carries the
 runner's flags and the reasons behind them.  Races missing from that feed are
 scanned from the archived card and only the flags the card supports are
-derived.  Fair chance is a power-method de-vig of the card prices.
+derived.  Fair is The Overlay's win chance; market is the card prices de-vigged.
 
 Nothing here feeds the model or changes a pick.
 
@@ -451,7 +451,9 @@ def block_html(data):
     source_note = (f"Flags come from The Overlay's public US angle feed"
                    + (f" (built {esc(generated)})" if generated else "")
                    + ". Card-only races derive only the facts the card carries. "
-                   "Fair chance is a power-method de-vig of the card prices; it is not a tip.")
+                   "Fair is The Overlay's win chance for the runner; market is the same chance read from the card prices "
+                   "with the race's margin removed. VALUE means the fair chance is higher than the market's; "
+                   "NO VALUE means it is lower. It is not a tip.")
 
     race_parts = []
     for race in data["races"]:
