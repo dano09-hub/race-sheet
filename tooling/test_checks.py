@@ -2074,6 +2074,16 @@ check("results: the guard names the message the job actually writes",
       'git commit -m "Live results' in _res_yml)
 
 print()
+print("Refresh copy")
+_page_now = (ROOT / "index.html").read_text(encoding="utf-8")
+check("results tab: the refresh copy matches how runs are triggered now",
+      "Auto pull still runs every 20 minutes" not in _page_now
+      and "trigger a pull as soon as they are committed" in _page_now
+      and "often runs that hours late" in _page_now)
+check("results tab: the copy still says manual entries stay local",
+      "Manual entries are saved in this browser only" in _page_now)
+
+print()
 print("passed %d, failed %d%s" % (
     len(PASSED), len(FAILED), (", skipped %d" % len(SKIPPED)) if SKIPPED else ""))
 sys.exit(1 if FAILED else 0)
