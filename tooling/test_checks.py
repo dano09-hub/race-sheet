@@ -1736,6 +1736,63 @@ check("HK: that step runs before the page-writing pass",
       _hk_wf.index("tooling/settle_hk.py") < _hk_wf.index("tooling/settle_today.py"))
 
 print()
+print("Hong Kong pre-race odds capture")
+import datetime as dt
+import snapshot_hk as shk
+_now = dt.datetime(2026, 11, 18, 11, 31, tzinfo=dt.timezone.utc)
+_hk_card = {"id": "hk-happy-valley-1118-r3", "course": "Happy Valley",
+            "race": "Ngong Ping Handicap", "time": "11:40",
+            "iso": "2026-11-18T11:40:00.000Z",
+            "runners": [{"horse": "Matzden"}, {"horse": "Never Settle"}]}
+_hk_payload = {"data": {"raceMeetings": [{"races": [
+    {"no": 3, "status": "DECLARED", "runners": [
+        {"name_en": "MATZDEN", "winOdds": "3.1", "status": ""},
+        {"name_en": "NEVER SETTLE", "winOdds": "4.5", "status": ""}]}]}]}}
+_hk_snaps = shk.collect([_hk_card], _hk_payload, _now)
+check("HK odds: a race inside the window is captured", len(_hk_snaps) == 1, _hk_snaps)
+check("HK odds: the capture records the field and its prices",
+      _hk_snaps and [r["horse"] for r in _hk_snaps[0]["runners"]]
+      == ["MATZDEN", "NEVER SETTLE"]
+      and _hk_snaps[0]["runners"][0]["odds"] == "3.1", _hk_snaps)
+check("HK odds: the lead time at capture is recorded",
+      _hk_snaps and _hk_snaps[0]["lead_seconds"] == 540, _hk_snaps)
+check("HK odds: a race already off is never captured",
+      shk.collect([_hk_card], _hk_payload,
+                  dt.datetime(2026, 11, 18, 11, 40, 30,
+                              tzinfo=dt.timezone.utc)) == [])
+check("HK odds: a resulted race is never captured",
+      shk.collect([_hk_card], {"data": {"raceMeetings": [{"races": [
+          {"no": 3, "status": "RESULT", "runners": [
+              {"name_en": "MATZDEN", "winOdds": "2.8"},
+              {"name_en": "NEVER SETTLE", "winOdds": "3.9"}]}]}]}}, _now) == [])
+check("HK odds: a field that is not the card's is refused",
+      shk.collect([_hk_card], {"data": {"raceMeetings": [{"races": [
+          {"no": 3, "status": "DECLARED", "runners": [
+              {"name_en": "MATZDEN", "winOdds": "3.1"}]}]}]}}, _now) == [])
+check("HK odds: a race with no published price is refused",
+      shk.collect([_hk_card], {"data": {"raceMeetings": [{"races": [
+          {"no": 3, "status": "DECLARED", "runners": [
+              {"name_en": "MATZDEN", "winOdds": ""},
+              {"name_en": "NEVER SETTLE", "winOdds": ""}]}]}]}}, _now) == [])
+with tempfile.TemporaryDirectory(prefix="hk-odds-") as _hod:
+    _hk_old = shk.OUT_DIR
+    shk.OUT_DIR = _hod
+    try:
+        _hk_path = shk.save("2026-11-18", _hk_snaps[0])
+        check("HK odds: the snapshot is filed once per race",
+              bool(_hk_path) and os.path.basename(_hk_path) == "r3.json")
+        check("HK odds: a filed snapshot is never overwritten",
+              shk.save("2026-11-18", dict(_hk_snaps[0], captured="later")) is None)
+    finally:
+        shk.OUT_DIR = _hk_old
+_hk_odds_wf = (ROOT / ".github" / "workflows" / "hk-odds.yml").read_text(
+    encoding="utf-8")
+check("HK odds: the capture has its own workflow",
+      "tooling/snapshot_hk.py" in _hk_odds_wf)
+check("HK odds: the workflow commits what it files",
+      "data/hk_preoff" in _hk_odds_wf and "git push" in _hk_odds_wf)
+
+print()
 print("passed %d, failed %d%s" % (
     len(PASSED), len(FAILED), (", skipped %d" % len(SKIPPED)) if SKIPPED else ""))
 sys.exit(1 if FAILED else 0)

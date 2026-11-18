@@ -902,6 +902,19 @@ step, before the page is written, so a published page cannot carry a ledger that
 lags the official result. The feed only serves the current meeting, so the tool
 refuses any other date rather than tag a card with the wrong result.
 
+### Hong Kong pre-race odds
+
+The morning card is scraped before betting opens, so the Market factor - the
+largest single weight - is blank for most Hong Kong races and the pick rests on
+form, official rating, draw and weight. `tooling/snapshot_hk.py` files one odds
+snapshot per race between twenty and three minutes before its post time into
+`data/hk_preoff/<date>/r<N>.json`; the **Hong Kong pre-race odds** workflow runs
+it every ten minutes through the meeting. A filed snapshot is never overwritten
+and a race that has already gone off is never captured, so the archive cannot
+hold a price that only existed after the result. Nothing scores from these
+files yet: they are the history a Hong Kong factor has to be measured against
+before any weight changes.
+
 ## Back-test: what the British history actually says
 
 `tooling/build_scores.py` rebuilds per-race factor scores from `data/dataset.csv.gz`

@@ -1,0 +1,46 @@
+name: Hong Kong pre-race odds
+
+on:
+  schedule:
+    # Hong Kong cards run from about 05:00 to 15:00 UTC (Sha Tin on Sundays,
+    # Happy Valley on Wednesdays). Every ten minutes through that window, so
+    # each race is caught inside its twenty-minute-to-three-minute capture
+    # window; the tool itself refuses anything after the off.
+    - cron: "*/10 4-15 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# The results job writes the page and this one adds snapshots; one group keeps
+# the two from pushing over each other.
+concurrency:
+  group: refresh
+  cancel-in-progress: false
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install tools
+        run: python3 -m pip install -r requirements.txt
+      - name: File pre-race odds
+        run: python3 tooling/snapshot_hk.py
+      - name: Commit snapshots
+        run: |
+          git config user.name "racing-sheet-bot"
+          git config user.email "actions@users.noreply.github.com"
+          if [ -d data/hk_preoff ]; then
+            git add data/hk_preoff
+          fi
+          if git diff --cached --quiet; then
+            echo "No new pre-race snapshots"
+          else
+            git commit -m "HK pre-race odds $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git push
+          fi
