@@ -1105,6 +1105,11 @@
      line: what the score, the chances and the break-even price are saying. */
   .whyrow td { padding: 2px 12px 14px 12px; border-bottom: 1px solid var(--line); }
   .why-list { display: none; }
+  .rate-key { display: flex; flex-wrap: wrap; gap: 4px 16px; margin: 10px 0 12px; padding: 9px 12px;
+    border: 1px solid var(--line); border-radius: 8px; background: #fbfcfb;
+    color: var(--muted); font-size: 11.5px; line-height: 1.45; }
+  .rate-key span { display: inline-flex; gap: 5px; }
+  .rate-key b { color: var(--ink); font-weight: 600; }
   .whyrow p { margin: 0; max-width: 86ch; color: #475467; font-size: 12.5px; line-height: 1.6; }
   .whyrow b { color: var(--ink); font-weight: 600; }
   .best-explain { margin: 0; color: #54645d; font-size: 12px; line-height: 1.55; }
@@ -1348,6 +1353,12 @@
       <span><b id="fieldInfo">No runners</b></span>
       <span aria-hidden="true">·</span>
       <span class="pill" id="placeTerms">—</span>
+    </div>
+    <div class="rate-key" aria-label="What the columns mean">
+      <span><b>Score</b> 0&ndash;100 merit rank, not a chance</span>
+      <span><b>Model %</b> win chance from the score</span>
+      <span><b>Market %</b> win chance from the odds, margin removed</span>
+      <span><b>Break-even</b> 1 &divide; model chance</span>
     </div>
     <div class="scroll">
       <table id="resultTable">
