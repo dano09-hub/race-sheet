@@ -360,7 +360,7 @@ def serialise(cards, comment):
         # card view can show the draw the model scores. Other regions keep the
         # block they already had: their draw was never part of the page's card.
         extra = (("draw", "no")
-                 if str(c.get("region", "")).upper() in ("HK", "FR") else ())
+                 if str(c.get("region", "")).upper() in ("HK", "FR", "CL") else ())
         def runner(r):
             keys = [f"{k}:{js(r.get(k, ''))}" for k in RUNNER_KEYS]
             keys += [f"{k}:{js(r.get(k, ''))}" for k in extra]
@@ -1137,14 +1137,17 @@ def main():
 
     # France: PMU's programme. Only pre-off races are filed, so a later refresh
     # cannot replace a card the pick was made from with a post-race re-scrape.
-    fr = []
+    fr, cl = [], []
     try:
         import france
         tomorrow = (today + dt.timedelta(days=1)).isoformat()
         fr = france.fetch_cards(iso) + france.fetch_cards(tomorrow)
         print(f"  FR cards:    {len(fr)} pre-race races (today + tomorrow)")
+        cl = (france.fetch_cards(iso, "CL")
+              + france.fetch_cards(tomorrow, "CL"))
+        print(f"  CL cards:    {len(cl)} pre-race races (today + tomorrow)")
     except Exception as e:
-        print(f"  FR cards:    skipped ({e})")
+        print(f"  PMU cards:   skipped ({e})")
 
     try:
         slug_date = today.strftime("%d-%m-%y")
@@ -1241,7 +1244,7 @@ def main():
     au = au_day()
     print(f"  AU card:     {len(au)} races")
     archive(iso, {"GB": uk_today, "GB_tomorrow": uk_tomorrow, "US": us, "HK": hk,
-                  "AU": au, "FR": fr})
+                  "AU": au, "FR": fr, "CL": cl})
     # Take the with/without-rating snapshot before the day settles. Later
     # results refreshes only recalculate the tally; they never rewrite it.
     try:
@@ -1430,10 +1433,12 @@ def main():
     # ledger, not from the one fetch this run happened to make.
     try:
         import france
-        html = france.replace_cards(html, iso)
-        html = france.replace_results(html)
+        html = france.replace_cards(html, iso, "FR")
+        html = france.replace_results(html, "FR")
+        html = france.replace_cards(html, iso, "CL")
+        html = france.replace_results(html, "CL")
     except Exception as e:
-        print(f"  FR blocks:   skipped ({e})")
+        print(f"  PMU blocks:  skipped ({e})")
 
     open(INDEX, "w", encoding="utf-8").write(html)
     os.makedirs(os.path.join(ROOT, "dist", "public"), exist_ok=True)

@@ -1,6 +1,6 @@
 {
  "date": "2026-11-18",
- "measured": "2026-11-18T19:42:06+00:00",
+ "measured": "2026-11-18T19:51:04+00:00",
  "rows": [
   {
    "country": "Great Britain & Ireland",
@@ -10,7 +10,8 @@
    "results": true,
    "prices": true,
    "verdict": "live",
-   "note": "horseracing.net cards; Sporting Life / irishracing results"
+   "note": "horseracing.net cards; Sporting Life / irishracing results",
+   "wired": true
   },
   {
    "country": "United States",
@@ -20,7 +21,8 @@
    "results": true,
    "prices": true,
    "verdict": "live",
-   "note": "HRN entries and payout table on one host"
+   "note": "HRN entries and payout table on one host",
+   "wired": true
   },
   {
    "country": "Hong Kong",
@@ -30,7 +32,8 @@
    "results": true,
    "prices": false,
    "verdict": "live",
-   "note": "official HKJC card and finishing positions"
+   "note": "official HKJC card and finishing positions",
+   "wired": true
   },
   {
    "country": "France",
@@ -40,7 +43,8 @@
    "results": true,
    "prices": true,
    "verdict": "live",
-   "note": "18 declared runners, 40 definitive races, forecast dividends"
+   "note": "18 declared runners, 40 definitive races, forecast dividends",
+   "wired": true
   },
   {
    "country": "Argentina",
@@ -50,7 +54,8 @@
    "results": false,
    "prices": false,
    "verdict": "cards only",
-   "note": "12 declared runners, 0 definitive races, no prices"
+   "note": "12 declared runners, 0 definitive races, no prices",
+   "wired": false
   },
   {
    "country": "Chile",
@@ -60,7 +65,8 @@
    "results": true,
    "prices": false,
    "verdict": "cards + results, no prices",
-   "note": "15 declared runners, 6 definitive races, no prices"
+   "note": "15 declared runners, 6 definitive races, no prices",
+   "wired": true
   },
   {
    "country": "Australia & New Zealand",
@@ -70,7 +76,8 @@
    "results": false,
    "prices": false,
    "verdict": "blocked",
-   "note": "Punters Cloudflare 403; racing.com 403 from this network"
+   "note": "Punters Cloudflare 403; racing.com 403 from this network",
+   "wired": false
   },
   {
    "country": "Japan",
@@ -80,7 +87,8 @@
    "results": false,
    "prices": false,
    "verdict": "html only",
-   "note": "race pages reachable; no machine-readable race list"
+   "note": "race pages reachable; no machine-readable race list",
+   "wired": false
   },
   {
    "country": "South Africa",
@@ -90,7 +98,8 @@
    "results": false,
    "prices": false,
    "verdict": "html only",
-   "note": "TAB home answers; no meeting/field payload found"
+   "note": "TAB home answers; no meeting/field payload found",
+   "wired": false
   },
   {
    "country": "Germany",
@@ -100,7 +109,8 @@
    "results": false,
    "prices": false,
    "verdict": "html only",
-   "note": "race-day pages are HTML; no structured field feed found"
+   "note": "race-day pages are HTML; no structured field feed found",
+   "wired": false
   },
   {
    "country": "Brazil",
@@ -110,7 +120,8 @@
    "results": false,
    "prices": false,
    "verdict": "no feed",
-   "note": "redirects to https://www.gaveainvest.com.br/"
+   "note": "redirects to https://www.gaveainvest.com.br/",
+   "wired": false
   },
   {
    "country": "United Arab Emirates",
@@ -120,7 +131,8 @@
    "results": false,
    "prices": false,
    "verdict": "unreachable",
-   "note": "connection timed out from this network"
+   "note": "connection timed out from this network",
+   "wired": false
   }
  ]
 }

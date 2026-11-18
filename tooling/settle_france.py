@@ -15,8 +15,12 @@ import france
 def main(argv=None):
     argv = list(sys.argv[1:] if argv is None else argv)
     iso = argv[0] if argv else dt.date.today().isoformat()
+    # The last French races can finish after the final evening run. Settling
+    # yesterday too is idempotent and never rewrites a stored pick.
+    yday = (dt.date.fromisoformat(iso) - dt.timedelta(days=1)).isoformat()
     try:
-        rows = france.settle(iso)
+        rows = france.settle(yday)
+        rows += france.settle(iso)
         cards = france.refresh_page(iso)
     except feed.FeedError as e:
         print(f"France results: FAILED ({e})")

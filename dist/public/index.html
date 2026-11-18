@@ -189,19 +189,19 @@
   #bestTable .num{text-align:right; font-variant-numeric:tabular-nums}
   #bestTable .score{font-weight:700; color:var(--green)}
   #bestTable .horse{font-weight:600}
-  #lateTable,#hkTable,#frTable{width:100%; border-collapse:collapse; font-size:13px; min-width:760px}
-  #lateTable th,#hkTable th,#frTable th{text-align:left; font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); border-bottom:1px solid var(--line); padding:0 8px 7px; white-space:nowrap}
-  #lateTable td,#hkTable td,#frTable td{padding:8px; border-bottom:1px solid var(--line); vertical-align:top}
-  #lateTable tr:last-child td,#hkTable tr:last-child td,#frTable tr:last-child td{border-bottom:none}
-  #lateTable tbody tr[data-card],#hkTable tbody tr[data-card],#frTable tbody tr[data-card]{cursor:pointer}
-  #lateTable tbody tr[data-card]:hover td,#hkTable tbody tr[data-card]:hover td,#frTable tbody tr[data-card]:hover td{background:rgba(0,0,0,.03)}
-  #lateTable .num,#hkTable .num,#frTable .num{text-align:right; font-variant-numeric:tabular-nums}
-  #lateTable .score,#hkTable .score,#frTable .score{font-weight:700; color:var(--green)}
-  #lateTable .horse,#hkTable .horse,#frTable .horse{font-weight:600}
-  #hkTable .hkres,#frTable .hkres{white-space:nowrap}
-  #hkTable .hkres.win,#frTable .hkres.win{color:var(--green); font-weight:700}
-  #hkTable .hkres.loss,#frTable .hkres.loss{color:var(--red); font-weight:700}
-  #hkTable .hksub,#frTable .hksub{font-size:11px; font-weight:400; color:var(--muted)}
+  #lateTable,#hkTable,#frTable,#clTable{width:100%; border-collapse:collapse; font-size:13px; min-width:760px}
+  #lateTable th,#hkTable th,#frTable th,#clTable th{text-align:left; font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); border-bottom:1px solid var(--line); padding:0 8px 7px; white-space:nowrap}
+  #lateTable td,#hkTable td,#frTable td,#clTable td{padding:8px; border-bottom:1px solid var(--line); vertical-align:top}
+  #lateTable tr:last-child td,#hkTable tr:last-child td,#frTable tr:last-child td,#clTable tr:last-child td{border-bottom:none}
+  #lateTable tbody tr[data-card],#hkTable tbody tr[data-card],#frTable tbody tr[data-card],#clTable tbody tr[data-card]{cursor:pointer}
+  #lateTable tbody tr[data-card]:hover td,#hkTable tbody tr[data-card]:hover td,#frTable tbody tr[data-card]:hover td,#clTable tbody tr[data-card]:hover td{background:rgba(0,0,0,.03)}
+  #lateTable .num,#hkTable .num,#frTable .num,#clTable .num{text-align:right; font-variant-numeric:tabular-nums}
+  #lateTable .score,#hkTable .score,#frTable .score,#clTable .score{font-weight:700; color:var(--green)}
+  #lateTable .horse,#hkTable .horse,#frTable .horse,#clTable .horse{font-weight:600}
+  #hkTable .hkres,#frTable .hkres,#clTable .hkres{white-space:nowrap}
+  #hkTable .hkres.win,#frTable .hkres.win,#clTable .hkres.win{color:var(--green); font-weight:700}
+  #hkTable .hkres.loss,#frTable .hkres.loss,#clTable .hkres.loss{color:var(--red); font-weight:700}
+  #hkTable .hksub,#frTable .hksub,#clTable .hksub{font-size:11px; font-weight:400; color:var(--muted)}
 
   @media print{
     body{background:#fff}
@@ -1410,6 +1410,7 @@
         <option value="AU">Australia &amp; New Zealand</option>
         <option value="HK">Hong Kong</option>
         <option value="FR">France</option>
+        <option value="CL">Chile</option>
       </select>
       <label for="racePick">Load a card</label>
       <select id="racePick"></select>
@@ -1705,7 +1706,44 @@
 <p class="method">24 French races settled from PMU&rsquo;s definitive arrival. No pre-race card was on file for this day, so no pick is shown. Winner and the first three home, with the off time in UTC.</p>
 <div class="scroll"><table class="ledger"><thead><tr><th>Off (UTC)</th><th>Course</th><th>Race</th><th>Winner</th><th>First three</th><th>Our pick</th></tr></thead><tbody><tr><td><span class="rtime">11:25</span></td><td><b>Pau</b></td><td>PRIX DE BILHERES</td><td>WATCHMAN</td><td class="muted">WATCHMAN &middot; SARMAD &middot; ROMANUS PONTIFEX</td><td class="pick none">card not kept</td></tr><tr><td><span class="rtime">11:55</span></td><td><b>Pau</b></td><td>PRIX GUY DE WATRIGANT</td><td>ZAKYNA AL ZARAYAN</td><td class="muted">ZAKYNA AL ZARAYAN &middot; AGANDJIR &middot; CHAKIFA</td><td class="pick none">card not kept</td></tr><tr><td><span class="rtime">12:00</span></td><td><b>Marseille Borely</b></td><td>PRIX DU COTERAN</td><td>ODESSA ELLIS</td><td class="muted">ODESSA ELLIS &middot; OSCAR DES CHARMES &middot; OVERTON SEVEN</td><td class="pick none">card not kept</td></tr><tr><td><span class="rtime">12:27</span></td><td><b>Pau</b></td><td>PRIX DE LAROIN</td><td>BOOMSLANG</td><td class="muted">BOOMSLANG &middot; EL LAGAR &middot; SARWAY</td><td class="pick none">card not kept</td></tr><tr><td><span class="rtime">12:30</span></td><td><b>Marseille Borely</b></td><td>PRIX DE MONJUSTIN</td><td>NAOMI DE BUSSET</td><td class="muted">NAOMI DE BUSSET &middot; NATIVEDARCHE &middot; NEW STORM</td><td class="pick none">card not kept</td></tr><tr><td><span class="rtime">12:55</span></td><td><b>Mauquenchy</b></td><td>GRAND NATIONAL DU TROT</td><td>ILEO PIERJI</td><td class="muted">ILEO PIERJI &middot; KEMIA DU CHENE &middot; HULYSSE DIGEO</td><td class="pick none">card not kept</td></tr><tr><td><span class="rtime">13:00</span></td><td><b>Marseille Borely</b></td><td>PRIX DE L&#x27;ILE DE RIOU (GR.A)</td><td>LOUMIODO</td><td class="muted">LOUMIODO &middot; L&#x27;ESPOIR DES BAUX &middot; LUTIN D&#x27;HERMES</td><td class="pick none">card not kept</td></tr><tr><td><span class="rtime">13:12</span></td><td><b>Pau</b></td><td>PRIX D&#x27;HENDAYE</td><td>CUMPLEANOS</td><td class="muted">CUMPLEANOS &middot; IPI TOMBI &middot; DEESSE D&#x27;ARGENT</td><td class="pick none">card not kept</td></tr><tr><td><span class="rtime">13:30</span></td><td><b>Mauquenchy</b></td><td>GRAND PRIX DES AMATEURS</td><td>KIMMAJO</td><td class="muted">KIMMAJO &middot; KING OF RACE &middot; KLASS D&#x27;ESPOIR</td><td class="pick none">card not kept</td></tr><tr><td><span class="rtime">13:30</span></td><td><b>Marseille Borely</b></td><td>PRIX DE L&#x27;ILE DE RIOU (GR.B)</td><td>LE POULIGUEN</td><td class="muted">LE POULIGUEN &middot; LUPIN DOUZOU &middot; LEXO JELOCA</td><td class="pick none">card not kept</td></tr><tr><td><span class="rtime">13:47</span></td><td><b>Pau</b></td><td>PRIX D&#x27;ANDOINS</td><td>SHOWMAN</td><td class="muted">SHOWMAN &middot; ODIN &middot; DAKOVKA</td><td class="pick none">card not kept</td></tr><tr><td><span class="rtime">14:00</span></td><td><b>Marseille Borely</b></td><td>PRIX VERT PLAN</td><td>MAMY BLUE TIT</td><td class="muted">MAMY BLUE TIT &middot; MILAZZO &middot; MACAO MIP</td><td class="pick none">card not kept</td></tr><tr><td><span class="rtime">14:05</span></td><td><b>Mauquenchy</b></td><td>PRIX DE LA REGION NORMANDIE</td><td>NOUMEA LIGNERIES</td><td class="muted">NOUMEA LIGNERIES &middot; NENIGMA &middot; NORMA JEANE</td><td class="pick none">card not kept</td></tr><tr><td><span class="rtime">14:22</span></td><td><b>Pau</b></td><td>PRIX DE L&#x27;OUSSE</td><td>MYBOYFRIEND</td><td class="muted">MYBOYFRIEND &middot; PAINT CHOP &middot; OLIVA</td><td class="pick none">card not kept</td></tr><tr><td><span class="rtime">14:30</span></td><td><b>Marseille Borely</b></td><td>PRIX DE FONBLANQUE</td><td>KEPI DU HOME</td><td class="muted">KEPI DU HOME &middot; KING CRIMSON &middot; JUAN CARLOS GIFONT</td><td class="pick none">card not kept</td></tr><tr><td><span class="rtime">14:40</span></td><td><b>Mauquenchy</b></td><td>PRIX ANDRE PERDRIX</td><td>MAGICO DE LOU</td><td class="muted">MAGICO DE LOU &middot; MYSTERE CERIZE &middot; MARCUS BERRY</td><td class="pick none">card not kept</td></tr><tr><td><span class="rtime">14:57</span></td><td><b>Pau</b></td><td>PRIX DE LESTELLE-BETHARRAM</td><td>LA TURBINE</td><td class="muted">LA TURBINE &middot; ZIPI &middot; KARANDASH</td><td class="pick none">card not kept</td></tr><tr><td><span class="rtime">15:00</span></td><td><b>Marseille Borely</b></td><td>PRIX DE CAROMB</td><td>IMBRIN BUROIS</td><td class="muted">IMBRIN BUROIS &middot; ISLA &middot; HERMES SCOTT</td><td class="pick none">card not kept</td></tr><tr><td><span class="rtime">15:15</span></td><td><b>Mauquenchy</b></td><td>PRIX DU CONSEIL DEPARTEMENTAL DE SEINE-MARITIME</td><td>KENYAN BLUES</td><td class="muted">KENYAN BLUES &middot; KANSAS DU HOCTI &middot; JAGUAR DJOB</td><td class="pick none">card not kept</td></tr><tr><td><span class="rtime">15:30</span></td><td><b>Marseille Borely</b></td><td>PRIX D&#x27;AGDE</td><td>KEL PRESTANCE</td><td class="muted">KEL PRESTANCE &middot; JOYEUX D&#x27;OUXY &middot; INO PURPLE</td><td class="pick none">card not kept</td></tr><tr><td><span class="rtime">15:32</span></td><td><b>Pau</b></td><td>PRIX DE TAURIAC</td><td>JARKI</td><td class="muted">JARKI &middot; BE TRUE &middot; AZOV</td><td class="pick none">card not kept</td></tr><tr><td><span class="rtime">15:50</span></td><td><b>Mauquenchy</b></td><td>PRIX DE MAUQUENCHY</td><td>LEARN TO FLY</td><td class="muted">LEARN TO FLY &middot; LOUNA DU LOCHEUR &middot; LADY PRINCESS</td><td class="pick none">card not kept</td></tr><tr><td><span class="rtime">16:25</span></td><td><b>Mauquenchy</b></td><td>PRIX DU PMU &quot;LE MAINTENON&quot; - SAINT-SAENS</td><td>IMPERATUR AM</td><td class="muted">IMPERATUR AM &middot; JAZZMAN &middot; LOOK OF LOVE</td><td class="pick none">card not kept</td></tr><tr><td><span class="rtime">17:00</span></td><td><b>Mauquenchy</b></td><td>PRIX JEAN MAIZERET</td><td>KIDAM DU METZ</td><td class="muted">KIDAM DU METZ &middot; KEOPS DE JUMILLY &middot; KRUGER DU NORD</td><td class="pick none">card not kept</td></tr></tbody></table></div>
 
-<!-- FR_RESULTS_SL_END -->
+    <!-- FR_RESULTS_SL_END -->
+  </section>
+
+  <section class="panel" data-panel="chile">
+    <h2>Chile races</h2>
+    <p class="method">Valpara&iacute;so cards from PMU: the declared field, French-style form, handicap value, weight and draw. PMU does not price this meeting, so the Market factor drops and the pick is scored only on the factors the card carries. No price is shown rather than estimated, and the same fixed weights are used as everywhere else.</p>
+    <p class="method" id="clCount"></p>
+    <div class="scroll">
+      <table id="clTable">
+        <thead>
+          <tr>
+            <th>Time (UK / UTC)</th>
+            <th>Course</th>
+            <th>Race</th>
+            <th>Pick</th>
+            <th>Outcome</th>
+            <th>Val.</th>
+            <th>Form</th>
+            <th>Draw</th>
+            <th>Score</th>
+            <th>Price</th>
+            <th>Runners</th>
+          </tr>
+        </thead>
+        <tbody id="clBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="panel" data-panel="clresults">
+    <h2>Chile results</h2>
+    <p class="method">Every settled Chilean race, from PMU&rsquo;s definitive arrival. A race appears only when every number in the arrival maps to a named runner; the pick is the one settled from the card filed before the off and is never rewritten. PMU does not price this meeting, so no Chilean pick uses a market factor.</p>
+    <!-- CL_RESULTS_SL_START -->
+<h3>Settled &mdash; 17 November 2026</h3>
+<p class="method">6 Chilean races settled from PMU&rsquo;s definitive arrival. No pre-race card was on file for this day, so no pick is shown. PMU does not price this meeting, so the pick is scored without the market factor. Winner and the first three home, with the off time in UTC.</p>
+<div class="scroll"><table class="ledger"><thead><tr><th>Off (UTC)</th><th>Course</th><th>Race</th><th>Winner</th><th>First three</th><th>Our pick</th></tr></thead><tbody><tr><td><span class="rtime">19:45</span></td><td><b>Concepcion</b></td><td>EDICION 50 MIL</td><td>SIMONE BULL</td><td class="muted">SIMONE BULL &middot; ASTROAZURRO &middot; FLASH STREAK</td><td class="pick none">card not kept</td></tr><tr><td><span class="rtime">20:15</span></td><td><b>Concepcion</b></td><td>31§ ANIVERSARIO DE LA ESTRELLA</td><td>FULKAR</td><td class="muted">FULKAR &middot; CELTIC STORM &middot; TIEMPO DE ROSAS</td><td class="pick none">card not kept</td></tr><tr><td><span class="rtime">20:45</span></td><td><b>Concepcion</b></td><td>DIARIO EL SUR Y DIARIO LA ESTRELLA</td><td>LOCO Y DEMENTE</td><td class="muted">LOCO Y DEMENTE &middot; COPAYAPU &middot; PECADO INCONFESABLE</td><td class="pick none">card not kept</td></tr><tr><td><span class="rtime">21:15</span></td><td><b>Concepcion</b></td><td>LA PRENSA REGIONAL</td><td>SKY TROY</td><td class="muted">SKY TROY &middot; PRINCIPE DE ORO &middot; RANI</td><td class="pick none">card not kept</td></tr><tr><td><span class="rtime">21:45</span></td><td><b>Concepcion</b></td><td>DIARIO EL SUR 144 ANOS</td><td>LA MELYTANS</td><td class="muted">LA MELYTANS &middot; JUDGE ROOM &middot; SURICATA</td><td class="pick none">card not kept</td></tr><tr><td><span class="rtime">22:15</span></td><td><b>Concepcion</b></td><td>EMPRESAS DIARIO EL SUR</td><td>SPIRIT ROAD</td><td class="muted">SPIRIT ROAD &middot; NINO DEL SUR &middot; ROJO JAMAS</td><td class="pick none">card not kept</td></tr></tbody></table></div>
+
+<!-- CL_RESULTS_SL_END -->
   </section>
 
   <section class="panel" data-panel="method">
@@ -1713,8 +1751,8 @@
     <p class="method">Twelve factors, fixed weights, one score per horse. Nothing is tuned per race or per card, so two identical horses always get the same rating.</p>
     <!-- COVERAGE_SL_START -->
 <h3>Which countries the sheet can actually follow</h3>
-<p class="method">Measured from the build network on 2026-11-18 19:42 UTC. A country earns a tab only when a machine-readable card and a definitive result both name the field. A feed that is blocked, HTML-only or results-only is recorded here rather than shown as an empty tab.</p>
-<div class="scroll"><table class="ledger"><thead><tr><th>Country</th><th>Cards</th><th>Results</th><th>Prices</th><th>Verdict</th><th>Evidence</th></tr></thead><tbody><tr><td><b>Great Britain &amp; Ireland</b></td><td class="num">yes</td><td class="num">yes</td><td class="num">yes</td><td>live</td><td class="muted">horseracing.net cards; Sporting Life / irishracing results</td></tr><tr><td><b>United States</b></td><td class="num">yes</td><td class="num">yes</td><td class="num">yes</td><td>live</td><td class="muted">HRN entries and payout table on one host</td></tr><tr><td><b>Hong Kong</b></td><td class="num">yes</td><td class="num">yes</td><td class="num">&mdash;</td><td>live</td><td class="muted">official HKJC card and finishing positions</td></tr><tr><td><b>France</b></td><td class="num">yes</td><td class="num">yes</td><td class="num">yes</td><td>live</td><td class="muted">18 declared runners, 40 definitive races, forecast dividends</td></tr><tr><td><b>Argentina</b></td><td class="num">yes</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td>cards only</td><td class="muted">12 declared runners, 0 definitive races, no prices</td></tr><tr><td><b>Chile</b></td><td class="num">yes</td><td class="num">yes</td><td class="num">&mdash;</td><td>cards + results, no prices</td><td class="muted">15 declared runners, 6 definitive races, no prices</td></tr><tr><td><b>Australia &amp; New Zealand</b></td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td>blocked</td><td class="muted">Punters Cloudflare 403; racing.com 403 from this network</td></tr><tr><td><b>Japan</b></td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td>html only</td><td class="muted">race pages reachable; no machine-readable race list</td></tr><tr><td><b>South Africa</b></td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td>html only</td><td class="muted">TAB home answers; no meeting/field payload found</td></tr><tr><td><b>Germany</b></td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td>html only</td><td class="muted">race-day pages are HTML; no structured field feed found</td></tr><tr><td><b>Brazil</b></td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td>no feed</td><td class="muted">redirects to https://www.gaveainvest.com.br/</td></tr><tr><td><b>United Arab Emirates</b></td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td>unreachable</td><td class="muted">connection timed out from this network</td></tr></tbody></table></div>
+<p class="method">Measured from the build network on 2026-11-18 19:51 UTC. A country earns a tab only when a machine-readable card and a definitive result both name the field; the rows marked <b>on page</b> are the ones wired today. A feed that is blocked, HTML-only or results-only is recorded here rather than shown as an empty tab.</p>
+<div class="scroll"><table class="ledger"><thead><tr><th>Country</th><th>Cards</th><th>Results</th><th>Prices</th><th>Verdict</th><th>Evidence</th></tr></thead><tbody><tr><td><b>Great Britain &amp; Ireland</b></td><td class="num">yes</td><td class="num">yes</td><td class="num">yes</td><td>live <b>on page</b></td><td class="muted">horseracing.net cards; Sporting Life / irishracing results</td></tr><tr><td><b>United States</b></td><td class="num">yes</td><td class="num">yes</td><td class="num">yes</td><td>live <b>on page</b></td><td class="muted">HRN entries and payout table on one host</td></tr><tr><td><b>Hong Kong</b></td><td class="num">yes</td><td class="num">yes</td><td class="num">&mdash;</td><td>live <b>on page</b></td><td class="muted">official HKJC card and finishing positions</td></tr><tr><td><b>France</b></td><td class="num">yes</td><td class="num">yes</td><td class="num">yes</td><td>live <b>on page</b></td><td class="muted">18 declared runners, 40 definitive races, forecast dividends</td></tr><tr><td><b>Argentina</b></td><td class="num">yes</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td>cards only</td><td class="muted">12 declared runners, 0 definitive races, no prices</td></tr><tr><td><b>Chile</b></td><td class="num">yes</td><td class="num">yes</td><td class="num">&mdash;</td><td>cards + results, no prices <b>on page</b></td><td class="muted">15 declared runners, 6 definitive races, no prices</td></tr><tr><td><b>Australia &amp; New Zealand</b></td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td>blocked</td><td class="muted">Punters Cloudflare 403; racing.com 403 from this network</td></tr><tr><td><b>Japan</b></td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td>html only</td><td class="muted">race pages reachable; no machine-readable race list</td></tr><tr><td><b>South Africa</b></td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td>html only</td><td class="muted">TAB home answers; no meeting/field payload found</td></tr><tr><td><b>Germany</b></td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td>html only</td><td class="muted">race-day pages are HTML; no structured field feed found</td></tr><tr><td><b>Brazil</b></td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td>no feed</td><td class="muted">redirects to https://www.gaveainvest.com.br/</td></tr><tr><td><b>United Arab Emirates</b></td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td>unreachable</td><td class="muted">connection timed out from this network</td></tr></tbody></table></div>
 <!-- COVERAGE_SL_END -->
   <details class="notes" open>
     <summary>How the rating is calculated</summary>
@@ -1772,6 +1810,8 @@
     ['hkresults', 'HK results', 'Hong Kong record', 'Settled Hong Kong races: winner, first three and what the model pick did.'],
     ['france', 'France', 'French racing', 'PMU cards: French form, handicap value, draw and the live forecast dividend.'],
     ['frresults', 'France results', 'French record', 'Settled French races: winner, first three and what the model pick did.'],
+    ['chile', 'Chile', 'Chilean racing', 'PMU cards for Valparaíso, scored without a market price.'],
+    ['clresults', 'Chile results', 'Chilean record', 'Settled Chilean races: winner, first three and what the model pick did.'],
     ['method', 'Method', 'About', 'The fixed weights and the evidence behind the rating.']
   ];
 
@@ -1786,6 +1826,8 @@
     hkresults: ['hkresults'],
     france: ['france'],
     frresults: ['frresults'],
+    chile: ['chile'],
+    clresults: ['clresults'],
     method: ['method']
   };
 
@@ -6854,7 +6896,92 @@
     }
   ];
 
-var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR);  // UK/IRE today, US, HK, UK tomorrow, France
+  var CARDS_CL = [
+  // Chile cards, 2026-11-18,
+    {
+      id: "cl-valparaiso-r9c1", label: "PREMIO ASOCIACION DE PROPIETARIOS V REGION A…", course: "Valparaiso", time: "21:00",
+      day: "2026-11-18", region: "CL",
+      iso: "2026-11-18T21:00:00Z",
+      race: "PREMIO ASOCIACION DE PROPIETARIOS V REGION A. G. S.", going: "", klass: "Plat · 1600m", note: "1600m",
+      runners: [
+        {horse:"OTRA VEZ PITUCO", odds:"", form:"61153", or:"", rpr:"", ts:"", weight:"57", days:"", course:"N", distance:"N", going:"?", jp:"JAIME FABIAN MEDINA", tp:"JUAN PABLO BAEZA JARPA", tips:"", naps:"", draw:"1", no:"1"},
+        {horse:"MAKE IT COUNT", odds:"", form:"31116", or:"", rpr:"", ts:"", weight:"57", days:"", course:"N", distance:"N", going:"?", jp:"JOAQUIN ALEJANDRO HERRERA OLIVAR", tp:"CLAUDIO ALAMIRO BERNAL GONZALEZ", tips:"", naps:"", draw:"2", no:"2"},
+        {horse:"DON CICCIO", odds:"", form:"8341", or:"", rpr:"", ts:"", weight:"57", days:"", course:"N", distance:"N", going:"?", jp:"HUGO ALEJANDRO OCHOA OLMOS", tp:"XIMENO FRANCISCO URENDA", tips:"", naps:"", draw:"3", no:"3"},
+        {horse:"HOLYFIELD", odds:"", form:"23761", or:"", rpr:"", ts:"", weight:"57", days:"", course:"N", distance:"N", going:"?", jp:"NICOLAS ALEJANDRO RAMIREZ MUNOZ", tp:"LUIS GUILLERMO VALDIVIA BRUNA", tips:"", naps:"", draw:"5", no:"5"},
+        {horse:"TUTMOSIS", odds:"", form:"11413", or:"", rpr:"", ts:"", weight:"57", days:"", course:"N", distance:"N", going:"?", jp:"BENJAMIN  SANCHO", tp:"XIMENO FRANCISCO URENDA", tips:"", naps:"", draw:"6", no:"6"},
+        {horse:"VERTIBENA", odds:"", form:"01344", or:"", rpr:"", ts:"", weight:"55", days:"", course:"N", distance:"N", going:"?", jp:"NELSON ANDRES ROJAS", tp:"JULIO CESAR ORELLANA", tips:"", naps:"", draw:"7", no:"7"},
+        {horse:"SOPELANA", odds:"", form:"60152", or:"", rpr:"", ts:"", weight:"57", days:"", course:"N", distance:"N", going:"?", jp:"OSCAR ALEJANDRO ULLOA PEREZ", tp:"HERNAN EDUARDO ULLOA PEREZ", tips:"", naps:"", draw:"8", no:"8"},
+        {horse:"MARMARIS", odds:"", form:"88361", or:"", rpr:"", ts:"", weight:"57", days:"", course:"N", distance:"N", going:"?", jp:"SEBASTIAN EDUARDO GONZALEZ", tp:"ALDO RODOLFO PARRA", tips:"", naps:"", draw:"9", no:"9"},
+        {horse:"LAMOTTA", odds:"", form:"03223", or:"", rpr:"", ts:"", weight:"57", days:"", course:"N", distance:"N", going:"?", jp:"GERALD ANDRES RODRIGUEZ SEPULVED", tp:"XIMENO FRANCISCO URENDA", tips:"", naps:"", draw:"10", no:"10"},
+        {horse:"CATTO", odds:"", form:"91", or:"", rpr:"", ts:"", weight:"57", days:"", course:"N", distance:"N", going:"?", jp:"ALEJANDRO ISAIAS MAUREIRA", tp:"XIMENO FRANCISCO URENDA", tips:"", naps:"", draw:"11", no:"11"},
+        {horse:"VOLTURI", odds:"", form:"78645", or:"", rpr:"", ts:"", weight:"57", days:"", course:"N", distance:"N", going:"?", jp:"PEDRO ROBERTO ROBLES", tp:"XIMENO FRANCISCO URENDA", tips:"", naps:"", draw:"13", no:"13"},
+        {horse:"DALE TANQUE", odds:"", form:"29861", or:"", rpr:"", ts:"", weight:"57", days:"", course:"N", distance:"N", going:"?", jp:"MIGUEL ANGEL GUTIERREZ BADILLA", tp:"LUIS ALEJANDRO DROGUETT", tips:"", naps:"", draw:"14", no:"14"},
+        {horse:"SAMOIDEO", odds:"", form:"3110", or:"", rpr:"", ts:"", weight:"55", days:"", course:"N", distance:"N", going:"?", jp:"RAFAEL FRANCISCO CISTERNAS AYALA", tp:"JULIO CESAR ORELLANA", tips:"", naps:"", draw:"15", no:"15"}
+      ]
+    },
+    {
+      id: "cl-valparaiso-r9c2", label: "JAIME MUNRO P. H.", course: "Valparaiso", time: "21:30",
+      day: "2026-11-18", region: "CL",
+      iso: "2026-11-18T21:30:00Z",
+      race: "JAIME MUNRO P. H.", going: "", klass: "Plat · 1100m", note: "1100m",
+      runners: [
+        {horse:"LA TIA ELENA", odds:"", form:"72342", or:"", rpr:"", ts:"", weight:"56", days:"", course:"N", distance:"N", going:"?", jp:"JOSE MATIAS EYZAGUIRRE CEPEDA", tp:"VICTOR ANTONIO CABALLERIA CONTRE", tips:"", naps:"", draw:"1", no:"1"},
+        {horse:"EL PALOMO", odds:"", form:"31403", or:"", rpr:"", ts:"", weight:"57", days:"", course:"N", distance:"N", going:"?", jp:"JAIME FABIAN MEDINA", tp:"JORGE MAURICIO ARANEDA MANCILLA", tips:"", naps:"", draw:"2", no:"2"},
+        {horse:"OSCURO Y SALVAJE", odds:"", form:"80141", or:"", rpr:"", ts:"", weight:"58", days:"", course:"N", distance:"N", going:"?", jp:"NELSON ANDRES ROJAS", tp:"BORIS TOLEDO", tips:"", naps:"", draw:"3", no:"3"},
+        {horse:"VINCERO", odds:"", form:"72573", or:"", rpr:"", ts:"", weight:"55", days:"", course:"N", distance:"N", going:"?", jp:"BENJAMIN  SANCHO", tp:"RAFAEL ABRAHAM BERNAL", tips:"", naps:"", draw:"4", no:"4"},
+        {horse:"SALADO", odds:"", form:"96561", or:"", rpr:"", ts:"", weight:"58", days:"", course:"N", distance:"N", going:"?", jp:"FELIPE TAPIA", tp:"BORIS TOLEDO", tips:"", naps:"", draw:"5", no:"5"},
+        {horse:"VIVE LE ROI", odds:"", form:"13521", or:"", rpr:"", ts:"", weight:"55", days:"", course:"N", distance:"N", going:"?", jp:"ALBERTO JESUS VASQUEZ VASQUEZ", tp:"VICTOR HUGO MORIS", tips:"", naps:"", draw:"6", no:"6"},
+        {horse:"CONDUCTA INFAME", odds:"", form:"14242", or:"", rpr:"", ts:"", weight:"53", days:"", course:"N", distance:"N", going:"?", jp:"MAXIMILIANO JOSE SALINAS", tp:"WILFREDO FRANCISCO MANCILLA DIAZ", tips:"", naps:"", draw:"7", no:"7"},
+        {horse:"EL GRAN PIRATA", odds:"", form:"55004", or:"", rpr:"", ts:"", weight:"55", days:"", course:"N", distance:"N", going:"?", jp:"GERALD ANDRES RODRIGUEZ SEPULVED", tp:"LUIS EDUARDO SALINAS TRIGO", tips:"", naps:"", draw:"8", no:"8"},
+        {horse:"KAPU", odds:"", form:"76345", or:"", rpr:"", ts:"", weight:"57", days:"", course:"N", distance:"N", going:"?", jp:"OSCAR ALEJANDRO ULLOA PEREZ", tp:"GONZALO ANDRES VEGAS CANTILLANO", tips:"", naps:"", draw:"9", no:"9"},
+        {horse:"ALGO LE PASO", odds:"", form:"12114", or:"", rpr:"", ts:"", weight:"57", days:"", course:"N", distance:"N", going:"?", jp:"RAFAEL FRANCISCO CISTERNAS AYALA", tp:"WILFREDO FRANCISCO MANCILLA DIAZ", tips:"", naps:"", draw:"10", no:"10"},
+        {horse:"MAGUIRE", odds:"", form:"72407", or:"", rpr:"", ts:"", weight:"58", days:"", course:"N", distance:"N", going:"?", jp:"SEBASTIAN ANDRES MARIN QUEZADA", tp:"MARCOS ANTONIO CONTRERAS LOPEZ", tips:"", naps:"", draw:"11", no:"11"}
+      ]
+    },
+    {
+      id: "cl-valparaiso-r9c3", label: "GUILLERMO CASTRO S. H.", course: "Valparaiso", time: "22:00",
+      day: "2026-11-18", region: "CL",
+      iso: "2026-11-18T22:00:00Z",
+      race: "GUILLERMO CASTRO S. H.", going: "", klass: "Plat · 1100m", note: "1100m",
+      runners: [
+        {horse:"MORINGA", odds:"", form:"25196", or:"", rpr:"", ts:"", weight:"58", days:"", course:"N", distance:"N", going:"?", jp:"JOSE MATIAS EYZAGUIRRE CEPEDA", tp:"VICTOR ANTONIO CABALLERIA CONTRE", tips:"", naps:"", draw:"1", no:"1"},
+        {horse:"HIJO DEL REY", odds:"", form:"31263", or:"", rpr:"", ts:"", weight:"58", days:"", course:"N", distance:"N", going:"?", jp:"JAIME FABIAN MEDINA", tp:"WILFREDO FRANCISCO MANCILLA DIAZ", tips:"", naps:"", draw:"2", no:"2"},
+        {horse:"CHAMPELICE", odds:"", form:"54851", or:"", rpr:"", ts:"", weight:"58", days:"", course:"N", distance:"N", going:"?", jp:"BENJAMIN  SANCHO", tp:"VICTOR ANTONIO CABALLERIA CONTRE", tips:"", naps:"", draw:"3", no:"3"},
+        {horse:"GRAN SAMCREDO", odds:"", form:"14604", or:"", rpr:"", ts:"", weight:"57", days:"", course:"N", distance:"N", going:"?", jp:"NELSON ANDRES ROJAS", tp:"BORIS TOLEDO", tips:"", naps:"", draw:"4", no:"4"},
+        {horse:"DESERT DANCER", odds:"", form:"56551", or:"", rpr:"", ts:"", weight:"58", days:"", course:"N", distance:"N", going:"?", jp:"GERALD ANDRES RODRIGUEZ SEPULVED", tp:"EDUARDO ALEJANDRO DONOSO", tips:"", naps:"", draw:"5", no:"5"},
+        {horse:"KRASNYY AND RED", odds:"", form:"19081", or:"", rpr:"", ts:"", weight:"57", days:"", course:"N", distance:"N", going:"?", jp:"SEBASTIAN ANDRES MARIN QUEZADA", tp:"EDUARDO ALEJANDRO DONOSO", tips:"", naps:"", draw:"6", no:"6"},
+        {horse:"POOR SMELL", odds:"", form:"00709", or:"", rpr:"", ts:"", weight:"57", days:"", course:"N", distance:"N", going:"?", jp:"ISRAEL ROBINSON VILLAGRAN CASTIL", tp:"MAXIMO TOMAS SILVA", tips:"", naps:"", draw:"7", no:"7"},
+        {horse:"GIULIANO", odds:"", form:"65001", or:"", rpr:"", ts:"", weight:"57", days:"", course:"N", distance:"N", going:"?", jp:"PIERO IGNACIO REYES PODESTA", tp:"ENRIQUE SIMON LAGUNAS", tips:"", naps:"", draw:"8", no:"8"},
+        {horse:"IMPERIO BABILONICO", odds:"", form:"51700", or:"", rpr:"", ts:"", weight:"58", days:"", course:"N", distance:"N", going:"?", jp:"KEVIN DAN ESPINA LAZO", tp:"VICTOR HUGO MORIS", tips:"", naps:"", draw:"9", no:"9"},
+        {horse:"ERICINA", odds:"", form:"71922", or:"", rpr:"", ts:"", weight:"58", days:"", course:"N", distance:"N", going:"?", jp:"RONALD FABIANO FOURNET", tp:"JOSE ARAYA", tips:"", naps:"", draw:"10", no:"10"}
+      ]
+    },
+    {
+      id: "cl-valparaiso-r9c4", label: "IGNACIO SILVA M. H.", course: "Valparaiso", time: "22:30",
+      day: "2026-11-18", region: "CL",
+      iso: "2026-11-18T22:30:00Z",
+      race: "IGNACIO SILVA M. H.", going: "", klass: "Plat · 1100m", note: "1100m",
+      runners: [
+        {horse:"LUIVERAR", odds:"", form:"00851", or:"", rpr:"", ts:"", weight:"57", days:"", course:"N", distance:"N", going:"?", jp:"JOSE DANIEL VILLAGRAN", tp:"ANIBAL REGENALDO NORAMBUENA GARR", tips:"", naps:"", draw:"1", no:"1"},
+        {horse:"CHOW CHOW", odds:"", form:"76379", or:"", rpr:"", ts:"", weight:"57", days:"", course:"N", distance:"N", going:"?", jp:"CARLOS ALEJANDRO ORTEGA TAPIA", tp:"ENRIQUE SIMON LAGUNAS", tips:"", naps:"", draw:"2", no:"2"},
+        {horse:"STEFFI YI", odds:"", form:"90392", or:"", rpr:"", ts:"", weight:"58", days:"", course:"N", distance:"N", going:"?", jp:"NELSON ANDRES ROJAS", tp:"ENRIQUE SIMON LAGUNAS", tips:"", naps:"", draw:"3", no:"3"},
+        {horse:"MIPIPO", odds:"", form:"22840", or:"", rpr:"", ts:"", weight:"57", days:"", course:"N", distance:"N", going:"?", jp:"JAIME FABIAN MEDINA", tp:"MAXIMO TOMAS SILVA", tips:"", naps:"", draw:"4", no:"4"},
+        {horse:"THE GREAT TEXAS", odds:"", form:"37659", or:"", rpr:"", ts:"", weight:"58", days:"", course:"N", distance:"N", going:"?", jp:"JORGE IGNACIO BAEZA RIVEROS", tp:"RAFAEL ABRAHAM BERNAL", tips:"", naps:"", draw:"5", no:"5"},
+        {horse:"OPERETA DE PLAZA", odds:"", form:"23521", or:"", rpr:"", ts:"", weight:"57", days:"", course:"N", distance:"N", going:"?", jp:"DIEGO ANDRES CARVACHO AZUA", tp:"DOMINGO ENRIQUE MATTE", tips:"", naps:"", draw:"6", no:"6"},
+        {horse:"SIEMPRE AVANTE", odds:"", form:"48163", or:"", rpr:"", ts:"", weight:"56", days:"", course:"N", distance:"N", going:"?", jp:"GERALD ANDRES RODRIGUEZ SEPULVED", tp:"GONZALO ANDRES VEGAS CANTILLANO", tips:"", naps:"", draw:"7", no:"7"},
+        {horse:"MALA MEMORIA", odds:"", form:"86323", or:"", rpr:"", ts:"", weight:"57", days:"", course:"N", distance:"N", going:"?", jp:"JAIME ADOLFO MINO FICA", tp:"JOSE ARAYA", tips:"", naps:"", draw:"8", no:"8"},
+        {horse:"EL KING", odds:"", form:"68000", or:"", rpr:"", ts:"", weight:"57", days:"", course:"N", distance:"N", going:"?", jp:"SEBASTIAN ANDRES MARIN QUEZADA", tp:"VICTOR HUGO MORIS", tips:"", naps:"", draw:"9", no:"9"},
+        {horse:"BLUE SUNDAY", odds:"", form:"29018", or:"", rpr:"", ts:"", weight:"57", days:"", course:"N", distance:"N", going:"?", jp:"KEVIN DAN ESPINA LAZO", tp:"VICTOR HUGO MORIS", tips:"", naps:"", draw:"10", no:"10"},
+        {horse:"PRIMO HAPPY", odds:"", form:"16897", or:"", rpr:"", ts:"", weight:"58", days:"", course:"N", distance:"N", going:"?", jp:"NICOLAS ALEJANDRO RAMIREZ MUNOZ", tp:"WILFREDO FRANCISCO MANCILLA DIAZ", tips:"", naps:"", draw:"11", no:"11"},
+        {horse:"LIO CORDILLERANO", odds:"", form:"46512", or:"", rpr:"", ts:"", weight:"56", days:"", course:"N", distance:"N", going:"?", jp:"GUILLERMO ANTONIO PEREZ ASTUDILL", tp:"RAFAEL ABRAHAM BERNAL", tips:"", naps:"", draw:"12", no:"12"},
+        {horse:"AKA AND RED", odds:"", form:"00866", or:"", rpr:"", ts:"", weight:"56", days:"", course:"N", distance:"N", going:"?", jp:"FRANCO PABLO SANCHEZ LUCERO", tp:"SERGIO ALEXIS SALAZAR", tips:"", naps:"", draw:"13", no:"13"},
+        {horse:"SOTO DE ANGOL", odds:"", form:"57148", or:"", rpr:"", ts:"", weight:"58", days:"", course:"N", distance:"N", going:"?", jp:"RONALD FABIANO FOURNET", tp:"VICTOR HUGO MORIS", tips:"", naps:"", draw:"14", no:"14"},
+        {horse:"MONTERRICO", odds:"", form:"71859", or:"", rpr:"", ts:"", weight:"56", days:"", course:"N", distance:"N", going:"?", jp:"JOSE MATIAS EYZAGUIRRE CEPEDA", tp:"LUIS ALBERTO MACHULAS GACHON", tips:"", naps:"", draw:"15", no:"15"}
+      ]
+    }
+  ];
+
+var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS_CL);  // UK/IRE today, US, HK, UK tomorrow, France, Chile
 
   // Latest settled UK/IRE day, rebuilt from data/results and the archived card.
   // Model rank is where the winner sat BEFORE the race, so it is not hindsight-fitted.
@@ -7451,7 +7578,7 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR);  // 
 
   var regionFilter = 'all';
 
-  function cardRegion(c) { return c.region === 'US' ? 'US' : (c.region === 'AU' ? 'AU' : (c.region === 'HK' ? 'HK' : (c.region === 'FR' ? 'FR' : 'GB'))); }
+  function cardRegion(c) { return c.region === 'US' ? 'US' : (c.region === 'AU' ? 'AU' : (c.region === 'HK' ? 'HK' : (c.region === 'FR' ? 'FR' : (c.region === 'CL' ? 'CL' : 'GB')))); }
 
   function dayLabel(iso) {
     if (!iso) return '';
@@ -7467,7 +7594,7 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR);  // 
       if (regionFilter !== 'all' && cardRegion(c) !== regionFilter) return;
       if (isResulted(c)) return;
       var day = dayLabel(c.day);
-      var tag = cardRegion(c) === 'US' ? 'USA · ' : (cardRegion(c) === 'AU' ? 'AUS · ' : (cardRegion(c) === 'HK' ? 'HK · ' : (cardRegion(c) === 'FR' ? 'FRA · ' : '')));
+      var tag = cardRegion(c) === 'US' ? 'USA · ' : (cardRegion(c) === 'AU' ? 'AUS · ' : (cardRegion(c) === 'HK' ? 'HK · ' : (cardRegion(c) === 'FR' ? 'FRA · ' : (cardRegion(c) === 'CL' ? 'CHI · ' : ''))));
       var key = tag + (day ? day + ' · ' : '') + c.course;
       if (!groups[key]) { groups[key] = []; order.push(key); seen[key] = c.day || ''; }
       groups[key].push(c);
@@ -7546,6 +7673,7 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR);  // 
     if (name === 'today') { renderLateRaces(); renderUnmissable(); }
     if (name === 'hk') { renderHongKong(); }
     if (name === 'france') { renderFrance(); }
+    if (name === 'chile') { renderChile(); }
     try { localStorage.setItem(TAB_STORE, name); } catch (e) { /* storage may be unavailable */ }
   }
 
@@ -8302,22 +8430,22 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR);  // 
     }).join('');
   }
 
-  function renderFrance() {
-    var body = $('frBody');
+  function renderPmuRegion(cards, bodyId, countId) {
+    var body = $(bodyId);
     if (!body) return;
     var now = new Date();
-    var races = CARDS_FR.slice().sort(function (a, b) { return cardWhen(a) - cardWhen(b); });
-    var count = $('frCount');
+    var races = cards.slice().sort(function (a, b) { return cardWhen(a) - cardWhen(b); });
+    var count = $(countId);
     var settled = races.filter(function (c) { return c.result && c.result.finish; }).length;
     var wins = races.filter(function (c) { return c.result && c.result.hit; }).length;
     if (count) {
-      if (!races.length) count.textContent = 'No French cards in this build.';
+      if (!races.length) count.textContent = 'No PMU cards in this build.';
       else if (settled === races.length) count.textContent = races.length + ' race' + (races.length === 1 ? '' : 's') + ', all settled. ' + wins + ' of ' + settled + ' pick' + (settled === 1 ? '' : 's') + ' won.';
       else if (settled) count.textContent = races.length + ' race' + (races.length === 1 ? '' : 's') + ', ' + settled + ' settled, ' + (races.length - settled) + ' to come. ' + wins + ' of ' + settled + ' pick' + (settled === 1 ? '' : 's') + ' won.';
       else count.textContent = races.length + ' race' + (races.length === 1 ? '' : 's') + ', no definitive arrival yet.';
     }
     if (!races.length) {
-      body.innerHTML = '<tr><td colspan="11" class="empty">No French races in this build.</td></tr>';
+      body.innerHTML = '<tr><td colspan="11" class="empty">No PMU races in this build.</td></tr>';
       return;
     }
     body.innerHTML = races.map(function (card) {
@@ -8362,6 +8490,9 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR);  // 
     }).join('');
   }
 
+  function renderFrance() { renderPmuRegion(CARDS_FR, 'frBody', 'frCount'); }
+  function renderChile() { renderPmuRegion(CARDS_CL, 'clBody', 'clCount'); }
+
   function renderAll() {
     renderKpis();
     renderBuildStamp();
@@ -8375,6 +8506,7 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR);  // 
     renderLateRaces();
     renderHongKong();
     renderFrance();
+    renderChile();
     renderBanner();
   }
 
@@ -8406,7 +8538,7 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR);  // 
     }
     var groups = {}, order = [];
     past.forEach(function (c) {
-      var tag = c.region === 'US' ? 'USA · ' : (c.region === 'AU' ? 'AUS · ' : (c.region === 'HK' ? 'HK · ' : (c.region === 'FR' ? 'FRA · ' : '')));
+      var tag = c.region === 'US' ? 'USA · ' : (c.region === 'AU' ? 'AUS · ' : (c.region === 'HK' ? 'HK · ' : (c.region === 'FR' ? 'FRA · ' : (c.region === 'CL' ? 'CHI · ' : ''))));
       var day = dayLabel(c.day);
       var key = tag + (day ? day + ' · ' : '') + c.course;
       if (!groups[key]) { groups[key] = []; order.push(key); }

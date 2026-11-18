@@ -2180,7 +2180,8 @@ check("France: a failed run keeps its letter",
       frmod.fr_form("Da3a2a") == "D32", frmod.fr_form("Da3a2a"))
 check("France: hippodrome prefix and country suffix are stripped",
       frmod.course_name("HIPPODROME DE SAINT-CLOUD") == "Saint-Cloud"
-      and frmod.course_name("HIPPODROME DE KEMPTON PARK  GB") == "Kempton Park")
+      and frmod.course_name("HIPPODROME DE KEMPTON PARK  GB") == "Kempton Park"
+      and frmod.course_name("HIPPODROME DE VALPARAISO CHILI") == "Valparaiso")
 
 _prog = {"programme": {"reunions": [
     {"pays": {"libelle": "FRANCE"},
@@ -2201,6 +2202,12 @@ _prog = {"programme": {"reunions": [
                   "discipline": "PLAT", "distance": 1600,
                   "heureDepart": 1795004700000, "nombreDeclaresPartants": 1,
                   "statut": "PROGRAMMEE"}]},
+    {"pays": {"libelle": "CHILI"},
+     "hippodrome": {"libelleLong": "HIPPODROME DE VALPARAISO CHILI"},
+     "courses": [{"numReunion": 9, "numOrdre": 1, "libelle": "PREMIO X",
+                  "discipline": "PLAT", "distance": 1600,
+                  "heureDepart": 1795004700000, "nombreDeclaresPartants": 2,
+                  "statut": "PROGRAMMEE"}]},
 ]}}
 _parts = {
     "R2C1": [
@@ -2215,14 +2222,23 @@ _parts = {
         {"numPmu": 3, "nom": "OUT", "statut": "NON_PARTANT", "musique": ""},
     ],
     "R2C2": [{"numPmu": 1, "nom": "ONLY ONE", "statut": "PARTANT", "musique": ""}],
+    "R9C1": [
+        {"numPmu": 1, "nom": "OTRA VEZ PITUCO", "statut": "PARTANT",
+         "musique": "6p1p1p5p3p", "handicapValeur": 42.0, "handicapPoids": 560,
+         "driver": "J. BAEZA", "entraineur": "JUAN PABLO BAEZA"},
+        {"numPmu": 2, "nom": "MAKE IT COUNT", "statut": "PARTANT",
+         "musique": "3p1p1p1p6p", "handicapValeur": 41.0, "handicapPoids": 560,
+         "driver": "C. BERNAL", "entraineur": "CLAUDIO BERNAL"},
+    ],
 }
 _old_prog, _old_json = frmod.programme, frmod._json
 try:
     frmod.programme = lambda iso: _prog
     frmod._json = lambda url, label: {
-        "participants": _parts["R2C1"] if label.endswith("R2C1") else _parts["R2C2"]}
-    _fr_cards = frmod.fetch_cards(
-        "2026-11-19", now=frmod.dt.datetime(2026, 11, 18, tzinfo=frmod.dt.timezone.utc))
+        "participants": next(_parts[k] for k in _parts if label.endswith(k))}
+    _now = frmod.dt.datetime(2026, 11, 18, tzinfo=frmod.dt.timezone.utc)
+    _fr_cards = frmod.fetch_cards("2026-11-19", now=_now)
+    _cl_cards = frmod.fetch_cards("2026-11-19", "CL", now=_now)
 finally:
     frmod.programme, frmod._json = _old_prog, _old_json
 check("France: only the French meeting is carded",
@@ -2236,16 +2252,23 @@ check("France: value, weight, draw, dividend and form reach the card",
       bool(_one) and _one[0]["or"] == "38" and _one[0]["weight"] == "57"
       and _one[0]["draw"] == "4" and _one[0]["odds"] == "5.30"
       and _one[0]["form"] == "231" and _one[0]["jp"] == "A.WERLE", _one[:1])
+check("Chile: the same feed builds a Valparaiso card with its own tag",
+      len(_cl_cards) == 1 and _cl_cards[0]["region"] == "CL"
+      and _cl_cards[0]["course"] == "Valparaiso"
+      and _cl_cards[0]["id"].startswith("cl-"), _cl_cards)
+check("Chile: a card without prices keeps the price blank",
+      bool(_cl_cards) and all(r["odds"] == "" for r in _cl_cards[0]["runners"]),
+      _cl_cards[:1])
 
 with tempfile.TemporaryDirectory(prefix="fr-settle-") as fd:
-    _old_out = frmod.OUT_DIR
+    _old_out = frmod.OUT_DIRS["FR"]
     _old_arch, _old_res = frmod.archived_cards, frmod.results_for
     _old_scored = settle.scored
     try:
-        frmod.OUT_DIR = os.path.join(fd, "results_fr")
+        frmod.OUT_DIRS["FR"] = os.path.join(fd, "results_fr")
         _card = _fr_cards[0]
-        frmod.archived_cards = lambda iso: [_card]
-        frmod.results_for = lambda iso: [{
+        frmod.archived_cards = lambda iso, region="FR": [_card]
+        frmod.results_for = lambda iso, region="FR": [{
             "course": "Pau", "time": _card["time"], "race": _card["race"],
             "race_no": "R2C1", "winner": "DRONGO",
             "places": ["DRONGO", "SARMAD", "ONLY ONE"],
@@ -2266,7 +2289,7 @@ with tempfile.TemporaryDirectory(prefix="fr-settle-") as fd:
               and _card["result"]["finish"]["DRONGO"] == 1
               and _card["result"]["pick_finish"] == "2nd")
     finally:
-        frmod.OUT_DIR = _old_out
+        frmod.OUT_DIRS["FR"] = _old_out
         frmod.archived_cards, frmod.results_for = _old_arch, _old_res
         settle.scored = _old_scored
 
@@ -2293,6 +2316,12 @@ check("France: the page has a racing tab and a results tab",
 check("France: the card block and result marker are present",
       "var CARDS_FR = [" in _fr_page and "FR_RESULTS_SL_START" in _fr_page
       and "function renderFrance" in _fr_page)
+check("Chile: the page has a racing tab and a results tab",
+      "['chile', 'Chile'" in _fr_page and "['clresults', 'Chile results'" in _fr_page
+      and 'data-panel="chile"' in _fr_page and 'data-panel="clresults"' in _fr_page)
+check("Chile: the card block, result marker and renderer are present",
+      "var CARDS_CL = [" in _fr_page and "CL_RESULTS_SL_START" in _fr_page
+      and "function renderChile" in _fr_page)
 check("France: the serve copy matches the page",
       _fr_page == (ROOT / "dist" / "public" / "index.html").read_text(encoding="utf-8"))
 _res_yml = (ROOT / ".github" / "workflows" / "results.yml").read_text(encoding="utf-8")
@@ -2302,6 +2331,10 @@ check("France: results are settled before the page is written",
       and _res_yml.index("settle_france.py") < _res_yml.index("Add completed races"))
 check("France: the results job commits the French ledger",
       "data/results_fr" in _res_yml)
+check("Chile: results are settled before the page is written",
+      "tooling/settle_chile.py" in _res_yml
+      and _res_yml.index("settle_chile.py") < _res_yml.index("Add completed races")
+      and "data/results_cl" in _res_yml)
 check("coverage: the audit runs from the build runner",
       "audit_coverage.py --inject" in _ref_yml)
 

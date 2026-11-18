@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
-"""France: PMU race cards, forecast dividends and the official arrival.
+"""PMU race cards and definitive arrivals for France and Chile.
 
-PMU is the French pari-mutuel operator, and its public programme endpoint is
-the one foreign card feed that answers plain HTTP with a complete field: horse,
-rider, trainer, the French form string (``musique``), handicap value, weight,
-draw and the live forecast dividend. The same endpoint also carries the
+PMU is the French pari-mutuel operator. Its public programme endpoint is the one
+foreign card feed that answers plain HTTP with a complete field: horse, rider,
+trainer, the French form string (``musique``), handicap value, weight, draw and,
+for French meetings, the live forecast dividend. The same endpoint carries the
 definitive finishing order once a race has run, so cards and results come from
 one place.
+
+France and Chile are wired. The programme also lists Happy Valley, Kempton, San
+Isidro and Solvalla; those are either covered elsewhere or have no declared
+field, and ``tooling/audit_coverage.py`` records what each really offers.
 
 Four rules, the same ones the other regions live by:
 
@@ -18,9 +22,8 @@ Four rules, the same ones the other regions live by:
   in it maps to a named runner, so a partial feed never invents a winner;
 * a pick already on file is never rewritten.
 
-The programme also lists non-French meetings (Happy Valley, Kempton, San
-Isidro, Valparaiso, Solvalla). They are not French cards and are not written
-here; ``tooling/audit_coverage.py`` records what each of them actually offers.
+Chile carries no prices, so its pick is scored on the factors the card does
+carry and the page says so rather than estimating a price.
 """
 import datetime as dt
 import html
@@ -36,13 +39,38 @@ import feed
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGE = os.path.join(ROOT, "index.html")
 DIST = os.path.join(ROOT, "dist", "public", "index.html")
-OUT_DIR = os.path.join(ROOT, "data", "results_fr")
 CARDS_BY_DAY = os.path.join(ROOT, "data", "cards", "by_date")
 
 BASE = "https://online.turfinfo.api.pmu.fr/rest/client/61/programme"
 UA = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
                     "(KHTML, like Gecko) Chrome/124 Safari/537.36"}
 NO_CONTENT = "__pmu_no_content__"
+
+REGIONS = {
+    "FR": {
+        "country": "FRANCE",
+        "page": "France",
+        "label": "French",
+        "tag": "FRA",
+        "out": "results_fr",
+        "cards": "CARDS_FR",
+        "results_sl": "FR_RESULTS_SL",
+        "priced": True,
+    },
+    "CL": {
+        "country": "CHILI",
+        "page": "Chile",
+        "label": "Chilean",
+        "tag": "CHI",
+        "out": "results_cl",
+        "cards": "CARDS_CL",
+        "results_sl": "CL_RESULTS_SL",
+        "priced": False,
+    },
+}
+
+OUT_DIRS = {code: os.path.join(ROOT, "data", cfg["out"])
+            for code, cfg in REGIONS.items()}
 
 DISCIPLINES = {
     "ATTELE": "Trot attelé",
@@ -59,6 +87,10 @@ DISCIPLINES = {
 # never reach it. Only the finishing position is kept.
 _FR_TOKEN = re.compile(r"(\d{1,2}|[DATRU])([pamhsco])", re.I)
 _FR_FAILED = {"D": "D", "A": "P", "T": "F", "R": "R", "U": "U"}
+
+
+def config(region):
+    return REGIONS[str(region).upper()]
 
 
 def _get(url):
@@ -86,7 +118,7 @@ def _json(url, label):
 
 
 def programme(iso):
-    """The day's PMU programme (all meetings, not just French ones)."""
+    """The day's PMU programme (all meetings, not just the wired ones)."""
     d = dt.date.fromisoformat(iso)
     return _json(f"{BASE}/{d:%d%m%Y}", f"PMU programme {iso}") or {}
 
@@ -103,6 +135,7 @@ def course_name(value):
     """'HIPPODROME DE SAINT-CLOUD' -> 'Saint-Cloud'."""
     s = str(value or "").upper().strip()
     s = re.sub(r"^HIPPODROME\s+(?:DE\s+|D')", "", s)
+    s = re.sub(r"\s+(?:CHILI|ARG|GB|HK|USA|SUEDE|SUÈDE)$", "", s)
     s = re.sub(r"\s{2,}[A-Z]{2,3}$", "", s).strip()
     s = re.sub(r"\s+", " ", s)
     small = {"de", "du", "des", "d'", "la", "le", "les", "sur"}
@@ -160,7 +193,7 @@ def _runners(participants):
     return runners
 
 
-def _card(meeting, race, iso):
+def _card(meeting, race, iso, region):
     course = course_name((meeting.get("hippodrome") or {}).get("libelleLong")
                          or (meeting.get("hippodrome") or {}).get("libelleCourt"))
     num_r = str(race.get("numReunion") or "")
@@ -173,13 +206,13 @@ def _card(meeting, race, iso):
     klass = disc + (f" · {distance}m" if distance else "")
     name = str(race.get("libelle") or f"Race {num_c}").strip()
     return {
-        "id": f"fr-{course.lower().replace(' ', '-')}-r{num_r}c{num_c}",
+        "id": f"{region.lower()}-{course.lower().replace(' ', '-')}-r{num_r}c{num_c}",
         "label": (name[:44] + "…") if len(name) > 45 else name,
         "course": course,
         "time": start.strftime("%H:%M"),
         "iso": start.strftime("%Y-%m-%dT%H:%M:00Z"),
         "day": iso,
-        "region": "FR",
+        "region": region,
         "race": name,
         "going": "",
         "klass": klass,
@@ -189,19 +222,21 @@ def _card(meeting, race, iso):
     }
 
 
-def fetch_cards(iso, now=None):
-    """Today's French races that have **not** gone off yet.
+def fetch_cards(iso, region="FR", now=None):
+    """Today's races for one region that have **not** gone off yet.
 
     Filtering at fetch time is what stops the afternoon and evening refreshes
     replacing a pre-race card with a post-race one: archive() merges on
     (course, time, race), so a race that is gone from this payload keeps the
     version filed before its off.
     """
+    cfg = config(region)
+    region = str(region).upper()
     now = now or dt.datetime.now(dt.timezone.utc)
     prog = programme(iso)
     cards = []
     for m in meetings(prog):
-        if country(m) != "FRANCE":
+        if country(m) != cfg["country"]:
             continue
         for race in m.get("courses") or []:
             try:
@@ -218,7 +253,7 @@ def fetch_cards(iso, now=None):
                 declared = 0
             if not declared:
                 continue
-            card = _card(m, race, iso)
+            card = _card(m, race, iso, region)
             url = f"{BASE}/{dt.date.fromisoformat(iso):%d%m%Y}/" \
                   f"R{race.get('numReunion')}/C{race.get('numOrdre')}/participants"
             payload = _json(url, f"PMU {card['course']} {card['race_no']}")
@@ -230,7 +265,7 @@ def fetch_cards(iso, now=None):
             if len(listed) != declared or len(runners) < 2:
                 # A short field is not a field. Skipping keeps the race off the
                 # page rather than scoring the handful of rows that parsed.
-                print(f"  FR card:    {card['course']} {card['race_no']}: "
+                print(f"  {region} card:    {card['course']} {card['race_no']}: "
                       f"{len(listed)} of {declared} declared runners listed, "
                       f"{len(runners)} to run; skipped", file=sys.stderr)
                 continue
@@ -239,7 +274,7 @@ def fetch_cards(iso, now=None):
     return cards
 
 
-def archived_cards(iso):
+def archived_cards(iso, region="FR"):
     path = os.path.join(CARDS_BY_DAY, f"{iso}.json")
     try:
         with open(path, encoding="utf-8") as f:
@@ -248,8 +283,8 @@ def archived_cards(iso):
         return []
     if not isinstance(data, dict):
         return []
-    return [c for c in (data.get("FR") or []) if isinstance(c, dict)
-            and c.get("runners")]
+    return [c for c in (data.get(str(region).upper()) or [])
+            if isinstance(c, dict) and c.get("runners")]
 
 
 def _definitive(race):
@@ -257,12 +292,14 @@ def _definitive(race):
             or str(race.get("statut") or "").upper().startswith("ARRIVEE_DEFINITIVE"))
 
 
-def results_for(iso):
-    """The day's French arrivals, named through PMU's declared field."""
+def results_for(iso, region="FR"):
+    """The day's definitive arrivals for one region, named through its field."""
+    cfg = config(region)
+    region = str(region).upper()
     prog = programme(iso)
     rows = []
     for m in meetings(prog):
-        if country(m) != "FRANCE":
+        if country(m) != cfg["country"]:
             continue
         course = course_name((m.get("hippodrome") or {}).get("libelleLong")
                              or (m.get("hippodrome") or {}).get("libelleCourt"))
@@ -272,7 +309,7 @@ def results_for(iso):
             order = [x[0] for x in (race.get("ordreArrivee") or []) if x]
             if len(order) < 3:
                 continue
-            card = _card(m, race, iso)
+            card = _card(m, race, iso, region)
             url = f"{BASE}/{dt.date.fromisoformat(iso):%d%m%Y}/" \
                   f"R{race.get('numReunion')}/C{race.get('numOrdre')}/participants"
             payload = _json(url, f"PMU result {course} {card['race_no']}")
@@ -283,7 +320,7 @@ def results_for(iso):
             if not names or not all(names):
                 # The arrival cannot be named, so it is not settled. A number
                 # without a horse is not a result.
-                print(f"  FR result:  {course} {card['race_no']}: arrival has "
+                print(f"  {region} result:  {course} {card['race_no']}: arrival has "
                       f"an unnamed runner; skipped", file=sys.stderr)
                 continue
             rows.append({
@@ -294,13 +331,13 @@ def results_for(iso):
                 "winner": names[0],
                 "places": names[:3],
                 "order": names,
-                "region": "FR",
+                "region": region,
             })
     return rows
 
 
-def _existing(iso):
-    path = os.path.join(OUT_DIR, f"{iso}.json")
+def _existing(iso, region="FR"):
+    path = os.path.join(OUT_DIRS[str(region).upper()], f"{iso}.json")
     try:
         with open(path, encoding="utf-8") as f:
             data = json.load(f)
@@ -311,21 +348,23 @@ def _existing(iso):
             for r in rows if isinstance(r, dict)}
 
 
-def settle(iso):
+def settle(iso, region="FR"):
     """Pair the official arrival with the pick from the pre-race card."""
     import settle as settle_mod
 
-    rows = results_for(iso)
+    cfg = config(region)
+    region = str(region).upper()
+    rows = results_for(iso, region)
     if not rows:
-        print(f"  FR results: no definitive French arrival for {iso}")
+        print(f"  {region} results: no definitive {cfg['label']} arrival for {iso}")
         return []
 
-    cards = archived_cards(iso)
+    cards = archived_cards(iso, region)
     by_race = {}
     for card in cards:
         by_race.setdefault((card.get("course"), card.get("time")), card)
 
-    prev = _existing(iso)
+    prev = _existing(iso, region)
     settled = []
     for row in rows:
         old = prev.get((row.get("course"), row.get("time"), row.get("race_no")))
@@ -360,13 +399,15 @@ def settle(iso):
                 row["hit"] = False
         settled.append(row)
 
-    os.makedirs(OUT_DIR, exist_ok=True)
-    with open(os.path.join(OUT_DIR, f"{iso}.json"), "w", encoding="utf-8") as f:
-        json.dump({"date": iso, "region": "FR", "races": settled}, f,
+    out = OUT_DIRS[region]
+    os.makedirs(out, exist_ok=True)
+    with open(os.path.join(out, f"{iso}.json"), "w", encoding="utf-8") as f:
+        json.dump({"date": iso, "region": region, "races": settled}, f,
                   ensure_ascii=False, indent=1)
     wins = sum(1 for r in settled if r.get("hit"))
     judged = sum(1 for r in settled if r.get("pick"))
-    print(f"  FR results: {len(settled)} races settled, {wins} of {judged} picks won")
+    print(f"  {region} results: {len(settled)} races settled, "
+          f"{wins} of {judged} picks won")
     return settled
 
 
@@ -381,7 +422,7 @@ def _ordinal(n):
 
 
 def attach(cards, rows):
-    """Put the stored official outcome on each French card for the page."""
+    """Put the stored official outcome on each card for the page."""
     by_race = {(r.get("course"), r.get("time")): r for r in rows or []}
     got = 0
     for card in cards:
@@ -401,7 +442,8 @@ def attach(cards, rows):
     return got
 
 
-def _day_results(iso, rows):
+def _day_results(iso, rows, region="FR"):
+    cfg = config(region)
     rows = sorted(rows, key=lambda r: (r.get("time", ""), r.get("race_no") or ""))
     judged = [r for r in rows if r.get("pick")]
     wins = sum(1 for r in judged if r.get("hit"))
@@ -430,109 +472,128 @@ def _day_results(iso, rows):
     summary = (f'<b>{wins} of {len(judged)}</b> model picks won.'
                if judged else
                'No pre-race card was on file for this day, so no pick is shown.')
+    price_note = ('' if cfg["priced"] else
+                  ' PMU does not price this meeting, so the pick is scored '
+                  'without the market factor.')
     return (
         '<h3>Settled &mdash; %s</h3>\n'
-        '<p class="method">%d French %s settled from PMU&rsquo;s definitive '
-        'arrival. %s Winner and the first three '
+        '<p class="method">%d %s %s settled from PMU&rsquo;s definitive '
+        'arrival. %s%s Winner and the first three '
         'home, with the off time in UTC.</p>\n'
         '<div class="scroll"><table class="ledger"><thead><tr><th>Off (UTC)</th>'
         '<th>Course</th><th>Race</th><th>Winner</th><th>First three</th>'
         '<th>Our pick</th></tr></thead><tbody>%s</tbody></table></div>\n'
-        % (label, len(rows), noun, summary, "".join(trs)))
+        % (label, len(rows), cfg["label"], noun, summary, price_note, "".join(trs)))
 
 
-def results_block():
+def results_block(region="FR"):
+    cfg = config(region)
+    region = str(region).upper()
+    out = OUT_DIRS[region]
     parts = []
-    if os.path.isdir(OUT_DIR):
-        for name in sorted(os.listdir(OUT_DIR), reverse=True):
+    if os.path.isdir(out):
+        for name in sorted(os.listdir(out), reverse=True):
             if not name.endswith(".json"):
                 continue
             iso = name[:-5]
             try:
-                with open(os.path.join(OUT_DIR, name), encoding="utf-8") as f:
+                with open(os.path.join(out, name), encoding="utf-8") as f:
                     data = json.load(f)
             except (OSError, ValueError):
                 continue
             rows = data.get("races", []) if isinstance(data, dict) else data
             if isinstance(rows, list) and rows:
-                parts.append(_day_results(iso, rows))
+                parts.append(_day_results(iso, rows, region))
     body = ("\n".join(parts) if parts else
-            '<p class="method">No French results yet. A race appears here once '
-            'PMU publishes its definitive arrival and the archived card can name '
-            'every finisher.</p>')
-    return ("<!-- FR_RESULTS_SL_START -->\n" + body
-            + "\n<!-- FR_RESULTS_SL_END -->")
+            f'<p class="method">No {cfg["label"]} results yet. A race appears '
+            'here once PMU publishes its definitive arrival and the archived '
+            'card can name every finisher.</p>')
+    marker = cfg["results_sl"]
+    return (f"<!-- {marker}_START -->\n" + body
+            + f"\n<!-- {marker}_END -->")
 
 
-def replace_results(page):
-    return re.sub(r"<!-- FR_RESULTS_SL_START -->.*?<!-- FR_RESULTS_SL_END -->",
-                  lambda _m: results_block(), page, count=1, flags=re.S)
+def replace_results(page, region="FR"):
+    marker = config(region)["results_sl"]
+    return re.sub(rf"<!-- {marker}_START -->.*?<!-- {marker}_END -->",
+                  lambda _m: results_block(region), page, count=1, flags=re.S)
 
 
-def _stored_results(iso):
+def _stored_results(iso, region="FR"):
+    path = os.path.join(OUT_DIRS[str(region).upper()], f"{iso}.json")
     try:
-        with open(os.path.join(OUT_DIR, f"{iso}.json"), encoding="utf-8") as f:
+        with open(path, encoding="utf-8") as f:
             data = json.load(f)
     except (OSError, ValueError):
         return []
     return data.get("races", []) if isinstance(data, dict) else data
 
 
-def cards_for_page(iso):
-    """Every pre-race French card on file for the day and the next one."""
+def cards_for_page(iso, region="FR"):
+    """Every pre-race card on file for the day and the next one."""
+    region = str(region).upper()
     day = dt.date.fromisoformat(iso)
     cards, seen = [], set()
     for d in (day, day + dt.timedelta(days=1)):
-        for card in archived_cards(d.isoformat()):
+        for card in archived_cards(d.isoformat(), region):
             key = (card.get("iso") or d.isoformat(), card.get("course"),
                    card.get("time"), card.get("race"))
             if key in seen:
                 continue
             seen.add(key)
             cards.append(card)
-        attach(cards, _stored_results(d.isoformat()))
+        attach(cards, _stored_results(d.isoformat(), region))
     cards.sort(key=lambda c: (c.get("iso") or "", c.get("course") or ""))
     return cards
 
 
-def replace_cards(page, iso):
+def replace_cards(page, iso, region="FR"):
     import refresh
-    cards = cards_for_page(iso)
-    head, body = refresh.serialise(cards, f"France cards, {iso}")
-    return refresh.replace_block(page, "CARDS_FR", head + body)
+    cfg = config(region)
+    cards = cards_for_page(iso, region)
+    head, body = refresh.serialise(cards, f"{cfg['page']} cards, {iso}")
+    return refresh.replace_block(page, cfg["cards"], head + body)
 
 
-def refresh_page(iso):
-    """Rebuild CARDS_FR (today + tomorrow) and the French ledger, then write."""
+def refresh_page(iso, region="FR"):
+    """Rebuild the region's card block and ledger, then write both copies."""
     if not os.path.exists(PAGE):
         return 0
     page = open(PAGE, encoding="utf-8").read()
-    page = replace_cards(page, iso)
-    page = replace_results(page)
+    page = replace_cards(page, iso, region)
+    page = replace_results(page, region)
     open(PAGE, "w", encoding="utf-8").write(page)
     if os.path.exists(os.path.dirname(DIST)):
         open(DIST, "w", encoding="utf-8").write(page)
-    return len(cards_for_page(iso))
+    return len(cards_for_page(iso, region))
 
 
 def main(argv=None):
     argv = list(sys.argv[1:] if argv is None else argv)
+    region = "FR"
+    for a in list(argv):
+        if a.startswith("--region="):
+            region = a.split("=", 1)[1].upper()
+            argv.remove(a)
     iso = argv[0] if argv else dt.date.today().isoformat()
+    if region not in REGIONS:
+        print(f"unknown PMU region {region}")
+        return 2
     try:
-        rows = settle(iso)
+        rows = settle(iso, region)
     except feed.FeedError as e:
-        print(f"France: FAILED ({e})")
-        print(f"::error::French results feed unavailable for {iso}: {e}")
+        print(f"{region}: FAILED ({e})")
+        print(f"::error::PMU results feed unavailable for {region} {iso}: {e}")
         return 1
     try:
-        n = refresh_page(iso)
+        n = refresh_page(iso, region)
     except feed.FeedError as e:
-        print(f"France: FAILED ({e})")
-        print(f"::error::French card feed unavailable for {iso}: {e}")
+        print(f"{region}: FAILED ({e})")
+        print(f"::error::PMU card feed unavailable for {region} {iso}: {e}")
         return 1
-    print(f"  FR page:    {n} cards (today + tomorrow)")
+    print(f"  {region} page:    {n} cards (today + tomorrow)")
     if not rows:
-        print(f"France: no definitive arrival for {iso}; page left as built")
+        print(f"{region}: no definitive arrival for {iso}; page left as built")
     return 0
 
 
