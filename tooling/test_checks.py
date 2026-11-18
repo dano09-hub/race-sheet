@@ -1793,6 +1793,121 @@ check("HK odds: the workflow commits what it files",
       "data/hk_preoff" in _hk_odds_wf and "git push" in _hk_odds_wf)
 
 print()
+print("Hong Kong factor audit")
+import audit_hk as ahk
+
+
+def _hk_card(no, horses):
+    return {"id": "hk-happy-valley-1118-r%d" % no, "label": "Race %d" % no,
+            "course": "Happy Valley", "time": "1%d:40" % no, "day": "2026-11-18",
+            "region": "HK", "iso": "2026-11-18T1%d:40:00.000Z" % no,
+            "race": "Ngong Ping Handicap", "going": "Good",
+            "klass": "1200M Class 4", "runners": [dict(r, odds="99") for r in horses]}
+
+
+def _hk_runner(name, no, form, orr, weight, draw):
+    return {"horse": name, "no": str(no), "form": form, "or": str(orr), "rpr": "",
+            "ts": "", "weight": str(weight), "days": "", "course": "N",
+            "distance": "N", "going": "?", "draw": str(draw), "jp": "", "tp": "",
+            "tips": "", "naps": ""}
+
+
+_hk3 = _hk_card(3, [_hk_runner("Alpha", 1, "111111", 60, 133, 2),
+                    _hk_runner("Bravo", 2, "234567", 55, 128, 5),
+                    _hk_runner("Charlie", 3, "000000", 50, 123, 8),
+                    _hk_runner("Delta", 4, "345678", 58, 130, 11)])
+_hk4 = _hk_card(4, [_hk_runner("Echo", 1, "123123", 57, 131, 1),
+                    _hk_runner("Foxtrot", 2, "222222", 52, 126, 4),
+                    _hk_runner("Golf", 3, "000111", 49, 121, 9),
+                    _hk_runner("Hotel", 4, "333333", 61, 135, 12)])
+with tempfile.TemporaryDirectory(prefix="hk-audit-") as _aroot:
+    os.makedirs(os.path.join(_aroot, "data", "cards"))
+    os.makedirs(os.path.join(_aroot, "data", "results_hk"))
+    os.makedirs(os.path.join(_aroot, "data", "hk_preoff", "2026-11-18"))
+    _j = lambda rel, obj: (open(os.path.join(_aroot, rel), "w", encoding="utf-8")
+                           .write(json.dumps(obj)))
+    _j(os.path.join("data", "cards", "2026-11-18.json"), {"HK": [_hk3, _hk4]})
+    _j(os.path.join("data", "hk_preoff", "2026-11-18", "r3.json"), {
+        "date": "2026-11-18", "race_no": 3, "lead_seconds": 600,
+        "runners": [{"horse": "ALPHA", "odds": "2.0"},
+                    {"horse": "BRAVO", "odds": "4.0"},
+                    {"horse": "CHARLIE", "odds": "8.0"},
+                    {"horse": "DELTA", "odds": "12.0"}]})
+    # Filed after the off: a post-race price, so it must never be scored.
+    _j(os.path.join("data", "hk_preoff", "2026-11-18", "r4.json"), {
+        "date": "2026-11-18", "race_no": 4, "lead_seconds": -30,
+        "runners": [{"horse": "ECHO", "odds": "1.8"}]})
+    _j(os.path.join("data", "results_hk", "2026-11-18.json"), {"races": [
+        {"race_no": 3, "winner": "Alpha",
+         "finish": {"Alpha": 1, "Bravo": 2, "Charlie": 3, "Delta": 4}},
+        {"race_no": 4, "winner": "Echo",
+         "finish": {"Echo": 1, "Foxtrot": 2, "Golf": 3, "Hotel": 4}}]})
+    _hk_meets, _hk_skip = ahk.load(_aroot)
+    check("HK audit: a snapshot filed after the off is skipped",
+          _hk_skip["late"] == 1, _hk_skip)
+    check("HK audit: only races with a pre-off snapshot enter",
+          len(_hk_meets) == 1 and len(_hk_meets[0]["races"]) == 1, _hk_meets)
+    check("HK audit: the archive's post-race odds are replaced by the snapshot",
+          _hk_meets[0]["races"][0]["card"]["runners"][0]["odds"] == "2.0",
+          _hk_meets[0]["races"][0]["card"]["runners"][0])
+    check("HK audit: the stored result block is not scored",
+          "result" not in _hk_meets[0]["races"][0]["card"])
+    _hk_out = io.StringIO()
+    with contextlib.redirect_stdout(_hk_out):
+        _hk_rc = ahk.main(["--root", _aroot, "--page", str(ROOT / "index.html")])
+    _hk_txt = _hk_out.getvalue()
+    check("HK audit: one meeting cannot make a holdout",
+          _hk_rc == 0 and "Not enough meetings" in _hk_txt, _hk_txt)
+
+_hk_parts = {"A": {"parts": {"form": 80}}, "B": {"parts": {"form": 80}},
+             "C": {"parts": {"form": 10}}}
+check("HK audit: ties break on the lower saddlecloth, not the price",
+      ahk.rank(_hk_parts, {"A": 7, "B": 2, "C": 5}, "form") == ["B", "A", "C"])
+check("HK audit: a factor that is blank for the field ranks nothing",
+      ahk.rank({"A": {"parts": {"form": None}}}, {"A": 1}, "form") is None)
+_hk_head = ahk.paired([{"picks": {"form": ["A", "B"], "price": ["B", "A"]},
+                        "winner": "A"}], "form")
+check("HK audit: the head-to-head counts only races where the picks differ",
+      _hk_head["for"] == 1 and _hk_head["against"] == 0
+      and abs(_hk_head["p"] - 0.5) < 1e-12, _hk_head)
+
+# A holdout big enough to earn a verdict: form picked the winner every time,
+# the price never did, so the sign test must say so.
+_hk_fake = []
+for _d in range(10):
+    _date = "2026-11-%02d" % (_d + 1)
+    for _rn in range(1, 10):
+        _hk_fake.append({"date": _date, "race_no": _rn, "winner": "A", "field": 4,
+                         "picks": {"price": ["B", "A", "C", "D"],
+                                   "form": ["A", "B", "C", "D"],
+                                   "rating": ["B", "A", "C", "D"],
+                                   "weight": ["B", "A", "C", "D"]}})
+_hk_early, _hk_late = ahk.split(_hk_fake, 0.5)
+check("HK audit: the split is chronological and keeps the latest meetings back",
+      len(_hk_early) == 45 and len(_hk_late) == 45
+      and max(r["date"] for r in _hk_early) < min(r["date"] for r in _hk_late))
+_hk_out2 = io.StringIO()
+with contextlib.redirect_stdout(_hk_out2):
+    ahk.report(_hk_fake, {"late": 0, "unpriced": 0, "no_card": 0, "no_result": 0})
+_hk_txt2 = _hk_out2.getvalue()
+check("HK audit: a factor that beats the favourite at p<0.05 says so",
+      "form: beats the favourite" in _hk_txt2, _hk_txt2)
+check("HK audit: a factor with no head-to-head gets no verdict",
+      "rating:" not in _hk_txt2 and "weight:" not in _hk_txt2, _hk_txt2)
+_hk_small = _hk_fake[:27]
+_hk_out3 = io.StringIO()
+with contextlib.redirect_stdout(_hk_out3):
+    ahk.report(_hk_small, {"late": 0, "unpriced": 0, "no_card": 0, "no_result": 0})
+check("HK audit: a holdout below the floor returns no verdict",
+      "No verdict yet" in _hk_out3.getvalue(), _hk_out3.getvalue())
+_hk_out4 = io.StringIO()
+with contextlib.redirect_stdout(_hk_out4):
+    _hk_rc4 = ahk.main([])
+check("HK audit: with no snapshots filed it says so and exits clean",
+      _hk_rc4 == 0 and "no pre-off snapshots filed yet" in _hk_out4.getvalue(),
+      _hk_out4.getvalue())
+
+print()
 print("passed %d, failed %d%s" % (
     len(PASSED), len(FAILED), (", skipped %d" % len(SKIPPED)) if SKIPPED else ""))
 sys.exit(1 if FAILED else 0)

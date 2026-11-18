@@ -61,10 +61,10 @@ def _race_no(card):
     return int(m.group(1)) if m else 0
 
 
-def _cards(date_iso):
+def _cards(date_iso, root=ROOT):
     """The Hong Kong card filed for the day, dated snapshot first."""
-    for path in (os.path.join(ROOT, "data", "cards", f"{date_iso}.json"),
-                 os.path.join(ROOT, "data", "cards", "by_date", f"{date_iso}.json")):
+    for path in (os.path.join(root, "data", "cards", f"{date_iso}.json"),
+                 os.path.join(root, "data", "cards", "by_date", f"{date_iso}.json")):
         if not os.path.exists(path):
             continue
         try:
