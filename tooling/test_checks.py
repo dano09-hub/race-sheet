@@ -1906,6 +1906,23 @@ with contextlib.redirect_stdout(_hk_out4):
 check("HK audit: with no snapshots filed it says so and exits clean",
       _hk_rc4 == 0 and "no pre-off snapshots filed yet" in _hk_out4.getvalue(),
       _hk_out4.getvalue())
+with tempfile.TemporaryDirectory(prefix="hk-report-") as _hk_rd:
+    _hk_path = os.path.join(_hk_rd, "latest.txt")
+    _hk_buf = io.StringIO()
+    with contextlib.redirect_stdout(_hk_buf):
+        _hk_rc5 = ahk.main(["--out", _hk_path])
+    check("HK audit: --out records exactly the report it prints",
+          _hk_rc5 == 0 and os.path.exists(_hk_path)
+          and open(_hk_path, encoding="utf-8").read() == _hk_buf.getvalue(),
+          _hk_buf.getvalue())
+_res_wf = (ROOT / ".github" / "workflows" / "results.yml").read_text(encoding="utf-8")
+check("HK audit: the results job records the report on every run",
+      "tooling/audit_hk.py --out data/hk_audit/latest.txt" in _res_wf)
+check("HK audit: the report is committed with the results",
+      "data/hk_audit" in _res_wf.split("git add", 1)[1].split("\n", 1)[0])
+check("HK audit: the audit runs after Hong Kong is settled and the page written",
+      _res_wf.index("Settle Hong Kong results") < _res_wf.index("tooling/audit_hk.py")
+      and _res_wf.index("Add completed races") < _res_wf.index("tooling/audit_hk.py"))
 
 print()
 print("passed %d, failed %d%s" % (

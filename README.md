@@ -922,6 +922,12 @@ each factor head to head with the favourite on the held-back meetings. It return
 no verdict until the holdout holds 40 races at five meetings, and a clean result
 there still earns only a pre-registered shadow arm.
 
+The results job runs that audit after Hong Kong settles and commits its report
+to `data/hk_audit/latest.txt`, so the record refreshes itself as meetings
+accumulate without anyone remembering to run it. The file is regenerated over
+the whole archive rather than appended to, which means it can never drift from
+the snapshots it describes; the commit history holds the earlier readings.
+
 ## Back-test: what the British history actually says
 
 `tooling/build_scores.py` rebuilds per-race factor scores from `data/dataset.csv.gz`

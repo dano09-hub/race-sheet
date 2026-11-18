@@ -1,0 +1,4 @@
+Hong Kong factor audit: no pre-off snapshots filed yet.
+  tooling/snapshot_hk.py files one per race; this audit fills in
+  as data/hk_preoff/ grows, and it never scores from the archive's
+  post-race odds.

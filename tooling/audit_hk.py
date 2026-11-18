@@ -23,7 +23,9 @@ scorer (tooling/score_cards.js), so the factor values here are the ones the
 sheet publishes, not a second copy that can drift.
 """
 import argparse
+import contextlib
 import glob
+import io
 import json
 import math
 import os
@@ -243,6 +245,22 @@ def _dates(races):
     return sorted({r["date"] for r in races})
 
 
+def _emit(text, out=None):
+    """Print the report and, when asked, record the same text for the repo."""
+    sys.stdout.write(text)
+    if not out:
+        return
+    folder = os.path.dirname(os.path.abspath(out))
+    if folder:
+        os.makedirs(folder, exist_ok=True)
+    if os.path.exists(out):
+        with open(out, encoding="utf-8") as f:
+            if f.read() == text:
+                return                      # unchanged: leave the file alone
+    with open(out, "w", encoding="utf-8") as f:
+        f.write(text)
+
+
 def report(races, skipped, dev=0.5):
     if not races:
         print("Hong Kong factor audit: nothing scorable yet - no race has both a "
@@ -330,21 +348,26 @@ def main(argv=None):
     ap.add_argument("--root", default=ROOT)
     ap.add_argument("--page", default=None,
                     help="page whose scorer to use (default <root>/index.html)")
+    ap.add_argument("--out", default=None,
+                    help="also record the report at this path")
     args = ap.parse_args(argv)
 
     meetings, skipped = load(args.root)
     if not meetings:
-        print("Hong Kong factor audit: no pre-off snapshots filed yet.")
-        print("  tooling/snapshot_hk.py files one per race; this audit fills in")
-        print("  as data/hk_preoff/ grows, and it never scores from the archive's")
-        print("  post-race odds.")
+        _emit("Hong Kong factor audit: no pre-off snapshots filed yet.\n"
+              "  tooling/snapshot_hk.py files one per race; this audit fills in\n"
+              "  as data/hk_preoff/ grows, and it never scores from the archive's\n"
+              "  post-race odds.\n", args.out)
         return 0
     try:
         scored = score(meetings, args.page or os.path.join(args.root, "index.html"))
     except (OSError, RuntimeError) as e:
         print(f"could not score the cards: {e}", file=sys.stderr)
         return 1
-    report(table(meetings, scored), skipped, args.dev)
+    buf = io.StringIO()
+    with contextlib.redirect_stdout(buf):
+        report(table(meetings, scored), skipped, args.dev)
+    _emit(buf.getvalue(), args.out)
     return 0
 
 

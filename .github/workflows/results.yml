@@ -43,12 +43,18 @@ jobs:
             day=$(date -u -d 'yesterday' +%F)
           fi
           python3 tooling/settle_today.py "$day" --progressive
+      - name: Audit Hong Kong factors
+        # Runs over every filed snapshot, so the report is always the audit of
+        # the whole archive and refreshes itself as meetings accumulate. A
+        # report failing must never hold back the results commit or the page.
+        continue-on-error: true
+        run: python3 tooling/audit_hk.py --out data/hk_audit/latest.txt
       - name: Commit results
         id: commit
         run: |
           git config user.name "racing-sheet-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data/results data/results_hk index.html dist/public/index.html
+          git add data/results data/results_hk data/hk_audit index.html dist/public/index.html
           if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "No new settled races"
