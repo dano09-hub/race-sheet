@@ -2012,6 +2012,56 @@ check("results: the scheduled build writes the Irish ledger",
       "IRE_RESULTS_SL" in (ROOT / "tooling" / "settle_today.py").read_text(encoding="utf-8"))
 
 print()
+print("US results feed")
+import fetch_results_us as fru
+_real_get = fru.scrape_us.get
+_real_sleep = fru.time.sleep
+try:
+    fru.time.sleep = lambda _s: None
+    _calls = []
+
+    def _dead(url):
+        _calls.append(url)
+        return ""
+
+    fru.scrape_us.get = _dead
+    try:
+        fru.get_page("http://example.invalid", tries=3, backoff=(0, 0, 0))
+        _raised = False
+    except fru.FeedError:
+        _raised = True
+    check("us feed: a dead page raises only after every attempt",
+          _raised and len(_calls) == 3, _calls)
+
+    _seq = iter(["", "", "<html>ok</html>"])
+    fru.scrape_us.get = lambda url: next(_seq)
+    check("us feed: a retry that comes good is used",
+          fru.get_page("http://example.invalid", tries=3, backoff=(0, 0, 0))
+          == "<html>ok</html>")
+
+    fru.scrape_us.get = lambda url: "<html>no meetings today</html>"
+    check("us feed: a genuinely empty day is not an error",
+          fru.fetch_day("2026-11-10") == [])
+
+    fru.scrape_us.get = lambda url: ""
+    try:
+        fru.fetch_day("2026-11-10")
+        _raised2 = False
+    except fru.FeedError:
+        _raised2 = True
+    check("us feed: an unreachable index raises instead of returning nothing",
+          _raised2)
+finally:
+    fru.scrape_us.get = _real_get
+    fru.time.sleep = _real_sleep
+_st_us = (ROOT / "tooling" / "settle_today.py").read_text(encoding="utf-8")
+check("us feed: a failed fetch ends the run red",
+      "::error::US results feed unavailable" in _st_us)
+_wf_res = (ROOT / ".github" / "workflows" / "results.yml").read_text(encoding="utf-8")
+check("us feed: a red run still commits the day's results",
+      "if: always()" in _wf_res.split("name: Commit results", 1)[1][:220])
+
+print()
 print("passed %d, failed %d%s" % (
     len(PASSED), len(FAILED), (", skipped %d" % len(SKIPPED)) if SKIPPED else ""))
 sys.exit(1 if FAILED else 0)

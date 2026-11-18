@@ -51,6 +51,9 @@ jobs:
         run: python3 tooling/audit_hk.py --out data/hk_audit/latest.txt
       - name: Commit results
         id: commit
+        # A failed US fetch ends the run red, but it must not strand the day's
+        # settled races: the alarm is the red run, not an empty ledger.
+        if: always()
         run: |
           git config user.name "racing-sheet-bot"
           git config user.email "actions@users.noreply.github.com"

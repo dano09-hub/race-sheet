@@ -14,6 +14,7 @@ import json
 import os
 import re
 import sys
+import time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -23,6 +24,33 @@ import scrape_us  # noqa: E402
 import us_form  # noqa: E402
 
 BASE = "https://entries.horseracingnation.com"
+
+TRIES = 3
+BACKOFF = (2, 6, 18)          # seconds to wait before each further attempt
+
+
+class FeedError(RuntimeError):
+    """The US results feed could not be read at all, as opposed to having no races."""
+
+
+def get_page(url, tries=TRIES, backoff=BACKOFF):
+    """Fetch a page, retrying a transport failure with a growing wait.
+
+    scrape_us.get answers "" for every failure, so an unreachable feed and an
+    empty one are the same thing there. That is how the US ledger stayed empty
+    through runs that reported success. This retries, then raises.
+    """
+    for attempt in range(1, tries + 1):
+        page = scrape_us.get(url)
+        if page:
+            return page
+        if attempt == tries:
+            break
+        delay = backoff[min(attempt - 1, len(backoff) - 1)]
+        print(f"  us feed:     {url} gave nothing, retrying in {delay}s "
+              f"({attempt}/{tries})", file=sys.stderr)
+        time.sleep(delay)
+    raise FeedError(f"no response from {url} after {tries} attempts")
 
 
 def _norm(value):
@@ -104,17 +132,28 @@ def parse_page(page, course):
 
 
 def fetch_day(date):
-    """Return every completed US race on an ISO date, in track order."""
-    index = scrape_us.get(f"{BASE}/entries-results/{date}")
+    """Return every completed US race on an ISO date, in track order.
+
+    Raises FeedError when the index cannot be read or when every meeting page
+    failed, because those are outages and must not look like a quiet day.
+    """
+    index = get_page(f"{BASE}/entries-results/{date}")
     slugs = sorted(set(re.findall(
         rf'href="/entries-results/([a-z0-9-]+)/{date}"', index)))
-    out = []
+    out, failed = [], 0
     for slug in slugs:
-        page = scrape_us.get(f"{BASE}/entries-results/{slug}/{date}")
-        if not page:
+        try:
+            page = get_page(f"{BASE}/entries-results/{slug}/{date}", tries=2)
+        except FeedError:
+            failed += 1
             continue
         course = slug.replace("-", " ").title()
         out.extend(parse_page(page, course))
+    if slugs and failed == len(slugs):
+        raise FeedError(f"every one of {len(slugs)} meeting pages failed for {date}")
+    if failed:
+        print(f"  us feed:     {failed} of {len(slugs)} meeting pages failed for {date}",
+              file=sys.stderr)
     # The payout table only names the first four home; the live feed knows where
     # every starter finished, so a pick can be judged wherever it came. Refresh
     # it first: races still to run at card time have no position until they go

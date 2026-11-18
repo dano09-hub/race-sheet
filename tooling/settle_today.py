@@ -313,6 +313,9 @@ def main(argv=None):
     rows = _clean(sl.fetch_day(iso))
     if rows:
         _merge_irish(iso, rows)
+    # An outage is not a quiet day: the feed retries, and if it still cannot be
+    # read the run ends red so nobody mistakes an empty US ledger for success.
+    us_problem = None
     try:
         us_rows = _clean(fetch_results_us.fetch_day(iso))
         # Say the number out loud: a silent zero here is how the US ledger sat
@@ -320,9 +323,13 @@ def main(argv=None):
         print(f"  results us:  {len(us_rows)} completed races from the feed")
     except Exception as e:
         us_rows = []
-        print(f"  results us:  skipped ({e})")
+        us_problem = e
+        print(f"  results us:  FAILED ({e})")
     if not rows and not us_rows:
         print(f"  today:       no completed races for {iso}")
+        if us_problem:
+            print(f"::error::US results feed unavailable for {iso}: {us_problem}")
+            return 1
         return 0
     added_us = _merge_us(rows, us_rows, _cards(iso))
     _clean(rows)
@@ -485,6 +492,10 @@ def main(argv=None):
     place_judged = sum(1 for r in rows if r.get("pick") and r.get("placed") is not None)
     print(f"  summary:     {judged} picks, {hits} winners, "
           f"{placed}/{place_judged} placed")
+    if us_problem:
+        # Everything else is written and committed; the red run is the alarm.
+        print(f"::error::US results feed unavailable for {iso}: {us_problem}")
+        return 1
     return 0
 
 
