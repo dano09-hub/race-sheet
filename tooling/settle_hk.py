@@ -16,6 +16,8 @@ since been resulted.
     python3 tooling/settle_hk.py 2026-11-18 --data-only
 """
 import datetime as dt
+import glob
+import html
 import json
 import os
 import re
@@ -218,16 +220,80 @@ def attach(cards, date_iso):
     return got
 
 
+def _day_results(iso, rows):
+    """One day's Hong Kong ledger, in the same table shape as the UK one."""
+    rows = sorted(rows, key=lambda r: (r.get("time", ""), r.get("race_no") or 0))
+    judged = [r for r in rows if r.get("pick")]
+    wins = sum(1 for r in judged if r.get("hit"))
+    trs = []
+    for r in rows:
+        places = " &middot; ".join(html.escape(str(p)) for p in r.get("places") or [])
+        pick = r.get("pick") or ""
+        finish = r.get("pick_finish") or ""
+        if pick:
+            cell = ('<td class="pick %s">%s %s%s</td>'
+                    % ("hit" if r.get("hit") else "miss",
+                       "\u2713" if r.get("hit") else "\u2717",
+                       html.escape(pick),
+                       (" (%s)" % html.escape(finish)) if finish else ""))
+        else:
+            cell = '<td class="pick none">card not kept</td>'
+        trs.append(
+            '<tr><td><span class="rtime">%s</span></td><td><b>%s</b></td>'
+            '<td>%s</td><td>%s</td><td class="muted">%s</td>%s</tr>'
+            % (html.escape(str(r.get("time") or "")[:5]),
+               html.escape(str(r.get("course") or "")),
+               html.escape(str(r.get("race") or "")),
+               html.escape(str(r.get("winner") or "")), places, cell))
+    label = dt.datetime.strptime(iso, "%Y-%m-%d").strftime("%-d %B %Y")
+    noun = "race" if len(rows) == 1 else "races"
+    return (
+        '<h3>Settled &mdash; %s</h3>\n'
+        '<p class="method">%d Hong Kong %s settled. <b>%d of %d</b> model picks '
+        'won. Winner and the first three home, with the off time in UTC.</p>\n'
+        '<div class="scroll"><table class="ledger"><thead><tr><th>Off (UTC)</th>'
+        '<th>Course</th><th>Race</th><th>Winner</th><th>First three</th>'
+        '<th>Our pick</th></tr></thead><tbody>%s</tbody></table></div>\n'
+        % (label, len(rows), noun, wins, len(judged), "".join(trs)))
+
+
+def results_block():
+    """The Hong Kong results tab: every settled HK day on file."""
+    parts = []
+    for path in sorted(glob.glob(os.path.join(OUT_DIR, "*.json")), reverse=True):
+        iso = os.path.basename(path)[:-5]
+        try:
+            with open(path, encoding="utf-8") as f:
+                data = json.load(f)
+        except (OSError, ValueError):
+            continue
+        rows = data.get("races", []) if isinstance(data, dict) else data
+        if isinstance(rows, list) and rows:
+            parts.append(_day_results(iso, rows))
+    body = ("\n".join(parts) if parts else
+            '<p class="method">No Hong Kong results yet. A race appears here '
+            'once the official HKJC result carries a finishing position for '
+            'every declared runner.</p>')
+    return "<!-- HK_RESULTS_SL_START -->\n" + body + "\n<!-- HK_RESULTS_SL_END -->"
+
+
+def replace_results(page):
+    return re.sub(r"<!-- HK_RESULTS_SL_START -->.*?<!-- HK_RESULTS_SL_END -->",
+                  results_block(), page, count=1, flags=re.S)
+
+
 def inject(date_iso, cards):
-    """Rebuild just the CARDS_HK block in the page and its deployed copy."""
+    """Rebuild the CARDS_HK block and the results tab, then write dist."""
     if not os.path.exists(PAGE):
         return 0
-    head, body = refresh.serialise(cards, f"Hong Kong cards, {date_iso}")
-    html = open(PAGE, encoding="utf-8").read()
-    html = refresh.replace_block(html, "CARDS_HK", head + body)
-    open(PAGE, "w", encoding="utf-8").write(html)
+    page = open(PAGE, encoding="utf-8").read()
+    if cards:
+        head, body = refresh.serialise(cards, f"Hong Kong cards, {date_iso}")
+        page = refresh.replace_block(page, "CARDS_HK", head + body)
+    page = replace_results(page)
+    open(PAGE, "w", encoding="utf-8").write(page)
     if os.path.exists(os.path.dirname(DIST)):
-        open(DIST, "w", encoding="utf-8").write(html)
+        open(DIST, "w", encoding="utf-8").write(page)
     return len([c for c in cards if c.get("result")])
 
 
@@ -236,6 +302,13 @@ def main(argv=None):
     data_only = "--data-only" in argv
     argv = [a for a in argv if a != "--data-only"]
     date_iso = argv[0] if argv else dt.date.today().isoformat()
+    # The graphql gateway only ever serves the current meeting; a past date is
+    # returned as today's runners. Settling anything else would tag a card with
+    # another meeting's result, so only the current UTC day is accepted.
+    today = dt.datetime.now(dt.timezone.utc).date().isoformat()
+    if date_iso != today:
+        print(f"  HK results:  {date_iso} is not the current HKJC meeting; left unchanged")
+        return 0
     cards = _cards(date_iso)
     if not cards:
         print(f"  HK results:  no Hong Kong card filed for {date_iso}")
@@ -255,9 +328,8 @@ def main(argv=None):
           f"for {date_iso}")
     if not data_only:
         attached = attach(cards, date_iso)
-        if attached:
-            inject(date_iso, cards)
-            print(f"  HK page:     {attached} races carry their official outcome")
+        inject(date_iso, cards)
+        print(f"  HK page:     {attached} races carry their official outcome")
     return 0
 
 

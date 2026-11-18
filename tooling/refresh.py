@@ -1316,6 +1316,14 @@ def main():
     if audit:
         html = replace_block(html, "RESULTS", audit)
 
+    # The Hong Kong results tab is rebuilt from data/results_hk, so a refresh
+    # that only re-scrapes cards keeps the settled ledger current.
+    try:
+        import settle_hk
+        html = settle_hk.replace_results(html)
+    except Exception as e:
+        print(f"  HK results:  block skipped ({e})")
+
     open(INDEX, "w", encoding="utf-8").write(html)
     os.makedirs(os.path.join(ROOT, "dist", "public"), exist_ok=True)
     open(os.path.join(ROOT, "dist", "public", "index.html"), "w", encoding="utf-8").write(html)

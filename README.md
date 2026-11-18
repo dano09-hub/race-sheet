@@ -826,7 +826,7 @@ since `dist/public/index.html` is the whole site.
 
 ## The page
 
-Six tabs, each a job rather than a data source. Old tab names still resolve to
+Seven tabs, each a job rather than a data source. Old tab names still resolve to
 their new home, so saved links and the browser's remembered tab keep working.
 
 | Tab | What it is for |
@@ -836,6 +836,7 @@ their new home, so saved links and the browser's remembered tab keep working.
 | Results | Settled UK/IRE results, market checks and the standing model audits. |
 | US racing | The US ledger, the US flags and the full angle board. |
 | Hong Kong | Today's official HKJC card, with each race's model pick, official rating, last-six form, barrier draw and the settled official outcome once the race has run. |
+| HK results | Every settled Hong Kong race, with the winner, the first three home and where the model pick finished. |
 | Method | The fixed weights, how the chance is calibrated, and the evidence behind both. |
 
 ## Known caveats
@@ -846,7 +847,8 @@ their new home, so saved links and the browser's remembered tab keep working.
   improvement of one or two winners as noise.
 * The Results tab is a snapshot. It does not poll for new results.
 * The Results tab is UK/IRE only. The **US racing** tab holds the US ledger and
-  the US speed-figure A/B; both ledgers show the off time beside each course.
+  the US speed-figure A/B; the **HK results** tab holds Hong Kong's settled
+  ledger. All three show the off time beside each course.
 * The **Hong Kong** tab carries today's HKJC card from the official source and
   settles its picks from the same feed's official finishing positions. A race is
   only settled once every declared runner has a position, and a stored pick is
@@ -871,7 +873,7 @@ as the cards. Current state, honestly:
 | Racing Post `/results/YYYY-MM-DD/` | loads, but the table is client-gated: 0 rows reachable, results not in the HTML |
 | Equibase | free summary results, but its terms **prohibit automated access** - do not scrape |
 | horse racing nation `entries-results` | past dates return the *entries* table (morning line), never finishing positions |
-| HKJC GraphQL | official card and, once a race is off, every runner's finishing position; the `date` variable is honoured for the current meeting |
+| HKJC GraphQL | official card and, once a race is off, every runner's finishing position; only the current meeting is served, so past dates return today's runners |
 | horseracingapi.org | free key, **yesterday's** results for US + GB + IRE + FR + SA, 50 calls/day - the workable route |
 
 Using the API (key is yours, never commit it):
@@ -894,8 +896,10 @@ and takes every runner's finishing position from the feed's `finalPosition`. A
 race is settled only when the whole declared field has one, so a partial feed
 leaves it open. The pick is the page's own model pick, scored from the archived
 card, and a pick already on file is never rewritten. Outcomes are written to
-`data/results_hk/<date>.json` and embedded in the Hong Kong tab; the scheduled
-results pass (`tooling/settle_today.py`) refreshes them during racing.
+`data/results_hk/<date>.json`, embedded in the Hong Kong tab and listed on the
+**HK results** tab; the scheduled results pass (`tooling/settle_today.py`)
+refreshes them during racing. The feed only serves the current meeting, so the
+tool refuses any other date rather than tag a card with the wrong result.
 
 ## Back-test: what the British history actually says
 
