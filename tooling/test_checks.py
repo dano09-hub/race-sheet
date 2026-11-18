@@ -2062,6 +2062,18 @@ check("us feed: a red run still commits the day's results",
       "if: always()" in _wf_res.split("name: Commit results", 1)[1][:220])
 
 print()
+print("Results trigger")
+_res_yml = (ROOT / ".github" / "workflows" / "results.yml").read_text(encoding="utf-8")
+check("results: a data commit starts a run instead of waiting on the cron",
+      "\n  push:" in _res_yml and '"data/cards/**"' in _res_yml
+      and '"data/results/**"' in _res_yml and "branches: [main]" in _res_yml)
+check("results: a push run skips the job's own commit",
+      "github.event_name != 'push'" in _res_yml
+      and "!contains(github.event.head_commit.message, 'Live results')" in _res_yml)
+check("results: the guard names the message the job actually writes",
+      'git commit -m "Live results' in _res_yml)
+
+print()
 print("passed %d, failed %d%s" % (
     len(PASSED), len(FAILED), (", skipped %d" % len(SKIPPED)) if SKIPPED else ""))
 sys.exit(1 if FAILED else 0)

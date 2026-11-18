@@ -5,6 +5,14 @@ on:
     # Update after each block of races; the 21:10 refresh is the final check.
     # The early window settles the US races that finish after midnight UTC.
     - cron: "*/20 0-3,12-20 * * *"
+  push:
+    # GitHub's scheduler can hold a twenty-minute cron for hours, so a new card
+    # or a settled results file starts a run straight away instead. The job
+    # skips its own commit below, which is what stops the loop.
+    branches: [main]
+    paths:
+      - "data/cards/**"
+      - "data/results/**"
   workflow_dispatch:
 
 permissions:
@@ -18,6 +26,12 @@ concurrency:
 
 jobs:
   results:
+    # The run's own commit lands in data/results and would trigger it again for
+    # ever. Its message is the marker, so the guard and the commit message below
+    # have to keep matching.
+    if: >-
+      github.event_name != 'push' ||
+      !contains(github.event.head_commit.message, 'Live results')
     runs-on: ubuntu-latest
     timeout-minutes: 10
     environment:
