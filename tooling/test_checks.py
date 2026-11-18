@@ -1881,7 +1881,8 @@ for _d in range(10):
                          "picks": {"price": ["B", "A", "C", "D"],
                                    "form": ["A", "B", "C", "D"],
                                    "rating": ["B", "A", "C", "D"],
-                                   "weight": ["B", "A", "C", "D"]}})
+                                   "weight": ["B", "A", "C", "D"],
+                                   "draw": ["C", "A", "D", "B"]}})
 _hk_early, _hk_late = ahk.split(_hk_fake, 0.5)
 check("HK audit: the split is chronological and keeps the latest meetings back",
       len(_hk_early) == 45 and len(_hk_late) == 45
@@ -1894,6 +1895,14 @@ check("HK audit: a factor that beats the favourite at p<0.05 says so",
       "form: beats the favourite" in _hk_txt2, _hk_txt2)
 check("HK audit: a factor with no head-to-head gets no verdict",
       "rating:" not in _hk_txt2 and "weight:" not in _hk_txt2, _hk_txt2)
+check("HK audit: the barrier draw is scored alongside the other four",
+      "barrier draw" in _hk_txt2
+      and [n for n, _ in ahk.SIGNALS] == ["price", "form", "rating", "weight", "draw"],
+      _hk_txt2)
+_hk_draw = {"A": {"parts": {"draw": 90}}, "B": {"parts": {"draw": 90}},
+            "C": {"parts": {"draw": 10}}}
+check("HK audit: draw ranks like any factor and ties on the saddlecloth",
+      ahk.rank(_hk_draw, {"A": 9, "B": 1, "C": 4}, "draw") == ["B", "A", "C"])
 _hk_small = _hk_fake[:27]
 _hk_out3 = io.StringIO()
 with contextlib.redirect_stdout(_hk_out3):

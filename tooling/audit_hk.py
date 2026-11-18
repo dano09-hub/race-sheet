@@ -4,8 +4,8 @@
 The Hong Kong card is filed before betting opens, so the pick has been made on
 form, official rating, draw and weight alone. This audit asks the only question
 worth asking before any weight changes: with a price that was actually on the
-board twenty minutes before the off, do form, rating or weight rank the winner
-better than the crowd already does?
+board twenty minutes before the off, do form, rating, weight or barrier draw
+rank the winner better than the crowd already does?
 
     python3 tooling/audit_hk.py                # all filed snapshots
     python3 tooling/audit_hk.py --dev 0.6      # a different chronological cut
@@ -41,9 +41,10 @@ import snapshot_hk as shk                                  # noqa: E402
 
 # name -> the page's factor key. Price is the crowd's own ranking.
 SIGNALS = (("price", "market"), ("form", "form"),
-           ("rating", "rating"), ("weight", "weight"))
+           ("rating", "rating"), ("weight", "weight"), ("draw", "draw"))
 LABEL = {"price": "price", "form": "form",
-         "rating": "official rating", "weight": "weight carried"}
+         "rating": "official rating", "weight": "weight carried",
+         "draw": "barrier draw"}
 
 # A verdict needs a holdout that can actually resolve a difference. This is a
 # floor, not a licence to read a small edge as a signal.

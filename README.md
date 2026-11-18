@@ -916,7 +916,7 @@ files yet: they are the history a Hong Kong factor has to be measured against
 before any weight changes.
 
 `tooling/audit_hk.py` is that measurement. It scores form, official rating,
-weight and price on a chronological split of the archive, reading the price only
+weight, barrier draw and price on a chronological split of the archive, reading the price only
 from pre-off snapshots and discarding the archived card's own odds, then compares
 each factor head to head with the favourite on the held-back meetings. It returns
 no verdict until the holdout holds 40 races at five meetings, and a clean result
