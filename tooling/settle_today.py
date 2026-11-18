@@ -315,6 +315,9 @@ def main(argv=None):
         _merge_irish(iso, rows)
     try:
         us_rows = _clean(fetch_results_us.fetch_day(iso))
+        # Say the number out loud: a silent zero here is how the US ledger sat
+        # empty while every scheduled run reported success.
+        print(f"  results us:  {len(us_rows)} completed races from the feed")
     except Exception as e:
         us_rows = []
         print(f"  results us:  skipped ({e})")
@@ -325,6 +328,9 @@ def main(argv=None):
     _clean(rows)
     if added_us:
         print(f"  results us:  +{added_us} completed US races")
+    elif us_rows:
+        print(f"  results us:  {len(us_rows)} from the feed, none matched an "
+              "archived card")
 
     path = os.path.join(ROOT, "data", "results", f"{iso}.json")
     old_rows = []
