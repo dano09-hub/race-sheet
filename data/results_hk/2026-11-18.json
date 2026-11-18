@@ -249,6 +249,37 @@
    "pick": "Aurora Lady",
    "pick_finish": "6th",
    "hit": false
+  },
+  {
+   "course": "Happy Valley",
+   "time": "14:50",
+   "race": "Tai O Handicap",
+   "race_no": 9,
+   "region": "HK",
+   "winner": "Savvy Brilliant",
+   "places": [
+    "Savvy Brilliant",
+    "Danica'S Choice",
+    "Meowth"
+   ],
+   "finish": {
+    "Savvy Brilliant": 1,
+    "Danica'S Choice": 2,
+    "Meowth": 3,
+    "Do You Just": 4,
+    "Power Koepp": 5,
+    "The Heir": 6,
+    "Lucky River": 7,
+    "Kyrus Dragon": 8,
+    "Da Ai": 9,
+    "Malpensa": 10,
+    "Our Bold Choice": 11,
+    "Dynamic Brose": 12
+   },
+   "field": 12,
+   "pick": "The Heir",
+   "pick_finish": "6th",
+   "hit": false
   }
  ]
 }
