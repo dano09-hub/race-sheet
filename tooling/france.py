@@ -336,14 +336,34 @@ def results_for(iso, region="FR"):
     return rows
 
 
-def _existing(iso, region="FR"):
+def _read_doc(iso, region="FR"):
     path = os.path.join(OUT_DIRS[str(region).upper()], f"{iso}.json")
     try:
         with open(path, encoding="utf-8") as f:
             data = json.load(f)
     except (OSError, ValueError):
         return {}
-    rows = data.get("races", []) if isinstance(data, dict) else data
+    if isinstance(data, list):
+        return {"races": data}
+    return data if isinstance(data, dict) else {}
+
+
+def _fingerprint(rows):
+    """The parts of a ledger that make it a different ledger."""
+    return {(r.get("course"), r.get("time"), r.get("race_no")): (
+        r.get("winner"), tuple(r.get("order") or []), r.get("pick"),
+        r.get("pick_finish"), bool(r.get("hit")), r.get("chance"))
+        for r in rows if isinstance(r, dict)}
+
+
+def _utcnow():
+    return (dt.datetime.now(dt.timezone.utc).replace(microsecond=0)
+            .isoformat().replace("+00:00", "Z"))
+
+
+def _existing(iso, region="FR"):
+    data = _read_doc(iso, region)
+    rows = data.get("races", [])
     return {(r.get("course"), r.get("time"), r.get("race_no")): r
             for r in rows if isinstance(r, dict)}
 
@@ -364,6 +384,8 @@ def settle(iso, region="FR"):
     for card in cards:
         by_race.setdefault((card.get("course"), card.get("time")), card)
 
+    prev_doc = _read_doc(iso, region)
+    prev_rows = prev_doc.get("races") or []
     prev = _existing(iso, region)
     settled = []
     for row in rows:
@@ -399,11 +421,16 @@ def settle(iso, region="FR"):
                 row["hit"] = False
         settled.append(row)
 
+    changed = _fingerprint(settled) != _fingerprint(prev_rows)
+    updated = _utcnow() if changed else prev_doc.get("updated")
+    doc = {"date": iso, "region": region}
+    if updated:
+        doc["updated"] = updated
+    doc["races"] = settled
     out = OUT_DIRS[region]
     os.makedirs(out, exist_ok=True)
     with open(os.path.join(out, f"{iso}.json"), "w", encoding="utf-8") as f:
-        json.dump({"date": iso, "region": region, "races": settled}, f,
-                  ensure_ascii=False, indent=1)
+        json.dump(doc, f, ensure_ascii=False, indent=1)
     wins = sum(1 for r in settled if r.get("hit"))
     judged = sum(1 for r in settled if r.get("pick"))
     print(f"  {region} results: {len(settled)} races settled, "
@@ -486,6 +513,43 @@ def _day_results(iso, rows, region="FR"):
         % (label, len(rows), cfg["label"], noun, summary, price_note, "".join(trs)))
 
 
+def _stamp(region="FR"):
+    """When the ledger last changed, or the latest day if it predates this."""
+    region = str(region).upper()
+    out = OUT_DIRS[region]
+    latest_updated, latest_date = "", ""
+    if os.path.isdir(out):
+        for name in os.listdir(out):
+            if not name.endswith(".json"):
+                continue
+            doc = _read_doc(name[:-5], region)
+            if doc.get("updated", "") > latest_updated:
+                latest_updated = doc["updated"]
+            if doc.get("date", "") > latest_date:
+                latest_date = doc["date"]
+    ident = "%sLedger" % region.lower()
+    if latest_updated:
+        try:
+            when = dt.datetime.fromisoformat(latest_updated.replace("Z", "+00:00"))
+            label = when.strftime("%-d %B %Y, %H:%M UTC")
+        except ValueError:
+            return ('<p class="method" id="%s">Ledger last changed <b>%s</b>.</p>\n'
+                    % (ident, html.escape(latest_updated)))
+        return ('<p class="method" id="%s">Ledger last changed '
+                '<time datetime="%s">%s</time>.</p>\n'
+                % (ident, html.escape(latest_updated), label))
+    if latest_date:
+        try:
+            label = dt.datetime.strptime(latest_date, "%Y-%m-%d").strftime("%-d %B %Y")
+        except ValueError:
+            return ""
+        return ('<p class="method" id="%s">Latest result '
+                '<time datetime="%s">%s</time>; the settlement time was not '
+                'recorded for rows filed before this change.</p>\n'
+                % (ident, html.escape(latest_date), label))
+    return ""
+
+
 def results_block(region="FR"):
     cfg = config(region)
     region = str(region).upper()
@@ -504,10 +568,11 @@ def results_block(region="FR"):
             rows = data.get("races", []) if isinstance(data, dict) else data
             if isinstance(rows, list) and rows:
                 parts.append(_day_results(iso, rows, region))
-    body = ("\n".join(parts) if parts else
-            f'<p class="method">No {cfg["label"]} results yet. A race appears '
-            'here once PMU publishes its definitive arrival and the archived '
-            'card can name every finisher.</p>')
+    stamp = _stamp(region)
+    body = ((stamp + "\n".join(parts)) if parts else
+            (stamp + f'<p class="method">No {cfg["label"]} results yet. A race '
+             'appears here once PMU publishes its definitive arrival and the '
+             'archived card can name every finisher.</p>'))
     marker = cfg["results_sl"]
     return (f"<!-- {marker}_START -->\n" + body
             + f"\n<!-- {marker}_END -->")

@@ -2295,6 +2295,53 @@ with tempfile.TemporaryDirectory(prefix="fr-settle-") as fd:
         frmod.archived_cards, frmod.results_for = _old_arch, _old_res
         settle.scored = _old_scored
 
+with tempfile.TemporaryDirectory(prefix="cl-stamp-") as fd:
+    _old_out = frmod.OUT_DIRS["CL"]
+    _old_arch, _old_res = frmod.archived_cards, frmod.results_for
+    _old_now = frmod._utcnow
+    try:
+        frmod.OUT_DIRS["CL"] = os.path.join(fd, "results_cl")
+        _cl_card = _cl_cards[0]
+        _cl_row = {"course": _cl_card["course"], "time": _cl_card["time"],
+                   "race": _cl_card["race"], "race_no": _cl_card["race_no"],
+                   "winner": "MAKE IT COUNT",
+                   "places": ["MAKE IT COUNT", "OTRA VEZ PITUCO"],
+                   "order": ["MAKE IT COUNT", "OTRA VEZ PITUCO"],
+                   "region": "CL"}
+        frmod.archived_cards = lambda iso, region="CL": [_cl_card]
+        frmod.results_for = lambda iso, region="CL": [dict(_cl_row)]
+        frmod._utcnow = lambda: "2026-11-18T21:20:00Z"
+        frmod.settle("2026-11-18", "CL")
+        _path = os.path.join(frmod.OUT_DIRS["CL"], "2026-11-18.json")
+        _doc = json.load(open(_path, encoding="utf-8"))
+        check("Chile: a new settlement records when the ledger changed",
+              _doc.get("updated") == "2026-11-18T21:20:00Z",
+              _doc.get("updated"))
+        frmod._utcnow = lambda: "2026-11-18T21:40:00Z"
+        frmod.settle("2026-11-18", "CL")
+        _doc = json.load(open(_path, encoding="utf-8"))
+        check("Chile: a sweep with no new arrival keeps the timestamp",
+              _doc.get("updated") == "2026-11-18T21:20:00Z",
+              _doc.get("updated"))
+        frmod.results_for = lambda iso, region="CL": [dict(_cl_row), {
+            "course": _cl_card["course"], "time": "22:00", "race": "R9C3",
+            "race_no": "R9C3", "winner": "HIJO DEL REY",
+            "places": ["HIJO DEL REY"], "order": ["HIJO DEL REY"],
+            "region": "CL"}]
+        frmod.settle("2026-11-18", "CL")
+        _doc = json.load(open(_path, encoding="utf-8"))
+        check("Chile: a new arrival moves the last-changed time",
+              _doc.get("updated") == "2026-11-18T21:40:00Z",
+              _doc.get("updated"))
+        _blk = frmod.results_block("CL")
+        check("Chile: the results tab states the last-changed UTC time",
+              'id="clLedger"' in _blk
+              and "18 November 2026, 21:40 UTC" in _blk, _blk[:220])
+    finally:
+        frmod.OUT_DIRS["CL"] = _old_out
+        frmod.archived_cards, frmod.results_for = _old_arch, _old_res
+        frmod._utcnow = _old_now
+
 _report = {"measured": "2026-11-18T19:00:00+00:00", "rows": [
     {"country": "France", "code": "FR", "source": "PMU", "cards": True,
      "results": True, "prices": True, "verdict": "live",
@@ -2324,6 +2371,8 @@ check("Chile: the page has a racing tab and a results tab",
 check("Chile: the card block, result marker and renderer are present",
       "var CARDS_CL = [" in _fr_page and "CL_RESULTS_SL_START" in _fr_page
       and "function renderChile" in _fr_page)
+check("France and Chile: the results tabs show when the ledger last changed",
+      'id="frLedger"' in _fr_page and 'id="clLedger"' in _fr_page)
 check("France: the serve copy matches the page",
       _fr_page == (ROOT / "dist" / "public" / "index.html").read_text(encoding="utf-8"))
 _res_yml = (ROOT / ".github" / "workflows" / "results.yml").read_text(encoding="utf-8")
