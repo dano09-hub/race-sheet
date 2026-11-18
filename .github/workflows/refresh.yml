@@ -33,6 +33,11 @@ jobs:
         run: python3 -m pip install -r requirements.txt
       - name: Refresh cards, results and page
         run: python3 tooling/refresh.py
+      - name: Measure country coverage
+        # Probes every jurisdiction from the runner that actually builds the
+        # page. A probe failing must not hold back the refresh or its commit.
+        continue-on-error: true
+        run: python3 tooling/audit_coverage.py --inject
       - name: Settle today's results after racing
         run: python3 tooling/settle_today.py
       - name: Commit what changed

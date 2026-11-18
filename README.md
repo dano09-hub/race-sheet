@@ -95,6 +95,8 @@ Known gaps section for what that would take.
 | USA (deeper) | `horseracingnation.com/horse/...` | free | **no** — 202 empty body | form lines, last-run dates (needs a browser) |
 | Australia / NZ | `punters.com.au` form guide | free | **no** — 403, Cloudflare | form, barrier, weight, their rating, win/place %, price |
 | Hong Kong | HKJC GraphQL gateway plus the official race-card page (see `tooling/scrape_hk.py`) | free | **yes, plain HTTP** | official rating, last six, barrier, weight, connections, venue, race name, post time, going |
+| France | PMU programme and participants (`tooling/france.py`) | free | **yes, plain HTTP** | declared field, French form string, handicap value, weight, draw, forecast dividend, definitive arrival |
+| Chile / Argentina | the same PMU programme | free | **yes** | cards; Chile also has definitive arrivals, Argentina's field is often not served — see the coverage table |
 | Anything else | `punters.com.au` covers GB, IRE, US, CA, AUS, NZ, HK, JP, ZA, FR, TR, AE | free | no, same Cloudflare wall | same block as Australia |
 | Training history, GB/IRE | Delta Romeo's results set on Kaggle | free | **no** — needs a Kaggle API token | 1988 onwards: OR, RPR, Topspeed, SP, finishing position |
 | Starting prices | `promo.betfair.com/betfairsp/prices` | free | **no** — 403 from this sandbox | Betfair SP per runner, 2008 onwards |
@@ -166,9 +168,10 @@ That single command:
 1. scrapes today's UK racecards -> `RACE_CARDS`
 2. scrapes tomorrow's UK racecards -> `CARDS_FRI`
 3. scrapes today's US entries (entries.horseracingnation.com) -> `CARDS_US`
-4. pulls today's settled results into `data/YYYY-MM-DD.json`
-5. rewrites the three card blocks inside `index.html`
-6. copies the result to `dist/public/index.html`
+4. files today's and tomorrow's pre-off French cards (PMU) -> `CARDS_FR`
+5. pulls today's settled results into `data/YYYY-MM-DD.json`
+6. rewrites the card blocks inside `index.html`
+7. copies the result to `dist/public/index.html`
 
 Then publish `dist/`. A block that scrapes empty is left untouched, so a quiet
 day or a blocked request can never wipe a card that already works — that is why
@@ -826,18 +829,23 @@ since `dist/public/index.html` is the whole site.
 
 ## The page
 
-Seven tabs, each a job rather than a data source. Old tab names still resolve to
-their new home, so saved links and the browser's remembered tab keep working.
+Eleven destinations, each a job rather than a data source. Old tab names still
+resolve to their new home, so saved links and the browser's remembered tab keep
+working.
 
 | Tab | What it is for |
 | --- | --- |
 | Today | The next race, the day's best-rated horses, the standouts and the US races still to come. |
 | Cards | Pick any race and inspect every runner the model scored, with the full rating table. |
-| Results | Settled UK/IRE results, market checks and the standing model audits. |
-| US racing | The US ledger, the US flags and the full angle board. |
+| UK results | Settled UK results, market checks and the standing model audits. |
+| Irish results | Settled Irish races, split from the UK ledger by course. |
+| US results | Settled US races with the off time and the speed-figure A/B. |
+| US racing | The US flags and the full angle board. |
 | Hong Kong | Today's official HKJC card, with each race's model pick, official rating, last-six form, barrier draw and the settled official outcome once the race has run. |
 | HK results | Every settled Hong Kong race, with the winner, the first three home and where the model pick finished. |
-| Method | The fixed weights, how the chance is calibrated, and the evidence behind both. |
+| France | Today's and tomorrow's PMU cards: French form, handicap value, draw and the live forecast dividend. |
+| France results | Every settled French race, from PMU's definitive arrival, with the pick from the pre-race card. |
+| Method | The fixed weights, how the chance is calibrated, the measured country coverage, and the evidence behind both. |
 
 ## Known caveats
 
@@ -846,9 +854,13 @@ their new home, so saved links and the browser's remembered tab keep working.
 * 21 races is a tiny sample. The weights were tuned in-sample; treat any
   improvement of one or two winners as noise.
 * The Results tab is a snapshot. It does not poll for new results.
-* The Results tab is UK/IRE only. The **US racing** tab holds the US ledger and
-  the US speed-figure A/B; the **HK results** tab holds Hong Kong's settled
-  ledger. All three show the off time beside each course.
+* The **UK results**, **Irish results**, **US results**, **HK results** and
+  **France results** tabs hold one ledger each. All show the off time beside
+  each course.
+* French cards carry no tipsters, RPR, Topspeed, days-since-run or 30-day
+  stable form. The model scores them on market, form, handicap value, weight
+  and draw, with the missing factors dropped rather than filled in. The French
+  forecast dividend is a pool estimate, not a bookmaker price.
 * The **Hong Kong** tab carries today's HKJC card from the official source and
   settles its picks from the same feed's official finishing positions. A race is
   only settled once every declared runner has a position, and a stored pick is
@@ -929,6 +941,77 @@ to `data/hk_audit/latest.txt`, so the record refreshes itself as meetings
 accumulate without anyone remembering to run it. The file is regenerated over
 the whole archive rather than appended to, which means it can never drift from
 the snapshots it describes; the commit history holds the earlier readings.
+
+## France (PMU)
+
+France is the one country outside GB/IRE, the US and Hong Kong where a free,
+plain-HTTP feed carries a complete card **and** the official result.
+`tooling/france.py` reads PMU's public programme: the declared field, the French
+form string (`musique`), the handicap value, the weight, the draw and the live
+forecast dividend, then the definitive finishing order once a race has run.
+
+Four rules keep it honest:
+
+* **Only pre-off races are filed.** `fetch_cards()` drops anything whose
+  `heureDepart` has passed, so an afternoon or evening refresh cannot replace a
+  card with a post-race re-scrape. The archive merges on course/time/race, so
+  the version filed before the off survives.
+* **A short field is not a field.** PMU's `nombreDeclaresPartants` counts
+  declared runners including non-runners; the probe requires the full declared
+  list and at least two starters, and skips the race otherwise.
+* **An arrival is only settled when it can be named.** Every number in
+  `ordreArrivee` must map to a declared runner, and the arrival must be
+  definitive; otherwise the race is left open rather than given a guessed
+  winner.
+* **A stored pick is never rewritten.** A re-run carries the pick, chance and
+  finishing position already on file.
+
+The model scores a French card on the same fixed weights as every other region.
+What the card supports: market (the PMU forecast dividend), form (the `musique`
+converted to the page's alphabet, never fed in raw — a French `p` means *plat*,
+while the page reads `P` as pulled up), official rating (the handicap value),
+weight (gallop only) and draw. It carries no tipsters, RPR, Topspeed, days-since-
+run or 30-day stable form, so those factors drop and the rest renormalise. No
+weight is re-tuned for France.
+
+The **France** tab shows today's and tomorrow's cards; the **France results**
+tab holds every settled French race. The scheduled results job settles France
+after Hong Kong and before the page is written, so a published page cannot carry
+a French ledger that lags the arrival.
+
+PMU is the pari-mutuel operator rather than the racing authority, so the page
+calls its arrival *PMU's definitive arrival*, and the dividend is described as a
+pool estimate, not a bookmaker price.
+
+## Which countries can we actually cover?
+
+`tooling/audit_coverage.py` probes every jurisdiction the betting board shows
+from the same network the workflow runs on. A country earns a tab only when a
+machine-readable card and a named result both exist; reachability alone is not
+enough. The audit writes `data/coverage/latest.txt` / `.json` and replaces the
+coverage table on the Method tab (the refresh job runs it with `--inject`).
+
+Measured 18 November 2026:
+
+| Country | Cards | Results | Prices | Verdict |
+|---|---:|---:|---:|---|
+| Great Britain & Ireland | yes | yes | yes | live (horseracing.net + Sporting Life / irishracing) |
+| United States | yes | yes | yes | live (HRN entries and payout table) |
+| Hong Kong | yes | yes | no | live (HKJC card and finishing positions) |
+| France | yes | yes | yes | live (PMU) — **wired, with its own tabs** |
+| Chile | yes | yes | no | cards + results, no prices — the next candidate |
+| Argentina | yes | no | no | cards only; the field is often not served |
+| Australia & New Zealand | no | no | no | blocked (Punters Cloudflare 403, racing.com 403) |
+| Japan | no | no | no | HTML only; no machine-readable race list |
+| South Africa | no | no | no | HTML only; no meeting/field payload found |
+| Germany | no | no | no | HTML only; no structured field feed found |
+| Brazil | no | no | no | no race-data feed (the domain redirects to an investment site) |
+| United Arab Emirates | no | no | no | unreachable from this network |
+
+Chile is the only partial source: PMU serves its field and its arrival, but no
+price, so a Chile card would score without the market factor. It is not wired as
+a tab yet. Argentina's participant payload is frequently 204 (no field), which
+is why its arrival numbers cannot be turned into named results.
 
 ## Back-test: what the British history actually says
 

@@ -359,7 +359,8 @@ def serialise(cards, comment):
         # HK cards carry the official programme number and barrier draw, so the
         # card view can show the draw the model scores. Other regions keep the
         # block they already had: their draw was never part of the page's card.
-        extra = ("draw", "no") if str(c.get("region", "")).upper() == "HK" else ()
+        extra = (("draw", "no")
+                 if str(c.get("region", "")).upper() in ("HK", "FR") else ())
         def runner(r):
             keys = [f"{k}:{js(r.get(k, ''))}" for k in RUNNER_KEYS]
             keys += [f"{k}:{js(r.get(k, ''))}" for k in extra]
@@ -1134,6 +1135,17 @@ def main():
         print(f"  HK results:  skipped ({e})")
     print(f"  HK today:    {len(hk)} races")
 
+    # France: PMU's programme. Only pre-off races are filed, so a later refresh
+    # cannot replace a card the pick was made from with a post-race re-scrape.
+    fr = []
+    try:
+        import france
+        tomorrow = (today + dt.timedelta(days=1)).isoformat()
+        fr = france.fetch_cards(iso) + france.fetch_cards(tomorrow)
+        print(f"  FR cards:    {len(fr)} pre-race races (today + tomorrow)")
+    except Exception as e:
+        print(f"  FR cards:    skipped ({e})")
+
     try:
         slug_date = today.strftime("%d-%m-%y")
         _, meetings = scrape_results.fetch_day(slug_date)
@@ -1228,7 +1240,8 @@ def main():
 
     au = au_day()
     print(f"  AU card:     {len(au)} races")
-    archive(iso, {"GB": uk_today, "GB_tomorrow": uk_tomorrow, "US": us, "HK": hk, "AU": au})
+    archive(iso, {"GB": uk_today, "GB_tomorrow": uk_tomorrow, "US": us, "HK": hk,
+                  "AU": au, "FR": fr})
     # Take the with/without-rating snapshot before the day settles. Later
     # results refreshes only recalculate the tally; they never rewrite it.
     try:
@@ -1412,6 +1425,15 @@ def main():
         html = settle_hk.replace_results(html)
     except Exception as e:
         print(f"  HK results:  block skipped ({e})")
+
+    # France builds from the pre-race archive (today + tomorrow) and its stored
+    # ledger, not from the one fetch this run happened to make.
+    try:
+        import france
+        html = france.replace_cards(html, iso)
+        html = france.replace_results(html)
+    except Exception as e:
+        print(f"  FR blocks:   skipped ({e})")
 
     open(INDEX, "w", encoding="utf-8").write(html)
     os.makedirs(os.path.join(ROOT, "dist", "public"), exist_ok=True)

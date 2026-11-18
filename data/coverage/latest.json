@@ -1,0 +1,126 @@
+{
+ "date": "2026-11-18",
+ "measured": "2026-11-18T19:42:06+00:00",
+ "rows": [
+  {
+   "country": "Great Britain & Ireland",
+   "code": "GB/IE",
+   "source": "horseracing.net",
+   "cards": true,
+   "results": true,
+   "prices": true,
+   "verdict": "live",
+   "note": "horseracing.net cards; Sporting Life / irishracing results"
+  },
+  {
+   "country": "United States",
+   "code": "US",
+   "source": "horseracingnation.com",
+   "cards": true,
+   "results": true,
+   "prices": true,
+   "verdict": "live",
+   "note": "HRN entries and payout table on one host"
+  },
+  {
+   "country": "Hong Kong",
+   "code": "HK",
+   "source": "HKJC",
+   "cards": true,
+   "results": true,
+   "prices": false,
+   "verdict": "live",
+   "note": "official HKJC card and finishing positions"
+  },
+  {
+   "country": "France",
+   "code": "FR",
+   "source": "PMU",
+   "cards": true,
+   "results": true,
+   "prices": true,
+   "verdict": "live",
+   "note": "18 declared runners, 40 definitive races, forecast dividends"
+  },
+  {
+   "country": "Argentina",
+   "code": "AR",
+   "source": "PMU",
+   "cards": true,
+   "results": false,
+   "prices": false,
+   "verdict": "cards only",
+   "note": "12 declared runners, 0 definitive races, no prices"
+  },
+  {
+   "country": "Chile",
+   "code": "CL",
+   "source": "PMU",
+   "cards": true,
+   "results": true,
+   "prices": false,
+   "verdict": "cards + results, no prices",
+   "note": "15 declared runners, 6 definitive races, no prices"
+  },
+  {
+   "country": "Australia & New Zealand",
+   "code": "AU/NZ",
+   "source": "Punters / racing.com",
+   "cards": false,
+   "results": false,
+   "prices": false,
+   "verdict": "blocked",
+   "note": "Punters Cloudflare 403; racing.com 403 from this network"
+  },
+  {
+   "country": "Japan",
+   "code": "JP",
+   "source": "netkeiba",
+   "cards": false,
+   "results": false,
+   "prices": false,
+   "verdict": "html only",
+   "note": "race pages reachable; no machine-readable race list"
+  },
+  {
+   "country": "South Africa",
+   "code": "ZA",
+   "source": "tab.co.za",
+   "cards": false,
+   "results": false,
+   "prices": false,
+   "verdict": "html only",
+   "note": "TAB home answers; no meeting/field payload found"
+  },
+  {
+   "country": "Germany",
+   "code": "DE",
+   "source": "deutscher-galopp.de",
+   "cards": false,
+   "results": false,
+   "prices": false,
+   "verdict": "html only",
+   "note": "race-day pages are HTML; no structured field feed found"
+  },
+  {
+   "country": "Brazil",
+   "code": "BR",
+   "source": "gavea.com.br",
+   "cards": false,
+   "results": false,
+   "prices": false,
+   "verdict": "no feed",
+   "note": "redirects to https://www.gaveainvest.com.br/"
+  },
+  {
+   "country": "United Arab Emirates",
+   "code": "AE",
+   "source": "abudhabiraceclub.com",
+   "cards": false,
+   "results": false,
+   "prices": false,
+   "verdict": "unreachable",
+   "note": "connection timed out from this network"
+  }
+ ]
+}

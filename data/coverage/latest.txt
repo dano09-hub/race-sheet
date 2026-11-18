@@ -1,0 +1,18 @@
+Racing coverage — measured 2026-11-18T19:42:06+00:00 (UTC)
+country                    cards results prices  verdict / evidence
+----------------------------------------------------------------------------------------------------
+Great Britain & Ireland    yes   yes     yes     live; horseracing.net cards; Sporting Life / irishracing results
+United States              yes   yes     yes     live; HRN entries and payout table on one host
+Hong Kong                  yes   yes     no      live; official HKJC card and finishing positions
+France                     yes   yes     yes     live; 18 declared runners, 40 definitive races, forecast dividends
+Argentina                  yes   no      no      cards only; 12 declared runners, 0 definitive races, no prices
+Chile                      yes   yes     no      cards + results, no prices; 15 declared runners, 6 definitive races, no prices
+Australia & New Zealand    no    no      no      blocked; Punters Cloudflare 403; racing.com 403 from this network
+Japan                      no    no      no      html only; race pages reachable; no machine-readable race list
+South Africa               no    no      no      html only; TAB home answers; no meeting/field payload found
+Germany                    no    no      no      html only; race-day pages are HTML; no structured field feed found
+Brazil                     no    no      no      no feed; redirects to https://www.gaveainvest.com.br/
+United Arab Emirates       no    no      no      unreachable; connection timed out from this network
+
+A tab needs cards and a named result. Results-only and blocked sources are recorded
+here instead of being shown as an empty tab.

@@ -2169,6 +2169,143 @@ check("results: the guard names the message the job actually writes",
       'git commit -m "Live results' in _res_yml)
 
 print()
+print("France (PMU)")
+import france as frmod
+import audit_coverage as covmod
+
+check("France: musique is converted, never read as pulled up",
+      frmod.fr_form("1p2p0p4p0p1p2p4p(25)0p") == "401240",
+      frmod.fr_form("1p2p0p4p0p1p2p4p(25)0p"))
+check("France: a failed run keeps its letter",
+      frmod.fr_form("Da3a2a") == "D32", frmod.fr_form("Da3a2a"))
+check("France: hippodrome prefix and country suffix are stripped",
+      frmod.course_name("HIPPODROME DE SAINT-CLOUD") == "Saint-Cloud"
+      and frmod.course_name("HIPPODROME DE KEMPTON PARK  GB") == "Kempton Park")
+
+_prog = {"programme": {"reunions": [
+    {"pays": {"libelle": "FRANCE"},
+     "hippodrome": {"libelleLong": "HIPPODROME DE PAU"},
+     "courses": [
+         {"numReunion": 2, "numOrdre": 1, "libelle": "PRIX DE BILHERES",
+          "discipline": "PLAT", "distance": 2000,
+          "heureDepart": 1795004700000, "nombreDeclaresPartants": 3,
+          "statut": "PROGRAMMEE"},
+         {"numReunion": 2, "numOrdre": 2, "libelle": "SHORT FIELD",
+          "discipline": "PLAT", "distance": 2000,
+          "heureDepart": 1795004700000, "nombreDeclaresPartants": 4,
+          "statut": "PROGRAMMEE"},
+     ]},
+    {"pays": {"libelle": "ARGENTINE"},
+     "hippodrome": {"libelleLong": "HIPPODROME DE SAN ISIDRO"},
+     "courses": [{"numReunion": 8, "numOrdre": 1, "libelle": "X",
+                  "discipline": "PLAT", "distance": 1600,
+                  "heureDepart": 1795004700000, "nombreDeclaresPartants": 1,
+                  "statut": "PROGRAMMEE"}]},
+]}}
+_parts = {
+    "R2C1": [
+        {"numPmu": 1, "nom": "SARMAD", "statut": "PARTANT", "musique": "2p3p1p",
+         "handicapValeur": 38.0, "handicapPoids": 570, "placeCorde": 4,
+         "driver": "A.WERLE", "entraineur": "CH.GOURDAIN",
+         "dernierRapportDirect": {"rapport": 5.3}},
+        {"numPmu": 2, "nom": "DRONGO", "statut": "PARTANT", "musique": "2p3p1p",
+         "handicapValeur": 38.0, "handicapPoids": 570, "placeCorde": 7,
+         "driver": "I.MENDIZABAL", "entraineur": "R.AVIAL",
+         "dernierRapportDirect": {"rapport": 2.4}},
+        {"numPmu": 3, "nom": "OUT", "statut": "NON_PARTANT", "musique": ""},
+    ],
+    "R2C2": [{"numPmu": 1, "nom": "ONLY ONE", "statut": "PARTANT", "musique": ""}],
+}
+_old_prog, _old_json = frmod.programme, frmod._json
+try:
+    frmod.programme = lambda iso: _prog
+    frmod._json = lambda url, label: {
+        "participants": _parts["R2C1"] if label.endswith("R2C1") else _parts["R2C2"]}
+    _fr_cards = frmod.fetch_cards(
+        "2026-11-19", now=frmod.dt.datetime(2026, 11, 18, tzinfo=frmod.dt.timezone.utc))
+finally:
+    frmod.programme, frmod._json = _old_prog, _old_json
+check("France: only the French meeting is carded",
+      len(_fr_cards) == 1 and _fr_cards[0]["course"] == "Pau", _fr_cards)
+check("France: a short declared field is skipped, not scored",
+      all(c["race_no"] != "R2C2" for c in _fr_cards))
+_one = _fr_cards[0]["runners"] if _fr_cards else []
+check("France: non-runners are not part of the field",
+      len(_one) == 2 and all(r["horse"] != "OUT" for r in _one), _one)
+check("France: value, weight, draw, dividend and form reach the card",
+      bool(_one) and _one[0]["or"] == "38" and _one[0]["weight"] == "57"
+      and _one[0]["draw"] == "4" and _one[0]["odds"] == "5.30"
+      and _one[0]["form"] == "231" and _one[0]["jp"] == "A.WERLE", _one[:1])
+
+with tempfile.TemporaryDirectory(prefix="fr-settle-") as fd:
+    _old_out = frmod.OUT_DIR
+    _old_arch, _old_res = frmod.archived_cards, frmod.results_for
+    _old_scored = settle.scored
+    try:
+        frmod.OUT_DIR = os.path.join(fd, "results_fr")
+        _card = _fr_cards[0]
+        frmod.archived_cards = lambda iso: [_card]
+        frmod.results_for = lambda iso: [{
+            "course": "Pau", "time": _card["time"], "race": _card["race"],
+            "race_no": "R2C1", "winner": "DRONGO",
+            "places": ["DRONGO", "SARMAD", "ONLY ONE"],
+            "order": ["DRONGO", "SARMAD", "ONLY ONE"], "region": "FR"}]
+        settle.scored = lambda card: {"pick": "SARMAD", "chance": 41.2}
+        _rows = frmod.settle("2026-11-19")
+        check("France: a settled pick carries its official position",
+              _rows and _rows[0]["pick"] == "SARMAD"
+              and _rows[0]["pick_finish"] == "2nd" and _rows[0]["hit"] is False,
+              _rows)
+        settle.scored = lambda card: {"pick": "DRONGO", "chance": 55.0}
+        _rows2 = frmod.settle("2026-11-19")
+        check("France: a stored pick is never rewritten",
+              _rows2 and _rows2[0]["pick"] == "SARMAD", _rows2)
+        _card.pop("result", None)
+        check("France: the page card carries the official outcome",
+              frmod.attach([_card], _rows2) == 1
+              and _card["result"]["finish"]["DRONGO"] == 1
+              and _card["result"]["pick_finish"] == "2nd")
+    finally:
+        frmod.OUT_DIR = _old_out
+        frmod.archived_cards, frmod.results_for = _old_arch, _old_res
+        settle.scored = _old_scored
+
+_report = {"measured": "2026-11-18T19:00:00+00:00", "rows": [
+    {"country": "France", "code": "FR", "source": "PMU", "cards": True,
+     "results": True, "prices": True, "verdict": "live",
+     "note": "9 declared runners, 8 named arrivals, forecast dividends"},
+    {"country": "Australia & New Zealand", "code": "AU/NZ", "source": "Punters",
+     "cards": False, "results": False, "prices": False,
+     "verdict": "blocked", "note": "403 from this network"},
+]}
+_block = covmod.block_html(_report)
+check("coverage: the audit table is generated for the Method tab",
+      "COVERAGE_SL_START" in _block and "France" in _block
+      and "blocked" in _block and "forecast dividends" in _block)
+check("coverage: no result is claimed without a field",
+      covmod._status(False, True, False, "arrival numbers only")["verdict"]
+      == "arrival numbers only")
+
+_fr_page = (ROOT / "index.html").read_text(encoding="utf-8")
+check("France: the page has a racing tab and a results tab",
+      "['france', 'France'" in _fr_page and "['frresults', 'France results'" in _fr_page
+      and 'data-panel="france"' in _fr_page and 'data-panel="frresults"' in _fr_page)
+check("France: the card block and result marker are present",
+      "var CARDS_FR = [" in _fr_page and "FR_RESULTS_SL_START" in _fr_page
+      and "function renderFrance" in _fr_page)
+check("France: the serve copy matches the page",
+      _fr_page == (ROOT / "dist" / "public" / "index.html").read_text(encoding="utf-8"))
+_res_yml = (ROOT / ".github" / "workflows" / "results.yml").read_text(encoding="utf-8")
+_ref_yml = (ROOT / ".github" / "workflows" / "refresh.yml").read_text(encoding="utf-8")
+check("France: results are settled before the page is written",
+      "tooling/settle_france.py" in _res_yml
+      and _res_yml.index("settle_france.py") < _res_yml.index("Add completed races"))
+check("France: the results job commits the French ledger",
+      "data/results_fr" in _res_yml)
+check("coverage: the audit runs from the build runner",
+      "audit_coverage.py --inject" in _ref_yml)
+
+print()
 print("Refresh copy")
 _page_now = (ROOT / "index.html").read_text(encoding="utf-8")
 check("results tab: the refresh copy matches how runs are triggered now",

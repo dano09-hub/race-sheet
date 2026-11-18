@@ -50,6 +50,10 @@ jobs:
         # gateway only serves the current meeting, so the tool settles the
         # current UTC day and refuses any other date.
         run: python3 tooling/settle_hk.py
+      - name: Settle France results
+        # PMU publishes the definitive arrival beside the card. The pick comes
+        # from the pre-race card filed under data/cards, never a re-score.
+        run: python3 tooling/settle_france.py
       - name: Add completed races
         run: |
           day=$(date -u +%F)
@@ -71,7 +75,7 @@ jobs:
         run: |
           git config user.name "racing-sheet-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data/results data/results_hk data/hk_audit index.html dist/public/index.html
+          git add data/results data/results_hk data/results_fr data/hk_audit index.html dist/public/index.html
           if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "No new settled races"
