@@ -897,9 +897,10 @@ race is settled only when the whole declared field has one, so a partial feed
 leaves it open. The pick is the page's own model pick, scored from the archived
 card, and a pick already on file is never rewritten. Outcomes are written to
 `data/results_hk/<date>.json`, embedded in the Hong Kong tab and listed on the
-**HK results** tab; the scheduled results pass (`tooling/settle_today.py`)
-refreshes them during racing. The feed only serves the current meeting, so the
-tool refuses any other date rather than tag a card with the wrong result.
+**HK results** tab. The scheduled results workflow settles Hong Kong in its own
+step, before the page is written, so a published page cannot carry a ledger that
+lags the official result. The feed only serves the current meeting, so the tool
+refuses any other date rather than tag a card with the wrong result.
 
 ## Back-test: what the British history actually says
 

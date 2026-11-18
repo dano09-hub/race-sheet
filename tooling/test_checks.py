@@ -1721,6 +1721,21 @@ check("audit block: whole-field band table",
       and "300" in _block and "9.0%" in _block, _block[-400:])
 
 print()
+print("Hong Kong settles before the page is written")
+_hk_st = (ROOT / "tooling" / "settle_today.py").read_text(encoding="utf-8")
+check("HK: the results pass settles Hong Kong exactly once",
+      _hk_st.count("settle_hk.main(iso)") == 1)
+check("HK: settlement runs before the page is read back",
+      _hk_st.index("settle_hk.main(iso)") < _hk_st.index("open(refresh.INDEX"))
+check("HK: settlement is not swallowed before the page is written",
+      "HK results:  skipped" not in _hk_st)
+_hk_wf = (ROOT / ".github" / "workflows" / "results.yml").read_text(encoding="utf-8")
+check("HK: the workflow settles Hong Kong in its own step",
+      "tooling/settle_hk.py" in _hk_wf)
+check("HK: that step runs before the page-writing pass",
+      _hk_wf.index("tooling/settle_hk.py") < _hk_wf.index("tooling/settle_today.py"))
+
+print()
 print("passed %d, failed %d%s" % (
     len(PASSED), len(FAILED), (", skipped %d" % len(SKIPPED)) if SKIPPED else ""))
 sys.exit(1 if FAILED else 0)

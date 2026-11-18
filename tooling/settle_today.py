@@ -299,6 +299,13 @@ def main(argv=None):
     argv = [a for a in argv if a != "--progressive"]
     forced = bool(argv)
     iso = argv[0] if forced else dt.date.today().isoformat()
+    # Hong Kong settles first, from the official HKJC result feed, before
+    # anything is read back off the page: a run must never write a HK ledger
+    # that lags the official result. A stored pick is never rewritten, races
+    # whose official result is incomplete stay open, and a failure here stops
+    # the run instead of publishing a page whose HK results were skipped.
+    import settle_hk
+    settle_hk.main(iso)
     if not forced and not progressive and dt.datetime.now(dt.timezone.utc).hour < 21:
         print(f"  today:       {iso} not settled yet (before 21:00 UTC)")
         return 0
@@ -422,13 +429,6 @@ def main(argv=None):
     except Exception as e:
         print(f"  chance audit: skipped ({e})")
         chance_result = None
-    # Hong Kong settles from the official HKJC result feed. A stored pick is
-    # never rewritten; races whose official result is incomplete stay open.
-    try:
-        import settle_hk
-        settle_hk.main(iso)
-    except Exception as e:
-        print(f"  HK results:  skipped ({e})")
     html = open(refresh.INDEX, encoding="utf-8").read()
     html = _replace(html, "RESULTS_SL",
                     refresh.results_block_all() or refresh.results_block(iso, rows))

@@ -30,6 +30,12 @@ jobs:
           python-version: "3.12"
       - name: Install tools
         run: python3 -m pip install -r requirements.txt
+      - name: Settle Hong Kong results
+        # Hong Kong runs first, before the page is written, so a published page
+        # cannot carry a HK ledger that lags the official result. The HKJC
+        # gateway only serves the current meeting, so the tool settles the
+        # current UTC day and refuses any other date.
+        run: python3 tooling/settle_hk.py
       - name: Add completed races
         run: |
           day=$(date -u +%F)
