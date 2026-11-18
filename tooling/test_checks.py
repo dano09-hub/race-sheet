@@ -1948,6 +1948,9 @@ check("HK audit: the Hong Kong tab carries the line beside the pick",
 _hk_st_tab = (ROOT / "tooling" / "settle_today.py").read_text(encoding="utf-8")
 check("HK audit: the scheduled build writes the Hong Kong tab line too",
       "HK_AUDIT_TAB" in _hk_st_tab)
+check("HK tab: the intro no longer implies the pick is scored on prices",
+      "Prices appear once HKJC betting opens" not in _hk_page
+      and "feed the evidence, not the score" in _hk_page)
 _hk_small = _hk_fake[:27]
 _hk_out3 = io.StringIO()
 with contextlib.redirect_stdout(_hk_out3):
