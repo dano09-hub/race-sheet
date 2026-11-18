@@ -2,9 +2,11 @@ name: Progressive results
 
 on:
   schedule:
-    # Update after each block of races; the 21:10 refresh is the final check.
-    # The early window settles the US races that finish after midnight UTC.
-    - cron: "*/20 0-3,12-20 * * *"
+    # Update after each block of races. The evening window runs to 23:40 so a
+    # late Valparaiso or French meeting settles the same night instead of
+    # waiting for the midnight run. The early window settles the US races that
+    # finish after midnight UTC.
+    - cron: "*/20 0-3,12-23 * * *"
   push:
     # GitHub's scheduler can hold a twenty-minute cron for hours, so a new card
     # or a settled results file starts a run straight away instead. The job

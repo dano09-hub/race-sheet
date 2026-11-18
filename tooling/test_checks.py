@@ -2167,6 +2167,8 @@ check("results: a push run skips the job's own commit",
       and "!contains(github.event.head_commit.message, 'Live results')" in _res_yml)
 check("results: the guard names the message the job actually writes",
       'git commit -m "Live results' in _res_yml)
+check("results: the cron covers the late evening meetings",
+      "*/20 0-3,12-23 * * *" in _res_yml)
 
 print()
 print("France (PMU)")

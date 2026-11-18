@@ -996,6 +996,11 @@ and the Chile results ledger say that explicitly, and the price column stays
 blank rather than showing an estimate. `tooling/settle_chile.py` settles it in
 the results job, before the page is written.
 
+The results cron covers 21:00-23:40 UTC as well as the daytime blocks, so a
+meeting that finishes in the evening is settled the same night instead of
+waiting for the midnight run. Each run files only arrivals PMU has already
+called definitive; a race still in progress is left open for the next sweep.
+
 ## Which countries can we actually cover?
 
 `tooling/audit_coverage.py` probes every jurisdiction the betting board shows
