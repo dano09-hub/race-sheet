@@ -2557,6 +2557,84 @@ check("results tab: the copy still says manual entries stay local",
       "Manual entries are saved in this browser only" in _page_now)
 
 print()
+print("Bet views")
+_bet_html = _page_now
+for _tid, _label in [("longshots", "Longshots"), ("overhyped", "Overhyped"),
+                     ("placers", "Place bankers"), ("slips", "Bet slips")]:
+    check("bet views: the %s tab is declared" % _tid,
+          "['%s', '%s'" % (_tid, _label) in _bet_html
+          and "data-panel=\"%s\"" % _tid in _bet_html
+          and "%s: ['%s']" % (_tid, _tid) in _bet_html)
+check("bet views: each panel owns its render target",
+      all(_id in _bet_html for _id in
+          ['id="longshotBody"', 'id="overhypedBody"', 'id="placerBody"',
+           'id="slipsBody"', 'id="slipIndex"']))
+check("bet views: the tabs carry their own count lines",
+      all(_id in _bet_html for _id in
+          ['id="longshotCount"', 'id="overhypedCount"', 'id="placerCount"',
+           'id="slipsCount"']))
+check("bet views: all five renderers exist and are wired into renderAll",
+      all(_fn in _bet_html for _fn in
+          ['function renderLongshots', 'function renderOverhyped',
+           'function renderPlacers', 'function renderSlips',
+           'function renderSlipIndex', 'function renderBetViews'])
+      and "renderBetViews();" in _bet_html)
+check("bet views: longshots need a price, top-four rank, 4% chance and positive edge",
+      "x.dec >= 8" in _bet_html and "x.rank <= 4" in _bet_html
+      and "x.row.share >= 0.04" in _bet_html and "x.row.edge > 0" in _bet_html)
+check("bet views: overhyped needs the market favourite and a real doubt",
+      "x.row.mktRank === 1" in _bet_html and "x.rank >= 3" in _bet_html
+      and "x.row.edge <= -0.05" in _bet_html)
+check("bet views: place bankers require model #1 and market #1",
+      "x.rank === 1" in _bet_html and "x.row.share >= 0.20" in _bet_html
+      and "x.row.mktRank === 1" in _bet_html
+      and "not a place probability" in _bet_html)
+check("bet views: slips use only priced, positive-edge top picks",
+      "return x.dec !== null && betHasEdge(x) && x.row.edge > 0;" in _bet_html)
+check("bet views: the named-slip table is complete",
+      all(_s in _bet_html for _s in
+          ["['Trixie', 3, 4,", "['Patent', 3, 7,", "['Yankee', 4, 11,",
+           "['Lucky 15', 4, 15,", "['Canadian', 5, 26,",
+           "['Lucky 31', 5, 31,", "['Heinz', 6, 57,",
+           "['Lucky 63', 6, 63,", "['Super Heinz', 7, 120,",
+           "['Goliath', 8, 247,"]))
+check("bet views: every named full-cover type is generated as a slip",
+      "Full-cover slips" in _bet_html
+      and all(_s in _bet_html for _s in
+          ["lucky('Trixie', 3, '4 bets'", "lucky('Patent', 3, '7 bets'",
+           "lucky('Yankee', 4, '11 bets'", "lucky('Canadian', 5, '26 bets'",
+           "lucky('Heinz', 6, '57 bets'", "lucky('Super Heinz', 7, '120 bets'",
+           "lucky('Goliath', 8, '247 bets'"]))
+check("bet views: the slips are labelled as card prices, not quotes",
+      "No stake is taken and no bet is placed" in _bet_html
+      and "Prices are the card prices in this build" in _bet_html)
+check("bet views: the serve copy matches the page",
+      _bet_html == (ROOT / "dist" / "public" / "index.html").read_text(encoding="utf-8"))
+
+print()
+print("Print slips")
+check("print slips: A4 portrait page and margins are declared",
+      "@page { size: A4 portrait; margin: 12mm; }" in _bet_html)
+check("print slips: the slips tab sets a print-only body class",
+      "classList.toggle('tab-slips', name === 'slips')" in _bet_html)
+check("print slips: other panels and page chrome are hidden",
+      "body.tab-slips .sidebar," in _bet_html
+      and "body.tab-slips .topbar," in _bet_html
+      and 'body.tab-slips [data-panel]:not([data-panel="slips"]),' in _bet_html)
+check("print slips: the reference table and panel copy are hidden",
+      'body.tab-slips [data-panel="slips"] > #slipIndex,' in _bet_html
+      and 'body.tab-slips [data-panel="slips"] > .method,' in _bet_html)
+check("print slips: each slip is a bordered card that cannot split",
+      "body.tab-slips #slipsBody .slip {" in _bet_html
+      and "break-inside:avoid; page-break-inside:avoid;" in _bet_html
+      and "border:1pt solid #000 !important" in _bet_html)
+check("print slips: the print header names the sheet and keeps a disclaimer",
+      'content:"RACE SHEET"' in _bet_html
+      and "body.tab-slips #slipsBody > .bet-note {" in _bet_html)
+check("print slips: the serve copy matches the page",
+      _bet_html == (ROOT / "dist" / "public" / "index.html").read_text(encoding="utf-8"))
+
+print()
 print("passed %d, failed %d%s" % (
     len(PASSED), len(FAILED), (", skipped %d" % len(SKIPPED)) if SKIPPED else ""))
 sys.exit(1 if FAILED else 0)

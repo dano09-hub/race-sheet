@@ -830,13 +830,17 @@ since `dist/public/index.html` is the whole site.
 
 ## The page
 
-Thirteen destinations, each a job rather than a data source. Old tab names still
+Seventeen destinations, each a job rather than a data source. Old tab names still
 resolve to their new home, so saved links and the browser's remembered tab keep
 working.
 
 | Tab | What it is for |
 | --- | --- |
 | Today | The next race, the day's best-rated horses, the standouts and the US races still to come. |
+| Longshots | Priced 7/1+ horses still in the model's top four with a 4%+ win chance and positive edge, sorted by edge. |
+| Overhyped | Market favourites the model ranks third or worse, or rates at least five points below the price. |
+| Place bankers | Model top picks that are also the market favourite, 20%+ win chance, field of five or more; the each-way terms are shown, not a place probability. |
+| Bet slips | Win-only singles, doubles, trebles, four-folds and Lucky 15/31/63 from the strongest priced value legs, plus the standard named-slip table. |
 | Cards | Pick any race and inspect every runner the model scored, with the full rating table. |
 | UK results | Settled UK results, market checks and the standing model audits. |
 | Irish results | Settled Irish races, split from the UK ledger by course. |
@@ -867,6 +871,12 @@ working.
 * The **Chile** tab has no market factor at all: PMU publishes no price for
   Valparaíso. The price column stays blank rather than estimated, and the tab
   says the pick is scored on the factors the card carries.
+* The **Longshots**, **Overhyped**, **Place bankers** and **Bet slips** tabs are
+  screens over the same win model, not new probabilities. The place tab is a
+  place profile, not a place chance; the slips use card prices and never invent
+  a leg, a price or a stake. Printing from **Bet slips** prints only the slips,
+  each kept whole; the navigation, explanatory copy and reference table are
+  omitted.
 * The **Hong Kong** tab carries today's HKJC card from the official source and
   settles its picks from the same feed's official finishing positions. A race is
   only settled once every declared runner has a position, and a stored pick is

@@ -1256,6 +1256,155 @@
     *, *::before, *::after { animation: none !important; transition: none !important; }
     html { scroll-behavior: auto; }
   }
+
+  /* ---------- value screens and bet slips ---------- */
+  .bet-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:14px; margin:14px 0 0; }
+  .bet-card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px; min-width:0; }
+  .bet-card[data-card] { cursor:pointer; }
+  .bet-card[data-card]:hover { border-color:#b9c7bf; }
+  .bet-head { display:flex; align-items:center; gap:8px; font-size:11px; color:var(--muted); }
+  .bet-tag, .slip-tag { display:inline-block; padding:2px 6px; border-radius:4px; background:#e9efe9; color:var(--accent); font:700 9px var(--mono); letter-spacing:.06em; white-space:nowrap; }
+  .bet-where { font-weight:600; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .bet-rank { margin-left:auto; font:700 10px var(--mono); white-space:nowrap; }
+  .bet-horse { margin:8px 0 2px; font-size:18px; line-height:1.2; }
+  .bet-race { margin:0 0 10px; color:var(--muted); font-size:12px; line-height:1.4; min-height:2.8em; }
+  .bet-stats { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:8px 0; }
+  .bet-stats span { display:flex; flex-direction:column; gap:1px; min-width:0; }
+  .bet-stats b { font:700 13px var(--mono); white-space:nowrap; }
+  .bet-stats small { color:var(--muted); font-size:9px; text-transform:uppercase; letter-spacing:.05em; }
+  .bet-stats .pos { color:var(--accent); }
+  .bet-stats .neg { color:var(--warn); }
+  .bet-note { margin:8px 0 0; color:var(--muted); font-size:11px; line-height:1.45; }
+  .bet-small { margin-top:2px; font-size:10px; }
+  .bet-empty { margin:14px 0 0; padding:16px; border:1px dashed var(--line); border-radius:10px; color:var(--muted); font-size:13px; line-height:1.55; }
+  .slip-section { margin:22px 0 10px; font-size:13px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); }
+  .slip-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:14px; }
+  .slip { border:1px solid var(--line); border-radius:10px; background:#fff; overflow:hidden; }
+  .slip-head { display:flex; align-items:center; gap:10px; padding:9px 12px; background:#101318; color:#fff; }
+  .slip-head * { color:#fff; }
+  .slip-no { font:700 9px var(--mono); letter-spacing:.12em; opacity:.7; white-space:nowrap; }
+  .slip-type { font-weight:700; font-size:12px; letter-spacing:.04em; text-transform:uppercase; }
+  .slip-bets { margin-left:auto; font:700 10px var(--mono); background:rgba(255,255,255,.12); padding:2px 6px; border-radius:4px; white-space:nowrap; }
+  .slip-legs { padding:0 12px; }
+  .slip-leg { display:grid; grid-template-columns:minmax(0,1fr) 52px 64px; gap:8px; align-items:center; padding:10px 0; border-bottom:1px dashed var(--line); cursor:pointer; }
+  .slip-leg:last-child { border-bottom:0; }
+  .slip-sel { min-width:0; }
+  .slip-sel b { display:block; font-size:13px; line-height:1.25; }
+  .slip-sel small { display:block; color:var(--muted); font-size:10px; line-height:1.35; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .slip-num { text-align:right; }
+  .slip-num b { display:block; font:700 13px var(--mono); }
+  .slip-num small { display:block; color:var(--muted); font-size:9px; }
+  .slip-foot { padding:9px 12px; border-top:1px solid var(--line); background:#faf8f2; }
+  .slip-combined { display:flex; justify-content:space-between; align-items:baseline; gap:10px; }
+  .slip-combined span { color:var(--muted); font-size:10px; text-transform:uppercase; letter-spacing:.05em; }
+  .slip-combined b { font:700 18px var(--mono); }
+  .slip-sub { margin:4px 0 0; color:var(--muted); font-size:10.5px; line-height:1.4; }
+  .slip-index td { font-size:12px; }
+  .slip-index th { font-size:10px; }
+  .slip-index tbody tr { cursor:default; }
+  .slip-index tbody tr:hover td { background:transparent; }
+  @media (max-width:520px) {
+    .bet-stats { grid-template-columns:repeat(2,1fr); }
+    .slip-grid { grid-template-columns:minmax(0,1fr); }
+    .slip-leg { grid-template-columns:minmax(0,1fr) 46px 56px; }
+  }
+
+  /* Print the bet slips as individual, self-contained slips. The screen page is
+     a dashboard; the print page is only the slips, with the reference table and
+     navigation removed. */
+  @media print {
+    @page { size: A4 portrait; margin: 12mm; }
+    body.tab-slips { background:#fff !important; color:#000 !important; }
+    body.tab-slips .sidebar,
+    body.tab-slips .topbar,
+    body.tab-slips .toolbar,
+    body.tab-slips .banner,
+    body.tab-slips #sampleBanner,
+    body.tab-slips .tabs,
+    body.tab-slips [data-panel]:not([data-panel="slips"]),
+    body.tab-slips [data-panel="slips"] > .method,
+    body.tab-slips [data-panel="slips"] > .best-count,
+    body.tab-slips [data-panel="slips"] > .slip-section,
+    body.tab-slips [data-panel="slips"] > #slipIndex,
+    body.tab-slips [data-panel="slips"] > .bet-note { display:none !important; }
+    body.tab-slips .app-shell { display:block !important; min-height:0 !important; max-width:none !important; }
+    body.tab-slips .main { display:block !important; }
+    body.tab-slips .content { width:auto !important; max-width:none !important; margin:0 !important; padding:0 !important; }
+    body.tab-slips [data-panel="slips"] {
+      display:block !important; border:0 !important; border-radius:0 !important;
+      box-shadow:none !important; padding:0 !important; margin:0 !important;
+      background:#fff !important; color:#000 !important;
+    }
+    body.tab-slips [data-panel="slips"] > h2 {
+      display:block !important; margin:0 0 5mm !important; padding:0 0 2mm !important;
+      border-bottom:1.5pt solid #000 !important; font-size:16pt !important;
+      line-height:1.1 !important; color:#000 !important;
+    }
+    body.tab-slips [data-panel="slips"] > h2::before {
+      content:"RACE SHEET"; display:block; margin:0 0 1mm;
+      font-size:7pt; font-weight:700; letter-spacing:.16em; line-height:1;
+    }
+    body.tab-slips #slipsBody { display:block !important; }
+    body.tab-slips #slipsBody > .slip-section {
+      display:block !important; margin:0 0 3mm !important; padding:0 !important;
+      font-size:10pt !important; line-height:1.2 !important; color:#000 !important;
+      letter-spacing:.08em !important; break-after:avoid; page-break-after:avoid;
+    }
+    body.tab-slips #slipsBody > .slip-grid {
+      display:block !important; margin:0 0 4mm !important; padding:0 !important;
+    }
+    body.tab-slips #slipsBody .slip {
+      display:block !important; width:100% !important; max-width:none !important;
+      margin:0 0 6mm !important; padding:0 !important; border:1pt solid #000 !important;
+      border-radius:0 !important; box-shadow:none !important; background:#fff !important;
+      color:#000 !important; overflow:visible !important;
+      break-inside:avoid; page-break-inside:avoid;
+    }
+    body.tab-slips #slipsBody .slip-head {
+      display:flex !important; align-items:baseline !important; gap:7mm !important;
+      padding:2.5mm 3mm !important; background:#fff !important; color:#000 !important;
+      border-bottom:1pt solid #000 !important; break-after:avoid; page-break-after:avoid;
+    }
+    body.tab-slips #slipsBody .slip-head * { color:#000 !important; }
+    body.tab-slips #slipsBody .slip-no { opacity:1 !important; font-size:8pt !important; }
+    body.tab-slips #slipsBody .slip-type { font-size:10pt !important; }
+    body.tab-slips #slipsBody .slip-bets {
+      margin-left:auto !important; background:#fff !important; color:#000 !important;
+      border:0.75pt solid #000 !important; border-radius:0 !important;
+      padding:1mm 1.5mm !important; font-size:8pt !important;
+    }
+    body.tab-slips #slipsBody .slip-legs { padding:0 3mm !important; }
+    body.tab-slips #slipsBody .slip-leg {
+      display:grid !important; grid-template-columns:minmax(0,1fr) 14mm 18mm !important;
+      gap:3mm !important; align-items:center !important; padding:2.2mm 0 !important;
+      border-bottom:0.5pt dashed #666 !important; cursor:auto !important;
+      break-inside:avoid; page-break-inside:avoid;
+    }
+    body.tab-slips #slipsBody .slip-sel b { font-size:9.5pt !important; line-height:1.2 !important; }
+    body.tab-slips #slipsBody .slip-sel small {
+      font-size:7.5pt !important; line-height:1.25 !important; color:#333 !important;
+      white-space:normal !important; overflow:visible !important; text-overflow:clip !important;
+    }
+    body.tab-slips #slipsBody .slip-tag {
+      display:inline-block !important; background:#fff !important; color:#000 !important;
+      border:0.5pt solid #000 !important; border-radius:0 !important;
+      padding:0.5mm 1mm !important; font-size:6.5pt !important;
+    }
+    body.tab-slips #slipsBody .slip-num b { font-size:9.5pt !important; }
+    body.tab-slips #slipsBody .slip-num small { font-size:6.5pt !important; color:#333 !important; }
+    body.tab-slips #slipsBody .slip-foot {
+      padding:2.5mm 3mm !important; background:#fff !important;
+      border-top:1pt solid #000 !important; break-inside:avoid; page-break-inside:avoid;
+    }
+    body.tab-slips #slipsBody .slip-combined span { font-size:6.5pt !important; color:#000 !important; }
+    body.tab-slips #slipsBody .slip-combined b { font-size:12pt !important; }
+    body.tab-slips #slipsBody .slip-sub { font-size:7pt !important; line-height:1.3 !important; color:#333 !important; }
+    body.tab-slips #slipsBody > .bet-note {
+      display:block !important; margin:4mm 0 0 !important; padding:2mm 0 0 !important;
+      border-top:0.5pt solid #000 !important; font-size:7.5pt !important; color:#000 !important;
+      break-inside:avoid; page-break-inside:avoid;
+    }
+  }
 </style>
 </head>
 <body>
@@ -1325,6 +1474,39 @@
         <tbody id="lateBody"></tbody>
       </table>
     </div>
+  </section>
+
+  <section class="panel" data-panel="longshots">
+    <h2>Longshots with a chance</h2>
+    <p class="method">A longshot here is <b>7/1 or bigger</b> on the card, still in the model&rsquo;s top four, with at least a <b>4%</b> win chance and with the model chance above the price. Sorted by the model&rsquo;s edge over the price. A big price is not a tip; the model rank, the chance and the value are the reasons a horse is listed.</p>
+    <p class="best-count" id="longshotCount"></p>
+    <div class="bet-grid" id="longshotBody"></div>
+    <p class="bet-note">Prices are the card prices in this build, not a bookmaker quote. No bet is placed.</p>
+  </section>
+
+  <section class="panel" data-panel="overhyped">
+    <h2>Favourites the model doubts</h2>
+    <p class="method">The market favourite is the shortest price in the race. This screen lists the ones the model ranks <b>third or worse</b>, or rates at least <b>five points below</b> the price&rsquo;s implied chance. It is a disagreement between the model and the market, not a prediction that the horse loses.</p>
+    <p class="best-count" id="overhypedCount"></p>
+    <div class="bet-grid" id="overhypedBody"></div>
+  </section>
+
+  <section class="panel" data-panel="placers">
+    <h2>Place bankers</h2>
+    <p class="method">The model&rsquo;s <b>top pick</b> and the market favourite (or joint favourite), with at least a <b>20%</b> win chance, in a field of five or more. The card&rsquo;s each-way terms are shown on every horse. The model prices wins, not places, so this is a <b>place profile</b>, not a place probability.</p>
+    <p class="best-count" id="placerCount"></p>
+    <div class="bet-grid" id="placerBody"></div>
+  </section>
+
+  <section class="panel" data-panel="slips">
+    <h2>Bet slips</h2>
+    <p class="method">Win-only slips built from the model&rsquo;s top pick in each priced race where the model chance is above the market&rsquo;s. One leg per race; the strongest edge leads. The straight multiples use the first 2, 3 and 4 legs, the Lucky slips the first 4, 5 and 6, and the full-cover slips the first 3 to 8. Nothing is invented to fill a slip.</p>
+    <p class="best-count" id="slipsCount"></p>
+    <div id="slipsBody"></div>
+    <h3 class="slip-section">Bet-type reference</h3>
+    <p class="method">The standard composition of the named multiples, including the ones generated above. Every figure is the number of bets, not a recommended stake.</p>
+    <div id="slipIndex"></div>
+    <p class="bet-note">No stake is taken and no bet is placed. Prices are card prices in this build; a real slip may be shorter. If you bet, stake only what you can afford to lose; a multiple loses if any leg loses.</p>
   </section>
 
   <section class="panel" data-panel="usresults">
@@ -1811,6 +1993,10 @@
   // the generated blocks and their markers never move.
   var TABS = [
     ['today', 'Today', 'Overview', 'The best-rated horses, the standouts and the races still to come.'],
+    ['longshots', 'Longshots', 'Value', 'Big prices the model still rates, sorted by model edge.'],
+    ['overhyped', 'Overhyped', 'Market', 'Market favourites the model doubts.'],
+    ['placers', 'Place bankers', 'Place profile', 'Model top pick and market favourite, with each-way terms.'],
+    ['slips', 'Bet slips', 'Slips', 'Model multiples and named bet structures, in slip form.'],
     ['card', 'Cards', 'Racing', 'Pick a race and inspect every runner the model scored.'],
     ['results', 'UK results', 'Record', 'Settled UK results, market checks and the model audit.'],
     ['ireresults', 'Irish results', 'Irish record', 'Settled Irish races: winner, first three and what the model pick did.'],
@@ -1827,6 +2013,10 @@
 
   var TAB_PANELS = {
     today: ['today', 'unmissable', 'late'],
+    longshots: ['longshots'],
+    overhyped: ['overhyped'],
+    placers: ['placers'],
+    slips: ['slips'],
     card: ['card', 'ranked'],
     results: ['results', 'past'],
     ireresults: ['ireresults'],
@@ -7668,6 +7858,9 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
     if (!known) name = 'today';
     meta = meta || TABS[0];
     var panels = TAB_PANELS[name] || [name];
+    if (document.body && document.body.classList) {
+      document.body.classList.toggle('tab-slips', name === 'slips');
+    }
 
     document.querySelectorAll('[data-panel]').forEach(function (el) {
       el.hidden = panels.indexOf(el.getAttribute('data-panel')) < 0;
@@ -7933,6 +8126,290 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
     }).join('');
   }
 
+  /* ---------- value screens and bet slips ---------- */
+
+  var BET_CACHE = null;
+
+  function betTag(region) {
+    if (region === 'US') return 'USA';
+    if (region === 'HK') return 'HK';
+    if (region === 'FR') return 'FR';
+    if (region === 'CL') return 'CHI';
+    return 'GB/IRE';
+  }
+
+  function betPct(v) {
+    return (v === null || v === undefined || isNaN(v)) ? '\u2014' : (v * 100).toFixed(1) + '%';
+  }
+
+  function betPts(v) {
+    if (v === null || v === undefined || isNaN(v)) return '\u2014';
+    return (v >= 0 ? '+' : '') + (v * 100).toFixed(1) + ' pts';
+  }
+
+  function betPrice(v) {
+    return (v === null || v === undefined) ? '\u2014' : v.toFixed(2);
+  }
+
+  function betData() {
+    if (BET_CACHE) return BET_CACHE;
+    var all = [], tops = [];
+    ALL_CARDS.forEach(function (card) {
+      if (isResulted(card)) return;
+      var out = computeCard(card);
+      var rows = (out.rows || []).slice().sort(function (a, b) { return b.total - a.total; });
+      if (!rows.length || rows.every(function (x) { return !x.usedWeight; })) return;
+      var field = card.runners ? card.runners.length : rows.length;
+      rows.forEach(function (row, i) {
+        all.push({card: card, row: row, rank: i + 1, field: field,
+                  dec: decimalOdds(row.r.odds)});
+      });
+      tops.push({card: card, row: rows[0], rank: 1, field: field,
+                 dec: decimalOdds(rows[0].r.odds)});
+    });
+    BET_CACHE = {all: all, tops: tops};
+    return BET_CACHE;
+  }
+
+  function betHasEdge(x) {
+    return x.row.edge !== null && x.row.edge !== undefined && !isNaN(x.row.edge);
+  }
+
+  function betCard(x, note) {
+    var r = x.row.r;
+    var edgeClass = (x.row.edge !== null && x.row.edge !== undefined && x.row.edge < 0) ? 'neg' : 'pos';
+    return '<article class="bet-card" data-card="' + esc(x.card.id || '') + '" tabindex="0" role="button" aria-label="Open ' +
+      esc(r.horse || 'race') + ' at ' + esc(x.card.course + ' ' + x.card.time) + '">' +
+      '<div class="bet-head"><span class="bet-tag">' + betTag(x.card.region) + '</span>' +
+        '<span class="bet-where">' + esc(x.card.course) + ' ' + esc(x.card.time) + '</span>' +
+        '<span class="bet-rank">#' + x.rank + ' model</span></div>' +
+      '<h3 class="bet-horse">' + esc(r.horse || '\u2014') + '</h3>' +
+      '<p class="bet-race">' + esc(x.card.label || x.card.race || '') + '</p>' +
+      '<div class="bet-stats">' +
+        '<span><b>' + betPrice(x.dec) + '</b><small>card price</small></span>' +
+        '<span><b>' + betPct(x.row.share) + '</b><small>model win</small></span>' +
+        '<span><b>' + betPct(x.row.implied) + '</b><small>market win</small></span>' +
+        '<span><b class="' + edgeClass + '">' + betPts(x.row.edge) + '</b><small>edge</small></span>' +
+      '</div>' +
+      '<p class="bet-note">' + note + '</p>' +
+      '<p class="bet-note bet-small">' + x.field + ' runners \u00b7 score ' +
+        (x.row.total ? x.row.total.toFixed(1) : '\u2014') + ' \u00b7 ' + esc(placeTerms(x.field)) + '</p>' +
+      '</article>';
+  }
+
+  function renderLongshots() {
+    var box = $('longshotBody');
+    if (!box) return;
+    var list = betData().all.filter(function (x) {
+      return x.dec !== null && x.dec >= 8 && x.rank <= 4 &&
+        x.row.share >= 0.04 && betHasEdge(x) && x.row.edge > 0;
+    }).sort(function (a, b) {
+      return (b.row.edge - a.row.edge) || (b.dec - a.dec);
+    });
+    var seen = {};
+    list = list.filter(function (x) {
+      var k = (x.card.id || '') + '|' + (x.row.r.horse || '');
+      if (seen[k]) return false;
+      seen[k] = 1;
+      return true;
+    });
+    if ($('longshotCount')) {
+      var longLabel = list.length + (list.length === 1 ? ' qualifier' : ' qualifiers');
+      if (list.length > 10) longLabel += ' \u00b7 top 10 shown';
+      $('longshotCount').textContent = longLabel;
+    }
+    if (!list.length) {
+      box.innerHTML = '<p class="bet-empty">No priced longshot meets the screen right now. The tests are: <b>7/1 or bigger</b>, top-four model rank, at least a <b>4%</b> win chance and a model chance above the price. Nothing is promoted just for being a big price.</p>';
+      return;
+    }
+    box.innerHTML = list.slice(0, 10).map(function (x) {
+      return betCard(x, 'Big price, still in the model&rsquo;s top four, with at least a 4% win chance and a model chance above the price. The edge shown is the model chance minus the price&rsquo;s implied chance.');
+    }).join('');
+  }
+
+  function renderOverhyped() {
+    var box = $('overhypedBody');
+    if (!box) return;
+    var list = betData().all.filter(function (x) {
+      return x.row.mktRank === 1 && betHasEdge(x) &&
+        (x.rank >= 3 || x.row.edge <= -0.05);
+    }).sort(function (a, b) { return a.row.edge - b.row.edge; });
+    if ($('overhypedCount')) {
+      var overLabel = list.length + (list.length === 1 ? ' favourite' : ' favourites');
+      if (list.length > 10) overLabel += ' \u00b7 top 10 shown';
+      $('overhypedCount').textContent = overLabel;
+    }
+    if (!list.length) {
+      box.innerHTML = '<p class="bet-empty">No market favourite currently fails the model&rsquo;s test. A horse appears here when the market makes it favourite but the model ranks it third or worse, or rates it at least five points below the price.</p>';
+      return;
+    }
+    box.innerHTML = list.slice(0, 10).map(function (x) {
+      var why;
+      if (x.rank >= 3) {
+        why = 'Market favourite, but the model ranks it #' + x.rank + '.';
+        if (x.row.edge < 0) {
+          why += ' It also gives it ' + Math.abs(x.row.edge * 100).toFixed(1) + ' points less than the price implies.';
+        }
+      } else {
+        why = 'Market favourite and model #' + x.rank + ', but the model gives it ' +
+          Math.abs(x.row.edge * 100).toFixed(1) + ' points less than the price implies.';
+      }
+      return betCard(x, why);
+    }).join('');
+  }
+
+  function renderPlacers() {
+    var box = $('placerBody');
+    if (!box) return;
+    var list = betData().all.filter(function (x) {
+      return x.rank === 1 && x.field >= 5 && x.row.share >= 0.20 &&
+        x.row.mktRank === 1;
+    }).sort(function (a, b) { return b.row.share - a.row.share; });
+    if ($('placerCount')) {
+      var placeLabel = list.length + (list.length === 1 ? ' banker' : ' bankers');
+      if (list.length > 10) placeLabel += ' \u00b7 top 10 shown';
+      $('placerCount').textContent = placeLabel;
+    }
+    if (!list.length) {
+      box.innerHTML = '<p class="bet-empty">No horse currently clears the place screen: the model&rsquo;s top pick, the market favourite, a 20%+ win chance and a field of five or more. The model does not price places, so this stays empty rather than inventing a place chance.</p>';
+      return;
+    }
+    box.innerHTML = list.slice(0, 10).map(function (x) {
+      return betCard(x, 'Top model rating and market favourite. Standard each-way terms for this field are <b>' +
+        esc(placeTerms(x.field)) + '</b>; the model prices wins, not places, so this is a profile rather than a place probability.');
+    }).join('');
+  }
+
+  function slipLeg(x) {
+    return '<div class="slip-leg" data-card="' + esc(x.card.id || '') + '">' +
+      '<div class="slip-sel"><span class="slip-tag">' + betTag(x.card.region) + '</span>' +
+        '<b>' + esc(x.row.r.horse || '\u2014') + '</b>' +
+        '<small>' + esc(x.card.course) + ' ' + esc(x.card.time) + ' \u00b7 ' +
+          esc(x.card.label || x.card.race || '') + '</small></div>' +
+      '<div class="slip-num"><b>' + betPrice(x.dec) + '</b><small>price</small></div>' +
+      '<div class="slip-num"><b>' + betPct(x.row.share) + '</b><small>model \u00b7 ' + betPts(x.row.edge) + '</small></div>' +
+      '</div>';
+  }
+
+  function slipHtml(no, type, bets, legs, footer) {
+    return '<article class="slip">' +
+      '<header class="slip-head"><span class="slip-no">SLIP ' + no + '</span>' +
+        '<span class="slip-type">' + type + '</span>' +
+        '<span class="slip-bets">' + bets + '</span></header>' +
+      '<div class="slip-legs">' + legs.map(slipLeg).join('') + '</div>' +
+      '<footer class="slip-foot">' + footer + '</footer>' +
+      '</article>';
+  }
+
+  var SLIP_INDEX = [
+    ['Double', 2, 1, '2 selections, 1 bet'],
+    ['Treble', 3, 1, '3 selections, 1 bet'],
+    ['Four-fold', 4, 1, '4 selections, 1 bet'],
+    ['Trixie', 3, 4, '3 doubles, 1 treble'],
+    ['Patent', 3, 7, '3 singles, 3 doubles, 1 treble'],
+    ['Yankee', 4, 11, '6 doubles, 4 trebles, 1 four-fold'],
+    ['Lucky 15', 4, 15, '4 singles, 6 doubles, 4 trebles, 1 four-fold'],
+    ['Canadian', 5, 26, '10 doubles, 10 trebles, 5 four-folds, 1 five-fold'],
+    ['Lucky 31', 5, 31, '5 singles, 10 doubles, 10 trebles, 5 four-folds, 1 five-fold'],
+    ['Heinz', 6, 57, '15 doubles, 20 trebles, 15 four-folds, 6 five-folds, 1 six-fold'],
+    ['Lucky 63', 6, 63, '6 singles, 15 doubles, 20 trebles, 15 four-folds, 6 five-folds, 1 six-fold'],
+    ['Super Heinz', 7, 120, '21 doubles, 35 trebles, 35 four-folds, 21 five-folds, 7 six-folds, 1 seven-fold'],
+    ['Goliath', 8, 247, '28 doubles, 56 trebles, 70 four-folds, 56 five-folds, 28 six-folds, 8 seven-folds, 1 eight-fold']
+  ];
+
+  function renderSlipIndex() {
+    var box = $('slipIndex');
+    if (!box) return;
+    box.innerHTML = '<div class="scroll"><table class="ledger slip-index"><thead><tr>' +
+      '<th>Slip</th><th>Selections</th><th>Bets</th><th>Made of</th>' +
+      '</tr></thead><tbody>' + SLIP_INDEX.map(function (s) {
+        return '<tr><td><b>' + s[0] + '</b></td><td class="num">' + s[1] +
+          '</td><td class="num">' + s[2] + '</td><td class="muted">' + s[3] + '</td></tr>';
+      }).join('') + '</tbody></table></div>';
+  }
+
+  function renderSlips() {
+    var box = $('slipsBody');
+    if (!box) return;
+    var legs = betData().tops.filter(function (x) {
+      return x.dec !== null && betHasEdge(x) && x.row.edge > 0;
+    }).sort(function (a, b) { return b.row.edge - a.row.edge; });
+    var seen = {}, uniq = [];
+    legs.forEach(function (x) {
+      var k = x.card.id || '';
+      if (seen[k]) return;
+      seen[k] = 1;
+      uniq.push(x);
+    });
+    legs = uniq;
+    if ($('slipsCount')) {
+      var slipLabel = legs.length + (legs.length === 1 ? ' priced value leg' : ' priced value legs');
+      if (legs.length > 8) slipLabel += ' \u00b7 strongest eight used';
+      $('slipsCount').textContent = slipLabel;
+    }
+    if (legs.length < 2) {
+      box.innerHTML = '<p class="bet-empty">No priced value legs in this build. A slip needs at least two races whose top pick has a card price and a model chance above the market&rsquo;s; the page will not invent legs to fill one.</p>';
+      return;
+    }
+    var html = '', no = 1;
+    html += '<h3 class="slip-section">Value singles</h3><div class="slip-grid">';
+    legs.slice(0, 3).forEach(function (x) {
+      html += slipHtml(('0' + no++).slice(-2), 'Single', '1 bet', [x],
+        '<div class="slip-combined"><span>Return at 1 unit</span><b>' + x.dec.toFixed(2) + '</b></div>' +
+        '<p class="slip-sub">Win only. Card price, not a quote.</p>');
+    });
+    html += '</div>';
+
+    function multiple(name, count, bets, breakdown) {
+      if (legs.length < count) return '';
+      var chosen = legs.slice(0, count);
+      var combined = chosen.reduce(function (p, x) { return p * x.dec; }, 1);
+      var label = count === 2 ? 'both' : (count === 3 ? 'all three' : 'all ' + count);
+      return slipHtml(('0' + no++).slice(-2), name, bets, chosen,
+        '<div class="slip-combined"><span>Combined price</span><b>' + combined.toFixed(2) + '</b></div>' +
+        '<p class="slip-sub">1 unit returns ' + combined.toFixed(2) + ' units if ' + label +
+        ' win. ' + breakdown + '</p>');
+    }
+    var mult = multiple('Double', 2, '1 bet', 'Two selections in one bet.') +
+      multiple('Treble', 3, '1 bet', 'Three selections in one bet.') +
+      multiple('Four-fold accumulator', 4, '1 bet', 'Four selections in one bet.');
+    if (mult) html += '<h3 class="slip-section">Straight multiples</h3><div class="slip-grid">' + mult + '</div>';
+
+    function lucky(name, count, bets, breakdown) {
+      if (legs.length < count) return '';
+      var chosen = legs.slice(0, count);
+      var all = chosen.reduce(function (p, x) { return p * x.dec; }, 1);
+      return slipHtml(('0' + no++).slice(-2), name, bets, chosen,
+        '<div class="slip-combined"><span>All ' + count + ' win</span><b>' + all.toFixed(2) + '</b></div>' +
+        '<p class="slip-sub">' + breakdown + ' The figure is the all-' + count +
+        '-win multiple at card prices, not a total return on the whole slip.</p>');
+    }
+    var luckyHtml = lucky('Lucky 15', 4, '15 bets', '4 singles, 6 doubles, 4 trebles, 1 four-fold.') +
+      lucky('Lucky 31', 5, '31 bets', '5 singles, 10 doubles, 10 trebles, 5 four-folds, 1 five-fold.') +
+      lucky('Lucky 63', 6, '63 bets', '6 singles, 15 doubles, 20 trebles, 15 four-folds, 6 five-folds, 1 six-fold.');
+    if (luckyHtml) html += '<h3 class="slip-section">Lucky slips</h3><div class="slip-grid">' + luckyHtml + '</div>';
+
+    var coverHtml = lucky('Trixie', 3, '4 bets', '3 doubles, 1 treble.') +
+      lucky('Patent', 3, '7 bets', '3 singles, 3 doubles, 1 treble.') +
+      lucky('Yankee', 4, '11 bets', '6 doubles, 4 trebles, 1 four-fold.') +
+      lucky('Canadian', 5, '26 bets', '10 doubles, 10 trebles, 5 four-folds, 1 five-fold.') +
+      lucky('Heinz', 6, '57 bets', '15 doubles, 20 trebles, 15 four-folds, 6 five-folds, 1 six-fold.') +
+      lucky('Super Heinz', 7, '120 bets', '21 doubles, 35 trebles, 35 four-folds, 21 five-folds, 7 six-folds, 1 seven-fold.') +
+      lucky('Goliath', 8, '247 bets', '28 doubles, 56 trebles, 70 four-folds, 56 five-folds, 28 six-folds, 8 seven-folds, 1 eight-fold.');
+    if (coverHtml) html += '<h3 class="slip-section">Full-cover slips</h3><div class="slip-grid">' + coverHtml + '</div>';
+
+    html += '<p class="bet-note">No stake is taken and no bet is placed. Prices are the card prices in this build; a real slip may be shorter. If you bet, stake only what you can afford to lose, and a multiple loses if any leg loses.</p>';
+    box.innerHTML = html;
+  }
+
+  function renderBetViews() {
+    renderLongshots();
+    renderOverhyped();
+    renderPlacers();
+    renderSlips();
+    renderSlipIndex();
+  }
+
   function openBoardCard(e) {
     var card = e.target.closest ? e.target.closest('[data-card]') : null;
     if (!card) return;
@@ -7942,6 +8419,19 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
   }
 
   ['bestBody', 'unmissableBody'].forEach(function (id) {
+    var el = $(id);
+    if (!el) return;
+    el.addEventListener('click', openBoardCard);
+    el.addEventListener('keydown', function (e) {
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      var card = e.target.closest ? e.target.closest('[data-card]') : null;
+      if (!card) return;
+      e.preventDefault();
+      openBoardCard(e);
+    });
+  });
+
+  ['longshotBody', 'overhypedBody', 'placerBody', 'slipsBody'].forEach(function (id) {
     var el = $(id);
     if (!el) return;
     el.addEventListener('click', openBoardCard);
@@ -8520,6 +9010,7 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
     renderHongKong();
     renderFrance();
     renderChile();
+    renderBetViews();
     renderBanner();
   }
 
