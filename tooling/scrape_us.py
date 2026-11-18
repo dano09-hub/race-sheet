@@ -58,10 +58,24 @@ def parse_track(page, course, date):
         if not table:
             continue
         runners = []
+        declared = named = 0
         for row in re.split(r"<tr[^>]*>", table.group(1))[1:]:
-            horse = re.search(r'class="horse-link"[^>]*>([^<]+)</a>', row)
-            if not horse:
+            if not re.search(r'data-label="Program Number', row):
                 continue
+            declared += 1
+            horse = re.search(r'class="horse-link"[^>]*>([^<]+)</a>', row)
+            if horse:
+                name = clean(horse.group(1))
+            else:
+                # A runner HRN has no profile page for is printed as plain text
+                # in the Horse / Sire cell, with no anchor. It is still a
+                # declared runner, so read the name from the cell itself.
+                cell = re.search(r'data-label="Horse / Sire"[^>]*>(.*?)</td>', row, re.S)
+                h4 = re.search(r"<h4>(.*?)</h4>", cell.group(1), re.S) if cell else None
+                name = clean(h4.group(1)) if h4 else ""
+            if not name:
+                continue
+            named += 1
             fig = re.search(r'<span class="small">\s*\((\d+)\)', row)
             tj = re.findall(r'data-label="Trainer / Jockey">\s*(.*?)</td>', row, re.S)
             trainer = jockey = ""
@@ -76,7 +90,7 @@ def parse_track(page, course, date):
             scratch = re.search(r'data-label="Scratched\?"[^>]*>\s*(.*?)</td>', row, re.S)
             scratched = bool(scratch and clean(scratch.group(1)))
             runners.append({
-                "horse": clean(horse.group(1)),
+                "horse": name,
                 "odds": to_decimal(ml.group(1)) if ml else "",
                 "form": "", "or": "", "rpr": "",
                 "ts": fig.group(1) if fig else "",
@@ -86,6 +100,12 @@ def parse_track(page, course, date):
                 "jp": jockey, "tp": trainer, "tips": "", "naps": "",
                 "trainer": trainer, "jockey": jockey, "scratched": scratched,
             })
+        if named != declared:
+            # A card we cannot read in full is not a field. Scoring the rows we
+            # happened to parse would invent a race made of a handful of horses.
+            print(f"# {course} R{num.group(1)}: read {named} of {declared} declared rows"
+                  f"; race skipped", file=sys.stderr)
+            continue
         runners = [r for r in runners if not r["scratched"]]
         if not runners:
             continue
