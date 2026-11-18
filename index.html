@@ -1307,6 +1307,12 @@
     .bet-stats { grid-template-columns:repeat(2,1fr); }
     .slip-grid { grid-template-columns:minmax(0,1fr); }
     .slip-leg { grid-template-columns:minmax(0,1fr) 46px 56px; }
+    .slip-sel small {
+      white-space:normal;
+      overflow:visible;
+      text-overflow:clip;
+      overflow-wrap:anywhere;
+    }
   }
 
   /* Print the bet slips as individual, self-contained slips. The screen page is
@@ -8285,7 +8291,7 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
       '<div class="slip-sel"><span class="slip-tag">' + betTag(x.card.region) + '</span>' +
         '<b>' + esc(x.row.r.horse || '\u2014') + '</b>' +
         '<small>' + esc(x.card.course) + ' ' + esc(x.card.time) + ' \u00b7 ' +
-          esc(x.card.label || x.card.race || '') + '</small></div>' +
+          esc(x.card.race || x.card.label || '') + '</small></div>' +
       '<div class="slip-num"><b>' + betPrice(x.dec) + '</b><small>price</small></div>' +
       '<div class="slip-num"><b>' + betPct(x.row.share) + '</b><small>model \u00b7 ' + betPts(x.row.edge) + '</small></div>' +
       '</div>';

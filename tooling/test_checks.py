@@ -2633,6 +2633,11 @@ check("print slips: the print header names the sheet and keeps a disclaimer",
       and "body.tab-slips #slipsBody > .bet-note {" in _bet_html)
 check("print slips: the serve copy matches the page",
       _bet_html == (ROOT / "dist" / "public" / "index.html").read_text(encoding="utf-8"))
+check("mobile slips: the race line wraps instead of clipping at phone width",
+      "overflow-wrap:anywhere;" in _bet_html
+      and "text-overflow:clip;" in _bet_html)
+check("mobile slips: the slip leg uses the full race title, not the short label",
+      "esc(x.card.race || x.card.label || '')" in _bet_html)
 
 print()
 print("passed %d, failed %d%s" % (
