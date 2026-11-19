@@ -1,0 +1,520 @@
+{
+ "date": "2026-11-13",
+ "model": "six-input",
+ "races": [
+  {
+   "course": "Cheltenham",
+   "time": "",
+   "winner": "Norman Fletcher",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 18,
+     "of": 18
+    },
+    {
+     "what": "trainer record",
+     "n": 18,
+     "of": 18
+    }
+   ]
+  },
+  {
+   "course": "Cheltenham",
+   "time": "",
+   "winner": "D Art D Art",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 5,
+     "of": 5
+    },
+    {
+     "what": "trainer record",
+     "n": 5,
+     "of": 5
+    },
+    {
+     "what": "official rating",
+     "n": 1,
+     "of": 5
+    }
+   ]
+  },
+  {
+   "course": "Cheltenham",
+   "time": "",
+   "winner": "Jonbon",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 3,
+     "of": 3
+    },
+    {
+     "what": "trainer record",
+     "n": 3,
+     "of": 3
+    }
+   ]
+  },
+  {
+   "course": "Cheltenham",
+   "time": "",
+   "winner": "Thunder Rock",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "trainer record",
+     "n": 8,
+     "of": 8
+    }
+   ]
+  },
+  {
+   "course": "Cheltenham",
+   "time": "",
+   "winner": "Lock Stock",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "trainer record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "official rating",
+     "n": 4,
+     "of": 8
+    }
+   ]
+  },
+  {
+   "course": "Cheltenham",
+   "time": "",
+   "winner": "Lexington Wood",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 16,
+     "of": 16
+    },
+    {
+     "what": "trainer record",
+     "n": 16,
+     "of": 16
+    }
+   ]
+  },
+  {
+   "course": "Dundalk",
+   "time": "",
+   "winner": "Scolyer",
+   "region": "",
+   "state": "no-card",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "no archived card",
+     "n": 0
+    }
+   ]
+  },
+  {
+   "course": "Dundalk",
+   "time": "",
+   "winner": "Firewalker",
+   "region": "",
+   "state": "no-card",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "no archived card",
+     "n": 0
+    }
+   ]
+  },
+  {
+   "course": "Dundalk",
+   "time": "",
+   "winner": "Rock On Johnny",
+   "region": "",
+   "state": "no-card",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "no archived card",
+     "n": 0
+    }
+   ]
+  },
+  {
+   "course": "Dundalk",
+   "time": "",
+   "winner": "Doctor Grace",
+   "region": "",
+   "state": "no-card",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "no archived card",
+     "n": 0
+    }
+   ]
+  },
+  {
+   "course": "Dundalk",
+   "time": "",
+   "winner": "Honouramongthieves",
+   "region": "",
+   "state": "no-card",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "no archived card",
+     "n": 0
+    }
+   ]
+  },
+  {
+   "course": "Dundalk",
+   "time": "",
+   "winner": "Xirivella",
+   "region": "",
+   "state": "no-card",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "no archived card",
+     "n": 0
+    }
+   ]
+  },
+  {
+   "course": "Dundalk",
+   "time": "",
+   "winner": "Glitter And Glory",
+   "region": "",
+   "state": "no-card",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "no archived card",
+     "n": 0
+    }
+   ]
+  },
+  {
+   "course": "Sedgefield",
+   "time": "",
+   "winner": "Fairlawn Skipper",
+   "region": "",
+   "state": "no-card",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "no archived card",
+     "n": 0
+    }
+   ]
+  },
+  {
+   "course": "Sedgefield",
+   "time": "",
+   "winner": "Farfromaway",
+   "region": "",
+   "state": "no-card",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "no archived card",
+     "n": 0
+    }
+   ]
+  },
+  {
+   "course": "Sedgefield",
+   "time": "",
+   "winner": "Jeteye",
+   "region": "",
+   "state": "no-card",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "no archived card",
+     "n": 0
+    }
+   ]
+  },
+  {
+   "course": "Sedgefield",
+   "time": "",
+   "winner": "Military Cross",
+   "region": "",
+   "state": "no-card",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "no archived card",
+     "n": 0
+    }
+   ]
+  },
+  {
+   "course": "Sedgefield",
+   "time": "",
+   "winner": "Knacker Trapper",
+   "region": "",
+   "state": "no-card",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "no archived card",
+     "n": 0
+    }
+   ]
+  },
+  {
+   "course": "Sedgefield",
+   "time": "",
+   "winner": "Leave Her To Me",
+   "region": "",
+   "state": "no-card",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "no archived card",
+     "n": 0
+    }
+   ]
+  },
+  {
+   "course": "Southwell",
+   "time": "",
+   "winner": "Golly Gosh",
+   "region": "",
+   "state": "no-card",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "no archived card",
+     "n": 0
+    }
+   ]
+  },
+  {
+   "course": "Southwell",
+   "time": "",
+   "winner": "Gata Ban",
+   "region": "",
+   "state": "no-card",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "no archived card",
+     "n": 0
+    }
+   ]
+  },
+  {
+   "course": "Southwell",
+   "time": "",
+   "winner": "Ballykinlar",
+   "region": "",
+   "state": "no-card",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "no archived card",
+     "n": 0
+    }
+   ]
+  },
+  {
+   "course": "Southwell",
+   "time": "",
+   "winner": "Helios Forlonge",
+   "region": "",
+   "state": "no-card",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "no archived card",
+     "n": 0
+    }
+   ]
+  },
+  {
+   "course": "Southwell",
+   "time": "",
+   "winner": "Madam Speaker",
+   "region": "",
+   "state": "no-card",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "no archived card",
+     "n": 0
+    }
+   ]
+  },
+  {
+   "course": "Southwell",
+   "time": "",
+   "winner": "Northwest Passage",
+   "region": "",
+   "state": "no-card",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "no archived card",
+     "n": 0
+    }
+   ]
+  },
+  {
+   "course": "Southwell",
+   "time": "",
+   "winner": "Crafty Gael",
+   "region": "",
+   "state": "no-card",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "no archived card",
+     "n": 0
+    }
+   ]
+  }
+ ]
+}

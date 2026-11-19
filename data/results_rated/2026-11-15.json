@@ -1,0 +1,419 @@
+{
+ "date": "2026-11-15",
+ "model": "six-input",
+ "races": [
+  {
+   "course": "Cheltenham",
+   "time": "",
+   "winner": "Holokea",
+   "region": "GB",
+   "state": "rated",
+   "pick": "King Of Answers",
+   "chance": 18.8,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [],
+   "place_places": 3
+  },
+  {
+   "course": "Cheltenham",
+   "time": "",
+   "winner": "Pioneer Pete",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 1,
+     "of": 20
+    }
+   ]
+  },
+  {
+   "course": "Cheltenham",
+   "time": "",
+   "winner": "Get Out Of My Way",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "official rating",
+     "n": 4,
+     "of": 14
+    },
+    {
+     "what": "days since a run",
+     "n": 1,
+     "of": 14
+    },
+    {
+     "what": "form",
+     "n": 1,
+     "of": 14
+    }
+   ]
+  },
+  {
+   "course": "Cheltenham",
+   "time": "",
+   "winner": "Captain Cool",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 1,
+     "of": 13
+    }
+   ]
+  },
+  {
+   "course": "Cheltenham",
+   "time": "",
+   "winner": "Authoceltic",
+   "region": "GB",
+   "state": "rated",
+   "pick": "Highlands Legacy",
+   "chance": 22.8,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [],
+   "place_places": 3
+  },
+  {
+   "course": "Cheltenham",
+   "time": "",
+   "winner": "Dundee Law",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 2,
+     "of": 13
+    },
+    {
+     "what": "form",
+     "n": 2,
+     "of": 13
+    },
+    {
+     "what": "official rating",
+     "n": 2,
+     "of": 13
+    },
+    {
+     "what": "price",
+     "n": 1,
+     "of": 13
+    }
+   ]
+  },
+  {
+   "course": "Fontwell",
+   "time": "",
+   "winner": "Belfrina",
+   "region": "GB",
+   "state": "rated",
+   "pick": "Bridge",
+   "chance": 23.5,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [],
+   "place_places": 3
+  },
+  {
+   "course": "Fontwell",
+   "time": "",
+   "winner": "Livin On Luco",
+   "region": "GB",
+   "state": "rated",
+   "pick": "Mask Of Zorro",
+   "chance": 15.3,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [],
+   "place_places": 3
+  },
+  {
+   "course": "Fontwell",
+   "time": "",
+   "winner": "Bass Hunter",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "official rating",
+     "n": 9,
+     "of": 14
+    },
+    {
+     "what": "days since a run",
+     "n": 5,
+     "of": 14
+    },
+    {
+     "what": "form",
+     "n": 5,
+     "of": 14
+    }
+   ]
+  },
+  {
+   "course": "Fontwell",
+   "time": "",
+   "winner": "Silver State",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "official rating",
+     "n": 7,
+     "of": 11
+    },
+    {
+     "what": "days since a run",
+     "n": 6,
+     "of": 11
+    },
+    {
+     "what": "form",
+     "n": 6,
+     "of": 11
+    }
+   ]
+  },
+  {
+   "course": "Fontwell",
+   "time": "",
+   "winner": "Fay Ce Que Voudras",
+   "region": "GB",
+   "state": "rated",
+   "pick": "Valirann Gold",
+   "chance": 18.3,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [],
+   "place_places": 3
+  },
+  {
+   "course": "Fontwell",
+   "time": "",
+   "winner": "Ami Bondhu",
+   "region": "GB",
+   "state": "rated",
+   "pick": "Hawa Jumeirah",
+   "chance": 15.1,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [],
+   "place_places": 3
+  },
+  {
+   "course": "Navan",
+   "time": "",
+   "winner": "The Wallpark",
+   "region": "GB",
+   "state": "rated",
+   "pick": "Firefox",
+   "chance": 10.3,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [],
+   "place_places": 4
+  },
+  {
+   "course": "Navan",
+   "time": "",
+   "winner": "Huff&#x27;n&#x27;puff",
+   "region": "",
+   "state": "no-card",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "no archived card",
+     "n": 0
+    }
+   ]
+  },
+  {
+   "course": "Navan",
+   "time": "",
+   "winner": "Theemeraldempress",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 19,
+     "of": 19
+    },
+    {
+     "what": "official rating",
+     "n": 11,
+     "of": 19
+    },
+    {
+     "what": "days since a run",
+     "n": 6,
+     "of": 19
+    },
+    {
+     "what": "form",
+     "n": 6,
+     "of": 19
+    }
+   ]
+  },
+  {
+   "course": "Navan",
+   "time": "",
+   "winner": "Crypto Crash",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 29,
+     "of": 29
+    },
+    {
+     "what": "trainer record",
+     "n": 3,
+     "of": 29
+    }
+   ]
+  },
+  {
+   "course": "Navan",
+   "time": "",
+   "winner": "With Nolimit",
+   "region": "GB",
+   "state": "rated",
+   "pick": "Reaching High",
+   "chance": 25.9,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [],
+   "place_places": 2
+  },
+  {
+   "course": "Navan",
+   "time": "",
+   "winner": "Paddy&#x27;s Milestone",
+   "region": "",
+   "state": "no-card",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "no archived card",
+     "n": 0
+    }
+   ]
+  },
+  {
+   "course": "Navan",
+   "time": "",
+   "winner": "Big Tom",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "official rating",
+     "n": 8,
+     "of": 9
+    }
+   ]
+  },
+  {
+   "course": "Navan",
+   "time": "",
+   "winner": "Brosna Shine",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 1,
+     "of": 10
+    },
+    {
+     "what": "form",
+     "n": 1,
+     "of": 10
+    },
+    {
+     "what": "official rating",
+     "n": 1,
+     "of": 10
+    }
+   ]
+  }
+ ]
+}

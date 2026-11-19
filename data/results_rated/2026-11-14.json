@@ -1,0 +1,1263 @@
+{
+ "date": "2026-11-14",
+ "model": "six-input",
+ "races": [
+  {
+   "course": "Cheltenham",
+   "time": "",
+   "winner": "Meetmebythesea",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 15,
+     "of": 15
+    },
+    {
+     "what": "official rating",
+     "n": 15,
+     "of": 15
+    },
+    {
+     "what": "price",
+     "n": 15,
+     "of": 15
+    },
+    {
+     "what": "trainer record",
+     "n": 15,
+     "of": 15
+    }
+   ]
+  },
+  {
+   "course": "Cheltenham",
+   "time": "",
+   "winner": "Dinoland",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "official rating",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "price",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "trainer record",
+     "n": 12,
+     "of": 12
+    }
+   ]
+  },
+  {
+   "course": "Cheltenham",
+   "time": "",
+   "winner": "Atomic City",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "official rating",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "price",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "trainer record",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "form",
+     "n": 1,
+     "of": 9
+    }
+   ]
+  },
+  {
+   "course": "Cheltenham",
+   "time": "",
+   "winner": "Passing Diamond",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "official rating",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "price",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "trainer record",
+     "n": 7,
+     "of": 7
+    }
+   ]
+  },
+  {
+   "course": "Cheltenham",
+   "time": "",
+   "winner": "Black Bamboo",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 16,
+     "of": 16
+    },
+    {
+     "what": "official rating",
+     "n": 16,
+     "of": 16
+    },
+    {
+     "what": "price",
+     "n": 16,
+     "of": 16
+    },
+    {
+     "what": "trainer record",
+     "n": 16,
+     "of": 16
+    }
+   ]
+  },
+  {
+   "course": "Cheltenham",
+   "time": "",
+   "winner": "Sunny South West",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 13,
+     "of": 13
+    },
+    {
+     "what": "official rating",
+     "n": 13,
+     "of": 13
+    },
+    {
+     "what": "price",
+     "n": 13,
+     "of": 13
+    },
+    {
+     "what": "trainer record",
+     "n": 13,
+     "of": 13
+    }
+   ]
+  },
+  {
+   "course": "Cheltenham",
+   "time": "",
+   "winner": "Elegantemente",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 15,
+     "of": 15
+    },
+    {
+     "what": "official rating",
+     "n": 15,
+     "of": 15
+    },
+    {
+     "what": "price",
+     "n": 15,
+     "of": 15
+    },
+    {
+     "what": "trainer record",
+     "n": 15,
+     "of": 15
+    },
+    {
+     "what": "days since a run",
+     "n": 2,
+     "of": 15
+    },
+    {
+     "what": "form",
+     "n": 2,
+     "of": 15
+    }
+   ]
+  },
+  {
+   "course": "Navan",
+   "time": "",
+   "winner": "Outofafrika",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 22,
+     "of": 22
+    },
+    {
+     "what": "official rating",
+     "n": 22,
+     "of": 22
+    },
+    {
+     "what": "price",
+     "n": 22,
+     "of": 22
+    },
+    {
+     "what": "trainer record",
+     "n": 22,
+     "of": 22
+    },
+    {
+     "what": "days since a run",
+     "n": 3,
+     "of": 22
+    },
+    {
+     "what": "form",
+     "n": 3,
+     "of": 22
+    }
+   ]
+  },
+  {
+   "course": "Navan",
+   "time": "",
+   "winner": "Beckistine",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 12,
+     "of": 12
+    }
+   ]
+  },
+  {
+   "course": "Navan",
+   "time": "",
+   "winner": "Sommesky",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 16,
+     "of": 16
+    },
+    {
+     "what": "official rating",
+     "n": 16,
+     "of": 16
+    },
+    {
+     "what": "price",
+     "n": 16,
+     "of": 16
+    },
+    {
+     "what": "trainer record",
+     "n": 16,
+     "of": 16
+    }
+   ]
+  },
+  {
+   "course": "Navan",
+   "time": "",
+   "winner": "Thinkitdontjinxit",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "official rating",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "price",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "trainer record",
+     "n": 8,
+     "of": 8
+    }
+   ]
+  },
+  {
+   "course": "Navan",
+   "time": "",
+   "winner": "Feet Of A Dancer",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "official rating",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "price",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "trainer record",
+     "n": 8,
+     "of": 8
+    }
+   ]
+  },
+  {
+   "course": "Navan",
+   "time": "",
+   "winner": "Found A Fifty",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "official rating",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "price",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "trainer record",
+     "n": 7,
+     "of": 7
+    }
+   ]
+  },
+  {
+   "course": "Navan",
+   "time": "",
+   "winner": "Wingmen",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 11,
+     "of": 11
+    },
+    {
+     "what": "official rating",
+     "n": 11,
+     "of": 11
+    },
+    {
+     "what": "price",
+     "n": 11,
+     "of": 11
+    },
+    {
+     "what": "trainer record",
+     "n": 11,
+     "of": 11
+    }
+   ]
+  },
+  {
+   "course": "Navan",
+   "time": "",
+   "winner": "Noble Indulgence",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "official rating",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "price",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "trainer record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "days since a run",
+     "n": 1,
+     "of": 10
+    },
+    {
+     "what": "form",
+     "n": 1,
+     "of": 10
+    }
+   ]
+  },
+  {
+   "course": "Uttoxeter",
+   "time": "",
+   "winner": "Rose Warrior",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "official rating",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "price",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "trainer record",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "days since a run",
+     "n": 1,
+     "of": 9
+    },
+    {
+     "what": "form",
+     "n": 1,
+     "of": 9
+    }
+   ]
+  },
+  {
+   "course": "Uttoxeter",
+   "time": "",
+   "winner": "Boombox",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "official rating",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "price",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "trainer record",
+     "n": 7,
+     "of": 7
+    }
+   ]
+  },
+  {
+   "course": "Uttoxeter",
+   "time": "",
+   "winner": "Savanna Storm",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "official rating",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "price",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "trainer record",
+     "n": 12,
+     "of": 12
+    }
+   ]
+  },
+  {
+   "course": "Uttoxeter",
+   "time": "",
+   "winner": "Irish Chorus",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 4,
+     "of": 4
+    },
+    {
+     "what": "official rating",
+     "n": 4,
+     "of": 4
+    },
+    {
+     "what": "price",
+     "n": 4,
+     "of": 4
+    },
+    {
+     "what": "trainer record",
+     "n": 4,
+     "of": 4
+    }
+   ]
+  },
+  {
+   "course": "Uttoxeter",
+   "time": "",
+   "winner": "Mooserwirt",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "official rating",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "price",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "trainer record",
+     "n": 8,
+     "of": 8
+    }
+   ]
+  },
+  {
+   "course": "Uttoxeter",
+   "time": "",
+   "winner": "Torrent",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "official rating",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "price",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "trainer record",
+     "n": 8,
+     "of": 8
+    }
+   ]
+  },
+  {
+   "course": "Uttoxeter",
+   "time": "",
+   "winner": "Ma Wang Des Bois",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "official rating",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "price",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "trainer record",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "days since a run",
+     "n": 5,
+     "of": 12
+    },
+    {
+     "what": "form",
+     "n": 5,
+     "of": 12
+    }
+   ]
+  },
+  {
+   "course": "Wetherby",
+   "time": "",
+   "winner": "Combs",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 3,
+     "of": 3
+    },
+    {
+     "what": "official rating",
+     "n": 3,
+     "of": 3
+    },
+    {
+     "what": "price",
+     "n": 3,
+     "of": 3
+    },
+    {
+     "what": "trainer record",
+     "n": 3,
+     "of": 3
+    }
+   ]
+  },
+  {
+   "course": "Wetherby",
+   "time": "",
+   "winner": "Who&#x27;s Going",
+   "region": "",
+   "state": "no-card",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "no archived card",
+     "n": 0
+    }
+   ]
+  },
+  {
+   "course": "Wetherby",
+   "time": "",
+   "winner": "Florida Dreams",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 4,
+     "of": 4
+    },
+    {
+     "what": "official rating",
+     "n": 4,
+     "of": 4
+    },
+    {
+     "what": "price",
+     "n": 4,
+     "of": 4
+    },
+    {
+     "what": "trainer record",
+     "n": 4,
+     "of": 4
+    }
+   ]
+  },
+  {
+   "course": "Wetherby",
+   "time": "",
+   "winner": "Velvet Outlaw",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 4,
+     "of": 4
+    },
+    {
+     "what": "official rating",
+     "n": 4,
+     "of": 4
+    },
+    {
+     "what": "price",
+     "n": 4,
+     "of": 4
+    },
+    {
+     "what": "trainer record",
+     "n": 4,
+     "of": 4
+    },
+    {
+     "what": "form",
+     "n": 2,
+     "of": 4
+    }
+   ]
+  },
+  {
+   "course": "Wetherby",
+   "time": "",
+   "winner": "Palamon",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 5,
+     "of": 5
+    },
+    {
+     "what": "official rating",
+     "n": 5,
+     "of": 5
+    },
+    {
+     "what": "price",
+     "n": 5,
+     "of": 5
+    },
+    {
+     "what": "trainer record",
+     "n": 5,
+     "of": 5
+    }
+   ]
+  },
+  {
+   "course": "Wetherby",
+   "time": "",
+   "winner": "Roarin&#x27; Success",
+   "region": "",
+   "state": "no-card",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "no archived card",
+     "n": 0
+    }
+   ]
+  },
+  {
+   "course": "Wetherby",
+   "time": "",
+   "winner": "Slaney Opera",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 6,
+     "of": 6
+    },
+    {
+     "what": "official rating",
+     "n": 6,
+     "of": 6
+    },
+    {
+     "what": "price",
+     "n": 6,
+     "of": 6
+    },
+    {
+     "what": "trainer record",
+     "n": 6,
+     "of": 6
+    }
+   ]
+  },
+  {
+   "course": "Windsor",
+   "time": "",
+   "winner": "Sorgean",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 16,
+     "of": 16
+    },
+    {
+     "what": "official rating",
+     "n": 16,
+     "of": 16
+    },
+    {
+     "what": "price",
+     "n": 16,
+     "of": 16
+    },
+    {
+     "what": "trainer record",
+     "n": 16,
+     "of": 16
+    },
+    {
+     "what": "form",
+     "n": 3,
+     "of": 16
+    },
+    {
+     "what": "days since a run",
+     "n": 1,
+     "of": 16
+    }
+   ]
+  },
+  {
+   "course": "Windsor",
+   "time": "",
+   "winner": "Piping Rock",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 6,
+     "of": 6
+    },
+    {
+     "what": "official rating",
+     "n": 6,
+     "of": 6
+    },
+    {
+     "what": "price",
+     "n": 6,
+     "of": 6
+    },
+    {
+     "what": "trainer record",
+     "n": 6,
+     "of": 6
+    }
+   ]
+  },
+  {
+   "course": "Windsor",
+   "time": "",
+   "winner": "Reallyntruthfully",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 15,
+     "of": 15
+    },
+    {
+     "what": "official rating",
+     "n": 15,
+     "of": 15
+    },
+    {
+     "what": "price",
+     "n": 15,
+     "of": 15
+    },
+    {
+     "what": "trainer record",
+     "n": 15,
+     "of": 15
+    }
+   ]
+  },
+  {
+   "course": "Windsor",
+   "time": "",
+   "winner": "Barafundle Bay",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 13,
+     "of": 13
+    },
+    {
+     "what": "official rating",
+     "n": 13,
+     "of": 13
+    },
+    {
+     "what": "price",
+     "n": 13,
+     "of": 13
+    },
+    {
+     "what": "trainer record",
+     "n": 13,
+     "of": 13
+    }
+   ]
+  },
+  {
+   "course": "Windsor",
+   "time": "",
+   "winner": "Jet Smart",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "official rating",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "price",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "trainer record",
+     "n": 8,
+     "of": 8
+    }
+   ]
+  },
+  {
+   "course": "Windsor",
+   "time": "",
+   "winner": "Fasol",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 11,
+     "of": 11
+    },
+    {
+     "what": "official rating",
+     "n": 11,
+     "of": 11
+    },
+    {
+     "what": "price",
+     "n": 11,
+     "of": 11
+    },
+    {
+     "what": "trainer record",
+     "n": 11,
+     "of": 11
+    }
+   ]
+  },
+  {
+   "course": "Windsor",
+   "time": "",
+   "winner": "James Dean",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "official rating",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "price",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "trainer record",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "days since a run",
+     "n": 8,
+     "of": 9
+    },
+    {
+     "what": "form",
+     "n": 8,
+     "of": 9
+    }
+   ]
+  }
+ ]
+}

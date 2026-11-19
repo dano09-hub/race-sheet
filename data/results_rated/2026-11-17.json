@@ -1,0 +1,582 @@
+{
+ "date": "2026-11-17",
+ "model": "six-input",
+ "races": [
+  {
+   "course": "Carlisle",
+   "time": "",
+   "winner": "Bossman Jack",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 6,
+     "of": 6
+    }
+   ]
+  },
+  {
+   "course": "Carlisle",
+   "time": "",
+   "winner": "Handball Maradona",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 11,
+     "of": 11
+    },
+    {
+     "what": "official rating",
+     "n": 9,
+     "of": 11
+    },
+    {
+     "what": "days since a run",
+     "n": 3,
+     "of": 11
+    },
+    {
+     "what": "form",
+     "n": 3,
+     "of": 11
+    }
+   ]
+  },
+  {
+   "course": "Carlisle",
+   "time": "",
+   "winner": "Turbocharged",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "official rating",
+     "n": 9,
+     "of": 10
+    },
+    {
+     "what": "days since a run",
+     "n": 3,
+     "of": 10
+    },
+    {
+     "what": "form",
+     "n": 3,
+     "of": 10
+    }
+   ]
+  },
+  {
+   "course": "Carlisle",
+   "time": "",
+   "winner": "King Berry",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 12,
+     "of": 12
+    }
+   ]
+  },
+  {
+   "course": "Carlisle",
+   "time": "",
+   "winner": "Foster&#x27;s Fortune",
+   "region": "",
+   "state": "no-card",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "no archived card",
+     "n": 0
+    }
+   ]
+  },
+  {
+   "course": "Carlisle",
+   "time": "",
+   "winner": "Holeheartedly",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 17,
+     "of": 17
+    }
+   ]
+  },
+  {
+   "course": "Carlisle",
+   "time": "",
+   "winner": "Air Apparent",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 6,
+     "of": 6
+    }
+   ]
+  },
+  {
+   "course": "Carlisle",
+   "time": "",
+   "winner": "Galatrona",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 15,
+     "of": 15
+    },
+    {
+     "what": "official rating",
+     "n": 14,
+     "of": 15
+    },
+    {
+     "what": "days since a run",
+     "n": 3,
+     "of": 15
+    },
+    {
+     "what": "form",
+     "n": 3,
+     "of": 15
+    }
+   ]
+  },
+  {
+   "course": "Limerick",
+   "time": "",
+   "winner": "Ludus Magnus",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 17,
+     "of": 17
+    },
+    {
+     "what": "official rating",
+     "n": 14,
+     "of": 17
+    },
+    {
+     "what": "days since a run",
+     "n": 2,
+     "of": 17
+    },
+    {
+     "what": "form",
+     "n": 2,
+     "of": 17
+    },
+    {
+     "what": "trainer record",
+     "n": 1,
+     "of": 17
+    }
+   ]
+  },
+  {
+   "course": "Limerick",
+   "time": "",
+   "winner": "Galileo Springs",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 11,
+     "of": 11
+    }
+   ]
+  },
+  {
+   "course": "Limerick",
+   "time": "",
+   "winner": "Theanniversary Man",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 10,
+     "of": 10
+    }
+   ]
+  },
+  {
+   "course": "Limerick",
+   "time": "",
+   "winner": "Ardera Gun",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 17,
+     "of": 17
+    },
+    {
+     "what": "trainer record",
+     "n": 3,
+     "of": 17
+    }
+   ]
+  },
+  {
+   "course": "Limerick",
+   "time": "",
+   "winner": "Lord De Choisel",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 17,
+     "of": 17
+    },
+    {
+     "what": "trainer record",
+     "n": 1,
+     "of": 17
+    }
+   ]
+  },
+  {
+   "course": "Limerick",
+   "time": "",
+   "winner": "Spellacy&#x27;s Cross",
+   "region": "",
+   "state": "no-card",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "no archived card",
+     "n": 0
+    }
+   ]
+  },
+  {
+   "course": "Limerick",
+   "time": "",
+   "winner": "Todo Bien",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "official rating",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "price",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "days since a run",
+     "n": 4,
+     "of": 12
+    },
+    {
+     "what": "form",
+     "n": 4,
+     "of": 12
+    }
+   ]
+  },
+  {
+   "course": "Limerick",
+   "time": "",
+   "winner": "Poet&#x27;s Duke",
+   "region": "",
+   "state": "no-card",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "no archived card",
+     "n": 0
+    }
+   ]
+  },
+  {
+   "course": "Southwell",
+   "time": "",
+   "winner": "Dowman",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 5,
+     "of": 5
+    }
+   ]
+  },
+  {
+   "course": "Southwell",
+   "time": "",
+   "winner": "Without Compromise",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 13,
+     "of": 13
+    }
+   ]
+  },
+  {
+   "course": "Southwell",
+   "time": "",
+   "winner": "Don&#x27;t Hurry Love",
+   "region": "",
+   "state": "no-card",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "no archived card",
+     "n": 0
+    }
+   ]
+  },
+  {
+   "course": "Southwell",
+   "time": "",
+   "winner": "Tex",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 14,
+     "of": 14
+    }
+   ]
+  },
+  {
+   "course": "Southwell",
+   "time": "",
+   "winner": "Phoenix Of Dreams",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 11,
+     "of": 11
+    }
+   ]
+  },
+  {
+   "course": "Southwell",
+   "time": "",
+   "winner": "Maldevious",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 10,
+     "of": 10
+    }
+   ]
+  },
+  {
+   "course": "Southwell",
+   "time": "",
+   "winner": "Hayate",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "official rating",
+     "n": 6,
+     "of": 7
+    },
+    {
+     "what": "days since a run",
+     "n": 2,
+     "of": 7
+    },
+    {
+     "what": "form",
+     "n": 2,
+     "of": 7
+    }
+   ]
+  },
+  {
+   "course": "Southwell",
+   "time": "",
+   "winner": "Goldwork",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 14,
+     "of": 14
+    }
+   ]
+  },
+  {
+   "course": "Southwell",
+   "time": "",
+   "winner": "Castan",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 14,
+     "of": 14
+    }
+   ]
+  }
+ ]
+}

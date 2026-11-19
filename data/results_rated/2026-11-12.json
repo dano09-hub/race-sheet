@@ -1,0 +1,470 @@
+{
+ "date": "2026-11-12",
+ "model": "six-input",
+ "races": [
+  {
+   "course": "Hereford",
+   "time": "12:30",
+   "winner": "Koala Rose",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "official rating",
+     "n": 3,
+     "of": 3
+    },
+    {
+     "what": "price",
+     "n": 3,
+     "of": 3
+    },
+    {
+     "what": "days since a run",
+     "n": 2,
+     "of": 3
+    },
+    {
+     "what": "form",
+     "n": 2,
+     "of": 3
+    }
+   ]
+  },
+  {
+   "course": "Hereford",
+   "time": "13:05",
+   "winner": "Governors Rock",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "official rating",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "price",
+     "n": 12,
+     "of": 12
+    }
+   ]
+  },
+  {
+   "course": "Hereford",
+   "time": "13:40",
+   "winner": "Mr Jukebox",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 7,
+     "of": 7
+    }
+   ]
+  },
+  {
+   "course": "Hereford",
+   "time": "14:15",
+   "winner": "Lord Cauvelliere",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 5,
+     "of": 5
+    }
+   ]
+  },
+  {
+   "course": "Hereford",
+   "time": "14:50",
+   "winner": "Seraphic",
+   "region": "GB",
+   "state": "rated",
+   "pick": "Seraphic",
+   "chance": 29.5,
+   "finish": "1st",
+   "hit": true,
+   "placed": true,
+   "missing": [],
+   "place_places": 3
+  },
+  {
+   "course": "Hereford",
+   "time": "15:25",
+   "winner": "Nova Foresta",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "official rating",
+     "n": 5,
+     "of": 5
+    },
+    {
+     "what": "days since a run",
+     "n": 2,
+     "of": 5
+    },
+    {
+     "what": "form",
+     "n": 2,
+     "of": 5
+    }
+   ]
+  },
+  {
+   "course": "Market Rasen",
+   "time": "12:06",
+   "winner": "Northern Olympian",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "official rating",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "price",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "days since a run",
+     "n": 1,
+     "of": 10
+    },
+    {
+     "what": "form",
+     "n": 1,
+     "of": 10
+    }
+   ]
+  },
+  {
+   "course": "Market Rasen",
+   "time": "12:41",
+   "winner": "Eastern Rock",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "official rating",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "price",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "days since a run",
+     "n": 1,
+     "of": 9
+    },
+    {
+     "what": "form",
+     "n": 1,
+     "of": 9
+    }
+   ]
+  },
+  {
+   "course": "Market Rasen",
+   "time": "13:16",
+   "winner": "Tell The Tale",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 6,
+     "of": 6
+    }
+   ]
+  },
+  {
+   "course": "Market Rasen",
+   "time": "13:51",
+   "winner": "Noble Recall",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 7,
+     "of": 7
+    }
+   ]
+  },
+  {
+   "course": "Market Rasen",
+   "time": "14:26",
+   "winner": "Teofimo",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 6,
+     "of": 6
+    }
+   ]
+  },
+  {
+   "course": "Market Rasen",
+   "time": "15:01",
+   "winner": "Diamond Grace",
+   "region": "GB",
+   "state": "rated",
+   "pick": "It's Maisy",
+   "chance": 15.1,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [],
+   "place_places": 3
+  },
+  {
+   "course": "Market Rasen",
+   "time": "15:36",
+   "winner": "Moutarde",
+   "region": "GB",
+   "state": "rated",
+   "pick": "Trust House",
+   "chance": 23.4,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [],
+   "place_places": 2
+  },
+  {
+   "course": "Thurles",
+   "time": "11:43",
+   "winner": "Might Be The One",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "official rating",
+     "n": 8,
+     "of": 12
+    }
+   ]
+  },
+  {
+   "course": "Thurles",
+   "time": "12:18",
+   "winner": "Stoneyford Lady",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 12,
+     "of": 12
+    }
+   ]
+  },
+  {
+   "course": "Thurles",
+   "time": "12:53",
+   "winner": "Way Down South",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 16,
+     "of": 16
+    }
+   ]
+  },
+  {
+   "course": "Thurles",
+   "time": "13:28",
+   "winner": "Zambezi Moon",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "official rating",
+     "n": 3,
+     "of": 7
+    }
+   ]
+  },
+  {
+   "course": "Thurles",
+   "time": "14:03",
+   "winner": "Gunnery Sergeant",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "official rating",
+     "n": 11,
+     "of": 12
+    },
+    {
+     "what": "days since a run",
+     "n": 1,
+     "of": 12
+    },
+    {
+     "what": "form",
+     "n": 1,
+     "of": 12
+    }
+   ]
+  },
+  {
+   "course": "Thurles",
+   "time": "14:38",
+   "winner": "Fratas",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 4,
+     "of": 11
+    }
+   ]
+  },
+  {
+   "course": "Thurles",
+   "time": "15:15",
+   "winner": "Duke Otto",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 1,
+     "of": 17
+    }
+   ]
+  },
+  {
+   "course": "Thurles",
+   "time": "15:48",
+   "winner": "Euro Maker",
+   "region": "GB",
+   "state": "rated",
+   "pick": "Euro Maker",
+   "chance": 11.9,
+   "finish": "1st",
+   "hit": true,
+   "placed": true,
+   "missing": [],
+   "place_places": 4
+  }
+ ]
+}

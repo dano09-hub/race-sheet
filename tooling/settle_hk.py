@@ -227,23 +227,55 @@ def attach(cards, date_iso):
 
 
 def _day_results(iso, rows):
-    """One day's Hong Kong ledger, in the same table shape as the UK one."""
+    """One day's Hong Kong ledger, in the same table shape as the UK one.
+
+    Where data/results_rated has the day, the pick shown is the six-input
+    model's re-score of the archived card and a race with a gap is marked Not
+    rated. The stored pre-race pick is never rewritten.
+    """
+    rated = refresh._rated_day(iso)
     rows = sorted(rows, key=lambda r: (r.get("time", ""), r.get("race_no") or 0))
-    judged = [r for r in rows if r.get("pick")]
-    wins = sum(1 for r in judged if r.get("hit"))
+    picked, wins, rated_n = 0, 0, 0
     trs = []
     for r in rows:
         places = " &middot; ".join(html.escape(str(p)) for p in r.get("places") or [])
-        pick = r.get("pick") or ""
-        finish = r.get("pick_finish") or ""
-        if pick:
-            cell = ('<td class="pick %s">%s %s%s</td>'
-                    % ("hit" if r.get("hit") else "miss",
-                       "\u2713" if r.get("hit") else "\u2717",
-                       html.escape(pick),
-                       (" (%s)" % html.escape(finish)) if finish else ""))
+        got = refresh._rated_for(rated, r) if rated else None
+        if got is not None:
+            if got.get("state") == "rated":
+                rated_n += 1
+                pick = got.get("pick") or ""
+                finish = got.get("finish") or ""
+                hit = bool(got.get("hit"))
+                picked += 1
+                wins += 1 if hit else 0
+                cell = ('<td class="pick %s">%s %s%s</td>'
+                        % ("hit" if hit else "miss", "\u2713" if hit else "\u2717",
+                           html.escape(pick),
+                           (" (%s)" % html.escape(finish)) if finish else ""))
+            elif got.get("state") == "no-card":
+                cell = '<td class="pick none">card not kept</td>'
+            else:
+                rated_n += 1
+                why = refresh._missing_text(got.get("missing"))
+                cell = ('<td class="pick none">not rated'
+                        + (' <span class="pickchance" title="%s">%s</span>'
+                           % (html.escape(why), html.escape(why.split(";")[0])) if why else "")
+                        + '</td>')
+        elif rated:
+            cell = '<td class="pick none">not re-scored</td>'
         else:
-            cell = '<td class="pick none">card not kept</td>'
+            pick = r.get("pick") or ""
+            finish = r.get("pick_finish") or ""
+            if pick:
+                picked += 1
+                wins += 1 if r.get("hit") else 0
+                cell = ('<td class="pick %s">%s %s%s</td>'
+                        % ("hit" if r.get("hit") else "miss",
+                           "\u2713" if r.get("hit") else "\u2717",
+                           html.escape(pick),
+                           (" (%s)" % html.escape(finish)) if finish else ""))
+            else:
+                cell = '<td class="pick none">card not kept</td>'
         trs.append(
             '<tr><td><span class="rtime">%s</span></td><td><b>%s</b></td>'
             '<td>%s</td><td>%s</td><td class="muted">%s</td>%s</tr>'
@@ -253,14 +285,28 @@ def _day_results(iso, rows):
                html.escape(str(r.get("winner") or "")), places, cell))
     label = dt.datetime.strptime(iso, "%Y-%m-%d").strftime("%-d %B %Y")
     noun = "race" if len(rows) == 1 else "races"
+    scored_bit = ("<b>%d of %d</b> races with an archived card %s all six inputs; "
+                  "the rest are marked Not rated. "
+                  % (picked, rated_n, "carries" if picked == 1 else "carry")
+                  if rated and rated_n else "")
+    win_bit = ("<b>%d of %d</b> %s won. "
+               % (wins, picked, "rated pick" if picked == 1 else "rated picks")
+               if picked else "")
+    if rated and not rated_n:
+        note = (" No archived card survives for this day, so no pick is shown; "
+                "the pre-race pick on record stays in data/results_hk.")
+    else:
+        note = (" Picks are re-scored from the archived card with the six-input model; "
+                "the pre-race pick on record stays in data/results_hk." if rated else "")
     return (
         '<h3>Settled &mdash; %s</h3>\n'
-        '<p class="method">%d Hong Kong %s settled. <b>%d of %d</b> model picks '
-        'won. Winner and the first three home, with the off time in UTC.</p>\n'
+        '<p class="method">%d Hong Kong %s settled. %s%s'
+        'Winner and the first three home, with the off time in UTC.%s</p>\n'
         '<div class="scroll"><table class="ledger"><thead><tr><th>Off (UTC)</th>'
         '<th>Course</th><th>Race</th><th>Winner</th><th>First three</th>'
-        '<th>Our pick</th></tr></thead><tbody>%s</tbody></table></div>\n'
-        % (label, len(rows), noun, wins, len(judged), "".join(trs)))
+        '<th>%s</th></tr></thead><tbody>%s</tbody></table></div>\n'
+        % (label, len(rows), noun, scored_bit, win_bit, note,
+           "Rated pick" if rated else "Our pick", "".join(trs)))
 
 
 def _utcnow():

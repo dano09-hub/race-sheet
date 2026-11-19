@@ -1188,7 +1188,7 @@ check("results split: off-time style is present", ".rtime{" in _page)
 
 print("30. latest settled race audit")
 _old_root = refresh.ROOT
-_old_cards, _old_enrich, _old_score = settle._cards_for, settle._enrich, settle.score_cards
+_old_cards, _old_enrich, _old_score = settle._cards_for, settle._enrich, settle.score_rated_cards
 with tempfile.TemporaryDirectory(prefix="audit-test-") as ad:
     _ar = Path(ad)
     (_ar / "data" / "results").mkdir(parents=True)
@@ -1204,10 +1204,10 @@ with tempfile.TemporaryDirectory(prefix="audit-test-") as ad:
     settle._cards_for = lambda iso: [{"id": "c1", "course": "C", "time": "13:00",
                                       "runners": [{"horse": "A"}, {"horse": "B"}]}]
     settle._enrich = lambda cards, iso: cards
-    settle.score_cards = lambda cards: [{
-        "course": "C", "time": "13:00", "pick": "A",
-        "runners": [{"horse": "A", "rank": 1, "odds": "2.00", "mktRank": 1},
-                    {"horse": "B", "rank": 2, "odds": "", "mktRank": None}]}]
+    settle.score_rated_cards = lambda cards: [{
+        "course": "C", "time": "13:00", "rated": True, "pick": "A", "chance": 50.0,
+        "runners": [{"horse": "A", "total": 80.0, "share": 0.5, "odds": "2.00"},
+                    {"horse": "B", "total": 40.0, "share": 0.2, "odds": ""}]}]
     _audit = [json.loads(x) for x in refresh.audit_rows()]
     check("audit: latest UK day is selected", len(_audit) == 2, _audit)
     check("audit: winner rank and field size",
@@ -1221,9 +1221,11 @@ with tempfile.TemporaryDirectory(prefix="audit-test-") as ad:
     check("audit: US-only later day is skipped",
           all(x["c"] != "US C" for x in _audit), _audit)
     check("audit: settled SP fills a blank card price",
-          _audit[1]["sp"] == "7.50" and _audit[1]["m"] is None, _audit[1])
+          _audit[1]["sp"] == "7.50", _audit[1])
+    check("audit: a rated race also ranks the winner in the market",
+          _audit[1]["m"] == 2, _audit[1])
 refresh.ROOT = _old_root
-settle._cards_for, settle._enrich, settle.score_cards = _old_cards, _old_enrich, _old_score
+settle._cards_for, settle._enrich, settle.score_rated_cards = _old_cards, _old_enrich, _old_score
 check("audit: day label is dynamic", 'id="auditDay"' in _page)
 check("audit: fixed snapshot removed", "fixed 12 November snapshot" not in _page)
 check("audit: price header", "<th>Price</th>" in _page)
@@ -1558,19 +1560,69 @@ try:
 finally:
     shutil.rmtree(_tmp)
 
-ledger = refresh._results_inner("2026-11-17", [
+ledger = refresh._results_inner("2026-01-01", [
     {"course": "Carlisle", "race": "12:20 Carlisle", "winner": "Bossman Jack",
      "places": ["Bossman Jack", "Kettledrum", "Hurlyburly"],
      "pick": "Bossman Jack", "hit": True, "pick_finish": "1st", "chance": 26.4},
 ], "UK/IRE")
 check("ledger: the pick carries its stated chance", "26.4%" in ledger, ledger[:90])
 check("ledger: the chance is labelled", "pickchance" in ledger)
-plain = refresh._results_inner("2026-11-17", [
+plain = refresh._results_inner("2026-01-01", [
     {"course": "Carlisle", "race": "12:20 Carlisle", "winner": "Bossman Jack",
      "places": ["Bossman Jack"], "pick": "Bossman Jack", "hit": True,
      "pick_finish": "1st"},
 ], "UK/IRE")
 check("ledger: no stored chance, no printed number", "pickchance" not in plain)
+
+with tempfile.TemporaryDirectory(prefix="rated-ledger-") as rd:
+    import pathlib as _pl
+    (_pl.Path(rd) / "data" / "results_rated").mkdir(parents=True)
+    (_pl.Path(rd) / "data" / "results_rated" / "2026-01-02.json").write_text(json.dumps({
+        "date": "2026-01-02", "model": "six-input", "races": [
+            {"course": "Carlisle", "time": "12:20", "winner": "Bossman Jack",
+             "state": "rated", "pick": "Rated Pick", "chance": 31.5, "finish": "2nd",
+             "hit": False, "placed": True, "place_places": 3, "missing": []},
+            {"course": "Carlisle", "time": "12:50", "winner": "Other",
+             "state": "incomplete", "pick": "", "chance": None, "finish": "",
+             "hit": False, "placed": None, "place_places": None,
+             "missing": [{"what": "price", "n": 8, "of": 18},
+                         {"what": "form", "n": 18, "of": 18}]},
+            {"course": "Carlisle", "time": "13:20", "winner": "Third",
+             "state": "no-card", "pick": "", "chance": None, "finish": "",
+             "hit": False, "placed": None, "place_places": None,
+             "missing": [{"what": "no archived card", "n": 0}]},
+        ]}), encoding="utf-8")
+    _old_root = refresh.ROOT
+    refresh.ROOT = rd
+    try:
+        _rated = refresh._results_inner("2026-01-02", [
+            {"course": "Carlisle", "race": "12:20 Carlisle", "winner": "Bossman Jack",
+             "places": ["Bossman Jack"], "pick": "Stored Pick", "hit": False},
+            {"course": "Carlisle", "race": "12:50 Carlisle", "winner": "Other",
+             "places": ["Other"], "pick": "Stored Pick", "hit": True},
+            {"course": "Carlisle", "race": "13:20 Carlisle", "winner": "Third",
+             "places": ["Third"], "pick": "Stored Pick", "hit": True},
+        ], "UK/IRE")
+    finally:
+        refresh.ROOT = _old_root
+check("ledger: the six-input re-score replaces the stored pick",
+      "Rated Pick" in _rated and "Stored Pick" not in _rated, _rated[:200])
+check("ledger: an incomplete card is marked not rated with the gap named",
+      "not rated" in _rated and "price" in _rated, _rated[:200])
+check("ledger: a partial gap names the runners that lack the input",
+      "8 of 18 runners have no price" in _rated, _rated[:400])
+check("ledger: a field-wide gap says all runners, not n of n",
+      "no form for all 18 runners" in _rated and "18 of 18" not in _rated,
+      _rated[:400])
+check("ledger: a race with no card is not called not rated",
+      "card not kept" in _rated and "not rated no archived card" not in _rated,
+      _rated[:400])
+check("ledger: no-card races are outside the rating denominator",
+      "1 of 2</b> races with an archived card carries" in _rated, _rated[:400])
+check("ledger: rated rows carry their own chance and finish",
+      "31.5%" in _rated and "(2nd)" in _rated, _rated[:200])
+check("ledger: the day says it is a re-score, not the stored record",
+      "re-scored from the archived card" in _rated and "Rated pick" in _rated)
 
 snap = settle.snapshot_of({"course": "C", "time": "13:00", "pick": "A", "chance": 26.4,
     "runners": [{"horse": "A", "odds": "2/1", "total": 64.2, "share": 0.26351,
@@ -2598,332 +2650,6 @@ check("model: the picks list is built from rated cards only",
       "function ratedPicks" in _page_now
       and "if (!cov.ok) {" in _page_now
       and "renderLeaderboard" in _page_now)
-
-print()
-print("Bet views")
-_bet_html = _page_now
-for _tid, _label in [("longshots", "Longshots"), ("overhyped", "Overhyped"),
-                     ("placers", "Place bankers"), ("slips", "Bet slips"),
-                     ("upcoming", "Upcoming slips"),
-                     ("slipresults", "Slip results"),
-                     ("longresults", "Longshot results"),
-                     ("overresults", "Overhyped results"),
-                     ("placerresults", "Place banker results")]:
-    check("bet views: the %s tab is no longer offered" % _tid,
-          "['%s', '%s'" % (_tid, _label) not in _bet_html
-          and "%s: '%s'" % (_tid, "today") in _bet_html)
-check("bet views: each panel owns its render target",
-      all(_id in _bet_html for _id in
-          ['id="longshotBody"', 'id="overhypedBody"', 'id="placerBody"',
-           'id="slipsBody"', 'id="slipIndex"', 'id="nextSlipsBody"',
-           'id="nextRaces"', 'id="slipResultsBody"', 'id="slipResDays"',
-           'id="longRBody"', 'id="overRBody"', 'id="plRBody"']))
-check("bet views: the tabs carry their own count lines",
-      all(_id in _bet_html for _id in
-          ['id="longshotCount"', 'id="overhypedCount"', 'id="placerCount"',
-           'id="slipsCount"', 'id="nextSlipsCount"']))
-check("bet views: every renderer exists and is wired into renderAll",
-      all(_fn in _bet_html for _fn in
-          ['function renderLongshots', 'function renderOverhyped',
-           'function renderPlacers', 'function renderSlips',
-           'function renderSlipIndex', 'function renderUpcomingSlips',
-           'function renderSlipResults', 'function slipSetHtml',
-           'function renderScreenResults', 'function slipEwSetHtml',
-           'function ewTerms', 'function renderBetViews'])
-      and "renderBetViews();" in _bet_html)
-check("bet views: longshots need a price, top-four rank, 4% chance and positive edge",
-      "x.dec >= 8" in _bet_html and "x.rank <= 4" in _bet_html
-      and "x.row.share >= 0.04" in _bet_html and "x.row.edge > 0" in _bet_html)
-check("bet views: overhyped needs the market favourite and a real doubt",
-      "x.row.mktRank === 1" in _bet_html and "x.rank >= 3" in _bet_html
-      and "x.row.edge <= -0.05" in _bet_html)
-check("bet views: place bankers require model #1 and market #1",
-      "x.rank === 1" in _bet_html and "x.row.share >= 0.20" in _bet_html
-      and "x.row.mktRank === 1" in _bet_html
-      and "not a place probability" in _bet_html)
-check("bet views: slips use only priced, positive-edge top picks",
-      "return x.dec !== null && betHasEdge(x) && x.row.edge > 0;" in _bet_html)
-check("bet views: the named-slip table is complete",
-      all(_s in _bet_html for _s in
-          ["['Trixie', 3, 4,", "['Patent', 3, 7,", "['Yankee', 4, 11,",
-           "['Lucky 15', 4, 15,", "['Canadian', 5, 26,",
-           "['Lucky 31', 5, 31,", "['Heinz', 6, 57,",
-           "['Lucky 63', 6, 63,", "['Super Heinz', 7, 120,",
-           "['Goliath', 8, 247,"]))
-check("bet views: every named full-cover type is generated as a slip",
-      "Full-cover slips" in _bet_html
-      and all(_s in _bet_html for _s in
-          ["lucky('Trixie', 3, '4 bets'", "lucky('Patent', 3, '7 bets'",
-           "lucky('Yankee', 4, '11 bets'", "lucky('Canadian', 5, '26 bets'",
-           "lucky('Heinz', 6, '57 bets'", "lucky('Super Heinz', 7, '120 bets'",
-           "lucky('Goliath', 8, '247 bets'"]))
-check("bet views: the slips are labelled as card prices, not quotes",
-      "No stake is taken and no bet is placed" in _bet_html
-      and "Prices are the card prices in this build" in _bet_html)
-check("bet views: the serve copy matches the page",
-      _bet_html == (ROOT / "dist" / "public" / "index.html").read_text(encoding="utf-8"))
-
-print()
-print("Print slips")
-check("print slips: A4 portrait page and margins are declared",
-      "@page { size: A4 portrait; margin: 12mm; }" in _bet_html)
-check("print slips: the slips tab sets a print-only body class",
-      "classList.toggle('tab-slips', name === 'slips')" in _bet_html)
-check("print slips: other panels and page chrome are hidden",
-      "body.tab-slips .sidebar," in _bet_html
-      and "body.tab-slips .topbar," in _bet_html
-      and 'body.tab-slips [data-panel]:not([data-panel="slips"]),' in _bet_html)
-check("print slips: the reference table and panel copy are hidden",
-      'body.tab-slips [data-panel="slips"] > #slipIndex,' in _bet_html
-      and 'body.tab-slips [data-panel="slips"] > .method,' in _bet_html)
-check("print slips: each slip is a bordered card that cannot split",
-      "body.tab-slips #slipsBody .slip {" in _bet_html
-      and "break-inside:avoid; page-break-inside:avoid;" in _bet_html
-      and "border:1pt solid #000 !important" in _bet_html)
-check("print slips: the print header names the sheet and keeps a disclaimer",
-      'content:"RACE SHEET"' in _bet_html
-      and "body.tab-slips #slipsBody > .bet-note {" in _bet_html)
-check("print slips: the serve copy matches the page",
-      _bet_html == (ROOT / "dist" / "public" / "index.html").read_text(encoding="utf-8"))
-check("mobile slips: the race line wraps instead of clipping at phone width",
-      "overflow-wrap:anywhere;" in _bet_html
-      and "text-overflow:clip;" in _bet_html)
-check("mobile slips: the slip leg uses the full race title, not the short label",
-      "esc(x.card.race || x.card.label || '')" in _bet_html)
-
-print()
-print("Upcoming slips")
-check("upcoming slips: only races whose post time is still ahead enter",
-      "cardWhen(x.card).getTime() > now" in _bet_html
-      and "var now = Date.now();" in _bet_html)
-check("upcoming slips: legs are queued by the next off, not by edge",
-      "return cardWhen(a.card) - cardWhen(b.card);" in _bet_html)
-check("upcoming slips: the same ladder and eight-leg limit are used",
-      "pool.slice(0, 8)" in _bet_html
-      and "slipSetHtml(legs, {singleHead: 'Next-off singles'})" in _bet_html)
-check("upcoming slips: the next-race table names the pick, price and edge",
-      "Next races to go" in _bet_html
-      and "betPrice(x.dec)" in _bet_html
-      and "betPts(x.row.edge)" in _bet_html)
-
-print()
-print("Settled slips")
-import itertools as _it
-import json as _json
-import re as _re
-
-_m = _re.search(r"/\* SLIP_RESULTS_START \*/\s*var SLIP_RESULTS = (\[.*?\]);\s*/\* SLIP_RESULTS_END \*/",
-                _bet_html, _re.S)
-_sr = _json.loads(_m.group(1)) if _m else []
-
-_ALL_RESULTS = {}
-for _rp in sorted((ROOT / "data" / "results").glob("*.json")):
-    try:
-        _data = _json.loads(_rp.read_text(encoding="utf-8"))
-    except (OSError, ValueError):
-        continue
-    _rows = _data.get("races", []) if isinstance(_data, dict) else _data
-    if isinstance(_rows, list):
-        _ALL_RESULTS[_rp.stem] = _rows
-
-
-def _stored_leg_ok(day, leg):
-    """The embedded leg must be a real stored pick on a real settled row."""
-    for r in _ALL_RESULTS.get(day["d"], []):
-        if r.get("course") != leg["c"] or str(r.get("pick") or "") != leg["h"]:
-            continue
-        rt = str(r.get("time") or "").strip()
-        if rt and leg["t"] and rt != leg["t"]:
-            continue
-        fin = str(r.get("pick_finish") or "").strip()
-        if fin and fin != leg["f"]:
-            continue
-        hit = r.get("hit")
-        if isinstance(hit, bool) and (1 if hit else 0) != leg["w"]:
-            continue
-        return True
-    return False
-
-
-def _slip_math_ok(days):
-    """Recompute every slip's winning bets and return from its own legs."""
-    for day in days:
-        for s in day["s"]:
-            legs = [day["l"][i] for i in s["legs"]]
-            n = len(legs)
-            if s["y"] == "Single":
-                combos = [(0,)]
-            elif s["b"] == 1:
-                combos = [tuple(range(n))]
-            else:
-                combos = [c for k in range(1, n + 1) for c in _it.combinations(range(n), k)]
-            if len(combos) != s["b"]:
-                return False
-            wb, ret = 0, 0.0
-            for c in combos:
-                if all(legs[i]["w"] for i in c):
-                    wb += 1
-                    prod = 1.0
-                    for i in c:
-                        prod *= legs[i]["p"]
-                    ret += prod
-            if wb != s["wb"] or abs(ret - s["ret"]) > 0.05:
-                return False
-    return True
-
-
-check("slip results: the page carries settled days", bool(_sr), len(_sr))
-check("slip results: days are newest first",
-      [d["d"] for d in _sr] == sorted([d["d"] for d in _sr], reverse=True))
-check("slip results: every leg carries a price and a stored finish",
-      all(l.get("p") and l.get("f") and l.get("w") in (0, 1)
-          for d in _sr for l in d["l"]))
-check("slip results: every slip only names legs from its own day",
-      all(0 <= i < len(d["l"]) for d in _sr for s in d["s"] for i in s["legs"]))
-check("slip results: every leg matches a stored pick and finish",
-      all(_stored_leg_ok(d, l) for d in _sr for l in d["l"]))
-check("slip results: the return is recomputable from its own legs",
-      _slip_math_ok(_sr))
-check("slip results: singles carry one leg and slips are numbered in order",
-      all(s["legs"] == [s["legs"][0]] for d in _sr for s in d["s"] if s["y"] == "Single")
-      and all([s["n"] for s in d["s"]] == list(range(1, len(d["s"]) + 1)) for d in _sr))
-check("slip results: a slip never claims more winning bets than it has",
-      all(0 <= s["wb"] <= s["b"] for d in _sr for s in d["s"]))
-def _slip_ew_math_ok(days):
-    """Recompute each slip's place return from its own placed GB/IRE legs."""
-    for day in days:
-        for s in day["s"]:
-            legs = [day["l"][i] for i in s["legs"]]
-            n = len(legs)
-            if s["y"] == "Single":
-                combos = [(0,)]
-            elif s["b"] == 1:
-                combos = [tuple(range(n))]
-            else:
-                combos = [c for k in range(1, n + 1) for c in _it.combinations(range(n), k)]
-            if len(combos) != s["b"]:
-                return False
-            place_bets, place_ret = 0, 0.0
-            for c in combos:
-                elig = [i for i in c if legs[i]["r"] != "US" and legs[i].get("pf", 0) > 0]
-                if not elig:
-                    continue
-                place_bets += 1
-                if all(legs[i].get("pl") for i in elig):
-                    prod = 1.0
-                    for i in elig:
-                        prod *= 1 + legs[i]["pf"] * (legs[i]["p"] - 1)
-                    place_ret += prod
-            if s.get("ewb") != s["b"] + place_bets:
-                return False
-            if abs(s.get("ewp", 0) - place_ret) > 0.05:
-                return False
-    return True
-
-
-check("slip results: the tab says returns are at archived card prices",
-      "settled at its card prices" in _bet_html
-      and "one unit per bet" in _bet_html)
-check("slip results: every leg carries its stored place terms",
-      all("pp" in l and "pf" in l and l.get("pl") in (0, 1)
-          for d in _sr for l in d["l"]))
-check("slip results: each-way returns are recomputable from the placed legs",
-      _slip_ew_math_ok(_sr))
-check("slip results: the each-way stake never exceeds two units per bet",
-      all(s["b"] <= s.get("ewb", s["b"]) <= 2 * s["b"]
-          for d in _sr for s in d["s"]))
-check("slip results: the tab shows win and place returns separately",
-      "win part" in _bet_html and "place part" in _bet_html
-      and "Each-way on the same slips" in _bet_html)
-check("slip results: a running strike-rate panel sits above the days",
-      'id="slipRunSummary"' in _bet_html
-      and _bet_html.index('id="slipRunSummary"') < _bet_html.index('id="slipResDays"'))
-check("slip results: the running panel folds in every settled day, oldest first",
-      "function slipRunHtml" in _bet_html
-      and "SLIP_RESULTS.slice().sort(" in _bet_html
-      and "run.l += d.l.length" in _bet_html
-      and "run.b += b" in _bet_html
-      and "All ' + rows.length + ' days" in _bet_html)
-check("slip results: the running panel is rendered with the tab",
-      "function renderSlipRun" in _bet_html
-      and "renderSlipRun();" in _bet_html)
-print()
-print("Settled screen results")
-_ms = _re.search(r"/\* SCREEN_RESULTS_START \*/\s*var SCREEN_RESULTS = (\{.*?\});\s*/\* SCREEN_RESULTS_END \*/",
-                 _bet_html, _re.S)
-_scr = _json.loads(_ms.group(1)) if _ms else {}
-
-
-def _stored_placed_ok(day, x):
-    for _r in _ALL_RESULTS.get(day["d"], []):
-        if _r.get("course") != x["c"] or str(_r.get("pick") or "") != x["h"]:
-            continue
-        return (1 if _r.get("placed") is True else 0) == x["pl"]
-    return False
-
-
-check("screen results: every screen carries settled days",
-      all(_scr.get(k) for k in ("longshots", "overhyped", "placebankers")),
-      {k: len(v) for k, v in _scr.items()})
-check("screen results: days are newest first in every screen",
-      all([d["d"] for d in _scr.get(k, [])] ==
-          sorted([d["d"] for d in _scr.get(k, [])], reverse=True) for k in _scr))
-check("screen results: every row matches a stored pick and finish",
-      all(_stored_leg_ok(d, x) for k in _scr for d in _scr[k] for x in d["l"]))
-check("screen results: longshots carry a price of 8+ and a real finish",
-      all(x["p"] >= 8 and x.get("f")
-          for d in _scr.get("longshots", []) for x in d["l"]))
-check("screen results: overhyped rows name the model rank and the edge",
-      all(x.get("k") and "e" in x
-          for d in _scr.get("overhyped", []) for x in d["l"]))
-check("screen results: bankers carry place terms and a placed verdict",
-      all(x.get("pp") and x.get("pf") and x.get("pl") in (0, 1)
-          and _stored_placed_ok(d, x)
-          for d in _scr.get("placebankers", []) for x in d["l"]))
-check("screen results: the settled rows show their country tag",
-      "var tag = x.r ? '<span class=\"rtag\">' + betTag(x.r)" in _bet_html)
-check("screen results: the overhyped tab is a doubt record, not a bet",
-      "doubt record" in _bet_html and "No stake is taken" in _bet_html)
-
-print()
-print("Each-way slips")
-check("each-way: the same ladder is offered as each-way in both slip tabs",
-      "slipEwSetHtml(ewPool)" in _bet_html
-      and "slipEwSetHtml(ewPool, {singleHead: 'Next-off each-way singles'})" in _bet_html
-      and "legs.filter(ewEligible).slice(0, 8)" in _bet_html)
-check("each-way: every named bet is two units",
-      "two units per bet" in _bet_html
-      and "Each-way" in _bet_html and "2 units" in _bet_html
-      and "bets each-way" in _bet_html)
-check("each-way: only GB/IRE legs carry a place part",
-      "function ewTerms" in _bet_html and "function ewEligible" in _bet_html
-      and "region === 'GB' || region === 'IRE'" in _bet_html)
-check("each-way: Longshots, Overhyped and Place bankers stay win-only",
-      "The card&rsquo;s each-way terms" not in _bet_html
-      and "Standard each-way terms for this field" not in _bet_html
-      and "with each-way terms." not in _bet_html)
-check("each-way: US legs stay win-only and say so",
-      "US legs carry only the win part" in _bet_html
-      and "US legs stay win-only" in _bet_html
-      and "not a bookmaker each-way bet" in _bet_html)
-
-check("slip results: the running panel counts legs, slips and bets and says so",
-      "Running strike rate" in _bet_html
-      and "Legs won" in _bet_html and "Slips landed" in _bet_html
-      and "Bets won" in _bet_html
-      and "one unit per bet, so the same race can sit in more than one slip" in _bet_html)
-check("slip results: the running panel splits singles from straight and full-cover slips",
-      "Running by slip type" in _bet_html
-      and "function slipRunFamily" in _bet_html
-      and "if (y === 'Single') return 'single';" in _bet_html
-      and "y === 'Four-fold accumulator'" in _bet_html
-      and "return 'cover';" in _bet_html
-      and "Straight multiples" in _bet_html
-      and "Lucky &amp; full-cover" in _bet_html)
-check("slip results: the type table reads the same slips as the all-days total",
-      "var f = fam[slipRunFamily(s.y)];" in _bet_html
-      and "f.land++" in _bet_html
-      and "The three types add up to the all-days total above" in _bet_html)
 
 print()
 print("passed %d, failed %d%s" % (

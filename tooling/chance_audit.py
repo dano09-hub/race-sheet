@@ -42,8 +42,31 @@ def field_summary(results_dir=None, minimum=50):
     return field_audit.audit(rows)
 
 
+def _summary(rows, target=EARLY):
+    """The stated chance against the pick's record over a set of settled rows."""
+    n = len(rows)
+    if not n:
+        return {"races": 0, "target": target}
+    wins = sum(1 for row in rows if row["hit"])
+    stated = sum(row["chance"] for row in rows) / n
+    lo, hi = wilson(wins, n)
+    return {
+        "races": n, "wins": wins, "rate": wins / n, "stated": stated,
+        "lo": lo, "hi": hi, "half": (hi - lo) / 2,
+        "first": rows[0]["date"], "last": rows[-1]["date"],
+        "inside": lo <= stated <= hi,
+        "more_early": max(0, EARLY - n),
+        "more_decisive": max(0, DECISIVE - n),
+        "target": EARLY,
+    }
+
+
 def collect(results_dir=None):
-    """Every settled GB/IRE race that stored the chance its pick was shown at."""
+    """Every settled GB/IRE race that stored the chance its pick was shown at.
+
+    This is the twelve-factor record kept in data/results; collect_rated() reads
+    the six-input re-score instead.
+    """
     root = results_dir or os.path.join(ROOT, "data", "results")
     rows = []
     for path in sorted(glob.glob(os.path.join(root, "*.json"))):
@@ -61,22 +84,32 @@ def collect(results_dir=None):
             rows.append({"date": os.path.basename(path)[:-5],
                          "chance": float(row["chance"]),
                          "hit": bool(row.get("hit"))})
-    n = len(rows)
-    if not n:
-        return {"races": 0, "target": EARLY}
-    wins = sum(1 for row in rows if row["hit"])
-    stated = sum(row["chance"] for row in rows) / n
-    lo, hi = wilson(wins, n)
-    return {
-        "races": n, "wins": wins, "rate": wins / n, "stated": stated,
-        "lo": lo, "hi": hi, "half": (hi - lo) / 2,
-        "first": rows[0]["date"], "last": rows[-1]["date"],
-        "inside": lo <= stated <= hi,
-        "more_early": max(0, EARLY - n),
-        "more_decisive": max(0, DECISIVE - n),
-        "target": EARLY,
-        "field": field_summary(results_dir),
-    }
+    out = _summary(rows)
+    out["field"] = field_summary(results_dir)
+    return out
+
+
+def collect_rated(results_dir=None):
+    """The same audit over the six-input re-score in data/results_rated."""
+    root = results_dir or os.path.join(ROOT, "data", "results_rated")
+    rows = []
+    for path in sorted(glob.glob(os.path.join(root, "*.json"))):
+        try:
+            with open(path, encoding="utf-8") as f:
+                data = json.load(f)
+        except (OSError, ValueError):
+            continue
+        for row in data.get("races") or []:
+            if row.get("state") != "rated":
+                continue
+            if not row.get("pick") or row.get("chance") is None:
+                continue
+            rows.append({"date": os.path.basename(path)[:-5],
+                         "chance": float(row["chance"]),
+                         "hit": bool(row.get("hit"))})
+    out = _summary(rows)
+    out["rated"] = True
+    return out
 
 
 def verdict(a):

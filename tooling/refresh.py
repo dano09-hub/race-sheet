@@ -536,12 +536,73 @@ def au_day():
         return []
 
 
+def _rated_day(iso):
+    """The six-input re-score for one settled day, or {} when it has none.
+
+    data/results_rated is a derived view: it never replaces the pre-race pick
+    stored in data/results, it only says what the strict model would have picked
+    from the archived card and whether that race could be rated at all.
+    """
+    path = os.path.join(ROOT, "data", "results_rated", iso + ".json")
+    if not os.path.exists(path):
+        return {}
+    try:
+        with open(path, encoding="utf-8") as f:
+            data = json.load(f)
+    except (OSError, ValueError):
+        return {}
+    return data.get("races") or []
+
+
+def _rated_for(rated, row):
+    """The re-score row that belongs to a settled result, or None."""
+    course = _result_name(row.get("course"))
+    winner = _result_name(row.get("winner"))
+    time = str(row.get("time") or "")[:5]
+    for x in rated:
+        if _result_name(x.get("course")) != course:
+            continue
+        if time and str(x.get("time") or "")[:5] != time:
+            continue
+        if _result_name(x.get("winner")) == winner:
+            return x
+    return None
+
+
+def _missing_text(missing):
+    """Name the gap the way the Today tab does: some runners, or the whole field."""
+    parts = []
+    for m in missing or []:
+        what = m.get("what") or "an input"
+        n = m.get("n")
+        total = m.get("of")
+        if not n:
+            parts.append(what)
+        elif total and n >= total:
+            parts.append("no %s for all %d runners" % (what, total))
+        elif total:
+            parts.append("%d of %d runners %s no %s"
+                         % (n, total, "has" if n == 1 else "have", what))
+        else:
+            parts.append("%s (%d runners)" % (what, n))
+    return "; ".join(parts)
+
+
 def _results_inner(iso, rows, region):
-    """Build one day's ledger table for a single region group."""
+    """Build one day's ledger table for a single region group.
+
+    When data/results_rated has the day, the pick shown is the six-input
+    model's re-score of the archived card, and a race with a gap is marked
+    Not rated instead of falling back to the old twelve-factor pick. The stored
+    pre-race pick is left untouched in data/results.
+    """
     import html as _h
+    rated = _rated_day(iso)
     rows = sorted(rows, key=lambda r: (r["course"], r.get("time", ""), r.get("race", "")))
     hits_box, judged_box = [0], [0]
     placed_box, place_judged = [0], [0]
+    rated_box = [0]
+    nocards = 0
     trs = []
     for r in rows:
         places = " &middot; ".join(_h.escape(p) for p in r.get("places", []))
@@ -553,55 +614,119 @@ def _results_inner(iso, rows, region):
         time_html = ""
         if time_attr:
             time_html = ' <span class="rtime">%s</span>' % _h.escape(str(time_attr)[:5])
-        pk = r.get("pick", "")
-        if pk:
-            fin = r.get("pick_finish", "")
-            chance = r.get("chance")
-            chance_html = ""
-            if chance is not None and r.get("region") != "US":
-                chance_html = (' <span class="pickchance" title="Model win chance '
-                               'before the off">%.1f%%</span>' % float(chance))
+
+        got = _rated_for(rated, r)
+        if got is not None and got.get("state") == "rated":
+            rated_box[0] += 1
+            pk = got.get("pick") or ""
+            fin = got.get("finish") or ""
+            chance = got.get("chance")
+            chance_html = (" <span class=\"pickchance\" title=\"Six-input win chance "
+                           "on the re-score\">%.1f%%</span>" % float(chance)
+                           if chance is not None else "")
+            hit = bool(got.get("hit"))
             cell = '<td class="pick %s">%s%s%s%s</td>' % (
-                "hit" if r.get("hit") else "miss",
-                "\u2713 " if r.get("hit") else "\u2717 ", _h.escape(pk),
-                (" (%s)" % _h.escape(fin)) if fin else "", chance_html)
-            if r.get("hit"):
+                "hit" if hit else "miss", "\u2713 " if hit else "\u2717 ",
+                _h.escape(pk), (" (%s)" % _h.escape(fin)) if fin else "", chance_html)
+            if hit:
                 hits_box[0] += 1
             judged_box[0] += 1
-            place_places = r.get("place_places")
-            if place_places == 0:
+            terms = got.get("place_places")
+            if terms == 0 or terms is None:
                 place_cell = '<td class="placed winonly">Win only</td>'
-            elif r.get("placed") is True:
+            elif got.get("placed") is True:
                 place_cell = '<td class="placed yes">Yes</td>'
                 placed_box[0] += 1
                 place_judged[0] += 1
-            elif r.get("placed") is False:
+            elif got.get("placed") is False:
                 place_cell = '<td class="placed no">No</td>'
                 place_judged[0] += 1
             else:
                 place_cell = '<td class="placed unknown">&mdash;</td>'
-        else:
+        elif got is not None and got.get("state") == "no-card":
+            nocards += 1
             cell = '<td class="pick none">card not kept</td>'
             place_cell = '<td class="placed unknown">&mdash;</td>'
+        elif got is not None:
+            rated_box[0] += 1
+            why = _missing_text(got.get("missing"))
+            cell = ('<td class="pick none">not rated'
+                    + (' <span class="pickchance" title="%s">%s</span>'
+                       % (_h.escape(why), _h.escape(why.split(";")[0])) if why else "")
+                    + '</td>')
+            place_cell = '<td class="placed unknown">&mdash;</td>'
+        elif rated:
+            cell = '<td class="pick none">not re-scored</td>'
+            place_cell = '<td class="placed unknown">&mdash;</td>'
+        else:
+            pk = r.get("pick", "")
+            if pk:
+                fin = r.get("pick_finish", "")
+                chance = r.get("chance")
+                chance_html = ""
+                if chance is not None and r.get("region") != "US":
+                    chance_html = (' <span class="pickchance" title="Model win chance '
+                                   'before the off">%.1f%%</span>' % float(chance))
+                cell = '<td class="pick %s">%s%s%s%s</td>' % (
+                    "hit" if r.get("hit") else "miss",
+                    "\u2713 " if r.get("hit") else "\u2717 ", _h.escape(pk),
+                    (" (%s)" % _h.escape(fin)) if fin else "", chance_html)
+                if r.get("hit"):
+                    hits_box[0] += 1
+                judged_box[0] += 1
+                place_places = r.get("place_places")
+                if place_places == 0:
+                    place_cell = '<td class="placed winonly">Win only</td>'
+                elif r.get("placed") is True:
+                    place_cell = '<td class="placed yes">Yes</td>'
+                    placed_box[0] += 1
+                    place_judged[0] += 1
+                elif r.get("placed") is False:
+                    place_cell = '<td class="placed no">No</td>'
+                    place_judged[0] += 1
+                else:
+                    place_cell = '<td class="placed unknown">&mdash;</td>'
+            else:
+                cell = '<td class="pick none">card not kept</td>'
+                place_cell = '<td class="placed unknown">&mdash;</td>'
         trs.append('<tr data-course="%s" data-time="%s" data-winner="%s">'
                    '<td><b>%s</b>%s</td><td>%s</td><td>%s</td><td class="muted">%s</td>%s%s</tr>'
                    % (_h.escape(r["course"]), _h.escape(str(time_attr)), _h.escape(r["winner"]),
                       course_html, time_html, _h.escape(t[:44]) or "&mdash;",
                       _h.escape(r["winner"]), places, cell, place_cell))
     label = dt.datetime.strptime(iso, "%Y-%m-%d").strftime("%-d %B %Y")
-    top_bit = ("<b>%d of %d</b> winners were our top pick. " % (hits_box[0], judged_box[0])
+    pick_noun = "rated pick" if judged_box[0] == 1 else "rated picks"
+    place_noun = "rated pick" if place_judged[0] == 1 else "rated picks"
+    top_bit = ("<b>%d of %d</b> %s won. " % (hits_box[0], judged_box[0], pick_noun)
                if judged_box[0] else "")
-    place_bit = ("<b>%d of %d</b> picks placed. " % (placed_box[0], place_judged[0])
+    place_bit = ("<b>%d of %d</b> %s placed. "
+                 % (placed_box[0], place_judged[0], place_noun)
                  if place_judged[0] else "")
+    scored_bit = ("<b>%d of %d</b> races with an archived card %s all six inputs; "
+                  "the rest are marked Not rated. "
+                  % (judged_box[0], rated_box[0],
+                     "carries" if judged_box[0] == 1 else "carry")
+                  if rated and rated_box[0] else "")
+    if nocards:
+        scored_bit += ("<b>%d</b> %s no archived card and %s marked Card not kept. "
+                       % (nocards, "race has" if nocards == 1 else "races have",
+                          "is" if nocards == 1 else "are"))
+    if rated and not rated_box[0]:
+        note = (" No archived card survives for this day, so no pick is shown; "
+                "the pre-race pick on record stays in data/results.")
+    else:
+        note = (" Picks are re-scored from the archived card with the six-input model; "
+                "the pre-race pick on record stays in data/results." if rated else "")
     noun = "race" if len(rows) == 1 else "races"
     return (
         '<h3>Settled &mdash; %s</h3>\n'
-        '<p class="method">%d %s %s settled. %s%sWinner first, then the '
-        'first three home in finishing order. Off time is shown beside each course.</p>\n'
+        '<p class="method">%d %s %s settled. %s%s%sWinner first, then the '
+        'first three home in finishing order. Off time is shown beside each course.%s</p>\n'
         '<div class="scroll"><table class="ledger"><thead><tr><th>Course / off</th><th>Race</th>'
-        '<th>Winner</th><th>Places</th><th>Our pick</th><th>Placed?</th></tr></thead>'
+        '<th>Winner</th><th>Places</th><th>%s</th><th>Placed?</th></tr></thead>'
         '<tbody>%s</tbody></table></div>\n'
-        % (label, len(rows), region, noun, top_bit, place_bit, "".join(trs))
+        % (label, len(rows), region, noun, top_bit, place_bit, scored_bit, note,
+           "Rated pick" if rated else "Our pick", "".join(trs))
     )
 
 
@@ -784,19 +909,22 @@ def _audit_source():
 
 
 def audit_rows():
-    """The latest settled UK/IRE day, scored with the page's own model.
+    """The latest settled UK/IRE day, scored with the page's strict model.
 
     Returns a list of JSON object strings ready for replace_block("RESULTS").
-    The winner's rank, market rank and card price come from the archived card;
-    the pick, finish and fate are the pre-race values stored in data/results.
+    The winner's rank, market rank and card price come from the archived card,
+    and the pick and finish are the six-input re-score where data/results_rated
+    has the day. A race with a gap is carried as not rated rather than given
+    the old twelve-factor pick.
     """
     iso, rows = _audit_source()
     if not iso:
         return []
+    rated = _rated_day(iso)
     try:
         import settle
         cards = settle._enrich(settle._cards_for(iso), iso)
-        scored = settle.score_cards(cards)
+        scored = settle.score_rated_cards(cards)
     except Exception as e:
         print(f"  audit:       skipped ({e})")
         return []
@@ -814,8 +942,20 @@ def audit_rows():
         course = row.get("course", "")
         time = str(row.get("time") or "")[:5]
         winner = row.get("winner", "")
-        pick = row.get("pick", "")
-        finish = row.get("pick_finish", "")
+        got = _rated_for(rated, row) if rated else None
+        if got is not None:
+            state = got.get("state")
+            if state == "rated":
+                pick = got.get("pick", "")
+                finish = got.get("finish", "")
+            else:
+                pick = "card not kept" if state == "no-card" else "not rated"
+                finish = ""
+        elif rated:
+            pick, finish = "not re-scored", ""
+        else:
+            pick = row.get("pick", "")
+            finish = row.get("pick_finish", "")
         p = by_time.get((_result_name(course), time))
         if not p:
             for cand in by_course.get(_result_name(course), []):
@@ -825,20 +965,32 @@ def audit_rows():
                     break
 
         rank, field, market, price = None, 0, None, ""
-        if p:
+        if p and p.get("rated"):
             runners = p.get("runners") or []
             field = len(runners)
-            for x in runners:
+            for idx, x in enumerate(runners):
                 if _result_name(x.get("horse")) == _result_name(winner):
-                    rank = x.get("rank")
-                    market = x.get("mktRank")
+                    rank = idx + 1
                     price = x.get("odds") or ""
+                    share = x.get("share")
+                    if share is not None:
+                        market = 1 + sum(1 for y in runners
+                                         if (y.get("share") or 0) > share + 1e-9)
                     break
         if str(price) == "9999999":
             price = ""
         if not price:
             price = row.get("sp") or ""
-        if row.get("hit"):
+        if got is not None:
+            if got.get("state") != "rated":
+                verdict = "none"
+            elif got.get("hit"):
+                verdict = "hit"
+            elif got.get("placed") is True:
+                verdict = "near"
+            else:
+                verdict = "miss"
+        elif row.get("hit"):
             verdict = "hit"
         elif row.get("placed") is True:
             verdict = "near"
@@ -935,9 +1087,12 @@ def chance_block_html(a, iso=None):
     import html as _html
     esc = lambda s: _html.escape(str(s or ""))
     if not a or not a.get("races"):
-        inner = ('<h3>Model chance audit</h3><p class="k pending">'
+        empty = ('No settled race has a card complete on all six inputs yet.'
+                 if a and a.get("rated") else
                  'No settled race has a stored chance yet. From now on every '
-                 'settled pick records the chance it was shown at.</p>')
+                 'settled pick records the chance it was shown at.')
+        inner = ('<h3>Model chance audit</h3><p class="k pending">'
+                 + empty + '</p>')
     else:
         n = a["races"]
         if a["inside"]:
@@ -948,10 +1103,16 @@ def chance_block_html(a, iso=None):
         else:
             fit = ("The stated figure sits above the interval: the Model "
                    "percentage is reading high.")
-        inner = (f'<h3>Model chance audit &mdash; the Model percentage against the record</h3>'
-                 f'<p class="k">Across <b>{n}</b> settled GB/IRE races '
-                 f'({esc(a["first"])} to {esc(a["last"])}) the pick was shown at '
-                 f'<b>{a["stated"]:.1f}%</b> and won <b>{a["wins"]}</b> '
+        model = ("six-input re-score" if a.get("rated") else "twelve-factor record")
+        sample = ("settled races with a complete card" if a.get("rated")
+                  else "settled GB/IRE races")
+        lead = ("the re-scored picks carried" if a.get("rated")
+                else "the pick was shown at")
+        avg = " on average" if a.get("rated") else ""
+        inner = (f'<h3>Model chance audit &mdash; the {model} against the record</h3>'
+                 f'<p class="k">Across <b>{n}</b> {sample} '
+                 f'({esc(a["first"])} to {esc(a["last"])}) {lead} '
+                 f'<b>{a["stated"]:.1f}%</b>{avg} and won <b>{a["wins"]}</b> '
                  f'({a["rate"]*100:.1f}%, 95% CI {a["lo"]:.1f}-{a["hi"]:.1f}%, '
                  f'a half-width of {a["half"]:.1f} points). {fit}</p>')
         field = a.get("field")
@@ -1320,6 +1481,13 @@ def main():
             if foreign:
                 print(f"  results US:  {foreign} US rows kept from the earlier ledger")
             settle_day(yday)
+            # Re-score the settled day with the strict model, so the ledger's
+            # Rated pick column is current whenever results are refreshed.
+            try:
+                import rescore_results
+                rescore_results.main([yday])
+            except Exception as e:
+                print(f"  re-score:    skipped ({e})")
 
             # keep the with/without-rating A/B running: snapshot the day, then
             # fold it (and every earlier day) into the running tally
@@ -1492,7 +1660,7 @@ def main():
                   html, count=1, flags=re.S)
     try:
         import chance_audit
-        chance_result = chance_audit.collect()
+        chance_result = chance_audit.collect_rated()
     except Exception as e:
         print(f"  chance audit: skipped ({e})")
         chance_result = None
@@ -1548,14 +1716,6 @@ def main():
         html = france.replace_results(html, "CL")
     except Exception as e:
         print(f"  PMU blocks:  skipped ({e})")
-
-    # Settled slips are replayed from the archived pre-race cards, so a refresh
-    # that only settles results still leaves the Slip results tab current.
-    try:
-        import slip_results
-        html = slip_results.replace_block(html)
-    except Exception as e:
-        print(f"  slip results: block skipped ({e})")
 
     open(INDEX, "w", encoding="utf-8").write(html)
     os.makedirs(os.path.join(ROOT, "dist", "public"), exist_ok=True)

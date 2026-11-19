@@ -11,6 +11,7 @@ import json, os, subprocess, sys, tempfile
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 RUNNER = os.path.join(HERE, "score_cards.js")
+RUNNER_RATED = os.path.join(HERE, "score_rated.js")
 
 
 def _enrich(cards, date):
@@ -86,6 +87,23 @@ def score_cards(cards):
         dst = os.path.join(tmp, "picks.json")
         json.dump(cards, open(src, "w", encoding="utf-8"))
         subprocess.run(["node", RUNNER, src, dst, os.path.join(ROOT, "index.html")],
+                       check=True, cwd=ROOT, stdout=subprocess.DEVNULL)
+        return json.load(open(dst, encoding="utf-8"))
+
+
+def score_rated_cards(cards):
+    """Return the page's strict six-input scoring for each card, in order.
+
+    A card with any gap comes back rated=False with the missing inputs named;
+    it never receives an inferred pick.
+    """
+    if not cards:
+        return []
+    with tempfile.TemporaryDirectory() as tmp:
+        src = os.path.join(tmp, "cards.json")
+        dst = os.path.join(tmp, "rated.json")
+        json.dump(cards, open(src, "w", encoding="utf-8"))
+        subprocess.run(["node", RUNNER_RATED, src, dst, os.path.join(ROOT, "index.html")],
                        check=True, cwd=ROOT, stdout=subprocess.DEVNULL)
         return json.load(open(dst, encoding="utf-8"))
 

@@ -146,11 +146,13 @@ you are harvesting through a browser. Output matches the card schema in
   pages did not render in time and remain names-only.
 * **`scrape_punters.py` price guard**: the parser used to read the `$0` in the
   prize column as a price. It now ignores anything below $1.01.
-* **US cards use 3 of 12 factors** (price, speed figure, draw). The Overlay's
-  public feeds carry a form string, official rating and last-run date for almost
-  every US runner, so refresh archives them on the card as `form_live`,
-  `or_live` and `days_live`. Those keys are not runner keys in the page's
-  serialiser, so the published pick is unchanged. `tooling/us_form_day.py`
+* **US cards cannot pass the strict gate.** The feed files no weight at all, no
+  jockey or trainer record, and often no form string, official rating or
+  last-run date. The Overlay's public feeds carry the last three for almost
+  every US runner, and refresh archives them as `form_live`, `or_live` and
+  `days_live`, but they are not runner keys the page scores. A US race is
+  therefore marked **Not rated**, with the missing inputs named, rather than
+  scored on a subset. `tooling/us_form_day.py`
   scores a shadow arm with the form string in the form slot and
   `tooling/ab_tally.py` (snap dir `picks_ab_form`) judges it over time; the
   weights only move if that tally separates.
@@ -240,13 +242,14 @@ is the recommended first app.
 
 ## Training from the archive
 
-`tooling/export_training.py` scores every archived card with the page's own model
-(`tooling/score_cards.js`) and joins each runner to its settled result, writing one
-row per runner to `data/training/runners.csv`: the twelve 0-100 factor scores, the
+`tooling/export_training.py` scores every archived card with the twelve-factor
+scorer the page used before the strict-model change (`tooling/score_cards.js`) and
+joins each runner to its settled result, writing one row per runner to
+`data/training/runners.csv`: that old model's twelve 0-100 factor scores, the
 finishing position, the pre-race price and a winner label. The file is derived, so
 it is not committed; regenerate it after a refresh.
 
-`tooling/train_weights.py` fits the twelve weights and one scale by conditional
+`tooling/train_weights.py` fits the old twelve weights and one scale by conditional
 logit (one race is one choice), holds out the latest race days, and reports
 held-out log loss and top-1 against the live weights and the market. It writes
 nothing: no weight, pick or result is changed by training. With a few hundred
@@ -267,12 +270,14 @@ python3 tooling/train_weights.py --csv data/training/kaggle_runners.csv
 ```
 
 Two things in that source are not what a card would give the page. It carries no
-tipster counts, so Tips is the same for every runner and the page drops it; and
+tipster counts, so Tips is the same for every runner and the twelve-factor
+scorer drops it; and
 its RPR and Topspeed columns are the figures **awarded for the run**, not the
 pre-race ratings a card carries — the winner holds the top RPR in about seven
 races out of ten. The importer therefore leaves RPR and Topspeed out, and a fit
 on this file says nothing about the tips, rpr or speed weights: those stay at
-their live values while the other nine are fitted around them. The database also
+their historical twelve-factor values while the other nine are fitted around
+them. This training path predates the six-input model and is not the live page. The database also
 carries French, Hong Kong and American meetings, some written without a country
 suffix and some sharing a name with a British track, so home meetings are
 recognised from a whitelist and everything else is dropped and reported.
@@ -297,12 +302,12 @@ answer: live weights 1.8822 / 32.6%, fitted 1.8141 / 35.3%, market top-1 35.0%.
 Seven times the history buys nothing over the 2023+ run (1.8117 / 34.9%) — the
 fit is still market-led (18 to 43.8) and still only edges the favourite. The
 ceiling is the information a card supplies, not the sample size: this source
-cannot see the pre-race tips, RPR and Topspeed figures the page's cards carry,
-so those weights stay at their live values and the fit cannot learn what the
+cannot see the pre-race tips, RPR and Topspeed figures the old twelve-factor
+cards carried, so those weights stay at their historical values and the fit cannot learn what the
 market already knows. That is
 not a candidate for the page. The useful finding is the other way round: across
-the whole history the twelve fixed weights are already close to the best
-available, and the market is the ceiling.
+the whole history those twelve fixed weights were already close to the best
+available in that model, and the market is the ceiling.
 
 So the vector runs as a shadow instead. `tooling/market_arm_day.py` snapshots its
 pick for each day's GB/IRE cards — the page's own factor scores, simply
@@ -347,17 +352,20 @@ the pick reads 26.0%, at 0.0498 it reads 30.1%. 117 races cannot separate those
 scales, so the applied scale sits between the two at 0.04 and should be re-checked
 as the archive grows.
 
-That re-check is now automatic. Every settled pick stores the chance it was shown
-at (`chance` in `data/results/<date>.json`), and the Results tab carries a
-**Model chance audit** block: the average stated chance, the pick's actual win
-rate, and a Wilson interval around it. The block is staged rather than
-triumphant. At 350 races the interval is about +/-4.5 points, enough to catch a
-gross error but not to separate the 0.04 and 0.0498 scales, whose pick chances
-differ by about four points; at 1,600 races it narrows to about +/-2 points and
-the question can be settled. The block says which stage the sample is in, and
-whether the stated chance sits inside or outside the interval.
+That re-check now runs on the six-input re-score. `tooling/rescore_results.py`
+writes the rated pick and its chance to `data/results_rated/<date>.json`, and the
+Results tab's **Model chance audit** block reads it: the average stated chance
+of the rated picks, their actual win rate, and a Wilson interval around it. At
+this build that is 21 rated races and 2 winners, with the re-scored picks carrying
+20.5% on average and a 95% interval of 2.7-28.9%, so the block says the
+sample is not yet informative. At 350 races the interval is about +/-4.5 points, enough to
+catch a gross error but not to separate the 0.04 and 0.0498 scales, whose pick
+chances differ by about four points; at 1,600 races it narrows to about +/-2
+points and the question can be settled.
 
-Days settled before the column existed were backfilled by
+The paragraphs below describe the twelve-factor chance column that remains in
+`data/results` for the historical record. Days settled before that column
+existed were backfilled by
 `tooling/backfill_chance.py` from the archived cards, and only where the rebuilt
 pick matched the stored pick exactly. A race whose card cannot reproduce its own
 pick is left blank rather than given a number the page never showed. Only seven
@@ -437,8 +445,9 @@ extremes of a price band can be measured:
 | official rating | +0.19 points | +0.10 to +0.27 | 1,174,384 |
 | weight | 0.00 points | -0.05 to +0.05 | 1,799,746 |
 
-Tips, RPR and Topspeed are blank in this source (their weights stay at the live
-values), and course & trip, draw, going, fitness and stable form cluster too
+Tips, RPR and Topspeed are blank in this source (their weights stay at the
+historical twelve-factor values; the live six-input model does not use them), and
+course & trip, draw, going, fitness and stable form cluster too
 tightly to have both extremes present in one price band, so those eight cannot
 be measured this way. No measurable factor is anti-predictive on its own: the
 market factor carries most of the signal, form adds about half a point, official
@@ -447,7 +456,7 @@ combination effect rather than one bad factor - consistent with the disagreement
 audit above, and still not a reason to tune the weights by hand.
 
 ```bash
-python3 tooling/chance_audit.py                  # pick-level, on the command line
+python3 tooling/chance_audit.py                  # stored chances, twelve-factor record
 python3 tooling/field_audit.py                   # every runner, from snapshots
 python3 tooling/field_audit.py --csv data/training/runners.csv
 python3 tooling/backfill_chance.py               # reattach chances where a card agrees
@@ -529,11 +538,12 @@ Baselines on this data: the favourite wins **37.6%**, the most-tipped horse
 
 The source keeps only *results* for past dates — past racecards 301 redirect to
 the course page. The **pre-race card figures** for OR, RPR and Topspeed are not
-recoverable from our own archive, which is why the shipped 12-factor model cannot
-be back-tested on `data/dataset.csv.gz` as-is. What can be tested there: market,
-tips, form, days since run, course/distance record and jockey/trainer form — six
-of the twelve factors. The three pre-race ratings — OR, RPR and Topspeed — plus
-draw and weight are not recoverable from this archive. Snapshot racecards on the
+recoverable from our own archive, which is why the old 12-factor model could not
+be back-tested on `data/dataset.csv.gz` as-is. For the live six-input model the
+archive covers four — market, form, days since run and jockey/trainer form — but
+not official rating or weight, so a full six-input back-test still needs cards
+snapshotted on the day. The three pre-race ratings — OR, RPR and Topspeed — plus
+draw and weight belonged to the old model and are not recoverable here. Snapshot racecards on the
 day; `refresh.py` already archives what it scores.
 
 A free Kaggle archive, [Horse Racing results — UK/Ireland 1988–2026](https://www.kaggle.com/datasets/deltaromeo/horse-racing-results-ukireland-2015-2025),
@@ -751,8 +761,9 @@ training races and 1,717 calibration races.
 
 The base model below uses the seven factors that survive in the free result
 archive: market, form, tips, fitness, course, distance and connections. It is a
-proxy for the live page, not the twelve-factor production model: pre-race OR,
-RPR, Topspeed, draw and weight cannot be reconstructed from the result archive.
+historical proxy, not the live six-input model: it shares market, form, fitness
+and connections with the page, adds tips, course and distance, and cannot
+reconstruct official rating or weight.
 
 | Model | Top pick won | Winner in top 3 | Log loss | Brier | SP ROI |
 |---|---:|---:|---:|---:|---:|
@@ -808,7 +819,7 @@ three together are **+0.0008 worse**. No variant beats the market. The
 front-runner flag itself is effectively neutral.
 
 **Decision: no course/going bias is shipped.** The free comments do not provide
-a reliable local front-runner edge, and the live twelve-factor page remains
+a reliable local front-runner edge, and the live six-input page remains
 untested by this proxy. Cards, weights and picks are unchanged.
 
 ## Racing Post ratings (comparison only)
@@ -841,9 +852,9 @@ ledgers put each day's races in clock order. Times are held as real instants, so
 the order does not change with the viewer's timezone.
 
 The betting screens — Longshots, Overhyped, Place bankers, Bet slips, Upcoming
-slips and their three results tabs — are withdrawn from the navigation with the
-strict-model change. Their code paths remain in `index.html` but no tab reaches
-them, and nothing on the page presents a pick that did not pass the six-input
+slips and their three results tabs — were removed from the page with the
+strict-model change: their panels, renderers, styles and stored screen data are
+gone, and nothing on the page presents a pick that did not pass the six-input
 check.
 
 | Tab | What it is for |
@@ -872,60 +883,35 @@ check.
 * The **UK results**, **Irish results**, **US results**, **HK results** and
   **France results** tabs hold one ledger each. All show the off time beside
   each course.
-* French cards carry no tipsters, RPR, Topspeed, days-since-run or 30-day
-  stable form. The model scores them on market, form, handicap value, weight
-  and draw, with the missing factors dropped rather than filled in. The French
-  forecast dividend is a pool estimate, not a bookmaker price.
+* Every settled UK, Irish, US and Hong Kong ledger is a six-input re-score.
+  `tooling/rescore_results.py`
+  scores each day's archived card with the page's own `SCORE_RATED_CARD`,
+  writes `data/results_rated/<date>.json`, and `refresh.py` renders that pick
+  and marks a race whose card has a gap as **Not rated**. The pre-race pick on
+  record is never rewritten: `data/results` keeps it and the ledger says so.
+  Coverage at this build is 21 of 272 settled races (2 winners), all UK; US
+  cards file no weight, Hong Kong no days or jockey/trainer records, and the
+  French and Chilean cards no price. The race-by-race audit uses the same
+  re-score. The archive keeps the card as it stood at the last pull, so where
+  that is a post-off re-scrape the rated pick is a reconstruction; the ledger
+  labels it a re-score and keeps the stored pre-race pick in `data/results`.
+* French cards carry no price in the model's `odds` field, no days-since-run
+  and no jockey or trainer records, so no French race is rated. The tab shows
+  the card with its French form and handicap value but no pick, and the missing
+  inputs are named rather than filled in. The French forecast dividend is a pool
+  estimate, not a bookmaker price.
 * The **Chile** tab has no market factor at all: PMU publishes no price for
-  Valparaíso. The price column stays blank rather than estimated, and the tab
-  says the pick is scored on the factors the card carries.
-* The **Longshots**, **Overhyped**, **Place bankers**, **Bet slips** and
-  **Upcoming slips** tabs are screens over the same win model, not new
-  probabilities. The place tab is a place profile, not a place chance; the slips
-  use card prices and never invent a leg, a price or a stake. **Bet slips** and
-  **Upcoming slips** also show an each-way version of the same ladder: two units
-  per bet (win and place), standard place terms on the GB/IRE legs, and US legs
-  win-only and labelled as such. Printing from
-  **Bet slips** prints only the slips, each kept whole; the navigation,
-  explanatory copy and reference table are omitted.
-* The **Longshots**, **Overhyped** and **Place bankers** screens read every
-  priced region in the build, including the US. France and Chile cards carry no
-  win price, so no market-favourite screen can qualify one without inventing a
-  price; a Hong Kong card is included only when its price is present.
-* **Longshot results**, **Overhyped results** and **Place banker results**
-  replay their screens on settled days from `data/cards/by_date` and
-  `data/results`, and only when the archived pick and the stored result agree.
-  Longshot returns use one-unit win bets at card prices. Overhyped is a record
-  of what the flagged favourite did, not a bet and not a P&L. Place bankers are
-  counted as placed or not under the place terms stored with their result.
-* **Slip results** is settled history, not a tip. It replays the slip rule from
-  `data/cards/by_date` for each day in `data/results`, uses a leg only when the
-  archived pick and the stored pick agree, and stakes every bet in the named
-  structure at the archived card price. Each slip is also settled each-way: one
-  win part and one place part, the latter only on GB/IRE legs with place terms
-  stored with the result, or the standard terms for the archived field when the
-  result has none, so a US leg never invents a place price. A slip with
-  no qualifying leg stays win-only at one unit. The slip footer, the day summary
-  and the running panel show the win and place returns separately. Only the
-  settled UK, Irish and US ledger (`data/results`) is replayed; the Hong Kong,
-  French and Chilean ledgers are separate. A day without enough priced, positive-edge legs simply produces
-  fewer slips. The running panel above the day buttons combines every settled
-  day, oldest first, with legs won, slips fully landed and winning bets against
-  the total, plus the net at card prices; it counts each generated slip in
-  full, so the same race can appear in more than one slip. A second table
-  splits that record by slip type — one-leg singles, the straight multiples and
-  the Lucky/full-cover slips — so the expensive combinations are not hidden
-  inside one headline figure.
-  `tooling/slip_results.py` rebuilds the block and `refresh.py` runs it on every
-  build.
+  Valparaíso. The price column stays blank rather than estimated, and no Chilean
+  race is rated because the six inputs are incomplete.
 * The **Hong Kong** tab carries today's HKJC card from the official source and
   settles its picks from the same feed's official finishing positions. A race is
   only settled once every declared runner has a position, and a stored pick is
   never rewritten. Prices stay blank until HKJC betting opens rather than being
   estimated.
 * The race-by-race audit on Results is rebuilt from the latest settled UK/IRE
-  day whenever the page or results are rebuilt; the model notes below it remain
-  the 12 November development note.
+  day whenever the page or results are rebuilt, and uses the six-input re-score.
+  The model notes below it are kept as the 12 November development note and are
+  labelled as superseded.
 * **Add a result manually** on the Results tab keeps entries in this browser's
   `localStorage`; it never edits the published ledger. Once the auto pull has
   officially settled the same race, the entry is marked "auto result live". The
@@ -1023,13 +1009,12 @@ Four rules keep it honest:
 * **A stored pick is never rewritten.** A re-run carries the pick, chance and
   finishing position already on file.
 
-The model scores a French card on the same fixed weights as every other region.
-What the card supports: market (the PMU forecast dividend), form (the `musique`
-converted to the page's alphabet, never fed in raw — a French `p` means *plat*,
-while the page reads `P` as pulled up), official rating (the handicap value),
-weight (gallop only) and draw. It carries no tipsters, RPR, Topspeed, days-since-
-run or 30-day stable form, so those factors drop and the rest renormalise. No
-weight is re-tuned for France.
+A French card cannot be rated. Its form is usable (the `musique` is converted
+to the page's alphabet, never fed in raw — a French `p` means *plat*, while the
+page reads `P` as pulled up), and the handicap value can stand in for the
+official rating, but the card carries no price in the model's `odds` field, no
+days-since-run and no jockey or trainer records. The card is shown and the
+missing inputs are named; no pick is invented.
 
 The **France** tab shows today's and tomorrow's cards; the **France results**
 tab holds every settled French race. The scheduled results job settles France

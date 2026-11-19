@@ -1,0 +1,314 @@
+{
+ "date": "2026-11-16",
+ "model": "six-input",
+ "races": [
+  {
+   "course": "Plumpton",
+   "time": "",
+   "winner": "Mysterland",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 6,
+     "of": 6
+    },
+    {
+     "what": "official rating",
+     "n": 5,
+     "of": 6
+    },
+    {
+     "what": "days since a run",
+     "n": 2,
+     "of": 6
+    },
+    {
+     "what": "form",
+     "n": 2,
+     "of": 6
+    }
+   ]
+  },
+  {
+   "course": "Plumpton",
+   "time": "",
+   "winner": "Prairie Diamond",
+   "region": "GB",
+   "state": "rated",
+   "pick": "Market House",
+   "chance": 16.9,
+   "finish": "3rd",
+   "hit": false,
+   "placed": true,
+   "missing": [],
+   "place_places": 3
+  },
+  {
+   "course": "Plumpton",
+   "time": "",
+   "winner": "Clap Of Thunder",
+   "region": "GB",
+   "state": "rated",
+   "pick": "Icare Grandchamp",
+   "chance": 24.4,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [],
+   "place_places": 2
+  },
+  {
+   "course": "Plumpton",
+   "time": "",
+   "winner": "Norman Fletcher",
+   "region": "GB",
+   "state": "rated",
+   "pick": "Kamille Au Kanada",
+   "chance": 25,
+   "finish": "2nd",
+   "hit": false,
+   "placed": true,
+   "missing": [],
+   "place_places": 3
+  },
+  {
+   "course": "Plumpton",
+   "time": "",
+   "winner": "Of Corse I Can",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 1,
+     "of": 8
+    }
+   ]
+  },
+  {
+   "course": "Plumpton",
+   "time": "",
+   "winner": "Daring Plan",
+   "region": "GB",
+   "state": "rated",
+   "pick": "Uncle Al",
+   "chance": 39.4,
+   "finish": "2nd",
+   "hit": false,
+   "placed": true,
+   "missing": [],
+   "place_places": 2
+  },
+  {
+   "course": "Plumpton",
+   "time": "",
+   "winner": "Sense Of Reason",
+   "region": "GB",
+   "state": "rated",
+   "pick": "Kotari",
+   "chance": 23,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [],
+   "place_places": 3
+  },
+  {
+   "course": "Wolverhampton",
+   "time": "",
+   "winner": "Desert Romance",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 5,
+     "of": 13
+    },
+    {
+     "what": "form",
+     "n": 5,
+     "of": 13
+    },
+    {
+     "what": "official rating",
+     "n": 5,
+     "of": 13
+    }
+   ]
+  },
+  {
+   "course": "Wolverhampton",
+   "time": "",
+   "winner": "Leading Role",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 1,
+     "of": 9
+    },
+    {
+     "what": "form",
+     "n": 1,
+     "of": 9
+    },
+    {
+     "what": "official rating",
+     "n": 1,
+     "of": 9
+    }
+   ]
+  },
+  {
+   "course": "Wolverhampton",
+   "time": "",
+   "winner": "Splintered",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 2,
+     "of": 9
+    },
+    {
+     "what": "form",
+     "n": 2,
+     "of": 9
+    },
+    {
+     "what": "official rating",
+     "n": 2,
+     "of": 9
+    }
+   ]
+  },
+  {
+   "course": "Wolverhampton",
+   "time": "",
+   "winner": "Law Of Average",
+   "region": "GB",
+   "state": "rated",
+   "pick": "Tan Rapido",
+   "chance": 17.7,
+   "finish": "3rd",
+   "hit": false,
+   "placed": true,
+   "missing": [],
+   "place_places": 3
+  },
+  {
+   "course": "Wolverhampton",
+   "time": "",
+   "winner": "Giorgio M",
+   "region": "GB",
+   "state": "rated",
+   "pick": "Intervention",
+   "chance": 21.4,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [],
+   "place_places": 3
+  },
+  {
+   "course": "Wolverhampton",
+   "time": "",
+   "winner": "Galba",
+   "region": "GB",
+   "state": "rated",
+   "pick": "R P McMurphy",
+   "chance": 17.3,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [],
+   "place_places": 3
+  },
+  {
+   "course": "Wolverhampton",
+   "time": "",
+   "winner": "The Sweet Escape",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 1,
+     "of": 13
+    }
+   ]
+  },
+  {
+   "course": "Wolverhampton",
+   "time": "",
+   "winner": "It&#x27;s A Love Thing",
+   "region": "",
+   "state": "no-card",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "no archived card",
+     "n": 0
+    }
+   ]
+  },
+  {
+   "course": "Wolverhampton",
+   "time": "",
+   "winner": "Lord Ragnar",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 2,
+     "of": 11
+    }
+   ]
+  }
+ ]
+}
