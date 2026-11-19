@@ -1526,7 +1526,7 @@
 
   <section class="panel" data-panel="longshots">
     <h2>Longshots with a chance</h2>
-    <p class="method">A longshot here is <b>7/1 or bigger</b> on the card, still in the model&rsquo;s top four, with at least a <b>4%</b> win chance and with the model chance above the price. Sorted by the model&rsquo;s edge over the price. A big price is not a tip; the model rank, the chance and the value are the reasons a horse is listed.</p>
+    <p class="method">A longshot here is <b>7/1 or bigger</b> on the card, still in the model&rsquo;s top four, with at least a <b>4%</b> win chance and with the model chance above the price. The ten biggest edges over the price are listed, in start-time order. A big price is not a tip; the model rank, the chance and the value are the reasons a horse is listed.</p>
     <p class="best-count" id="longshotCount"></p>
     <div class="bet-grid" id="longshotBody"></div>
     <p class="bet-note">Prices are the card prices in this build, not a bookmaker quote. No bet is placed.</p>
@@ -2094,7 +2094,7 @@
   // the generated blocks and their markers never move.
   var TABS = [
     ['today', 'Today', 'Overview', 'The best-rated horses, the standouts and the races still to come.'],
-    ['longshots', 'Longshots', 'Value', 'Big prices the model still rates, sorted by model edge.'],
+    ['longshots', 'Longshots', 'Value', 'Big prices the model still rates: top ten by edge, in start-time order.'],
     ['overhyped', 'Overhyped', 'Market', 'Market favourites the model doubts.'],
     ['placers', 'Place bankers', 'Place profile', 'Model top pick and market favourite, with a 20%+ win chance.'],
     ['slips', 'Bet slips', 'Slips', 'Model multiples and named bet structures, in slip form.'],
@@ -8271,35 +8271,34 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
 
   // Latest settled UK/IRE day, rebuilt from data/results and the archived card.
   // Model rank is where the winner sat BEFORE the race, so it is not hindsight-fitted.
-  var RESULTS = [
-{"c": "Dundalk", "t": "", "w": "Hastily", "sp": "", "r": 14, "n": 17, "m": null, "p": "Pocket Jacks", "pf": "2nd", "v": "near"},
-{"c": "Dundalk", "t": "", "w": "Jazzit", "sp": "", "r": 1, "n": 16, "m": null, "p": "Jazzit", "pf": "1st", "v": "hit"},
-{"c": "Dundalk", "t": "", "w": "Dear Theodosia", "sp": "", "r": 5, "n": 12, "m": null, "p": "Rock On Johnny", "pf": "2nd", "v": "near"},
-{"c": "Dundalk", "t": "", "w": "Otsana", "sp": "", "r": 1, "n": 13, "m": null, "p": "Otsana", "pf": "1st", "v": "hit"},
-{"c": "Dundalk", "t": "", "w": "Golddream", "sp": "", "r": 4, "n": 16, "m": null, "p": "Go Out", "pf": "2nd", "v": "near"},
-{"c": "Dundalk", "t": "", "w": "Rhapsodic", "sp": "", "r": 4, "n": 9, "m": null, "p": "Rhapsodic", "pf": "1st", "v": "hit"},
-{"c": "Dundalk", "t": "", "w": "Tempted Angel", "sp": "", "r": 7, "n": 17, "m": null, "p": "Prada's World", "pf": "5th", "v": "miss"},
-{"c": "Dundalk", "t": "", "w": "Rayastar", "sp": "", "r": 5, "n": 17, "m": null, "p": "Coloursofthewind", "pf": "4th", "v": "miss"},
-{"c": "Ffos Las", "t": "", "w": "Cote D&#x27;ange", "sp": "", "r": 8, "n": 15, "m": null, "p": "", "pf": "", "v": "none"},
-{"c": "Ffos Las", "t": "", "w": "Merry Away", "sp": "", "r": 2, "n": 13, "m": null, "p": "Merry Away", "pf": "1st", "v": "hit"},
-{"c": "Ffos Las", "t": "", "w": "Neeps And Tatties", "sp": "", "r": 8, "n": 11, "m": null, "p": "No Boundaries", "pf": "3rd", "v": "near"},
-{"c": "Ffos Las", "t": "", "w": "No Walkover", "sp": "", "r": 1, "n": 10, "m": null, "p": "No Walkover", "pf": "1st", "v": "hit"},
-{"c": "Hexham", "t": "", "w": "Derryhassen Paddy", "sp": "", "r": 1, "n": 4, "m": null, "p": "Derryhassen Paddy", "pf": "1st", "v": "hit"},
-{"c": "Hexham", "t": "", "w": "De Deli Counter", "sp": "", "r": 1, "n": 11, "m": null, "p": "De Deli Counter", "pf": "1st", "v": "hit"},
-{"c": "Hexham", "t": "", "w": "Ratemenow", "sp": "", "r": 1, "n": 10, "m": null, "p": "Ratemenow", "pf": "1st", "v": "hit"},
-{"c": "Hexham", "t": "", "w": "President Scottie", "sp": "", "r": 4, "n": 8, "m": null, "p": "Wal Buck's", "pf": "2nd", "v": "near"},
-{"c": "Hexham", "t": "", "w": "Halpha Soleil", "sp": "", "r": 3, "n": 12, "m": null, "p": "Kinbara Firstdraft", "pf": "5th", "v": "miss"},
-{"c": "Hexham", "t": "", "w": "Max Potential", "sp": "", "r": 4, "n": 7, "m": null, "p": "Max Potential", "pf": "1st", "v": "hit"},
-{"c": "Hexham", "t": "", "w": "Lord Du Gouet", "sp": "", "r": 1, "n": 9, "m": null, "p": "Lord Du Gouet", "pf": "1st", "v": "hit"},
-{"c": "Kempton", "t": "", "w": "Amandari", "sp": "", "r": 2, "n": 12, "m": null, "p": "Angel Footsteps", "pf": "4th", "v": "miss"},
-{"c": "Kempton", "t": "", "w": "Nightbloom", "sp": "", "r": 3, "n": 5, "m": null, "p": "Divine Whisper", "pf": "2nd", "v": "near"},
-{"c": "Kempton", "t": "", "w": "Divine Rhythm", "sp": "", "r": 4, "n": 11, "m": null, "p": "Divine Rhythm", "pf": "1st", "v": "hit"},
-{"c": "Kempton", "t": "", "w": "Ala Et Prece", "sp": "", "r": 3, "n": 14, "m": null, "p": "Sterling Cooper", "pf": "5th", "v": "miss"},
-{"c": "Kempton", "t": "", "w": "Princling", "sp": "", "r": 2, "n": 14, "m": null, "p": "Palladas", "pf": "2nd", "v": "near"},
-{"c": "Kempton", "t": "", "w": "Zachary Hickes", "sp": "", "r": 4, "n": 7, "m": null, "p": "Zachary Hickes", "pf": "1st", "v": "hit"},
-{"c": "Kempton", "t": "", "w": "Caragio", "sp": "", "r": 1, "n": 14, "m": null, "p": "Caragio", "pf": "1st", "v": "hit"},
-{"c": "Kempton", "t": "", "w": "Dust Cover", "sp": "8.20", "r": 5, "n": 13, "m": 3, "p": "Crown Of Crowns", "pf": "", "v": "miss"},
-{"c": "Kempton", "t": "", "w": "Gliding Martha", "sp": "", "r": 2, "n": 12, "m": null, "p": "Tredegar Square", "pf": "5th", "v": "miss"},
+  var RESULTS = [{"c": "Dundalk", "t": "14:30", "w": "Hastily", "sp": "34", "r": 14, "n": 17, "m": null, "p": "Pocket Jacks", "pf": "2nd", "v": "near"},
+{"c": "Dundalk", "t": "15:00", "w": "Jazzit", "sp": "4", "r": 1, "n": 16, "m": null, "p": "Jazzit", "pf": "1st", "v": "hit"},
+{"c": "Dundalk", "t": "15:30", "w": "Dear Theodosia", "sp": "9.50", "r": 5, "n": 12, "m": null, "p": "Rock On Johnny", "pf": "2nd", "v": "near"},
+{"c": "Dundalk", "t": "16:00", "w": "Otsana", "sp": "3", "r": 1, "n": 13, "m": null, "p": "Otsana", "pf": "1st", "v": "hit"},
+{"c": "Dundalk", "t": "16:30", "w": "Golddream", "sp": "2.88", "r": 4, "n": 16, "m": null, "p": "Go Out", "pf": "2nd", "v": "near"},
+{"c": "Dundalk", "t": "17:07", "w": "Rhapsodic", "sp": "1.44", "r": 4, "n": 9, "m": null, "p": "Rhapsodic", "pf": "1st", "v": "hit"},
+{"c": "Dundalk", "t": "17:40", "w": "Tempted Angel", "sp": "15", "r": 7, "n": 17, "m": null, "p": "Prada's World", "pf": "5th", "v": "miss"},
+{"c": "Dundalk", "t": "14:00", "w": "Rayastar", "sp": "7.50", "r": 5, "n": 17, "m": null, "p": "Coloursofthewind", "pf": "4th", "v": "miss"},
+{"c": "Ffos Las", "t": "14:18", "w": "Cote D&#x27;ange", "sp": "6.50", "r": 8, "n": 15, "m": null, "p": "", "pf": "", "v": "none"},
+{"c": "Ffos Las", "t": "14:48", "w": "Merry Away", "sp": "1.20", "r": 2, "n": 13, "m": null, "p": "Merry Away", "pf": "1st", "v": "hit"},
+{"c": "Ffos Las", "t": "15:18", "w": "Neeps And Tatties", "sp": "21", "r": 8, "n": 11, "m": null, "p": "No Boundaries", "pf": "3rd", "v": "near"},
+{"c": "Ffos Las", "t": "12:48", "w": "No Walkover", "sp": "1.33", "r": 1, "n": 10, "m": null, "p": "No Walkover", "pf": "1st", "v": "hit"},
+{"c": "Hexham", "t": "13:03", "w": "Derryhassen Paddy", "sp": "2.25", "r": 1, "n": 4, "m": null, "p": "Derryhassen Paddy", "pf": "1st", "v": "hit"},
+{"c": "Hexham", "t": "13:33", "w": "De Deli Counter", "sp": "3.25", "r": 1, "n": 11, "m": null, "p": "De Deli Counter", "pf": "1st", "v": "hit"},
+{"c": "Hexham", "t": "14:08", "w": "Ratemenow", "sp": "4", "r": 1, "n": 10, "m": null, "p": "Ratemenow", "pf": "1st", "v": "hit"},
+{"c": "Hexham", "t": "14:38", "w": "President Scottie", "sp": "4.50", "r": 4, "n": 8, "m": null, "p": "Wal Buck's", "pf": "2nd", "v": "near"},
+{"c": "Hexham", "t": "15:08", "w": "Halpha Soleil", "sp": "8", "r": 3, "n": 12, "m": null, "p": "Kinbara Firstdraft", "pf": "5th", "v": "miss"},
+{"c": "Hexham", "t": "15:38", "w": "Max Potential", "sp": "1.67", "r": 4, "n": 7, "m": null, "p": "Max Potential", "pf": "1st", "v": "hit"},
+{"c": "Hexham", "t": "12:33", "w": "Lord Du Gouet", "sp": "1.36", "r": 1, "n": 9, "m": null, "p": "Lord Du Gouet", "pf": "1st", "v": "hit"},
+{"c": "Kempton", "t": "17:00", "w": "Amandari", "sp": "11", "r": 2, "n": 12, "m": null, "p": "Angel Footsteps", "pf": "4th", "v": "miss"},
+{"c": "Kempton", "t": "17:30", "w": "Nightbloom", "sp": "3", "r": 3, "n": 5, "m": null, "p": "Divine Whisper", "pf": "2nd", "v": "near"},
+{"c": "Kempton", "t": "18:00", "w": "Divine Rhythm", "sp": "2.50", "r": 4, "n": 11, "m": null, "p": "Divine Rhythm", "pf": "1st", "v": "hit"},
+{"c": "Kempton", "t": "18:30", "w": "Ala Et Prece", "sp": "7", "r": 3, "n": 14, "m": null, "p": "Sterling Cooper", "pf": "5th", "v": "miss"},
+{"c": "Kempton", "t": "19:00", "w": "Princling", "sp": "2.88", "r": 2, "n": 14, "m": null, "p": "Palladas", "pf": "2nd", "v": "near"},
+{"c": "Kempton", "t": "19:30", "w": "Zachary Hickes", "sp": "2.20", "r": 4, "n": 7, "m": null, "p": "Zachary Hickes", "pf": "1st", "v": "hit"},
+{"c": "Kempton", "t": "20:00", "w": "Caragio", "sp": "5", "r": 1, "n": 14, "m": null, "p": "Caragio", "pf": "1st", "v": "hit"},
+{"c": "Kempton", "t": "20:30", "w": "Dust Cover", "sp": "8.20", "r": 5, "n": 13, "m": 3, "p": "Crown Of Crowns", "pf": "", "v": "miss"},
+{"c": "Kempton", "t": "16:25", "w": "Gliding Martha", "sp": "8.50", "r": 2, "n": 12, "m": null, "p": "Tredegar Square", "pf": "5th", "v": "miss"},
 {"c": "Ffos Las", "t": "15:48", "w": "Unleash The Beast", "sp": "13/2", "r": 3, "n": 10, "m": null, "p": "Unleash The Beast", "pf": "1st", "v": "hit"},
 {"c": "Ffos Las", "t": "14:18", "w": "Cote D'ange", "sp": "11/2", "r": 8, "n": 15, "m": null, "p": "", "pf": "", "v": "none"},
 {"c": "Ffos Las", "t": "13:48", "w": "Sober Glory", "sp": "5/4", "r": 2, "n": 5, "m": null, "p": "Old Park Star", "pf": "3rd", "v": "miss"},
@@ -8937,10 +8936,10 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
       return a < b ? -1 : 1;
     });
     var html = order.map(function (course) {
-      return '<optgroup label="' + esc(course) + '">' + groups[course].map(function (c) {
+      return '<optgroup label="' + esc(course) + '">' + groups[course].slice().sort(byCardTime).map(function (c) {
         var s = (c.id === state.raceId) ? ' selected' : '';
         return '<option value="' + esc(c.id) + '"' + s + '>' + esc(c.time) + ' · ' + esc(c.label) + '</option>';
-      }).join('') + '</optgroup>';
+              }).join('') + '</optgroup>';
     }).join('');
     html += '<option value=""' + (state.raceId ? '' : ' selected') + '>Custom card (blank)</option>';
     sel.innerHTML = html;
@@ -9191,7 +9190,7 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
       '<div class="best-head">' +
         '<span class="best-rank">' + (rank < 10 ? '0' : '') + rank + '</span>' +
         '<span class="best-race"><span class="rtag">' + boardTag(p.card.region) + '</span> ' +
-          esc(p.card.course) + ' ' + esc(p.card.time) + '</span>' +
+          esc(p.card.course) + ' ' + esc(whenLabel(p.card)) + '</span>' +
         '<span class="best-clear" title="Gap to second as a share of the field spread">' + clear + ' clear</span>' +
       '</div>' +
       '<h3 class="best-horse">' + esc(r.horse || '—') + '</h3>' +
@@ -9239,7 +9238,8 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
   function renderUnmissable() {
     var box = $('unmissableBody');
     if (!box) return;
-    var picks = leaderboardPicks().filter(isUnmissable);
+    var picks = leaderboardPicks().filter(isUnmissable)
+      .sort(function (a, b) { return cardWhen(a.card) - cardWhen(b.card); });
     if (!picks.length) {
       if ($('unmissableCount')) $('unmissableCount').textContent = 'No qualifiers today';
       box.innerHTML = '<div class="best-empty">No runner clears all five tests today. The bar is deliberately strict; <b>Best of the day</b> still ranks every card.</div>';
@@ -9308,7 +9308,7 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
     return '<article class="bet-card" data-card="' + esc(x.card.id || '') + '" tabindex="0" role="button" aria-label="Open ' +
       esc(r.horse || 'race') + ' at ' + esc(x.card.course + ' ' + x.card.time) + '">' +
       '<div class="bet-head"><span class="bet-tag">' + betTag(x.card.region) + '</span>' +
-        '<span class="bet-where">' + esc(x.card.course) + ' ' + esc(x.card.time) + '</span>' +
+        '<span class="bet-where">' + esc(x.card.course) + ' ' + esc(whenLabel(x.card)) + '</span>' +
         '<span class="bet-rank">#' + x.rank + ' model</span></div>' +
       '<h3 class="bet-horse">' + esc(r.horse || '\u2014') + '</h3>' +
       '<p class="bet-race">' + esc(x.card.label || x.card.race || '') + '</p>' +
@@ -9349,7 +9349,7 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
       box.innerHTML = '<p class="bet-empty">No priced longshot meets the screen right now. The tests are: <b>7/1 or bigger</b>, top-four model rank, at least a <b>4%</b> win chance and a model chance above the price. Nothing is promoted just for being a big price.</p>';
       return;
     }
-    box.innerHTML = list.slice(0, 10).map(function (x) {
+    box.innerHTML = list.slice(0, 10).sort(byCardStart).map(function (x) {
       return betCard(x, 'Big price, still in the model&rsquo;s top four, with at least a 4% win chance and a model chance above the price. The edge shown is the model chance minus the price&rsquo;s implied chance.');
     }).join('');
   }
@@ -9370,7 +9370,7 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
       box.innerHTML = '<p class="bet-empty">No market favourite currently fails the model&rsquo;s test. A horse appears here when the market makes it favourite but the model ranks it third or worse, or rates it at least five points below the price.</p>';
       return;
     }
-    box.innerHTML = list.slice(0, 10).map(function (x) {
+    box.innerHTML = list.slice(0, 10).sort(byCardStart).map(function (x) {
       var why;
       if (x.rank >= 3) {
         why = 'Market favourite, but the model ranks it #' + x.rank + '.';
@@ -9401,7 +9401,7 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
       box.innerHTML = '<p class="bet-empty">No horse currently clears the place screen: the model&rsquo;s top pick, the market favourite, a 20%+ win chance and a field of five or more. The model does not price places, so this stays empty rather than inventing a place chance.</p>';
       return;
     }
-    box.innerHTML = list.slice(0, 10).map(function (x) {
+    box.innerHTML = list.slice(0, 10).sort(byCardStart).map(function (x) {
       return betCard(x, 'Top model rating and market favourite. The model prices wins, not places, so this is a profile rather than a place probability.');
     }).join('');
   }
@@ -9410,7 +9410,7 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
     return '<div class="slip-leg" data-card="' + esc(x.card.id || '') + '">' +
       '<div class="slip-sel"><span class="slip-tag">' + betTag(x.card.region) + '</span>' +
         '<b>' + esc(x.row.r.horse || '\u2014') + '</b>' +
-        '<small>' + esc(x.card.course) + ' ' + esc(x.card.time) + ' \u00b7 ' +
+        '<small>' + esc(x.card.course) + ' ' + esc(whenLabel(x.card)) + ' \u00b7 ' +
           esc(x.card.race || x.card.label || '') + '</small></div>' +
       '<div class="slip-num"><b>' + betPrice(x.dec) + '</b><small>price</small></div>' +
       '<div class="slip-num"><b>' + betPct(x.row.share) + '</b><small>model \u00b7 ' + betPts(x.row.edge) + '</small></div>' +
@@ -9422,7 +9422,7 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
       '<header class="slip-head"><span class="slip-no">SLIP ' + no + '</span>' +
         '<span class="slip-type">' + type + '</span>' +
         '<span class="slip-bets">' + bets + '</span></header>' +
-      '<div class="slip-legs">' + legs.map(legFn || slipLeg).join('') + '</div>' +
+      '<div class="slip-legs">' + legs.slice().sort(byCardStart).map(legFn || slipLeg).join('') + '</div>' +
       '<footer class="slip-foot">' + footer + '</footer>' +
       '</article>';
   }
@@ -9432,7 +9432,7 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
     return '<div class="slip-leg" data-card="' + esc(x.card.id || '') + '">' +
       '<div class="slip-sel"><span class="slip-tag">' + betTag(x.card.region) + '</span>' +
         '<b>' + esc(x.row.r.horse || '\u2014') + '</b>' +
-        '<small>' + esc(x.card.course) + ' ' + esc(x.card.time) + ' \u00b7 ' +
+        '<small>' + esc(x.card.course) + ' ' + esc(whenLabel(x.card)) + ' \u00b7 ' +
           esc(x.card.race || x.card.label || '') + '</small></div>' +
       '<div class="slip-num"><b>' + betPrice(x.dec) + '</b><small>win price</small></div>' +
       '<div class="slip-num"><b>' + (place ? place.toFixed(2) : '\u2014') + '</b><small>' + ewDescribe(x) + '</small></div>' +
@@ -9702,7 +9702,7 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
       '<table class="ledger next-list"><thead><tr><th>Off</th><th>Race</th><th>Model pick</th>' +
       '<th>Price</th><th>Model</th><th>Edge</th></tr></thead><tbody>' +
       list.map(function (x) {
-        return '<tr><td><b>' + esc(x.card.course) + '</b><br><span class="muted">' + esc(x.card.time) + '</span></td>' +
+        return '<tr><td><b>' + esc(x.card.course) + '</b><br><span class="muted">' + esc(whenLabel(x.card)) + '</span></td>' +
           '<td>' + esc(x.card.label || x.card.race || '') + '</td>' +
           '<td class="horse">' + esc(x.row.r.horse || '\u2014') + '</td>' +
           '<td class="num">' + betPrice(x.dec) + '</td>' +
@@ -9741,7 +9741,7 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
   function slipResCard(d, s) {
     var status = slipResVerdict(s);
     var label = status === 'won' ? 'Landed' : (status === 'part' ? 'Partial' : 'Lost');
-    var legs = s.legs.map(function (i) { return d.l[i]; });
+    var legs = s.legs.map(function (i) { return d.l[i]; }).sort(byStart);
     var net = s.ret - s.b;
     return '<article class="slip slip-res">' +
       '<header class="slip-head"><span class="slip-no">SLIP ' + ('0' + s.n).slice(-2) + '</span>' +
@@ -10055,7 +10055,7 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
     if (sum) sum.innerHTML = screenDaySum(key, d);
     body.innerHTML = '<h3 class="slip-section">Settled ' + esc(slipDayLabel(d.d)) + '</h3>' +
       '<div class="scroll"><table class="ledger"><thead>' + screenHead(key) + '</thead><tbody>' +
-      d.l.map(function (x) { return screenRow(key, x); }).join('') + '</tbody></table></div>';
+      d.l.slice().sort(byStart).map(function (x) { return screenRow(key, x); }).join('') + '</tbody></table></div>';
   }
 
   function renderScreenDays(key) {
@@ -10170,6 +10170,29 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
     return m ? m.id : '';
   }
 
+  /* Each settled results table holds one day. Put that day's races in running
+     order so the off times climb down the page, wrapping the US night card so
+     its 00:15 races follow 23:45 rather than opening the day. */
+  function sortLedgerTables() {
+    document.querySelectorAll('table.ledger').forEach(function (tbl) {
+      var body = tbl.tBodies && tbl.tBodies[0];
+      if (!body) return;
+      var items = [].slice.call(body.rows).map(function (tr, i) {
+        var time = tr.getAttribute('data-time');
+        if (!time) return {tr: tr, i: i, k: null};
+        var tag = tr.querySelector('.rtag');
+        var region = tag && /USA/.test(tag.textContent || '') ? 'US' : '';
+        return {tr: tr, i: i, k: startMinutes(time, region)};
+      });
+      if (items.filter(function (x) { return x.k !== null; }).length < 2) return;
+      items.sort(function (a, b) {
+        if (a.k === null || b.k === null) return a.i - b.i;
+        return (a.k - b.k) || (a.i - b.i);
+      });
+      items.forEach(function (x) { body.appendChild(x.tr); });
+    });
+  }
+
   function renderResultsTab() {
     if (!RESULTS.length) return;
 
@@ -10198,7 +10221,8 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
       '<span><b>' + top3 + ' of ' + total + '</b> winners were in the sheet\'s top three</span>' +
       '<span><b>' + favs + ' of ' + ranked + '</b> winners were the market favourite</span>';
 
-    $('resBody').innerHTML = RESULTS.map(function (r) {
+    var resRows = RESULTS.slice().sort(function (a, b) { return startMinutes(a.t) - startMinutes(b.t); });
+    $('resBody').innerHTML = resRows.map(function (r) {
       var cls = r.v === 'hit' ? 'v-hit' : (r.v === 'near' ? 'v-near' : 'v-miss');
       var label = r.v === 'hit' ? 'Found' : (r.v === 'near' ? 'Close' : (r.v === 'none' ? '\u2014' : 'Missed'));
       return '<tr data-card="' + esc(cardIdFor(r)) + '">' +
@@ -10711,14 +10735,75 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
     renderFrance();
     renderChile();
     renderBetViews();
+    sortLedgerTables();
     renderBanner();
   }
 
+  /* GB and Irish cards store the Europe/London clock; every other card carries
+     the real UTC instant in iso. Turn both into one instant, so the running
+     order and the off times do not shift with the viewer's timezone. */
+  function londonOffsetMinutes(ms) {
+    try {
+      var parts = new Intl.DateTimeFormat('en-GB', {
+        timeZone: 'Europe/London', timeZoneName: 'longOffset'
+      }).formatToParts(new Date(ms));
+      for (var i = 0; i < parts.length; i++) {
+        if (parts[i].type !== 'timeZoneName') continue;
+        var m = /GMT([+-])(\d{2}):(\d{2})/.exec(parts[i].value);
+        if (!m) return 0;
+        return (m[1] === '-' ? -1 : 1) * (+m[2] * 60 + +m[3]);
+      }
+    } catch (e) { /* no Intl timezone data: this build's cards are all GMT */ }
+    return 0;
+  }
+
   function cardWhen(c) {
-    if (c.iso) return new Date(c.iso);
-    var d = (c.day || '2026-11-12').split('-');
-    var t = (c.time || '00:00').split(':');
-    return new Date(+d[0], +d[1] - 1, +d[2], +t[0], +t[1], 0);
+    if (c.iso) {
+      var iso = new Date(c.iso);
+      if (!isNaN(iso.getTime())) return iso;
+    }
+    var wall = Date.parse((c.day || '2026-11-12') + 'T' + (c.time || '00:00') + ':00Z');
+    if (isNaN(wall)) return new Date(NaN);
+    return new Date(wall - londonOffsetMinutes(wall) * 60000);
+  }
+
+  /* Running order for rows that are only on file as course + off time.
+     The US night card runs past midnight UTC, so its 00:15 race must sort
+     after 23:45, not before the 17:00 start of the card. */
+  function startMinutes(hhmm, region) {
+    var m = /^(\d{1,2}):(\d{2})/.exec(String(hhmm || ''));
+    var mins = m ? (+m[1] * 60 + +m[2]) : 24 * 60;
+    if (region === 'US' && mins < 8 * 60) mins += 24 * 60;
+    return mins;
+  }
+
+  function rowStartRegion(x) { return x.r || x.region || ''; }
+
+  function byStart(a, b) {
+    var da = a.d || '', db = b.d || '';
+    if (da !== db) return da < db ? -1 : 1;
+    return startMinutes(a.t, rowStartRegion(a)) - startMinutes(b.t, rowStartRegion(b));
+  }
+
+  function byCardTime(a, b) { return cardWhen(a) - cardWhen(b); }
+
+  function byCardStart(a, b) { return cardWhen(a.card) - cardWhen(b.card); }
+
+  function todayIso() {
+    var d = new Date();
+    return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2);
+  }
+
+  /* Start time as shown on a card. Tomorrow's UK card is in the build too, so
+     its day is named rather than leaving two "12:10" races looking identical. */
+  function whenLabel(card) {
+    var day = '';
+    if (card.day && card.day !== todayIso()) {
+      var d = new Date(card.day + 'T12:00:00');
+      day = isNaN(d.getTime()) ? card.day + ' '
+        : d.toLocaleDateString('en-GB', {weekday: 'short', day: 'numeric', month: 'short'}) + ' ';
+    }
+    return day + (card.time || '');
   }
 
   function isResulted(c) {

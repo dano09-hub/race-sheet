@@ -834,12 +834,16 @@ since `dist/public/index.html` is the whole site.
 
 Twenty-two destinations, each a job rather than a data source. Old tab names still
 resolve to their new home, so saved links and the browser's remembered tab keep
-working.
+working. Every race list gives the off time and runs in start-time order — the
+value screens show their top ten by edge in that running order, settled ledgers
+put each day's races in clock order, and slips show their legs from the next off
+onwards. Times are held as real instants, so the order does not change with the
+viewer's timezone.
 
 | Tab | What it is for |
 | --- | --- |
 | Today | The next race, the day's best-rated horses, the standouts and the US races still to come. |
-| Longshots | Priced 7/1+ horses still in the model's top four with a 4%+ win chance and positive edge, sorted by edge. |
+| Longshots | Priced 7/1+ horses still in the model's top four with a 4%+ win chance and positive edge; the ten biggest edges, shown in running order. |
 | Overhyped | Market favourites the model ranks third or worse, or rates at least five points below the price. |
 | Place bankers | Model top picks that are also the market favourite, 20%+ win chance, field of five or more; a win profile, not a place probability. |
 | Bet slips | Win-only singles, doubles, trebles, four-folds and Lucky 15/31/63 from the strongest priced value legs, plus the standard named-slip table. |
