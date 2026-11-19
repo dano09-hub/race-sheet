@@ -29,6 +29,9 @@ import settle  # noqa: E402
 
 START = "/* SLIP_RESULTS_START */"
 END = "/* SLIP_RESULTS_END */"
+SCREEN_START = "/* SCREEN_RESULTS_START */"
+SCREEN_END = "/* SCREEN_RESULTS_END */"
+SCREENS = ("longshots", "overhyped", "placebankers")
 
 # The named structures, in the order the live tab generates them. `kind` decides
 # which combinations the slip actually stakes: a straight multiple stakes one
@@ -212,6 +215,100 @@ def build():
     return out
 
 
+def _screen_day(date):
+    """Replay the three bet screens on one settled day from its archived card.
+
+    The rules match the live tabs exactly: longshots need a price of 8+, a
+    top-four model rank, a 4%+ win chance and a positive edge; overhyped needs
+    the market favourite the model ranks third or worse, or rates five points
+    below the price; place bankers need model #1 and market #1 with a 20%+ win
+    chance in a field of five or more. A row enters only when the stored result
+    names the same pick as the archived card.
+    """
+    rpath = os.path.join(ROOT, "data", "results", f"{date}.json")
+    cpath = os.path.join(ROOT, "data", "cards", "by_date", f"{date}.json")
+    if not (os.path.exists(rpath) and os.path.exists(cpath)):
+        return None
+    try:
+        data = json.load(open(rpath, encoding="utf-8"))
+    except (OSError, ValueError):
+        return None
+    rows = data.get("races", []) if isinstance(data, dict) else data
+    if not isinstance(rows, list) or not rows:
+        return None
+    cards = settle._cards_for(date)
+    if not cards:
+        return None
+    picks = settle.score_cards(cards)
+    by_pick = _result_index(rows)
+    out = {k: [] for k in SCREENS}
+    for card, p in zip(cards, picks):
+        if card.get("day") and card.get("day") != date:
+            continue
+        scored = p.get("runners") or []
+        if not scored:
+            continue
+        field = len(card.get("runners") or [])
+        for x in scored:
+            horse = x.get("horse") or ""
+            dec, share, implied = x.get("dec"), x.get("share"), x.get("implied")
+            if not horse or dec is None or share is None or implied is None:
+                continue
+            edge = share - implied
+            r = _result_for(card, horse, by_pick)
+            if not r or not _finished(r):
+                continue
+            region = "US" if str(card.get("region") or "").upper() == "US" else "GB/IRE"
+            base = {"c": card.get("course") or "", "t": card.get("time") or "",
+                    "h": horse, "r": region, "p": round(float(dec), 4),
+                    "f": str(r.get("pick_finish") or "").strip(),
+                    "w": 1 if _won(r) else 0}
+            if dec >= 8 and (x.get("rank") or 99) <= 4 and share >= 0.04 and edge > 0:
+                out["longshots"].append(dict(base))
+            if x.get("mktRank") == 1 and ((x.get("rank") or 99) >= 3 or edge <= -0.05):
+                out["overhyped"].append(dict(
+                    base, k=x.get("rank"), e=round(float(edge), 4),
+                    pl=1 if r.get("placed") is True else 0))
+            if (x.get("rank") == 1 and field >= 5 and share >= 0.20
+                    and x.get("mktRank") == 1):
+                out["placebankers"].append(dict(
+                    base, pl=1 if r.get("placed") is True else 0,
+                    pp=int(r.get("place_places") or 0),
+                    pf=float(r.get("place_fraction") or 0.0),
+                    us=1 if region == "US" else 0))
+    if not any(out.values()):
+        return None
+    out["longshots"].sort(key=lambda x: (-x["p"], x["c"], x["t"]))
+    out["overhyped"].sort(key=lambda x: (x["e"], x["c"], x["t"]))
+    out["placebankers"].sort(key=lambda x: (x["c"], x["t"]))
+    for key in SCREENS:
+        seen, uniq = set(), []
+        for x in out[key]:
+            k = (x["c"], x["t"], x["h"])
+            if k in seen:
+                continue
+            seen.add(k)
+            uniq.append(x)
+        out[key] = uniq
+    return out
+
+
+def build_screens():
+    """Every settled day that has at least one replayable screen pick."""
+    import glob
+    out = {k: [] for k in SCREENS}
+    for path in sorted(glob.glob(os.path.join(ROOT, "data", "results", "*.json")),
+                       reverse=True):
+        date = os.path.basename(path)[:-5]
+        day = _screen_day(date)
+        if not day:
+            continue
+        for key in SCREENS:
+            if day[key]:
+                out[key].append({"d": date, "l": day[key]})
+    return out
+
+
 def render_block(days=None):
     days = build() if days is None else days
     if not days:
@@ -220,13 +317,24 @@ def render_block(days=None):
     return START + "\n  var SLIP_RESULTS = " + payload + ";\n  " + END
 
 
-def replace_block(html, days=None):
-    """Replace the page's data block in memory, leaving every other byte."""
-    if START not in html or END not in html:
+def render_screen_block(data=None):
+    data = build_screens() if data is None else data
+    payload = json.dumps(data, separators=(",", ":"), ensure_ascii=False)
+    return SCREEN_START + "\n  var SCREEN_RESULTS = " + payload + ";\n  " + SCREEN_END
+
+
+def _replace(html, start, end, block):
+    if start not in html or end not in html:
         return html
-    head, rest = html.split(START, 1)
-    _, tail = rest.split(END, 1)
-    return head + render_block(days) + tail
+    head, rest = html.split(start, 1)
+    _, tail = rest.split(end, 1)
+    return head + block + tail
+
+
+def replace_block(html, days=None):
+    """Replace the page's data blocks in memory, leaving every other byte."""
+    html = _replace(html, START, END, render_block(days))
+    return _replace(html, SCREEN_START, SCREEN_END, render_screen_block())
 
 
 def write_page(days=None):
@@ -234,19 +342,29 @@ def write_page(days=None):
     html = open(page_path, encoding="utf-8").read()
     if START not in html or END not in html:
         raise SystemExit("slip results markers are missing from index.html")
-    block = render_block(days)
-    open(page_path, "w", encoding="utf-8").write(replace_block(html, days))
+    if SCREEN_START not in html or SCREEN_END not in html:
+        raise SystemExit("screen results markers are missing from index.html")
+    # Build the whole page before opening it: a scoring failure must not leave
+    # a truncated index.html behind.
+    out = replace_block(html, days)
+    open(page_path, "w", encoding="utf-8").write(out)
     return len(build() if days is None else days)
 
 
 def main(argv):
     if "--write" in argv:
         n = write_page()
+        screens = build_screens()
         print(f"slip results: wrote {n} settled days")
+        print("screen results: " + ", ".join(
+            f"{k} {len(v)} days" for k, v in screens.items()))
         return 0
     days = build()
     print(json.dumps(days, indent=1)[:4000])
     print(f"slip results: {len(days)} settled days")
+    screens = build_screens()
+    print("screen results: " + ", ".join(
+        f"{k} {len(v)} days" for k, v in screens.items()))
     return 0
 
 

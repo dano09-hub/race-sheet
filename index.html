@@ -1547,7 +1547,7 @@
 
   <section class="panel" data-panel="slips">
     <h2>Bet slips</h2>
-    <p class="method">Win-only slips built from the model&rsquo;s top pick in each priced race where the model chance is above the market&rsquo;s. One leg per race; the strongest edge leads. The straight multiples use the first 2, 3 and 4 legs, the Lucky slips the first 4, 5 and 6, and the full-cover slips the first 3 to 8. Nothing is invented to fill a slip.</p>
+    <p class="method">Win-only slips built from the model&rsquo;s top pick in each priced race where the model chance is above the market&rsquo;s. One leg per race; the strongest edge leads. The straight multiples use the first 2, 3 and 4 legs, the Lucky slips the first 4, 5 and 6, and the full-cover slips the first 3 to 8. Nothing is invented to fill a slip. The <b>each-way</b> section repeats the ladder at two units per bet: a win part and, for GB/IRE legs with standard place terms, a place part; US legs carry only the win part, and a slip with no qualifying leg stays win-only at one unit.</p>
     <p class="best-count" id="slipsCount"></p>
     <div id="slipsBody"></div>
     <h3 class="slip-section">Bet-type reference</h3>
@@ -1558,7 +1558,7 @@
 
   <section class="panel" data-panel="upcoming">
     <h2>Upcoming slips</h2>
-    <p class="method">The same win-only rule and the same eight-leg limit as <b>Bet slips</b>, but the legs are the races whose post time is still ahead, taken in <b>next-off order</b> rather than by edge. A race only enters once its card carries a price and the model ranks its top pick above the market&rsquo;s chance. Nothing is invented to fill a slip.</p>
+    <p class="method">The same win-only rule and the same eight-leg limit as <b>Bet slips</b>, but the legs are the races whose post time is still ahead, taken in <b>next-off order</b> rather than by edge. A race only enters once its card carries a price and the model ranks its top pick above the market&rsquo;s chance. Nothing is invented to fill a slip. The <b>each-way</b> section repeats the ladder at two units per bet; US legs stay win-only.</p>
     <p class="best-count" id="nextSlipsCount"></p>
     <div id="nextRaces"></div>
     <div id="nextSlipsBody"></div>
@@ -1573,6 +1573,36 @@
     <div class="slipres-sum" id="slipResSummary"></div>
     <div id="slipResultsBody"></div>
     <p class="bet-note">Settled history, not a tip or a staking plan. Card prices are the archived prices, not a quote; returns assume every bet in the structure was staked and win only. No stake is taken and no bet is placed.</p>
+  </section>
+
+  <section class="panel" data-panel="longresults">
+    <h2>Longshot results</h2>
+    <p class="method">Every longshot the <b>Longshots</b> screen flagged on a settled day, replayed from the <b>pre-race card held in this build</b>: a card price of 7/1 or bigger, a top-four model rank, at least a 4% win chance and a model chance above the price. A row enters only when the stored result names the same pick, so nothing is re-scored after the fact. Win bets at one unit, settled at the archived card price; no stake is taken.</p>
+    <div class="slipres-sum" id="longRRun"></div>
+    <div class="slipres-daybar" id="longRDays"></div>
+    <div class="slipres-sum" id="longRSum"></div>
+    <div id="longRBody"></div>
+    <p class="bet-note">Settled history, not a tip. Card prices are the archived prices, not a quote; a real bet may have been shorter. No stake is taken and no bet is placed.</p>
+  </section>
+
+  <section class="panel" data-panel="overresults">
+    <h2>Overhyped results</h2>
+    <p class="method">Every market favourite the <b>Overhyped</b> screen flagged on a settled day, replayed from the <b>pre-race card held in this build</b>: the market made it favourite and the model ranked it third or worse, or rated it at least five points below the price. This is a <b>doubt record</b>, not a bet: it shows how the flagged favourite finished and whether the doubt was justified, with no stake and no P&amp;L. A row enters only when the stored result names the same favourite.</p>
+    <div class="slipres-sum" id="overRRun"></div>
+    <div class="slipres-daybar" id="overRDays"></div>
+    <div class="slipres-sum" id="overRSum"></div>
+    <div id="overRBody"></div>
+    <p class="bet-note">Settled history, not a tip. &ldquo;Placed&rdquo; uses the standard each-way terms recorded with the result and includes wins; &ldquo;beaten&rdquo; means the favourite did not win.</p>
+  </section>
+
+  <section class="panel" data-panel="placerresults">
+    <h2>Place banker results</h2>
+    <p class="method">Every horse the <b>Place bankers</b> screen flagged on a settled day, replayed from the <b>pre-race card held in this build</b>: the model&rsquo;s top pick, the market favourite, at least a 20% win chance and a field of five or more. Each GB/IRE banker is recorded as <b>placed</b> or not under the standard each-way terms stored with its result; a US banker is recorded on the top three, the page&rsquo;s US place convention, because US racing has no each-way market. The model prices wins, not places, so this is a settlement record of a place profile, not a place probability. A row enters only when the stored result names the same pick.</p>
+    <div class="slipres-sum" id="plRRun"></div>
+    <div class="slipres-daybar" id="plRDays"></div>
+    <div class="slipres-sum" id="plRSum"></div>
+    <div id="plRBody"></div>
+    <p class="bet-note">Settled history, not a tip. Place terms are the standard each-way terms recorded with the result, not a quote from a bookmaker. No stake is taken and no bet is placed.</p>
   </section>
 
   <section class="panel" data-panel="usresults">
@@ -2065,6 +2095,9 @@
     ['slips', 'Bet slips', 'Slips', 'Model multiples and named bet structures, in slip form.'],
     ['upcoming', 'Upcoming slips', 'Next off', 'The same win-only slips, built from the next races to go.'],
     ['slipresults', 'Slip results', 'Settled slips', 'Every settled slip replayed from the archived pre-race card.'],
+    ['longresults', 'Longshot results', 'Settled value', 'Every settled longshot replayed from the archived pre-race card.'],
+    ['overresults', 'Overhyped results', 'Settled doubts', 'How the favourites the model doubted actually finished.'],
+    ['placerresults', 'Place banker results', 'Settled places', 'How often the model-and-market bankers placed.'],
     ['card', 'Cards', 'Racing', 'Pick a race and inspect every runner the model scored.'],
     ['results', 'UK results', 'Record', 'Settled UK results, market checks and the model audit.'],
     ['ireresults', 'Irish results', 'Irish record', 'Settled Irish races: winner, first three and what the model pick did.'],
@@ -2087,6 +2120,9 @@
     slips: ['slips'],
     upcoming: ['upcoming'],
     slipresults: ['slipresults'],
+    longresults: ['longresults'],
+    overresults: ['overresults'],
+    placerresults: ['placerresults'],
     card: ['card', 'ranked'],
     results: ['results', 'past'],
     ireresults: ['ireresults'],
@@ -7291,6 +7327,9 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
   /* SLIP_RESULTS_START */
   var SLIP_RESULTS = [{"d":"2026-11-18","l":[{"c":"Parx Racing","t":"17:59","h":"Goldieness","r":"US","p":2.6,"f":"1st","w":1,"e":0.3588},{"c":"Mahoning Valley","t":"18:11","h":"Wicca Wisdom","r":"US","p":3.0,"f":"4th","w":0,"e":0.2583},{"c":"Churchill Downs","t":"18:00","h":"Flaming Verdict","r":"US","p":1.6,"f":"1st","w":1,"e":0.22},{"c":"Finger Lakes","t":"17:10","h":"Ry's Advantage","r":"US","p":4.0,"f":"2nd","w":0,"e":0.2046},{"c":"Mahoning Valley","t":"17:43","h":"Brick Ambush","r":"US","p":2.8,"f":"2nd","w":0,"e":0.1793},{"c":"Mahoning Valley","t":"19:07","h":"All My Life","r":"US","p":3.0,"f":"1st","w":1,"e":0.1736},{"c":"Parx Racing","t":"18:26","h":"Foil","r":"US","p":4.5,"f":"4th","w":0,"e":0.1506},{"c":"Churchill Downs","t":"18:29","h":"Golexgo","r":"US","p":4.0,"f":"unplaced","w":0,"e":0.1451}],"s":[{"y":"Single","n":1,"legs":[0],"b":1,"wb":1,"ret":2.6},{"y":"Single","n":2,"legs":[1],"b":1,"wb":0,"ret":0.0},{"y":"Single","n":3,"legs":[2],"b":1,"wb":1,"ret":1.6},{"y":"Double","n":4,"legs":[0,1],"b":1,"wb":0,"ret":0.0,"o":"lost"},{"y":"Treble","n":5,"legs":[0,1,2],"b":1,"wb":0,"ret":0.0,"o":"lost"},{"y":"Four-fold accumulator","n":6,"legs":[0,1,2,3],"b":1,"wb":0,"ret":0.0,"o":"lost"},{"y":"Lucky 15","n":7,"legs":[0,1,2,3],"b":15,"wb":3,"ret":8.36,"o":"part"},{"y":"Lucky 31","n":8,"legs":[0,1,2,3,4],"b":31,"wb":3,"ret":8.36,"o":"part"},{"y":"Lucky 63","n":9,"legs":[0,1,2,3,4,5],"b":63,"wb":7,"ret":36.44,"o":"part"},{"y":"Trixie","n":10,"legs":[0,1,2],"b":7,"wb":3,"ret":8.36,"o":"part"},{"y":"Patent","n":11,"legs":[0,1,2],"b":7,"wb":3,"ret":8.36,"o":"part"},{"y":"Yankee","n":12,"legs":[0,1,2,3],"b":15,"wb":3,"ret":8.36,"o":"part"},{"y":"Canadian","n":13,"legs":[0,1,2,3,4],"b":31,"wb":3,"ret":8.36,"o":"part"},{"y":"Heinz","n":14,"legs":[0,1,2,3,4,5],"b":63,"wb":7,"ret":36.44,"o":"part"},{"y":"Super Heinz","n":15,"legs":[0,1,2,3,4,5,6],"b":127,"wb":7,"ret":36.44,"o":"part"},{"y":"Goliath","n":16,"legs":[0,1,2,3,4,5,6,7],"b":255,"wb":7,"ret":36.44,"o":"part"}]},{"d":"2026-11-16","l":[{"c":"Plumpton","t":"13:45","h":"Icare Grandchamp","r":"GB/IRE","p":7.0,"f":"6th","w":0,"e":0.1416},{"c":"Plumpton","t":"15:15","h":"Uncle Al","r":"GB/IRE","p":2.5,"f":"2nd","w":0,"e":0.103},{"c":"Wolverhampton","t":"19:30","h":"R P McMurphy","r":"GB/IRE","p":5.8,"f":"12th","w":0,"e":0.1004},{"c":"Wolverhampton","t":"18:30","h":"Tan Rapido","r":"GB/IRE","p":5.6,"f":"3rd","w":0,"e":0.0417},{"c":"Plumpton","t":"14:15","h":"Kamille Au Kanada","r":"GB/IRE","p":3.4,"f":"2nd","w":0,"e":0.0415},{"c":"Plumpton","t":"13:15","h":"Market House","r":"GB/IRE","p":4.8,"f":"3rd","w":0,"e":0.0373},{"c":"Plumpton","t":"14:45","h":"Anothermanicmonday","r":"GB/IRE","p":5.4,"f":"7th","w":0,"e":0.0187},{"c":"Plumpton","t":"15:45","h":"Kotari","r":"GB/IRE","p":3.8,"f":"4th","w":0,"e":0.0055}],"s":[{"y":"Single","n":1,"legs":[0],"b":1,"wb":0,"ret":0.0},{"y":"Single","n":2,"legs":[1],"b":1,"wb":0,"ret":0.0},{"y":"Single","n":3,"legs":[2],"b":1,"wb":0,"ret":0.0},{"y":"Double","n":4,"legs":[0,1],"b":1,"wb":0,"ret":0.0,"o":"lost"},{"y":"Treble","n":5,"legs":[0,1,2],"b":1,"wb":0,"ret":0.0,"o":"lost"},{"y":"Four-fold accumulator","n":6,"legs":[0,1,2,3],"b":1,"wb":0,"ret":0.0,"o":"lost"},{"y":"Lucky 15","n":7,"legs":[0,1,2,3],"b":15,"wb":0,"ret":0.0,"o":"lost"},{"y":"Lucky 31","n":8,"legs":[0,1,2,3,4],"b":31,"wb":0,"ret":0.0,"o":"lost"},{"y":"Lucky 63","n":9,"legs":[0,1,2,3,4,5],"b":63,"wb":0,"ret":0.0,"o":"lost"},{"y":"Trixie","n":10,"legs":[0,1,2],"b":7,"wb":0,"ret":0.0,"o":"lost"},{"y":"Patent","n":11,"legs":[0,1,2],"b":7,"wb":0,"ret":0.0,"o":"lost"},{"y":"Yankee","n":12,"legs":[0,1,2,3],"b":15,"wb":0,"ret":0.0,"o":"lost"},{"y":"Canadian","n":13,"legs":[0,1,2,3,4],"b":31,"wb":0,"ret":0.0,"o":"lost"},{"y":"Heinz","n":14,"legs":[0,1,2,3,4,5],"b":63,"wb":0,"ret":0.0,"o":"lost"},{"y":"Super Heinz","n":15,"legs":[0,1,2,3,4,5,6],"b":127,"wb":0,"ret":0.0,"o":"lost"},{"y":"Goliath","n":16,"legs":[0,1,2,3,4,5,6,7],"b":255,"wb":0,"ret":0.0,"o":"lost"}]},{"d":"2026-11-15","l":[{"c":"Fontwell","t":"14:20","h":"Pass The Buck","r":"GB/IRE","p":6.0,"f":"2nd","w":0,"e":0.1402},{"c":"Navan","t":"14:25","h":"Classical Creek","r":"GB/IRE","p":4.5,"f":"2nd","w":0,"e":0.0892},{"c":"Navan","t":"15:35","h":"Sarahs Lawn","r":"GB/IRE","p":4.5,"f":"2nd","w":0,"e":0.087},{"c":"Fontwell","t":"14:50","h":"Majestic Moment","r":"GB/IRE","p":5.0,"f":"PU","w":0,"e":0.0631},{"c":"Cheltenham","t":"14:35","h":"King Of Answers","r":"GB/IRE","p":5.8,"f":"4th","w":0,"e":0.0356},{"c":"Cheltenham","t":"14:00","h":"Highlands Legacy","r":"GB/IRE","p":3.9,"f":"6th","w":0,"e":0.0334},{"c":"Cheltenham","t":"12:50","h":"Wolf Rayet","r":"GB/IRE","p":5.0,"f":"2nd","w":0,"e":0.0248},{"c":"Navan","t":"13:15","h":"Reaching High","r":"GB/IRE","p":4.5,"f":"6th","w":0,"e":0.0084}],"s":[{"y":"Single","n":1,"legs":[0],"b":1,"wb":0,"ret":0.0},{"y":"Single","n":2,"legs":[1],"b":1,"wb":0,"ret":0.0},{"y":"Single","n":3,"legs":[2],"b":1,"wb":0,"ret":0.0},{"y":"Double","n":4,"legs":[0,1],"b":1,"wb":0,"ret":0.0,"o":"lost"},{"y":"Treble","n":5,"legs":[0,1,2],"b":1,"wb":0,"ret":0.0,"o":"lost"},{"y":"Four-fold accumulator","n":6,"legs":[0,1,2,3],"b":1,"wb":0,"ret":0.0,"o":"lost"},{"y":"Lucky 15","n":7,"legs":[0,1,2,3],"b":15,"wb":0,"ret":0.0,"o":"lost"},{"y":"Lucky 31","n":8,"legs":[0,1,2,3,4],"b":31,"wb":0,"ret":0.0,"o":"lost"},{"y":"Lucky 63","n":9,"legs":[0,1,2,3,4,5],"b":63,"wb":0,"ret":0.0,"o":"lost"},{"y":"Trixie","n":10,"legs":[0,1,2],"b":7,"wb":0,"ret":0.0,"o":"lost"},{"y":"Patent","n":11,"legs":[0,1,2],"b":7,"wb":0,"ret":0.0,"o":"lost"},{"y":"Yankee","n":12,"legs":[0,1,2,3],"b":15,"wb":0,"ret":0.0,"o":"lost"},{"y":"Canadian","n":13,"legs":[0,1,2,3,4],"b":31,"wb":0,"ret":0.0,"o":"lost"},{"y":"Heinz","n":14,"legs":[0,1,2,3,4,5],"b":63,"wb":0,"ret":0.0,"o":"lost"},{"y":"Super Heinz","n":15,"legs":[0,1,2,3,4,5,6],"b":127,"wb":0,"ret":0.0,"o":"lost"},{"y":"Goliath","n":16,"legs":[0,1,2,3,4,5,6,7],"b":255,"wb":0,"ret":0.0,"o":"lost"}]},{"d":"2026-11-14","l":[{"c":"Navan","t":"15:53","h":"Sir Vinny","r":"GB/IRE","p":8.5,"f":"3","w":0,"e":0.1367}],"s":[{"y":"Single","n":1,"legs":[0],"b":1,"wb":0,"ret":0.0}]},{"d":"2026-11-13","l":[{"c":"Cheltenham","t":"14:20","h":"Jonbon","r":"GB/IRE","p":1.5,"f":"1st","w":1,"e":0.1458},{"c":"Cheltenham","t":"13:45","h":"Intosomethinggood","r":"GB/IRE","p":4.3333,"f":"2nd","w":0,"e":0.1249}],"s":[{"y":"Single","n":1,"legs":[0],"b":1,"wb":1,"ret":1.5},{"y":"Single","n":2,"legs":[1],"b":1,"wb":0,"ret":0.0},{"y":"Double","n":3,"legs":[0,1],"b":1,"wb":0,"ret":0.0,"o":"lost"}]},{"d":"2026-11-12","l":[{"c":"Hereford","t":"15:25","h":"Ms Belle","r":"GB/IRE","p":3.5,"f":"5th","w":0,"e":0.0872},{"c":"Market Rasen","t":"15:01","h":"Reflection Of You","r":"GB/IRE","p":7.0,"f":"8th","w":0,"e":0.0486},{"c":"Thurles","t":"15:48","h":"Mad Maxios","r":"GB/IRE","p":7.5,"f":"FELL","w":0,"e":0.0255}],"s":[{"y":"Single","n":1,"legs":[0],"b":1,"wb":0,"ret":0.0},{"y":"Single","n":2,"legs":[1],"b":1,"wb":0,"ret":0.0},{"y":"Single","n":3,"legs":[2],"b":1,"wb":0,"ret":0.0},{"y":"Double","n":4,"legs":[0,1],"b":1,"wb":0,"ret":0.0,"o":"lost"},{"y":"Treble","n":5,"legs":[0,1,2],"b":1,"wb":0,"ret":0.0,"o":"lost"},{"y":"Trixie","n":6,"legs":[0,1,2],"b":7,"wb":0,"ret":0.0,"o":"lost"},{"y":"Patent","n":7,"legs":[0,1,2],"b":7,"wb":0,"ret":0.0,"o":"lost"}]}];
   /* SLIP_RESULTS_END */
+  /* SCREEN_RESULTS_START */
+  var SCREEN_RESULTS = {"longshots":[{"d":"2026-11-15","l":[{"c":"Cheltenham","t":"13:25","h":"Spectacularsunrise","r":"GB/IRE","p":9.5,"f":"FELL","w":0}]},{"d":"2026-11-14","l":[{"c":"Windsor","t":"15:10","h":"Misterdoc","r":"GB/IRE","p":16.5,"f":"5","w":0},{"c":"Uttoxeter","t":"15:35","h":"Bateleur","r":"GB/IRE","p":9.6,"f":"10","w":0},{"c":"Navan","t":"15:53","h":"Sir Vinny","r":"GB/IRE","p":8.5,"f":"3","w":0}]},{"d":"2026-11-13","l":[{"c":"Cheltenham","t":"14:55","h":"Mahons Glory","r":"GB/IRE","p":8.0,"f":"2nd","w":0}]}],"overhyped":[{"d":"2026-11-18","l":[{"c":"Mahoning Valley","t":"17:15","h":"King of Sheba","r":"US","p":2.0,"f":"1st","w":1,"k":1,"e":-0.1183,"pl":1}]},{"d":"2026-11-16","l":[{"c":"Wolverhampton","t":"17:30","h":"Leading Role","r":"GB/IRE","p":1.33,"f":"1st","w":1,"k":1,"e":-0.2773,"pl":1},{"c":"Wolverhampton","t":"17:00","h":"Desert Romance","r":"GB/IRE","p":1.95,"f":"1st","w":1,"k":1,"e":-0.0707,"pl":1},{"c":"Wolverhampton","t":"20:00","h":"Ted Le Saux","r":"GB/IRE","p":3.3,"f":"12th","w":0,"k":1,"e":-0.0694,"pl":0},{"c":"Wolverhampton","t":"16:30","h":"Lord Ragnar","r":"GB/IRE","p":4.9,"f":"1st","w":1,"k":2,"e":-0.0506,"pl":1}]},{"d":"2026-11-15","l":[{"c":"Fontwell","t":"12:30","h":"Bridge","r":"GB/IRE","p":3.25,"f":"PU","w":0,"k":1,"e":-0.0523,"pl":0},{"c":"Fontwell","t":"13:43","h":"Bass Hunter","r":"GB/IRE","p":1.5,"f":"1st","w":1,"k":1,"e":-0.0505,"pl":1}]},{"d":"2026-11-14","l":[{"c":"Cheltenham","t":"15:30","h":"Daylatedollarshort","r":"GB/IRE","p":3.1,"f":"3","w":0,"k":1,"e":-0.1408,"pl":0},{"c":"Cheltenham","t":"14:55","h":"William Yeats","r":"GB/IRE","p":4.2,"f":"2","w":0,"k":2,"e":-0.113,"pl":1}]},{"d":"2026-11-12","l":[{"c":"Hereford","t":"14:50","h":"Seraphic","r":"GB/IRE","p":1.6667,"f":"1st","w":1,"k":1,"e":-0.2464,"pl":1},{"c":"Thurles","t":"14:38","h":"Shoda","r":"GB/IRE","p":4.3333,"f":"2nd","w":0,"k":1,"e":-0.173,"pl":1},{"c":"Thurles","t":"15:15","h":"Max Meridius","r":"GB/IRE","p":4.0,"f":"3rd","w":0,"k":1,"e":-0.0727,"pl":1},{"c":"Market Rasen","t":"15:36","h":"Tilehurst","r":"GB/IRE","p":3.25,"f":"4th","w":0,"k":1,"e":-0.053,"pl":0}]}],"placebankers":[{"d":"2026-11-18","l":[{"c":"Churchill Downs","t":"18:00","h":"Flaming Verdict","r":"US","p":1.6,"f":"1st","w":1,"pl":1,"pp":3,"pf":0.2,"us":1},{"c":"Churchill Downs","t":"19:27","h":"Diagram","r":"US","p":3.5,"f":"2nd","w":0,"pl":1,"pp":3,"pf":0.2,"us":1},{"c":"Finger Lakes","t":"17:38","h":"Rumblyoungmanrumbl","r":"US","p":2.6,"f":"1st","w":1,"pl":1,"pp":3,"pf":0.2,"us":1},{"c":"Finger Lakes","t":"18:06","h":"Straca","r":"US","p":3.0,"f":"3rd","w":0,"pl":1,"pp":3,"pf":0.2,"us":1},{"c":"Finger Lakes","t":"18:34","h":"Striker Joe","r":"US","p":3.0,"f":"1st","w":1,"pl":1,"pp":3,"pf":0.2,"us":1},{"c":"Finger Lakes","t":"19:03","h":"Ready Set Twirl","r":"US","p":4.0,"f":"1st","w":1,"pl":1,"pp":3,"pf":0.2,"us":1},{"c":"Mahoning Valley","t":"17:15","h":"King of Sheba","r":"US","p":2.0,"f":"1st","w":1,"pl":1,"pp":3,"pf":0.2,"us":1},{"c":"Mahoning Valley","t":"17:43","h":"Brick Ambush","r":"US","p":2.8,"f":"2nd","w":0,"pl":1,"pp":3,"pf":0.2,"us":1},{"c":"Mahoning Valley","t":"18:11","h":"Wicca Wisdom","r":"US","p":3.0,"f":"4th","w":0,"pl":0,"pp":3,"pf":0.2,"us":1},{"c":"Mahoning Valley","t":"18:39","h":"Kat Trax","r":"US","p":2.4,"f":"1st","w":1,"pl":1,"pp":3,"pf":0.2,"us":1},{"c":"Mahoning Valley","t":"19:07","h":"All My Life","r":"US","p":3.0,"f":"1st","w":1,"pl":1,"pp":3,"pf":0.2,"us":1},{"c":"Mahoning Valley","t":"19:35","h":"Emerson Jones","r":"US","p":2.6,"f":"4th","w":0,"pl":0,"pp":3,"pf":0.2,"us":1},{"c":"Parx Racing","t":"17:05","h":"Highway Patrol","r":"US","p":3.0,"f":"4th","w":0,"pl":0,"pp":3,"pf":0.2,"us":1},{"c":"Parx Racing","t":"17:32","h":"Youbetterbejoking","r":"US","p":2.6,"f":"2nd","w":0,"pl":1,"pp":3,"pf":0.2,"us":1},{"c":"Parx Racing","t":"17:59","h":"Goldieness","r":"US","p":2.6,"f":"1st","w":1,"pl":1,"pp":3,"pf":0.2,"us":1},{"c":"Parx Racing","t":"19:20","h":"Tiz It Is","r":"US","p":4.0,"f":"1st","w":1,"pl":1,"pp":3,"pf":0.2,"us":1},{"c":"Tampa Bay Downs","t":"18:12","h":"Lightscape","r":"US","p":1.6,"f":"unplaced","w":0,"pl":0,"pp":3,"pf":0.2,"us":1},{"c":"Tampa Bay Downs","t":"18:42","h":"Miss Interpatation","r":"US","p":2.5,"f":"2nd","w":0,"pl":1,"pp":3,"pf":0.2,"us":1},{"c":"Tampa Bay Downs","t":"19:11","h":"Funky See Funky Do","r":"US","p":2.8,"f":"1st","w":1,"pl":1,"pp":3,"pf":0.2,"us":1},{"c":"Tampa Bay Downs","t":"19:42","h":"Stillthinkingofyou","r":"US","p":3.0,"f":"1st","w":1,"pl":1,"pp":3,"pf":0.2,"us":1}]},{"d":"2026-11-16","l":[{"c":"Plumpton","t":"13:15","h":"Market House","r":"GB/IRE","p":4.8,"f":"3rd","w":0,"pl":1,"pp":3,"pf":0.25,"us":0},{"c":"Plumpton","t":"14:15","h":"Kamille Au Kanada","r":"GB/IRE","p":3.4,"f":"2nd","w":0,"pl":1,"pp":3,"pf":0.2,"us":0},{"c":"Plumpton","t":"15:15","h":"Uncle Al","r":"GB/IRE","p":2.5,"f":"2nd","w":0,"pl":1,"pp":2,"pf":0.25,"us":0},{"c":"Plumpton","t":"15:45","h":"Kotari","r":"GB/IRE","p":3.8,"f":"4th","w":0,"pl":0,"pp":3,"pf":0.2,"us":0},{"c":"Wolverhampton","t":"17:00","h":"Desert Romance","r":"GB/IRE","p":1.95,"f":"1st","w":1,"pl":1,"pp":3,"pf":0.2,"us":0},{"c":"Wolverhampton","t":"17:30","h":"Leading Role","r":"GB/IRE","p":1.33,"f":"1st","w":1,"pl":1,"pp":3,"pf":0.2,"us":0},{"c":"Wolverhampton","t":"18:00","h":"Al Lahbab","r":"GB/IRE","p":1.73,"f":"4th","w":0,"pl":0,"pp":3,"pf":0.2,"us":0},{"c":"Wolverhampton","t":"18:30","h":"Tan Rapido","r":"GB/IRE","p":5.6,"f":"3rd","w":0,"pl":1,"pp":3,"pf":0.2,"us":0},{"c":"Wolverhampton","t":"19:30","h":"R P McMurphy","r":"GB/IRE","p":5.8,"f":"12th","w":0,"pl":0,"pp":3,"pf":0.25,"us":0},{"c":"Wolverhampton","t":"20:00","h":"Ted Le Saux","r":"GB/IRE","p":3.3,"f":"12th","w":0,"pl":0,"pp":3,"pf":0.25,"us":0}]},{"d":"2026-11-15","l":[{"c":"Cheltenham","t":"14:00","h":"Highlands Legacy","r":"GB/IRE","p":3.9,"f":"6th","w":0,"pl":0,"pp":3,"pf":0.2,"us":0},{"c":"Fontwell","t":"12:30","h":"Bridge","r":"GB/IRE","p":3.25,"f":"PU","w":0,"pl":0,"pp":3,"pf":0.2,"us":0},{"c":"Fontwell","t":"13:43","h":"Bass Hunter","r":"GB/IRE","p":1.5,"f":"1st","w":1,"pl":1,"pp":3,"pf":0.2,"us":0},{"c":"Navan","t":"13:15","h":"Reaching High","r":"GB/IRE","p":4.5,"f":"6th","w":0,"pl":0,"pp":2,"pf":0.25,"us":0},{"c":"Navan","t":"14:25","h":"Classical Creek","r":"GB/IRE","p":4.5,"f":"2nd","w":0,"pl":1,"pp":3,"pf":0.2,"us":0},{"c":"Navan","t":"15:35","h":"Sarahs Lawn","r":"GB/IRE","p":4.5,"f":"2nd","w":0,"pl":1,"pp":3,"pf":0.2,"us":0}]},{"d":"2026-11-14","l":[{"c":"Cheltenham","t":"16:00","h":"Elegantemente","r":"GB/IRE","p":3.35,"f":"1","w":1,"pl":1,"pp":3,"pf":0.2,"us":0},{"c":"Uttoxeter","t":"15:00","h":"Orderoftheday","r":"GB/IRE","p":3.5,"f":"2","w":0,"pl":1,"pp":2,"pf":0.25,"us":0}]},{"d":"2026-11-12","l":[{"c":"Hereford","t":"14:50","h":"Seraphic","r":"GB/IRE","p":1.6667,"f":"1st","w":1,"pl":1,"pp":3,"pf":0.2,"us":0},{"c":"Market Rasen","t":"15:36","h":"Tilehurst","r":"GB/IRE","p":3.25,"f":"4th","w":0,"pl":0,"pp":2,"pf":0.25,"us":0},{"c":"Thurles","t":"14:38","h":"Shoda","r":"GB/IRE","p":4.3333,"f":"2nd","w":0,"pl":1,"pp":3,"pf":0.2,"us":0}]}]};
+  /* SCREEN_RESULTS_END */
 
   var state = null;
 
@@ -7584,6 +7623,38 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
     if (n <= 11) return '3 places · 1/5 odds';
     if (n <= 15) return '3 places · 1/4 odds';
     return '4 places · 1/4 odds';
+  }
+
+  /* Standard each-way terms for a priced leg, using the same field-size and
+     handicap rules as tooling/eachway.py. Only GB/IRE races carry an each-way
+     market here; US, HK, French and Chilean legs stay win-only. */
+  function ewTerms(x) {
+    var n = x.field || (x.card && x.card.runners ? x.card.runners.length : 0);
+    if (n < 5) return null;
+    var hcp = /\b(handicap|hcp)\b/i.test(String((x.card && (x.card.race || x.card.label)) || ''));
+    if (n <= 7) return {places: 2, frac: 0.25};
+    if (hcp) {
+      if (n <= 11) return {places: 3, frac: 0.2};
+      if (n <= 15) return {places: 3, frac: 0.25};
+      return {places: 4, frac: 0.25};
+    }
+    return {places: 3, frac: 0.2};
+  }
+
+  function ewPlaceOdds(x) {
+    var t = ewTerms(x);
+    return t ? 1 + t.frac * (x.dec - 1) : null;
+  }
+
+  function ewEligible(x) {
+    var region = String((x.card && x.card.region) || '').toUpperCase();
+    return (region === 'GB' || region === 'IRE') && ewPlaceOdds(x) !== null;
+  }
+
+  function ewDescribe(x) {
+    var t = ewTerms(x);
+    if (!t || !ewEligible(x)) return 'win only';
+    return t.places + 'pl · 1/' + Math.round(1 / t.frac);
   }
 
   /* ---------- rendering ---------- */
@@ -8365,14 +8436,124 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
       '</div>';
   }
 
-  function slipHtml(no, type, bets, legs, footer) {
+  function slipHtml(no, type, bets, legs, footer, legFn) {
     return '<article class="slip">' +
       '<header class="slip-head"><span class="slip-no">SLIP ' + no + '</span>' +
         '<span class="slip-type">' + type + '</span>' +
         '<span class="slip-bets">' + bets + '</span></header>' +
-      '<div class="slip-legs">' + legs.map(slipLeg).join('') + '</div>' +
+      '<div class="slip-legs">' + legs.map(legFn || slipLeg).join('') + '</div>' +
       '<footer class="slip-foot">' + footer + '</footer>' +
       '</article>';
+  }
+
+  function slipEwLeg(x) {
+    var place = ewPlaceOdds(x);
+    return '<div class="slip-leg" data-card="' + esc(x.card.id || '') + '">' +
+      '<div class="slip-sel"><span class="slip-tag">' + betTag(x.card.region) + '</span>' +
+        '<b>' + esc(x.row.r.horse || '\u2014') + '</b>' +
+        '<small>' + esc(x.card.course) + ' ' + esc(x.card.time) + ' \u00b7 ' +
+          esc(x.card.race || x.card.label || '') + '</small></div>' +
+      '<div class="slip-num"><b>' + betPrice(x.dec) + '</b><small>win price</small></div>' +
+      '<div class="slip-num"><b>' + (place ? place.toFixed(2) : '\u2014') + '</b><small>' + ewDescribe(x) + '</small></div>' +
+      '</div>';
+  }
+
+  function ewParts(legs) {
+    var win = legs.reduce(function (p, x) { return p * x.dec; }, 1);
+    var elig = legs.filter(ewEligible);
+    var place = elig.length ? elig.reduce(function (p, x) { return p * ewPlaceOdds(x); }, 1) : null;
+    return {win: win, place: place, elig: elig};
+  }
+
+  function ewSingleFooter(x) {
+    var place = ewPlaceOdds(x);
+    var t = ewTerms(x);
+    if (!ewEligible(x)) {
+      return '<div class="slip-combined"><span>Win only \u00b7 1 unit</span><b>' + x.dec.toFixed(2) + '</b></div>' +
+        '<p class="slip-sub">No each-way place part: ' +
+        (t ? 'this is not a GB/IRE race.' : 'under five runners at standard terms.') +
+        ' Card price, not a quote.</p>';
+    }
+    return '<div class="slip-combined"><span>Each-way \u00b7 2 units</span><b>' + x.dec.toFixed(2) +
+        ' win \u00b7 ' + place.toFixed(2) + ' place</b></div>' +
+      '<p class="slip-sub">Returns ' + (x.dec + place).toFixed(2) + ' units if it wins, ' +
+        place.toFixed(2) + ' if it places (' + t.places + ' places \u00b7 1/' +
+        Math.round(1 / t.frac) + '). Card price, not a quote.</p>';
+  }
+
+  function ewMultiFooter(count, legs) {
+    var p = ewParts(legs);
+    var label = count === 2 ? 'both' : (count === 3 ? 'all three' : 'all ' + count);
+    var sub = p.place
+      ? '2 units per bet: one win part, one place part.'
+      : '1 unit: win only, because no leg has each-way terms.';
+    if (p.place && p.elig.length < legs.length) {
+      sub += ' The place part is modelled on the ' + p.elig.length +
+        ' GB/IRE legs only; with a US leg in the slip this is not a bookmaker each-way bet.';
+    }
+    return '<div class="slip-combined"><span>' + (p.place ? 'Each-way combined' : 'Win-only combined') + '</span><b>' + p.win.toFixed(2) +
+        (p.place ? ' win \u00b7 ' + p.place.toFixed(2) + ' place' : ' win') + '</b></div>' +
+      '<p class="slip-sub">' + label + ' must win for ' + p.win.toFixed(2) + ' on the win part' +
+        (p.place ? '; the place part pays ' + p.place.toFixed(2) + ' if all ' + p.elig.length + ' each-way legs place' : '') +
+        '. ' + sub + '</p>';
+  }
+
+  function ewLuckyFooter(count, bets, breakdown, legs) {
+    var p = ewParts(legs);
+    if (!p.place) {
+      return '<div class="slip-combined"><span>' + bets + ' bets win-only</span><b>' + bets + ' units</b></div>' +
+        '<p class="slip-sub">' + breakdown + ' No leg in this slip has each-way terms, so it stays win-only at ' +
+        bets + ' units rather than charging for a place part that does not exist.</p>';
+    }
+    return '<div class="slip-combined"><span>' + bets + ' bets each-way</span><b>' + (bets * 2) + ' units</b></div>' +
+      '<p class="slip-sub">' + breakdown + ' Win part all ' + count + ' at ' + p.win.toFixed(2) +
+        '; place part ' + p.elig.length + ' GB/IRE legs at ' + p.place.toFixed(2) +
+        '. Every bet is 2 units, win and place.</p>';
+  }
+
+  // The same ladder as slipSetHtml, settled as each-way: two units per bet,
+  // with the place part limited to the GB/IRE legs that have standard terms.
+  function slipEwSetHtml(legs, opts) {
+    opts = opts || {};
+    var html = '', no = 1;
+    html += '<h3 class="slip-section">' + (opts.singleHead || 'Each-way singles') + '</h3><div class="slip-grid">';
+    legs.slice(0, 3).forEach(function (x) {
+      html += slipHtml(('0' + no++).slice(-2), 'Single', ewEligible(x) ? '2 units' : '1 unit', [x], ewSingleFooter(x), slipEwLeg);
+    });
+    html += '</div>';
+
+    function multiple(name, count, breakdown) {
+      if (legs.length < count) return '';
+      var chosen = legs.slice(0, count);
+      var p = ewParts(chosen);
+      return slipHtml(('0' + no++).slice(-2), name, p.place ? '2 units' : '1 unit', chosen, ewMultiFooter(count, chosen), slipEwLeg);
+    }
+    var mult = multiple('Double', 2, 'Two selections in one bet.') +
+      multiple('Treble', 3, 'Three selections in one bet.') +
+      multiple('Four-fold accumulator', 4, 'Four selections in one bet.');
+    if (mult) html += '<h3 class="slip-section">Each-way straight multiples</h3><div class="slip-grid">' + mult + '</div>';
+
+    function lucky(name, count, bets, breakdown) {
+      if (legs.length < count) return '';
+      var chosen = legs.slice(0, count);
+      var p = ewParts(chosen);
+      return slipHtml(('0' + no++).slice(-2), name, (p.place ? bets * 2 : bets) + ' units', chosen,
+        ewLuckyFooter(count, bets, breakdown, chosen), slipEwLeg);
+    }
+    var luckyHtml = lucky('Lucky 15', 4, 15, '4 singles, 6 doubles, 4 trebles, 1 four-fold.') +
+      lucky('Lucky 31', 5, 31, '5 singles, 10 doubles, 10 trebles, 5 four-folds, 1 five-fold.') +
+      lucky('Lucky 63', 6, 63, '6 singles, 15 doubles, 20 trebles, 15 four-folds, 6 five-folds, 1 six-fold.');
+    if (luckyHtml) html += '<h3 class="slip-section">Each-way Lucky slips</h3><div class="slip-grid">' + luckyHtml + '</div>';
+
+    var coverHtml = lucky('Trixie', 3, 4, '3 doubles, 1 treble.') +
+      lucky('Patent', 3, 7, '3 singles, 3 doubles, 1 treble.') +
+      lucky('Yankee', 4, 11, '6 doubles, 4 trebles, 1 four-fold.') +
+      lucky('Canadian', 5, 26, '10 doubles, 10 trebles, 5 four-folds, 1 five-fold.') +
+      lucky('Heinz', 6, 57, '15 doubles, 20 trebles, 15 four-folds, 6 five-folds, 1 six-fold.') +
+      lucky('Super Heinz', 7, 120, '21 doubles, 35 trebles, 35 four-folds, 21 five-folds, 7 six-folds, 1 seven-fold.') +
+      lucky('Goliath', 8, 247, '28 doubles, 56 trebles, 70 four-folds, 56 five-folds, 28 six-folds, 8 seven-folds, 1 eight-fold.');
+    if (coverHtml) html += '<h3 class="slip-section">Each-way full-cover slips</h3><div class="slip-grid">' + coverHtml + '</div>';
+    return html;
   }
 
   var SLIP_INDEX = [
@@ -8478,8 +8659,21 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
       box.innerHTML = '<p class="bet-empty">No priced value legs in this build. A slip needs at least two races whose top pick has a card price and a model chance above the market&rsquo;s; the page will not invent legs to fill one.</p>';
       return;
     }
+    var base = legs.slice(0, 8);
+    var sameLadder = base.some(ewEligible);
+    var ewPool = sameLadder ? base : legs.filter(ewEligible).slice(0, 8);
+    var ewLegs = ewPool.filter(ewEligible);
     box.innerHTML = slipSetHtml(legs) +
-      '<p class="bet-note">No stake is taken and no bet is placed. Prices are the card prices in this build; a real slip may be shorter. If you bet, stake only what you can afford to lose, and a multiple loses if any leg loses.</p>';
+      '<p class="bet-note">No stake is taken and no bet is placed. Prices are the card prices in this build; a real slip may be shorter. If you bet, stake only what you can afford to lose, and a multiple loses if any leg loses.</p>' +
+      '<h3 class="slip-section">Each-way slips \u2014 two units per bet</h3>' +
+      (ewLegs.length
+        ? '<p class="bet-note">' + (sameLadder
+            ? 'The same ladder as an each-way bet: one unit on the win part and one on the place part. Only GB/IRE legs with standard place terms carry a place part; US legs stay win-only and are labelled that way.'
+            : 'None of the first eight value legs has standard place terms, so this each-way ladder uses the GB/IRE legs that do. One unit on the win part, one on the place part; a slip with no qualifying leg stays win-only at one unit.') +
+          ' A slip with no qualifying leg says so and stays win-only rather than charging for a place part that does not exist.</p>' +
+          slipEwSetHtml(ewPool) +
+          '<p class="bet-note">Each-way returns assume standard place terms and card prices, not a quote. No stake is taken and no bet is placed.</p>'
+        : '<p class="bet-empty">No priced leg in this build has standard each-way terms. An each-way slip needs a GB/IRE leg from a field of five or more, so the win-only slips above are the only ones on offer rather than repeating them at two units.</p>');
   }
 
   // The next races to go, in off-time order: the same leg test as the slip tab,
@@ -8502,8 +8696,21 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
       box.innerHTML = '<p class="bet-empty">No priced value legs are still to come in this build. A leg needs a card price, a model chance above the market&rsquo;s and a post time that has not passed; the page will not invent one.</p>';
       return;
     }
+    var base = legs.slice(0, 8);
+    var sameLadder = base.some(ewEligible);
+    var ewPool = sameLadder ? base : pool.filter(ewEligible).slice(0, 8);
+    var ewLegs = ewPool.filter(ewEligible);
     box.innerHTML = slipSetHtml(legs, {singleHead: 'Next-off singles'}) +
-      '<p class="bet-note">No stake is taken and no bet is placed. Prices are the card prices in this build; a real slip may be shorter. If you bet, stake only what you can afford to lose, and a multiple loses if any leg loses.</p>';
+      '<p class="bet-note">No stake is taken and no bet is placed. Prices are the card prices in this build; a real slip may be shorter. If you bet, stake only what you can afford to lose, and a multiple loses if any leg loses.</p>' +
+      '<h3 class="slip-section">Each-way slips \u2014 two units per bet</h3>' +
+      (ewLegs.length
+        ? '<p class="bet-note">' + (sameLadder
+            ? 'The same next-off ladder as each-way bets: one unit win and one unit place where the race has standard place terms. Only GB/IRE legs carry a place part; US legs stay win-only.'
+            : 'None of the next eight value legs has standard place terms, so this each-way ladder uses the GB/IRE legs that do. One unit win and one unit place; a slip with no qualifying leg stays win-only at one unit.') +
+          ' A slip with no qualifying leg stays win-only rather than charging for a place part that does not exist.</p>' +
+          slipEwSetHtml(ewPool, {singleHead: 'Next-off each-way singles'}) +
+          '<p class="bet-note">Each-way returns assume standard place terms and card prices, not a quote. No stake is taken and no bet is placed.</p>'
+        : '<p class="bet-empty">No priced leg still to come has standard each-way terms. An each-way slip needs a GB/IRE leg from a field of five or more, so the win-only slips above are the only ones on offer rather than repeating them at two units.</p>');
   }
 
   function renderNextRaces(list) {
@@ -8714,6 +8921,180 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
     renderSlipResultDay(slipResDay);
   }
 
+  /* ---------- settled screen results ---------- */
+
+  var SCREEN_DEFS = [
+    {key: 'longshots', run: 'longRRun', days: 'longRDays', sum: 'longRSum', body: 'longRBody'},
+    {key: 'overhyped', run: 'overRRun', days: 'overRDays', sum: 'overRSum', body: 'overRBody'},
+    {key: 'placebankers', run: 'plRRun', days: 'plRDays', sum: 'plRSum', body: 'plRBody'}
+  ];
+  var screenPicked = {};
+  var screenBound = {};
+  var SCREEN_EMPTY = {
+    longshots: 'No settled longshot is on file yet. A day enters this tab only when the archived card had a priced top-four longshot with a positive edge and the stored result names the same pick.',
+    overhyped: 'No settled favourite is on file yet. A day enters this tab only when the archived card carried a price for the favourite and the stored result names it.',
+    placebankers: 'No settled banker is on file yet. A day enters this tab only when the archived card had a priced model-and-market favourite and the stored result names the same pick.'
+  };
+
+  function screenRows(key) { return SCREEN_RESULTS[key] || []; }
+
+  function screenTerms(x) {
+    if (x.us) return 'Top 3 (US)';
+    return x.pp ? (x.pp + ' places \u00b7 1/' + Math.round(1 / x.pf)) : 'Win only';
+  }
+
+  function screenVerdict(x) {
+    if (x.w) return '<span class="slip-verdict won">Won</span>';
+    if (x.pl) return '<span class="slip-verdict part">Placed</span>';
+    return '<span class="slip-verdict lost">Lost</span>';
+  }
+
+  function screenCounts(key, d) {
+    var won = 0, placed = 0, ret = 0;
+    d.l.forEach(function (x) {
+      if (x.w) { won++; ret += x.p; }
+      if (x.pl) placed++;
+    });
+    return {total: d.l.length, won: won, placed: placed, ret: ret};
+  }
+
+  function screenRunLine(key) {
+    var c = {total: 0, won: 0, placed: 0, ret: 0};
+    screenRows(key).forEach(function (d) {
+      var x = screenCounts(key, d);
+      c.total += x.total; c.won += x.won; c.placed += x.placed; c.ret += x.ret;
+    });
+    if (key === 'longshots') {
+      return '<span><b>' + c.won + ' of ' + c.total + '</b> longshots won</span>' +
+        '<span><b>' + c.ret.toFixed(2) + '</b> returned on ' + c.total + ' staked</span>' +
+        '<span>net <b>' + slipRunSigned(c.ret - c.total) + '</b></span>';
+    }
+    if (key === 'overhyped') {
+      return '<span><b>' + c.total + '</b> flagged favourites</span>' +
+        '<span><b>' + c.won + '</b> won</span>' +
+        '<span><b>' + c.placed + '</b> placed (incl. wins)</span>' +
+        '<span><b>' + (c.total - c.won) + '</b> beaten</span>';
+    }
+    return '<span><b>' + c.placed + ' of ' + c.total + '</b> bankers placed</span>' +
+      '<span><b>' + c.won + '</b> won</span>' +
+      '<span>place rate <b>' + slipRunPct(c.placed, c.total) + '</b></span>' +
+      '<span>win rate <b>' + slipRunPct(c.won, c.total) + '</b></span>';
+  }
+
+  function screenDaySum(key, d) {
+    var c = screenCounts(key, d);
+    if (key === 'longshots') {
+      return '<span><b>' + c.won + ' of ' + c.total + '</b> won</span>' +
+        '<span><b>' + c.ret.toFixed(2) + '</b> returned / ' + c.total + ' staked</span>' +
+        '<span>net <b>' + slipRunSigned(c.ret - c.total) + '</b></span>';
+    }
+    if (key === 'overhyped') {
+      return '<span><b>' + c.total + '</b> flagged</span>' +
+        '<span><b>' + c.won + '</b> won</span>' +
+        '<span><b>' + c.placed + '</b> placed</span>' +
+        '<span><b>' + (c.total - c.won) + '</b> beaten</span>';
+    }
+    return '<span><b>' + c.placed + ' of ' + c.total + '</b> placed</span>' +
+      '<span><b>' + c.won + '</b> won</span>' +
+      '<span>place rate <b>' + slipRunPct(c.placed, c.total) + '</b></span>';
+  }
+
+  function screenHead(key) {
+    if (key === 'overhyped') {
+      return '<tr><th>Course / off</th><th>Flagged favourite</th><th>Price</th>' +
+        '<th>Model rank</th><th>Finish</th><th>Verdict</th></tr>';
+    }
+    if (key === 'placebankers') {
+      return '<tr><th>Course / off</th><th>Banker</th><th>Price</th><th>Terms</th>' +
+        '<th>Finish</th><th>Placed?</th></tr>';
+    }
+    return '<tr><th>Course / off</th><th>Longshot</th><th>Price</th>' +
+      '<th>Finish</th><th>Result</th></tr>';
+  }
+
+  function screenRow(key, x) {
+    var where = '<td><b>' + esc(x.c) + '</b> <span class="rtime">' + esc(x.t) + '</span></td>';
+    if (key === 'overhyped') {
+      return '<tr>' + where +
+        '<td class="horse">' + esc(x.h) + '</td>' +
+        '<td class="num">' + betPrice(x.p) + '</td>' +
+        '<td class="num">#' + (x.k || '\u2014') + '</td>' +
+        '<td>' + esc(x.f || '\u2014') + '</td>' +
+        '<td>' + screenVerdict(x) + '</td></tr>';
+    }
+    if (key === 'placebankers') {
+      return '<tr>' + where +
+        '<td class="horse">' + esc(x.h) + '</td>' +
+        '<td class="num">' + betPrice(x.p) + '</td>' +
+        '<td class="muted">' + screenTerms(x) + '</td>' +
+        '<td>' + esc(x.f || '\u2014') + '</td>' +
+        '<td class="placed ' + (x.pl ? 'yes' : (x.pp ? 'no' : 'winonly')) + '">' +
+          (x.pl ? 'Yes' : (x.pp ? 'No' : 'Win only')) + '</td></tr>';
+    }
+    return '<tr>' + where +
+      '<td class="horse">' + esc(x.h) + '</td>' +
+      '<td class="num">' + betPrice(x.p) + '</td>' +
+      '<td>' + esc(x.f || '\u2014') + '</td>' +
+      '<td>' + screenVerdict(x) + '</td></tr>';
+  }
+
+  function renderScreenDay(key) {
+    var def = SCREEN_DEFS.filter(function (d) { return d.key === key; })[0];
+    var body = $(def.body), sum = $(def.sum);
+    var iso = screenPicked[key];
+    var d = screenRows(key).filter(function (x) { return x.d === iso; })[0];
+    if (!d) {
+      body.innerHTML = '<p class="bet-empty">' + SCREEN_EMPTY[key] + '</p>';
+      if (sum) sum.innerHTML = '';
+      return;
+    }
+    if (sum) sum.innerHTML = screenDaySum(key, d);
+    body.innerHTML = '<h3 class="slip-section">Settled ' + esc(slipDayLabel(d.d)) + '</h3>' +
+      '<div class="scroll"><table class="ledger"><thead>' + screenHead(key) + '</thead><tbody>' +
+      d.l.map(function (x) { return screenRow(key, x); }).join('') + '</tbody></table></div>';
+  }
+
+  function renderScreenDays(key) {
+    var def = SCREEN_DEFS.filter(function (d) { return d.key === key; })[0];
+    var box = $(def.days);
+    if (!box) return;
+    box.innerHTML = screenRows(key).map(function (d) {
+      var on = d.d === screenPicked[key];
+      return '<button type="button" class="slipres-day' + (on ? ' on' : '') + '" data-screenday="' +
+        esc(d.d) + '" aria-pressed="' + (on ? 'true' : 'false') + '">' + esc(slipDayLabel(d.d)) +
+        '<small>' + d.l.length + (d.l.length === 1 ? ' pick' : ' picks') + '</small></button>';
+    }).join('');
+    if (!screenBound[key]) {
+      screenBound[key] = true;
+      box.addEventListener('click', function (e) {
+        var btn = e.target.closest ? e.target.closest('[data-screenday]') : null;
+        if (!btn) return;
+        screenPicked[key] = btn.getAttribute('data-screenday');
+        renderScreenDays(key);
+        renderScreenDay(key);
+      });
+    }
+  }
+
+  function renderScreenResults() {
+    SCREEN_DEFS.forEach(function (def) {
+      var data = screenRows(def.key);
+      if (!data.length) {
+        if ($(def.run)) $(def.run).innerHTML = '';
+        if ($(def.days)) $(def.days).innerHTML = '';
+        if ($(def.sum)) $(def.sum).innerHTML = '';
+        if ($(def.body)) $(def.body).innerHTML = '<p class="bet-empty">' + SCREEN_EMPTY[def.key] + '</p>';
+        return;
+      }
+      if (!screenPicked[def.key] || !data.some(function (d) { return d.d === screenPicked[def.key]; })) {
+        screenPicked[def.key] = data[0].d;
+      }
+      if ($(def.run)) $(def.run).innerHTML = screenRunLine(def.key);
+      renderScreenDays(def.key);
+      renderScreenDay(def.key);
+    });
+  }
+
   function renderBetViews() {
     renderLongshots();
     renderOverhyped();
@@ -8721,6 +9102,7 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
     renderSlips();
     renderUpcomingSlips();
     renderSlipResults();
+    renderScreenResults();
     renderSlipIndex();
   }
 

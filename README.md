@@ -830,7 +830,7 @@ since `dist/public/index.html` is the whole site.
 
 ## The page
 
-Nineteen destinations, each a job rather than a data source. Old tab names still
+Twenty-two destinations, each a job rather than a data source. Old tab names still
 resolve to their new home, so saved links and the browser's remembered tab keep
 working.
 
@@ -843,6 +843,9 @@ working.
 | Bet slips | Win-only singles, doubles, trebles, four-folds and Lucky 15/31/63 from the strongest priced value legs, plus the standard named-slip table. |
 | Upcoming slips | The same slips, with the legs queued by the next off instead of by edge, so the tab shows the races still to come. |
 | Slip results | The same rule replayed on settled days from the archived pre-race card, with every leg's finish, every slip's winning bets and return at card prices, and a running strike rate across all settled days combined. |
+| Longshot results | The Longshots screen replayed on settled days from the archived card: each pick's finish and a one-unit win record at card prices. |
+| Overhyped results | How the favourites the Overhyped screen flagged actually finished; a doubt record with no stake and no P&L. |
+| Place banker results | The model-and-market bankers replayed on settled days, placed or not under the standard place terms stored with the result. |
 | Cards | Pick any race and inspect every runner the model scored, with the full rating table. |
 | UK results | Settled UK results, market checks and the standing model audits. |
 | Irish results | Settled Irish races, split from the UK ledger by course. |
@@ -876,9 +879,18 @@ working.
 * The **Longshots**, **Overhyped**, **Place bankers**, **Bet slips** and
   **Upcoming slips** tabs are screens over the same win model, not new
   probabilities. The place tab is a place profile, not a place chance; the slips
-  use card prices and never invent a leg, a price or a stake. Printing from
+  use card prices and never invent a leg, a price or a stake. **Bet slips** and
+  **Upcoming slips** also show an each-way version of the same ladder: two units
+  per bet (win and place), standard place terms on the GB/IRE legs, and US legs
+  win-only and labelled as such. Printing from
   **Bet slips** prints only the slips, each kept whole; the navigation,
   explanatory copy and reference table are omitted.
+* **Longshot results**, **Overhyped results** and **Place banker results**
+  replay their screens on settled days from `data/cards/by_date` and
+  `data/results`, and only when the archived pick and the stored result agree.
+  Longshot returns use one-unit win bets at card prices. Overhyped is a record
+  of what the flagged favourite did, not a bet and not a P&L. Place bankers are
+  counted as placed or not under the place terms stored with their result.
 * **Slip results** is settled history, not a tip. It replays the slip rule from
   `data/cards/by_date` for each day in `data/results`, uses a leg only when the
   archived pick and the stored pick agree, and stakes every bet in the named

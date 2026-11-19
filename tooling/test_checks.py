@@ -2567,7 +2567,10 @@ _bet_html = _page_now
 for _tid, _label in [("longshots", "Longshots"), ("overhyped", "Overhyped"),
                      ("placers", "Place bankers"), ("slips", "Bet slips"),
                      ("upcoming", "Upcoming slips"),
-                     ("slipresults", "Slip results")]:
+                     ("slipresults", "Slip results"),
+                     ("longresults", "Longshot results"),
+                     ("overresults", "Overhyped results"),
+                     ("placerresults", "Place banker results")]:
     check("bet views: the %s tab is declared" % _tid,
           "['%s', '%s'" % (_tid, _label) in _bet_html
           and "data-panel=\"%s\"" % _tid in _bet_html
@@ -2576,7 +2579,8 @@ check("bet views: each panel owns its render target",
       all(_id in _bet_html for _id in
           ['id="longshotBody"', 'id="overhypedBody"', 'id="placerBody"',
            'id="slipsBody"', 'id="slipIndex"', 'id="nextSlipsBody"',
-           'id="nextRaces"', 'id="slipResultsBody"', 'id="slipResDays"']))
+           'id="nextRaces"', 'id="slipResultsBody"', 'id="slipResDays"',
+           'id="longRBody"', 'id="overRBody"', 'id="plRBody"']))
 check("bet views: the tabs carry their own count lines",
       all(_id in _bet_html for _id in
           ['id="longshotCount"', 'id="overhypedCount"', 'id="placerCount"',
@@ -2587,7 +2591,8 @@ check("bet views: every renderer exists and is wired into renderAll",
            'function renderPlacers', 'function renderSlips',
            'function renderSlipIndex', 'function renderUpcomingSlips',
            'function renderSlipResults', 'function slipSetHtml',
-           'function renderBetViews'])
+           'function renderScreenResults', 'function slipEwSetHtml',
+           'function ewTerms', 'function renderBetViews'])
       and "renderBetViews();" in _bet_html)
 check("bet views: longshots need a price, top-four rank, 4% chance and positive edge",
       "x.dec >= 8" in _bet_html and "x.rank <= 4" in _bet_html
@@ -2762,6 +2767,60 @@ check("slip results: the running panel folds in every settled day, oldest first"
 check("slip results: the running panel is rendered with the tab",
       "function renderSlipRun" in _bet_html
       and "renderSlipRun();" in _bet_html)
+print()
+print("Settled screen results")
+_ms = _re.search(r"/\* SCREEN_RESULTS_START \*/\s*var SCREEN_RESULTS = (\{.*?\});\s*/\* SCREEN_RESULTS_END \*/",
+                 _bet_html, _re.S)
+_scr = _json.loads(_ms.group(1)) if _ms else {}
+
+
+def _stored_placed_ok(day, x):
+    for _r in _ALL_RESULTS.get(day["d"], []):
+        if _r.get("course") != x["c"] or str(_r.get("pick") or "") != x["h"]:
+            continue
+        return (1 if _r.get("placed") is True else 0) == x["pl"]
+    return False
+
+
+check("screen results: every screen carries settled days",
+      all(_scr.get(k) for k in ("longshots", "overhyped", "placebankers")),
+      {k: len(v) for k, v in _scr.items()})
+check("screen results: days are newest first in every screen",
+      all([d["d"] for d in _scr.get(k, [])] ==
+          sorted([d["d"] for d in _scr.get(k, [])], reverse=True) for k in _scr))
+check("screen results: every row matches a stored pick and finish",
+      all(_stored_leg_ok(d, x) for k in _scr for d in _scr[k] for x in d["l"]))
+check("screen results: longshots carry a price of 8+ and a real finish",
+      all(x["p"] >= 8 and x.get("f")
+          for d in _scr.get("longshots", []) for x in d["l"]))
+check("screen results: overhyped rows name the model rank and the edge",
+      all(x.get("k") and "e" in x
+          for d in _scr.get("overhyped", []) for x in d["l"]))
+check("screen results: bankers carry place terms and a placed verdict",
+      all(x.get("pp") and x.get("pf") and x.get("pl") in (0, 1)
+          and _stored_placed_ok(d, x)
+          for d in _scr.get("placebankers", []) for x in d["l"]))
+check("screen results: the overhyped tab is a doubt record, not a bet",
+      "doubt record" in _bet_html and "No stake is taken" in _bet_html)
+
+print()
+print("Each-way slips")
+check("each-way: the same ladder is offered as each-way in both slip tabs",
+      "slipEwSetHtml(ewPool)" in _bet_html
+      and "slipEwSetHtml(ewPool, {singleHead: 'Next-off each-way singles'})" in _bet_html
+      and "legs.filter(ewEligible).slice(0, 8)" in _bet_html)
+check("each-way: every named bet is two units",
+      "two units per bet" in _bet_html
+      and "Each-way" in _bet_html and "2 units" in _bet_html
+      and "bets each-way" in _bet_html)
+check("each-way: only GB/IRE legs carry a place part",
+      "function ewTerms" in _bet_html and "function ewEligible" in _bet_html
+      and "region === 'GB' || region === 'IRE'" in _bet_html)
+check("each-way: US legs stay win-only and say so",
+      "US legs carry only the win part" in _bet_html
+      and "US legs stay win-only" in _bet_html
+      and "not a bookmaker each-way bet" in _bet_html)
+
 check("slip results: the running panel counts legs, slips and bets and says so",
       "Running strike rate" in _bet_html
       and "Legs won" in _bet_html and "Slips landed" in _bet_html
