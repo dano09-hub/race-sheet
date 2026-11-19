@@ -1,6 +1,6 @@
 {
- "date": "2026-11-18",
- "measured": "2026-11-18T20:26:01+00:00",
+ "date": "2026-11-19",
+ "measured": "2026-11-19T02:31:44+00:00",
  "rows": [
   {
    "country": "Great Britain & Ireland",
@@ -18,9 +18,9 @@
    "code": "US",
    "source": "horseracingnation.com",
    "cards": true,
-   "results": true,
+   "results": false,
    "prices": true,
-   "verdict": "live",
+   "verdict": "cards only",
    "note": "HRN entries and payout table on one host",
    "wired": true
   },
@@ -43,29 +43,29 @@
    "results": true,
    "prices": true,
    "verdict": "live",
-   "note": "18 declared runners, 40 definitive races, forecast dividends",
+   "note": "16 declared runners, 24 definitive races, forecast dividends",
    "wired": true
   },
   {
    "country": "Argentina",
    "code": "AR",
    "source": "PMU",
-   "cards": true,
+   "cards": false,
    "results": false,
    "prices": false,
-   "verdict": "cards only",
-   "note": "12 declared runners, 0 definitive races, no prices",
+   "verdict": "no meeting",
+   "note": "not on today's PMU programme",
    "wired": false
   },
   {
    "country": "Chile",
    "code": "CL",
    "source": "PMU",
-   "cards": true,
-   "results": true,
+   "cards": false,
+   "results": false,
    "prices": false,
-   "verdict": "cards + results, no prices",
-   "note": "15 declared runners, 6 definitive races, no prices",
+   "verdict": "no meeting",
+   "note": "not on today's PMU programme",
    "wired": true
   },
   {
