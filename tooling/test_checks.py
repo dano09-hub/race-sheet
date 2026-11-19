@@ -2856,6 +2856,8 @@ check("screen results: bankers carry place terms and a placed verdict",
       all(x.get("pp") and x.get("pf") and x.get("pl") in (0, 1)
           and _stored_placed_ok(d, x)
           for d in _scr.get("placebankers", []) for x in d["l"]))
+check("screen results: the settled rows show their country tag",
+      "var tag = x.r ? '<span class=\"rtag\">' + betTag(x.r)" in _bet_html)
 check("screen results: the overhyped tab is a doubt record, not a bet",
       "doubt record" in _bet_html and "No stake is taken" in _bet_html)
 
