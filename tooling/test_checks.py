@@ -38,6 +38,7 @@ import fetch_results_sl as sl  # noqa: E402
 import refresh         # noqa: E402
 import ledger_summary as lsum  # noqa: E402
 import parse_cards as pcards  # noqa: E402
+import rescore_results  # noqa: E402
 import recheck_market  # noqa: E402
 import settle          # noqa: E402
 import us_flags        # noqa: E402
@@ -2650,6 +2651,72 @@ check("model: the picks list is built from rated cards only",
       "function ratedPicks" in _page_now
       and "if (!cov.ok) {" in _page_now
       and "renderLeaderboard" in _page_now)
+
+print()
+print("Price recovery")
+check("prices: only a value the page's decimalOdds reads counts as a price",
+      rescore_results.price_text("7/2") == "7/2"
+      and rescore_results.price_text("evs") == "evs"
+      and rescore_results.price_text("5.50") == "5.5"
+      and all(rescore_results.price_text(v) is None
+              for v in ("", None, "0", "1", "9999999", "SP", "--")))
+_fill = {"course": "Test", "runners": [
+    {"horse": "Priced", "odds": "3.2"},
+    {"horse": "Empty", "odds": ""},
+    {"horse": "Gone", "odds": "", "scratched": True},
+    {"horse": "Unknown", "odds": ""}]}
+_key = lambda h: (rescore_results.norm("Test"), rescore_results.norm(h))
+_copy, _used = rescore_results.priced(_fill, {
+    _key("Empty"): ("5", "eachway_prices.jsonl 2026-01-02T13:00:00"),
+    _key("Gone"): ("9", "eachway_prices.jsonl 2026-01-02T13:00:00")})
+_got = {r["horse"]: r["odds"] for r in _copy["runners"]}
+check("prices: an empty slot is filled, a stored price is never overwritten",
+      _got == {"Priced": "3.2", "Empty": "5", "Gone": "", "Unknown": ""}
+      and _used == {"eachway_prices.jsonl 2026-01-02T13:00:00"})
+check("prices: the original card is left untouched",
+      [r["odds"] for r in _fill["runners"]] == ["3.2", "", "", ""])
+check("gaps: the scorer's own failure is never counted as a single field",
+      rescore_results.blocker_of({"state": "incomplete", "missing": [
+          {"what": "a factor did not score", "n": 6, "of": 6}]})
+      == ("a factor did not score", False)
+      and rescore_results.blocker_of({"state": "incomplete", "missing": [
+          {"what": "price", "n": 2, "of": 8}]}) == ("price", True))
+
+_tmp_dir = tempfile.mkdtemp()
+try:
+    _ew = os.path.join(_tmp_dir, "eachway.jsonl")
+    with open(_ew, "w", encoding="utf-8") as f:
+        for rec in (
+            {"date": "2026-01-02", "course": "Test", "horse": "Keeper",
+             "time": "14:00", "win_odds": 4.0,
+             "snapshot_utc": "2026-01-02T13:00:00+00:00"},
+            {"date": "2026-01-02", "course": "Test", "horse": "Late",
+             "time": "14:00", "win_odds": 4.0,
+             "snapshot_utc": "2026-01-02T14:00:01+00:00"},
+            {"date": "2026-01-02", "course": "Test", "horse": "Untimed",
+             "time": "", "win_odds": 4.0,
+             "snapshot_utc": "2026-01-02T10:00:00+00:00"},
+            {"date": "2026-01-02", "course": "Test", "horse": "Overnight",
+             "time": "", "win_odds": 6.0,
+             "snapshot_utc": "2026-01-01T20:00:00+00:00"}):
+            f.write(json.dumps(rec) + "\n")
+    _was = (rescore_results.EACHWAY, rescore_results.CARDS)
+    rescore_results.EACHWAY = _ew
+    rescore_results.CARDS = os.path.join(_tmp_dir, "cards")
+    try:
+        _idx = rescore_results.price_index("2026-01-02")
+    finally:
+        rescore_results.EACHWAY, rescore_results.CARDS = _was
+    check("prices: a snapshot taken before the off is used",
+          _idx.get(_key("Keeper")) is not None)
+    check("prices: a snapshot at or after the off is refused",
+          _key("Late") not in _idx)
+    check("prices: a same-day snapshot with no off time cannot prove it is pre-race",
+          _key("Untimed") not in _idx)
+    check("prices: a snapshot from before the race day is used without an off time",
+          _idx.get(_key("Overnight")) is not None)
+finally:
+    shutil.rmtree(_tmp_dir, ignore_errors=True)
 
 print()
 print("passed %d, failed %d%s" % (

@@ -356,8 +356,8 @@ That re-check now runs on the six-input re-score. `tooling/rescore_results.py`
 writes the rated pick and its chance to `data/results_rated/<date>.json`, and the
 Results tab's **Model chance audit** block reads it: the average stated chance
 of the rated picks, their actual win rate, and a Wilson interval around it. At
-this build that is 21 rated races and 2 winners, with the re-scored picks carrying
-20.5% on average and a 95% interval of 2.7-28.9%, so the block says the
+this build that is 48 rated races and 8 winners, with the re-scored picks carrying
+19.8% on average and a 95% interval of 8.7-29.6%, so the block says the
 sample is not yet informative. At 350 races the interval is about +/-4.5 points, enough to
 catch a gross error but not to separate the 0.04 and 0.0498 scales, whose pick
 chances differ by about four points; at 1,600 races it narrows to about +/-2
@@ -890,9 +890,21 @@ check.
   and marks a race whose card has a gap as **Not rated**. Each unrated race
   records `blocker`, the field missing from most of its runners, and a run
   prints those ranked with the races each would unlock, so the next data fix can
-  be picked by how many races it rates. The pre-race pick on
+  be picked by how many races it rates. A price the archived card lost is
+  restored from a stored copy of the same day -- the append-only each-way
+  snapshots or the day's own card pulls -- but only from a copy taken before the
+  off, never over a price the card already carries, and never estimated: the
+  source of each restored price is written beside the race as `price_source`.
+  The pre-race pick on
   record is never rewritten: `data/results` keeps it and the ledger says so.
-  Coverage at this build is 21 of 272 settled races (2 winners), all UK; US
+  `python3 tooling/refresh.py --data-only` re-renders the UK, Irish and US
+  ledgers, the race-by-race audit and the Model chance audit from stored data
+  without scraping, so a new re-score reaches the page without a fresh pull.
+  Coverage at this build is 48 of 272 settled races (8 winners), all on British
+  or Irish cards; 28 of those were held out by price alone and every runner's
+  price was found in a stored snapshot. One restored card carries the same
+  weight for every runner, so the weight factor cannot score it and it stays
+  not rated. US
   cards file no weight, Hong Kong no days or jockey/trainer records, and the
   French and Chilean cards no price. The race-by-race audit uses the same
   re-score. The archive keeps the card as it stood at the last pull, so where

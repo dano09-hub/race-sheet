@@ -320,21 +320,19 @@
    "time": "",
    "winner": "Beckistine",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
+   "state": "rated",
+   "pick": "Miners Bridge",
+   "chance": 20.2,
    "finish": "",
    "hit": false,
    "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 12,
-     "of": 12
-    }
+   "missing": [],
+   "place_places": 3,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-14T12:10:47"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Navan",

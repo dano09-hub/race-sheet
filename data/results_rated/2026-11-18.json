@@ -59,21 +59,20 @@
    "time": "15:30",
    "winner": "Dear Theodosia",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
-   "finish": "",
+   "state": "rated",
+   "pick": "Rock On Johnny",
+   "chance": 21.7,
+   "finish": "2nd",
    "hit": false,
-   "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 12,
-     "of": 12
-    }
+   "placed": true,
+   "missing": [],
+   "place_places": 3,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-17T19:24:49",
+    "eachway_prices.jsonl 2026-11-18T02:52:06"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Dundalk",
@@ -235,21 +234,19 @@
    "time": "14:18",
    "winner": "Cote D'ange",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
-   "finish": "",
+   "state": "rated",
+   "pick": "Walk Tall",
+   "chance": 11.5,
+   "finish": "2nd",
    "hit": false,
    "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 15,
-     "of": 15
-    }
+   "missing": [],
+   "place_places": null,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-18T02:52:06"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Ffos Las",
@@ -292,21 +289,19 @@
    "time": "15:18",
    "winner": "Neeps And Tatties",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
-   "finish": "",
+   "state": "rated",
+   "pick": "No Boundaries",
+   "chance": 17.1,
+   "finish": "3rd",
    "hit": false,
-   "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 11,
-     "of": 11
-    }
+   "placed": true,
+   "missing": [],
+   "place_places": 3,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-18T02:52:06"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Ffos Las",
@@ -354,105 +349,99 @@
    "time": "13:03",
    "winner": "Derryhassen Paddy",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
-   "finish": "",
-   "hit": false,
+   "state": "rated",
+   "pick": "Derryhassen Paddy",
+   "chance": 48,
+   "finish": "1st",
+   "hit": true,
    "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 4,
-     "of": 4
-    }
+   "missing": [],
+   "place_places": null,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-17T19:24:49",
+    "eachway_prices.jsonl 2026-11-18T02:52:06"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Hexham",
    "time": "13:33",
    "winner": "De Deli Counter",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
-   "finish": "",
-   "hit": false,
-   "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 11,
-     "of": 11
-    }
+   "state": "rated",
+   "pick": "De Deli Counter",
+   "chance": 19.9,
+   "finish": "1st",
+   "hit": true,
+   "placed": true,
+   "missing": [],
+   "place_places": 3,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-17T19:24:49",
+    "eachway_prices.jsonl 2026-11-18T02:52:06"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Hexham",
    "time": "14:08",
    "winner": "Ratemenow",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
-   "finish": "",
-   "hit": false,
-   "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 10,
-     "of": 10
-    }
+   "state": "rated",
+   "pick": "Ratemenow",
+   "chance": 21.3,
+   "finish": "1st",
+   "hit": true,
+   "placed": true,
+   "missing": [],
+   "place_places": 3,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-17T19:24:49",
+    "eachway_prices.jsonl 2026-11-18T02:52:06"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Hexham",
    "time": "14:38",
    "winner": "President Scottie",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
-   "finish": "",
+   "state": "rated",
+   "pick": "Wal Buck's",
+   "chance": 20.6,
+   "finish": "2nd",
    "hit": false,
-   "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 8,
-     "of": 8
-    }
+   "placed": true,
+   "missing": [],
+   "place_places": 3,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-17T19:24:49",
+    "eachway_prices.jsonl 2026-11-18T02:52:06"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Hexham",
    "time": "15:08",
    "winner": "Halpha Soleil",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
-   "finish": "",
-   "hit": false,
-   "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 12,
-     "of": 12
-    }
+   "state": "rated",
+   "pick": "Halpha Soleil",
+   "chance": 16.1,
+   "finish": "1st",
+   "hit": true,
+   "placed": true,
+   "missing": [],
+   "place_places": 3,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-18T02:52:06"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Hexham",
@@ -557,42 +546,38 @@
    "time": "17:30",
    "winner": "Nightbloom",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
-   "finish": "",
+   "state": "rated",
+   "pick": "Divine Whisper",
+   "chance": 41.5,
+   "finish": "2nd",
    "hit": false,
-   "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 5,
-     "of": 5
-    }
+   "placed": true,
+   "missing": [],
+   "place_places": 2,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-18T17:13:13"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Kempton",
    "time": "18:00",
    "winner": "Divine Rhythm",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
-   "finish": "",
-   "hit": false,
-   "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 11,
-     "of": 11
-    }
+   "state": "rated",
+   "pick": "Divine Rhythm",
+   "chance": 22.1,
+   "finish": "1st",
+   "hit": true,
+   "placed": true,
+   "missing": [],
+   "place_places": 3,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-18T17:13:13"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Kempton",
@@ -635,42 +620,40 @@
    "time": "19:00",
    "winner": "Princling",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
-   "finish": "",
+   "state": "rated",
+   "pick": "Palladas",
+   "chance": 14.3,
+   "finish": "2nd",
    "hit": false,
-   "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 14,
-     "of": 14
-    }
+   "placed": true,
+   "missing": [],
+   "place_places": 3,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-18T02:52:06",
+    "eachway_prices.jsonl 2026-11-18T17:13:13"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Kempton",
    "time": "19:30",
    "winner": "Zachary Hickes",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
-   "finish": "",
-   "hit": false,
-   "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 7,
-     "of": 7
-    }
+   "state": "rated",
+   "pick": "Zachary Hickes",
+   "chance": 26.7,
+   "finish": "1st",
+   "hit": true,
+   "placed": true,
+   "missing": [],
+   "place_places": 2,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-18T02:52:06",
+    "eachway_prices.jsonl 2026-11-18T17:13:13"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Kempton",

@@ -15,13 +15,16 @@
    "placed": null,
    "missing": [
     {
-     "what": "price",
+     "what": "a factor did not score",
      "n": 6,
      "of": 6
     }
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-16T13:10:01"
+   ],
+   "blocker": "a factor did not score",
+   "blocker_only": false
   },
   {
    "course": "Carlisle",
@@ -100,21 +103,19 @@
    "time": "",
    "winner": "King Berry",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
+   "state": "rated",
+   "pick": "Ebselysees",
+   "chance": 13.6,
    "finish": "",
    "hit": false,
    "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 12,
-     "of": 12
-    }
+   "missing": [],
+   "place_places": 3,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-16T13:10:01"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Carlisle",
@@ -141,42 +142,38 @@
    "time": "",
    "winner": "Holeheartedly",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
+   "state": "rated",
+   "pick": "Zamond",
+   "chance": 12.7,
    "finish": "",
    "hit": false,
    "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 17,
-     "of": 17
-    }
+   "missing": [],
+   "place_places": 3,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-16T13:10:01"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Carlisle",
    "time": "",
    "winner": "Air Apparent",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
+   "state": "rated",
+   "pick": "Mr Lincoln",
+   "chance": 26.7,
    "finish": "",
    "hit": false,
    "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 6,
-     "of": 6
-    }
+   "missing": [],
+   "place_places": 2,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-16T13:10:01"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Carlisle",
@@ -260,42 +257,38 @@
    "time": "",
    "winner": "Galileo Springs",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
+   "state": "rated",
+   "pick": "Cathryns Ruby",
+   "chance": 18.5,
    "finish": "",
    "hit": false,
    "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 11,
-     "of": 11
-    }
+   "missing": [],
+   "place_places": 3,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-16T13:10:01"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Limerick",
    "time": "",
    "winner": "Theanniversary Man",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
-   "finish": "",
+   "state": "rated",
+   "pick": "The Monkey Pole",
+   "chance": 17.8,
+   "finish": "2nd",
    "hit": false,
-   "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 10,
-     "of": 10
-    }
+   "placed": true,
+   "missing": [],
+   "place_places": 3,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-16T13:10:01"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Limerick",
@@ -430,42 +423,38 @@
    "time": "",
    "winner": "Dowman",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
+   "state": "rated",
+   "pick": "Roxa Love",
+   "chance": 26.4,
    "finish": "",
    "hit": false,
    "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 5,
-     "of": 5
-    }
+   "missing": [],
+   "place_places": 2,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-16T13:10:01"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Southwell",
    "time": "",
    "winner": "Without Compromise",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
-   "finish": "",
+   "state": "rated",
+   "pick": "Gloryous",
+   "chance": 11.1,
+   "finish": "2nd",
    "hit": false,
-   "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 13,
-     "of": 13
-    }
+   "placed": true,
+   "missing": [],
+   "place_places": 3,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-16T13:10:01"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Southwell",
@@ -492,63 +481,58 @@
    "time": "",
    "winner": "Tex",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
-   "finish": "",
+   "state": "rated",
+   "pick": "Anthropologist",
+   "chance": 15,
+   "finish": "3rd",
    "hit": false,
-   "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 14,
-     "of": 14
-    }
+   "placed": true,
+   "missing": [],
+   "place_places": 3,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-16T13:10:01"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Southwell",
    "time": "",
    "winner": "Phoenix Of Dreams",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
-   "finish": "",
+   "state": "rated",
+   "pick": "Red Hat Eagle",
+   "chance": 14.5,
+   "finish": "3rd",
    "hit": false,
-   "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 11,
-     "of": 11
-    }
+   "placed": true,
+   "missing": [],
+   "place_places": 3,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-16T13:10:01"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Southwell",
    "time": "",
    "winner": "Maldevious",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
+   "state": "rated",
+   "pick": "Edmond Halley",
+   "chance": 17,
    "finish": "",
    "hit": false,
    "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 10,
-     "of": 10
-    }
+   "missing": [],
+   "place_places": 3,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-16T13:10:01",
+    "eachway_prices.jsonl 2026-11-17T19:24:49"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Southwell",
@@ -591,42 +575,40 @@
    "time": "",
    "winner": "Goldwork",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
+   "state": "rated",
+   "pick": "Courageous Sioux",
+   "chance": 13.5,
    "finish": "",
    "hit": false,
    "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 14,
-     "of": 14
-    }
+   "missing": [],
+   "place_places": 3,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-16T13:10:01",
+    "eachway_prices.jsonl 2026-11-17T19:24:49",
+    "eachway_prices.jsonl 2026-11-17T19:52:34"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Southwell",
    "time": "",
    "winner": "Castan",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
+   "state": "rated",
+   "pick": "Binadham",
+   "chance": 12.5,
    "finish": "",
    "hit": false,
    "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 14,
-     "of": 14
-    }
+   "missing": [],
+   "place_places": 3,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-16T13:10:01"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   }
  ]
 }

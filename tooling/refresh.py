@@ -301,6 +301,7 @@ def annotate_result_rows(iso, rows):
 
     python3 tooling/refresh.py            # today + tomorrow UK, today US, today results
     python3 tooling/refresh.py --days 3   # widen the UK window
+    python3 tooling/refresh.py --data-only  # re-render Results from data/, no scraping
 
 Steps
   1. UK racecards  -> RACE_CARDS (today), CARDS_FRI (tomorrow)
@@ -908,6 +909,32 @@ def _audit_source():
     return None, []
 
 
+def _priced_scored(iso, cards, scored):
+    """Re-score the races whose only gap is a price the archive still holds.
+
+    tooling/rescore_results.py restores a lost price from a stored pre-off copy,
+    but only where price is the race's sole gap. The audit reads the same
+    archived card, so it has to restore on the same terms: otherwise it would
+    print a race the re-score rates as a pick with no rank, field or price.
+    """
+    import settle
+    import rescore_results as rr
+    prices = rr.price_index(iso)
+    refill, at = [], []
+    for i, (card, got) in enumerate(zip(cards, scored)):
+        gaps = [g.get("what") for g in (got or {}).get("missing") or []]
+        if gaps != ["price"]:
+            continue
+        copy, used = rr.priced(card, prices)
+        if used:
+            refill.append(copy)
+            at.append(i)
+    if refill:
+        for i, got in zip(at, settle.score_rated_cards(refill)):
+            scored[i] = got
+    return scored
+
+
 def audit_rows():
     """The latest settled UK/IRE day, scored with the page's strict model.
 
@@ -924,7 +951,7 @@ def audit_rows():
     try:
         import settle
         cards = settle._enrich(settle._cards_for(iso), iso)
-        scored = settle.score_rated_cards(cards)
+        scored = _priced_scored(iso, cards, settle.score_rated_cards(cards))
     except Exception as e:
         print(f"  audit:       skipped ({e})")
         return []
@@ -1007,6 +1034,45 @@ def audit_rows():
             "p": pick, "pf": finish, "v": verdict,
         })
     return [json.dumps(x, ensure_ascii=False) for x in out]
+
+
+def rebuild_page(html=None):
+    """Re-render the Results blocks from stored data, without scraping.
+
+    A new re-score, or a price restored from a stored copy, changes
+    data/results_rated, and the page has to show it. A full refresh would get
+    there by scraping, which can put a post-off card in place of the one the
+    pick was made from. This rewrites only the UK, Irish and US ledgers, the
+    race-by-race audit and the Model chance audit from what is already in
+    data/, then writes index.html and dist/public/index.html.
+    """
+    import chance_audit
+    if html is None:
+        with open(INDEX, encoding="utf-8") as f:
+            html = f.read()
+    blocks = (
+        ("RESULTS_SL", results_block_all()),
+        ("IRE_RESULTS_SL", results_block_all_ire()),
+        ("US_RESULTS_SL", results_block_all_us()),
+        ("CAL_SL", chance_block_html(chance_audit.collect_rated())),
+    )
+    for name, body in blocks:
+        if not body:
+            continue
+        pattern = re.compile(rf"<!-- {name}_START -->.*?<!-- {name}_END -->", re.S)
+        if not pattern.search(html):
+            raise SystemExit(f"could not find {name} in index.html")
+        html = pattern.sub(lambda m: body, html, count=1)
+    audit = audit_rows()
+    if audit:
+        html = replace_block(html, "RESULTS", audit)
+    with open(INDEX, "w", encoding="utf-8") as f:
+        f.write(html)
+    os.makedirs(os.path.join(ROOT, "dist", "public"), exist_ok=True)
+    with open(os.path.join(ROOT, "dist", "public", "index.html"),
+              "w", encoding="utf-8") as f:
+        f.write(html)
+    return len(html.encode())
 
 
 def replace_block(html, name, body):
@@ -1338,6 +1404,10 @@ def us_angles_block_html(t, iso):
             + "\n<!-- US_ANGLES_SL_END -->")
 
 def main():
+    if "--data-only" in sys.argv[1:]:
+        print(f"rebuilt results blocks from stored data; wrote index.html + "
+              f"dist ({rebuild_page()} bytes)")
+        return 0
     days = 2
     skip_checks = False
     for a in sys.argv[1:]:
