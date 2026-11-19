@@ -1323,6 +1323,7 @@
   .sliprun-table td, .sliprun-table th { font-size:11.5px; white-space:nowrap; }
   .sliprun-table td .pct { color:var(--muted); }
   .sliprun-table tr.sliprun-total td { font-weight:700; background:#f3f1ea; }
+  .sliprun-foot { margin:8px 0 0; color:var(--muted); font-size:10.5px; line-height:1.4; }
   .slip-res .slip-leg { cursor:default; }
   .slip-leg.res-win { background:linear-gradient(90deg,#f2faf5,transparent 72%); }
   .slip-leg.res-lost { opacity:.74; }
@@ -8602,15 +8603,32 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
     return (v < 0 ? '\u2212' : '+') + Math.abs(v).toFixed(dp === undefined ? 2 : dp);
   }
 
+  /* The ladder has three families: one-leg singles, the straight multiples and
+     the Lucky/full-cover slips that stake every combination. */
+  function slipRunFamily(y) {
+    if (y === 'Single') return 'single';
+    if (y === 'Double' || y === 'Treble' || y === 'Four-fold accumulator') return 'straight';
+    return 'cover';
+  }
+
   function slipRunHtml() {
     var rows = SLIP_RESULTS.slice().sort(function (a, b) { return a.d < b.d ? -1 : 1; });
     var run = {l: 0, lw: 0, s: 0, sw: 0, b: 0, bw: 0, ret: 0, staked: 0};
+    var famMeta = [
+      ['single', 'Singles', 'one leg each'],
+      ['straight', 'Straight multiples', 'double to four-fold'],
+      ['cover', 'Lucky &amp; full-cover', 'Trixie to Goliath']
+    ];
+    var fam = {};
+    famMeta.forEach(function (m) { fam[m[0]] = {s: 0, land: 0, b: 0, wb: 0, ret: 0, staked: 0}; });
     var body = rows.map(function (d) {
       var lw = d.l.filter(function (l) { return l.w; }).length;
       var sw = 0, b = 0, bw = 0, ret = 0;
       d.s.forEach(function (s) {
         b += s.b; bw += s.wb; ret += s.ret;
-        if (slipResVerdict(s) === 'won') sw++;
+        var f = fam[slipRunFamily(s.y)];
+        f.s++; f.b += s.b; f.wb += s.wb; f.ret += s.ret; f.staked += s.b;
+        if (slipResVerdict(s) === 'won') { sw++; f.land++; }
       });
       run.l += d.l.length; run.lw += lw;
       run.s += d.s.length; run.sw += sw;
@@ -8628,6 +8646,14 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
       '<td class="num">' + run.sw + ' of ' + run.s + ' <span class="pct">' + slipRunPct(run.sw, run.s) + '</span></td>' +
       '<td class="num">' + run.bw + ' of ' + run.b + ' <span class="pct">' + slipRunPct(run.bw, run.b) + '</span></td>' +
       '<td class="num">' + slipRunSigned(net) + '</td></tr>';
+    var famRows = famMeta.map(function (m) {
+      var f = fam[m[0]];
+      var fnet = f.ret - f.staked;
+      return '<tr><td><b>' + m[1] + '</b><br><span class="pct">' + m[2] + '</span></td>' +
+        '<td class="num">' + f.land + ' of ' + f.s + ' <span class="pct">' + slipRunPct(f.land, f.s) + '</span></td>' +
+        '<td class="num">' + f.wb + ' of ' + f.b + ' <span class="pct">' + slipRunPct(f.wb, f.b) + '</span></td>' +
+        '<td class="num">' + slipRunSigned(fnet) + ' <span class="pct">' + slipRunSigned(f.staked ? 100 * fnet / f.staked : 0, 1) + '%</span></td></tr>';
+    }).join('');
     return '<div class="sliprun"><h3>Running strike rate</h3>' +
       '<p class="sliprun-note">Every settled day added together, oldest first. Each day stakes every slip the ladder generated that day in full, one unit per bet, so the same race can sit in more than one slip. Card prices, win only.</p>' +
       '<div class="sliprun-grid">' +
@@ -8638,7 +8664,11 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
       '</div>' +
       '<p class="sliprun-cap">Running totals after each day</p>' +
       '<div class="scroll"><table class="ledger sliprun-table"><thead><tr><th>Day</th><th>Legs</th><th>Slips</th><th>Bets</th><th>Net</th></tr></thead><tbody>' +
-        body + totalRow + '</tbody></table></div></div>';
+        body + totalRow + '</tbody></table></div>' +
+      '<p class="sliprun-cap">Running by slip type</p>' +
+      '<div class="scroll"><table class="ledger sliprun-table"><thead><tr><th>Slip type</th><th>Slips landed</th><th>Bets won</th><th>Net</th></tr></thead><tbody>' +
+        famRows + '</tbody></table></div>' +
+      '<p class="sliprun-foot">The three types add up to the all-days total above; every bet is one unit at its card price.</p></div>';
   }
 
   function renderSlipRun() {

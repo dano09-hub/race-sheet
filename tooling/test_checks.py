@@ -2120,6 +2120,7 @@ def _dead_get(url, tries=3):
 _old_sl_get = slmod.get
 _old_ir_get = irmod.get
 _old_hk_fetch = hkmod.scrape_hk.fetch
+_old_hk_cards = hkmod._cards
 try:
     slmod.get = _dead_get
     try:
@@ -2133,6 +2134,9 @@ try:
         _ir_raised = False
     except feedmod.FeedError:
         _ir_raised = True
+    # A card must exist for the current UTC day, otherwise main exits before
+    # the feed is touched and the outage assertion proves nothing.
+    hkmod._cards = lambda date_iso: [{}]
     hkmod.scrape_hk.fetch = _dead_get
     try:
         hkmod.main([])
@@ -2143,6 +2147,7 @@ finally:
     slmod.get = _old_sl_get
     irmod.get = _old_ir_get
     hkmod.scrape_hk.fetch = _old_hk_fetch
+    hkmod._cards = _old_hk_cards
 check("uk/ire feed: an unreachable index raises", _uk_raised)
 check("irish feed: an unreachable index raises", _ir_raised)
 check("hk feed: an unreachable meeting raises, not a quiet zero", _hk_raised)
@@ -2762,6 +2767,18 @@ check("slip results: the running panel counts legs, slips and bets and says so",
       and "Legs won" in _bet_html and "Slips landed" in _bet_html
       and "Bets won" in _bet_html
       and "one unit per bet, so the same race can sit in more than one slip" in _bet_html)
+check("slip results: the running panel splits singles from straight and full-cover slips",
+      "Running by slip type" in _bet_html
+      and "function slipRunFamily" in _bet_html
+      and "if (y === 'Single') return 'single';" in _bet_html
+      and "y === 'Four-fold accumulator'" in _bet_html
+      and "return 'cover';" in _bet_html
+      and "Straight multiples" in _bet_html
+      and "Lucky &amp; full-cover" in _bet_html)
+check("slip results: the type table reads the same slips as the all-days total",
+      "var f = fam[slipRunFamily(s.y)];" in _bet_html
+      and "f.land++" in _bet_html
+      and "The three types add up to the all-days total above" in _bet_html)
 
 print()
 print("passed %d, failed %d%s" % (

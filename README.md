@@ -888,7 +888,10 @@ working.
   fewer slips. The running panel above the day buttons combines every settled
   day, oldest first, with legs won, slips fully landed and winning bets against
   the total, plus the net at card prices; it counts each generated slip in
-  full, so the same race can appear in more than one slip.
+  full, so the same race can appear in more than one slip. A second table
+  splits that record by slip type — one-leg singles, the straight multiples and
+  the Lucky/full-cover slips — so the expensive combinations are not hidden
+  inside one headline figure.
   `tooling/slip_results.py` rebuilds the block and `refresh.py` runs it on every
   build.
 * The **Hong Kong** tab carries today's HKJC card from the official source and
