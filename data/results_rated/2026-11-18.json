@@ -24,7 +24,9 @@
      "n": 2,
      "of": 17
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": false
   },
   {
    "course": "Dundalk",
@@ -48,7 +50,9 @@
      "n": 1,
      "of": 16
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": false
   },
   {
    "course": "Dundalk",
@@ -67,7 +71,9 @@
      "n": 12,
      "of": 12
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": true
   },
   {
    "course": "Dundalk",
@@ -101,7 +107,9 @@
      "n": 2,
      "of": 13
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": false
   },
   {
    "course": "Dundalk",
@@ -125,7 +133,9 @@
      "n": 1,
      "of": 16
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": false
   },
   {
    "course": "Dundalk",
@@ -149,7 +159,9 @@
      "n": 4,
      "of": 9
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": false
   },
   {
    "course": "Dundalk",
@@ -173,7 +185,9 @@
      "n": 2,
      "of": 17
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": false
   },
   {
    "course": "Dundalk",
@@ -212,7 +226,9 @@
      "n": 1,
      "of": 17
     }
-   ]
+   ],
+   "blocker": "official rating",
+   "blocker_only": false
   },
   {
    "course": "Ffos Las",
@@ -231,7 +247,9 @@
      "n": 15,
      "of": 15
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": true
   },
   {
    "course": "Ffos Las",
@@ -265,7 +283,9 @@
      "n": 2,
      "of": 13
     }
-   ]
+   ],
+   "blocker": "official rating",
+   "blocker_only": false
   },
   {
    "course": "Ffos Las",
@@ -284,7 +304,9 @@
      "n": 11,
      "of": 11
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": true
   },
   {
    "course": "Ffos Las",
@@ -323,7 +345,9 @@
      "n": 1,
      "of": 10
     }
-   ]
+   ],
+   "blocker": "official rating",
+   "blocker_only": false
   },
   {
    "course": "Hexham",
@@ -342,7 +366,9 @@
      "n": 4,
      "of": 4
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": true
   },
   {
    "course": "Hexham",
@@ -361,7 +387,9 @@
      "n": 11,
      "of": 11
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": true
   },
   {
    "course": "Hexham",
@@ -380,7 +408,9 @@
      "n": 10,
      "of": 10
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": true
   },
   {
    "course": "Hexham",
@@ -399,7 +429,9 @@
      "n": 8,
      "of": 8
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": true
   },
   {
    "course": "Hexham",
@@ -418,7 +450,9 @@
      "n": 12,
      "of": 12
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": true
   },
   {
    "course": "Hexham",
@@ -452,7 +486,9 @@
      "n": 4,
      "of": 7
     }
-   ]
+   ],
+   "blocker": "official rating",
+   "blocker_only": false
   },
   {
    "course": "Hexham",
@@ -476,7 +512,9 @@
      "n": 9,
      "of": 9
     }
-   ]
+   ],
+   "blocker": "official rating",
+   "blocker_only": false
   },
   {
    "course": "Kempton",
@@ -510,7 +548,9 @@
      "n": 4,
      "of": 12
     }
-   ]
+   ],
+   "blocker": "official rating",
+   "blocker_only": false
   },
   {
    "course": "Kempton",
@@ -529,7 +569,9 @@
      "n": 5,
      "of": 5
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": true
   },
   {
    "course": "Kempton",
@@ -548,7 +590,9 @@
      "n": 11,
      "of": 11
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": true
   },
   {
    "course": "Kempton",
@@ -582,7 +626,9 @@
      "n": 6,
      "of": 14
     }
-   ]
+   ],
+   "blocker": "official rating",
+   "blocker_only": false
   },
   {
    "course": "Kempton",
@@ -601,7 +647,9 @@
      "n": 14,
      "of": 14
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": true
   },
   {
    "course": "Kempton",
@@ -620,7 +668,9 @@
      "n": 7,
      "of": 7
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": true
   },
   {
    "course": "Kempton",
@@ -644,7 +694,9 @@
      "n": 1,
      "of": 14
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": false
   },
   {
    "course": "Kempton",
@@ -658,7 +710,9 @@
    "hit": false,
    "placed": null,
    "missing": [],
-   "place_places": 3
+   "place_places": 3,
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Kempton",
@@ -697,7 +751,9 @@
      "n": 1,
      "of": 12
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": false
   },
   {
    "course": "Ffos Las",
@@ -721,7 +777,9 @@
      "n": 1,
      "of": 10
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": false
   },
   {
    "course": "Ffos Las",
@@ -745,7 +803,9 @@
      "n": 1,
      "of": 5
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": false
   },
   {
    "course": "Ffos Las",
@@ -784,7 +844,9 @@
      "n": 1,
      "of": 9
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": false
   },
   {
    "course": "Charles Town",
@@ -828,7 +890,9 @@
      "n": 8,
      "of": 8
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Charles Town",
@@ -872,7 +936,9 @@
      "n": 9,
      "of": 9
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Charles Town",
@@ -916,7 +982,9 @@
      "n": 9,
      "of": 9
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Charles Town",
@@ -960,7 +1028,9 @@
      "n": 8,
      "of": 8
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Charles Town",
@@ -1004,7 +1074,9 @@
      "n": 9,
      "of": 9
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Charles Town",
@@ -1048,7 +1120,9 @@
      "n": 9,
      "of": 9
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Charles Town",
@@ -1092,7 +1166,9 @@
      "n": 8,
      "of": 8
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Charles Town",
@@ -1136,7 +1212,9 @@
      "n": 10,
      "of": 10
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Churchill Downs",
@@ -1180,7 +1258,9 @@
      "n": 7,
      "of": 7
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Churchill Downs",
@@ -1224,7 +1304,9 @@
      "n": 7,
      "of": 7
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Churchill Downs",
@@ -1268,7 +1350,9 @@
      "n": 10,
      "of": 10
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Churchill Downs",
@@ -1312,7 +1396,9 @@
      "n": 7,
      "of": 7
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Churchill Downs",
@@ -1356,7 +1442,9 @@
      "n": 7,
      "of": 7
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Churchill Downs",
@@ -1400,7 +1488,9 @@
      "n": 10,
      "of": 10
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Churchill Downs",
@@ -1444,7 +1534,9 @@
      "n": 7,
      "of": 7
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Churchill Downs",
@@ -1488,7 +1580,9 @@
      "n": 11,
      "of": 11
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Churchill Downs",
@@ -1532,7 +1626,9 @@
      "n": 10,
      "of": 10
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Delta Downs",
@@ -1576,7 +1672,9 @@
      "n": 9,
      "of": 9
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Delta Downs",
@@ -1620,7 +1718,9 @@
      "n": 10,
      "of": 10
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Delta Downs",
@@ -1664,7 +1764,9 @@
      "n": 10,
      "of": 10
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Delta Downs",
@@ -1708,7 +1810,9 @@
      "n": 10,
      "of": 10
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Delta Downs",
@@ -1752,7 +1856,9 @@
      "n": 7,
      "of": 7
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Delta Downs",
@@ -1796,7 +1902,9 @@
      "n": 8,
      "of": 8
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Delta Downs",
@@ -1840,7 +1948,9 @@
      "n": 10,
      "of": 10
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Evangeline Downs",
@@ -1884,7 +1994,9 @@
      "n": 7,
      "of": 7
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Evangeline Downs",
@@ -1928,7 +2040,9 @@
      "n": 8,
      "of": 8
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Evangeline Downs",
@@ -1972,7 +2086,9 @@
      "n": 9,
      "of": 9
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Evangeline Downs",
@@ -2016,7 +2132,9 @@
      "n": 10,
      "of": 10
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Evangeline Downs",
@@ -2060,7 +2178,9 @@
      "n": 7,
      "of": 7
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Evangeline Downs",
@@ -2104,7 +2224,9 @@
      "n": 8,
      "of": 8
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Evangeline Downs",
@@ -2148,7 +2270,9 @@
      "n": 8,
      "of": 8
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Finger Lakes",
@@ -2192,7 +2316,9 @@
      "n": 6,
      "of": 6
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Finger Lakes",
@@ -2236,7 +2362,9 @@
      "n": 6,
      "of": 6
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Finger Lakes",
@@ -2280,7 +2408,9 @@
      "n": 5,
      "of": 5
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Finger Lakes",
@@ -2324,7 +2454,9 @@
      "n": 7,
      "of": 7
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Finger Lakes",
@@ -2368,7 +2500,9 @@
      "n": 10,
      "of": 10
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Finger Lakes",
@@ -2412,7 +2546,9 @@
      "n": 9,
      "of": 9
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Finger Lakes",
@@ -2456,7 +2592,9 @@
      "n": 8,
      "of": 8
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Finger Lakes",
@@ -2500,7 +2638,9 @@
      "n": 9,
      "of": 9
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Mahoning Valley",
@@ -2544,7 +2684,9 @@
      "n": 6,
      "of": 6
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Mahoning Valley",
@@ -2588,7 +2730,9 @@
      "n": 5,
      "of": 5
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Mahoning Valley",
@@ -2632,7 +2776,9 @@
      "n": 6,
      "of": 6
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Mahoning Valley",
@@ -2676,7 +2822,9 @@
      "n": 6,
      "of": 6
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Mahoning Valley",
@@ -2720,7 +2868,9 @@
      "n": 8,
      "of": 8
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Mahoning Valley",
@@ -2764,7 +2914,9 @@
      "n": 6,
      "of": 6
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Mahoning Valley",
@@ -2808,7 +2960,9 @@
      "n": 7,
      "of": 7
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Mahoning Valley",
@@ -2852,7 +3006,9 @@
      "n": 6,
      "of": 6
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Mountaineer",
@@ -2896,7 +3052,9 @@
      "n": 10,
      "of": 10
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Mountaineer",
@@ -2940,7 +3098,9 @@
      "n": 8,
      "of": 8
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Mountaineer",
@@ -2984,7 +3144,9 @@
      "n": 8,
      "of": 8
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Mountaineer",
@@ -3028,7 +3190,9 @@
      "n": 10,
      "of": 10
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Mountaineer",
@@ -3072,7 +3236,9 @@
      "n": 10,
      "of": 10
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Mountaineer",
@@ -3116,7 +3282,9 @@
      "n": 8,
      "of": 8
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Mountaineer",
@@ -3160,7 +3328,9 @@
      "n": 6,
      "of": 6
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Mountaineer",
@@ -3204,7 +3374,9 @@
      "n": 10,
      "of": 10
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Parx Racing",
@@ -3248,7 +3420,9 @@
      "n": 7,
      "of": 7
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Parx Racing",
@@ -3292,7 +3466,9 @@
      "n": 7,
      "of": 7
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Parx Racing",
@@ -3336,7 +3512,9 @@
      "n": 6,
      "of": 6
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Parx Racing",
@@ -3380,7 +3558,9 @@
      "n": 7,
      "of": 7
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Parx Racing",
@@ -3424,7 +3604,9 @@
      "n": 8,
      "of": 8
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Parx Racing",
@@ -3468,7 +3650,9 @@
      "n": 8,
      "of": 8
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Parx Racing",
@@ -3512,7 +3696,9 @@
      "n": 7,
      "of": 7
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Parx Racing",
@@ -3556,7 +3742,9 @@
      "n": 7,
      "of": 7
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Parx Racing",
@@ -3600,7 +3788,9 @@
      "n": 11,
      "of": 11
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Penn National",
@@ -3644,7 +3834,9 @@
      "n": 8,
      "of": 8
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Penn National",
@@ -3688,7 +3880,9 @@
      "n": 6,
      "of": 6
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Penn National",
@@ -3732,7 +3926,9 @@
      "n": 8,
      "of": 8
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Penn National",
@@ -3776,7 +3972,9 @@
      "n": 7,
      "of": 7
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Penn National",
@@ -3820,7 +4018,9 @@
      "n": 6,
      "of": 6
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Penn National",
@@ -3864,7 +4064,9 @@
      "n": 7,
      "of": 7
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Penn National",
@@ -3908,7 +4110,9 @@
      "n": 7,
      "of": 7
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Penn National",
@@ -3952,7 +4156,9 @@
      "n": 7,
      "of": 7
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Remington Park",
@@ -3996,7 +4202,9 @@
      "n": 10,
      "of": 10
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Remington Park",
@@ -4040,7 +4248,9 @@
      "n": 10,
      "of": 10
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Remington Park",
@@ -4084,7 +4294,9 @@
      "n": 10,
      "of": 10
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Remington Park",
@@ -4128,7 +4340,9 @@
      "n": 7,
      "of": 7
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Remington Park",
@@ -4172,7 +4386,9 @@
      "n": 9,
      "of": 9
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Remington Park",
@@ -4216,7 +4432,9 @@
      "n": 9,
      "of": 9
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Remington Park",
@@ -4260,7 +4478,9 @@
      "n": 8,
      "of": 8
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Remington Park",
@@ -4304,7 +4524,9 @@
      "n": 9,
      "of": 9
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Tampa Bay Downs",
@@ -4348,7 +4570,9 @@
      "n": 9,
      "of": 9
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Tampa Bay Downs",
@@ -4392,7 +4616,9 @@
      "n": 6,
      "of": 6
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Tampa Bay Downs",
@@ -4436,7 +4662,9 @@
      "n": 8,
      "of": 8
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Tampa Bay Downs",
@@ -4480,7 +4708,9 @@
      "n": 11,
      "of": 11
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Tampa Bay Downs",
@@ -4524,7 +4754,9 @@
      "n": 9,
      "of": 9
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Tampa Bay Downs",
@@ -4568,7 +4800,9 @@
      "n": 9,
      "of": 9
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Tampa Bay Downs",
@@ -4612,7 +4846,9 @@
      "n": 11,
      "of": 11
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Tampa Bay Downs",
@@ -4656,7 +4892,9 @@
      "n": 12,
      "of": 12
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Happy Valley",
@@ -4685,7 +4923,9 @@
      "n": 12,
      "of": 12
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Happy Valley",
@@ -4714,7 +4954,9 @@
      "n": 12,
      "of": 12
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Happy Valley",
@@ -4748,7 +4990,9 @@
      "n": 2,
      "of": 12
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Happy Valley",
@@ -4777,7 +5021,9 @@
      "n": 12,
      "of": 12
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Happy Valley",
@@ -4811,7 +5057,9 @@
      "n": 2,
      "of": 12
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Happy Valley",
@@ -4840,7 +5088,9 @@
      "n": 12,
      "of": 12
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Happy Valley",
@@ -4874,7 +5124,9 @@
      "n": 1,
      "of": 12
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Happy Valley",
@@ -4908,7 +5160,9 @@
      "n": 1,
      "of": 12
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   },
   {
    "course": "Happy Valley",
@@ -4942,7 +5196,9 @@
      "n": 1,
      "of": 12
     }
-   ]
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
   }
  ]
 }

@@ -9,7 +9,10 @@ is a separate, clearly labelled view.
 
 A race whose archived card is missing, or whose card has any runner missing any
 of the six inputs, is written as not rated with the gap named. No pick is
-inferred for it.
+inferred for it. Each unrated race also records `blocker`: the one field missing
+from most runners in that race, with `blocker_only` set when it is the only gap
+anywhere in the field, so the run can say which single input would unlock the
+most races.
 
 usage: python3 tooling/rescore_results.py [YYYY-MM-DD ...]
 """
@@ -128,6 +131,24 @@ def place_terms(row):
     return None
 
 
+def blocker_of(entry):
+    """The one input that keeps this race out, and whether it is the only one.
+
+    The page orders a card's gaps by how many runners lack the field, so the
+    first entry is the field the most horses are missing. Filling it alone only
+    rates the race when no other field is missing anywhere in the field.
+    """
+    if entry["state"] == "rated":
+        return "", False
+    gaps = entry.get("missing") or []
+    what = (gaps[0].get("what") if gaps else "") or "unrecorded gap"
+    # The scorer's own failure and an unnamed gap are not inputs, so filling
+    # nothing would rate those races: they never count as a sole gap.
+    only = (entry["state"] == "incomplete" and len(gaps) == 1
+            and what not in ("a factor did not score", "unrecorded gap"))
+    return what, only
+
+
 def position_number(label):
     m = re.match(r"(\d+)", str(label or ""))
     return int(m.group(1)) if m else None
@@ -185,8 +206,38 @@ def day(date):
                 "place_places": terms,
                 "placed": (pos <= terms) if (pos and terms) else None,
             })
+        entry["blocker"], entry["blocker_only"] = blocker_of(entry)
         out.append(entry)
     return {"date": date, "model": "six-input", "races": out}
+
+
+def print_breakdown(tally, no_card, unrated):
+    """Rank the inputs that block unrated races, the ones that unlock first."""
+    if not unrated:
+        print("every settled race carries a six-input pick")
+        return
+    rows = sorted(tally.items(), key=lambda kv: (-kv[1]["only"], -kv[1]["races"], kv[0]))
+    width = max([len(k) for k in tally] + [len("no archived card")])
+    print()
+    print(f"what keeps the {unrated} unrated races out "
+          "(field missing from most runners in the race)")
+    if rows:
+        print(f"  {'':<{width}}  {'races':>6}  {'rates alone':>11}  regions")
+    for what, slot in rows:
+        regions = ", ".join(sorted(slot["regions"])) or "unlabelled"
+        print(f"  {what:<{width}}  {slot['races']:>6}  {slot['only']:>11}  {regions}")
+    if no_card["races"]:
+        regions = ", ".join(sorted(no_card["regions"])) or "unlabelled"
+        print(f"  {'no archived card':<{width}}  {no_card['races']:>6}  "
+              f"{'':>11}  {regions}")
+    blocked = sum(v["races"] for v in tally.values())
+    single = sum(v["only"] for v in tally.values())
+    if not blocked:
+        print("  every unrated race here has no card to score")
+        return
+    print(f"  a single field rates {single} of them; the other "
+          f"{blocked - single} miss more than one input"
+          + (f", and {no_card['races']} have no card to score" if no_card["races"] else ""))
 
 
 def main(dates):
@@ -198,10 +249,24 @@ def main(dates):
                         if os.path.basename(p)[:-5] not in dates)
     os.makedirs(OUT_DIR, exist_ok=True)
     total = rated = 0
+    tally, no_card = {}, {"races": 0, "regions": set()}
     for date in sorted(dates):
         got = day(date)
         total += len(got["races"])
         rated += sum(1 for r in got["races"] if r["state"] == "rated")
+        for r in got["races"]:
+            if r["state"] == "rated":
+                continue
+            region = r.get("region") or ""
+            if r["state"] == "no-card":
+                no_card["races"] += 1
+                no_card["regions"].add(region)
+                continue
+            slot = tally.setdefault(r["blocker"],
+                                    {"races": 0, "only": 0, "regions": set()})
+            slot["races"] += 1
+            slot["only"] += 1 if r["blocker_only"] else 0
+            slot["regions"].add(region)
         path = os.path.join(OUT_DIR, date + ".json")
         with open(path, "w", encoding="utf-8") as f:
             json.dump(got, f, ensure_ascii=False, indent=1)
@@ -210,6 +275,7 @@ def main(dates):
         print(f"{date}: {len(day_rated)}/{len(got['races'])} rated, "
               f"{wins} winner{'s' if wins != 1 else ''}")
     print(f"total: {rated} of {total} settled races carry a six-input pick")
+    print_breakdown(tally, no_card, total - rated)
 
 
 if __name__ == "__main__":

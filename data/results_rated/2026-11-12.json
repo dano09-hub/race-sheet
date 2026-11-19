@@ -34,7 +34,9 @@
      "n": 2,
      "of": 3
     }
-   ]
+   ],
+   "blocker": "official rating",
+   "blocker_only": false
   },
   {
    "course": "Hereford",
@@ -58,7 +60,9 @@
      "n": 12,
      "of": 12
     }
-   ]
+   ],
+   "blocker": "official rating",
+   "blocker_only": false
   },
   {
    "course": "Hereford",
@@ -77,7 +81,9 @@
      "n": 7,
      "of": 7
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": true
   },
   {
    "course": "Hereford",
@@ -96,7 +102,9 @@
      "n": 5,
      "of": 5
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": true
   },
   {
    "course": "Hereford",
@@ -110,7 +118,9 @@
    "hit": true,
    "placed": true,
    "missing": [],
-   "place_places": 3
+   "place_places": 3,
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Hereford",
@@ -139,7 +149,9 @@
      "n": 2,
      "of": 5
     }
-   ]
+   ],
+   "blocker": "official rating",
+   "blocker_only": false
   },
   {
    "course": "Market Rasen",
@@ -173,7 +185,9 @@
      "n": 1,
      "of": 10
     }
-   ]
+   ],
+   "blocker": "official rating",
+   "blocker_only": false
   },
   {
    "course": "Market Rasen",
@@ -207,7 +221,9 @@
      "n": 1,
      "of": 9
     }
-   ]
+   ],
+   "blocker": "official rating",
+   "blocker_only": false
   },
   {
    "course": "Market Rasen",
@@ -226,7 +242,9 @@
      "n": 6,
      "of": 6
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": true
   },
   {
    "course": "Market Rasen",
@@ -245,7 +263,9 @@
      "n": 7,
      "of": 7
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": true
   },
   {
    "course": "Market Rasen",
@@ -264,7 +284,9 @@
      "n": 6,
      "of": 6
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": true
   },
   {
    "course": "Market Rasen",
@@ -278,7 +300,9 @@
    "hit": false,
    "placed": null,
    "missing": [],
-   "place_places": 3
+   "place_places": 3,
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Market Rasen",
@@ -292,7 +316,9 @@
    "hit": false,
    "placed": null,
    "missing": [],
-   "place_places": 2
+   "place_places": 2,
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Thurles",
@@ -316,7 +342,9 @@
      "n": 8,
      "of": 12
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": false
   },
   {
    "course": "Thurles",
@@ -335,7 +363,9 @@
      "n": 12,
      "of": 12
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": true
   },
   {
    "course": "Thurles",
@@ -354,7 +384,9 @@
      "n": 16,
      "of": 16
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": true
   },
   {
    "course": "Thurles",
@@ -378,7 +410,9 @@
      "n": 3,
      "of": 7
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": false
   },
   {
    "course": "Thurles",
@@ -412,7 +446,9 @@
      "n": 1,
      "of": 12
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": false
   },
   {
    "course": "Thurles",
@@ -431,7 +467,9 @@
      "n": 4,
      "of": 11
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": true
   },
   {
    "course": "Thurles",
@@ -450,7 +488,9 @@
      "n": 1,
      "of": 17
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": true
   },
   {
    "course": "Thurles",
@@ -464,7 +504,9 @@
    "hit": true,
    "placed": true,
    "missing": [],
-   "place_places": 4
+   "place_places": 4,
+   "blocker": "",
+   "blocker_only": false
   }
  ]
 }

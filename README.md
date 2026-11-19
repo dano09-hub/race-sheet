@@ -887,7 +887,10 @@ check.
   `tooling/rescore_results.py`
   scores each day's archived card with the page's own `SCORE_RATED_CARD`,
   writes `data/results_rated/<date>.json`, and `refresh.py` renders that pick
-  and marks a race whose card has a gap as **Not rated**. The pre-race pick on
+  and marks a race whose card has a gap as **Not rated**. Each unrated race
+  records `blocker`, the field missing from most of its runners, and a run
+  prints those ranked with the races each would unlock, so the next data fix can
+  be picked by how many races it rates. The pre-race pick on
   record is never rewritten: `data/results` keeps it and the ledger says so.
   Coverage at this build is 21 of 272 settled races (2 winners), all UK; US
   cards file no weight, Hong Kong no days or jockey/trainer records, and the

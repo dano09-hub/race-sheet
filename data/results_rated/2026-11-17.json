@@ -19,7 +19,9 @@
      "n": 6,
      "of": 6
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": true
   },
   {
    "course": "Carlisle",
@@ -53,7 +55,9 @@
      "n": 3,
      "of": 11
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": false
   },
   {
    "course": "Carlisle",
@@ -87,7 +91,9 @@
      "n": 3,
      "of": 10
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": false
   },
   {
    "course": "Carlisle",
@@ -106,7 +112,9 @@
      "n": 12,
      "of": 12
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": true
   },
   {
    "course": "Carlisle",
@@ -124,7 +132,9 @@
      "what": "no archived card",
      "n": 0
     }
-   ]
+   ],
+   "blocker": "no archived card",
+   "blocker_only": false
   },
   {
    "course": "Carlisle",
@@ -143,7 +153,9 @@
      "n": 17,
      "of": 17
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": true
   },
   {
    "course": "Carlisle",
@@ -162,7 +174,9 @@
      "n": 6,
      "of": 6
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": true
   },
   {
    "course": "Carlisle",
@@ -196,7 +210,9 @@
      "n": 3,
      "of": 15
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": false
   },
   {
    "course": "Limerick",
@@ -235,7 +251,9 @@
      "n": 1,
      "of": 17
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": false
   },
   {
    "course": "Limerick",
@@ -254,7 +272,9 @@
      "n": 11,
      "of": 11
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": true
   },
   {
    "course": "Limerick",
@@ -273,7 +293,9 @@
      "n": 10,
      "of": 10
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": true
   },
   {
    "course": "Limerick",
@@ -297,7 +319,9 @@
      "n": 3,
      "of": 17
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": false
   },
   {
    "course": "Limerick",
@@ -321,7 +345,9 @@
      "n": 1,
      "of": 17
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": false
   },
   {
    "course": "Limerick",
@@ -339,7 +365,9 @@
      "what": "no archived card",
      "n": 0
     }
-   ]
+   ],
+   "blocker": "no archived card",
+   "blocker_only": false
   },
   {
    "course": "Limerick",
@@ -373,7 +401,9 @@
      "n": 4,
      "of": 12
     }
-   ]
+   ],
+   "blocker": "official rating",
+   "blocker_only": false
   },
   {
    "course": "Limerick",
@@ -391,7 +421,9 @@
      "what": "no archived card",
      "n": 0
     }
-   ]
+   ],
+   "blocker": "no archived card",
+   "blocker_only": false
   },
   {
    "course": "Southwell",
@@ -410,7 +442,9 @@
      "n": 5,
      "of": 5
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": true
   },
   {
    "course": "Southwell",
@@ -429,7 +463,9 @@
      "n": 13,
      "of": 13
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": true
   },
   {
    "course": "Southwell",
@@ -447,7 +483,9 @@
      "what": "no archived card",
      "n": 0
     }
-   ]
+   ],
+   "blocker": "no archived card",
+   "blocker_only": false
   },
   {
    "course": "Southwell",
@@ -466,7 +504,9 @@
      "n": 14,
      "of": 14
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": true
   },
   {
    "course": "Southwell",
@@ -485,7 +525,9 @@
      "n": 11,
      "of": 11
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": true
   },
   {
    "course": "Southwell",
@@ -504,7 +546,9 @@
      "n": 10,
      "of": 10
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": true
   },
   {
    "course": "Southwell",
@@ -538,7 +582,9 @@
      "n": 2,
      "of": 7
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": false
   },
   {
    "course": "Southwell",
@@ -557,7 +603,9 @@
      "n": 14,
      "of": 14
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": true
   },
   {
    "course": "Southwell",
@@ -576,7 +624,9 @@
      "n": 14,
      "of": 14
     }
-   ]
+   ],
+   "blocker": "price",
+   "blocker_only": true
   }
  ]
 }
