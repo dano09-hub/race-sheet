@@ -1,0 +1,329 @@
+{
+ "date": "2026-11-19",
+ "generated": "2026-11-19T01:32:26+00:00",
+ "note": "US shadow: the same cards with the archived live form string in the form slot",
+ "metric": "form",
+ "label": "live form",
+ "cards": 45,
+ "same": 42,
+ "changed": 3,
+ "ratedRunners": 384,
+ "runners": 384,
+ "rows": [
+  {
+   "course": "Belmont Park",
+   "time": "17:40",
+   "withRating": "Tia Melanie",
+   "withoutRating": "Tia Melanie",
+   "changed": false
+  },
+  {
+   "course": "Belmont Park",
+   "time": "18:10",
+   "withRating": "About Face",
+   "withoutRating": "About Face",
+   "changed": false
+  },
+  {
+   "course": "Belmont Park",
+   "time": "18:40",
+   "withRating": "Aqua Blaze",
+   "withoutRating": "Aqua Blaze",
+   "changed": false
+  },
+  {
+   "course": "Belmont Park",
+   "time": "19:10",
+   "withRating": "Aperitif",
+   "withoutRating": "Aperitif",
+   "changed": false
+  },
+  {
+   "course": "Belmont Park",
+   "time": "20:12",
+   "withRating": "Tricky Business",
+   "withoutRating": "Tricky Business",
+   "changed": false
+  },
+  {
+   "course": "Belmont Park",
+   "time": "20:43",
+   "withRating": "Lendalfoot",
+   "withoutRating": "Lendalfoot",
+   "changed": false
+  },
+  {
+   "course": "Belmont Park",
+   "time": "21:14",
+   "withRating": "Bryant and Cooper",
+   "withoutRating": "Bryant and Cooper",
+   "changed": false
+  },
+  {
+   "course": "Charles Town",
+   "time": "00:00",
+   "withRating": "Sisyphus",
+   "withoutRating": "Sisyphus",
+   "changed": false
+  },
+  {
+   "course": "Charles Town",
+   "time": "00:30",
+   "withRating": "Priority One",
+   "withoutRating": "Priority One",
+   "changed": false
+  },
+  {
+   "course": "Charles Town",
+   "time": "00:57",
+   "withRating": "Shessweetlikecandy",
+   "withoutRating": "Shessweetlikecandy",
+   "changed": false
+  },
+  {
+   "course": "Charles Town",
+   "time": "01:25",
+   "withRating": "Youthinkthatsfunny",
+   "withoutRating": "Youthinkthatsfunny",
+   "changed": false
+  },
+  {
+   "course": "Charles Town",
+   "time": "02:21",
+   "withRating": "Celtic Diva",
+   "withoutRating": "Celtic Diva",
+   "changed": false
+  },
+  {
+   "course": "Charles Town",
+   "time": "02:49",
+   "withRating": "Congrats On Fifty",
+   "withoutRating": "Congrats On Fifty",
+   "changed": false
+  },
+  {
+   "course": "Charles Town",
+   "time": "03:17",
+   "withRating": "Daytona Moonshine",
+   "withoutRating": "Daytona Moonshine",
+   "changed": false
+  },
+  {
+   "course": "Churchill Downs",
+   "time": "18:00",
+   "withRating": "Gallo de Fuego",
+   "withoutRating": "Gallo de Fuego",
+   "changed": false
+  },
+  {
+   "course": "Churchill Downs",
+   "time": "18:29",
+   "withRating": "Sock Monkey",
+   "withoutRating": "Sock Monkey",
+   "changed": false
+  },
+  {
+   "course": "Churchill Downs",
+   "time": "19:57",
+   "withRating": "Excellent Empire",
+   "withoutRating": "Excellent Empire",
+   "changed": false
+  },
+  {
+   "course": "Churchill Downs",
+   "time": "20:26",
+   "withRating": "Spun Legacy",
+   "withoutRating": "Spun Legacy",
+   "changed": false
+  },
+  {
+   "course": "Churchill Downs",
+   "time": "21:25",
+   "withRating": "Nycon",
+   "withoutRating": "Nycon",
+   "changed": false
+  },
+  {
+   "course": "Fair Grounds",
+   "time": "18:55",
+   "withRating": "Lammas (GB)",
+   "withoutRating": "Lammas (GB)",
+   "changed": false
+  },
+  {
+   "course": "Fair Grounds",
+   "time": "19:25",
+   "withRating": "Margie's Intention",
+   "withoutRating": "Margie's Intention",
+   "changed": false
+  },
+  {
+   "course": "Fair Grounds",
+   "time": "19:55",
+   "withRating": "Smart Joker",
+   "withoutRating": "Eastside Cool",
+   "changed": true
+  },
+  {
+   "course": "Fair Grounds",
+   "time": "20:55",
+   "withRating": "Passing Judgment",
+   "withoutRating": "Passing Judgment",
+   "changed": false
+  },
+  {
+   "course": "Fair Grounds",
+   "time": "21:55",
+   "withRating": "Patrol Squad Six",
+   "withoutRating": "Patrol Squad Six",
+   "changed": false
+  },
+  {
+   "course": "Fair Grounds",
+   "time": "22:25",
+   "withRating": "Essential George",
+   "withoutRating": "Essential George",
+   "changed": false
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "17:15",
+   "withRating": "Rapida",
+   "withoutRating": "Rapida",
+   "changed": false
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "17:43",
+   "withRating": "Lofty Cowtown",
+   "withoutRating": "Dynamic Vision",
+   "changed": true
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "18:11",
+   "withRating": "Night Nurse",
+   "withoutRating": "Night Nurse",
+   "changed": false
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "18:39",
+   "withRating": "Dr Schuster",
+   "withoutRating": "Dr Schuster",
+   "changed": false
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "19:07",
+   "withRating": "Kingdom Trails",
+   "withoutRating": "Kingdom Trails",
+   "changed": false
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "19:35",
+   "withRating": "Fortheloveofbonnie",
+   "withoutRating": "Fortheloveofbonnie",
+   "changed": false
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "20:03",
+   "withRating": "Everynowandthen",
+   "withoutRating": "Everynowandthen",
+   "changed": false
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "20:31",
+   "withRating": "El Barrio",
+   "withoutRating": "El Barrio",
+   "changed": false
+  },
+  {
+   "course": "Penn National",
+   "time": "22:45",
+   "withRating": "Rip My Heart",
+   "withoutRating": "Rip My Heart",
+   "changed": false
+  },
+  {
+   "course": "Penn National",
+   "time": "23:14",
+   "withRating": "Oneofthegoodguys",
+   "withoutRating": "Oneofthegoodguys",
+   "changed": false
+  },
+  {
+   "course": "Penn National",
+   "time": "23:43",
+   "withRating": "Savor It",
+   "withoutRating": "Savor It",
+   "changed": false
+  },
+  {
+   "course": "Penn National",
+   "time": "00:12",
+   "withRating": "Annihilate 'Em",
+   "withoutRating": "Annihilate 'Em",
+   "changed": false
+  },
+  {
+   "course": "Penn National",
+   "time": "00:41",
+   "withRating": "Sapphire Prince",
+   "withoutRating": "Sapphire Prince",
+   "changed": false
+  },
+  {
+   "course": "Penn National",
+   "time": "01:10",
+   "withRating": "Bonita Lassie",
+   "withoutRating": "Bonita Lassie",
+   "changed": false
+  },
+  {
+   "course": "Penn National",
+   "time": "01:39",
+   "withRating": "Serendipitous Bid",
+   "withoutRating": "Honor Bound",
+   "changed": true
+  },
+  {
+   "course": "Remington Park",
+   "time": "00:30",
+   "withRating": "Hand It Over",
+   "withoutRating": "Hand It Over",
+   "changed": false
+  },
+  {
+   "course": "Remington Park",
+   "time": "00:58",
+   "withRating": "Cowgirl Buckaroo",
+   "withoutRating": "Cowgirl Buckaroo",
+   "changed": false
+  },
+  {
+   "course": "Remington Park",
+   "time": "03:18",
+   "withRating": "Flashy Fritz",
+   "withoutRating": "Flashy Fritz",
+   "changed": false
+  },
+  {
+   "course": "Remington Park",
+   "time": "03:46",
+   "withRating": "Cucamonga",
+   "withoutRating": "Cucamonga",
+   "changed": false
+  },
+  {
+   "course": "Remington Park",
+   "time": "04:14",
+   "withRating": "Lucked Out",
+   "withoutRating": "Lucked Out",
+   "changed": false
+  }
+ ]
+}

@@ -1,0 +1,630 @@
+{
+ "date": "2026-11-19",
+ "generated": "2026-11-19T01:32:25",
+ "note": "A/B of the twelve-factor model with and without a speed figure in the ts slot",
+ "metric": "ts",
+ "label": "speed figure",
+ "cards": 88,
+ "same": 66,
+ "changed": 22,
+ "ratedRunners": 686,
+ "runners": 735,
+ "rows": [
+  {
+   "course": "Belmont Park",
+   "time": "17:40",
+   "withRating": "Tia Melanie",
+   "withoutRating": "Tia Melanie",
+   "changed": false
+  },
+  {
+   "course": "Belmont Park",
+   "time": "18:10",
+   "withRating": "About Face",
+   "withoutRating": "About Face",
+   "changed": false
+  },
+  {
+   "course": "Belmont Park",
+   "time": "18:40",
+   "withRating": "Aqua Blaze",
+   "withoutRating": "Lady Wisdom",
+   "changed": true
+  },
+  {
+   "course": "Belmont Park",
+   "time": "19:10",
+   "withRating": "Aperitif",
+   "withoutRating": "Aperitif",
+   "changed": false
+  },
+  {
+   "course": "Belmont Park",
+   "time": "19:41",
+   "withRating": "River of Deceit",
+   "withoutRating": "Job",
+   "changed": true
+  },
+  {
+   "course": "Belmont Park",
+   "time": "20:12",
+   "withRating": "Tricky Business",
+   "withoutRating": "Tricky Business",
+   "changed": false
+  },
+  {
+   "course": "Belmont Park",
+   "time": "20:43",
+   "withRating": "Lendalfoot",
+   "withoutRating": "Spinning Class",
+   "changed": true
+  },
+  {
+   "course": "Belmont Park",
+   "time": "21:14",
+   "withRating": "Bryant and Cooper",
+   "withoutRating": "Bryant and Cooper",
+   "changed": false
+  },
+  {
+   "course": "Camarero Race Track",
+   "time": "19:45",
+   "withRating": "One Way Farrior",
+   "withoutRating": "One Way Farrior",
+   "changed": false
+  },
+  {
+   "course": "Camarero Race Track",
+   "time": "20:35",
+   "withRating": "Just Like You",
+   "withoutRating": "Dialithic",
+   "changed": true
+  },
+  {
+   "course": "Camarero Race Track",
+   "time": "21:30",
+   "withRating": "Readily",
+   "withoutRating": "Readily",
+   "changed": false
+  },
+  {
+   "course": "Charles Town",
+   "time": "00:00",
+   "withRating": "Sisyphus",
+   "withoutRating": "Sisyphus",
+   "changed": false
+  },
+  {
+   "course": "Charles Town",
+   "time": "00:30",
+   "withRating": "Priority One",
+   "withoutRating": "Priority One",
+   "changed": false
+  },
+  {
+   "course": "Charles Town",
+   "time": "00:57",
+   "withRating": "Shessweetlikecandy",
+   "withoutRating": "Satisfied Mind",
+   "changed": true
+  },
+  {
+   "course": "Charles Town",
+   "time": "01:25",
+   "withRating": "Youthinkthatsfunny",
+   "withoutRating": "Youthinkthatsfunny",
+   "changed": false
+  },
+  {
+   "course": "Charles Town",
+   "time": "01:53",
+   "withRating": "Up to the Top",
+   "withoutRating": "Up to the Top",
+   "changed": false
+  },
+  {
+   "course": "Charles Town",
+   "time": "02:21",
+   "withRating": "Celtic Diva",
+   "withoutRating": "Celtic Diva",
+   "changed": false
+  },
+  {
+   "course": "Charles Town",
+   "time": "02:49",
+   "withRating": "Congrats On Fifty",
+   "withoutRating": "Congrats On Fifty",
+   "changed": false
+  },
+  {
+   "course": "Charles Town",
+   "time": "03:17",
+   "withRating": "Daytona Moonshine",
+   "withoutRating": "Daytona Moonshine",
+   "changed": false
+  },
+  {
+   "course": "Churchill Downs",
+   "time": "18:00",
+   "withRating": "Gallo de Fuego",
+   "withoutRating": "Gallo de Fuego",
+   "changed": false
+  },
+  {
+   "course": "Churchill Downs",
+   "time": "18:29",
+   "withRating": "Sock Monkey",
+   "withoutRating": "Sock Monkey",
+   "changed": false
+  },
+  {
+   "course": "Churchill Downs",
+   "time": "18:58",
+   "withRating": "Practical Patsy",
+   "withoutRating": "Bush",
+   "changed": true
+  },
+  {
+   "course": "Churchill Downs",
+   "time": "19:27",
+   "withRating": "Epic Max",
+   "withoutRating": "Epic Max",
+   "changed": false
+  },
+  {
+   "course": "Churchill Downs",
+   "time": "19:57",
+   "withRating": "Excellent Empire",
+   "withoutRating": "Excellent Empire",
+   "changed": false
+  },
+  {
+   "course": "Churchill Downs",
+   "time": "20:26",
+   "withRating": "Spun Legacy",
+   "withoutRating": "Spun Legacy",
+   "changed": false
+  },
+  {
+   "course": "Churchill Downs",
+   "time": "20:55",
+   "withRating": "Capitola",
+   "withoutRating": "Capitola",
+   "changed": false
+  },
+  {
+   "course": "Churchill Downs",
+   "time": "21:25",
+   "withRating": "Nycon",
+   "withoutRating": "Nycon",
+   "changed": false
+  },
+  {
+   "course": "Churchill Downs",
+   "time": "21:55",
+   "withRating": "Blazing Sunset",
+   "withoutRating": "Blazing Sunset",
+   "changed": false
+  },
+  {
+   "course": "Delta Downs",
+   "time": "22:40",
+   "withRating": "Awree",
+   "withoutRating": "Awree",
+   "changed": false
+  },
+  {
+   "course": "Delta Downs",
+   "time": "23:08",
+   "withRating": "Range Goat",
+   "withoutRating": "Range Goat",
+   "changed": false
+  },
+  {
+   "course": "Delta Downs",
+   "time": "23:36",
+   "withRating": "Ready to Ride",
+   "withoutRating": "Debriseason",
+   "changed": true
+  },
+  {
+   "course": "Delta Downs",
+   "time": "00:04",
+   "withRating": "Donegal Freedom",
+   "withoutRating": "Donegal Freedom",
+   "changed": false
+  },
+  {
+   "course": "Delta Downs",
+   "time": "00:32",
+   "withRating": "Epic Stolen Kiss",
+   "withoutRating": "Epic Stolen Kiss",
+   "changed": false
+  },
+  {
+   "course": "Delta Downs",
+   "time": "01:00",
+   "withRating": "Call My Banker",
+   "withoutRating": "Call My Banker",
+   "changed": false
+  },
+  {
+   "course": "Delta Downs",
+   "time": "01:28",
+   "withRating": "Perry County",
+   "withoutRating": "Perry County",
+   "changed": false
+  },
+  {
+   "course": "Delta Downs",
+   "time": "01:56",
+   "withRating": "Ampitup",
+   "withoutRating": "Ampitup",
+   "changed": false
+  },
+  {
+   "course": "Fair Grounds",
+   "time": "18:55",
+   "withRating": "Lammas (GB)",
+   "withoutRating": "Lammas (GB)",
+   "changed": false
+  },
+  {
+   "course": "Fair Grounds",
+   "time": "19:25",
+   "withRating": "Margie's Intention",
+   "withoutRating": "Margie's Intention",
+   "changed": false
+  },
+  {
+   "course": "Fair Grounds",
+   "time": "19:55",
+   "withRating": "Eastside Cool",
+   "withoutRating": "Eastside Cool",
+   "changed": false
+  },
+  {
+   "course": "Fair Grounds",
+   "time": "20:25",
+   "withRating": "Bookman",
+   "withoutRating": "Bookman",
+   "changed": false
+  },
+  {
+   "course": "Fair Grounds",
+   "time": "20:55",
+   "withRating": "Passing Judgment",
+   "withoutRating": "Wherethehitsare",
+   "changed": true
+  },
+  {
+   "course": "Fair Grounds",
+   "time": "21:25",
+   "withRating": "Jackie's Doll",
+   "withoutRating": "Jackie's Doll",
+   "changed": false
+  },
+  {
+   "course": "Fair Grounds",
+   "time": "21:55",
+   "withRating": "Patrol Squad Six",
+   "withoutRating": "Patrol Squad Six",
+   "changed": false
+  },
+  {
+   "course": "Fair Grounds",
+   "time": "22:25",
+   "withRating": "Essential George",
+   "withoutRating": "Essential George",
+   "changed": false
+  },
+  {
+   "course": "Fair Grounds",
+   "time": "22:55",
+   "withRating": "Golden Mojo",
+   "withoutRating": "Golden Mojo",
+   "changed": false
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "17:15",
+   "withRating": "Rapida",
+   "withoutRating": "Rapida",
+   "changed": false
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "17:43",
+   "withRating": "Dynamic Vision",
+   "withoutRating": "Lofty Cowtown",
+   "changed": true
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "18:11",
+   "withRating": "Night Nurse",
+   "withoutRating": "Night Nurse",
+   "changed": false
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "18:39",
+   "withRating": "Dr Schuster",
+   "withoutRating": "Dr Schuster",
+   "changed": false
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "19:07",
+   "withRating": "Kingdom Trails",
+   "withoutRating": "Kingdom Trails",
+   "changed": false
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "19:35",
+   "withRating": "Fortheloveofbonnie",
+   "withoutRating": "Fortheloveofbonnie",
+   "changed": false
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "20:03",
+   "withRating": "Everynowandthen",
+   "withoutRating": "Everynowandthen",
+   "changed": false
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "20:31",
+   "withRating": "El Barrio",
+   "withoutRating": "Critikal Sense",
+   "changed": true
+  },
+  {
+   "course": "Parx Racing",
+   "time": "17:05",
+   "withRating": "Bulma",
+   "withoutRating": "Bulma",
+   "changed": false
+  },
+  {
+   "course": "Parx Racing",
+   "time": "17:32",
+   "withRating": "Sweetbitters",
+   "withoutRating": "Sweetbitters",
+   "changed": false
+  },
+  {
+   "course": "Parx Racing",
+   "time": "17:59",
+   "withRating": "Dirty Cash",
+   "withoutRating": "Introubleagain",
+   "changed": true
+  },
+  {
+   "course": "Parx Racing",
+   "time": "18:26",
+   "withRating": "My Last Mission",
+   "withoutRating": "My Last Mission",
+   "changed": false
+  },
+  {
+   "course": "Parx Racing",
+   "time": "18:53",
+   "withRating": "Hyperlink",
+   "withoutRating": "Hyperlink",
+   "changed": false
+  },
+  {
+   "course": "Parx Racing",
+   "time": "19:20",
+   "withRating": "Guapo Again (ARG)",
+   "withoutRating": "Guapo Again (ARG)",
+   "changed": false
+  },
+  {
+   "course": "Parx Racing",
+   "time": "19:47",
+   "withRating": "Associated",
+   "withoutRating": "Caseofthemondays",
+   "changed": true
+  },
+  {
+   "course": "Parx Racing",
+   "time": "20:14",
+   "withRating": "Bellanova",
+   "withoutRating": "Racey Ruby",
+   "changed": true
+  },
+  {
+   "course": "Parx Racing",
+   "time": "20:41",
+   "withRating": "Chiquita's Way",
+   "withoutRating": "Chiquita's Way",
+   "changed": false
+  },
+  {
+   "course": "Penn National",
+   "time": "22:45",
+   "withRating": "Rip My Heart",
+   "withoutRating": "Sunchill",
+   "changed": true
+  },
+  {
+   "course": "Penn National",
+   "time": "23:14",
+   "withRating": "Oneofthegoodguys",
+   "withoutRating": "Oneofthegoodguys",
+   "changed": false
+  },
+  {
+   "course": "Penn National",
+   "time": "23:43",
+   "withRating": "Savor It",
+   "withoutRating": "Savor It",
+   "changed": false
+  },
+  {
+   "course": "Penn National",
+   "time": "00:12",
+   "withRating": "Annihilate 'Em",
+   "withoutRating": "Annihilate 'Em",
+   "changed": false
+  },
+  {
+   "course": "Penn National",
+   "time": "00:41",
+   "withRating": "Sapphire Prince",
+   "withoutRating": "Sapphire Prince",
+   "changed": false
+  },
+  {
+   "course": "Penn National",
+   "time": "01:10",
+   "withRating": "Bonita Lassie",
+   "withoutRating": "Iracebeth",
+   "changed": true
+  },
+  {
+   "course": "Penn National",
+   "time": "01:39",
+   "withRating": "Honor Bound",
+   "withoutRating": "Serendipitous Bid",
+   "changed": true
+  },
+  {
+   "course": "Remington Park",
+   "time": "00:30",
+   "withRating": "Hand It Over",
+   "withoutRating": "Hand It Over",
+   "changed": false
+  },
+  {
+   "course": "Remington Park",
+   "time": "00:58",
+   "withRating": "Cowgirl Buckaroo",
+   "withoutRating": "Sirrah",
+   "changed": true
+  },
+  {
+   "course": "Remington Park",
+   "time": "01:26",
+   "withRating": "The Cougars Den",
+   "withoutRating": "The Cougars Den",
+   "changed": false
+  },
+  {
+   "course": "Remington Park",
+   "time": "01:54",
+   "withRating": "Wilburton",
+   "withoutRating": "Wilburton",
+   "changed": false
+  },
+  {
+   "course": "Remington Park",
+   "time": "02:22",
+   "withRating": "G's Twisted Tale",
+   "withoutRating": "Sasa",
+   "changed": true
+  },
+  {
+   "course": "Remington Park",
+   "time": "02:50",
+   "withRating": "Balboa Drive",
+   "withoutRating": "Balboa Drive",
+   "changed": false
+  },
+  {
+   "course": "Remington Park",
+   "time": "03:18",
+   "withRating": "Flashy Fritz",
+   "withoutRating": "Shadow Coast",
+   "changed": true
+  },
+  {
+   "course": "Remington Park",
+   "time": "03:46",
+   "withRating": "Cucamonga",
+   "withoutRating": "Cucamonga",
+   "changed": false
+  },
+  {
+   "course": "Remington Park",
+   "time": "04:14",
+   "withRating": "Lucked Out",
+   "withoutRating": "Lucked Out",
+   "changed": false
+  },
+  {
+   "course": "Woodbine",
+   "time": "20:10",
+   "withRating": "Lorraine's Beauty",
+   "withoutRating": "Clearwater Beach",
+   "changed": true
+  },
+  {
+   "course": "Woodbine",
+   "time": "20:38",
+   "withRating": "She's the Rage",
+   "withoutRating": "Portrait of Addie",
+   "changed": true
+  },
+  {
+   "course": "Woodbine",
+   "time": "21:08",
+   "withRating": "Arya's Quest",
+   "withoutRating": "Rose Fortune",
+   "changed": true
+  },
+  {
+   "course": "Woodbine",
+   "time": "21:37",
+   "withRating": "Sterling Heights",
+   "withoutRating": "Sterling Heights",
+   "changed": false
+  },
+  {
+   "course": "Woodbine",
+   "time": "22:06",
+   "withRating": "Souper Strider",
+   "withoutRating": "Souper Strider",
+   "changed": false
+  },
+  {
+   "course": "Woodbine",
+   "time": "22:35",
+   "withRating": "Backstreet Emma",
+   "withoutRating": "Backstreet Emma",
+   "changed": false
+  },
+  {
+   "course": "Woodbine",
+   "time": "23:04",
+   "withRating": "Cool Times",
+   "withoutRating": "Cool Times",
+   "changed": false
+  },
+  {
+   "course": "Woodbine",
+   "time": "23:33",
+   "withRating": "Pretty Liza",
+   "withoutRating": "Pretty Liza",
+   "changed": false
+  },
+  {
+   "course": "Woodbine",
+   "time": "00:02",
+   "withRating": "Velvet Rage",
+   "withoutRating": "Velvet Rage",
+   "changed": false
+  },
+  {
+   "course": "Woodbine",
+   "time": "00:31",
+   "withRating": "Watercolour",
+   "withoutRating": "Watercolour",
+   "changed": false
+  }
+ ]
+}

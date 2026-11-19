@@ -1,0 +1,259 @@
+{
+ "date": "2026-11-19",
+ "generated": "2026-11-19T01:32:24+00:00",
+ "note": "Market-heavy shadow: the page's own factor scores re-weighted with the vector fitted on four years of results",
+ "metric": "weights",
+ "label": "market-heavy weighting",
+ "weights": {
+  "market": 50.8,
+  "form": 5.9,
+  "tips": 5.0,
+  "rpr": 13.0,
+  "rating": 3.4,
+  "cd": 3.6,
+  "draw": 0.9,
+  "speed": 12.0,
+  "going": 0.0,
+  "fitness": 3.4,
+  "weight": 0.0,
+  "connections": 6.1
+ },
+ "cards": 33,
+ "same": 29,
+ "changed": 4,
+ "ratedRunners": 402,
+ "runners": 402,
+ "rows": [
+  {
+   "course": "Lingfield",
+   "time": "11:18",
+   "withRating": "Silk Braid",
+   "withoutRating": "Silk Braid",
+   "changed": false
+  },
+  {
+   "course": "Lingfield",
+   "time": "11:48",
+   "withRating": "Rogue Imperial",
+   "withoutRating": "Rogue Imperial",
+   "changed": false
+  },
+  {
+   "course": "Lingfield",
+   "time": "12:18",
+   "withRating": "Valley Rising",
+   "withoutRating": "Valley Rising",
+   "changed": false
+  },
+  {
+   "course": "Lingfield",
+   "time": "12:53",
+   "withRating": "Classic Bellini",
+   "withoutRating": "Classic Bellini",
+   "changed": false
+  },
+  {
+   "course": "Lingfield",
+   "time": "13:28",
+   "withRating": "Zooella",
+   "withoutRating": "Zooella",
+   "changed": false
+  },
+  {
+   "course": "Lingfield",
+   "time": "14:03",
+   "withRating": "Morrophore",
+   "withoutRating": "Morrophore",
+   "changed": false
+  },
+  {
+   "course": "Lingfield",
+   "time": "14:38",
+   "withRating": "Enchanted Queen",
+   "withoutRating": "Enchanted Queen",
+   "changed": false
+  },
+  {
+   "course": "Lingfield",
+   "time": "15:08",
+   "withRating": "Credit Forgedd It",
+   "withoutRating": "Credit Forgedd It",
+   "changed": false
+  },
+  {
+   "course": "Lingfield",
+   "time": "15:40",
+   "withRating": "Nogo's Dream",
+   "withoutRating": "Nogo's Dream",
+   "changed": false
+  },
+  {
+   "course": "Newcastle",
+   "time": "15:35",
+   "withRating": "Water To Wine",
+   "withoutRating": "Water To Wine",
+   "changed": false
+  },
+  {
+   "course": "Newcastle",
+   "time": "16:10",
+   "withRating": "Big Money",
+   "withoutRating": "Big Money",
+   "changed": false
+  },
+  {
+   "course": "Newcastle",
+   "time": "16:40",
+   "withRating": "Ma Fille De Reve",
+   "withoutRating": "Ma Fille De Reve",
+   "changed": false
+  },
+  {
+   "course": "Newcastle",
+   "time": "17:10",
+   "withRating": "High Threshold",
+   "withoutRating": "High Threshold",
+   "changed": false
+  },
+  {
+   "course": "Newcastle",
+   "time": "17:40",
+   "withRating": "Shimmering Shadow",
+   "withoutRating": "Shimmering Shadow",
+   "changed": false
+  },
+  {
+   "course": "Newcastle",
+   "time": "18:10",
+   "withRating": "Frankies Dream",
+   "withoutRating": "Frankies Dream",
+   "changed": false
+  },
+  {
+   "course": "Newcastle",
+   "time": "18:40",
+   "withRating": "Starmade",
+   "withoutRating": "Starmade",
+   "changed": false
+  },
+  {
+   "course": "Newcastle",
+   "time": "19:10",
+   "withRating": "Real Jack",
+   "withoutRating": "Real Jack",
+   "changed": false
+  },
+  {
+   "course": "Newcastle",
+   "time": "19:40",
+   "withRating": "Kinetic Force",
+   "withoutRating": "Kinetic Force",
+   "changed": false
+  },
+  {
+   "course": "Thurles",
+   "time": "12:08",
+   "withRating": "Doctor Steinberg",
+   "withoutRating": "Doctor Steinberg",
+   "changed": false
+  },
+  {
+   "course": "Thurles",
+   "time": "12:40",
+   "withRating": "Iamagetaway",
+   "withoutRating": "Iamagetaway",
+   "changed": false
+  },
+  {
+   "course": "Thurles",
+   "time": "13:15",
+   "withRating": "Hi Ho Idaho",
+   "withoutRating": "Hi Ho Idaho",
+   "changed": false
+  },
+  {
+   "course": "Thurles",
+   "time": "13:50",
+   "withRating": "I Dont Really Care",
+   "withoutRating": "I Dont Really Care",
+   "changed": false
+  },
+  {
+   "course": "Thurles",
+   "time": "14:25",
+   "withRating": "Cock And Bull",
+   "withoutRating": "Allo Al Khawaneej",
+   "changed": true
+  },
+  {
+   "course": "Thurles",
+   "time": "15:00",
+   "withRating": "Max Meridius",
+   "withoutRating": "Max Meridius",
+   "changed": false
+  },
+  {
+   "course": "Thurles",
+   "time": "15:30",
+   "withRating": "Legendary Status",
+   "withoutRating": "Legendary Status",
+   "changed": false
+  },
+  {
+   "course": "Warwick",
+   "time": "11:27",
+   "withRating": "Leslie's Pride",
+   "withoutRating": "Leslie's Pride",
+   "changed": false
+  },
+  {
+   "course": "Warwick",
+   "time": "11:57",
+   "withRating": "Friendly Glance",
+   "withoutRating": "Friendly Glance",
+   "changed": false
+  },
+  {
+   "course": "Warwick",
+   "time": "12:27",
+   "withRating": "Smile John Boy",
+   "withoutRating": "Smile John Boy",
+   "changed": false
+  },
+  {
+   "course": "Warwick",
+   "time": "13:02",
+   "withRating": "Capricciose",
+   "withoutRating": "Largy Force",
+   "changed": true
+  },
+  {
+   "course": "Warwick",
+   "time": "13:37",
+   "withRating": "The Boola Boss",
+   "withoutRating": "Sure Touch",
+   "changed": true
+  },
+  {
+   "course": "Warwick",
+   "time": "14:12",
+   "withRating": "I Spy A Diva",
+   "withoutRating": "Analiese",
+   "changed": true
+  },
+  {
+   "course": "Warwick",
+   "time": "14:47",
+   "withRating": "Coolanna",
+   "withoutRating": "Coolanna",
+   "changed": false
+  },
+  {
+   "course": "Warwick",
+   "time": "15:17",
+   "withRating": "Kells Bay",
+   "withoutRating": "Kells Bay",
+   "changed": false
+  }
+ ]
+}

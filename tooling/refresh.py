@@ -192,6 +192,28 @@ def carry_picks(old_rows, new_rows):
     return kept
 
 
+def merge_foreign_results(rows, old_rows):
+    """Keep US rows when a UK/IRE results scrape rewrites the whole day.
+
+    The UK and Irish feeds do not know the US card, so a day with both would
+    otherwise lose its US half on every refresh. Rows are matched on course
+    and winner; the fresh row always wins for a race both feeds know.
+    """
+    have = {(_result_name(r.get("course")), _result_name(r.get("winner")))
+            for r in rows}
+    added = 0
+    for old in old_rows or []:
+        if str(old.get("region") or "").upper() not in ("US", "USA"):
+            continue
+        key = (_result_name(old.get("course")), _result_name(old.get("winner")))
+        if key in have:
+            continue
+        rows.append(old)
+        have.add(key)
+        added += 1
+    return added
+
+
 def _result_name(value):
     """Normalise a horse/course name for matching result rows."""
     import html as _html
@@ -1288,12 +1310,15 @@ def main():
                 print(f"  rtv cards:   skipped ({e})")
 
             kept = carry_picks(old_rows, rows)
+            foreign = merge_foreign_results(rows, old_rows)
             os.makedirs(os.path.join(ROOT, "data", "results"), exist_ok=True)
             with open(os.path.join(ROOT, "data", "results", f"{yday}.json"), "w", encoding="utf-8") as f:
                 json.dump(rows, f, ensure_ascii=False)
             print(f"  results:     {len(rows)} races for {yday} -> data/results/{yday}.json")
             if kept:
                 print(f"  picks kept:  {kept} settled races kept their original pick")
+            if foreign:
+                print(f"  results US:  {foreign} US rows kept from the earlier ledger")
             settle_day(yday)
 
             # keep the with/without-rating A/B running: snapshot the day, then

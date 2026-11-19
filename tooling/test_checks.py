@@ -2381,6 +2381,19 @@ _us_block = refresh.results_block_us("2026-11-18", [{
 check("US ledger: the results tab shows the last-changed UTC time",
       'id="usLedger"' in _us_block and "18 November 2026, 20:00 UTC" in _us_block,
       _us_block[:200])
+_kept_rows = [{"course": "Hereford", "winner": "A", "region": None}]
+_kept_us = refresh.merge_foreign_results(_kept_rows, [
+    {"course": "Churchill Downs", "winner": "Flaming Verdict", "region": "US",
+     "pick": "Flaming Verdict"},
+    {"course": "Hereford", "winner": "A", "region": None},
+])
+check("US ledger: a UK results refresh keeps the US rows",
+      _kept_us == 1 and len(_kept_rows) == 2
+      and _kept_rows[1].get("region") == "US", _kept_rows)
+check("US ledger: an already-present US race is not duplicated",
+      refresh.merge_foreign_results(
+          [{"course": "Churchill Downs", "winner": "Flaming Verdict", "region": "US"}],
+          [{"course": "Churchill Downs", "winner": "Flaming Verdict", "region": "US"}]) == 0)
 _uk_block = refresh.results_block("2026-11-18", [{
     "course": "Hereford", "time": "13:00", "race": "X", "winner": "A",
     "places": ["A"], "pick": "A", "settled_at": "2026-11-18T20:00:00Z"}])
@@ -2859,6 +2872,10 @@ check("each-way: every named bet is two units",
 check("each-way: only GB/IRE legs carry a place part",
       "function ewTerms" in _bet_html and "function ewEligible" in _bet_html
       and "region === 'GB' || region === 'IRE'" in _bet_html)
+check("each-way: Longshots, Overhyped and Place bankers stay win-only",
+      "The card&rsquo;s each-way terms" not in _bet_html
+      and "Standard each-way terms for this field" not in _bet_html
+      and "with each-way terms." not in _bet_html)
 check("each-way: US legs stay win-only and say so",
       "US legs carry only the win part" in _bet_html
       and "US legs stay win-only" in _bet_html

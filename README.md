@@ -188,7 +188,9 @@ from the card the page actually showed.
 
 Settled picks are immutable. When a day's results are scraped again, the
 stored pick, finish and fate are carried over; only races that were never
-settled are scored, and they are scored from the archived card.
+settled are scored, and they are scored from the archived card. The UK and
+Irish feeds rewrite their own rows only: a day's US rows are kept from the
+earlier ledger, because US results come from a separate feed.
 
 Options: `--days=3` widens the UK window. The US scrape only covers the date
 given (today). `--skip-checks` bypasses the fixture gate for an emergency run:
@@ -839,7 +841,7 @@ working.
 | Today | The next race, the day's best-rated horses, the standouts and the US races still to come. |
 | Longshots | Priced 7/1+ horses still in the model's top four with a 4%+ win chance and positive edge, sorted by edge. |
 | Overhyped | Market favourites the model ranks third or worse, or rates at least five points below the price. |
-| Place bankers | Model top picks that are also the market favourite, 20%+ win chance, field of five or more; the each-way terms are shown, not a place probability. |
+| Place bankers | Model top picks that are also the market favourite, 20%+ win chance, field of five or more; a win profile, not a place probability. |
 | Bet slips | Win-only singles, doubles, trebles, four-folds and Lucky 15/31/63 from the strongest priced value legs, plus the standard named-slip table. |
 | Upcoming slips | The same slips, with the legs queued by the next off instead of by edge, so the tab shows the races still to come. |
 | Slip results | The same rule replayed on settled days from the archived pre-race card, with every leg's finish, every slip's winning bets and win-only return at card prices, each-way settlement showing win and place returns separately, and a running strike rate across all settled days combined. |
@@ -885,6 +887,10 @@ working.
   win-only and labelled as such. Printing from
   **Bet slips** prints only the slips, each kept whole; the navigation,
   explanatory copy and reference table are omitted.
+* The **Longshots**, **Overhyped** and **Place bankers** screens read every
+  priced region in the build, including the US. France and Chile cards carry no
+  win price, so no market-favourite screen can qualify one without inventing a
+  price; a Hong Kong card is included only when its price is present.
 * **Longshot results**, **Overhyped results** and **Place banker results**
   replay their screens on settled days from `data/cards/by_date` and
   `data/results`, and only when the archived pick and the stored result agree.
