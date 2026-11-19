@@ -1,7 +1,7 @@
 {
  "date": "2026-11-18",
  "region": "CL",
- "updated": "2026-11-19T01:31:11Z",
+ "updated": "2026-11-19T01:50:35Z",
  "races": [
   {
    "course": "Valparaiso",
@@ -29,7 +29,11 @@
     "LAMOTTA",
     "DALE TANQUE"
    ],
-   "region": "CL"
+   "region": "CL",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Valparaiso",
@@ -55,7 +59,11 @@
     "OSCURO Y SALVAJE",
     "SALADO"
    ],
-   "region": "CL"
+   "region": "CL",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Valparaiso",
@@ -80,7 +88,11 @@
     "KRASNYY AND RED",
     "POOR SMELL"
    ],
-   "region": "CL"
+   "region": "CL",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Valparaiso",
@@ -110,7 +122,11 @@
     "EL KING",
     "LUIVERAR"
    ],
-   "region": "CL"
+   "region": "CL",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   }
  ]
 }
