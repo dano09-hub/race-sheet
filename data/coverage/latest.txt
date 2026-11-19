@@ -1,12 +1,12 @@
-Racing coverage — measured 2026-11-18T20:26:01+00:00 (UTC)
+Racing coverage — measured 2026-11-19T02:31:44+00:00 (UTC)
 country                    cards results prices  verdict / evidence
 ----------------------------------------------------------------------------------------------------
 Great Britain & Ireland    yes   yes     yes     live [on page]; horseracing.net cards; Sporting Life / irishracing results
-United States              yes   yes     yes     live [on page]; HRN entries and payout table on one host
+United States              yes   no      yes     cards only [on page]; HRN entries and payout table on one host
 Hong Kong                  yes   yes     no      live [on page]; official HKJC card and finishing positions
-France                     yes   yes     yes     live [on page]; 18 declared runners, 40 definitive races, forecast dividends
-Argentina                  yes   no      no      cards only; 12 declared runners, 0 definitive races, no prices
-Chile                      yes   yes     no      cards + results, no prices [on page]; 15 declared runners, 6 definitive races, no prices
+France                     yes   yes     yes     live [on page]; 16 declared runners, 24 definitive races, forecast dividends
+Argentina                  no    no      no      no meeting; not on today's PMU programme
+Chile                      no    no      no      no meeting [on page]; not on today's PMU programme
 Australia & New Zealand    no    no      no      blocked; Punters Cloudflare 403; racing.com 403 from this network
 Japan                      no    no      no      html only; race pages reachable; no machine-readable race list
 South Africa               no    no      no      html only; TAB home answers; no meeting/field payload found
