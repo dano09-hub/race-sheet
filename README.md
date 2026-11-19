@@ -842,7 +842,7 @@ working.
 | Place bankers | Model top picks that are also the market favourite, 20%+ win chance, field of five or more; the each-way terms are shown, not a place probability. |
 | Bet slips | Win-only singles, doubles, trebles, four-folds and Lucky 15/31/63 from the strongest priced value legs, plus the standard named-slip table. |
 | Upcoming slips | The same slips, with the legs queued by the next off instead of by edge, so the tab shows the races still to come. |
-| Slip results | The same rule replayed on settled days from the archived pre-race card, with every leg's finish, every slip's winning bets and return at card prices, and a running strike rate across all settled days combined. |
+| Slip results | The same rule replayed on settled days from the archived pre-race card, with every leg's finish, every slip's winning bets and win-only return at card prices, each-way settlement showing win and place returns separately, and a running strike rate across all settled days combined. |
 | Longshot results | The Longshots screen replayed on settled days from the archived card: each pick's finish and a one-unit win record at card prices. |
 | Overhyped results | How the favourites the Overhyped screen flagged actually finished; a doubt record with no stake and no P&L. |
 | Place banker results | The model-and-market bankers replayed on settled days, placed or not under the standard place terms stored with the result. |
@@ -894,9 +894,14 @@ working.
 * **Slip results** is settled history, not a tip. It replays the slip rule from
   `data/cards/by_date` for each day in `data/results`, uses a leg only when the
   archived pick and the stored pick agree, and stakes every bet in the named
-  structure at the archived card price. Only the settled UK, Irish and US ledger
-  (`data/results`) is replayed; the Hong Kong, French and Chilean ledgers are
-  separate. A day without enough priced, positive-edge legs simply produces
+  structure at the archived card price. Each slip is also settled each-way: one
+  win part and one place part, the latter only on GB/IRE legs with place terms
+  stored with the result, or the standard terms for the archived field when the
+  result has none, so a US leg never invents a place price. A slip with
+  no qualifying leg stays win-only at one unit. The slip footer, the day summary
+  and the running panel show the win and place returns separately. Only the
+  settled UK, Irish and US ledger (`data/results`) is replayed; the Hong Kong,
+  French and Chilean ledgers are separate. A day without enough priced, positive-edge legs simply produces
   fewer slips. The running panel above the day buttons combines every settled
   day, oldest first, with legs won, slips fully landed and winning bets against
   the total, plus the net at card prices; it counts each generated slip in

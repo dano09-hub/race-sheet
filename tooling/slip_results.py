@@ -19,12 +19,14 @@ usage:
 import itertools
 import json
 import os
+import re
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 
+import eachway  # noqa: E402
 import settle  # noqa: E402
 
 START = "/* SLIP_RESULTS_START */"
@@ -96,6 +98,31 @@ def _won(r):
     return str(r.get("pick_finish") or "").strip().lower() == "1st"
 
 
+def _finish_pos(r):
+    """The numeric finish from values such as 3rd, 12 or PU."""
+    m = re.match(r"\s*(\d+)", str(r.get("pick_finish") or ""))
+    return int(m.group(1)) if m else None
+
+
+def _place_terms_for(card, r):
+    """Stored place terms, falling back to the standard terms for the card.
+
+    Older settled rows predate the place annotation. The archived card still
+    gives the field size and handicap status, so the standard terms can be
+    derived rather than leaving the slip with no place part at all.
+    """
+    places = int(r.get("place_places") or 0)
+    fraction = float(r.get("place_fraction") or 0.0)
+    if places and fraction > 0:
+        return places, fraction, (1 if r.get("placed") is True else 0)
+    field = len(card.get("runners") or [])
+    race = str(card.get("race") or card.get("label") or "")
+    places, fraction = eachway.place_terms(field, bool(re.search(r"\b(handicap|hcp)\b", race, re.I)))
+    pos = _finish_pos(r)
+    placed = 1 if (places and pos is not None and pos <= places) else 0
+    return places, fraction, placed
+
+
 def _combos(kind, n):
     if kind == "single":
         return [(0,)]
@@ -107,8 +134,23 @@ def _combos(kind, n):
     return out
 
 
+def _ew_ok(leg):
+    """Only a GB/IRE leg with stored place terms has a place part."""
+    return leg.get("r") != "US" and (leg.get("pf") or 0) > 0
+
+
+def _ew_place_odds(leg):
+    """Place decimal: 1 + fraction * (win decimal - 1), as eachway.py does."""
+    return 1.0 + leg["pf"] * (leg["p"] - 1.0)
+
+
 def _slip_rows(legs):
-    """Every slip the live tab would generate from this leg pool."""
+    """Every slip the live tab would generate from this leg pool.
+
+    Each slip is also settled each-way: one win unit per bet plus a place unit
+    for every combination that contains a GB/IRE leg with place terms. The
+    place part covers only those legs, so a US leg never invents a place price.
+    """
     rows, no = [], 0
     for name, kind, need in LADDER:
         if len(legs) < need:
@@ -117,14 +159,20 @@ def _slip_rows(legs):
         if name == "Single":
             for i in range(min(3, len(legs))):
                 no += 1
+                leg = legs[i]
+                place_bets = 1 if _ew_ok(leg) else 0
+                place_ret = (_ew_place_odds(leg)
+                             if place_bets and leg.get("pl") else 0.0)
                 rows.append({"y": name, "n": no, "legs": [i],
-                             "b": 1, "wb": 1 if legs[i]["w"] else 0,
-                             "ret": round(legs[i]["p"], 4) if legs[i]["w"] else 0.0})
+                             "b": 1, "wb": 1 if leg["w"] else 0,
+                             "ret": round(leg["p"], 4) if leg["w"] else 0.0,
+                             "ewp": round(place_ret, 4),
+                             "ewb": 1 + place_bets})
             continue
         no += 1
         chosen = list(range(need))
         combos = _combos(kind, need)
-        wb, ret = 0, 0.0
+        wb, ret, place_bets, place_ret = 0, 0.0, 0, 0.0
         for combo in combos:
             if all(legs[i]["w"] for i in combo):
                 wb += 1
@@ -132,9 +180,18 @@ def _slip_rows(legs):
                 for i in combo:
                     prod *= legs[i]["p"]
                 ret += prod
+            elig = [i for i in combo if _ew_ok(legs[i])]
+            if elig:
+                place_bets += 1
+                if all(legs[i].get("pl") for i in elig):
+                    prod = 1.0
+                    for i in elig:
+                        prod *= _ew_place_odds(legs[i])
+                    place_ret += prod
         status = "won" if wb == len(combos) else ("lost" if wb == 0 else "part")
         rows.append({"y": name, "n": no, "legs": chosen,
                      "b": len(combos), "wb": wb, "ret": round(ret, 4),
+                     "ewp": round(place_ret, 4), "ewb": len(combos) + place_bets,
                      "o": status})
     return rows
 
@@ -175,6 +232,7 @@ def day_block(date):
         r = _result_for(card, horse, by_pick)
         if not r or not _finished(r):
             continue
+        pp, pf, pl = _place_terms_for(card, r)
         legs.append({
             "c": card.get("course") or "",
             "t": card.get("time") or "",
@@ -183,6 +241,9 @@ def day_block(date):
             "p": round(float(dec), 4),
             "f": str(r.get("pick_finish") or "").strip(),
             "w": 1 if _won(r) else 0,
+            "pp": pp,
+            "pf": round(float(pf), 4),
+            "pl": pl,
             "e": round(float(share - implied), 4),
         })
     if not legs:

@@ -2752,9 +2752,52 @@ check("slip results: singles carry one leg and slips are numbered in order",
       and all([s["n"] for s in d["s"]] == list(range(1, len(d["s"]) + 1)) for d in _sr))
 check("slip results: a slip never claims more winning bets than it has",
       all(0 <= s["wb"] <= s["b"] for d in _sr for s in d["s"]))
+def _slip_ew_math_ok(days):
+    """Recompute each slip's place return from its own placed GB/IRE legs."""
+    for day in days:
+        for s in day["s"]:
+            legs = [day["l"][i] for i in s["legs"]]
+            n = len(legs)
+            if s["y"] == "Single":
+                combos = [(0,)]
+            elif s["b"] == 1:
+                combos = [tuple(range(n))]
+            else:
+                combos = [c for k in range(1, n + 1) for c in _it.combinations(range(n), k)]
+            if len(combos) != s["b"]:
+                return False
+            place_bets, place_ret = 0, 0.0
+            for c in combos:
+                elig = [i for i in c if legs[i]["r"] != "US" and legs[i].get("pf", 0) > 0]
+                if not elig:
+                    continue
+                place_bets += 1
+                if all(legs[i].get("pl") for i in elig):
+                    prod = 1.0
+                    for i in elig:
+                        prod *= 1 + legs[i]["pf"] * (legs[i]["p"] - 1)
+                    place_ret += prod
+            if s.get("ewb") != s["b"] + place_bets:
+                return False
+            if abs(s.get("ewp", 0) - place_ret) > 0.05:
+                return False
+    return True
+
+
 check("slip results: the tab says returns are at archived card prices",
       "settled at its card prices" in _bet_html
       and "one unit per bet" in _bet_html)
+check("slip results: every leg carries its stored place terms",
+      all("pp" in l and "pf" in l and l.get("pl") in (0, 1)
+          for d in _sr for l in d["l"]))
+check("slip results: each-way returns are recomputable from the placed legs",
+      _slip_ew_math_ok(_sr))
+check("slip results: the each-way stake never exceeds two units per bet",
+      all(s["b"] <= s.get("ewb", s["b"]) <= 2 * s["b"]
+          for d in _sr for s in d["s"]))
+check("slip results: the tab shows win and place returns separately",
+      "win part" in _bet_html and "place part" in _bet_html
+      and "Each-way on the same slips" in _bet_html)
 check("slip results: a running strike-rate panel sits above the days",
       'id="slipRunSummary"' in _bet_html
       and _bet_html.index('id="slipRunSummary"') < _bet_html.index('id="slipResDays"'))
