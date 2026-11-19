@@ -1,0 +1,84 @@
+{
+ "date": "2026-11-19",
+ "region": "FR",
+ "updated": "2026-11-19T11:05:52Z",
+ "races": [
+  {
+   "course": "Saint-Cloud",
+   "time": "09:57",
+   "race": "GRAND PRIX DES APPRENTIS (FINALE CHMPT PARIS TURF DES APP & JJ)",
+   "race_no": "R1C1",
+   "winner": "JANAH",
+   "places": [
+    "JANAH",
+    "ORION ROCK",
+    "SONNAZ"
+   ],
+   "order": [
+    "JANAH",
+    "ORION ROCK",
+    "SONNAZ",
+    "AVANT L'ORAGE",
+    "ACOTANGO",
+    "DREAMS",
+    "HAVE DANCER",
+    "UNA REVELACION"
+   ],
+   "region": "FR",
+   "pick": "ACOTANGO",
+   "chance": 25.5,
+   "pick_finish": "5th",
+   "hit": false
+  },
+  {
+   "course": "Saint-Cloud",
+   "time": "10:27",
+   "race": "PRIX DE LA FRETTE",
+   "race_no": "R1C2",
+   "winner": "CREW DRAGON",
+   "places": [
+    "CREW DRAGON",
+    "MISTER SKETCH",
+    "CORTADO"
+   ],
+   "order": [
+    "CREW DRAGON",
+    "MISTER SKETCH",
+    "CORTADO",
+    "MY UNIVERSE",
+    "CIEL DE PARIS",
+    "THALIA",
+    "MARLOWE",
+    "SHEARKAN",
+    "MORGAN BAY",
+    "DURYTHME",
+    "DISTOR",
+    "ASHERAH"
+   ],
+   "region": "FR",
+   "pick": "CIEL DE PARIS",
+   "chance": 16.7,
+   "pick_finish": "5th",
+   "hit": false
+  },
+  {
+   "course": "Fontainebleau",
+   "time": "10:43",
+   "race": "PRIX COLONEL BERNARD MARLIN - CHALLENGE DE L'OBSTACLE EQUINAXY",
+   "race_no": "R2C1",
+   "winner": "ELCOND'OR FORLONGE",
+   "places": [
+    "ELCOND'OR FORLONGE",
+    "SATURNE PELEM",
+    "KARMIX"
+   ],
+   "order": [
+    "ELCOND'OR FORLONGE",
+    "SATURNE PELEM",
+    "KARMIX",
+    "HILLICO CONTI"
+   ],
+   "region": "FR"
+  }
+ ]
+}
