@@ -905,7 +905,7 @@ with tempfile.TemporaryDirectory(prefix="factor-docs-test-") as _d:
     _readme = _root / "README.md"
     _readme_text = _readme.read_text(encoding="utf-8")
     _readme.write_text(
-        _readme_text.replace("Twelve factors", "Eleven factors", 1),
+        _readme_text.replace("Six inputs", "Five inputs", 1),
         encoding="utf-8")
     _bad = subprocess.run([sys.executable, str(_checker)], cwd=_root,
                           capture_output=True, text=True)
@@ -913,7 +913,7 @@ with tempfile.TemporaryDirectory(prefix="factor-docs-test-") as _d:
     check("factor docs: wrong documented count is rejected",
           _bad.returncode != 0 and "factor count" in _out, _out)
     _readme.write_text(
-        _readme_text.replace("full array totals 104", "full array totals 100", 1),
+        _readme_text.replace("totalling 56", "totalling 60", 1),
         encoding="utf-8")
     _total_bad = subprocess.run([sys.executable, str(_checker)], cwd=_root,
                                 capture_output=True, text=True)
@@ -924,10 +924,10 @@ with tempfile.TemporaryDirectory(prefix="factor-docs-test-") as _d:
     _readme.write_text(_readme_text, encoding="utf-8")
     _index = _root / "index.html"
     _index_text = _index.read_text(encoding="utf-8")
-    _method_text = _index_text.replace("<dt>Draw (4)</dt>", "<dt>Draw (5)</dt>", 1)
+    _method_text = _index_text.replace("<dt>Weight (2)</dt>", "<dt>Weight (5)</dt>", 1)
     if _method_text == _index_text:
         check("factor docs: Method-tab weight fixture found", False,
-              "Draw (4) not found")
+              "Weight (2) not found")
     _index.write_text(_method_text, encoding="utf-8")
     _method_bad = subprocess.run([sys.executable, str(_checker)], cwd=_root,
                                  capture_output=True, text=True)
@@ -2575,6 +2575,31 @@ check("results tab: the copy still says manual entries stay local",
       "Manual entries are saved in this browser only" in _page_now)
 
 print()
+print("Strict model")
+_strict = re.search(r"var RATED_FACTORS = \[(.*?)\n  \];", _page_now, re.S)
+_strict_src = _strict.group(1) if _strict else ""
+check("model: a pick is scored on the six complete inputs only",
+      all(k in _strict_src for k in ["'market'", "'form'", "'rating'",
+                                     "'weight'", "'fitness'", "'connections'"])
+      and _strict_src.count("['") == 6)
+check("model: partial feeds are not model inputs",
+      not any(k in _strict_src for k in ["rpr", "speed", "tips", "naps", "draw", "cd", "going"]))
+check("model: every runner must carry every input or the race is unrated",
+      "function cardCoverage" in _page_now and "ok: rs.length >= 4 && missing.length === 0" in _page_now)
+check("model: the missing field is named on the page",
+      "for all ' + s.cov.runners + ' runners" in _page_now
+      and "'has' : 'have') + ' no ' + m.what" in _page_now)
+check("model: the paragraph cites only filed values and says so",
+      "function ratedEvidence" in _page_now
+      and "No input outside those six is used" in _page_now)
+check("model: the place chance is the Harville sum of the win chances",
+      "function topPlaceChance" in _page_now and "Harville" in _page_now)
+check("model: the picks list is built from rated cards only",
+      "function ratedPicks" in _page_now
+      and "if (!cov.ok) {" in _page_now
+      and "renderLeaderboard" in _page_now)
+
+print()
 print("Bet views")
 _bet_html = _page_now
 for _tid, _label in [("longshots", "Longshots"), ("overhyped", "Overhyped"),
@@ -2584,10 +2609,9 @@ for _tid, _label in [("longshots", "Longshots"), ("overhyped", "Overhyped"),
                      ("longresults", "Longshot results"),
                      ("overresults", "Overhyped results"),
                      ("placerresults", "Place banker results")]:
-    check("bet views: the %s tab is declared" % _tid,
-          "['%s', '%s'" % (_tid, _label) in _bet_html
-          and "data-panel=\"%s\"" % _tid in _bet_html
-          and "%s: ['%s']" % (_tid, _tid) in _bet_html)
+    check("bet views: the %s tab is no longer offered" % _tid,
+          "['%s', '%s'" % (_tid, _label) not in _bet_html
+          and "%s: '%s'" % (_tid, "today") in _bet_html)
 check("bet views: each panel owns its render target",
       all(_id in _bet_html for _id in
           ['id="longshotBody"', 'id="overhypedBody"', 'id="placerBody"',

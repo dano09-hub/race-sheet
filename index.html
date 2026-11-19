@@ -933,6 +933,9 @@
 
   /* best-of-day and unmissable cards */
   .best-grid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin:0 0 14px}
+  /* One rated race: give the paragraph the full width rather than half a grid. */
+  #bestBody.is-one{grid-template-columns:minmax(0,1fr)}
+  #bestBody .best-why{max-width:78ch}
   .best-card{
     position:relative; display:flex; flex-direction:column; gap:9px;
     padding:15px 16px 13px; background:var(--card); border:1px solid var(--line);
@@ -1487,41 +1490,14 @@
   <section class="panel" data-panel="today">
     <div id="nextCard" class="nextcard"></div>
     <div class="kpi-grid" id="kpiStrip"></div>
-    <h2>Best of the day</h2>
-    <p class="method">Every race still to come, in starting-time order. Each card gives the model&rsquo;s one-line case: the factors it tops and the margin over the second-rated horse; the badge is its rank by Clear, and the top three are highlighted. Tap a card to open the full race.</p>
+    <h2>Today&rsquo;s picks</h2>
+    <p class="method">A race is rated only when <b>every runner</b> carries all six inputs the model uses: price, form, official rating, weight, days since a last run, and jockey and trainer records. A card with a gap anywhere in the field is not rated, and the missing field is named under <b>Not rated</b>. Each pick carries the paragraph of filed numbers behind it: no reason that is not on the card is used.</p>
     <p class="best-count" id="bestCount"></p>
     <div class="best-grid" id="bestBody"></div>
-    <details class="note"><summary>How the ranking works</summary><p><b>Score</b> is the model&rsquo;s 0&ndash;100 merit rating for the card: higher is stronger, but it ranks runners, it is not a probability. <b>Model %</b> turns the score into a win chance across that field &mdash; 33.8% means about one win in three. <b>Market %</b> is the same idea read from the prices with the book&rsquo;s margin removed, so the two chances sit on the same scale; the difference between them is the model&rsquo;s edge. <b>Break-even price</b> is 1 &divide; model chance: the shortest price at which that chance just pays for itself (33.8% &rarr; 2.96). <b>Gap</b> is the score margin over the second-rated horse. <b>Clear</b> divides that gap by the field&rsquo;s score range, so 20% clear means the gap is a fifth of the whole spread and picks compare across races of any size. <b>Factors</b> is how many model inputs were available; thin cards are not treated as strong evidence.</p></details>
-  </section>
-
-  <section class="panel" data-panel="unmissable">
-    <h2>Unmissable</h2>
-    <p class="method">The model&rsquo;s absolute standouts: top picks that combine a high rating with a wide, dominant margin over their own field. These are the races worth a closer look before the off.</p>
-    <p class="best-count" id="unmissableCount"></p>
-    <div class="best-grid standout-grid" id="unmissableBody"></div>
-    <details class="note"><summary>What makes a horse unmissable?</summary><p>All five tests must pass: a score of <b>80 or higher</b>, a gap of at least <b>15 points</b> to the second-rated horse, a <b>Clear</b> figure of at least <b>30%</b>, at least <b>six factors</b> available, and a field of at least <b>five runners</b>. Thin-data cards are excluded rather than promoted. This is still a rating, not a guarantee.</p></details>
-  </section>
-
-  <section class="panel" data-panel="late">
-    <h2>Late races</h2>
-    <p class="method">US cards still to come, with the model&rsquo;s top pick for each race. These are the races that follow the UK and Ireland card; Hong Kong has its own tab.</p>
-    <p class="method" id="lateCount"></p>
-    <div class="scroll">
-      <table id="lateTable">
-        <thead>
-          <tr>
-            <th>Time (UK / UTC)</th>
-            <th>Course</th>
-            <th>Race</th>
-            <th>Pick</th>
-            <th>Score</th>
-            <th>Price</th>
-            <th>Runners</th>
-          </tr>
-        </thead>
-        <tbody id="lateBody"></tbody>
-      </table>
-    </div>
+    <h2>Not rated</h2>
+    <p class="method" id="ratedAuditCount"></p>
+    <div id="ratedAuditBody"></div>
+    <details class="note"><summary>What the numbers mean</summary><p><b>Rating</b> is the weighted average of the six inputs, 0&ndash;100. <b>Clear of 2nd</b> is its margin over the next runner in the same race. <b>Win %</b> converts the ratings into chances across that field. <b>Top 3</b> is the Harville sum of those win chances under standard place terms, not a separately fitted place model, and is shown only where the field is large enough to have a place market. This is a rating, not a guarantee.</p></details>
   </section>
 
   <section class="panel" data-panel="longshots">
@@ -2041,7 +2017,7 @@
 
   <section class="panel" data-panel="method">
     <h2>How the rating works</h2>
-    <p class="method">Twelve factors, fixed weights, one score per horse. Nothing is tuned per race or per card, so two identical horses always get the same rating.</p>
+    <p class="method">Six inputs, fixed weights, one score per horse &mdash; and only on a card where every runner carries all six. Nothing is tuned per race or per horse, so two identical profiles always get the same rating.</p>
     <!-- COVERAGE_SL_START -->
 <h3>Which countries the sheet can actually follow</h3>
 <p class="method">Measured from the build network on 2026-11-19 02:31 UTC. A country earns a tab only when a machine-readable card and a definitive result both name the field; the rows marked <b>on page</b> are the ones wired today. A feed that is blocked, HTML-only or results-only is recorded here rather than shown as an empty tab.</p>
@@ -2050,23 +2026,19 @@
   <details class="notes" open>
     <summary>How the rating is calculated</summary>
     <div class="body">
-      <p>Each factor is scored 0&ndash;100 and averaged with fixed weights. Nothing is user-adjustable, so every horse in every race is treated identically. The eleven GB/IE factors total 100; Draw adds 4 where a card carries it, so the full array has twelve entries and 104 nominal weight. The scorer divides by the active weight, so these are relative weights and the effective shares always total 100.</p>
+      <p>Each input is scored 0&ndash;100 and averaged with fixed weights. The six entries and 56 nominal weight are fixed: nothing is user-adjustable and nothing is dropped per horse: if one runner is missing one input, the race is not rated at all. That is why the model runs on six inputs rather than a dozen. A factor can only enter the model if the feeds file it for <b>every runner</b>; the ones that are patchy are excluded for the whole page rather than for the horses that happen to lack them.</p>
       <div class="effbox" id="methodEffective"></div>
       <dl>
-        <dt>Market (18)</dt><dd>Implied probability from the price, scaled so the shortest-priced runner scores 100.</dd>
-        <dt>Form (15)</dt><dd>Last six finishing positions, most recent weighted heaviest, blended 65/35 with how often the horse actually hits the frame. No top-three finish in its last six caps it at 55; one run caps it at 68, two at 76; no form scores 30.</dd>
-        <dt>Tipsters (5)</dt><dd>How many of the card's tipsters have put the horse up, normalised across the field. Naps are shown in brackets next to the count but are not scored separately &mdash; a nap is one tipster's strongest view, not an extra vote.</dd>
-        <dt>Card rating (13)</dt><dd>The rating printed on the card &mdash; Racing Post Rating on horseracing.net cards, Timeform on Racing TV cards &mdash; normalised across the field. One rating product is used per race, never a mix of the two.</dd>
-        <dt>Official rating (15)</dt><dd>The handicapper's view of ability, normalised across the field.</dd>
-        <dt>Course &amp; trip (10)</dt><dd>Whether it has won at the track and over the distance. A record like <code>1/3</code> is used as a rate; Y/N flags score 72/38.</dd>
-        <dt>Draw (4)</dt><dd>Post position; used where the card carries a draw (US/HK), absent on GB/IE cards so the factor drops.</dd>
-        <dt>Topspeed (12)</dt><dd>Speed figure, normalised across the field.</dd>
-        <dt>Won last time out (4)</dt><dd>Whether the horse won its latest start: Y scores 72, N scores 28. Cards that do not carry the flag drop the factor rather than guessing at the going.</dd>
-        <dt>Fitness (3)</dt><dd>Days since last run: peak at 15&ndash;35, penalised for long absences and quick reappearances.</dd>
+        <dt>Market (18)</dt><dd>Implied probability from the price with the book's margin removed, so the field's shares sum to 100.</dd>
+        <dt>Form (15)</dt><dd>Last six finishing positions, most recent weighted heaviest, blended 65/35 with how often the horse hits the frame. No top-three finish in its last six caps it at 55; one run caps it at 68, two at 76; no form scores 30.</dd>
+        <dt>Official rating (15)</dt><dd>The handicapper's rating, normalised across the field.</dd>
         <dt>Weight (2)</dt><dd>Lower weight scores higher &mdash; the point of a handicap.</dd>
-        <dt>Stable form (3)</dt><dd>Trainer and jockey 30-day strike rates, straight from the card.</dd>
+        <dt>Days since a run (3)</dt><dd>Days since last run: peak at 15&ndash;35, penalised for long absences and quick reappearances.</dd>
+        <dt>Jockey &amp; trainer (3)</dt><dd>The win counts printed against the jockey and trainer on the card.</dd>
       </dl>
-      <p style="margin-top:10px"><strong>Missing data:</strong> if a factor has no figure for a horse, or is identical for the whole field, it is dropped and the other weights renormalise for that runner. A race with no prices is ranked without the market at all, and says so.</p>
+      <p style="margin-top:10px"><strong>Not model inputs, and why:</strong> Racing Post ratings, Topspeed, tipster counts and naps, the course/trip/going flags and the draw. They are not filed for every runner on every card, so they cannot be carried into a rating without a horse being scored on less evidence than its rivals. Rather than drop them per horse, the race is left unrated and the missing field is named on the Today tab. If those feeds become complete, they can enter the model with a weight, not before.</p>
+      <p><strong>The paragraph on each pick</strong> is generated from the card's own values: the price and its share of the book, the form string and what it contains, the official rating and its distance from the field high, the weight carried, the days since a run, and the jockey and trainer win counts. It also states the rating, the margin over the second-rated horse, the win chance and the top-place chance. No sentence is written that is not backed by one of those values.</p>
+      <p><strong>Top places:</strong> the place chance is the Harville sum of the model's own win chances for that field, shown only where field size gives standard place terms. It is arithmetic on the win model, not a separately fitted place model, and it is labelled that way on the card.</p>
       <!-- HK_AUDIT_SL_START -->
 <p><strong>Hong Kong market:</strong> HKJC cards are filed before betting opens, so a Hong Kong pick is scored on the factors the card carries and not on the price. Win odds are now archived from twenty minutes before each off; none has been filed yet, so no Hong Kong market factor can be tested.</p>
 <!-- HK_AUDIT_SL_END -->
@@ -2093,16 +2065,7 @@
   // Five destinations, each a group of panels. Keeping panels separate means
   // the generated blocks and their markers never move.
   var TABS = [
-    ['today', 'Today', 'Overview', 'The best-rated horses, the standouts and the races still to come.'],
-    ['longshots', 'Longshots', 'Value', 'Big prices the model still rates: top ten by edge, in start-time order.'],
-    ['overhyped', 'Overhyped', 'Market', 'Market favourites the model doubts.'],
-    ['placers', 'Place bankers', 'Place profile', 'Model top pick and market favourite, with a 20%+ win chance.'],
-    ['slips', 'Bet slips', 'Slips', 'Model multiples and named bet structures, in slip form.'],
-    ['upcoming', 'Upcoming slips', 'Next off', 'The same win-only slips, built from the next races to go.'],
-    ['slipresults', 'Slip results', 'Settled slips', 'Every settled slip replayed from the archived pre-race card.'],
-    ['longresults', 'Longshot results', 'Settled value', 'Every settled longshot replayed from the archived pre-race card.'],
-    ['overresults', 'Overhyped results', 'Settled doubts', 'How the favourites the model doubted actually finished.'],
-    ['placerresults', 'Place banker results', 'Settled places', 'How often the model-and-market bankers placed.'],
+    ['today', 'Today', 'Overview', 'Rated races only: every runner complete on the six inputs, with the paragraph behind each pick.'],
     ['card', 'Cards', 'Racing', 'Pick a race and inspect every runner the model scored.'],
     ['results', 'UK results', 'Record', 'Settled UK results, market checks and the model audit.'],
     ['ireresults', 'Irish results', 'Irish record', 'Settled Irish races: winner, first three and what the model pick did.'],
@@ -2118,16 +2081,7 @@
   ];
 
   var TAB_PANELS = {
-    today: ['today', 'unmissable', 'late'],
-    longshots: ['longshots'],
-    overhyped: ['overhyped'],
-    placers: ['placers'],
-    slips: ['slips'],
-    upcoming: ['upcoming'],
-    slipresults: ['slipresults'],
-    longresults: ['longresults'],
-    overresults: ['overresults'],
-    placerresults: ['placerresults'],
+    today: ['today'],
     card: ['card', 'ranked'],
     results: ['results', 'past'],
     ireresults: ['ireresults'],
@@ -2145,7 +2099,10 @@
   // Old links and stored tab names still land in the right place.
   var TAB_ALIAS = {
     unmissable: 'today', late: 'today', past: 'results',
-    ranked: 'card', flags: 'us', angles: 'us'
+    ranked: 'card', flags: 'us', angles: 'us',
+    longshots: 'today', overhyped: 'today', placers: 'today', slips: 'today',
+    upcoming: 'today', slipresults: 'today', longresults: 'today',
+    overresults: 'today', placerresults: 'today'
   };
 
   var POS = {'1':100,'2':82,'3':68,'4':54,'5':44,'6':34,'7':26,'8':20,'9':16,'0':8,'P':4,'F':4,'U':4,'R':4,'D':12};
@@ -9157,6 +9114,9 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
     if (region === 'US') return 'USA';
     if (region === 'AU') return 'AUS';
     if (region === 'HK') return 'HK';
+    if (region === 'FR') return 'FR';
+    if (region === 'CL') return 'CHI';
+    if (region === 'IRE') return 'IRE';
     return 'GB';
   }
 
@@ -9175,6 +9135,250 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
       txt += ' No price was up for this race, so there is no market chance to compare.';
     }
     return txt;
+  }
+
+  /* ---------- the strict model: complete cards, every factor, no inference ----------
+
+     A race is rated only when every runner on the card carries every input the
+     model uses. The six inputs below are the ones the feeds file for all
+     runners; RPR, Topspeed, tipster naps, course/distance/going flags and the
+     draw are not filed for every runner, so they are not model inputs at all
+     rather than being silently dropped per horse. A card with any gap is not
+     rated and the missing field is named.
+
+     Weights are the validated weights of the existing rating, unchanged and
+     renormalised over these six: market 18, form 15, official rating 15,
+     weight 2, fitness 3, jockey & trainer 3. Nothing is added to make a pick
+     look stronger. */
+
+  var RATED_FACTORS = [
+    ['market', 'Market', 18],
+    ['form', 'Form', 15],
+    ['rating', 'Official rating', 15],
+    ['weight', 'Weight', 2],
+    ['fitness', 'Days since a run', 3],
+    ['connections', 'Jockey & trainer', 3]
+  ];
+  var RATED_WEIGHT = RATED_FACTORS.reduce(function (s, f) { return s + f[2]; }, 0);
+
+  var FEED_ALIAS = {
+    odds: ['odds'],
+    form: ['form', 'form_live'],
+    or: ['or', 'or_live'],
+    days: ['days', 'days_live'],
+    jp: ['jp'],
+    tp: ['tp']
+  };
+
+  function feedValue(r, key) {
+    var names = FEED_ALIAS[key] || [key];
+    for (var i = 0; i < names.length; i++) {
+      var v = r[names[i]];
+      if (v !== null && v !== undefined && String(v).trim() !== '') return v;
+    }
+    return '';
+  }
+
+  // What this runner is missing, in the words the page will print.
+  function runnerGaps(r) {
+    var gaps = [];
+    if (decimalOdds(feedValue(r, 'odds')) === null) gaps.push('price');
+    if (!String(feedValue(r, 'form')).trim()) gaps.push('form');
+    if (figure(feedValue(r, 'or')) === null) gaps.push('official rating');
+    if (parseWeight(feedValue(r, 'weight')) === null) gaps.push('weight');
+    if (num(feedValue(r, 'days')) === null) gaps.push('days since a run');
+    if (num(feedValue(r, 'jp')) === null) gaps.push('jockey record');
+    if (num(feedValue(r, 'tp')) === null) gaps.push('trainer record');
+    return gaps;
+  }
+
+  function cardCoverage(card) {
+    var rs = (card.runners || []).filter(function (r) { return !r.scratched; });
+    var counts = {}, clean = 0;
+    rs.forEach(function (r) {
+      var gaps = runnerGaps(r);
+      if (!gaps.length) { clean++; return; }
+      gaps.forEach(function (k) { counts[k] = (counts[k] || 0) + 1; });
+    });
+    var missing = Object.keys(counts).map(function (k) {
+      return {what: k, n: counts[k]};
+    }).sort(function (a, b) { return (b.n - a.n) || a.what.localeCompare(b.what); });
+    return {runners: rs.length, clean: clean, missing: missing,
+            ok: rs.length >= 4 && missing.length === 0};
+  }
+
+  // Harville, from the model's own win shares. Stated as an approximation on
+  // the page: it is arithmetic on the win chances, not a separate place model.
+  function topPlaceChance(shares, idx, slots) {
+    var p = shares[idx];
+    if (!(p > 0)) return 0;
+    var second = 0, third = 0, j, k;
+    for (j = 0; j < shares.length; j++) {
+      if (j === idx || !(shares[j] > 0)) continue;
+      second += shares[j] / (1 - shares[j]);
+    }
+    if (slots >= 3) {
+      for (j = 0; j < shares.length; j++) {
+        if (j === idx || !(shares[j] > 0)) continue;
+        for (k = 0; k < shares.length; k++) {
+          if (k === idx || k === j || !(shares[k] > 0)) continue;
+          third += (shares[j] * shares[k]) / ((1 - shares[j]) * (1 - shares[k]));
+        }
+      }
+    }
+    return clamp(p * (1 + second + (slots >= 3 ? third : 0)), 0, 1);
+  }
+
+  function placeSlots(card) {
+    var n = (card.runners || []).filter(function (r) { return !r.scratched; }).length;
+    if (n < 5) return 0;
+    var hcp = /\b(handicap|hcp)\b/i.test(String(card.race || card.label || ''));
+    if (n <= 7) return 2;
+    return hcp ? (n <= 11 ? 3 : 3) : 3;
+  }
+
+  function scoreRated(card) {
+    var rs = (card.runners || []).filter(function (r) { return !r.scratched; });
+    var n = rs.length;
+    var decs = rs.map(function (r) { return decimalOdds(feedValue(r, 'odds')); });
+    var raw = decs.map(function (d) { return d ? 1 / d : 0; });
+    var book = raw.reduce(function (s, v) { return s + v; }, 0) || 1;
+    var shares = raw.map(function (v) { return v / book; });
+
+    var ors = rs.map(function (r) { return figure(feedValue(r, 'or')); });
+    var wts = rs.map(function (r) { return parseWeight(feedValue(r, 'weight')); });
+    var minOr = Math.min.apply(null, ors), maxOr = Math.max.apply(null, ors);
+    var minW = Math.min.apply(null, wts), maxW = Math.max.apply(null, wts);
+
+    var rows = rs.map(function (r, i) {
+      var st = formStats(feedValue(r, 'form'));
+      var parts = {
+        market: clamp(shares[i] * 100, 0, 100),
+        form: formScore(feedValue(r, 'form')),
+        rating: norm(ors[i], minOr, maxOr, false),
+        weight: norm(wts[i], minW, maxW, true),
+        fitness: fitnessScore(feedValue(r, 'days')),
+        connections: connScore({jp: feedValue(r, 'jp'), tp: feedValue(r, 'tp')})
+      };
+      var total = 0, den = 0;
+      RATED_FACTORS.forEach(function (f) {
+        var v = parts[f[0]];
+        if (v === null || v === undefined || isNaN(v)) return;
+        total += v * f[2];
+        den += f[2];
+      });
+      return {r: r, i: i, parts: parts, usedWeight: den,
+              total: den ? total / den : null,
+              share: shares[i], dec: decs[i],
+              form: st, or: ors[i], orRaw: figure(feedValue(r, 'or')),
+              weight: wts[i], days: num(feedValue(r, 'days')),
+              jp: num(feedValue(r, 'jp')), tp: num(feedValue(r, 'tp'))};
+    });
+
+    if (rows.some(function (x) { return x.usedWeight !== RATED_WEIGHT || x.total === null; })) return null;
+
+    var peak = -Infinity;
+    rows.forEach(function (x) { if (x.total > peak) peak = x.total; });
+    var mass = 0;
+    rows.forEach(function (x) { mass += Math.exp(CALIBRATION_SCALE * (x.total - peak)); });
+    if (!mass) mass = 1;
+    var chance = rows.map(function (x) { return Math.exp(CALIBRATION_SCALE * (x.total - peak)) / mass; });
+    var slots = placeSlots(card);
+
+    rows.forEach(function (x, i) {
+      x.chance = chance[i];
+      x.place = slots ? topPlaceChance(chance, i, slots) : null;
+    });
+    rows.sort(function (a, b) { return b.total - a.total; });
+    var placeOrder = rows.slice().sort(function (a, b) { return (b.place || 0) - (a.place || 0); });
+    return {rows: rows, slots: slots, place: placeOrder[0] || null, card: card};
+  }
+
+  function ordinal(n) {
+    var s = ['th', 'st', 'nd', 'rd'], v = n % 100;
+    return n + (s[(v - 20) % 10] || s[v] || s[0]);
+  }
+
+  // The paragraph. Every clause is a value read off this card: no adjective,
+  // no claim about ability, no reason that is not a filed number.
+  function ratedEvidence(p, out) {
+    var r = p.top.r;
+    var rows = out.rows;
+    var dec = p.top.dec;
+    var mktRank = 1 + rows.filter(function (x) { return x.share > p.top.share + 1e-9; }).length;
+    var st = p.top.form;
+    var or = p.top.orRaw;
+    var better = rows.filter(function (x) { return x !== p.top && x.orRaw > or; });
+    var weightStr = String(feedValue(r, 'weight')).trim();
+    var bits = [];
+
+    bits.push('priced ' + dec.toFixed(2) + ', ' + ordinal(mktRank) + ' in the market at ' +
+      (p.top.share * 100).toFixed(1) + '% of the book');
+    bits.push('form ' + esc(String(feedValue(r, 'form'))).replace(/…/g, '') +
+      ' (' + st.wins + ' win' + (st.wins === 1 ? '' : 's') + ', ' + st.placed + ' place' +
+      (st.placed === 1 ? '' : 's') + ' from the last ' + st.runs + ' run' + (st.runs === 1 ? '' : 's') + ')');
+    bits.push('official rating ' + or + (better.length
+      ? ', ' + (Math.max.apply(null, better.map(function (x) { return x.orRaw; })) - or) + ' lb below the field high'
+      : (rows.length > 1 ? ', the field high' : '')));
+    bits.push('carries ' + weightStr);
+    bits.push(p.top.days + ' days since his last run');
+    bits.push('card records of ' + p.top.jp + ' jockey wins and ' + p.top.tp + ' trainer wins');
+
+    var lead = p.second ? (p.top.total - p.second.total) : 0;
+    return 'The model rates ' + esc(r.horse) + ' on six filed inputs: ' + joinWords(bits) + '. ' +
+      'Those inputs average ' + p.top.total.toFixed(1) + ' of 100 at the fixed weights, ' +
+      (p.second ? lead.toFixed(1) + ' clear of ' + esc(p.second.r.horse) + ' (' + p.second.total.toFixed(1) + ')' : 'the only complete runner in the field') + '. ' +
+      (out.slots
+        ? 'Win chance ' + (p.top.chance * 100).toFixed(1) + '%; first-' + out.slots +
+          ' chance ' + (p.top.place * 100).toFixed(1) + '% from the Harville sum of those win chances. '
+        : 'Win chance ' + (p.top.chance * 100).toFixed(1) + '%; no place market in a field of ' + out.rows.length + '. ') +
+      'No input outside those six is used, and no form line, trip, draw or price move is assumed.';
+  }
+
+  function ratedPicks() {
+    var rated = [], skipped = [];
+    ALL_CARDS.forEach(function (card) {
+      if (isResulted(card)) return;
+      var cov = cardCoverage(card);
+      if (!cov.ok) {
+        skipped.push({card: card, cov: cov});
+        return;
+      }
+      var out = scoreRated(card);
+      if (!out) { skipped.push({card: card, cov: cov, why: 'a factor did not score'}); return; }
+      var top = out.rows[0], second = out.rows[1] || null;
+      rated.push({card: card, top: top, second: second, rows: out.rows, out: out,
+                  gap: second ? top.total - second.total : 0});
+    });
+    rated.sort(function (a, b) { return cardWhen(a.card) - cardWhen(b.card); });
+    rated.forEach(function (p) { p.evidence = ratedEvidence(p, p.out); });
+    skipped.sort(function (a, b) { return cardWhen(a.card) - cardWhen(b.card); });
+    return {rated: rated, skipped: skipped};
+  }
+
+  function ratedCardHtml(p, idx) {
+    var r = p.top.r;
+    return '<article class="best-card' + (idx < 3 ? ' is-featured' : '') + '" data-card="' + esc(p.card.id) + '" tabindex="0" role="button" aria-label="Open ' +
+      esc(r.horse || 'race') + ' at ' + esc(p.card.course + ' ' + p.card.time) + '">' +
+      '<div class="best-head">' +
+        '<span class="best-race"><span class="rtag">' + boardTag(p.card.region) + '</span> ' +
+          esc(p.card.course) + ' ' + esc(whenLabel(p.card)) + '</span>' +
+        '<span class="best-clear">' + (p.top.chance * 100).toFixed(1) + '% win' +
+          (p.top.place !== null ? ' &middot; ' + (p.top.place * 100).toFixed(0) + '% top ' + p.out.slots : '') + '</span>' +
+      '</div>' +
+      '<h3 class="best-horse">' + esc(r.horse || '—') + '</h3>' +
+      '<p class="best-why">' + p.evidence + '</p>' +
+      '<div class="best-stats">' +
+        '<span class="best-stat best-score"><b>' + p.top.total.toFixed(1) + '</b><small>rating</small></span>' +
+        '<span class="best-stat"><b>' + (p.second ? p.gap.toFixed(1) : '—') + '</b><small>clear of 2nd</small></span>' +
+        '<span class="best-stat"><b>' + p.top.dec.toFixed(2) + '</b><small>price</small></span>' +
+        '<span class="best-stat"><b>' + (p.top.place !== null ? (p.top.place * 100).toFixed(0) + '%' : '—') + '</b><small>top ' + p.out.slots + '</small></span>' +
+        '<span class="best-stat"><b>' + p.out.rows.length + '</b><small>runners</small></span>' +
+      '</div>' +
+      '<p class="best-explain">Six inputs, fixed weights: market 18, form 15, official rating 15, weight 2, fitness 3, jockey &amp; trainer 3.</p>' +
+      '<div class="best-label"><span>' + esc(p.card.label || p.card.race || '') + '</span>' +
+        '<span class="best-open">Open race &rarr;</span></div>' +
+    '</article>';
   }
 
   function bestCardHtml(p, idx, standout, rank) {
@@ -9217,22 +9421,53 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
   }
 
   function renderLeaderboard() {
-    var picks = leaderboardPicks();
-    if (!picks.length) {
-      $('bestBody').innerHTML = '<div class="best-empty">No races left to rate in this build.</div>';
-      if ($('bestCount')) $('bestCount').textContent = '';
+    var box = $('bestBody');
+    var out = ratedPicks();
+    if (!box) return;
+    if (!out.rated.length) {
+      box.innerHTML = '<div class="best-empty">No race in this build has every input filed for every runner, so there is no pick. The reason for each card is listed below.</div>';
+    } else {
+      box.innerHTML = out.rated.map(ratedCardHtml).join('');
+    }
+    box.className = 'best-grid' + (out.rated.length === 1 ? ' is-one' : '');
+    if ($('bestCount')) {
+      $('bestCount').innerHTML = '<b>' + out.rated.length + '</b> of ' +
+        (out.rated.length + out.skipped.length) + ' races rated &middot; every runner on a rated card carries all six inputs &middot; in starting-time order';
+    }
+    renderRatedAudit(out.skipped);
+  }
+
+  function renderRatedAudit(skipped) {
+    var box = $('ratedAuditBody');
+    if (!box) return;
+    if ($('ratedAuditCount')) {
+      $('ratedAuditCount').textContent = skipped.length
+        ? skipped.length + (skipped.length === 1 ? ' race not rated' : ' races not rated')
+        : 'every card on the page is rated';
+    }
+    if (!skipped.length) {
+      box.innerHTML = '<p class="method">Every card on the page carries all six inputs for every runner.</p>';
       return;
     }
-    if ($('bestCount')) {
-      $('bestCount').textContent = picks.length + ' races rated · in starting-time order; top three by Clear highlighted';
-    }
-    var ranked = picks.slice();
-    var rankOf = {};
-    ranked.forEach(function (p, i) { rankOf[p.card.id] = i + 1; });
-    ranked.sort(function (a, b) { return cardWhen(a.card) - cardWhen(b.card); });
-    $('bestBody').innerHTML = ranked.map(function (p, idx) {
-      return bestCardHtml(p, idx, false, rankOf[p.card.id]);
+    var rows = skipped.map(function (s) {
+      var why = s.why;
+      if (!why) {
+        var all = [], some = [];
+        s.cov.missing.forEach(function (m) {
+          if (m.n === s.cov.runners) all.push(m.what);
+          else some.push(m.n + ' of ' + s.cov.runners + ' runners ' +
+                         (m.n === 1 ? 'has' : 'have') + ' no ' + m.what);
+        });
+        if (all.length) {
+          some.unshift('no ' + joinWords(all) + ' for all ' + s.cov.runners + ' runners');
+        }
+        why = some.join('; ');
+      }
+      return '<tr><td><b>' + esc(s.card.course) + '</b> <span class="rtime">' + esc(s.card.time) + '</span></td>' +
+        '<td class="muted">' + esc(why) + '</td></tr>';
     }).join('');
+    box.innerHTML = '<div class="scroll"><table class="ledger"><thead><tr><th>Race</th>' +
+      '<th>Why it is not rated</th></tr></thead><tbody>' + rows + '</tbody></table></div>';
   }
 
   function renderUnmissable() {
@@ -10144,7 +10379,7 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
     });
   });
 
-  $('lateBody').addEventListener('click', function (e) {
+  if ($('lateBody')) $('lateBody').addEventListener('click', function (e) {
     var tr = e.target.closest ? e.target.closest('tr[data-card]') : null;
     if (!tr) return;
     openCard(tr.getAttribute('data-card'));
@@ -10865,33 +11100,31 @@ var ALL_CARDS = RACE_CARDS.concat(CARDS_US, CARDS_HK, CARDS_FRI, CARDS_FR, CARDS
     var box = $('nextCard');
     if (!box) return;
     var now = new Date(), best = null;
-    ALL_CARDS.forEach(function (c) {
-      if (isUnratedCard(c)) return;
-      var w = cardWhen(c);
-      if (w.getTime() > now.getTime() && (!best || w < best.when)) best = {card: c, when: w};
+    ratedPicks().rated.forEach(function (p) {
+      var w = cardWhen(p.card);
+      if (w.getTime() > now.getTime() && (!best || w < best.when)) best = {p: p, when: w};
     });
     if (!best) {
-      box.innerHTML = '<div class="nc-head">Next race</div>' +
-        '<p class="nc-none">No upcoming races left in this build &mdash; re-pull the card to go further.</p>';
+      box.innerHTML = '<div class="nc-head">Next rated race</div>' +
+        '<p class="nc-none">No rated race is still to come in this build. Races only appear here when every runner carries the six inputs.</p>';
       return;
     }
-    var rows = computeCard(best.card).rows.slice().sort(function (a, b) { return b.total - a.total; });
+    var p = best.p;
     var mins = Math.round((best.when - now) / 60000);
     var when = mins < 90 ? ('in ' + mins + ' min') : ('in ' + Math.round(mins / 60) + ' hours');
     box.innerHTML =
-      '<div class="nc-head"><span>Next race</span><span class="nc-when">' + esc(when) + '</span></div>' +
-      '<div class="nc-race">' + esc(best.card.course + ' ' + best.card.time) + ' &middot; ' + esc(best.card.race) + '</div>' +
-      '<div class="nc-sub">' + esc(best.card.going || '') +
-        (best.card.klass && best.card.region !== 'US' ? ' &middot; ' + esc(best.card.klass) : '') + ' &middot; ' + rows.length + ' runners' +
-        (best.card.region === 'US' ? ' &middot; US card: price and speed figure only' : '') + '</div>' +
-      '<ol class="nc-list">' + rows.slice(0, 3).map(function (x, i) {
-        var meta = (x.r.odds ? 'price ' + x.r.odds : 'no price') +
-                   (x.tips === null ? '' : ' · ' + x.tips + ' tips');
-        return '<li><span class="nc-pos">' + (i + 1) + '</span><b>' + esc(x.r.horse) + '</b>' +
-               '<span class="nc-score">' + x.total.toFixed(1) + '</span>' +
-               '<span class="nc-meta">' + esc(meta) + '</span></li>';
-      }).join('') + '</ol>' +
-      '<button type="button" class="nc-open" data-open="' + esc(best.card.id) + '">Open the full card</button>';
+      '<div class="nc-head"><span>Next rated race</span><span class="nc-when">' + esc(when) + '</span></div>' +
+      '<div class="nc-race">' + esc(p.card.course + ' ' + p.card.time) + ' &middot; ' + esc(p.card.race) + '</div>' +
+      '<div class="nc-sub">' + esc(p.card.going || '') +
+        (p.card.klass ? ' &middot; ' + esc(p.card.klass) : '') + ' &middot; ' + p.out.rows.length + ' runners' +
+        ' &middot; all six inputs filed for every runner</div>' +
+      '<ol class="nc-list"><li><span class="nc-pos">1</span><b>' + esc(p.top.r.horse) + '</b>' +
+        '<span class="nc-score">' + p.top.total.toFixed(1) + '</span>' +
+        '<span class="nc-meta">' + esc(p.top.dec.toFixed(2)) + ' &middot; ' +
+          (p.top.chance * 100).toFixed(1) + '% win' +
+          (p.top.place !== null ? ' &middot; ' + (p.top.place * 100).toFixed(0) + '% top ' + p.out.slots : '') +
+        '</span></li></ol>' +
+      '<button type="button" class="nc-open" data-open="' + esc(p.card.id) + '">Open the full card</button>';
   }
 
   /* ---------- persistence ---------- */

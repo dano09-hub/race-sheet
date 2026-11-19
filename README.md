@@ -18,36 +18,38 @@ static host, and it works — there is nothing to install.
 
 ## How it scores
 
-Twelve factors, each scored 0–100 within the race, combined with fixed weights.
-The eleven GB/IE factors total 100; Draw adds 4 where a card carries it, so the
-full array totals 104. The weights are relative: the scorer divides by the
-active weight, so effective shares still total 100. Weights live in one place,
-the `FACTORS` array:
+Six inputs, each scored 0–100 within the race, combined with fixed weights
+totalling 56. A race is rated only when **every runner** carries all six: a card
+with a gap anywhere in the field is not rated, and the page names the missing
+field instead of scoring the horses that happen to be complete. The inputs are
+the ones the feeds file for every runner — the `RATED_FACTORS` array:
 
 ```js
-var FACTORS = [
-  ['market', 'Market', 18],      // Betfair/SP-derived implied probability, normalised to sum 100
-  ['form', 'Form', 15],          // last-6 form string, position-weighted
-  ['tips', 'Tipsters', 5],       // number of tipsters naming the horse
-  ['rpr', 'Card rating', 13],    // Racing Post Rating, or Timeform on Racing TV cards
+var RATED_FACTORS = [
+  ['market', 'Market', 18],           // implied probability from the price, margin removed
+  ['form', 'Form', 15],               // last-6 form string, position-weighted
   ['rating', 'Official rating', 15],
-  ['cd', 'Course & trip', 10],   // course winner / distance winner flags
-  ['draw', 'Draw', 4],            // post position; US cards only, null elsewhere so GB scores are untouched
-  ['speed', 'Topspeed', 12],
-  ['going', 'Won last time out', 4],  // the card's LTO flag, not a going preference
-  ['fitness', 'Fitness', 3],     // days since last run
   ['weight', 'Weight', 2],
-  ['connections', 'Stable form', 3]  // jockey + trainer 30-day strike rate
+  ['fitness', 'Days since a run', 3],
+  ['connections', 'Jockey & trainer', 3]
 ];
 ```
 
-Missing or field-constant factors are dropped and the remaining weights
-renormalise, so a race with no odds still scores sensibly. The full array sums
-to 104 (100 without Draw); that absolute total does not affect the ranking.
+Racing Post ratings, Topspeed, tipster counts and naps, the course/trip/going
+flags and the draw are **not** model inputs. They are not filed for every
+runner on every card, and dropping them per horse would score one horse on less
+evidence than its rivals. If those feeds become complete they can enter with a
+weight.
+
+Every pick carries a paragraph generated from the filed values only: price and
+its share of the book, the form string and what it contains, the official rating
+and its distance from the field high, the weight, the days since a run, and the
+jockey and trainer win counts. The place figure is the Harville sum of the
+model's own win chances, labelled as such on the card.
 
 ## Changing the ratings
 
-1. Edit `FACTORS` in `index.html` (and the matching labels in the Method tab).
+1. Edit `RATED_FACTORS` in `index.html` (and the matching labels in the Method tab).
 2. `cp index.html dist/public/index.html`
 3. Redeploy `dist/` (see below).
 
@@ -832,26 +834,21 @@ since `dist/public/index.html` is the whole site.
 
 ## The page
 
-Twenty-two destinations, each a job rather than a data source. Old tab names still
-resolve to their new home, so saved links and the browser's remembered tab keep
-working. Every race list gives the off time and runs in start-time order — the
-value screens show their top ten by edge in that running order, settled ledgers
-put each day's races in clock order, and slips show their legs from the next off
-onwards. Times are held as real instants, so the order does not change with the
-viewer's timezone.
+Thirteen destinations, each a job rather than a data source. Old tab names still
+resolve to Today, so saved links and the browser's remembered tab keep working.
+Every race list gives the off time and runs in start-time order, and settled
+ledgers put each day's races in clock order. Times are held as real instants, so
+the order does not change with the viewer's timezone.
+
+The betting screens — Longshots, Overhyped, Place bankers, Bet slips, Upcoming
+slips and their three results tabs — are withdrawn from the navigation with the
+strict-model change. Their code paths remain in `index.html` but no tab reaches
+them, and nothing on the page presents a pick that did not pass the six-input
+check.
 
 | Tab | What it is for |
 | --- | --- |
-| Today | The next race, the day's best-rated horses, the standouts and the US races still to come. |
-| Longshots | Priced 7/1+ horses still in the model's top four with a 4%+ win chance and positive edge; the ten biggest edges, shown in running order. |
-| Overhyped | Market favourites the model ranks third or worse, or rates at least five points below the price. |
-| Place bankers | Model top picks that are also the market favourite, 20%+ win chance, field of five or more; a win profile, not a place probability. |
-| Bet slips | Win-only singles, doubles, trebles, four-folds and Lucky 15/31/63 from the strongest priced value legs, plus the standard named-slip table. |
-| Upcoming slips | The same slips, with the legs queued by the next off instead of by edge, so the tab shows the races still to come. |
-| Slip results | The same rule replayed on settled days from the archived pre-race card, with every leg's finish, every slip's winning bets and win-only return at card prices, each-way settlement showing win and place returns separately, and a running strike rate across all settled days combined. |
-| Longshot results | The Longshots screen replayed on settled days from the archived card: each pick's finish and a one-unit win record at card prices. |
-| Overhyped results | How the favourites the Overhyped screen flagged actually finished; a doubt record with no stake and no P&L. |
-| Place banker results | The model-and-market bankers replayed on settled days, placed or not under the standard place terms stored with the result. |
+| Today | The next rated race, every rated pick with its evidence paragraph, and the list of races not rated with the missing input named. |
 | Cards | Pick any race and inspect every runner the model scored, with the full rating table. |
 | UK results | Settled UK results, market checks and the standing model audits. |
 | Irish results | Settled Irish races, split from the UK ledger by course. |
