@@ -1254,6 +1254,14 @@ with tempfile.TemporaryDirectory(prefix="audit-test-") as ad:
           and _audit[2]["n"] == 0, _audit[2])
 refresh.ROOT = _old_root
 rescore_results.rate_day = _old_rate_day
+check("names: an HTML-escaped spelling normalises like the plain one",
+      rescore_results.norm("Who&#x27;s Going") == rescore_results.norm("Who's Going")
+      and rescore_results.norm("Paddy&#x27;s Milestone") == "paddys milestone")
+check("names: a winner is matched to its card without a time",
+      rescore_results.pick_card(
+          [{"course": "Test", "time": "13:00",
+            "runners": [{"horse": "Who's Going"}]}],
+          {"course": "Test", "time": "", "winner": "Who&#x27;s Going"}) is not None)
 check("audit: day label is dynamic", 'id="auditDay"' in _page)
 check("audit: fixed snapshot removed", "fixed 12 November snapshot" not in _page)
 check("audit: price header", "<th>Price</th>" in _page)

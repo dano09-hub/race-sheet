@@ -25,6 +25,7 @@ usage: python3 tooling/rescore_results.py [YYYY-MM-DD ...]
 """
 import datetime as dt
 import glob
+import html
 import json
 import os
 import re
@@ -46,7 +47,13 @@ POS = {1: "1st", 2: "2nd", 3: "3rd", 4: "4th", 5: "5th", 6: "6th",
 
 
 def norm(value):
-    s = str(value or "").lower()
+    """A name reduced for matching, with HTML entities decoded first.
+
+    Result rows are scraped from HTML, so a winner can arrive as
+    "Who&#x27;s Going" while the card carries "Who's Going". Decoding keeps
+    the two spellings equal, whether or not the row has a time to match on.
+    """
+    s = html.unescape(str(value or "")).lower()
     s = re.sub(r"\(.*?\)", "", s)
     s = re.sub(r"[^a-z0-9 ]", "", s)
     return re.sub(r"\s+", " ", s).strip()
