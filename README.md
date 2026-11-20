@@ -357,11 +357,8 @@ The live archive agrees on the direction but not yet on the size: on its own
 23.5-40.3%).
 <!-- chance-record:end -->
 
-The archive's own best scale is 0.0404 against the four-year 0.0498, and the
-higher scale prints the same picks higher: the figure above therefore sits at
-the low end of what the two fits allow rather than being a second estimate of
-the pick's chance. The archive cannot separate those scales yet, so the applied
-0.04 stays until it can.
+The archive cannot separate its own 0.0404 fit from the four-year 0.0498 yet,
+so the applied 0.04 stays until it can.
 
 That re-check now runs on the six-input re-score. `tooling/rescore_results.py`
 writes the rated pick and its chance to `data/results_rated/<date>.json`, and the
