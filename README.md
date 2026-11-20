@@ -316,9 +316,13 @@ pick for each day's GB/IRE cards — the page's own factor scores, simply
 re-weighted, so there is no second copy of any factor — and `tooling/ab_tally.py`
 scores both arms against the settled winners. The Results tab carries the running
 comparison under "Market-heavy shadow"; the published pick, the weights and the
-stored results are untouched. The six backfilled days give 123 races: 31 winners
-for the arm against 30 for the page, with 29 picks changed (won 4, lost 3). A
-tie, exactly as the fit predicted.
+stored results are untouched.
+
+<!-- shadow-tally:start -->
+The 7 settled shadow days give 155 races: 45 winners for the arm against 45
+for the page, with 33 picks changed (won 4, lost 4), and a lead of +0.0 points
+at one-sided p 0.64, still inside the pre-registered bar.
+<!-- shadow-tally:end -->
 
 The arm does not get to win on a good week. Its decision rule is fixed in
 advance, in `tooling/shadow_rule.py`: judge it at 2,000 settled races; adopt
@@ -347,20 +351,29 @@ at the low end of the 0.0404-0.0498 range the two datasets allow — and the
 constant is display-only: the weights, the selection and the ranking are
 unchanged, and the Score column still shows the raw rating.
 
-The live archive agrees on the direction but not yet on the size. On its own 117
-GB/IRE races the pick is shown at 17.0% and won 24.8% (95% CI 17.8-33.3%), and
-the archive's own best scale is 0.0404 against the four-year 0.0498: at 0.0404
-the pick reads 26.0%, at 0.0498 it reads 30.1%. 117 races cannot separate those
-scales, so the applied scale sits between the two at 0.04 and should be re-checked
-as the archive grows.
+<!-- chance-record:start -->
+The live archive agrees on the direction but not yet on the size: on its own
+115 GB/IRE races the pick is shown at 27.8% and won 36 (31.3%, 95% CI
+23.5-40.3%).
+<!-- chance-record:end -->
+
+The archive's own best scale is 0.0404 against the four-year 0.0498: at 0.0404
+the pick reads 26.0%, at 0.0498 it reads 30.1%. The archive cannot separate
+those scales yet, so the applied scale sits between the two at 0.04 and should
+be re-checked as it grows.
 
 That re-check now runs on the six-input re-score. `tooling/rescore_results.py`
 writes the rated pick and its chance to `data/results_rated/<date>.json`, and the
 Results tab's **Model chance audit** block reads it: the average stated chance
-of the rated picks, their actual win rate, and a Wilson interval around it. At
-this build that is 48 rated races and 8 winners, with the re-scored picks carrying
-19.8% on average and a 95% interval of 8.7-29.6%, so the block says the
-sample is not yet informative. At 350 races the interval is about +/-4.5 points, enough to
+of the rated picks, their actual win rate, and a Wilson interval around it.
+
+<!-- chance-rated:start -->
+At this build that is 52 rated races with 9 winners: the re-scored picks carry
+20.3% on average and their win rate has a 95% interval of 9.4-29.7%, so the
+block says the sample is not yet informative (298 more settled races).
+<!-- chance-rated:end -->
+
+At 350 races the interval is about +/-4.5 points, enough to
 catch a gross error but not to separate the 0.04 and 0.0498 scales, whose pick
 chances differ by about four points; at 1,600 races it narrows to about +/-2
 points and the question can be settled.
@@ -373,13 +386,18 @@ pick matched the stored pick exactly. A race whose card cannot reproduce its own
 pick is left blank rather than given a number the page never showed. Only seven
 days still have their cards, so the rest of the record carries no chance.
 
-Twenty of the 118 recent races stay blank, and the reason is the archive rather
-than the model. The intraday results sweep wrote their picks from the card as it
-stood at the off; the next day's refresh overwrote `data/cards/by_date/`, and
+<!-- blank-races:start -->
+60 of the 175 recent British and Irish races stay blank.
+<!-- blank-races:end -->
+
+The reason is the archive rather than the model. The intraday results sweep
+wrote their picks from the card as it stood at the off; the next day's refresh
+overwrote `data/cards/by_date/`, and
 `results.yml` commits `data/results` but not `data/cards`. The surviving card
 versions are therefore post-off re-scrapes: re-scoring every git version of the
 card, or the page code as it stood on the day, gives a different horse in 17 of
-the 20 (3 are reproduced by an earlier version, which confirms the re-scrape).
+the 20 that were examined (3 are reproduced by an earlier version, which
+confirms the re-scrape).
 The stored pick remains the only contemporaneous record of those races, so a
 chance derived from a later card would be a reconstruction, not a record.
 
@@ -388,7 +406,7 @@ snapshot beside it (`card` in the results row): the pick, its chance, and every
 runner's total, share and factor scores exactly as the page produced them. A
 future backfill reads what the model saw at the off instead of re-scraping a
 card that may have moved. Rows settled before this change have no snapshot, and
-the twenty above will simply stay blank.
+the blanks above will simply stay blank.
 
 The pick is only one horse per race, so `tooling/field_audit.py` checks every
 runner instead: it buckets the printed chance and compares each bucket with how
@@ -476,6 +494,11 @@ without Draw from `FACTORS`, then verifies the README, README code block,
 Method tab and served `dist` copy. It also checks the archived `ice` README and
 Method tab. GitHub Actions runs both checks on pushes to `main` and on pull
 requests.
+
+The README's two chance-audit sentences, its blank-race count and its
+market-heavy shadow tally are generated by `tooling/readme_figures.py` from the
+same collectors the page uses; `refresh.py` rewrites them on both paths, and
+the checks job fails when the committed README differs from a fresh render.
 
 The page render calls the page's own scorer through Node, and its numbers go
 straight into the ledgers and the screen panels. Use the version in `.nvmrc`

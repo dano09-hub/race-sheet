@@ -329,6 +329,7 @@ from scrape_us import get as us_get, parse_track        # noqa: E402
 import caveat_figures                                   # noqa: E402
 import coverage_figures                                 # noqa: E402
 import eachway                                          # noqa: E402
+import readme_figures                                   # noqa: E402
 import scrape_results                                   # noqa: E402
 try:
     import scrape_hk
@@ -1380,6 +1381,7 @@ def main():
         # The README's generated figures are part of what a render produces.
         coverage_figures.write()
         caveat_figures.write()
+        readme_figures.write()
         print(f"rebuilt results blocks from stored data; wrote index.html + "
               f"dist ({size} bytes)")
         return 0
@@ -1772,6 +1774,7 @@ def main():
     # The README's generated figures are part of what a render produces.
     coverage_figures.write()
     caveat_figures.write()
+    readme_figures.write()
     print(f"  wrote index.html + dist ({len(html.encode())} bytes)")
     print("done — deploy dist/ to publish")
 

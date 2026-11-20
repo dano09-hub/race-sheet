@@ -34,6 +34,7 @@ import calibrate_share  # noqa: E402
 import collect_eachway_prices as cep  # noqa: E402
 import caveat_figures  # noqa: E402
 import coverage_figures  # noqa: E402
+import readme_figures  # noqa: E402
 import eachway         # noqa: E402
 import fetch_formfav as ff  # noqa: E402
 import fetch_results_sl as sl  # noqa: E402
@@ -3165,6 +3166,102 @@ check("caveat: writing is idempotent, so a render that changes nothing writes "
       and not caveat_figures.write(_CAVEAT_TMP, _CAVEAT_FIGS))
 
 print()
+print("README figures")
+
+# These sentences quote figures the page prints from the same collectors, so
+# the counts and the wording they produce are fixtures of their own.
+_RF_RECORD = {"races": 10, "wins": 3, "rate": 0.3, "stated": 17.0,
+              "lo": 17.8, "hi": 33.3, "inside": False}
+_RF_RECORD_TEXT = readme_figures.chance_record(_RF_RECORD)
+check("readme: the chance-record sentence carries the count, the stated figure "
+      "and the interval, and names which side of it the figure falls",
+      _RF_RECORD_TEXT == "The live archive reads low: on its own 10 GB/IRE "
+                         "races the pick is shown at 17.0% and won 3 "
+                         "(30.0%, 95% CI 17.8-33.3%)."
+      and readme_figures.chance_record(dict(_RF_RECORD, inside=True))
+      .startswith("The live archive agrees on the direction but not yet on "
+                  "the size"), _RF_RECORD_TEXT)
+
+_RF_RATED = {"races": 52, "wins": 9, "stated": 20.2827, "lo": 9.382,
+             "hi": 29.731, "more_early": 298, "more_decisive": 1548}
+_RF_RATED_TEXT = readme_figures.chance_rated(_RF_RATED)
+check("readme: the rated sentence carries the audit and the stage the block "
+      "reports, at each of the three stages",
+      _RF_RATED_TEXT == "At this build that is 52 rated races with 9 winners: "
+                        "the re-scored picks carry 20.3% on average and their "
+                        "win rate has a 95% interval of 9.4-29.7%, so the "
+                        "block says the sample is not yet informative (298 "
+                        "more settled races)."
+      and "informative but not yet decisive (1548 more settled races)"
+      in readme_figures.chance_rated(dict(_RF_RATED, more_early=0))
+      and readme_figures.chance_rated(
+          dict(_RF_RATED, more_early=0, more_decisive=0))
+      .endswith("the sample is large enough to test the scale."),
+      _RF_RATED_TEXT)
+
+_RF_BLANKS = readme_figures.blank_races({"blank": 60, "races": 175})
+check("readme: the blank sentence counts the blanks against the settled races",
+      _RF_BLANKS == "60 of the 175 recent British and Irish races stay blank.",
+      _RF_BLANKS)
+
+_RF_ARM = {"days": [{}] * 6, "races": 155, "with": 45, "without": 45,
+           "changed": 33, "changed_won": 4, "changed_lost": 4,
+           "rule": {"status": "not yet", "lead": 0.0, "p": 0.6367}}
+_RF_ARM_TEXT = readme_figures.shadow_tally(_RF_ARM)
+check("readme: the shadow sentence carries the tally and the rule's status",
+      _RF_ARM_TEXT == "The 6 settled shadow days give 155 races: 45 winners "
+                      "for the arm against 45 for the page, with 33 picks "
+                      "changed (won 4, lost 4), and a lead of +0.0 points at "
+                      "one-sided p 0.64, still inside the pre-registered "
+                      "bar."
+      and readme_figures.shadow_tally(
+          dict(_RF_ARM, rule={"status": "adopt", "lead": 5.1, "p": 0.01}))
+      .endswith("which clears the pre-registered bar.")
+      and readme_figures.shadow_tally(
+          dict(_RF_ARM, rule={"status": "retire", "lead": 1.0, "p": 0.4}))
+      .endswith("which misses the pre-registered bar, so the arm is "
+                "retired."), _RF_ARM_TEXT)
+
+_RF_MARKED = ("intro\n\n"
+              + "".join(f"<!-- {name}:start -->\ntyped\n"
+                        f"<!-- {name}:end -->\n\n"
+                        for name in readme_figures.BLOCKS)
+              + "after\n")
+_RF_FIGS = {"chance-record": _RF_RECORD, "chance-rated": _RF_RATED,
+            "blank-races": {"blank": 1, "races": 2}, "shadow-tally": _RF_ARM}
+_RF_WRITTEN = readme_figures.replace_all(_RF_MARKED, _RF_FIGS)
+check("readme: every marked block is rewritten in place and the rest of the "
+      "file is untouched",
+      "typed" not in _RF_WRITTEN
+      and _RF_WRITTEN.startswith("intro\n\n<!-- chance-record:start -->")
+      and _RF_WRITTEN.endswith("<!-- shadow-tally:end -->\n\nafter\n")
+      and "1 of the 2 recent British and Irish races stay blank." in _RF_WRITTEN,
+      _RF_WRITTEN[:200])
+
+check("readme: blocks that match a fresh count are current, a nudged one is "
+      "stale",
+      not readme_figures.stale(_RF_WRITTEN, _RF_FIGS)
+      and readme_figures.stale(
+          _RF_WRITTEN, dict(_RF_FIGS, **{"blank-races": {"blank": 2,
+                                                          "races": 2}})),
+      _RF_WRITTEN[:120])
+
+try:
+    readme_figures.replace_block("a README with no markers", "chance-record", {})
+    _rf_refused = False
+except ValueError:
+    _rf_refused = True
+check("readme: replace_block refuses a README with no markers rather than "
+      "returning it untouched", _rf_refused, "no error raised")
+
+_RF_TMP = os.path.join(tempfile.mkdtemp(), "README.md")
+Path(_RF_TMP).write_text(_RF_MARKED, encoding="utf-8")
+check("readme: writing is idempotent, so a render that changes nothing writes "
+      "no file",
+      readme_figures.write(_RF_TMP, _RF_FIGS)
+      and not readme_figures.write(_RF_TMP, _RF_FIGS))
+
+print()
 print("Data integrity")
 
 # Any entity reference left in a stored row means a scraper unescaped its text
@@ -3228,6 +3325,14 @@ check("integrity: the README coverage paragraph matches the stored re-score",
 check("integrity: the README caveat block matches the 12 November card",
       not caveat_figures.stale(_readme_text),
       caveat_figures.sentence(caveat_figures.collect()))
+
+# These four blocks repeat what the page prints, so a README that disagrees
+# with the collectors is describing an older build.
+_rf_figs = readme_figures.collect()
+check("integrity: the README figures match the collectors the page uses",
+      not readme_figures.stale(_readme_text, _rf_figs),
+      " ".join(readme_figures.SENTENCES[name](_rf_figs[name])
+               for name in readme_figures.BLOCKS))
 
 print()
 print("passed %d, failed %d%s" % (
