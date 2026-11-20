@@ -32,6 +32,7 @@ import ab_tally        # noqa: E402
 import market_arm_day  # noqa: E402
 import calibrate_share  # noqa: E402
 import collect_eachway_prices as cep  # noqa: E402
+import caveat_figures  # noqa: E402
 import coverage_figures  # noqa: E402
 import eachway         # noqa: E402
 import fetch_formfav as ff  # noqa: E402
@@ -3087,6 +3088,102 @@ check("coverage: writing is idempotent, so a render that changes nothing writes 
       _cover_first and not _cover_second, (_cover_first, _cover_second))
 
 print()
+print("Caveat figures")
+
+# The Known caveats bullets about the favourite split are pinned to the
+# 12 November card, so the counts and the wording they produce are fixtures of
+# their own.
+_CAVEAT_PICKS = [
+    {"course": "Hereford", "time": "12:30", "winner": "Alpha", "pick": "Alpha"},
+    {"course": "Hereford", "time": "13:05", "winner": "Bravo", "pick": "Charlie"},
+    {"course": "Thurles", "time": "14:38", "winner": "Delta", "pick": "Echo"},
+    {"course": "Thurles", "time": "15:15", "winner": "Foxtrot", "pick": "Foxtrot"},
+    {"course": "Thurles", "time": "15:48", "winner": "Hotel", "pick": "India"},
+]
+_CAVEAT_PRICES = [
+    {"course": "Hereford", "time": "12:30", "horse": "Alpha", "dec": "2.5"},
+    {"course": "Hereford", "time": "12:30", "horse": "Bravo", "dec": "4.0"},
+    {"course": "Hereford", "time": "13:05", "horse": "Bravo", "dec": "3.0"},
+    {"course": "Hereford", "time": "13:05", "horse": "Charlie", "dec": "3.0"},
+    {"course": "Thurles", "time": "14:38", "horse": "Delta",
+     "dec": "4.3333333333333"},
+    {"course": "Thurles", "time": "14:38", "horse": "Echo", "dec": "5.0"},
+    {"course": "Thurles", "time": "15:15", "horse": "Golf", "dec": "4.0"},
+    {"course": "Thurles", "time": "15:15", "horse": "Foxtrot", "dec": "6.0"},
+    {"course": "Thurles", "time": "15:48", "horse": "Hotel", "dec": "7.0"},
+    {"course": "Thurles", "time": "15:48", "horse": "India", "dec": "3.0"},
+]
+_CAVEAT_FIGS = caveat_figures.collect(_CAVEAT_PICKS, _CAVEAT_PRICES)
+check("caveat: favourites, the pick's record on them and on the rest are counted "
+      "from the stored picks and prices, and a joint favourite is counted once",
+      _CAVEAT_FIGS == {"races": 5, "favourites": 3, "favourites_found": 1,
+                       "others": 2, "others_found": 1}, _CAVEAT_FIGS)
+
+_CAVEAT_TEXT = caveat_figures.sentence(_CAVEAT_FIGS)
+check("caveat: the split reads as the caveat's bullet does",
+      _CAVEAT_TEXT == "The model is a favourite-ranker. On this card it found "
+                      "1 of the 3 winning favourites and 1 of the 2 winners "
+                      "that weren't the favourite.", _CAVEAT_TEXT)
+
+_CAVEAT_ONE = caveat_figures.sentence({"races": 1, "favourites": 1,
+                                       "favourites_found": 1,
+                                       "others": 1, "others_found": 0})
+check("caveat: one favourite and one other stay singular",
+      _CAVEAT_ONE.endswith("1 of the 1 winning favourite and 0 of the 1 "
+                           "winner that wasn't the favourite."), _CAVEAT_ONE)
+
+_CAVEAT_SAMPLE = caveat_figures.sample(_CAVEAT_FIGS)
+check("caveat: the sample sentence carries the race count and pluralises it",
+      _CAVEAT_SAMPLE.startswith("5 races is a tiny sample. ")
+      and caveat_figures.sample({"races": 1}).startswith(
+          "1 race is a tiny sample. "), _CAVEAT_SAMPLE)
+
+_CAVEAT_GAP = None
+try:
+    caveat_figures.collect([_CAVEAT_PICKS[0]], [])
+except ValueError as err:
+    _CAVEAT_GAP = str(err)
+check("caveat: a race with no stored starting prices is named, not dropped "
+      "from the count",
+      bool(_CAVEAT_GAP) and "Hereford 12:30" in _CAVEAT_GAP, _CAVEAT_GAP)
+
+_CAVEAT_MARKED = ("intro\n\n" + caveat_figures.START + "\n"
+                  "* typed figures from an older card\n"
+                  + caveat_figures.END + "\n\nafter\n")
+_CAVEAT_WRITTEN = caveat_figures.replace_block(_CAVEAT_MARKED, _CAVEAT_FIGS)
+check("caveat: the marked bullets are rewritten in place and the surrounding "
+      "caveats are untouched",
+      "typed figures" not in _CAVEAT_WRITTEN
+      and "* The model is a favourite-ranker." in _CAVEAT_WRITTEN
+      and _CAVEAT_WRITTEN.startswith("intro\n\n" + caveat_figures.START)
+      and _CAVEAT_WRITTEN.endswith(caveat_figures.END + "\n\nafter\n"),
+      _CAVEAT_WRITTEN[:200])
+
+check("caveat: a block that matches a fresh count is current, a nudged one is "
+      "stale",
+      not caveat_figures.stale(_CAVEAT_WRITTEN, _CAVEAT_FIGS)
+      and caveat_figures.stale(_CAVEAT_WRITTEN, dict(_CAVEAT_FIGS, races=6)),
+      _CAVEAT_WRITTEN[:120])
+
+try:
+    caveat_figures.replace_block("a README with no markers")
+    _caveat_refused = False
+except ValueError:
+    _caveat_refused = True
+check("caveat: replace_block refuses a README with no markers rather than "
+      "returning it untouched", _caveat_refused, "no error raised")
+
+_CAVEAT_TMP = os.path.join(tempfile.mkdtemp(), "README.md")
+with open(_CAVEAT_TMP, "w", encoding="utf-8") as f:
+    f.write(_CAVEAT_MARKED)
+_caveat_first = caveat_figures.write(_CAVEAT_TMP, _CAVEAT_FIGS)
+_caveat_second = caveat_figures.write(_CAVEAT_TMP, _CAVEAT_FIGS)
+check("caveat: writing is idempotent, so a render that changes nothing writes "
+      "no file",
+      _caveat_first and not _caveat_second,
+      (_caveat_first, _caveat_second))
+
+print()
 print("Data integrity")
 
 # Any entity reference left in a stored row means a scraper unescaped its text
@@ -3144,6 +3241,12 @@ _readme_text = (ROOT / "README.md").read_text(encoding="utf-8")
 _stale_readme = coverage_figures.stale(_readme_text)
 check("integrity: the README coverage paragraph matches the stored re-score",
       not _stale_readme, coverage_figures.sentence(coverage_figures.collect()))
+
+# The caveat block is pinned to one card, so a stored pick or starting price
+# that no longer produces the committed figures is a stale document too.
+check("integrity: the README caveat block matches the 12 November card",
+      not caveat_figures.stale(_readme_text),
+      caveat_figures.sentence(caveat_figures.collect()))
 
 print()
 print("passed %d, failed %d%s" % (

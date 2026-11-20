@@ -920,10 +920,17 @@ on the page presents a pick that did not pass the six-input check.
 
 ## Known caveats
 
+<!-- caveat:start -->
 * The model is a favourite-ranker. On this card it found 10 of the 13 winning
   favourites and 1 of the 8 winners that weren't the favourite.
 * 21 races is a tiny sample. The weights were tuned in-sample; treat any
   improvement of one or two winners as noise.
+
+  *Pinned to the 12 November card and generated from its stored pre-race picks
+  in `data/results/2026-11-12.json` and that day's starting prices in
+  `data/dataset.csv.gz` by `tooling/caveat_figures.py`; `--write` rewrites the
+  block, and the checks job fails when the committed README differs.*
+<!-- caveat:end -->
 * The Results tab is a snapshot. It does not poll for new results.
 * The **UK results**, **Irish results**, **US results**, **HK results** and
   **France results** tabs hold one ledger each. All show the off time beside

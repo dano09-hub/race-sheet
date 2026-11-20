@@ -326,6 +326,7 @@ sys.path.insert(0, HERE)
 
 from parse_cards import get, parse_course_page          # noqa: E402
 from scrape_us import get as us_get, parse_track        # noqa: E402
+import caveat_figures                                   # noqa: E402
 import coverage_figures                                 # noqa: E402
 import eachway                                          # noqa: E402
 import scrape_results                                   # noqa: E402
@@ -1376,9 +1377,11 @@ def us_angles_block_html(t, iso):
 def main():
     if "--data-only" in sys.argv[1:]:
         size = rebuild_page()
-        # The README's coverage figures are counted from the same re-score, so
-        # they are part of what a render produces.
+        # The README's generated figures are part of what a render produces:
+        # the coverage counts from the same re-score, the caveat from the
+        # pinned 12 November card.
         coverage_figures.write()
+        caveat_figures.write()
         print(f"rebuilt results blocks from stored data; wrote index.html + "
               f"dist ({size} bytes)")
         return 0
@@ -1768,8 +1771,10 @@ def main():
     open(INDEX, "w", encoding="utf-8").write(html)
     os.makedirs(os.path.join(ROOT, "dist", "public"), exist_ok=True)
     open(os.path.join(ROOT, "dist", "public", "index.html"), "w", encoding="utf-8").write(html)
-    # The README's coverage figures come from the same stored re-score.
+    # The README's generated figures: coverage from the same stored re-score,
+    # the caveat from the pinned 12 November card.
     coverage_figures.write()
+    caveat_figures.write()
     print(f"  wrote index.html + dist ({len(html.encode())} bytes)")
     print("done — deploy dist/ to publish")
 
