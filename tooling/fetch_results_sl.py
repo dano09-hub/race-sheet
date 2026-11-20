@@ -12,6 +12,7 @@ Writes data/results/<date>.json:
     [{"course": "...", "time": "...", "race": "...", "winner": "...", "places": [...]}]
 """
 import datetime as dt
+import html
 import json
 import os
 import re
@@ -43,20 +44,23 @@ def _open(url):
         return r.read().decode("utf-8", "ignore")
 
 
-def parse_race(html):
+def parse_race(page):
     """Return (race_name, [(pos, horse), ...]) from a Sporting Life result page."""
-    m = re.search(r'data-testid="racecard-title"[^>]*>(.*?)</', html, re.S)
-    name = re.sub(r"<[^>]+>", " ", m.group(1)).strip() if m else ""
+    m = re.search(r'data-testid="racecard-title"[^>]*>(.*?)</', page, re.S)
+    # The page holds text as HTML, so a title or horse can arrive as
+    # "Don&#x27;t Hurry Love". Stored decoded, so the ledgers show the name the
+    # page renders rather than the entity.
+    name = html.unescape(re.sub(r"<[^>]+>", " ", m.group(1))).strip() if m else ""
     runners = []
     seen = set()
-    for chunk in html.split('data-test-id="position-no"')[1:]:
+    for chunk in page.split('data-test-id="position-no"')[1:]:
         chunk = chunk[:2000]
         if "saddle-cloth-no" not in chunk:          # forecast/tipping widgets reuse the id
             continue
         pos = re.search(r"Ordinal__OrdinalWrapper[^>]*>(\d+)<", chunk)
         horse = re.search(r'/racing/profiles/horse/\d+">([^<]+)</a>', chunk)
         if pos and horse:
-            name_ = horse.group(1).strip()
+            name_ = html.unescape(horse.group(1)).strip()
             if name_ in seen:
                 continue
             seen.add(name_)

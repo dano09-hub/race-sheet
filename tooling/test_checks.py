@@ -1311,8 +1311,11 @@ _fixture = (
 _fname, _frunners = sl.parse_race(_fixture)
 check("parse: race name", _fname == "12:10 Limerick", _fname)
 check("parse: positions pair with their own horse",
-      _frunners == [(1, "Poet&#x27;s Duke"), (2, "Con Did It"), (3, "Storm Bresie")],
+      _frunners == [(1, "Poet's Duke"), (2, "Con Did It"), (3, "Storm Bresie")],
       _frunners)
+check("parse: an HTML entity is decoded before the row is stored",
+      sl.parse_race('<div data-testid="racecard-title">The &#x27;Boy&#x27; Handicap</div>')[0]
+      == "The 'Boy' Handicap")
 
 print("30d. card prices")
 check("sp: fractional odds become decimal",
@@ -2199,6 +2202,17 @@ finally:
 import fetch_results_sl as slmod
 import fetch_results_ir as irmod
 import settle_hk as hkmod
+
+_ir_rows = irmod.parse_meeting(
+    '<div class="racename">15.40 The &#x27;Boy&#x27; Handicap</div>'
+    '<td>1st</td><td>Don&#x27;t Hurry Love (IRE)</td><td>(5)</td><td>4/1</td>'
+    '<td>J Smith</td><td>T Trainer</td>'
+    '<td>2nd</td><td>Raging Raj (GB)</td><td>(3)</td><td>9/2</td>'
+    '<td>J Doe</td><td>U Trainer</td>', 'Navan')
+check("parse: irishracing names are stored unescaped",
+      len(_ir_rows) == 1 and _ir_rows[0]["winner"] == "Don't Hurry Love"
+      and _ir_rows[0]["race"].endswith("The 'Boy' Handicap")
+      and "&#x27;" not in json.dumps(_ir_rows), _ir_rows)
 
 
 def _dead_get(url, tries=3):

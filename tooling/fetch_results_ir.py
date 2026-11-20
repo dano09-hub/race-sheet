@@ -4,7 +4,7 @@ feature cards Sporting Life carries.
 
     python3 tooling/fetch_results_ir.py 2026-11-13
 """
-import datetime as dt, json, os, re, sys, urllib.request
+import datetime as dt, html, json, os, re, sys, urllib.request
 
 import feed
 
@@ -45,12 +45,12 @@ def text_of(html):
 FIN = re.compile(r"\|(\d)(?:st|nd|rd|th)\|(?:[^|]*\|)*?([^|]+?)\|(?:&nbsp;)?\((\d+)\)\|([^|]*)\|")
 
 
-def parse_meeting(html, course):
-    meta = re.findall(r"t:'(\d{1,2}:\d{2})'[^}]*?r:'((?:[^'\\]|\\.)*)'", html)
-    marks = [m.start() for m in re.finditer(r'class="[^"]*racename', html)]
+def parse_meeting(page, course):
+    meta = re.findall(r"t:'(\d{1,2}:\d{2})'[^}]*?r:'((?:[^'\\]|\\.)*)'", page)
+    marks = [m.start() for m in re.finditer(r'class="[^"]*racename', page)]
     out = []
     for n, i in enumerate(marks):
-        chunk = html[i:marks[n + 1] if n + 1 < len(marks) else len(html)]
+        chunk = page[i:marks[n + 1] if n + 1 < len(marks) else len(page)]
         t = text_of(chunk)
         m = re.search(r"(\d{1,2}:\d{2})", t[:160])
         time = m.group(1) if m else ""
@@ -65,10 +65,12 @@ def parse_meeting(html, course):
                 if hh < 12: hh += 12          # irishracing prints 3.40 for 15:40
                 time = f"{hh:02d}:{mm}"
             name = re.sub(r'^\d{1,2}:\d{2}\s*[-\u2013]?\s*', '', head_txt)[:70] or name
+        name = html.unescape(name)
         runners = []
         for f in FIN.finditer(t):
             pos, horse, draw, sp = f.groups()
-            horse = re.sub(r"\s*\((?:IRE|GB|FR|USA|GER)\)", "", horse).strip()
+            horse = re.sub(r"\s*\((?:IRE|GB|FR|USA|GER)\)", "",
+                           html.unescape(horse)).strip()
             if not horse or len(horse) > 40:
                 continue
             runners.append({"pos": int(pos), "horse": horse, "sp": sp.strip()})
