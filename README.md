@@ -893,7 +893,8 @@ check.
   be picked by how many races it rates. A price the archived card lost is
   restored from a stored copy of the same day -- the append-only each-way
   snapshots or the day's own card pulls -- but only from a copy taken before the
-  off, never over a price the card already carries, and never estimated: the
+  off on the course's own clock (the snapshot is UTC, the off local track time),
+  never over a price the card already carries, and never estimated: the
   source of each restored price is written beside the race as `price_source`.
   The pre-race pick on
   record is never rewritten: `data/results` keeps it and the ledger says so.

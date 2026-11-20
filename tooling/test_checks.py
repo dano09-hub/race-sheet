@@ -2715,25 +2715,39 @@ try:
     with open(_ew, "w", encoding="utf-8") as f:
         for rec in (
             {"date": "2026-01-02", "course": "Test", "horse": "Keeper",
-             "time": "14:00", "win_odds": 4.0,
+             "time": "14:00", "region": "GB", "win_odds": 4.0,
              "snapshot_utc": "2026-01-02T13:00:00+00:00"},
             {"date": "2026-01-02", "course": "Test", "horse": "Late",
-             "time": "14:00", "win_odds": 4.0,
+             "time": "14:00", "region": "GB", "win_odds": 4.0,
              "snapshot_utc": "2026-01-02T14:00:01+00:00"},
             {"date": "2026-01-02", "course": "Test", "horse": "Untimed",
-             "time": "", "win_odds": 4.0,
+             "time": "", "region": "GB", "win_odds": 4.0,
              "snapshot_utc": "2026-01-02T10:00:00+00:00"},
             {"date": "2026-01-02", "course": "Test", "horse": "Overnight",
-             "time": "", "win_odds": 6.0,
-             "snapshot_utc": "2026-01-01T20:00:00+00:00"}):
+             "time": "", "region": "GB", "win_odds": 6.0,
+             "snapshot_utc": "2026-01-01T20:00:00+00:00"},
+            {"date": "2026-06-01", "course": "Summer", "horse": "BeforeOff",
+             "time": "16:20", "region": "GB", "win_odds": 4.0,
+             "snapshot_utc": "2026-06-01T14:30:00+00:00"},
+            {"date": "2026-06-01", "course": "Summer", "horse": "AfterOff",
+             "time": "16:20", "region": "GB", "win_odds": 4.0,
+             "snapshot_utc": "2026-06-01T15:30:00+00:00"},
+            {"date": "2026-06-01", "course": "Summer", "horse": "OffsetStamp",
+             "time": "16:20", "region": "GB", "win_odds": 4.0,
+             "snapshot_utc": "2026-06-01T15:00:00+01:00"},
+            {"date": "2026-06-01", "course": "Elsewhere", "horse": "UnknownClock",
+             "time": "16:20", "region": "US", "win_odds": 4.0,
+             "snapshot_utc": "2026-06-01T15:30:00+00:00"}):
             f.write(json.dumps(rec) + "\n")
     _was = (rescore_results.EACHWAY, rescore_results.CARDS)
     rescore_results.EACHWAY = _ew
     rescore_results.CARDS = os.path.join(_tmp_dir, "cards")
     try:
         _idx = rescore_results.price_index("2026-01-02")
+        _idx_s = rescore_results.price_index("2026-06-01")
     finally:
         rescore_results.EACHWAY, rescore_results.CARDS = _was
+    _summer = lambda h: (rescore_results.norm("Summer"), rescore_results.norm(h))
     check("prices: a snapshot taken before the off is used",
           _idx.get(_key("Keeper")) is not None)
     check("prices: a snapshot at or after the off is refused",
@@ -2742,6 +2756,13 @@ try:
           _key("Untimed") not in _idx)
     check("prices: a snapshot from before the race day is used without an off time",
           _idx.get(_key("Overnight")) is not None)
+    check("prices: a summer snapshot is read on the course's clock, not as UTC",
+          _summer("BeforeOff") in _idx_s and _summer("AfterOff") not in _idx_s)
+    check("prices: an offset stamp is converted to UTC before the off check",
+          _summer("OffsetStamp") in _idx_s)
+    check("prices: a venue with no single clock cannot prove a same-day snapshot",
+          (rescore_results.norm("Elsewhere"),
+           rescore_results.norm("UnknownClock")) not in _idx_s)
 finally:
     shutil.rmtree(_tmp_dir, ignore_errors=True)
 

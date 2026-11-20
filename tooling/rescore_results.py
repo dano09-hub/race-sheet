@@ -16,8 +16,8 @@ most races.
 
 A price the archived card lost is restored from a stored copy of the same day --
 the append-only each-way snapshots, which record when they were taken, or the
-day's live card pulls -- but only where that copy was taken before the off, and
-never over a price the card already carries. The source of every restored price
+day's live card pulls -- but only where that copy was taken before the off on
+the course's own clock, and never over a price the card already carries. The source of every restored price
 is written beside the race as `price_source`, and a race with no stored price
 for even one runner stays not rated.
 
@@ -31,6 +31,7 @@ import re
 import subprocess
 import sys
 import tempfile
+from zoneinfo import ZoneInfo
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -173,10 +174,42 @@ def off_time(date, time_text):
 
 
 def snapshot_time(text):
+    """A stored snapshot as naive UTC, or None when it carries no time."""
     try:
-        return dt.datetime.fromisoformat(str(text)).replace(tzinfo=None)
+        got = dt.datetime.fromisoformat(str(text).replace("Z", "+00:00"))
     except (TypeError, ValueError):
         return None
+    if got.tzinfo is not None:
+        got = got.astimezone(dt.timezone.utc).replace(tzinfo=None)
+    return got
+
+
+# A card's off is local track time and a snapshot is UTC. A country that keeps
+# one clock can be placed exactly, so a British summer card no longer accepts
+# the hour of prices filed after its off. Countries with more than one clock
+# (the US, Australia) are left out rather than guessed: the off cannot be
+# proven from the region alone, so only an earlier day's snapshot is taken as
+# pre-race for them.
+ZONES = {
+    "GB": "Europe/London",
+    "IRE": "Europe/Dublin",
+    "FR": "Europe/Paris",
+    "HK": "Asia/Hong_Kong",
+    "CL": "America/Santiago",
+}
+
+
+def off_utc(date, time_text, region):
+    """The scheduled off in UTC, or None when the venue's clock is unknown."""
+    off = off_time(date, time_text)
+    zone = ZONES.get(str(region or "").strip().upper())
+    if off is None or zone is None:
+        return None
+    try:
+        local = off.replace(tzinfo=ZoneInfo(zone))
+    except KeyError:              # no time-zone database on this host
+        return None
+    return local.astimezone(dt.timezone.utc).replace(tzinfo=None)
 
 
 def card_list(path):
@@ -196,8 +229,11 @@ def price_index(date):
     The archive can lose the price column while another stored copy of the same
     day keeps it. The append-only each-way snapshots say when they were taken,
     so a snapshot at or after the off is refused: a post-race price cannot
-    stand in for the one the card would have shown. Where several pre-off
-    snapshots exist the latest wins. The day's own card pulls carry no time of
+    stand in for the one the card would have shown. The snapshot is UTC and the
+    card's off is local track time, so the two are compared in the course's
+    zone; during British Summer Time a straight comparison would pass prices
+    filed an hour after the off. Where several pre-off snapshots exist the
+    latest wins. The day's own card pulls carry no time of
     their own and are used only to fill horses the snapshots do not cover.
     """
     stamped = {}
@@ -217,10 +253,11 @@ def price_index(date):
                 snap = snapshot_time(rec.get("snapshot_utc"))
                 if price is None or snap is None:
                     continue
-                off = off_time(date, rec.get("time"))
-                if off is not None and snap >= off:
-                    continue
-                if off is None and snap.date() >= dt.date.fromisoformat(date):
+                off = off_utc(date, rec.get("time"), rec.get("region"))
+                if off is not None:
+                    if snap >= off:
+                        continue
+                elif snap.date() >= dt.date.fromisoformat(date):
                     continue          # cannot show this price was pre-race
                 key = (norm(rec.get("course")), norm(rec.get("horse")))
                 if key not in stamped or snap > stamped[key][0]:
