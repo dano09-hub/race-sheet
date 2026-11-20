@@ -157,9 +157,13 @@ def _finish_text(entry):
     return "&mdash;"
 
 
-def day_entries(date):
-    """Every screen row the day's settled races produce."""
-    cards, scored, _restored = rr.rate_day(date)
+def day_entries(date, rated=None):
+    """Every screen row the day's settled races produce.
+
+    `rated` is the (cards, scored, restored) rescore_results.rate_day returned,
+    so a caller that has already re-scored the day does not score it twice.
+    """
+    cards, scored, _restored = rated if rated is not None else rr.rate_day(date)
     out = {name: [] for name in SCREENS}
     for region, row in rr.result_rows(date):
         card = rr.pick_card(cards, row)
@@ -187,14 +191,19 @@ def day_entries(date):
     return out
 
 
-def collect():
-    """Every settled day's screen rows, newest day first."""
+def collect(rated=None):
+    """Every settled day's screen rows, newest day first.
+
+    `rated` maps a date to the (cards, scored, restored) rate_day returned for
+    it. The integrity check re-scores the archive to look for drift, so it
+    hands that work here rather than paying for a second pass.
+    """
     everything = {name: [] for name in SCREENS}
     files = sorted(glob.glob(os.path.join(ROOT, "data", "results", "*.json")),
                    reverse=True)
     for path in files:
         iso = os.path.basename(path)[:-5]
-        got = day_entries(iso)
+        got = day_entries(iso, (rated or {}).get(iso))
         for name in SCREENS:
             everything[name].extend(got[name])
     return everything

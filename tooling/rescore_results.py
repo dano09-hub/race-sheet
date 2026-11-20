@@ -431,8 +431,9 @@ def race_entry(cards, scored, restored, region, row, card=None):
     return entry
 
 
-def day(date):
-    cards, scored, restored = rate_day(date)
+def day(date, rated=None):
+    """The day's re-score, reusing a rate_day() result when one is passed in."""
+    cards, scored, restored = rated if rated is not None else rate_day(date)
     return {
         "date": date,
         "model": "six-input",

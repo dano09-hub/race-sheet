@@ -3031,18 +3031,27 @@ for _path in sorted((ROOT / "data").glob("results*/*.json")):
 check("integrity: no stored results row carries an HTML entity",
       not _entity_rows, _entity_rows[:3])
 
+# One re-score per settled day, shared by the drift check and the screens.
 _rated_paths = sorted((ROOT / "data" / "results_rated").glob("*.json"))
+_days = sorted({_path.stem for _path in _rated_paths}
+               | {_path.stem for _path in (ROOT / "data" / "results").glob("*.json")})
+_rated = {_iso: rescore_results.rate_day(_iso) for _iso in _days}
+
 _drifted = [_path.stem for _path in _rated_paths
             if json.loads(_path.read_text(encoding="utf-8"))
-            != rescore_results.day(_path.stem)]
+            != rescore_results.day(_path.stem, _rated[_path.stem])]
 check("integrity: every stored re-score matches a fresh run",
       bool(_rated_paths) and not _drifted, _drifted)
 
-_stale_panels = screen_results.stale_panels(
-    (ROOT / "index.html").read_text(encoding="utf-8"))
-check("integrity: every screen panel in the page matches a fresh build "
-      "from the stored re-score",
-      not _stale_panels, _stale_panels)
+# The source page and the built copy both have to carry this build's record.
+_everything = screen_results.collect(_rated)
+for _label, _path in (("index.html", ROOT / "index.html"),
+                      ("dist/public/index.html",
+                       ROOT / "dist" / "public" / "index.html")):
+    _text = _path.read_text(encoding="utf-8") if _path.exists() else ""
+    _stale = screen_results.stale_panels(_text, _everything)
+    check("integrity: the screen panels in %s match a fresh build from the "
+          "stored re-score" % _label, not _stale, _stale)
 
 print()
 print("passed %d, failed %d%s" % (
