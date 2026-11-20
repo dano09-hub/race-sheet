@@ -45,11 +45,11 @@ jobs:
         with:
           python-version: "3.12"
       # This job writes and commits the page too: the Hong Kong settle scores
-      # its picks with the page's own scorer under node. Pinned to the version
-      # the checks job renders with, so the committed page validates there.
+      # its picks with the page's own scorer under node. It reads the same
+      # .nvmrc as the checks job, so the committed page validates there.
       - uses: actions/setup-node@v4
         with:
-          node-version: "26.13.0"
+          node-version-file: ".nvmrc"
       - name: Install tools
         run: python3 -m pip install -r requirements.txt
       - name: Settle Hong Kong results

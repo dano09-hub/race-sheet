@@ -22,12 +22,12 @@ jobs:
         with:
           python-version: "3.12"
       # The render scores each card by running the page's own scorer under node,
-      # and those numbers go straight into the screen panels. Pinned to the
-      # version the committed page was built with, so a change of the runner's
+      # and those numbers go straight into the screen panels. The version comes
+      # from .nvmrc, the one place it is written, so a change of the runner's
       # default node cannot move a figure and turn the page diff into noise.
       - uses: actions/setup-node@v4
         with:
-          node-version: "26.13.0"
+          node-version-file: ".nvmrc"
       - name: Install dependencies
         run: python3 -m pip install -r requirements.txt
       # The screen panels are derived from the stored re-score, so a data-only

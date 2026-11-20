@@ -30,12 +30,12 @@ jobs:
         with:
           python-version: "3.12"
       # The page is rendered here and committed, and the checks job compares it
-      # with a render of its own. Same node in both, so the numbers the scorer
+      # with a render of its own. Both read .nvmrc, so the numbers the scorer
       # writes cannot differ between the job that builds the page and the job
       # that validates it.
       - uses: actions/setup-node@v4
         with:
-          node-version: "26.13.0"
+          node-version-file: ".nvmrc"
       - name: Install tools
         run: python3 -m pip install -r requirements.txt
       - name: Refresh cards, results and page
