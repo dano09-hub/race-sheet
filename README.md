@@ -21,7 +21,9 @@ static host, and it works — there is nothing to install.
 Six inputs, each scored 0–100 within the race, combined with fixed weights
 totalling 56. A race is rated only when **every runner** carries all six: a card
 with a gap anywhere in the field is not rated, and the page names the missing
-field instead of scoring the horses that happen to be complete. The inputs are
+field instead of scoring the horses that happen to be complete. A value every
+runner shares is filed, not missing: it cannot separate the field, so it is
+scored neutral rather than refusing the race. The inputs are
 the ones the feeds file for every runner — the `RATED_FACTORS` array:
 
 ```js
