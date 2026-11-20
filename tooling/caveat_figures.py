@@ -17,7 +17,6 @@ one that stops.
 usage: python3 tooling/caveat_figures.py [--write]
 """
 import csv
-import datetime
 import gzip
 import json
 import os
@@ -34,17 +33,11 @@ README = os.path.join(ROOT, "README.md")
 START = "<!-- caveat:start -->"
 END = "<!-- caveat:end -->"
 
-DAY_TEXT = datetime.date.fromisoformat(DAY).strftime("%d %B").lstrip("0")
-
-PROVENANCE = (f"*Pinned to the {DAY_TEXT} card and generated from its stored "
-              f"pre-race picks in `data/results/{DAY}.json` and that day's "
-              f"starting prices in `data/dataset.csv.gz` by "
-              f"`tooling/caveat_figures.py`; `--write` rewrites the block, and "
-              f"the checks job fails when the committed README differs.*")
-
-
-def _count(n, noun):
-    return f"{n} {noun}{'' if n == 1 else 's'}"
+PROVENANCE = (f"*Pinned to the card in `data/results/{DAY}.json` and generated "
+              f"from its stored pre-race picks and that day's starting prices "
+              f"in `data/dataset.csv.gz` by `tooling/caveat_figures.py`; "
+              f"`--write` rewrites the block, and the checks job fails when the "
+              f"committed README differs.*")
 
 
 def _favourites(field):
@@ -86,33 +79,25 @@ def collect(picks=None, prices=None):
         if not favourites:
             raise ValueError(f"{DAY}: no starting prices for "
                              f"{where[0]} {where[1]}")
-        winner = race["winner"]
-        found = race["pick"] == winner
+        side = "favourites" if race["winner"] in favourites else "others"
         figs["races"] += 1
-        if winner in favourites:
-            figs["favourites"] += 1
-            figs["favourites_found"] += found
-        else:
-            figs["others"] += 1
-            figs["others_found"] += found
+        figs[side] += 1
+        figs[side + "_found"] += race["pick"] == race["winner"]
     return figs
 
 
 def sentence(figs):
     """The caveat's first claim: the pick on favourites and on the rest."""
-    others = figs["others"]
     return (f"The model is a favourite-ranker. On this card it found "
-            f"{figs['favourites_found']} of the "
-            f"{_count(figs['favourites'], 'winning favourite')} and "
-            f"{figs['others_found']} of the {_count(others, 'winner')} that "
-            f"{'wasn' if others == 1 else 'weren'}'t the favourite.")
+            f"{figs['favourites_found']} of the {figs['favourites']} winning "
+            f"favourites and {figs['others_found']} of the {figs['others']} "
+            f"winners that weren't the favourite.")
 
 
 def sample(figs):
     """The second claim: the size of the sample the split is measured on."""
-    return (f"{_count(figs['races'], 'race')} is a tiny sample. The weights "
-            f"were tuned in-sample; treat any improvement of one or two "
-            f"winners as noise.")
+    return (f"{figs['races']} races is a tiny sample. The weights were tuned "
+            f"in-sample; treat any improvement of one or two winners as noise.")
 
 
 def block(figs=None):

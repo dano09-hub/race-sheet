@@ -926,8 +926,8 @@ on the page presents a pick that did not pass the six-input check.
 * 21 races is a tiny sample. The weights were tuned in-sample; treat any
   improvement of one or two winners as noise.
 
-  *Pinned to the 12 November card and generated from its stored pre-race picks
-  in `data/results/2026-11-12.json` and that day's starting prices in
+  *Pinned to the card in `data/results/2026-11-12.json` and generated from its
+  stored pre-race picks and that day's starting prices in
   `data/dataset.csv.gz` by `tooling/caveat_figures.py`; `--write` rewrites the
   block, and the checks job fails when the committed README differs.*
 <!-- caveat:end -->

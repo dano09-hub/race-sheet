@@ -1377,9 +1377,7 @@ def us_angles_block_html(t, iso):
 def main():
     if "--data-only" in sys.argv[1:]:
         size = rebuild_page()
-        # The README's generated figures are part of what a render produces:
-        # the coverage counts from the same re-score, the caveat from the
-        # pinned 12 November card.
+        # The README's generated figures are part of what a render produces.
         coverage_figures.write()
         caveat_figures.write()
         print(f"rebuilt results blocks from stored data; wrote index.html + "
@@ -1771,8 +1769,7 @@ def main():
     open(INDEX, "w", encoding="utf-8").write(html)
     os.makedirs(os.path.join(ROOT, "dist", "public"), exist_ok=True)
     open(os.path.join(ROOT, "dist", "public", "index.html"), "w", encoding="utf-8").write(html)
-    # The README's generated figures: coverage from the same stored re-score,
-    # the caveat from the pinned 12 November card.
+    # The README's generated figures are part of what a render produces.
     coverage_figures.write()
     caveat_figures.write()
     print(f"  wrote index.html + dist ({len(html.encode())} bytes)")
