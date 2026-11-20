@@ -1308,14 +1308,18 @@ _fixture = (
     '<sup class="Ordinal__OrdinalSup-sc-2">rd</sup></span>'
     '<div>2 \u00be</div><div data-testid="saddle-cloth-no">9</div>'
     '<a href="/racing/profiles/horse/3">Storm Bresie</a></div>')
-_fname, _frunners = sl.parse_race(_fixture)
-check("parse: race name", _fname == "12:10 Limerick", _fname)
+_ft, _fname, _frunners = sl.parse_race(_fixture)
+check("parse: race name and off come from the title",
+      _fname == "12:10 Limerick" and _ft == "12:10", (_ft, _fname))
 check("parse: positions pair with their own horse",
       _frunners == [(1, "Poet's Duke"), (2, "Con Did It"), (3, "Storm Bresie")],
       _frunners)
 check("parse: an HTML entity is decoded before the row is stored",
-      sl.parse_race('<div data-testid="racecard-title">The &#x27;Boy&#x27; Handicap</div>')[0]
+      sl.parse_race('<div data-testid="racecard-title">The &#x27;Boy&#x27; Handicap</div>')[1]
       == "The 'Boy' Handicap")
+check("parse: a title with no clock stores no time",
+      sl.parse_race('<div data-testid="racecard-title">Handicap Chase</div>')[:2]
+      == ("", "Handicap Chase"))
 
 print("30d. card prices")
 check("sp: fractional odds become decimal",

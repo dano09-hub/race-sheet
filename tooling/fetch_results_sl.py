@@ -45,12 +45,19 @@ def _open(url):
 
 
 def parse_race(page):
-    """Return (race_name, [(pos, horse), ...]) from a Sporting Life result page."""
+    """Return (off_time, race_name, [(pos, horse), ...]) from a result page.
+
+    The page's title carries the off in front of the course ("12:10 Limerick"),
+    which is where the stored time comes from. A title with no clock leaves it
+    empty rather than guessed.
+    """
     m = re.search(r'data-testid="racecard-title"[^>]*>(.*?)</', page, re.S)
     # The page holds text as HTML, so a title or horse can arrive as
     # "Don&#x27;t Hurry Love". Stored decoded, so the ledgers show the name the
     # page renders rather than the entity.
     name = html.unescape(re.sub(r"<[^>]+>", " ", m.group(1))).strip() if m else ""
+    clock = re.match(r"\s*(\d{1,2}:\d{2})\b", name)
+    time = clock.group(1) if clock else ""
     runners = []
     seen = set()
     for chunk in page.split('data-test-id="position-no"')[1:]:
@@ -66,7 +73,7 @@ def parse_race(page):
             seen.add(name_)
             runners.append((int(pos.group(1)), name_))
     runners.sort()
-    return name, runners
+    return time, name, runners
 
 
 GB_IRE = {"ENG", "GB", "SCO", "WAL", "NI", "IRE", "IE"}   # Sporting Life country codes
@@ -93,14 +100,14 @@ def fetch_day(date):
         cc = country_of(page)
         if cc and cc not in GB_IRE:          # France, USA, South Africa: not our patch
             continue
-        name, runners = parse_race(page)
+        time, name, runners = parse_race(page)
         if not runners:
             continue
         key = (course, name)
         if key in seen:
             continue
         seen.add(key)
-        out.append({"course": course, "time": "", "race": name,
+        out.append({"course": course, "time": time, "race": name,
                     "winner": runners[0][1], "places": [h for _, h in runners[:3]]})
     if links and failed == len(links):
         raise feed.FeedError(f"UK/IRE results: every one of {len(links)} meeting "

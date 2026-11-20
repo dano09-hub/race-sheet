@@ -48,7 +48,7 @@ def _positions(iso):
         cc = sl.country_of(page)
         if cc and cc not in sl.GB_IRE:
             continue
-        name, runners = sl.parse_race(page)
+        _time, name, runners = sl.parse_race(page)
         if not runners:
             continue
         key = (refresh._result_name(course),
