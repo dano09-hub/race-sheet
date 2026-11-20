@@ -1262,6 +1262,23 @@ check("names: a winner is matched to its card without a time",
           [{"course": "Test", "time": "13:00",
             "runners": [{"horse": "Who's Going"}]}],
           {"course": "Test", "time": "", "winner": "Who&#x27;s Going"}) is not None)
+check("audit: a bad off cannot beat the card that holds the winner",
+      rescore_results.pick_card(
+          [{"id": "time-only", "course": "C", "time": "13:00",
+            "runners": [{"horse": "Other"}]},
+           {"id": "winner-only", "course": "C", "time": "13:05",
+            "runners": [{"horse": "Winner"}]}],
+          {"course": "C", "time": "13:00", "winner": "Winner"}).get("id")
+      == "winner-only")
+check("audit: a card matching both the off and the winner is preferred",
+      rescore_results.pick_card(
+          [{"id": "time-only", "course": "C", "time": "13:00",
+            "runners": [{"horse": "Other"}]},
+           {"id": "both", "course": "C", "time": "13:00",
+            "runners": [{"horse": "Winner"}]},
+           {"id": "winner-only", "course": "C", "time": "13:05",
+            "runners": [{"horse": "Winner"}]}],
+          {"course": "C", "time": "13:00", "winner": "Winner"}).get("id") == "both")
 check("audit: day label is dynamic", 'id="auditDay"' in _page)
 check("audit: fixed snapshot removed", "fixed 12 November snapshot" not in _page)
 check("audit: price header", "<th>Price</th>" in _page)
@@ -2718,6 +2735,13 @@ check("model: partial feeds are not model inputs",
       not any(k in _strict_src for k in ["rpr", "speed", "tips", "naps", "draw", "cd", "going"]))
 check("model: every runner must carry every input or the race is unrated",
       "function cardCoverage" in _page_now and "ok: rs.length >= 4 && missing.length === 0" in _page_now)
+check("model: a factor every runner shares rates the race instead of blocking it",
+      (lambda got: bool(got) and got[0].get("rated") is True and bool(got[0].get("pick")))(
+          rescore_results.score([{
+              "course": "Test", "time": "13:00", "race": "Test Maiden Hurdle",
+              "runners": [{"horse": "Horse " + str(i), "odds": "3.0", "form": "1",
+                           "or": "100", "weight": "11-4", "days": "20",
+                           "jp": "10", "tp": "10"} for i in range(4)]}])))
 check("model: the missing field is named on the page",
       "for all ' + s.cov.runners + ' runners" in _page_now
       and "'has' : 'have') + ' no ' + m.what" in _page_now)

@@ -330,13 +330,32 @@ def position_number(label):
 
 
 def pick_card(cards, row):
-    course, time, winner = norm(row.get("course")), str(row.get("time") or "")[:5], norm(row.get("winner"))
+    """The card a settled row belongs to, preferring the strongest evidence.
+
+    The off and the winner should agree. A scraped time that happens to hit a
+    different race must not win over the card that holds the winner, so the
+    order is: both, then the winner alone, then the off alone. The last resort
+    keeps a race whose winner is absent from the archive (a name the card
+    spells differently) scoreable by its time.
+    """
+    course, time, winner = (norm(row.get("course")),
+                            str(row.get("time") or "")[:5], norm(row.get("winner")))
     pool = [c for c in cards if norm(c.get("course")) == course]
+
+    def at_off(card):
+        return str(card.get("time") or "")[:5] == time
+
+    def has_winner(card):
+        return any(norm(r.get("horse")) == winner for r in card.get("runners", []))
+
     for card in pool:
-        if str(card.get("time") or "")[:5] == time:
+        if at_off(card) and has_winner(card):
             return card
     for card in pool:
-        if any(norm(r.get("horse")) == winner for r in card.get("runners", [])):
+        if has_winner(card):
+            return card
+    for card in pool:
+        if at_off(card):
             return card
     return None
 

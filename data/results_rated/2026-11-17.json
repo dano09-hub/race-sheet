@@ -7,23 +7,18 @@
    "time": "12:20",
    "winner": "Bossman Jack",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
-   "finish": "",
-   "hit": false,
-   "placed": null,
-   "missing": [
-    {
-     "what": "a factor did not score",
-     "n": 6,
-     "of": 6
-    }
-   ],
+   "state": "rated",
+   "pick": "Bossman Jack",
+   "chance": 45.1,
+   "finish": "1st",
+   "hit": true,
+   "placed": true,
+   "missing": [],
+   "place_places": 2,
    "price_source": [
     "eachway_prices.jsonl 2026-11-16T13:10:01"
    ],
-   "blocker": "a factor did not score",
+   "blocker": "",
    "blocker_only": false
   },
   {
