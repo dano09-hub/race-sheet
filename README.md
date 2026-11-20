@@ -371,10 +371,11 @@ At this build that is 52 rated races with 9 winners: the re-scored picks carry
 block says the sample is not yet informative (298 more settled races).
 <!-- chance-rated:end -->
 
-At 350 races the interval is about +/-4.5 points, enough to
-catch a gross error but not to separate the 0.04 and 0.0498 scales, whose pick
-chances differ by about four points; at 1,600 races it narrows to about +/-2
-points and the question can be settled.
+At 350 races the interval is about +/-4.8 points and the 0.04 and 0.0498 scales
+put the same picks about four and a half to five points apart, so the interval
+is about the size of the thing it has to resolve: that sample catches a gross
+error and only just begins to tell the scales apart. At 1,600 races it narrows
+to about +/-2.3 points and the question can be settled.
 
 The paragraphs below describe the twelve-factor chance column that remains in
 `data/results` for the historical record. Days settled before that column

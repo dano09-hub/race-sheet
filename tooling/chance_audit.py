@@ -7,10 +7,12 @@ its pick was shown at, so the claim can be checked without re-scoring anything:
 the stated chances are averaged and compared with the Wilson interval around
 the pick's actual win rate.
 
-Two samples matter. At 350 races the interval is about +-4.5 points, which can
-catch a gross error but cannot choose between the 0.04 and 0.0498 scales, whose
-pick chances differ by about four points. At 1600 races the interval is about
-+-2 points and the question can actually be settled. The panel says which of
+Two samples matter. At 350 races the interval is about +-4.8 points, and the
+0.04 and 0.0498 scales put the same picks four and a half to five points apart,
+so the interval is about the size of the gap it has to resolve: that sample
+catches a gross error and only just begins to tell the scales apart. At 1600
+races the interval is about +-2.3 points and the question can actually be
+settled. The panel says which of
 the three stages it is in rather than calling a wide interval a result.
 
     python3 tooling/chance_audit.py

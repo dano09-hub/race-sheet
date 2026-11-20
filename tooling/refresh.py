@@ -1177,10 +1177,11 @@ def chance_block_html(a, iso=None):
                           + band_rows + '</tbody></table>')
         if a.get("more_early"):
             inner += (f'<p class="k">Not yet informative: needs '
-                      f'<b>{a["more_early"]}</b> more settled races. An interval '
-                      f'this wide can catch a gross error, but it cannot choose '
-                      f'between the 0.04 and 0.0498 scales, whose pick chances '
-                      f'differ by about four points.</p>')
+                      f'<b>{a["more_early"]}</b> more settled races. It catches a '
+                      f'gross error, but the four and a half to five points '
+                      f'between the 0.04 and 0.0498 scales are about the size of '
+                      f'this interval, so the sample only just begins to tell '
+                      f'them apart.</p>')
         elif a.get("more_decisive"):
             inner += (f'<p class="k">Informative but not decisive: needs '
                       f'<b>{a["more_decisive"]}</b> more settled races before the '
