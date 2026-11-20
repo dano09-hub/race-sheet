@@ -460,6 +460,10 @@ BUILDERS = {
 }
 
 
+def _panel_pattern(marker):
+    return re.compile(r"<!-- %s_START -->.*?<!-- %s_END -->" % (marker, marker), re.S)
+
+
 def replace_blocks(html_text):
     """Put every screen's current record back into the page."""
     everything = collect()
@@ -467,12 +471,30 @@ def replace_blocks(html_text):
     for name in SCREENS:
         marker = MARKERS[name]
         body = BUILDERS[name](everything[name])
-        pattern = re.compile(r"<!-- %s_START -->.*?<!-- %s_END -->" % (marker, marker),
-                             re.S)
+        pattern = _panel_pattern(marker)
         if not pattern.search(out):
             raise SystemExit("could not find %s in index.html" % marker)
         out = pattern.sub(lambda m, b=body: b, out, count=1)
     return out
+
+
+def stale_panels(html_text, everything=None):
+    """Screen markers in a page whose block no longer matches a fresh build.
+
+    A refresh that re-scores the archive has to reach every panel; a page built
+    before that update would keep printing the old record. Compared as whole
+    blocks, so a panel is either exactly what collect() produces now or it is
+    named here, missing marker included. `everything` lets a caller that has
+    already collected the day reuse it instead of scoring the archive twice.
+    """
+    rows = collect() if everything is None else everything
+    stale = []
+    for name in SCREENS:
+        marker = MARKERS[name]
+        found = _panel_pattern(marker).search(html_text)
+        if not found or found.group(0) != BUILDERS[name](rows[name]):
+            stale.append(marker)
+    return stale
 
 
 def main(argv):

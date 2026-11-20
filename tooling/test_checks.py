@@ -2987,6 +2987,20 @@ check("screens: an empty screen says what it needs and prints no table",
       and "settled result" in screen_results.longshot_block([]),
       screen_results.longshot_block([])[:200])
 
+_empty_all = {name: [] for name in screen_results.SCREENS}
+_empty_page = "\n".join(screen_results.BUILDERS[name]([])
+                         for name in screen_results.SCREENS)
+check("screens: a panel that matches its fresh build is not reported stale",
+      screen_results.stale_panels(_empty_page, _empty_all) == [],
+      screen_results.stale_panels(_empty_page, _empty_all))
+check("screens: a panel that drifted from its fresh build is reported stale",
+      screen_results.stale_panels(_empty_page.replace("No longshot has been",
+                                                      "No longshot was"),
+                                  _empty_all) == ["LONG_RESULTS_SL"],
+      screen_results.stale_panels(_empty_page.replace("No longshot has been",
+                                                      "No longshot was"),
+                                  _empty_all))
+
 print()
 print("Data integrity")
 
@@ -3023,6 +3037,12 @@ _drifted = [_path.stem for _path in _rated_paths
             != rescore_results.day(_path.stem)]
 check("integrity: every stored re-score matches a fresh run",
       bool(_rated_paths) and not _drifted, _drifted)
+
+_stale_panels = screen_results.stale_panels(
+    (ROOT / "index.html").read_text(encoding="utf-8"))
+check("integrity: every screen panel in the page matches a fresh build "
+      "from the stored re-score",
+      not _stale_panels, _stale_panels)
 
 print()
 print("passed %d, failed %d%s" % (
