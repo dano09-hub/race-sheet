@@ -1603,6 +1603,13 @@ try:
           audit["more_decisive"] > 0)
     check("audit: the interval widens for a tiny sample",
           audit["half"] > 20.0, audit.get("half"))
+    _hw = chance_audit.half_widths({"rate": 0.313})
+    check("audit: each sample size's half-width is the Wilson interval at the "
+          "record's own rate, not a typed figure",
+          abs(_hw[chance_audit.EARLY] - 4.84) < 0.01
+          and abs(_hw[chance_audit.DECISIVE] - 2.27) < 0.01, _hw)
+    check("audit: no rate yet, no half-width to claim",
+          chance_audit.half_widths({})[chance_audit.EARLY] == 0.0)
     check("audit: verdict accepts an interval that contains the figure",
           chance_audit.verdict({"races": 1, "inside": True}) == "inside")
     check("audit: verdict catches a figure above the interval",
@@ -1612,6 +1619,23 @@ try:
     check("audit block: reports the sample", "2</b> settled" in block)
     check("audit block: waits for a decisive sample",
           "Not yet informative" in block, block[:120])
+    # A 50% rate still carries a +/-5.2-point interval at 350 races, wider than
+    # the twelve-factor gap, so the block has to say the scales cannot be told
+    # apart rather than that it nearly can.
+    check("audit block: the 350-race branch compares the measured gap with the "
+          "interval that sample would give",
+          "between the 0.04 and 0.0498" in block and "+/-5.2" in block
+          and "cannot tell the scales apart" in block, block[-340:])
+    _narrow = refresh.chance_block_html(
+        dict(audit, rate=0.313, more_early=200), gap={"races": 101, "gap": 4.9})
+    check("audit block: a gap the 350-race interval nearly matches reads as "
+          "marginal, not resolved",
+          "+/-4.8" in _narrow and "only just begins" in _narrow, _narrow[-340:])
+    _unmeasured = refresh.chance_block_html(dict(audit, more_early=200),
+                                            gap={"races": 0})
+    check("audit block: with no rescored card the gap is not invented",
+          "No re-scored card has measured the 0.04/0.0498 gap" in _unmeasured,
+          _unmeasured[-340:])
     big = {"races": 400, "wins": 104, "rate": 0.26, "stated": 25.8,
            "lo": 21.9, "hi": 30.4, "half": 4.25, "first": "2026-11-12",
            "last": "2027-02-01", "inside": True, "more_early": 0,
@@ -3222,12 +3246,37 @@ check("readme: the shadow sentence carries the tally and the rule's status",
       .endswith("which misses the pre-registered bar, so the arm is "
                 "retired."), _RF_ARM_TEXT)
 
+_RF_SCALE = {"races": 101, "gap": 4.9067, "early": 4.84, "decisive": 2.27,
+             "early_n": 350, "decisive_n": 1600}
+_RF_SCALE_TEXT = readme_figures.scale_sensitivity(_RF_SCALE)
+check("readme: the scale sentence sets the measured gap against the interval "
+      "each sample size would give, and counts the races it was measured on",
+      _RF_SCALE_TEXT == "At 350 races the interval is about +/-4.8 points and "
+                        "the 0.04 and 0.0498 scales put the same picks 4.9 "
+                        "points apart over the 101 archived races whose card "
+                        "still reproduces its stored pick, so the interval "
+                        "there is about the size of what it has to resolve: it "
+                        "catches a gross error and only just begins to tell "
+                        "the scales apart. At 1,600 races it narrows to about "
+                        "+/-2.3 points and the question can be settled."
+      and "over the 1 archived race whose card"
+      in readme_figures.scale_sensitivity(dict(_RF_SCALE, races=1)),
+      _RF_SCALE_TEXT)
+check("readme: which way the 350-race comparison falls is read off the "
+      "numbers, not fixed in the wording",
+      "still wider than the gap"
+      in readme_figures.scale_sensitivity(dict(_RF_SCALE, early=5.2, gap=3.0))
+      and "already narrower than the gap"
+      in readme_figures.scale_sensitivity(dict(_RF_SCALE, early=3.0, gap=5.0)),
+      readme_figures.scale_sensitivity(dict(_RF_SCALE, early=5.2, gap=3.0)))
+
 _RF_MARKED = ("intro\n\n"
               + "".join(f"<!-- {name}:start -->\ntyped\n"
                         f"<!-- {name}:end -->\n\n"
                         for name in readme_figures.BLOCKS)
               + "after\n")
 _RF_FIGS = {"chance-record": _RF_RECORD, "chance-rated": _RF_RATED,
+            "scale-sensitivity": _RF_SCALE,
             "blank-races": {"blank": 1, "races": 2}, "shadow-tally": _RF_ARM}
 _RF_WRITTEN = readme_figures.replace_all(_RF_MARKED, _RF_FIGS)
 check("readme: every marked block is rewritten in place and the rest of the "

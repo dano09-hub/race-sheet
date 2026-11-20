@@ -1,17 +1,18 @@
 #!/usr/bin/env python3
 """The README numbers a render already computes.
 
-Four claims in the README repeat figures the page prints from stored data: the
+Five claims in the README repeat figures the page prints from stored data: the
 twelve-factor chance record in `data/results`, the six-input re-score's chance
-audit, the count of races with no stored chance, and the market-heavy shadow
-tally. Each sits between markers and is rebuilt from the same collector the page
+audit, the count of races with no stored chance, the market-heavy shadow tally,
+and the 0.04/0.0498 scale gap set against the interval each sample size would
+give. Each sits between markers and is rebuilt from the same collector the page
 uses, so the README cannot describe an older build than the page.
 
-Nothing here scores a race, reads a card for a pick or changes a figure: every
-number is counted from the stored results, the stored re-score and the saved
-A/B snapshots. The figures that cannot be re-derived here -- the share scales,
-the whole-field audit's archive CSV, the Kaggle and Betfair reports -- stay as
-typed prose beside these blocks.
+Nothing here changes a figure: every number is counted from the stored results,
+the stored re-score, the archived cards and the saved A/B snapshots. The figures
+that cannot be re-derived here -- the four-year fit itself, the whole-field
+audit's archive CSV, the Kaggle and Betfair reports -- stay as typed prose
+beside these blocks.
 
 usage: python3 tooling/readme_figures.py [--write]
 """
@@ -32,7 +33,8 @@ import market_arm_day    # noqa: E402
 RESULTS = os.path.join(ROOT, "data", "results")
 README = os.path.join(ROOT, "README.md")
 
-BLOCKS = ("chance-record", "chance-rated", "blank-races", "shadow-tally")
+BLOCKS = ("chance-record", "chance-rated", "scale-sensitivity", "blank-races",
+          "shadow-tally")
 
 
 def _count(n, noun):
@@ -54,9 +56,16 @@ def collect():
         # The chance column is the twelve-factor record's, kept for GB/IRE only.
         settled += sum(1 for row in rows
                        if row.get("region") != "US" and row.get("winner"))
+    gap = chance_audit.scale_gap()
+    widths = chance_audit.half_widths(record)
     return {
         "chance-record": record,
         "chance-rated": chance_audit.collect_rated(),
+        "scale-sensitivity": {"races": gap["races"], "gap": gap["gap"],
+                              "early": widths[chance_audit.EARLY],
+                              "decisive": widths[chance_audit.DECISIVE],
+                              "early_n": chance_audit.EARLY,
+                              "decisive_n": chance_audit.DECISIVE},
         "blank-races": {"blank": max(0, settled - record["races"]),
                         "races": settled},
         "shadow-tally": ab_tally.collect(snap_dir=market_arm_day.OUT_DIR,
@@ -98,6 +107,30 @@ def chance_rated(figs):
             f"interval of {figs['lo']:.1f}-{figs['hi']:.1f}%, {stage}.")
 
 
+def scale_sensitivity(figs):
+    """The scale gap against the interval each decision sample would give."""
+    if not figs["races"] or not figs["early"]:
+        return ("No settled race can be re-scored for the 0.04 and 0.0498 "
+                "scale gap yet, so the sample sizes are still estimates.")
+    if figs["early"] >= figs["gap"]:
+        verdict = ("so the interval there is still wider than the gap: it "
+                   "catches a gross error but cannot yet tell the scales apart")
+    elif figs["early"] >= figs["gap"] - 1:
+        verdict = ("so the interval there is about the size of what it has to "
+                   "resolve: it catches a gross error and only just begins to "
+                   "tell the scales apart")
+    else:
+        verdict = ("so the interval there is already narrower than the gap and "
+                   "can tell the scales apart")
+    return (f"At {figs['early_n']} races the interval is about "
+            f"+/-{figs['early']:.1f} points and the 0.04 and 0.0498 scales put "
+            f"the same picks {figs['gap']:.1f} points apart over the "
+            f"{_count(figs['races'], 'archived race')} whose card still "
+            f"reproduces its stored pick, {verdict}. At {figs['decisive_n']:,} "
+            f"races it narrows to about +/-{figs['decisive']:.1f} points and the "
+            f"question can be settled.")
+
+
 def blank_races(figs):
     """How much of the settled record carries no stored chance."""
     return (f"{figs['blank']} of the {figs['races']} recent British and Irish "
@@ -124,7 +157,8 @@ def shadow_tally(figs):
 
 
 SENTENCES = {"chance-record": chance_record, "chance-rated": chance_rated,
-             "blank-races": blank_races, "shadow-tally": shadow_tally}
+             "scale-sensitivity": scale_sensitivity, "blank-races": blank_races,
+             "shadow-tally": shadow_tally}
 
 
 def replace_block(text, name, figs=None):

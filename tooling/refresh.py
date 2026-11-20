@@ -327,6 +327,7 @@ sys.path.insert(0, HERE)
 from parse_cards import get, parse_course_page          # noqa: E402
 from scrape_us import get as us_get, parse_track        # noqa: E402
 import caveat_figures                                   # noqa: E402
+import chance_audit                                     # noqa: E402
 import coverage_figures                                 # noqa: E402
 import eachway                                          # noqa: E402
 import readme_figures                                   # noqa: E402
@@ -1120,7 +1121,7 @@ def market_block_html(res, iso):
             + '</div>\n<!-- MARKET_SL_END -->')
 
 
-def chance_block_html(a, iso=None):
+def chance_block_html(a, iso=None, gap=None):
     """The Model chance audit: the printed percentage against the record."""
     import html as _html
     esc = lambda s: _html.escape(str(s or ""))
@@ -1175,18 +1176,38 @@ def chance_block_html(a, iso=None):
                           '<th>Runners</th><th>Won</th><th>95% CI</th>'
                           '<th>Stated</th></tr></thead><tbody>'
                           + band_rows + '</tbody></table>')
+        if gap is None:
+            gap = chance_audit.scale_gap(rated=bool(a.get("rated")))
+        widths = chance_audit.half_widths(a)
+        early_w = widths[chance_audit.EARLY]
+        late_w = widths[chance_audit.DECISIVE]
+        apart = (f"{gap['gap']:.1f} points" if gap.get("races")
+                 else "the gap")
         if a.get("more_early"):
-            inner += (f'<p class="k">Not yet informative: needs '
-                      f'<b>{a["more_early"]}</b> more settled races. It catches a '
-                      f'gross error, but the four and a half to five points '
-                      f'between the 0.04 and 0.0498 scales are about the size of '
-                      f'this interval, so the sample only just begins to tell '
-                      f'them apart.</p>')
+            if not gap.get("races"):
+                inner += (f'<p class="k">Not yet informative: needs '
+                          f'<b>{a["more_early"]}</b> more settled races. No '
+                          f're-scored card has measured the 0.04/0.0498 gap '
+                          f'yet, so the sample this waits for is still an '
+                          f'estimate.</p>')
+            else:
+                relation = ("wider than that gap, so the sample still cannot "
+                            "tell the scales apart" if early_w >= gap["gap"]
+                            else "about the size of that gap, so the sample only "
+                                 "just begins to tell them apart")
+                inner += (f'<p class="k">Not yet informative: needs '
+                          f'<b>{a["more_early"]}</b> more settled races. It '
+                          f'catches a gross error, but the {apart} between the '
+                          f'0.04 and 0.0498 scales sit against the '
+                          f'<b>+/-{early_w:.1f}</b> points this record would '
+                          f'still carry at {chance_audit.EARLY} races, '
+                          f'{relation}.</p>')
         elif a.get("more_decisive"):
             inner += (f'<p class="k">Informative but not decisive: needs '
                       f'<b>{a["more_decisive"]}</b> more settled races before the '
-                      f'interval is about two points wide and the 0.04 and 0.0498 '
-                      f'scales can be told apart.</p>')
+                      f'interval narrows to about <b>+/-{late_w:.1f}</b> points, '
+                      f'well under the {apart} between the 0.04 and 0.0498 '
+                      f'scales, and they can be told apart.</p>')
         else:
             inner += ('<p class="k">At this sample the interval is narrow '
                       'enough to test the scale it was fitted on.</p>')
