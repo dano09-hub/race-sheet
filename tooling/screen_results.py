@@ -33,7 +33,6 @@ usage:
 import datetime as dt
 import glob
 import html
-import json
 import os
 import re
 import sys
@@ -259,12 +258,36 @@ def _day_head(day):
     return '<h3>Settled &mdash; %s</h3>' % _esc(_day_label(day))
 
 
+def _cell(value, attr=""):
+    return "<td%s>%s</td>" % ((' class="%s"' % attr) if attr else "", value)
+
+
+def _tr(entry, *cells):
+    return "<tr>" + _off_cell(entry) + "".join(cells) + "</tr>"
+
+
+def _screen_block(name, rows, summary, heads, cells):
+    """One panel: its summary, then a table for every settled day.
+
+    The four screens differ only in the sentence above the table and the cells
+    they print, so the day grouping, the table shell and the course/off cell
+    are written once here.
+    """
+    tables = [_day_head(day) + _table(heads, [_tr(r, *cells(r)) for r in group])
+              for day, group in _by_day(rows)]
+    return _shell(name, summary, tables)
+
+
+def _empty_block(name, note):
+    return _shell(name, '<p class="method">%s</p>' % note, [])
+
+
 def longshot_block(rows):
     if not rows:
-        return _shell("longshots",
-                      '<p class="method">No longshot has been flagged on a rated '
-                      'card yet. A screen row needs a card the six-input model can '
-                      'rate and a stored result that names the horse.</p>', [])
+        return _empty_block("longshots",
+                            "No longshot has been flagged on a rated card yet. A "
+                            "screen row needs a card the six-input model can rate "
+                            "and a settled result.")
     wins = sum(1 for r in rows if r["won"])
     placed = sum(1 for r in rows if r["placed"])
     days = len({r["date"] for r in rows})
@@ -278,30 +301,24 @@ def longshot_block(rows):
                % (days, "" if days == 1 else "s", len(rows),
                   "" if len(rows) == 1 else "s", wins, 100.0 * wins / len(rows),
                   len(rows) - wins, placed))
-    tables = []
-    for day, group in _by_day(rows):
-        body = []
-        for r in group:
-            verdict = ("<span class=\"pick hit\">won</span>" if r["won"]
-                       else _finish_text(r))
-            body.append("<tr>" + _off_cell(r)
-                        + "<td>%s</td>" % _esc(r["horse"])
-                        + "<td class=\"num\">%s</td>" % _price(r)
-                        + "<td class=\"num\">%d</td>" % r["rank"]
-                        + "<td class=\"num\">%s</td>" % _pct(r["chance"])
-                        + "<td>%s</td></tr>" % verdict)
-        tables.append(_day_head(day) + _table(
-            ("Course / off", "Longshot", "Card price", "Model rank", "Model %",
-             "Finished"), body))
-    return _shell("longshots", summary, tables)
+
+    def cells(r):
+        verdict = ("<span class=\"pick hit\">won</span>" if r["won"]
+                   else _finish_text(r))
+        return (_cell(_esc(r["horse"])), _cell(_price(r), "num"),
+                _cell("%d" % r["rank"], "num"), _cell(_pct(r["chance"]), "num"),
+                _cell(verdict))
+
+    return _screen_block("longshots", rows, summary,
+                         ("Course / off", "Longshot", "Card price", "Model rank",
+                          "Model %", "Finished"), cells)
 
 
 def overhyped_block(rows):
     if not rows:
-        return _shell("overhyped",
-                      '<p class="method">No favourite has been flagged on a rated '
-                      'card yet. A doubt row needs a stored result that names the '
-                      'favourite.</p>', [])
+        return _empty_block("overhyped",
+                            "No favourite has been flagged on a rated card yet. A "
+                            "doubt row needs a settled result.")
     beaten = sum(1 for r in rows if not r["won"])
     placed = sum(1 for r in rows if r["placed"])
     days = len({r["date"] for r in rows})
@@ -313,30 +330,24 @@ def overhyped_block(rows):
                % (days, "" if days == 1 else "s", len(rows),
                   "" if len(rows) == 1 else "s", beaten,
                   100.0 * beaten / len(rows), placed))
-    tables = []
-    for day, group in _by_day(rows):
-        body = []
-        for r in group:
-            body.append("<tr>" + _off_cell(r)
-                        + "<td>%s</td>" % _esc(r["horse"])
-                        + "<td class=\"num\">%s</td>" % _price(r)
-                        + "<td class=\"num\">%d</td>" % r["rank"]
-                        + "<td class=\"num\">%s</td>" % _pct(r["chance"])
-                        + "<td>%s</td>" % _finish_text(r)
-                        + "<td>%s</td></tr>"
-                        % ("yes" if not r["won"] else "no"))
-        tables.append(_day_head(day) + _table(
-            ("Course / off", "Favourite", "Card price", "Model rank", "Model %",
-             "Finished", "Doubt held?"), body))
-    return _shell("overhyped", summary, tables)
+
+    def cells(r):
+        return (_cell(_esc(r["horse"])), _cell(_price(r), "num"),
+                _cell("%d" % r["rank"], "num"), _cell(_pct(r["chance"]), "num"),
+                _cell(_finish_text(r)),
+                _cell("yes" if not r["won"] else "no"))
+
+    return _screen_block("overhyped", rows, summary,
+                         ("Course / off", "Favourite", "Card price", "Model rank",
+                          "Model %", "Finished", "Doubt held?"), cells)
 
 
 def placer_block(rows):
     if not rows:
-        return _shell("placers",
-                      '<p class="method">No place banker has been flagged on a rated '
-                      'card yet. A banker row needs the model pick to be the market '
-                      'favourite and the result to name it.</p>', [])
+        return _empty_block("placers",
+                            "No place banker has been flagged on a rated card yet. "
+                            "A banker row needs the model pick to be the market "
+                            "favourite and a settled result.")
     placed = sum(1 for r in rows if r["placed"])
     unknown = sum(1 for r in rows if r["placed"] is None and not r["won"])
     days = len({r["date"] for r in rows})
@@ -348,24 +359,20 @@ def placer_block(rows):
                'stake is taken.</p>'
                % (days, "" if days == 1 else "s", len(rows),
                   "" if len(rows) == 1 else "s", placed, unknown))
-    tables = []
-    for day, group in _by_day(rows):
-        body = []
-        for r in group:
-            body.append("<tr>" + _off_cell(r)
-                        + "<td>%s</td>" % _esc(r["horse"])
-                        + "<td class=\"num\">%s</td>" % _price(r)
-                        + "<td class=\"num\">%s</td>" % _pct(r["chance"])
-                        + "<td>%s</td>" % _finish_text(r)
-                        + "<td class=\"placed %s\">%s</td></tr>"
-                        % (("yes" if r["placed"] else "no") if r["placed"] is not None
-                           else "unknown",
-                           "Yes" if r["placed"] else ("No" if r["placed"] is False
-                                                     else "&mdash;")))
-        tables.append(_day_head(day) + _table(
-            ("Course / off", "Banker", "Card price", "Model %", "Finished",
-             "Placed?"), body))
-    return _shell("placers", summary, tables)
+
+    def cells(r):
+        if r["placed"] is None:
+            placed_cell = _cell("&mdash;", "placed unknown")
+        else:
+            placed_cell = _cell("Yes" if r["placed"] else "No",
+                                "placed yes" if r["placed"] else "placed no")
+        return (_cell(_esc(r["horse"])), _cell(_price(r), "num"),
+                _cell(_pct(r["chance"]), "num"), _cell(_finish_text(r)),
+                placed_cell)
+
+    return _screen_block("placers", rows, summary,
+                         ("Course / off", "Banker", "Card price", "Model %",
+                          "Finished", "Placed?"), cells)
 
 
 def lay_money(rows):
@@ -378,6 +385,7 @@ def lay_money(rows):
     reported against the total liability, with the largest single lay beside it.
     """
     risked = returned = lost = 0.0
+    wins = 0
     worst = 0.0
     for row in rows:
         dec = row.get("dec")
@@ -389,22 +397,23 @@ def lay_money(rows):
         if row["won"]:            # the horse won, so the lay lost its liability
             lost += liability
         else:
+            wins += 1
             returned += 1.0
     net = returned - lost
-    return {"n": len(rows), "risked": risked, "returned": returned,
+    return {"wins": wins, "risked": risked, "returned": returned,
             "lost": lost, "net": net, "worst": worst,
             "pct": (100.0 * net / risked) if risked else None}
 
 
 def lay_block(rows):
     if not rows:
-        return _shell("lays",
-                      '<p class="method">No rated race has settled yet, so the lay '
-                      'record is empty. A lay is only written for a card the '
-                      'six-input model can rate.</p>', [])
-    won = sum(1 for r in rows if not r["won"])   # the layer wins when the horse loses
+        return _empty_block("lays",
+                            "No rated race has settled yet, so the lay record is "
+                            "empty. A lay is only written for a card the six-input "
+                            "model can rate.")
     days = len({r["date"] for r in rows})
     money = lay_money(rows)
+    won = money["wins"]            # the layer wins when the horse loses
     pct = ("%+.1f%%" % money["pct"]) if money["pct"] is not None else "&mdash;"
     times = (" &mdash; %.1f times the whole net." % (money["worst"] / money["net"])
              if money["net"] > 0 and money["worst"] > 0
@@ -428,25 +437,19 @@ def lay_block(rows):
                   len(rows) - won, money["returned"], money["lost"],
                   "{:,.1f}".format(money["risked"]), money["net"], pct,
                   "{:,.1f}".format(money["worst"]), times))
-    tables = []
-    for day, group in _by_day(rows):
-        body = []
-        for r in group:
-            dec = r.get("dec")
-            liability = "%.2f" % (dec - 1) if dec else "&mdash;"
-            body.append("<tr>" + _off_cell(r)
-                        + "<td>%s</td>" % _esc(r["horse"])
-                        + "<td class=\"num\">%s</td>" % _price(r)
-                        + "<td class=\"num\">%s</td>" % _pct(r["chance"])
-                        + "<td class=\"num\">%s</td>" % liability
-                        + "<td>%s</td>" % _finish_text(r)
-                        + "<td class=\"placed %s\">%s</td></tr>"
-                        % (("no" if r["won"] else "yes"),
-                           "lost" if r["won"] else "won"))
-        tables.append(_day_head(day) + _table(
-            ("Course / off", "Lay", "Card price", "Model %", "Liability (stake 1)",
-             "Finished", "Lay"), body))
-    return _shell("lays", summary, tables)
+
+    def cells(r):
+        dec = r.get("dec")
+        liability = "%.2f" % (dec - 1) if dec else "&mdash;"
+        return (_cell(_esc(r["horse"])), _cell(_price(r), "num"),
+                _cell(_pct(r["chance"]), "num"), _cell(liability, "num"),
+                _cell(_finish_text(r)),
+                _cell("lost" if r["won"] else "won",
+                      "placed no" if r["won"] else "placed yes"))
+
+    return _screen_block("lays", rows, summary,
+                         ("Course / off", "Lay", "Card price", "Model %",
+                          "Liability (stake 1)", "Finished", "Lay"), cells)
 
 
 BUILDERS = {

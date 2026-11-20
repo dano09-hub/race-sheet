@@ -2943,6 +2943,50 @@ _lay_html = screen_results.lay_block([
 check("screens: the lay panel prints the net against the liability it risked",
       "34.0" in _lay_html and "-85.3%" in _lay_html, _lay_html[:300])
 
+
+def _panel_row(**kw):
+    row = {"date": "2026-01-02", "course": "Test", "time": "13:30",
+           "region": "GB", "horse": "Runner", "price": "9", "dec": 9.0,
+           "chance": 12.0, "rank": 3, "finish": "", "won": False,
+           "placed": None}
+    row.update(kw)
+    return row
+
+
+_long_html = screen_results.longshot_block([
+    _panel_row(horse="Long Win", won=True, finish="1st", placed=True),
+    _panel_row(horse="Long Beaten", time="14:00"),
+])
+check("screens: the longshot panel prints the strike rate, the frame and a dash "
+      "where no placing is on file",
+      "1</b> won (50.0%)" in _long_html and "Long Beaten" in _long_html
+      and "were in the frame" in _long_html and "&mdash;</td>" in _long_html,
+      _long_html[:300])
+
+_over_html = screen_results.overhyped_block([
+    _panel_row(horse="Doubted", finish="2nd", placed=True),
+    _panel_row(horse="Held", time="14:00", won=True, finish="1st", placed=True),
+])
+check("screens: the overhyped panel prints the doubt verdict for each favourite",
+      "were beaten (50.0%)" in _over_html and "Doubted" in _over_html
+      and ">yes</td>" in _over_html and ">no</td>" in _over_html,
+      _over_html[:300])
+
+_place_html = screen_results.placer_block([
+    _panel_row(horse="Placed Banker", finish="2nd", placed=True),
+    _panel_row(horse="Missing Banker", time="14:00"),
+])
+check("screens: the place banker panel separates placed from not on file",
+      "1</b> placed under the standard terms" in _place_html
+      and "1 are not named in the places" in _place_html
+      and "placed yes" in _place_html and "placed unknown" in _place_html,
+      _place_html[:300])
+
+check("screens: an empty screen says what it needs and prints no table",
+      "<table" not in screen_results.longshot_block([])
+      and "settled result" in screen_results.longshot_block([]),
+      screen_results.longshot_block([])[:200])
+
 print()
 print("Data integrity")
 
