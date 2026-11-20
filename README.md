@@ -477,6 +477,12 @@ Method tab and served `dist` copy. It also checks the archived `ice` README and
 Method tab. GitHub Actions runs both checks on pushes to `main` and on pull
 requests.
 
+The page render calls the page's own scorer through Node, and its numbers go
+straight into the ledgers and the screen panels. Use the version in `.nvmrc`
+(`nvm use`) for a local refresh, check or test run: the three workflows that
+render the page read that file too, and a different Node can print a figure
+differently, which the committed-page check would report as a stale page.
+
 Fixture tests for both blocks on the Results tab. For the rating A/B tally: empty
 project, a pending-only day, two days with known hits, all three verdict branches
 at 300 races, the real 14 Nov snapshot with simulated winners, escaping and
