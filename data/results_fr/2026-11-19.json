@@ -1,7 +1,7 @@
 {
  "date": "2026-11-19",
  "region": "FR",
- "updated": "2026-11-19T19:58:03Z",
+ "updated": "2026-11-20T01:43:21Z",
  "races": [
   {
    "course": "Saint-Cloud",
@@ -91,9 +91,9 @@
    ],
    "region": "FR",
    "pick": "KILOECHO",
-   "chance": 21.6,
    "pick_finish": "6th",
-   "hit": false
+   "hit": false,
+   "chance": 21.6
   },
   {
    "course": "Saint-Cloud",
@@ -126,9 +126,9 @@
    ],
    "region": "FR",
    "pick": "EAGLE GATE",
-   "chance": 16.9,
    "pick_finish": "8th",
-   "hit": false
+   "hit": false,
+   "chance": 16.9
   },
   {
    "course": "Saint-Cloud",
@@ -161,9 +161,9 @@
    ],
    "region": "FR",
    "pick": "INDY B",
-   "chance": 15.1,
    "pick_finish": "12th",
-   "hit": false
+   "hit": false,
+   "chance": 15.1
   },
   {
    "course": "Saint-Cloud",
@@ -196,9 +196,9 @@
    ],
    "region": "FR",
    "pick": "COMME QUOI",
-   "chance": 10.4,
    "pick_finish": "10th",
-   "hit": false
+   "hit": false,
+   "chance": 10.4
   },
   {
    "course": "Saint-Cloud",
@@ -230,9 +230,9 @@
    ],
    "region": "FR",
    "pick": "HEY JO",
-   "chance": 12.1,
    "pick_finish": "5th",
-   "hit": false
+   "hit": false,
+   "chance": 12.1
   },
   {
    "course": "Saint-Cloud",
@@ -263,7 +263,11 @@
     "GRAND MACHO",
     "SOCIANDO"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Saint-Cloud",
@@ -294,7 +298,11 @@
     "SIR CRATER",
     "VAPOA"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Saint-Cloud",
@@ -325,7 +333,11 @@
     "SIM CARD",
     "INGEBORG"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Fontainebleau",
@@ -370,9 +382,9 @@
    ],
    "region": "FR",
    "pick": "NATHAN IS BACK",
-   "chance": 30.1,
    "pick_finish": "",
-   "hit": false
+   "hit": false,
+   "chance": 30.1
   },
   {
    "course": "Fontainebleau",
@@ -399,9 +411,9 @@
    ],
    "region": "FR",
    "pick": "AQUALI MELODY",
-   "chance": 21,
    "pick_finish": "2nd",
-   "hit": false
+   "hit": false,
+   "chance": 21
   },
   {
    "course": "Fontainebleau",
@@ -425,9 +437,9 @@
    ],
    "region": "FR",
    "pick": "RAFFLES CHOICE",
-   "chance": 21.8,
    "pick_finish": "1st",
-   "hit": true
+   "hit": true,
+   "chance": 21.8
   },
   {
    "course": "Fontainebleau",
@@ -449,9 +461,9 @@
    ],
    "region": "FR",
    "pick": "PAINT FOR FUN",
-   "chance": 40.1,
    "pick_finish": "",
-   "hit": false
+   "hit": false,
+   "chance": 40.1
   },
   {
    "course": "Fontainebleau",
@@ -476,7 +488,11 @@
     "IMENHOTEP",
     "FILZMOOSERIN"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Fontainebleau",
@@ -500,7 +516,11 @@
     "FLEUR DE FEU",
     "STARBOSS"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Paris-Vincennes",
@@ -521,7 +541,11 @@
     "NOUKAT PARC",
     "NARCISO D'EVA"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Paris-Vincennes",
@@ -550,7 +574,11 @@
     "MUSE DU GOUTIER",
     "MANILLE D'ERABLE"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Paris-Vincennes",
@@ -572,7 +600,11 @@
     "KIKI DU ROC",
     "KILLER SUN DRALIAM"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Paris-Vincennes",
@@ -600,9 +632,9 @@
    ],
    "region": "FR",
    "pick": "MAJOR DE LA BASLE",
-   "chance": 15.4,
    "pick_finish": "11th",
-   "hit": false
+   "hit": false,
+   "chance": 15.4
   },
   {
    "course": "Paris-Vincennes",
@@ -627,9 +659,9 @@
    ],
    "region": "FR",
    "pick": "LAMBADA DU GOUTIER",
-   "chance": 19.4,
    "pick_finish": "2nd",
-   "hit": false
+   "hit": false,
+   "chance": 19.4
   },
   {
    "course": "Paris-Vincennes",
@@ -655,9 +687,9 @@
    ],
    "region": "FR",
    "pick": "OLGAYA",
-   "chance": 32.1,
    "pick_finish": "1st",
-   "hit": true
+   "hit": true,
+   "chance": 32.1
   },
   {
    "course": "Paris-Vincennes",
@@ -681,9 +713,9 @@
    ],
    "region": "FR",
    "pick": "KARMA QUICK",
-   "chance": 28.4,
    "pick_finish": "",
-   "hit": false
+   "hit": false,
+   "chance": 28.4
   },
   {
    "course": "Paris-Vincennes",
@@ -713,9 +745,9 @@
    ],
    "region": "FR",
    "pick": "NEW GRASS",
-   "chance": 29.1,
    "pick_finish": "2nd",
-   "hit": false
+   "hit": false,
+   "chance": 29.1
   },
   {
    "course": "Graignes",
@@ -740,7 +772,11 @@
     "KRAC BOREAL",
     "KAPRICE D'EVAILLES"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Graignes",
@@ -765,9 +801,9 @@
    ],
    "region": "FR",
    "pick": "KOZMIC BLUES",
-   "chance": 18.8,
    "pick_finish": "2nd",
-   "hit": false
+   "hit": false,
+   "chance": 18.8
   },
   {
    "course": "Graignes",
@@ -794,9 +830,9 @@
    ],
    "region": "FR",
    "pick": "LINDOR DE L'AVRE",
-   "chance": 15.5,
    "pick_finish": "1st",
-   "hit": true
+   "hit": true,
+   "chance": 15.5
   },
   {
    "course": "Graignes",
@@ -819,9 +855,9 @@
    ],
    "region": "FR",
    "pick": "MAGNUS MAXIMUS",
-   "chance": 30,
    "pick_finish": "",
-   "hit": false
+   "hit": false,
+   "chance": 30
   },
   {
    "course": "Graignes",
@@ -846,9 +882,9 @@
    ],
    "region": "FR",
    "pick": "JACANA DE BLARY",
-   "chance": 22.3,
    "pick_finish": "6th",
-   "hit": false
+   "hit": false,
+   "chance": 22.3
   },
   {
    "course": "Graignes",
@@ -875,9 +911,9 @@
    ],
    "region": "FR",
    "pick": "MELISSA MATCH",
-   "chance": 41.2,
    "pick_finish": "1st",
-   "hit": true
+   "hit": true,
+   "chance": 41.2
   },
   {
    "course": "Graignes",
@@ -904,8 +940,35 @@
    ],
    "region": "FR",
    "pick": "LADY DE L'ELLE",
-   "chance": 17.3,
    "pick_finish": "3rd",
+   "hit": false,
+   "chance": 17.3
+  },
+  {
+   "course": "Graignes",
+   "time": "19:47",
+   "race": "PRIX PIERRE DRION",
+   "race_no": "R4C8",
+   "winner": "NADJA",
+   "places": [
+    "NADJA",
+    "NORRINGTON",
+    "NONNE D'ERABLE"
+   ],
+   "order": [
+    "NADJA",
+    "NORRINGTON",
+    "NONNE D'ERABLE",
+    "NOW WITH US",
+    "NORTON KEN",
+    "NOTTINGHAM PLACE",
+    "NIGHTWISH TOR",
+    "NIGHT FOR MONEY"
+   ],
+   "region": "FR",
+   "pick": "NOW WITH US",
+   "chance": 39.7,
+   "pick_finish": "4th",
    "hit": false
   }
  ]
