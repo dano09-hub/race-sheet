@@ -939,8 +939,10 @@ def audit_rows():
         time = str(row.get("time") or "")[:5]
         winner = row.get("winner", "")
         card = rr.pick_card(cards, row) if rated else None
-        got = (rr.race_entry(cards, scored, restored, row.get("region") or "",
-                             row, card=card) if rated else None)
+        got = None
+        if rated:
+            got = rr.race_entry(cards, scored, restored, row.get("region") or "",
+                                row, card=card)
         # The same card the re-score matched for this row, so its rows rank the
         # pick shown above rather than some other archived copy of the race.
         ranked = scored.get(id(card)) if card else None

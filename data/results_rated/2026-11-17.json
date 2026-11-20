@@ -4,7 +4,7 @@
  "races": [
   {
    "course": "Carlisle",
-   "time": "",
+   "time": "12:20",
    "winner": "Bossman Jack",
    "region": "GB",
    "state": "incomplete",
@@ -28,7 +28,7 @@
   },
   {
    "course": "Carlisle",
-   "time": "",
+   "time": "12:50",
    "winner": "Handball Maradona",
    "region": "GB",
    "state": "incomplete",
@@ -64,7 +64,7 @@
   },
   {
    "course": "Carlisle",
-   "time": "",
+   "time": "13:25",
    "winner": "Turbocharged",
    "region": "GB",
    "state": "incomplete",
@@ -100,7 +100,7 @@
   },
   {
    "course": "Carlisle",
-   "time": "",
+   "time": "13:55",
    "winner": "King Berry",
    "region": "GB",
    "state": "rated",
@@ -119,27 +119,26 @@
   },
   {
    "course": "Carlisle",
-   "time": "",
+   "time": "14:25",
    "winner": "Foster&#x27;s Fortune",
-   "region": "",
-   "state": "no-card",
-   "pick": "",
-   "chance": null,
+   "region": "GB",
+   "state": "rated",
+   "pick": "Doyen Du Bar",
+   "chance": 14.1,
    "finish": "",
    "hit": false,
    "placed": null,
-   "missing": [
-    {
-     "what": "no archived card",
-     "n": 0
-    }
+   "missing": [],
+   "place_places": null,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-16T13:10:01"
    ],
-   "blocker": "no archived card",
+   "blocker": "",
    "blocker_only": false
   },
   {
    "course": "Carlisle",
-   "time": "",
+   "time": "15:00",
    "winner": "Holeheartedly",
    "region": "GB",
    "state": "rated",
@@ -158,7 +157,7 @@
   },
   {
    "course": "Carlisle",
-   "time": "",
+   "time": "15:30",
    "winner": "Air Apparent",
    "region": "GB",
    "state": "rated",
@@ -177,7 +176,7 @@
   },
   {
    "course": "Carlisle",
-   "time": "",
+   "time": "11:50",
    "winner": "Galatrona",
    "region": "GB",
    "state": "incomplete",
@@ -213,7 +212,7 @@
   },
   {
    "course": "Limerick",
-   "time": "",
+   "time": "12:40",
    "winner": "Ludus Magnus",
    "region": "GB",
    "state": "incomplete",
@@ -254,7 +253,7 @@
   },
   {
    "course": "Limerick",
-   "time": "",
+   "time": "13:10",
    "winner": "Galileo Springs",
    "region": "GB",
    "state": "rated",
@@ -273,7 +272,7 @@
   },
   {
    "course": "Limerick",
-   "time": "",
+   "time": "13:40",
    "winner": "Theanniversary Man",
    "region": "GB",
    "state": "rated",
@@ -292,7 +291,7 @@
   },
   {
    "course": "Limerick",
-   "time": "",
+   "time": "14:10",
    "winner": "Ardera Gun",
    "region": "GB",
    "state": "incomplete",
@@ -318,7 +317,7 @@
   },
   {
    "course": "Limerick",
-   "time": "",
+   "time": "14:40",
    "winner": "Lord De Choisel",
    "region": "GB",
    "state": "incomplete",
@@ -344,10 +343,10 @@
   },
   {
    "course": "Limerick",
-   "time": "",
+   "time": "15:15",
    "winner": "Spellacy&#x27;s Cross",
-   "region": "",
-   "state": "no-card",
+   "region": "GB",
+   "state": "incomplete",
    "pick": "",
    "chance": null,
    "finish": "",
@@ -355,16 +354,22 @@
    "placed": null,
    "missing": [
     {
-     "what": "no archived card",
-     "n": 0
+     "what": "price",
+     "n": 17,
+     "of": 17
+    },
+    {
+     "what": "trainer record",
+     "n": 1,
+     "of": 17
     }
    ],
-   "blocker": "no archived card",
+   "blocker": "price",
    "blocker_only": false
   },
   {
    "course": "Limerick",
-   "time": "",
+   "time": "15:50",
    "winner": "Todo Bien",
    "region": "GB",
    "state": "incomplete",
@@ -400,10 +405,10 @@
   },
   {
    "course": "Limerick",
-   "time": "",
+   "time": "12:10",
    "winner": "Poet&#x27;s Duke",
-   "region": "",
-   "state": "no-card",
+   "region": "GB",
+   "state": "incomplete",
    "pick": "",
    "chance": null,
    "finish": "",
@@ -411,16 +416,27 @@
    "placed": null,
    "missing": [
     {
-     "what": "no archived card",
-     "n": 0
+     "what": "price",
+     "n": 17,
+     "of": 17
+    },
+    {
+     "what": "official rating",
+     "n": 16,
+     "of": 17
+    },
+    {
+     "what": "trainer record",
+     "n": 1,
+     "of": 17
     }
    ],
-   "blocker": "no archived card",
+   "blocker": "price",
    "blocker_only": false
   },
   {
    "course": "Southwell",
-   "time": "",
+   "time": "17:00",
    "winner": "Dowman",
    "region": "GB",
    "state": "rated",
@@ -439,7 +455,7 @@
   },
   {
    "course": "Southwell",
-   "time": "",
+   "time": "17:30",
    "winner": "Without Compromise",
    "region": "GB",
    "state": "rated",
@@ -458,10 +474,10 @@
   },
   {
    "course": "Southwell",
-   "time": "",
+   "time": "18:00",
    "winner": "Don&#x27;t Hurry Love",
-   "region": "",
-   "state": "no-card",
+   "region": "GB",
+   "state": "incomplete",
    "pick": "",
    "chance": null,
    "finish": "",
@@ -469,16 +485,32 @@
    "placed": null,
    "missing": [
     {
-     "what": "no archived card",
-     "n": 0
+     "what": "price",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "official rating",
+     "n": 6,
+     "of": 10
+    },
+    {
+     "what": "days since a run",
+     "n": 1,
+     "of": 10
+    },
+    {
+     "what": "form",
+     "n": 1,
+     "of": 10
     }
    ],
-   "blocker": "no archived card",
+   "blocker": "price",
    "blocker_only": false
   },
   {
    "course": "Southwell",
-   "time": "",
+   "time": "18:30",
    "winner": "Tex",
    "region": "GB",
    "state": "rated",
@@ -497,7 +529,7 @@
   },
   {
    "course": "Southwell",
-   "time": "",
+   "time": "19:00",
    "winner": "Phoenix Of Dreams",
    "region": "GB",
    "state": "rated",
@@ -516,7 +548,7 @@
   },
   {
    "course": "Southwell",
-   "time": "",
+   "time": "19:30",
    "winner": "Maldevious",
    "region": "GB",
    "state": "rated",
@@ -536,7 +568,7 @@
   },
   {
    "course": "Southwell",
-   "time": "",
+   "time": "20:00",
    "winner": "Hayate",
    "region": "GB",
    "state": "incomplete",
@@ -572,7 +604,7 @@
   },
   {
    "course": "Southwell",
-   "time": "",
+   "time": "20:30",
    "winner": "Goldwork",
    "region": "GB",
    "state": "rated",
@@ -593,7 +625,7 @@
   },
   {
    "course": "Southwell",
-   "time": "",
+   "time": "16:30",
    "winner": "Castan",
    "region": "GB",
    "state": "rated",

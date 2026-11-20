@@ -901,8 +901,8 @@ check.
   `python3 tooling/refresh.py --data-only` re-renders the UK, Irish and US
   ledgers, the race-by-race audit and the Model chance audit from stored data
   without scraping, so a new re-score reaches the page without a fresh pull.
-  Coverage at this build is 48 of 272 settled races (8 winners), all on British
-  or Irish cards; 28 of those were held out by price alone and every runner's
+  Coverage at this build is 51 of 272 settled races (8 winners), all on British
+  or Irish cards; 29 of those were held out by price alone and every runner's
   price was found in a stored snapshot. One restored card carries the same
   weight for every runner, so the weight factor cannot score it and it stays
   not rated. US

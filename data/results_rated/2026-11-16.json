@@ -4,7 +4,7 @@
  "races": [
   {
    "course": "Plumpton",
-   "time": "",
+   "time": "12:45",
    "winner": "Mysterland",
    "region": "GB",
    "state": "incomplete",
@@ -40,7 +40,7 @@
   },
   {
    "course": "Plumpton",
-   "time": "",
+   "time": "13:15",
    "winner": "Prairie Diamond",
    "region": "GB",
    "state": "rated",
@@ -56,7 +56,7 @@
   },
   {
    "course": "Plumpton",
-   "time": "",
+   "time": "13:45",
    "winner": "Clap Of Thunder",
    "region": "GB",
    "state": "rated",
@@ -72,7 +72,7 @@
   },
   {
    "course": "Plumpton",
-   "time": "",
+   "time": "14:15",
    "winner": "Norman Fletcher",
    "region": "GB",
    "state": "rated",
@@ -88,7 +88,7 @@
   },
   {
    "course": "Plumpton",
-   "time": "",
+   "time": "14:45",
    "winner": "Of Corse I Can",
    "region": "GB",
    "state": "incomplete",
@@ -109,7 +109,7 @@
   },
   {
    "course": "Plumpton",
-   "time": "",
+   "time": "15:15",
    "winner": "Daring Plan",
    "region": "GB",
    "state": "rated",
@@ -125,7 +125,7 @@
   },
   {
    "course": "Plumpton",
-   "time": "",
+   "time": "15:45",
    "winner": "Sense Of Reason",
    "region": "GB",
    "state": "rated",
@@ -141,7 +141,7 @@
   },
   {
    "course": "Wolverhampton",
-   "time": "",
+   "time": "17:00",
    "winner": "Desert Romance",
    "region": "GB",
    "state": "incomplete",
@@ -172,7 +172,7 @@
   },
   {
    "course": "Wolverhampton",
-   "time": "",
+   "time": "17:30",
    "winner": "Leading Role",
    "region": "GB",
    "state": "incomplete",
@@ -203,7 +203,7 @@
   },
   {
    "course": "Wolverhampton",
-   "time": "",
+   "time": "18:00",
    "winner": "Splintered",
    "region": "GB",
    "state": "incomplete",
@@ -234,7 +234,7 @@
   },
   {
    "course": "Wolverhampton",
-   "time": "",
+   "time": "18:30",
    "winner": "Law Of Average",
    "region": "GB",
    "state": "rated",
@@ -250,7 +250,7 @@
   },
   {
    "course": "Wolverhampton",
-   "time": "",
+   "time": "19:00",
    "winner": "Giorgio M",
    "region": "GB",
    "state": "rated",
@@ -266,7 +266,7 @@
   },
   {
    "course": "Wolverhampton",
-   "time": "",
+   "time": "19:30",
    "winner": "Galba",
    "region": "GB",
    "state": "rated",
@@ -282,7 +282,7 @@
   },
   {
    "course": "Wolverhampton",
-   "time": "",
+   "time": "20:00",
    "winner": "The Sweet Escape",
    "region": "GB",
    "state": "incomplete",
@@ -303,27 +303,23 @@
   },
   {
    "course": "Wolverhampton",
-   "time": "",
+   "time": "20:30",
    "winner": "It&#x27;s A Love Thing",
-   "region": "",
-   "state": "no-card",
-   "pick": "",
-   "chance": null,
+   "region": "GB",
+   "state": "rated",
+   "pick": "Saxophonic",
+   "chance": 31.4,
    "finish": "",
    "hit": false,
    "placed": null,
-   "missing": [
-    {
-     "what": "no archived card",
-     "n": 0
-    }
-   ],
-   "blocker": "no archived card",
+   "missing": [],
+   "place_places": null,
+   "blocker": "",
    "blocker_only": false
   },
   {
    "course": "Wolverhampton",
-   "time": "",
+   "time": "16:30",
    "winner": "Lord Ragnar",
    "region": "GB",
    "state": "incomplete",
