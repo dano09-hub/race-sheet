@@ -23,6 +23,11 @@ jobs:
           python-version: "3.12"
       - name: Install dependencies
         run: python3 -m pip install -r requirements.txt
+      # The screen panels are derived from the stored re-score, so a data-only
+      # change leaves the committed page behind until it is rendered. Render it
+      # the way a local run does, before the suite compares the two.
+      - name: Rebuild the page from stored data
+        run: python3 tooling/refresh.py --data-only
       - name: Fixture tests
         run: python3 tooling/test_checks.py
       - name: Factor documentation
