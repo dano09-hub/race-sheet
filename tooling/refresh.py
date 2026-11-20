@@ -1031,6 +1031,10 @@ def rebuild_page(html=None):
     audit = audit_rows()
     if audit:
         html = replace_block(html, "RESULTS", audit)
+    # The Lays tab and the three screen-result panels read the same re-score as
+    # the ledgers, so a new re-score has to reach them here too.
+    import screen_results
+    html = screen_results.replace_blocks(html)
     with open(INDEX, "w", encoding="utf-8") as f:
         f.write(html)
     os.makedirs(os.path.join(ROOT, "dist", "public"), exist_ok=True)
@@ -1732,6 +1736,10 @@ def main():
     audit = audit_rows()
     if audit:
         html = replace_block(html, "RESULTS", audit)
+
+    # The Lays tab and the screen-result panels, from the same re-score.
+    import screen_results
+    html = screen_results.replace_blocks(html)
 
     # The Hong Kong results tab is rebuilt from data/results_hk, so a refresh
     # that only re-scrapes cards keeps the settled ledger current.

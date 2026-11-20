@@ -39,6 +39,7 @@ import refresh         # noqa: E402
 import ledger_summary as lsum  # noqa: E402
 import parse_cards as pcards  # noqa: E402
 import rescore_results  # noqa: E402
+import screen_results  # noqa: E402
 import recheck_market  # noqa: E402
 import settle          # noqa: E402
 import us_flags        # noqa: E402
@@ -2858,6 +2859,89 @@ try:
            rescore_results.norm("UnknownClock")) not in _idx_s)
 finally:
     shutil.rmtree(_tmp_dir, ignore_errors=True)
+
+print()
+print("Screens")
+
+
+def _screen_runner(horse, total, share, odds, dec, chance):
+    return {"horse": horse, "total": total, "share": share,
+            "odds": odds, "dec": dec, "chance": chance}
+
+
+_field = [
+    _screen_runner("Favourite", 80.0, 0.40, "2.5", 2.5, 38.0),
+    _screen_runner("Second", 70.0, 0.20, "5", 5.0, 20.0),
+    _screen_runner("Long", 60.0, 0.10, "9", 9.0, 12.0),
+    _screen_runner("Fourth", 50.0, 0.05, "20", 20.0, 5.0),
+    _screen_runner("Last", 40.0, 0.02, "50", 50.0, 2.0),
+]
+_screens = screen_results.screen_race({"rated": True, "pick": "Favourite",
+                                       "runners": _field})
+check("screens: a 7/1+ runner in the top four with a chance above the price is a longshot",
+      [r["horse"] for r in _screens["longshots"]] == ["Long"],
+      [r["horse"] for r in _screens["longshots"]])
+check("screens: the model's last-rated runner is the lay",
+      (_screens["lay"] or {}).get("horse") == "Last", _screens["lay"])
+check("screens: a favourite the model rates first and near the price is not doubted",
+      _screens["overhyped"] == [], _screens["overhyped"])
+check("screens: the model's top pick, also the favourite, in a field of five is a banker",
+      [r["horse"] for r in _screens["placers"]] == ["Favourite"],
+      _screens["placers"])
+
+_doubt = screen_results.screen_race({"rated": True, "pick": "Top", "runners": [
+    _screen_runner("Top", 90.0, 0.20, "5", 5.0, 20.0),
+    _screen_runner("Mid", 80.0, 0.22, "4.5", 4.5, 22.0),
+    _screen_runner("Fav", 70.0, 0.40, "2.2", 2.2, 30.0),
+    _screen_runner("Tail", 60.0, 0.05, "25", 25.0, 3.0),
+    _screen_runner("End", 50.0, 0.02, "66", 66.0, 1.0),
+]})
+check("screens: a favourite the model ranks third is doubted",
+      [r["horse"] for r in _doubt["overhyped"]] == ["Fav"], _doubt["overhyped"])
+
+_unpriced = screen_results.screen_race({"rated": True, "pick": "A", "runners": [
+    _screen_runner("A", 90.0, 0.5, "", None, 50.0),
+    _screen_runner("B", 80.0, 0.5, "", None, 50.0)]})
+check("screens: without a card price nothing is laid",
+      _unpriced["lay"] is None, _unpriced)
+
+_base = {"date": "2026-01-02", "course": "Test", "time": "13:30",
+         "race": "", "winner": "Favourite", "region": "GB"}
+_result = {"course": "Test", "time": "13:30", "winner": "Favourite",
+           "places": ["Favourite", "Second"], "place_places": 2}
+_lay = screen_results._settle(_base, _field[-1], _result)
+check("screens: a lay settles as won when its horse did not win",
+      _lay is not None and _lay["won"] is False, _lay)
+check("screens: a beaten runner outside the stored places has no placing",
+      _lay is not None and screen_results._finish_text(_lay) == "&mdash;", _lay)
+_second = screen_results._settle(
+    _base, _screen_runner("Second", 70.0, 0.20, "5", 5.0, 20.0), _result)
+check("screens: a beaten runner in the stored places prints its placing",
+      _second is not None and screen_results._finish_text(_second) == "2nd", _second)
+_nr = screen_results._settle(_base, _field[-1],
+                             {"winner": "Favourite", "finish": {"Last": "NR"}})
+check("screens: a non-runner is left out of the record", _nr is None, _nr)
+
+_money = screen_results.lay_money([
+    {"dec": 5.0, "won": False},    # the lay won: one unit back
+    {"dec": 31.0, "won": True},    # the horse won: thirty units lost
+])
+check("screens: the lay record is weighed by liability, not by strike rate",
+      _money["net"] == -29.0 and _money["risked"] == 34.0
+      and abs(_money["pct"] + 85.2941) < 0.01, _money)
+check("screens: the largest single lay is reported beside the net",
+      _money["worst"] == 30.0, _money)
+
+_lay_html = screen_results.lay_block([
+    {"date": "2026-01-02", "course": "Test", "time": "13:30", "region": "GB",
+     "horse": "A", "price": "5", "dec": 5.0, "chance": 10.0, "rank": 2,
+     "finish": "", "won": False, "placed": None},
+    {"date": "2026-01-02", "course": "Test", "time": "14:00", "region": "GB",
+     "horse": "B", "price": "31", "dec": 31.0, "chance": 2.0, "rank": 6,
+     "finish": "1st", "won": True, "placed": None},
+])
+check("screens: the lay panel prints the net against the liability it risked",
+      "34.0" in _lay_html and "-85.3%" in _lay_html, _lay_html[:300])
 
 print()
 print("Data integrity")

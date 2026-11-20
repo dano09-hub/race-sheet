@@ -839,6 +839,36 @@ pick flag). It never edits the cards the model scores and is not imported by
 `refresh.py`, so no pick changes. Past-date racecards redirect to results and
 results carry no ratings, so it can only capture a card before its races run.
 
+## Laying at Smarkets
+
+Smarkets is a betting exchange, so the same market can be laid as well as
+backed: you offer a price, and your liability is the backer's stake times the
+decimal price minus one. Its commission is 2% of net market winnings (1% on the
+Pro tier, 3% above £25,000 net profit in a year). Market data comes from the
+REST v3 API: `/v3/markets/{market_ids}/quotes/` returns the current exchange
+prices for both sides, and `/v3/markets/{market_ids}/last_executed_prices/`
+the last traded price. Authentication is OAuth2, and API access is granted only
+after an application is approved, with a one-time £250 administration fee; API
+users are rate-limited to 50 requests a minute and unauthenticated calls get
+delayed prices. Smarkets' terms allow automated access only after that
+approval.
+
+**Decision: the Lays tab does not show a Smarkets price.** No feed this project
+archives carries an exchange ladder: the archived cards hold racecard win
+prices, which are back prices with a bookmaker margin, and nothing holds the
+lay side, the money available at it, or the commission paid on a winning
+market. A lay price cannot be derived from a card price without inventing the
+spread, so the tab quotes the card price, the model's rank and chance, and the
+liability that price would imply per unit staked, and labels all of it as such.
+Its settled record reports the net against the total liability risked rather
+than a strike rate, because 51 winning lays at one unit each say nothing about
+the one loser that risks thirty times as much.
+Wiring in real lay prices would need an approved Smarkets API key (or an
+archived ladder) plus a job that stores the ladder before each off; the page
+would then show the exchange price beside the card price rather than replace
+the record with it. Until then a lay row is a record of the model, not a price
+feed, and no stake is taken.
+
 ## Deploying
 
 The site is on Freebuff Sites (site id `2a8edd98-2d40-49b4-92b1-33f3df2436f0`).
@@ -847,22 +877,26 @@ since `dist/public/index.html` is the whole site.
 
 ## The page
 
-Thirteen destinations, each a job rather than a data source. Old tab names still
-resolve to Today, so saved links and the browser's remembered tab keep working.
-Every race list gives the off time and runs in start-time order, and settled
-ledgers put each day's races in clock order. Times are held as real instants, so
-the order does not change with the viewer's timezone.
+Seventeen destinations, each a job rather than a data source. Old tab names
+still resolve to Today, so saved links and the browser's remembered tab keep
+working. Every race list gives the off time and runs in start-time order, and
+settled ledgers put each day's races in clock order. Times are held as real
+instants, so the order does not change with the viewer's timezone.
 
-The betting screens — Longshots, Overhyped, Place bankers, Bet slips, Upcoming
-slips and their three results tabs — were removed from the page with the
-strict-model change: their panels, renderers, styles and stored screen data are
-gone, and nothing on the page presents a pick that did not pass the six-input
-check.
+Four screens read the strict model rather than a second rating. **Lays** names
+the runner the model rates last in every race it can rate, with the liability
+the card price implies. **Longshot results**, **Overhyped results** and **Place
+banker results** replay their rules on settled days and settle each row from the
+stored result. All four are derived from the same six-input re-score as the
+ledgers: a race with a gap is left out and the gap is named, never filled, and
+no row is invented. Bet slips and Upcoming slips remain withdrawn, and nothing
+on the page presents a pick that did not pass the six-input check.
 
 | Tab | What it is for |
 | --- | --- |
 | Today | The next rated race, every rated pick with its evidence paragraph, and the list of races not rated with the missing input named. |
 | Cards | Pick any race and inspect every runner the model scored, with the full rating table. |
+| Lays | The runner the model rates last in each rated race, with the card price, its model chance and the liability that price implies. |
 | UK results | Settled UK results, market checks and the standing model audits. |
 | Irish results | Settled Irish races, split from the UK ledger by course. |
 | US results | Settled US races with the off time and the speed-figure A/B. |
@@ -873,6 +907,9 @@ check.
 | France results | Every settled French race, from PMU's definitive arrival, with the pick from the pre-race card. |
 | Chile | Valparaíso cards from PMU, scored on form, handicap value, weight and draw because the meeting carries no prices. |
 | Chile results | Every settled Chilean race, from PMU's definitive arrival, with the pick from the pre-race card. |
+| Longshot results | Every longshot the model flagged on a settled day it could rate: wins, the frame and the card price. |
+| Overhyped results | Every favourite the model doubted, and how it finished. A doubt record, not a bet. |
+| Place banker results | How often the model-and-market banker placed, under the terms stored with its result. |
 | Method | The fixed weights, how the chance is calibrated, the measured country coverage, and the evidence behind both. |
 
 ## Known caveats
