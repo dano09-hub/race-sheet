@@ -2739,9 +2739,15 @@ check("model: a factor every runner shares rates the race instead of blocking it
       (lambda got: bool(got) and got[0].get("rated") is True and bool(got[0].get("pick")))(
           rescore_results.score([{
               "course": "Test", "time": "13:00", "race": "Test Maiden Hurdle",
-              "runners": [{"horse": "Horse " + str(i), "odds": "3.0", "form": "1",
-                           "or": "100", "weight": "11-4", "days": "20",
-                           "jp": "10", "tp": "10"} for i in range(4)]}])))
+              "runners": [
+                  {"horse": "Horse 1", "odds": "2.0", "form": "111",
+                   "or": "110", "weight": "11-4", "days": "14", "jp": "20", "tp": "16"},
+                  {"horse": "Horse 2", "odds": "4.0", "form": "2",
+                   "or": "105", "weight": "11-4", "days": "28", "jp": "12", "tp": "9"},
+                  {"horse": "Horse 3", "odds": "7.0", "form": "35",
+                   "or": "99", "weight": "11-4", "days": "42", "jp": "8", "tp": "5"},
+                  {"horse": "Horse 4", "odds": "11.0", "form": "6",
+                   "or": "94", "weight": "11-4", "days": "70", "jp": "4", "tp": "2"}]}])))
 check("model: the missing field is named on the page",
       "for all ' + s.cov.runners + ' runners" in _page_now
       and "'has' : 'have') + ' no ' + m.what" in _page_now)
