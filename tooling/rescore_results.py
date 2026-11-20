@@ -297,17 +297,24 @@ def pick_card(cards, row):
     return None
 
 
-def day(date):
+def rate_day(date):
+    """Every archived card for the day, scored exactly as the re-score does.
+
+    Returns (cards, scored, restored): cards in the order the day stores them,
+    scored keyed by id(card), and the stored copies used to restore a price.
+    A card whose only gap is a price the archive still holds is scored again
+    with that price filled in. The race-by-race audit reads this same result, so
+    the rank it prints comes from the very card that produced the pick.
+    """
     cards = day_cards(date)
-    scored = score(cards)
-    by_id = {id(c): s for c, s in zip(cards, scored)}
+    scored = {id(c): s for c, s in zip(cards, score(cards))}
     # Only the races price alone holds out are candidates: restoring the price
     # for a race still missing form or a rating would change no pick, and the
     # gap report should keep naming the field that actually blocks it.
     prices = price_index(date)
-    refill, recovered = [], {}
+    refill, restored = [], {}
     for card in cards:
-        got = by_id.get(id(card)) or {}
+        got = scored.get(id(card)) or {}
         gaps = [g.get("what") for g in got.get("missing") or []]
         if gaps != ["price"]:
             continue
@@ -317,49 +324,62 @@ def day(date):
     if refill:
         rescored = score([copy for _, copy, _ in refill])
         for (card, _, used), got in zip(refill, rescored):
-            by_id[id(card)] = got
-            recovered[id(card)] = used
-    out = []
-    for region, row in result_rows(date):
+            scored[id(card)] = got
+            restored[id(card)] = used
+    return cards, scored, restored
+
+
+def race_entry(cards, scored, restored, region, row, card=None):
+    """The re-score's row for one settled race, from the card it matched."""
+    if card is None:
         card = pick_card(cards, row)
-        got = by_id.get(id(card)) if card else None
-        entry = {
-            "course": row.get("course", ""),
-            "time": str(row.get("time") or "")[:5],
-            "winner": row.get("winner", ""),
-            "region": region or (card or {}).get("region", ""),
-            "state": "no-card",
-            "pick": "",
-            "chance": None,
-            "finish": "",
-            "hit": False,
-            "placed": None,
-            "missing": [],
-        }
-        if not card:
-            entry["missing"] = [{"what": "no archived card", "n": 0}]
-        elif not got or not got.get("rated"):
-            entry["state"] = "incomplete"
-            entry["missing"] = (got or {}).get("missing") or []
-        else:
-            pick = got.get("pick") or ""
-            finish = finish_of(row, pick) if pick else ""
-            terms = place_terms(row)
-            pos = position_number(finish)
-            entry.update({
-                "state": "rated",
-                "pick": pick,
-                "chance": got.get("chance"),
-                "finish": finish,
-                "hit": bool(pick) and norm(pick) == norm(row.get("winner")),
-                "place_places": terms,
-                "placed": (pos <= terms) if (pos and terms) else None,
-            })
-        if card and recovered.get(id(card)):
-            entry["price_source"] = recovered[id(card)]
-        entry["blocker"], entry["blocker_only"] = blocker_of(entry)
-        out.append(entry)
-    return {"date": date, "model": "six-input", "races": out}
+    got = scored.get(id(card)) if card else None
+    entry = {
+        "course": row.get("course", ""),
+        "time": str(row.get("time") or "")[:5],
+        "winner": row.get("winner", ""),
+        "region": region or (card or {}).get("region", ""),
+        "state": "no-card",
+        "pick": "",
+        "chance": None,
+        "finish": "",
+        "hit": False,
+        "placed": None,
+        "missing": [],
+    }
+    if not card:
+        entry["missing"] = [{"what": "no archived card", "n": 0}]
+    elif not got or not got.get("rated"):
+        entry["state"] = "incomplete"
+        entry["missing"] = (got or {}).get("missing") or []
+    else:
+        pick = got.get("pick") or ""
+        finish = finish_of(row, pick) if pick else ""
+        terms = place_terms(row)
+        pos = position_number(finish)
+        entry.update({
+            "state": "rated",
+            "pick": pick,
+            "chance": got.get("chance"),
+            "finish": finish,
+            "hit": bool(pick) and norm(pick) == norm(row.get("winner")),
+            "place_places": terms,
+            "placed": (pos <= terms) if (pos and terms) else None,
+        })
+    if card and restored.get(id(card)):
+        entry["price_source"] = restored[id(card)]
+    entry["blocker"], entry["blocker_only"] = blocker_of(entry)
+    return entry
+
+
+def day(date):
+    cards, scored, restored = rate_day(date)
+    return {
+        "date": date,
+        "model": "six-input",
+        "races": [race_entry(cards, scored, restored, region, row)
+                  for region, row in result_rows(date)],
+    }
 
 
 def print_breakdown(tally, no_card, unrated):

@@ -1189,10 +1189,11 @@ check("results split: off-time style is present", ".rtime{" in _page)
 
 print("30. latest settled race audit")
 _old_root = refresh.ROOT
-_old_cards, _old_enrich, _old_score = settle._cards_for, settle._enrich, settle.score_rated_cards
+_old_rate_day = rescore_results.rate_day
 with tempfile.TemporaryDirectory(prefix="audit-test-") as ad:
     _ar = Path(ad)
     (_ar / "data" / "results").mkdir(parents=True)
+    (_ar / "data" / "results_rated").mkdir(parents=True)
     (_ar / "data" / "results" / "2026-11-17.json").write_text(json.dumps([
         {"course": "US C", "time": "20:00", "winner": "US Horse", "region": "US",
          "pick": "US Horse", "hit": True, "placed": True}]), encoding="utf-8")
@@ -1200,17 +1201,40 @@ with tempfile.TemporaryDirectory(prefix="audit-test-") as ad:
         {"course": "C", "time": "13:00", "winner": "A", "pick": "A", "hit": True,
          "placed": True, "pick_finish": "1st", "region": "GB"},
         {"course": "C", "time": "13:00", "winner": "B", "pick": "A", "hit": False,
-         "placed": False, "pick_finish": "2nd", "region": "GB", "sp": "7.50"}]), encoding="utf-8")
+         "placed": False, "pick_finish": "2nd", "region": "GB", "sp": "7.50"},
+        {"course": "D", "time": "14:00", "winner": "D1", "pick": "D1", "hit": True,
+         "placed": True, "pick_finish": "1st", "region": "GB"}]), encoding="utf-8")
+    (_ar / "data" / "results_rated" / "2026-11-16.json").write_text(
+        json.dumps({"date": "2026-11-16", "model": "six-input",
+                    "races": [{"state": "rated"}]}), encoding="utf-8")
     refresh.ROOT = str(_ar)
-    settle._cards_for = lambda iso: [{"id": "c1", "course": "C", "time": "13:00",
-                                      "runners": [{"horse": "A"}, {"horse": "B"}]}]
-    settle._enrich = lambda cards, iso: cards
-    settle.score_rated_cards = lambda cards: [{
-        "course": "C", "time": "13:00", "rated": True, "pick": "A", "chance": 50.0,
-        "runners": [{"horse": "A", "total": 80.0, "share": 0.5, "odds": "2.00"},
-                    {"horse": "B", "total": 40.0, "share": 0.2, "odds": ""}]}]
+    # Two archived copies of the D race, as the day's own card pull and the
+    # Racing TV pull produce. pick_card takes the first; the re-score leaves
+    # that one unrated, so the audit must not borrow the other copy's rank.
+    _cards = [
+        {"id": "c1", "course": "C", "time": "13:00",
+         "runners": [{"horse": "A"}, {"horse": "B"}]},
+        {"id": "d_first", "course": "D", "time": "14:00",
+         "runners": [{"horse": "D1"}, {"horse": "D2"}]},
+        {"id": "d_second", "course": "D", "time": "14:00",
+         "runners": [{"horse": "D1"}, {"horse": "D2"}]},
+    ]
+    _scored = {
+        id(_cards[0]): {
+            "course": "C", "time": "13:00", "rated": True, "pick": "A", "chance": 50.0,
+            "runners": [{"horse": "A", "total": 80.0, "share": 0.5, "odds": "2.00"},
+                        {"horse": "B", "total": 40.0, "share": 0.2, "odds": ""}]},
+        id(_cards[1]): {
+            "course": "D", "time": "14:00", "rated": False, "pick": "", "chance": None,
+            "missing": [{"what": "price", "n": 2, "of": 2}]},
+        id(_cards[2]): {
+            "course": "D", "time": "14:00", "rated": True, "pick": "D1", "chance": 40.0,
+            "runners": [{"horse": "D1", "total": 70.0, "share": 0.4, "odds": "3.00"},
+                        {"horse": "D2", "total": 30.0, "share": 0.1, "odds": "9.00"}]},
+    }
+    rescore_results.rate_day = lambda iso: (_cards, _scored, {})
     _audit = [json.loads(x) for x in refresh.audit_rows()]
-    check("audit: latest UK day is selected", len(_audit) == 2, _audit)
+    check("audit: latest UK day is selected", len(_audit) == 3, _audit)
     check("audit: winner rank and field size",
           _audit[0]["r"] == 1 and _audit[0]["n"] == 2, _audit[0])
     check("audit: market rank and card price",
@@ -1225,8 +1249,11 @@ with tempfile.TemporaryDirectory(prefix="audit-test-") as ad:
           _audit[1]["sp"] == "7.50", _audit[1])
     check("audit: a rated race also ranks the winner in the market",
           _audit[1]["m"] == 2, _audit[1])
+    check("audit: a duplicate card never lends its rank to another copy's pick",
+          _audit[2]["p"] == "not rated" and _audit[2]["r"] is None
+          and _audit[2]["n"] == 0, _audit[2])
 refresh.ROOT = _old_root
-settle._cards_for, settle._enrich, settle.score_rated_cards = _old_cards, _old_enrich, _old_score
+rescore_results.rate_day = _old_rate_day
 check("audit: day label is dynamic", 'id="auditDay"' in _page)
 check("audit: fixed snapshot removed", "fixed 12 November snapshot" not in _page)
 check("audit: price header", "<th>Price</th>" in _page)

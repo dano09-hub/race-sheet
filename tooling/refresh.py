@@ -909,91 +909,54 @@ def _audit_source():
     return None, []
 
 
-def _priced_scored(iso, cards, scored):
-    """Re-score the races whose only gap is a price the archive still holds.
-
-    tooling/rescore_results.py restores a lost price from a stored pre-off copy,
-    but only where price is the race's sole gap. The audit reads the same
-    archived card, so it has to restore on the same terms: otherwise it would
-    print a race the re-score rates as a pick with no rank, field or price.
-    """
-    import settle
-    import rescore_results as rr
-    prices = rr.price_index(iso)
-    refill, at = [], []
-    for i, (card, got) in enumerate(zip(cards, scored)):
-        gaps = [g.get("what") for g in (got or {}).get("missing") or []]
-        if gaps != ["price"]:
-            continue
-        copy, used = rr.priced(card, prices)
-        if used:
-            refill.append(copy)
-            at.append(i)
-    if refill:
-        for i, got in zip(at, settle.score_rated_cards(refill)):
-            scored[i] = got
-    return scored
-
-
 def audit_rows():
     """The latest settled UK/IRE day, scored with the page's strict model.
 
     Returns a list of JSON object strings ready for replace_block("RESULTS").
-    The winner's rank, market rank and card price come from the archived card,
-    and the pick and finish are the six-input re-score where data/results_rated
-    has the day. A race with a gap is carried as not rated rather than given
-    the old twelve-factor pick.
+    Every column comes from the card tooling/rescore_results.py scored for the
+    day: the pick is that card's pick, and the winner's rank, market rank and
+    price are read from that same card's scored rows. The audit therefore
+    always prints the rank of the pick beside it, even when two archived copies
+    of a race disagree. Without a re-score on file the stored pre-race pick is
+    carried and no rank is printed.
     """
     iso, rows = _audit_source()
     if not iso:
         return []
+    import rescore_results as rr
     rated = _rated_day(iso)
-    try:
-        import settle
-        cards = settle._enrich(settle._cards_for(iso), iso)
-        scored = _priced_scored(iso, cards, settle.score_rated_cards(cards))
-    except Exception as e:
-        print(f"  audit:       skipped ({e})")
-        return []
-    if not scored:
-        return []
-
-    by_time, by_course = {}, {}
-    for p in scored:
-        key = (_result_name(p.get("course")), str(p.get("time") or "")[:5])
-        by_time[key] = p
-        by_course.setdefault(_result_name(p.get("course")), []).append(p)
+    cards, scored, restored = [], {}, {}
+    if rated:
+        try:
+            cards, scored, restored = rr.rate_day(iso)
+        except Exception as e:
+            print(f"  audit:       skipped ({e})")
+            return []
 
     out = []
     for row in rows:
         course = row.get("course", "")
         time = str(row.get("time") or "")[:5]
         winner = row.get("winner", "")
-        got = _rated_for(rated, row) if rated else None
-        if got is not None:
-            state = got.get("state")
-            if state == "rated":
-                pick = got.get("pick", "")
-                finish = got.get("finish", "")
-            else:
-                pick = "card not kept" if state == "no-card" else "not rated"
-                finish = ""
-        elif rated:
-            pick, finish = "not re-scored", ""
-        else:
+        card = rr.pick_card(cards, row) if rated else None
+        got = (rr.race_entry(cards, scored, restored, row.get("region") or "",
+                             row, card=card) if rated else None)
+        # The same card the re-score matched for this row, so its rows rank the
+        # pick shown above rather than some other archived copy of the race.
+        ranked = scored.get(id(card)) if card else None
+        if got is None:
             pick = row.get("pick", "")
             finish = row.get("pick_finish", "")
-        p = by_time.get((_result_name(course), time))
-        if not p:
-            for cand in by_course.get(_result_name(course), []):
-                if any(_result_name(r.get("horse")) == _result_name(winner)
-                       for r in cand.get("runners", [])):
-                    p = cand
-                    break
+        elif got.get("state") == "rated":
+            pick = got.get("pick", "")
+            finish = got.get("finish", "")
+        else:
+            pick = "card not kept" if got.get("state") == "no-card" else "not rated"
+            finish = ""
 
         rank, field, market, price = None, 0, None, ""
-        if p and p.get("rated"):
-            runners = p.get("runners") or []
+        if ranked and ranked.get("rated"):
+            runners = ranked.get("runners") or []
             field = len(runners)
             for idx, x in enumerate(runners):
                 if _result_name(x.get("horse")) == _result_name(winner):
