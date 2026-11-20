@@ -2735,19 +2735,30 @@ check("model: partial feeds are not model inputs",
       not any(k in _strict_src for k in ["rpr", "speed", "tips", "naps", "draw", "cd", "going"]))
 check("model: every runner must carry every input or the race is unrated",
       "function cardCoverage" in _page_now and "ok: rs.length >= 4 && missing.length === 0" in _page_now)
+# One field shared, the rest varying: the shared weight must not decide the race.
+_shared_weight_runners = [
+    {"horse": "Horse 1", "odds": "2.0", "form": "111",
+     "or": "110", "weight": "11-4", "days": "14", "jp": "20", "tp": "16"},
+    {"horse": "Horse 2", "odds": "4.0", "form": "2",
+     "or": "105", "weight": "11-4", "days": "28", "jp": "12", "tp": "9"},
+    {"horse": "Horse 3", "odds": "7.0", "form": "35",
+     "or": "99", "weight": "11-4", "days": "42", "jp": "8", "tp": "5"},
+    {"horse": "Horse 4", "odds": "11.0", "form": "6",
+     "or": "94", "weight": "11-4", "days": "70", "jp": "4", "tp": "2"}]
 check("model: a factor every runner shares rates the race instead of blocking it",
-      (lambda got: bool(got) and got[0].get("rated") is True and bool(got[0].get("pick")))(
+      (lambda got: bool(got) and got[0].get("rated") is True
+       and got[0].get("pick") == "Horse 1")(
           rescore_results.score([{
               "course": "Test", "time": "13:00", "race": "Test Maiden Hurdle",
-              "runners": [
-                  {"horse": "Horse 1", "odds": "2.0", "form": "111",
-                   "or": "110", "weight": "11-4", "days": "14", "jp": "20", "tp": "16"},
-                  {"horse": "Horse 2", "odds": "4.0", "form": "2",
-                   "or": "105", "weight": "11-4", "days": "28", "jp": "12", "tp": "9"},
-                  {"horse": "Horse 3", "odds": "7.0", "form": "35",
-                   "or": "99", "weight": "11-4", "days": "42", "jp": "8", "tp": "5"},
-                  {"horse": "Horse 4", "odds": "11.0", "form": "6",
-                   "or": "94", "weight": "11-4", "days": "70", "jp": "4", "tp": "2"}]}])))
+              "runners": _shared_weight_runners}])))
+check("model: the archived 12-factor view still drops a shared factor",
+      (lambda got: bool(got) and bool(got[0].get("pick"))
+       and all(r["parts"].get("weight") is None for r in got[0].get("runners", []))
+       and any(r["parts"].get("market") is not None
+               for r in got[0].get("runners", [])))(
+          settle.score_cards([{
+              "course": "Test", "time": "13:00", "race": "Test Maiden Hurdle",
+              "runners": _shared_weight_runners}])))
 check("model: the missing field is named on the page",
       "for all ' + s.cov.runners + ' runners" in _page_now
       and "'has' : 'have') + ' no ' + m.what" in _page_now)
