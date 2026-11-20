@@ -26,8 +26,20 @@ jobs:
       # The screen panels are derived from the stored re-score, so a data-only
       # change leaves the committed page behind until it is rendered. Render it
       # the way a local run does, before the suite compares the two.
+      #
+      # The render overwrites the page, so the committed copies are kept first:
+      # comparing afterwards has to be against what was pushed, not against what
+      # CI just wrote, or the comparison could never fail. A push that changed
+      # data without rebuilding fails here, on the diff, instead of passing on a
+      # page CI rendered for itself.
       - name: Rebuild the page from stored data
-        run: python3 tooling/refresh.py --data-only
+        run: |
+          mkdir -p "$RUNNER_TEMP/committed/dist/public"
+          cp index.html "$RUNNER_TEMP/committed/index.html"
+          cp dist/public/index.html "$RUNNER_TEMP/committed/dist/public/index.html"
+          python3 tooling/refresh.py --data-only
+          diff "$RUNNER_TEMP/committed/index.html" index.html
+          diff "$RUNNER_TEMP/committed/dist/public/index.html" dist/public/index.html
       - name: Fixture tests
         run: python3 tooling/test_checks.py
       - name: Factor documentation
