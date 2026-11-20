@@ -946,9 +946,17 @@ on the page presents a pick that did not pass the six-input check.
   `python3 tooling/refresh.py --data-only` re-renders the UK, Irish and US
   ledgers, the race-by-race audit and the Model chance audit from stored data
   without scraping, so a new re-score reaches the page without a fresh pull.
-  Coverage at this build is 52 of 272 settled races (9 winners), all on British
-  or Irish cards; 29 of those were held out by price alone and every runner's
-  price was found in a stored snapshot. US
+  <!-- coverage:start -->
+  Coverage at this build is 52 of 272 settled races (9 winners), all on
+  British cards; 29 of those were held out by price alone and are rated only
+  because every runner's price was found in a stored pre-off copy.
+
+  *Generated from `data/results_rated` by `tooling/coverage_figures.py`;
+  `refresh.py --data-only` rewrites it, and the checks job fails when the
+  committed README differs.*
+  <!-- coverage:end -->
+
+  US
   cards file no weight, Hong Kong no days or jockey/trainer records, and the
   French and Chilean cards no price. The race-by-race audit uses the same
   re-score. The archive keeps the card as it stood at the last pull, so where

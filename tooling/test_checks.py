@@ -32,6 +32,7 @@ import ab_tally        # noqa: E402
 import market_arm_day  # noqa: E402
 import calibrate_share  # noqa: E402
 import collect_eachway_prices as cep  # noqa: E402
+import coverage_figures  # noqa: E402
 import eachway         # noqa: E402
 import fetch_formfav as ff  # noqa: E402
 import fetch_results_sl as sl  # noqa: E402
@@ -3002,6 +3003,90 @@ check("screens: a panel that drifted from its fresh build is reported stale",
                                   _empty_all))
 
 print()
+print("Coverage figures")
+
+# The README's coverage paragraph is generated from the stored re-score, so the
+# counts and the wording they produce are fixtures of their own.
+_COVER_DAY = {
+    "date": "2026-01-02",
+    "races": [
+        {"state": "rated", "hit": True, "region": "GB"},
+        {"state": "rated", "hit": False, "region": "GB",
+         "price_source": "eachway"},
+        {"state": "incomplete", "region": "US", "blocker": "days since a run"},
+    ],
+}
+_COVER_FIGS = coverage_figures.collect([_COVER_DAY, _COVER_DAY])
+check("coverage: settled, rated, winners, restored prices and the rated regions "
+      "are counted from the stored re-score",
+      _COVER_FIGS == {"settled": 6, "rated": 4, "winners": 2, "restored": 2,
+                      "regions": ["GB"]}, _COVER_FIGS)
+
+_COVER_NONE = coverage_figures.sentence({"settled": 3, "rated": 0,
+                                         "winners": 0, "restored": 0,
+                                         "regions": []})
+check("coverage: with nothing rated the sentence says so instead of printing a "
+      "zero strike rate",
+      _COVER_NONE == "Coverage at this build is 0 of 3 settled races: no "
+                     "settled race carries a six-input pick yet.", _COVER_NONE)
+
+_COVER_ONE = coverage_figures.sentence({"settled": 10, "rated": 3,
+                                        "winners": 1, "restored": 0,
+                                        "regions": ["GB"]})
+check("coverage: one winner stays singular and a British-only record says "
+      "British, not British or Irish",
+      _COVER_ONE == "Coverage at this build is 3 of 10 settled races (1 "
+                    "winner), all on British cards.", _COVER_ONE)
+
+_COVER_TWO = coverage_figures.sentence({"settled": 10, "rated": 4,
+                                        "winners": 0, "restored": 2,
+                                        "regions": ["GB", "IRE"]})
+check("coverage: two regions read as British or Irish and the restored races "
+      "are named as the reason they rate",
+      "(0 winners)" in _COVER_TWO and "British or Irish cards" in _COVER_TWO
+      and "2 of those were held out by price alone" in _COVER_TWO, _COVER_TWO)
+
+_COVER_MARKED = ("intro\n\n  " + coverage_figures.START + "\n"
+                 "  typed figures from an older build\n  "
+                 + coverage_figures.END + "\n\nafter\n")
+_COVER_WRITTEN = coverage_figures.replace_block(
+    _COVER_MARKED, {"settled": 10, "rated": 3, "winners": 1, "restored": 0,
+                    "regions": ["GB"]})
+check("coverage: the marked paragraph is rewritten in place, keeps the bullet's "
+      "indent and leaves the rest of the README alone",
+      "typed figures" not in _COVER_WRITTEN
+      and "  Coverage at this build is 3 of 10" in _COVER_WRITTEN
+      and _COVER_WRITTEN.startswith("intro\n\n  " + coverage_figures.START)
+      and _COVER_WRITTEN.endswith(coverage_figures.END + "\n\nafter\n"),
+      _COVER_WRITTEN[:240])
+
+_COVER_FIGS_ONE = {"settled": 10, "rated": 3, "winners": 1, "restored": 0,
+                   "regions": ["GB"]}
+check("coverage: a paragraph that matches a fresh build is current, a nudged "
+      "one is stale",
+      not coverage_figures.stale(_COVER_WRITTEN, _COVER_FIGS_ONE)
+      and coverage_figures.stale(_COVER_WRITTEN, dict(_COVER_FIGS_ONE,
+                                                      settled=11)),
+      _COVER_WRITTEN[:120])
+
+try:
+    coverage_figures.replace_block("a README with no markers")
+    _cover_refused = False
+except ValueError:
+    _cover_refused = True
+check("coverage: replace_block refuses a README with no markers rather than "
+      "returning it untouched", _cover_refused, "no error raised")
+
+_COVER_TMP = os.path.join(tempfile.mkdtemp(), "README.md")
+with open(_COVER_TMP, "w", encoding="utf-8") as f:
+    f.write(_COVER_MARKED)
+_cover_first = coverage_figures.write(_COVER_TMP, _COVER_FIGS_ONE)
+_cover_second = coverage_figures.write(_COVER_TMP, _COVER_FIGS_ONE)
+check("coverage: writing is idempotent, so a render that changes nothing writes "
+      "no file",
+      _cover_first and not _cover_second, (_cover_first, _cover_second))
+
+print()
 print("Data integrity")
 
 # Any entity reference left in a stored row means a scraper unescaped its text
@@ -3052,6 +3137,13 @@ for _label, _path in (("index.html", ROOT / "index.html"),
     _stale = screen_results.stale_panels(_text, _everything)
     check("integrity: the screen panels in %s match a fresh build from the "
           "stored re-score" % _label, not _stale, _stale)
+
+# The coverage paragraph is generated, so a settled day the README has not
+# caught up with is a stale document, not a rounding difference.
+_readme_text = (ROOT / "README.md").read_text(encoding="utf-8")
+_stale_readme = coverage_figures.stale(_readme_text)
+check("integrity: the README coverage paragraph matches the stored re-score",
+      not _stale_readme, coverage_figures.sentence(coverage_figures.collect()))
 
 print()
 print("passed %d, failed %d%s" % (

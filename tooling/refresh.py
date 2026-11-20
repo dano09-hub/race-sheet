@@ -1374,8 +1374,13 @@ def us_angles_block_html(t, iso):
 
 def main():
     if "--data-only" in sys.argv[1:]:
+        import coverage_figures
+        size = rebuild_page()
+        # The README's coverage paragraph is counted from the same re-score, so
+        # it is part of what a render produces.
+        coverage_figures.write()
         print(f"rebuilt results blocks from stored data; wrote index.html + "
-              f"dist ({rebuild_page()} bytes)")
+              f"dist ({size} bytes)")
         return 0
     days = 2
     skip_checks = False
@@ -1763,6 +1768,10 @@ def main():
     open(INDEX, "w", encoding="utf-8").write(html)
     os.makedirs(os.path.join(ROOT, "dist", "public"), exist_ok=True)
     open(os.path.join(ROOT, "dist", "public", "index.html"), "w", encoding="utf-8").write(html)
+    # The coverage figures in the README come from the same stored re-score as
+    # the ledgers, so a refresh writes them beside the page.
+    import coverage_figures
+    coverage_figures.write()
     print(f"  wrote index.html + dist ({len(html.encode())} bytes)")
     print("done — deploy dist/ to publish")
 

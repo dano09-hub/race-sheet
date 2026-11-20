@@ -44,9 +44,11 @@ jobs:
           mkdir -p "$RUNNER_TEMP/committed/dist/public"
           cp index.html "$RUNNER_TEMP/committed/index.html"
           cp dist/public/index.html "$RUNNER_TEMP/committed/dist/public/index.html"
+          cp README.md "$RUNNER_TEMP/committed/README.md"
           python3 tooling/refresh.py --data-only
           diff "$RUNNER_TEMP/committed/index.html" index.html
           diff "$RUNNER_TEMP/committed/dist/public/index.html" dist/public/index.html
+          diff "$RUNNER_TEMP/committed/README.md" README.md
       - name: Fixture tests
         run: python3 tooling/test_checks.py
       - name: Factor documentation
