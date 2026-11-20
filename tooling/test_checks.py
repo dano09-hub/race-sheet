@@ -2218,6 +2218,32 @@ check("parse: irishracing names are stored unescaped",
       and _ir_rows[0]["race"].endswith("The 'Boy' Handicap")
       and "&#x27;" not in json.dumps(_ir_rows), _ir_rows)
 
+# A scraped day has to write the off the page's title holds. Before the title's
+# clock was read, every row was filed with time "" and matching fell back to the
+# race label. A page whose title carries no clock still stores no time.
+_sl_index = ('<a href="/racing/results/2026-11-20/dundalk/1">x</a>'
+             '<a href="/racing/results/2026-11-20/dundalk/2">y</a>')
+_sl_clocked = ('<div data-testid="racecard-title">14:30 Dundalk</div>'
+               '<div data-test-id="position-no"><span class="Ordinal__OrdinalWrapper-x">'
+               '1<sup>st</sup></span><div data-testid="saddle-cloth-no">4</div>'
+               '<a href="/racing/profiles/horse/9">Hastily</a></div>')
+_sl_untimed = ('<div data-testid="racecard-title">Handicap Chase</div>'
+               '<div data-test-id="position-no"><span class="Ordinal__OrdinalWrapper-x">'
+               '1<sup>st</sup></span><div data-testid="saddle-cloth-no">7</div>'
+               '<a href="/racing/profiles/horse/10">Raging Raj</a></div>')
+_old_fetch_get = slmod.get
+slmod.get = lambda url, *a, **k: (
+    _sl_index if url.endswith("/2026-11-20")
+    else _sl_clocked if url.endswith("/dundalk/1") else _sl_untimed)
+try:
+    _sl_rows = slmod.fetch_day("2026-11-20")
+finally:
+    slmod.get = _old_fetch_get
+check("fetch: a scraped day writes each race's off from the page",
+      [(r["time"], r["course"], r["winner"]) for r in _sl_rows]
+      == [("14:30", "Dundalk", "Hastily"), ("", "Dundalk", "Raging Raj")],
+      _sl_rows)
+
 
 def _dead_get(url, tries=3):
     raise feedmod.FeedError("dead feed")
