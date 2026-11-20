@@ -23,7 +23,7 @@ totalling 56. A race is rated only when **every runner** carries all six: a card
 with a gap anywhere in the field is not rated, and the page names the missing
 field instead of scoring the horses that happen to be complete. A value every
 runner shares is filed, not missing: it cannot separate the field, so it is
-scored neutral rather than refusing the race. The inputs are
+scored a neutral 50 rather than refusing the race. The inputs are
 the ones the feeds file for every runner — the `RATED_FACTORS` array:
 
 ```js
@@ -905,9 +905,7 @@ check.
   without scraping, so a new re-score reaches the page without a fresh pull.
   Coverage at this build is 52 of 272 settled races (9 winners), all on British
   or Irish cards; 29 of those were held out by price alone and every runner's
-  price was found in a stored snapshot. A value the whole field shares is
-  scored neutral rather than read as missing, so a restored card that gives
-  every runner the same weight still rates. US
+  price was found in a stored snapshot. US
   cards file no weight, Hong Kong no days or jockey/trainer records, and the
   French and Chilean cards no price. The race-by-race audit uses the same
   re-score. The archive keeps the card as it stood at the last pull, so where

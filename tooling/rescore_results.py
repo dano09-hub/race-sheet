@@ -330,16 +330,12 @@ def position_number(label):
 
 
 def pick_card(cards, row):
-    """The card a settled row belongs to, preferring the strongest evidence.
-
-    The off and the winner should agree. A scraped time that happens to hit a
-    different race must not win over the card that holds the winner, so the
-    order is: both, then the winner alone, then the off alone. The last resort
-    keeps a race whose winner is absent from the archive (a name the card
-    spells differently) scoreable by its time.
+    """The card a settled row belongs to: both the off and the winner first,
+    then the card holding the winner, then the off alone. A scraped time that
+    hits another race must not beat the card with the winner; the off alone
+    keeps a row scoreable when the card spells the name differently.
     """
-    course, time, winner = (norm(row.get("course")),
-                            str(row.get("time") or "")[:5], norm(row.get("winner")))
+    course, time, winner = norm(row.get("course")), str(row.get("time") or "")[:5], norm(row.get("winner"))
     pool = [c for c in cards if norm(c.get("course")) == course]
 
     def at_off(card):
