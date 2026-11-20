@@ -2860,6 +2860,43 @@ finally:
     shutil.rmtree(_tmp_dir, ignore_errors=True)
 
 print()
+print("Data integrity")
+
+# Any entity reference left in a stored row means a scraper unescaped its text
+# late or not at all. Derived re-scores are skipped: they carry the same text
+# as the results they were built from, which this scan already covers.
+_ENTITY = re.compile(r"&(?:[A-Za-z][A-Za-z0-9]{1,31}|#\d{1,7}|#[xX][0-9a-fA-F]{1,6});")
+
+
+def _row_texts(value):
+    if isinstance(value, str):
+        yield value
+    elif isinstance(value, dict):
+        for item in value.values():
+            yield from _row_texts(item)
+    elif isinstance(value, list):
+        for item in value:
+            yield from _row_texts(item)
+
+
+_entity_rows = []
+for _path in sorted((ROOT / "data").glob("results*/*.json")):
+    if _path.parent.name == "results_rated":
+        continue
+    for _text in _row_texts(json.loads(_path.read_text(encoding="utf-8"))):
+        if _ENTITY.search(_text):
+            _entity_rows.append("%s: %s" % (_path.relative_to(ROOT), _text))
+check("integrity: no stored results row carries an HTML entity",
+      not _entity_rows, _entity_rows[:3])
+
+_rated_paths = sorted((ROOT / "data" / "results_rated").glob("*.json"))
+_drifted = [_path.stem for _path in _rated_paths
+            if json.loads(_path.read_text(encoding="utf-8"))
+            != rescore_results.day(_path.stem)]
+check("integrity: every stored re-score matches a fresh run",
+      bool(_rated_paths) and not _drifted, _drifted)
+
+print()
 print("passed %d, failed %d%s" % (
     len(PASSED), len(FAILED), (", skipped %d" % len(SKIPPED)) if SKIPPED else ""))
 sys.exit(1 if FAILED else 0)
