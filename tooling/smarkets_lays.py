@@ -150,36 +150,32 @@ def floor_price(row):
     return (row.get("lay_odds") or 0.0) >= FLOOR - 1e-9
 
 
-def _floor_note(dropped):
+def _floor_note(rows):
     """The sentence that says how many floor prices were left out."""
-    if not dropped:
+    n = len(rows)
+    if not n:
         return ""
-    n = len(dropped)
-    return (f'<p class="method">{n} stored price'
-            f'{"" if n == 1 else "s"} at the exchange floor (10000.00, one '
-            f'basis point) {"was" if n == 1 else "were"} dropped: a bid there '
-            'is a resting order, not a lay price.</p>')
+    return (f'<p class="method">{n} stored price{"" if n == 1 else "s"} at '
+            f'the exchange floor (10000.00, one basis point) '
+            f'{"was" if n == 1 else "were"} dropped: a bid there is a resting '
+            'order, not a lay price.</p>')
 
 
-def latest(date=None, store=STORE):
-    """The newest snapshot per race, for one day (every day when None)."""
+def latest(day, store=STORE):
+    """The newest snapshot per race for one day, in off order."""
     best = {}
     for row in rows(store):
-        if date and row.get("date") != date:
+        if row.get("date") != day:
             continue
-        k = (row.get("date"), smarkets.race_key(row.get("course"), row.get("time")))
+        k = smarkets.race_key(row.get("course"), row.get("time"))
         if k not in best or row.get("snapshot_utc", "") >= best[k].get("snapshot_utc", ""):
             best[k] = row
-    return sorted(best.values(), key=lambda r: (r.get("date", ""), r.get("time", "")))
-
-
-def days(store=STORE):
-    return sorted({r.get("date") for r in rows(store) if r.get("date")})
+    return sorted(best.values(), key=lambda r: (r.get("time", ""), r.get("course", "")))
 
 
 def latest_day(store=STORE):
     """The day the Smarkets tab should show: newest snapshot, else today."""
-    got = days(store)
+    got = sorted({r.get("date") for r in rows(store) if r.get("date")})
     return got[-1] if got else dt.datetime.now(LONDON).date().isoformat()
 
 
@@ -221,11 +217,14 @@ def settled(store=STORE, results_dir=None):
         rows_by_race.setdefault(k, []).append(row)
     out = []
     pending = []
+    winners = {}
     for (date, _k), got in rows_by_race.items():
         usable = [r for r in got if not floor_price(r)]
         if not usable:
             continue
-        winner = _winners(date, results_dir).get(_k)
+        if date not in winners:
+            winners[date] = _winners(date, results_dir)
+        winner = winners[date].get(_k)
         if not winner:
             pending.append(usable[-1])
             continue
@@ -278,7 +277,6 @@ def live_block(day=None, store=STORE):
                 f'{_esc(day)} yet. The tab fills when a refresh finds a rated '
                 f'race the exchange lists and the model\'s lay has a resting '
                 f'bid.</p>')
-    got.sort(key=lambda r: (r.get("time", ""), r.get("course", "")))
     body = []
     for row in got:
         edge = _edge(row)
@@ -331,8 +329,9 @@ def live_block(day=None, store=STORE):
 def results_block(store=STORE, results_dir=None):
     """The settled Smarkets lays, net of commission, day by day."""
     got, pending = settled(store, results_dir)
+    floors = _floor_note([r for r in rows(store) if floor_price(r)])
     if not got:
-        return _floor_note([r for r in rows(store) if floor_price(r)]) + (
+        return floors + (
                 '<p class="method pending">No lay snapshot has settled yet. A '
                 'row is judged only from a snapshot stored before the off and '
                 'a stored winner; nothing is scored in afterwards.</p>'
@@ -341,7 +340,7 @@ def results_block(store=STORE, results_dir=None):
                    'result.</p>' if pending else ""))
     s = summary(got)
     pct = ("%+.1f%%" % s["pct"]) if s["pct"] is not None else "&mdash;"
-    head = _floor_note([r for r in rows(store) if floor_price(r)]) + (
+    head = floors + (
             f'<p class="method">Across <b>{s["races"]}</b> settled lay'
             f'{"" if s["races"] == 1 else "s"} over <b>{s["days"]}</b> day'
             f'{"" if s["days"] == 1 else "s"} the model\'s last-rated runner '

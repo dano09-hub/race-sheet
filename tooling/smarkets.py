@@ -88,19 +88,18 @@ def races(day):
             if off and off.date().isoformat() == day:
                 out.append({"id": str(event.get("id")),
                             "course": _course(event),
-                            "off": off.strftime("%H:%M"),
-                            "start": off.isoformat()})
+                            "off": off.strftime("%H:%M")})
         url = (f"{BASE}/events/{data['pagination']['next_page']}"
                if (data.get("pagination") or {}).get("next_page") else None)
     out.sort(key=lambda r: r["off"])
     return out
 
 
-def _best(levels, better):
+def _best(levels, highest):
     """The best price and its quantity from one side of the book."""
     if not levels:
         return None, None
-    top = better(levels, key=lambda q: q.get("price") or 0)
+    top = (max if highest else min)(levels, key=lambda q: q.get("price") or 0)
     return top.get("price"), top.get("quantity")
 
 
@@ -114,10 +113,8 @@ def runners(contracts, quotes):
     out = []
     for c in contracts:
         side = quotes.get(str(c.get("id"))) or {}
-        lay, qty = _best(side.get("bids"),
-                         lambda levels, key: max(levels, key=key))
-        back, _ = _best(side.get("offers"),
-                        lambda levels, key: min(levels, key=key))
+        lay, qty = _best(side.get("bids"), True)
+        back, _ = _best(side.get("offers"), False)
         out.append({"name": c.get("name") or "",
                     "lay_price": lay,
                     "lay_odds": (10000.0 / lay) if lay else None,

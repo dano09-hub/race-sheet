@@ -193,7 +193,11 @@ filed by the day the card runs (so tomorrow's card is stored under tomorrow).
 Merging means a later run that only covers some meetings cannot drop cards an
 earlier run captured, while a race already on file is refreshed with the newer
 card. Settlement reads that by-date file, which is how a day is still scored
-from the card the page actually showed.
+from the card the page actually showed. A meeting the daily feeds never listed
+(Meydan, 20 November 2026) can be filed from its irishracing racecard after
+the off by `tooling/fetch_cards_ir.py`: the field is named and the price and
+ratings stay blank, so the result audit can see the card but the model cannot
+score it.
 
 Settled picks are immutable. When a day's results are scraped again, the
 stored pick, finish and fate are carried over; only races that were never
@@ -356,8 +360,8 @@ unchanged, and the Score column still shows the raw rating.
 
 <!-- chance-record:start -->
 The live archive agrees on the direction but not yet on the size: on its own
-115 GB/IRE races the pick is shown at 27.8% and won 36 (31.3%, 95% CI
-23.5-40.3%).
+156 GB/IRE races the pick is shown at 26.7% and won 47 (30.1%, 95% CI
+23.5-37.7%).
 <!-- chance-record:end -->
 
 The archive cannot separate its own 0.0404 fit from the four-year 0.0498 yet,
@@ -376,10 +380,10 @@ block says the sample is not yet informative (298 more settled races).
 
 <!-- scale-sensitivity:start -->
 At 350 races the interval is about +/-4.8 points and the 0.04 and 0.0498
-scales put the same picks 5 points apart over the 101 archived races whose
+scales put the same picks 5 points apart over the 140 archived races whose
 card still reproduces its stored pick; the interval at that size is about the
 size of the gap, so it catches a gross error and only just begins to tell the
-scales apart. At 1,600 races it narrows to about +/-2.3 points and the
+scales apart. At 1,600 races it narrows to about +/-2.2 points and the
 question can be settled.
 <!-- scale-sensitivity:end -->
 
@@ -392,7 +396,7 @@ pick is left blank rather than given a number the page never showed. Only seven
 days still have their cards, so the rest of the record carries no chance.
 
 <!-- blank-races:start -->
-60 of the 175 recent British and Irish races stay blank.
+66 of the 222 recent British and Irish races stay blank.
 <!-- blank-races:end -->
 
 The reason is the archive rather than the model. The intraday results sweep
@@ -1001,7 +1005,7 @@ on the page presents a pick that did not pass the six-input check.
   ledgers, the race-by-race audit and the Model chance audit from stored data
   without scraping, so a new re-score reaches the page without a fresh pull.
   <!-- coverage:start -->
-  Coverage at this build is 52 of 272 settled races (9 winners), all on
+  Coverage at this build is 52 of 319 settled races (9 winners), all on
   British cards; 29 of those were held out by price alone and are rated only
   because every runner's price was found in a stored pre-off copy.
 

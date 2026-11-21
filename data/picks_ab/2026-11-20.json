@@ -1,0 +1,280 @@
+{
+ "date": "2026-11-20",
+ "generated": "2026-11-21T03:25:21",
+ "note": "A/B of the twelve-factor model with and without a rating in the rpr slot",
+ "metric": "rpr",
+ "label": "rating",
+ "cards": 38,
+ "same": 28,
+ "changed": 10,
+ "ratedRunners": 325,
+ "runners": 406,
+ "rows": [
+  {
+   "course": "Ascot",
+   "time": "12:45",
+   "withRating": "Current Edition",
+   "withoutRating": "Current Edition",
+   "changed": false
+  },
+  {
+   "course": "Ascot",
+   "time": "13:20",
+   "withRating": "Push The Limit",
+   "withoutRating": "Push The Limit",
+   "changed": false
+  },
+  {
+   "course": "Ascot",
+   "time": "13:55",
+   "withRating": "Jet To Vegas",
+   "withoutRating": "Crebilly",
+   "changed": true
+  },
+  {
+   "course": "Ascot",
+   "time": "14:30",
+   "withRating": "Moveit Like Minnie",
+   "withoutRating": "Intellotto",
+   "changed": true
+  },
+  {
+   "course": "Ascot",
+   "time": "15:05",
+   "withRating": "Star Of Affinity",
+   "withoutRating": "Yes Day",
+   "changed": true
+  },
+  {
+   "course": "Ascot",
+   "time": "15:40",
+   "withRating": "Dennis's Honor",
+   "withoutRating": "Dennis's Honor",
+   "changed": false
+  },
+  {
+   "course": "Catterick",
+   "time": "12:00",
+   "withRating": "Sacre Chef",
+   "withoutRating": "Sacre Chef",
+   "changed": false
+  },
+  {
+   "course": "Catterick",
+   "time": "12:33",
+   "withRating": "Nightflyer",
+   "withoutRating": "Nightflyer",
+   "changed": false
+  },
+  {
+   "course": "Catterick",
+   "time": "13:08",
+   "withRating": "Jet Of Dreams",
+   "withoutRating": "Jet Of Dreams",
+   "changed": false
+  },
+  {
+   "course": "Catterick",
+   "time": "13:43",
+   "withRating": "Jeteye",
+   "withoutRating": "Sunset Hill",
+   "changed": true
+  },
+  {
+   "course": "Catterick",
+   "time": "14:18",
+   "withRating": "Some Scope",
+   "withoutRating": "Some Scope",
+   "changed": false
+  },
+  {
+   "course": "Catterick",
+   "time": "14:53",
+   "withRating": "Anytrixwilldo",
+   "withoutRating": "Anytrixwilldo",
+   "changed": false
+  },
+  {
+   "course": "Catterick",
+   "time": "15:28",
+   "withRating": "Batchelor's Lad",
+   "withoutRating": "Batchelor's Lad",
+   "changed": false
+  },
+  {
+   "course": "Chepstow",
+   "time": "11:20",
+   "withRating": "Bande Organisee",
+   "withoutRating": "Bande Organisee",
+   "changed": false
+  },
+  {
+   "course": "Chepstow",
+   "time": "11:50",
+   "withRating": "Herbies Sock",
+   "withoutRating": "Herbies Sock",
+   "changed": false
+  },
+  {
+   "course": "Chepstow",
+   "time": "12:22",
+   "withRating": "Hidden Mountain",
+   "withoutRating": "Hidden Mountain",
+   "changed": false
+  },
+  {
+   "course": "Chepstow",
+   "time": "12:57",
+   "withRating": "Ben Solo",
+   "withoutRating": "Opening Bid",
+   "changed": true
+  },
+  {
+   "course": "Chepstow",
+   "time": "13:32",
+   "withRating": "Lets Go To Vegas",
+   "withoutRating": "Lets Go To Vegas",
+   "changed": false
+  },
+  {
+   "course": "Chepstow",
+   "time": "14:07",
+   "withRating": "No Tackle",
+   "withoutRating": "No Tackle",
+   "changed": false
+  },
+  {
+   "course": "Chepstow",
+   "time": "14:42",
+   "withRating": "Northwest Passage",
+   "withoutRating": "Northwest Passage",
+   "changed": false
+  },
+  {
+   "course": "Chepstow",
+   "time": "15:17",
+   "withRating": "Hotter Than Dubai",
+   "withoutRating": "Hotter Than Dubai",
+   "changed": false
+  },
+  {
+   "course": "Dundalk",
+   "time": "16:45",
+   "withRating": "Premier View",
+   "withoutRating": "Premier View",
+   "changed": false
+  },
+  {
+   "course": "Dundalk",
+   "time": "17:15",
+   "withRating": "One Cool Bear",
+   "withoutRating": "Surpass And Shine",
+   "changed": true
+  },
+  {
+   "course": "Dundalk",
+   "time": "17:45",
+   "withRating": "Prince Of Peppard",
+   "withoutRating": "Prince Of Peppard",
+   "changed": false
+  },
+  {
+   "course": "Dundalk",
+   "time": "18:15",
+   "withRating": "Celtic Motif",
+   "withoutRating": "Apache Outlaw",
+   "changed": true
+  },
+  {
+   "course": "Dundalk",
+   "time": "18:45",
+   "withRating": "Golden Idol",
+   "withoutRating": "Golden Idol",
+   "changed": false
+  },
+  {
+   "course": "Dundalk",
+   "time": "19:15",
+   "withRating": "Castilian Queen",
+   "withoutRating": "Castilian Queen",
+   "changed": false
+  },
+  {
+   "course": "Dundalk",
+   "time": "19:45",
+   "withRating": "Justenzia",
+   "withoutRating": "Justenzia",
+   "changed": false
+  },
+  {
+   "course": "Dundalk",
+   "time": "20:15",
+   "withRating": "Grey Fable",
+   "withoutRating": "Grey Fable",
+   "changed": false
+  },
+  {
+   "course": "Wolverhampton",
+   "time": "16:30",
+   "withRating": "King David",
+   "withoutRating": "King David",
+   "changed": false
+  },
+  {
+   "course": "Wolverhampton",
+   "time": "17:00",
+   "withRating": "Butterfly Beach",
+   "withoutRating": "Butterfly Beach",
+   "changed": false
+  },
+  {
+   "course": "Wolverhampton",
+   "time": "17:30",
+   "withRating": "Lady Phillips",
+   "withoutRating": "Lady Phillips",
+   "changed": false
+  },
+  {
+   "course": "Wolverhampton",
+   "time": "18:00",
+   "withRating": "Zhuri",
+   "withoutRating": "Sayidah Iffraaj",
+   "changed": true
+  },
+  {
+   "course": "Wolverhampton",
+   "time": "18:30",
+   "withRating": "Tonal",
+   "withoutRating": "Tonal",
+   "changed": false
+  },
+  {
+   "course": "Wolverhampton",
+   "time": "19:00",
+   "withRating": "Perfect Hope",
+   "withoutRating": "Perfect Hope",
+   "changed": false
+  },
+  {
+   "course": "Wolverhampton",
+   "time": "19:30",
+   "withRating": "Asuka",
+   "withoutRating": "Asuka",
+   "changed": false
+  },
+  {
+   "course": "Wolverhampton",
+   "time": "20:00",
+   "withRating": "Twilight Madness",
+   "withoutRating": "Barry The Worm",
+   "changed": true
+  },
+  {
+   "course": "Wolverhampton",
+   "time": "20:30",
+   "withRating": "Mc'ted",
+   "withoutRating": "The Dark Baron",
+   "changed": true
+  }
+ ]
+}

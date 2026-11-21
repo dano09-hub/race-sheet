@@ -2280,6 +2280,32 @@ check("parse: irishracing names are stored unescaped",
       and _ir_rows[0]["race"].endswith("The 'Boy' Handicap")
       and "&#x27;" not in json.dumps(_ir_rows), _ir_rows)
 
+import fetch_cards_ir as ircards
+
+# A meeting the daily card feeds missed still has its irishracing racecard on
+# file. It is read after the off, so it archives the field and nothing else:
+# no price and no rating, which keeps it out of the model and settlement.
+_IR_CARD = ircards.card(
+    "2026-11-20", "Meydan", "1330", "Bani Yas",
+    '<div class="row runner-line no-margin-lr">'
+    '<div class="form">12-</div>'
+    '<a class="runner toolTip" data-title="Mubeed (UNR)<br />Last Three Runs">'
+    '<strong>Mubeed (UNR)</strong></a> <strong>6,b h 9-0</strong>'
+    '<span style="font-weight:bold;">Rated 119</span></div>'
+    '<div class="row runner-line no-margin-lr">'
+    '<div class="form">4815-48</div>'
+    '<a class="runner toolTip" data-title="Djafar (FR)<br />Last Three Runs">'
+    '<strong>Djafar (FR)</strong></a> <strong>9,b h 9-0</strong>'
+    '<span style="font-weight:bold;">Rated 115</span></div>')
+check("fetch: an after-the-off racecard archives the field with no price or rating",
+      _IR_CARD["region"] == "AE" and _IR_CARD["course"] == "Meydan"
+      and _IR_CARD["time"] == "13:30"
+      and [r["horse"] for r in _IR_CARD["runners"]] == ["Mubeed (UNR)", "Djafar (FR)"]
+      and [r["or"] for r in _IR_CARD["runners"]] == ["119", "115"]
+      and [r["weight"] for r in _IR_CARD["runners"]] == ["9-0", "9-0"]
+      and all(r["odds"] == "" and r["rpr"] == "" and r["ts"] == ""
+              for r in _IR_CARD["runners"]), _IR_CARD)
+
 # A scraped day has to write the off the page's title holds. Before the title's
 # clock was read, every row was filed with time "" and matching fell back to the
 # race label. A page whose title carries no clock still stores no time.

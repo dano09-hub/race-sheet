@@ -41,7 +41,7 @@ OUT_DIR = os.path.join(ROOT, "data", "results_rated")
 EACHWAY = os.path.join(ROOT, "data", "eachway_prices.jsonl")
 CARDS = os.path.join(ROOT, "data", "cards")
 
-REGIONS = ("GB", "IRE", "US", "AU", "HK", "FR", "CL")
+REGIONS = ("GB", "IRE", "US", "AU", "HK", "FR", "CL", "AE")
 POS = {1: "1st", 2: "2nd", 3: "3rd", 4: "4th", 5: "5th", 6: "6th",
        7: "7th", 8: "8th", 9: "9th", 10: "10th"}
 
