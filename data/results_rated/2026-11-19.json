@@ -1,0 +1,5321 @@
+{
+ "date": "2026-11-19",
+ "model": "six-input",
+ "races": [
+  {
+   "course": "Lingfield",
+   "time": "11:48",
+   "winner": "Arthur Carrot",
+   "region": "GB",
+   "state": "rated",
+   "pick": "Rogue Imperial",
+   "chance": 20.1,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [],
+   "place_places": 3,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-18T20:25:41",
+    "eachway_prices.jsonl 2026-11-19T01:32:28",
+    "eachway_prices.jsonl 2026-11-19T02:31:25"
+   ],
+   "blocker": "",
+   "blocker_only": false
+  },
+  {
+   "course": "Lingfield",
+   "time": "12:18",
+   "winner": "Acrackintime",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "official rating",
+     "n": 8,
+     "of": 9
+    },
+    {
+     "what": "days since a run",
+     "n": 2,
+     "of": 9
+    },
+    {
+     "what": "form",
+     "n": 2,
+     "of": 9
+    }
+   ],
+   "blocker": "price",
+   "blocker_only": false
+  },
+  {
+   "course": "Lingfield",
+   "time": "12:53",
+   "winner": "Classic Bellini",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "official rating",
+     "n": 7,
+     "of": 8
+    },
+    {
+     "what": "days since a run",
+     "n": 3,
+     "of": 8
+    },
+    {
+     "what": "form",
+     "n": 3,
+     "of": 8
+    }
+   ],
+   "blocker": "price",
+   "blocker_only": false
+  },
+  {
+   "course": "Lingfield",
+   "time": "13:28",
+   "winner": "Zooella",
+   "region": "GB",
+   "state": "rated",
+   "pick": "Zooella",
+   "chance": 43.2,
+   "finish": "1st",
+   "hit": true,
+   "placed": true,
+   "missing": [],
+   "place_places": 2,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-19T01:32:28",
+    "eachway_prices.jsonl 2026-11-19T02:31:25"
+   ],
+   "blocker": "",
+   "blocker_only": false
+  },
+  {
+   "course": "Lingfield",
+   "time": "14:03",
+   "winner": "Little Dorrit",
+   "region": "GB",
+   "state": "rated",
+   "pick": "Likealot",
+   "chance": 15.4,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [],
+   "place_places": 3,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-18T17:13:13",
+    "eachway_prices.jsonl 2026-11-18T20:25:41",
+    "eachway_prices.jsonl 2026-11-19T01:32:28",
+    "eachway_prices.jsonl 2026-11-19T02:31:25"
+   ],
+   "blocker": "",
+   "blocker_only": false
+  },
+  {
+   "course": "Lingfield",
+   "time": "14:38",
+   "winner": "Kon Tiki",
+   "region": "GB",
+   "state": "rated",
+   "pick": "Sky Safari",
+   "chance": 16.3,
+   "finish": "2nd",
+   "hit": false,
+   "placed": true,
+   "missing": [],
+   "place_places": 3,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-18T20:25:41",
+    "eachway_prices.jsonl 2026-11-19T01:32:28",
+    "eachway_prices.jsonl 2026-11-19T02:31:25"
+   ],
+   "blocker": "",
+   "blocker_only": false
+  },
+  {
+   "course": "Lingfield",
+   "time": "15:08",
+   "winner": "Credit Forgedd It",
+   "region": "GB",
+   "state": "rated",
+   "pick": "Orange Emperor",
+   "chance": 12.4,
+   "finish": "3rd",
+   "hit": false,
+   "placed": true,
+   "missing": [],
+   "place_places": 3,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-18T20:25:41",
+    "eachway_prices.jsonl 2026-11-19T01:32:28",
+    "eachway_prices.jsonl 2026-11-19T02:31:25"
+   ],
+   "blocker": "",
+   "blocker_only": false
+  },
+  {
+   "course": "Lingfield",
+   "time": "15:40",
+   "winner": "Nogo's Dream",
+   "region": "GB",
+   "state": "rated",
+   "pick": "Got The Booty",
+   "chance": 18,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [],
+   "place_places": 3,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-18T20:25:41",
+    "eachway_prices.jsonl 2026-11-19T01:32:28",
+    "eachway_prices.jsonl 2026-11-19T02:31:25"
+   ],
+   "blocker": "",
+   "blocker_only": false
+  },
+  {
+   "course": "Lingfield",
+   "time": "11:18",
+   "winner": "Nascondino",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "official rating",
+     "n": 7,
+     "of": 9
+    },
+    {
+     "what": "days since a run",
+     "n": 1,
+     "of": 9
+    },
+    {
+     "what": "form",
+     "n": 1,
+     "of": 9
+    }
+   ],
+   "blocker": "price",
+   "blocker_only": false
+  },
+  {
+   "course": "Newcastle",
+   "time": "15:35",
+   "winner": "Ozat",
+   "region": "GB",
+   "state": "rated",
+   "pick": "Water To Wine",
+   "chance": 27.3,
+   "finish": "3rd",
+   "hit": false,
+   "placed": true,
+   "missing": [],
+   "place_places": 3,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-19T01:32:28",
+    "eachway_prices.jsonl 2026-11-19T02:31:25"
+   ],
+   "blocker": "",
+   "blocker_only": false
+  },
+  {
+   "course": "Newcastle",
+   "time": "16:10",
+   "winner": "Ezenli",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 13,
+     "of": 13
+    },
+    {
+     "what": "official rating",
+     "n": 10,
+     "of": 13
+    },
+    {
+     "what": "days since a run",
+     "n": 5,
+     "of": 13
+    },
+    {
+     "what": "form",
+     "n": 5,
+     "of": 13
+    }
+   ],
+   "blocker": "price",
+   "blocker_only": false
+  },
+  {
+   "course": "Newcastle",
+   "time": "16:40",
+   "winner": "Angelic Melody",
+   "region": "GB",
+   "state": "rated",
+   "pick": "Espresso Breeze",
+   "chance": 13.5,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [],
+   "place_places": 3,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-19T01:32:28",
+    "eachway_prices.jsonl 2026-11-19T02:31:25"
+   ],
+   "blocker": "",
+   "blocker_only": false
+  },
+  {
+   "course": "Newcastle",
+   "time": "17:10",
+   "winner": "High Threshold",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "official rating",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "days since a run",
+     "n": 3,
+     "of": 8
+    },
+    {
+     "what": "form",
+     "n": 3,
+     "of": 8
+    },
+    {
+     "what": "price",
+     "n": 1,
+     "of": 8
+    }
+   ],
+   "blocker": "official rating",
+   "blocker_only": false
+  },
+  {
+   "course": "Newcastle",
+   "time": "17:40",
+   "winner": "Shimmering Shadow",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "official rating",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "days since a run",
+     "n": 2,
+     "of": 8
+    },
+    {
+     "what": "form",
+     "n": 2,
+     "of": 8
+    },
+    {
+     "what": "price",
+     "n": 1,
+     "of": 8
+    }
+   ],
+   "blocker": "official rating",
+   "blocker_only": false
+  },
+  {
+   "course": "Newcastle",
+   "time": "18:10",
+   "winner": "Frankies Dream",
+   "region": "GB",
+   "state": "rated",
+   "pick": "Montezin",
+   "chance": 11.2,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [],
+   "place_places": 3,
+   "blocker": "",
+   "blocker_only": false
+  },
+  {
+   "course": "Newcastle",
+   "time": "18:40",
+   "winner": "So Darn Hot",
+   "region": "GB",
+   "state": "rated",
+   "pick": "Starmade",
+   "chance": 10.4,
+   "finish": "2nd",
+   "hit": false,
+   "placed": true,
+   "missing": [],
+   "place_places": 3,
+   "blocker": "",
+   "blocker_only": false
+  },
+  {
+   "course": "Newcastle",
+   "time": "19:10",
+   "winner": "Liquid Cooled",
+   "region": "GB",
+   "state": "rated",
+   "pick": "Real Jack",
+   "chance": 13.7,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [],
+   "place_places": 3,
+   "blocker": "",
+   "blocker_only": false
+  },
+  {
+   "course": "Newcastle",
+   "time": "19:40",
+   "winner": "Kinetic Force",
+   "region": "GB",
+   "state": "rated",
+   "pick": "Kinetic Force",
+   "chance": 13.9,
+   "finish": "1st",
+   "hit": true,
+   "placed": true,
+   "missing": [],
+   "place_places": 3,
+   "blocker": "",
+   "blocker_only": false
+  },
+  {
+   "course": "Thurles",
+   "time": "12:40",
+   "winner": "Doctor Confusion",
+   "region": "GB",
+   "state": "rated",
+   "pick": "Iamagetaway",
+   "chance": 12.6,
+   "finish": "2nd",
+   "hit": false,
+   "placed": true,
+   "missing": [],
+   "place_places": 3,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-18T20:25:41",
+    "eachway_prices.jsonl 2026-11-19T01:32:28",
+    "eachway_prices.jsonl 2026-11-19T02:31:25"
+   ],
+   "blocker": "",
+   "blocker_only": false
+  },
+  {
+   "course": "Thurles",
+   "time": "13:15",
+   "winner": "Minella Emperor",
+   "region": "GB",
+   "state": "rated",
+   "pick": "Hi Ho Idaho",
+   "chance": 36.2,
+   "finish": "2nd",
+   "hit": false,
+   "placed": null,
+   "missing": [],
+   "place_places": null,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-19T01:32:28",
+    "eachway_prices.jsonl 2026-11-19T02:31:25"
+   ],
+   "blocker": "",
+   "blocker_only": false
+  },
+  {
+   "course": "Thurles",
+   "time": "13:50",
+   "winner": "Jury Time",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 15,
+     "of": 15
+    },
+    {
+     "what": "official rating",
+     "n": 13,
+     "of": 15
+    },
+    {
+     "what": "days since a run",
+     "n": 1,
+     "of": 15
+    },
+    {
+     "what": "form",
+     "n": 1,
+     "of": 15
+    }
+   ],
+   "blocker": "price",
+   "blocker_only": false
+  },
+  {
+   "course": "Thurles",
+   "time": "14:25",
+   "winner": "Cock And Bull",
+   "region": "GB",
+   "state": "rated",
+   "pick": "Crowsatedappletart",
+   "chance": 9.3,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [],
+   "place_places": 4,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-18T17:13:13",
+    "eachway_prices.jsonl 2026-11-18T20:25:41",
+    "eachway_prices.jsonl 2026-11-19T01:32:28",
+    "eachway_prices.jsonl 2026-11-19T02:31:25"
+   ],
+   "blocker": "",
+   "blocker_only": false
+  },
+  {
+   "course": "Thurles",
+   "time": "15:00",
+   "winner": "Figero",
+   "region": "GB",
+   "state": "rated",
+   "pick": "Liceo",
+   "chance": 14.3,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [],
+   "place_places": 4,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-18T17:13:13",
+    "eachway_prices.jsonl 2026-11-18T20:25:41",
+    "eachway_prices.jsonl 2026-11-19T01:32:28",
+    "eachway_prices.jsonl 2026-11-19T02:31:25"
+   ],
+   "blocker": "",
+   "blocker_only": false
+  },
+  {
+   "course": "Thurles",
+   "time": "15:30",
+   "winner": "Legendary Status",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "official rating",
+     "n": 10,
+     "of": 12
+    },
+    {
+     "what": "days since a run",
+     "n": 5,
+     "of": 12
+    },
+    {
+     "what": "form",
+     "n": 5,
+     "of": 12
+    }
+   ],
+   "blocker": "price",
+   "blocker_only": false
+  },
+  {
+   "course": "Thurles",
+   "time": "12:08",
+   "winner": "Doctor Steinberg",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "official rating",
+     "n": 6,
+     "of": 8
+    },
+    {
+     "what": "days since a run",
+     "n": 1,
+     "of": 8
+    },
+    {
+     "what": "form",
+     "n": 1,
+     "of": 8
+    }
+   ],
+   "blocker": "price",
+   "blocker_only": false
+  },
+  {
+   "course": "Warwick",
+   "time": "11:57",
+   "winner": "L'unique Allen",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "official rating",
+     "n": 15,
+     "of": 15
+    },
+    {
+     "what": "price",
+     "n": 15,
+     "of": 15
+    },
+    {
+     "what": "days since a run",
+     "n": 2,
+     "of": 15
+    },
+    {
+     "what": "form",
+     "n": 2,
+     "of": 15
+    }
+   ],
+   "blocker": "official rating",
+   "blocker_only": false
+  },
+  {
+   "course": "Warwick",
+   "time": "12:27",
+   "winner": "Crookhaven",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "official rating",
+     "n": 14,
+     "of": 14
+    },
+    {
+     "what": "price",
+     "n": 14,
+     "of": 14
+    },
+    {
+     "what": "days since a run",
+     "n": 3,
+     "of": 14
+    },
+    {
+     "what": "form",
+     "n": 3,
+     "of": 14
+    }
+   ],
+   "blocker": "official rating",
+   "blocker_only": false
+  },
+  {
+   "course": "Warwick",
+   "time": "14:12",
+   "winner": "Party Vibes",
+   "region": "GB",
+   "state": "rated",
+   "pick": "Analiese",
+   "chance": 20.7,
+   "finish": "3rd",
+   "hit": false,
+   "placed": true,
+   "missing": [],
+   "place_places": 3,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-18T20:25:41",
+    "eachway_prices.jsonl 2026-11-19T01:32:28",
+    "eachway_prices.jsonl 2026-11-19T02:31:25"
+   ],
+   "blocker": "",
+   "blocker_only": false
+  },
+  {
+   "course": "Warwick",
+   "time": "13:37",
+   "winner": "Knappers Hill",
+   "region": "GB",
+   "state": "rated",
+   "pick": "Iron Bridge",
+   "chance": 12.9,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [],
+   "place_places": 3,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-18T02:52:06",
+    "eachway_prices.jsonl 2026-11-18T17:13:13",
+    "eachway_prices.jsonl 2026-11-18T20:25:41",
+    "eachway_prices.jsonl 2026-11-19T01:32:28",
+    "eachway_prices.jsonl 2026-11-19T02:31:25"
+   ],
+   "blocker": "",
+   "blocker_only": false
+  },
+  {
+   "course": "Warwick",
+   "time": "13:02",
+   "winner": "Vrheligonne",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "price",
+     "n": 11,
+     "of": 11
+    },
+    {
+     "what": "official rating",
+     "n": 9,
+     "of": 11
+    },
+    {
+     "what": "days since a run",
+     "n": 1,
+     "of": 11
+    },
+    {
+     "what": "form",
+     "n": 1,
+     "of": 11
+    }
+   ],
+   "blocker": "price",
+   "blocker_only": false
+  },
+  {
+   "course": "Warwick",
+   "time": "14:47",
+   "winner": "Hard Dealt",
+   "region": "GB",
+   "state": "rated",
+   "pick": "Coolanna",
+   "chance": 21.5,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [],
+   "place_places": 2,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-19T01:32:28",
+    "eachway_prices.jsonl 2026-11-19T02:31:25"
+   ],
+   "blocker": "",
+   "blocker_only": false
+  },
+  {
+   "course": "Warwick",
+   "time": "15:17",
+   "winner": "Kells Bay",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "official rating",
+     "n": 18,
+     "of": 18
+    },
+    {
+     "what": "price",
+     "n": 18,
+     "of": 18
+    },
+    {
+     "what": "days since a run",
+     "n": 14,
+     "of": 18
+    },
+    {
+     "what": "form",
+     "n": 14,
+     "of": 18
+    }
+   ],
+   "blocker": "official rating",
+   "blocker_only": false
+  },
+  {
+   "course": "Warwick",
+   "time": "11:27",
+   "winner": "Hera D'inor",
+   "region": "GB",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 4,
+     "of": 4
+    },
+    {
+     "what": "form",
+     "n": 4,
+     "of": 4
+    },
+    {
+     "what": "official rating",
+     "n": 4,
+     "of": 4
+    },
+    {
+     "what": "price",
+     "n": 4,
+     "of": 4
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Abu Dhabi",
+   "time": "17:00",
+   "winner": "Aiglemont",
+   "region": "AE",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 14,
+     "of": 14
+    },
+    {
+     "what": "jockey record",
+     "n": 14,
+     "of": 14
+    },
+    {
+     "what": "price",
+     "n": 14,
+     "of": 14
+    },
+    {
+     "what": "trainer record",
+     "n": 14,
+     "of": 14
+    },
+    {
+     "what": "official rating",
+     "n": 7,
+     "of": 14
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Abu Dhabi",
+   "time": "16:30",
+   "winner": "Reyenzi",
+   "region": "AE",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "jockey record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "price",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "trainer record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "official rating",
+     "n": 1,
+     "of": 8
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Abu Dhabi",
+   "time": "16:00",
+   "winner": "Bf Gala (UNR)",
+   "region": "AE",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 14,
+     "of": 14
+    },
+    {
+     "what": "jockey record",
+     "n": 14,
+     "of": 14
+    },
+    {
+     "what": "price",
+     "n": 14,
+     "of": 14
+    },
+    {
+     "what": "trainer record",
+     "n": 14,
+     "of": 14
+    },
+    {
+     "what": "official rating",
+     "n": 2,
+     "of": 14
+    },
+    {
+     "what": "form",
+     "n": 1,
+     "of": 14
+    },
+    {
+     "what": "weight",
+     "n": 1,
+     "of": 14
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Abu Dhabi",
+   "time": "15:30",
+   "winner": "Maestro (UNR)",
+   "region": "AE",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 15,
+     "of": 15
+    },
+    {
+     "what": "jockey record",
+     "n": 15,
+     "of": 15
+    },
+    {
+     "what": "price",
+     "n": 15,
+     "of": 15
+    },
+    {
+     "what": "trainer record",
+     "n": 15,
+     "of": 15
+    },
+    {
+     "what": "official rating",
+     "n": 4,
+     "of": 15
+    },
+    {
+     "what": "form",
+     "n": 2,
+     "of": 15
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Abu Dhabi",
+   "time": "15:00",
+   "winner": "Ab Noor (UNR)",
+   "region": "AE",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "jockey record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "official rating",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "price",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "trainer record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "weight",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "form",
+     "n": 5,
+     "of": 10
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Abu Dhabi",
+   "time": "14:30",
+   "winner": "Ar Elzain Zain (UNR)",
+   "region": "AE",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 14,
+     "of": 14
+    },
+    {
+     "what": "form",
+     "n": 14,
+     "of": 14
+    },
+    {
+     "what": "jockey record",
+     "n": 14,
+     "of": 14
+    },
+    {
+     "what": "official rating",
+     "n": 14,
+     "of": 14
+    },
+    {
+     "what": "price",
+     "n": 14,
+     "of": 14
+    },
+    {
+     "what": "trainer record",
+     "n": 14,
+     "of": 14
+    },
+    {
+     "what": "weight",
+     "n": 14,
+     "of": 14
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Abu Dhabi",
+   "time": "14:00",
+   "winner": "Ezzah",
+   "region": "AE",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 14,
+     "of": 14
+    },
+    {
+     "what": "jockey record",
+     "n": 14,
+     "of": 14
+    },
+    {
+     "what": "price",
+     "n": 14,
+     "of": 14
+    },
+    {
+     "what": "trainer record",
+     "n": 14,
+     "of": 14
+    },
+    {
+     "what": "form",
+     "n": 1,
+     "of": 14
+    },
+    {
+     "what": "official rating",
+     "n": 1,
+     "of": 14
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Belmont Park",
+   "time": "17:40",
+   "winner": "Beauty Truth Good",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 5,
+     "of": 5
+    },
+    {
+     "what": "trainer record",
+     "n": 5,
+     "of": 5
+    },
+    {
+     "what": "weight",
+     "n": 5,
+     "of": 5
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Belmont Park",
+   "time": "18:10",
+   "winner": "About Face",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "trainer record",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "weight",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "days since a run",
+     "n": 6,
+     "of": 9
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Belmont Park",
+   "time": "18:40",
+   "winner": "Lady Wisdom",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "trainer record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "weight",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "days since a run",
+     "n": 3,
+     "of": 7
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Belmont Park",
+   "time": "19:10",
+   "winner": "Carmen Amalia",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "trainer record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "weight",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "days since a run",
+     "n": 4,
+     "of": 8
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Belmont Park",
+   "time": "19:41",
+   "winner": "Mysterio",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "trainer record",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "weight",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "days since a run",
+     "n": 4,
+     "of": 9
+    },
+    {
+     "what": "form",
+     "n": 3,
+     "of": 9
+    },
+    {
+     "what": "official rating",
+     "n": 3,
+     "of": 9
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Belmont Park",
+   "time": "20:12",
+   "winner": "Quick to Accuse",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "trainer record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "weight",
+     "n": 10,
+     "of": 10
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Belmont Park",
+   "time": "20:43",
+   "winner": "Lendalfoot",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "trainer record",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "weight",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "days since a run",
+     "n": 1,
+     "of": 12
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Belmont Park",
+   "time": "21:14",
+   "winner": "Pelican Pride",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "trainer record",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "weight",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "days since a run",
+     "n": 4,
+     "of": 12
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Charles Town",
+   "time": "00:00",
+   "winner": "Sisyphus",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 6,
+     "of": 6
+    },
+    {
+     "what": "trainer record",
+     "n": 6,
+     "of": 6
+    },
+    {
+     "what": "weight",
+     "n": 6,
+     "of": 6
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Charles Town",
+   "time": "00:30",
+   "winner": "Priority One",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "trainer record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "weight",
+     "n": 7,
+     "of": 7
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Charles Town",
+   "time": "00:57",
+   "winner": "Shessweetlikecandy",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "trainer record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "weight",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "days since a run",
+     "n": 1,
+     "of": 7
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Charles Town",
+   "time": "01:25",
+   "winner": "Fortunate Son",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "trainer record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "weight",
+     "n": 7,
+     "of": 7
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Charles Town",
+   "time": "01:53",
+   "winner": "Song of Echos",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "trainer record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "weight",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "days since a run",
+     "n": 3,
+     "of": 8
+    },
+    {
+     "what": "form",
+     "n": 2,
+     "of": 8
+    },
+    {
+     "what": "official rating",
+     "n": 2,
+     "of": 8
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Charles Town",
+   "time": "02:21",
+   "winner": "Celtic Diva",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "trainer record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "weight",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "days since a run",
+     "n": 2,
+     "of": 8
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Charles Town",
+   "time": "02:49",
+   "winner": "Tico Grande",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "trainer record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "weight",
+     "n": 7,
+     "of": 7
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Charles Town",
+   "time": "03:17",
+   "winner": "Excitable Boy",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "trainer record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "weight",
+     "n": 10,
+     "of": 10
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Churchill Downs",
+   "time": "18:00",
+   "winner": "Pied Piper",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 6,
+     "of": 6
+    },
+    {
+     "what": "trainer record",
+     "n": 6,
+     "of": 6
+    },
+    {
+     "what": "weight",
+     "n": 6,
+     "of": 6
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Churchill Downs",
+   "time": "18:29",
+   "winner": "Sock Monkey",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "trainer record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "weight",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "days since a run",
+     "n": 1,
+     "of": 8
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Churchill Downs",
+   "time": "18:58",
+   "winner": "Bush",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "trainer record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "weight",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "days since a run",
+     "n": 5,
+     "of": 10
+    },
+    {
+     "what": "form",
+     "n": 3,
+     "of": 10
+    },
+    {
+     "what": "official rating",
+     "n": 3,
+     "of": 10
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Churchill Downs",
+   "time": "19:27",
+   "winner": "City of Rome",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "trainer record",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "weight",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "days since a run",
+     "n": 6,
+     "of": 9
+    },
+    {
+     "what": "form",
+     "n": 4,
+     "of": 9
+    },
+    {
+     "what": "official rating",
+     "n": 4,
+     "of": 9
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Churchill Downs",
+   "time": "19:57",
+   "winner": "One Cool Dude",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "trainer record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "weight",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "days since a run",
+     "n": 3,
+     "of": 10
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Churchill Downs",
+   "time": "20:26",
+   "winner": "Creating Havoc",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "trainer record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "weight",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "days since a run",
+     "n": 3,
+     "of": 8
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Churchill Downs",
+   "time": "20:55",
+   "winner": "Bourbon Neat",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "trainer record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "weight",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "days since a run",
+     "n": 6,
+     "of": 8
+    },
+    {
+     "what": "form",
+     "n": 3,
+     "of": 8
+    },
+    {
+     "what": "official rating",
+     "n": 3,
+     "of": 8
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Churchill Downs",
+   "time": "21:25",
+   "winner": "Classic Glide",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "trainer record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "weight",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "days since a run",
+     "n": 3,
+     "of": 10
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Churchill Downs",
+   "time": "21:55",
+   "winner": "Avalon Beach",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "trainer record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "weight",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "days since a run",
+     "n": 4,
+     "of": 10
+    },
+    {
+     "what": "form",
+     "n": 1,
+     "of": 10
+    },
+    {
+     "what": "official rating",
+     "n": 1,
+     "of": 10
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Delta Downs",
+   "time": "22:40",
+   "winner": "All Star Tout",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "form",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "jockey record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "official rating",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "trainer record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "weight",
+     "n": 8,
+     "of": 8
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Delta Downs",
+   "time": "23:08",
+   "winner": "Donegal Light",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "form",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "jockey record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "official rating",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "trainer record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "weight",
+     "n": 10,
+     "of": 10
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Delta Downs",
+   "time": "23:36",
+   "winner": "Debriseason",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "form",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "jockey record",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "official rating",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "trainer record",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "weight",
+     "n": 9,
+     "of": 9
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Delta Downs",
+   "time": "00:04",
+   "winner": "Chupapi Munyayo",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "form",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "jockey record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "official rating",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "trainer record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "weight",
+     "n": 8,
+     "of": 8
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Delta Downs",
+   "time": "00:32",
+   "winner": "Epic Stolen Kiss",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "form",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "jockey record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "official rating",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "trainer record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "weight",
+     "n": 8,
+     "of": 8
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Delta Downs",
+   "time": "01:00",
+   "winner": "Jabran",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "form",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "jockey record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "official rating",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "trainer record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "weight",
+     "n": 8,
+     "of": 8
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Delta Downs",
+   "time": "01:28",
+   "winner": "Sweet Fantasy",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "form",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "jockey record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "official rating",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "trainer record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "weight",
+     "n": 7,
+     "of": 7
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Delta Downs",
+   "time": "01:56",
+   "winner": "You Good",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "form",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "jockey record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "official rating",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "trainer record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "weight",
+     "n": 10,
+     "of": 10
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Evangeline Downs",
+   "time": "23:35",
+   "winner": "Hesawthebatsignal",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "form",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "jockey record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "official rating",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "trainer record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "weight",
+     "n": 8,
+     "of": 8
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Evangeline Downs",
+   "time": "00:00",
+   "winner": "Perrys Conn",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "form",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "jockey record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "official rating",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "trainer record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "weight",
+     "n": 7,
+     "of": 7
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Evangeline Downs",
+   "time": "00:25",
+   "winner": "Sl Watchme Zoom",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 6,
+     "of": 6
+    },
+    {
+     "what": "form",
+     "n": 6,
+     "of": 6
+    },
+    {
+     "what": "jockey record",
+     "n": 6,
+     "of": 6
+    },
+    {
+     "what": "official rating",
+     "n": 6,
+     "of": 6
+    },
+    {
+     "what": "trainer record",
+     "n": 6,
+     "of": 6
+    },
+    {
+     "what": "weight",
+     "n": 6,
+     "of": 6
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Evangeline Downs",
+   "time": "00:50",
+   "winner": "Jh Apolitical",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "form",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "jockey record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "official rating",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "trainer record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "weight",
+     "n": 10,
+     "of": 10
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Evangeline Downs",
+   "time": "01:15",
+   "winner": "The D Oh Double G",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "form",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "jockey record",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "official rating",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "trainer record",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "weight",
+     "n": 9,
+     "of": 9
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Evangeline Downs",
+   "time": "01:40",
+   "winner": "Pilot Point Train",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "form",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "jockey record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "official rating",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "trainer record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "weight",
+     "n": 7,
+     "of": 7
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Evangeline Downs",
+   "time": "02:05",
+   "winner": "Shenosherpilot",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "form",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "jockey record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "official rating",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "trainer record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "weight",
+     "n": 8,
+     "of": 8
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Fair Grounds",
+   "time": "18:55",
+   "winner": "Rock N Roll Bolt",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "trainer record",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "weight",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "days since a run",
+     "n": 9,
+     "of": 12
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Fair Grounds",
+   "time": "19:25",
+   "winner": "Margie's Intention",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 6,
+     "of": 6
+    },
+    {
+     "what": "trainer record",
+     "n": 6,
+     "of": 6
+    },
+    {
+     "what": "weight",
+     "n": 6,
+     "of": 6
+    },
+    {
+     "what": "days since a run",
+     "n": 5,
+     "of": 6
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Fair Grounds",
+   "time": "19:55",
+   "winner": "Highly Flammable",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "trainer record",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "weight",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "days since a run",
+     "n": 5,
+     "of": 12
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Fair Grounds",
+   "time": "20:25",
+   "winner": "Love for Country",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 11,
+     "of": 11
+    },
+    {
+     "what": "jockey record",
+     "n": 11,
+     "of": 11
+    },
+    {
+     "what": "trainer record",
+     "n": 11,
+     "of": 11
+    },
+    {
+     "what": "weight",
+     "n": 11,
+     "of": 11
+    },
+    {
+     "what": "form",
+     "n": 6,
+     "of": 11
+    },
+    {
+     "what": "official rating",
+     "n": 6,
+     "of": 11
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Fair Grounds",
+   "time": "20:55",
+   "winner": "Magnolia West",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "trainer record",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "weight",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "days since a run",
+     "n": 11,
+     "of": 12
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Fair Grounds",
+   "time": "21:25",
+   "winner": "Jackie's Doll",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "trainer record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "weight",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "days since a run",
+     "n": 6,
+     "of": 7
+    },
+    {
+     "what": "form",
+     "n": 4,
+     "of": 7
+    },
+    {
+     "what": "official rating",
+     "n": 4,
+     "of": 7
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Fair Grounds",
+   "time": "21:55",
+   "winner": "Easy Wind",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "trainer record",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "weight",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "days since a run",
+     "n": 5,
+     "of": 12
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Fair Grounds",
+   "time": "22:25",
+   "winner": "Hes Steelin Mylady",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "trainer record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "weight",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "days since a run",
+     "n": 8,
+     "of": 10
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Fair Grounds",
+   "time": "22:55",
+   "winner": "Twisted Zydeco",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 11,
+     "of": 11
+    },
+    {
+     "what": "trainer record",
+     "n": 11,
+     "of": 11
+    },
+    {
+     "what": "weight",
+     "n": 11,
+     "of": 11
+    },
+    {
+     "what": "days since a run",
+     "n": 10,
+     "of": 11
+    },
+    {
+     "what": "form",
+     "n": 2,
+     "of": 11
+    },
+    {
+     "what": "official rating",
+     "n": 2,
+     "of": 11
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Lone Star Park",
+   "time": "21:05",
+   "winner": "Wl Sexy Superhero",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "form",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "jockey record",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "official rating",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "trainer record",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "weight",
+     "n": 9,
+     "of": 9
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Lone Star Park",
+   "time": "21:31",
+   "winner": "Indio Tempting",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "form",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "jockey record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "official rating",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "trainer record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "weight",
+     "n": 10,
+     "of": 10
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Lone Star Park",
+   "time": "21:57",
+   "winner": "Pink Shadow",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "form",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "jockey record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "official rating",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "trainer record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "weight",
+     "n": 10,
+     "of": 10
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Lone Star Park",
+   "time": "22:23",
+   "winner": "Cedar Post",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "form",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "jockey record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "official rating",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "trainer record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "weight",
+     "n": 10,
+     "of": 10
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Lone Star Park",
+   "time": "22:49",
+   "winner": "Dos Last Renegade",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "form",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "jockey record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "official rating",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "trainer record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "weight",
+     "n": 10,
+     "of": 10
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Lone Star Park",
+   "time": "23:15",
+   "winner": "An Eagles Game",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "form",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "jockey record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "official rating",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "trainer record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "weight",
+     "n": 10,
+     "of": 10
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Lone Star Park",
+   "time": "23:41",
+   "winner": "Sadie Sweet Watters",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "form",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "jockey record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "official rating",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "trainer record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "weight",
+     "n": 10,
+     "of": 10
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Lone Star Park",
+   "time": "00:07",
+   "winner": "Sugars Flying",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "form",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "jockey record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "official rating",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "trainer record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "weight",
+     "n": 10,
+     "of": 10
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "17:15",
+   "winner": "Spectacular Tango",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 6,
+     "of": 6
+    },
+    {
+     "what": "trainer record",
+     "n": 6,
+     "of": 6
+    },
+    {
+     "what": "weight",
+     "n": 6,
+     "of": 6
+    },
+    {
+     "what": "days since a run",
+     "n": 4,
+     "of": 6
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "17:43",
+   "winner": "Lofty Cowtown",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "trainer record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "weight",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "days since a run",
+     "n": 1,
+     "of": 7
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "18:11",
+   "winner": "Kozem",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 6,
+     "of": 6
+    },
+    {
+     "what": "trainer record",
+     "n": 6,
+     "of": 6
+    },
+    {
+     "what": "weight",
+     "n": 6,
+     "of": 6
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "18:39",
+   "winner": "Patriarchal",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "trainer record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "weight",
+     "n": 7,
+     "of": 7
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "19:07",
+   "winner": "Midnight Wonder",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "trainer record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "weight",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "days since a run",
+     "n": 1,
+     "of": 10
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "19:35",
+   "winner": "Fortheloveofbonnie",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "trainer record",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "weight",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "days since a run",
+     "n": 4,
+     "of": 9
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "20:03",
+   "winner": "Boaz",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "trainer record",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "weight",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "days since a run",
+     "n": 2,
+     "of": 9
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Mahoning Valley",
+   "time": "20:31",
+   "winner": "Critikal Sense",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "trainer record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "weight",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "days since a run",
+     "n": 1,
+     "of": 8
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Parx Racing",
+   "time": "17:05",
+   "winner": "Bulma",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "form",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "jockey record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "official rating",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "trainer record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "weight",
+     "n": 7,
+     "of": 7
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Parx Racing",
+   "time": "17:32",
+   "winner": "Emmyaswifty",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "form",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "jockey record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "official rating",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "trainer record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "weight",
+     "n": 7,
+     "of": 7
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Parx Racing",
+   "time": "17:59",
+   "winner": "Quick to Judge",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 6,
+     "of": 6
+    },
+    {
+     "what": "form",
+     "n": 6,
+     "of": 6
+    },
+    {
+     "what": "jockey record",
+     "n": 6,
+     "of": 6
+    },
+    {
+     "what": "official rating",
+     "n": 6,
+     "of": 6
+    },
+    {
+     "what": "trainer record",
+     "n": 6,
+     "of": 6
+    },
+    {
+     "what": "weight",
+     "n": 6,
+     "of": 6
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Parx Racing",
+   "time": "18:26",
+   "winner": "My Last Mission",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 6,
+     "of": 6
+    },
+    {
+     "what": "form",
+     "n": 6,
+     "of": 6
+    },
+    {
+     "what": "jockey record",
+     "n": 6,
+     "of": 6
+    },
+    {
+     "what": "official rating",
+     "n": 6,
+     "of": 6
+    },
+    {
+     "what": "trainer record",
+     "n": 6,
+     "of": 6
+    },
+    {
+     "what": "weight",
+     "n": 6,
+     "of": 6
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Parx Racing",
+   "time": "18:53",
+   "winner": "Hyperlink",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "form",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "jockey record",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "official rating",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "trainer record",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "weight",
+     "n": 9,
+     "of": 9
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Parx Racing",
+   "time": "19:20",
+   "winner": "My Man Woody",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "form",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "jockey record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "official rating",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "trainer record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "weight",
+     "n": 8,
+     "of": 8
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Parx Racing",
+   "time": "19:47",
+   "winner": "Caseofthemondays",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "form",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "jockey record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "official rating",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "trainer record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "weight",
+     "n": 8,
+     "of": 8
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Parx Racing",
+   "time": "20:14",
+   "winner": "Tiz Purple",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "form",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "jockey record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "official rating",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "trainer record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "weight",
+     "n": 8,
+     "of": 8
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Parx Racing",
+   "time": "20:41",
+   "winner": "Twist Her",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "form",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "jockey record",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "official rating",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "trainer record",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "weight",
+     "n": 12,
+     "of": 12
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Penn National",
+   "time": "22:45",
+   "winner": "React",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 5,
+     "of": 5
+    },
+    {
+     "what": "trainer record",
+     "n": 5,
+     "of": 5
+    },
+    {
+     "what": "weight",
+     "n": 5,
+     "of": 5
+    },
+    {
+     "what": "days since a run",
+     "n": 1,
+     "of": 5
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Penn National",
+   "time": "23:14",
+   "winner": "Chappelle",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "trainer record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "weight",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "days since a run",
+     "n": 1,
+     "of": 7
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Penn National",
+   "time": "23:43",
+   "winner": "Savor It",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "official rating",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "trainer record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "weight",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "days since a run",
+     "n": 1,
+     "of": 8
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Penn National",
+   "time": "00:12",
+   "winner": "Coloma",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "trainer record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "weight",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "days since a run",
+     "n": 1,
+     "of": 8
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Penn National",
+   "time": "00:41",
+   "winner": "Fire Down Below",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 6,
+     "of": 6
+    },
+    {
+     "what": "trainer record",
+     "n": 6,
+     "of": 6
+    },
+    {
+     "what": "weight",
+     "n": 6,
+     "of": 6
+    },
+    {
+     "what": "days since a run",
+     "n": 3,
+     "of": 6
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Penn National",
+   "time": "01:10",
+   "winner": "Style to Follow",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "trainer record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "weight",
+     "n": 7,
+     "of": 7
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Penn National",
+   "time": "01:39",
+   "winner": "Quamash",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 11,
+     "of": 11
+    },
+    {
+     "what": "trainer record",
+     "n": 11,
+     "of": 11
+    },
+    {
+     "what": "weight",
+     "n": 11,
+     "of": 11
+    },
+    {
+     "what": "days since a run",
+     "n": 4,
+     "of": 11
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Remington Park",
+   "time": "00:30",
+   "winner": "Code of the South",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "trainer record",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "weight",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "days since a run",
+     "n": 1,
+     "of": 12
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Remington Park",
+   "time": "00:58",
+   "winner": "Cowgirl Buckaroo",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "trainer record",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "weight",
+     "n": 9,
+     "of": 9
+    },
+    {
+     "what": "days since a run",
+     "n": 2,
+     "of": 9
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Remington Park",
+   "time": "01:26",
+   "winner": "The Cougars Den",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "trainer record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "weight",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "days since a run",
+     "n": 4,
+     "of": 7
+    },
+    {
+     "what": "form",
+     "n": 1,
+     "of": 7
+    },
+    {
+     "what": "official rating",
+     "n": 1,
+     "of": 7
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Remington Park",
+   "time": "01:54",
+   "winner": "Wilburton",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "trainer record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "weight",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "days since a run",
+     "n": 2,
+     "of": 7
+    },
+    {
+     "what": "form",
+     "n": 2,
+     "of": 7
+    },
+    {
+     "what": "official rating",
+     "n": 2,
+     "of": 7
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Remington Park",
+   "time": "02:22",
+   "winner": "Over Reacted",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "trainer record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "weight",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "days since a run",
+     "n": 3,
+     "of": 8
+    },
+    {
+     "what": "form",
+     "n": 1,
+     "of": 8
+    },
+    {
+     "what": "official rating",
+     "n": 1,
+     "of": 8
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Remington Park",
+   "time": "02:50",
+   "winner": "Lucky You",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "trainer record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "weight",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "days since a run",
+     "n": 1,
+     "of": 7
+    },
+    {
+     "what": "form",
+     "n": 1,
+     "of": 7
+    },
+    {
+     "what": "official rating",
+     "n": 1,
+     "of": 7
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Remington Park",
+   "time": "03:18",
+   "winner": "Lucky Bird",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "trainer record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "weight",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "days since a run",
+     "n": 1,
+     "of": 8
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Remington Park",
+   "time": "03:46",
+   "winner": "Cucamonga",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "trainer record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "weight",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "days since a run",
+     "n": 1,
+     "of": 8
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Remington Park",
+   "time": "04:14",
+   "winner": "River Bomber",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "jockey record",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "trainer record",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "weight",
+     "n": 12,
+     "of": 12
+    },
+    {
+     "what": "days since a run",
+     "n": 3,
+     "of": 12
+    },
+    {
+     "what": "official rating",
+     "n": 1,
+     "of": 12
+    }
+   ],
+   "blocker": "jockey record",
+   "blocker_only": false
+  },
+  {
+   "course": "Woodbine",
+   "time": "20:10",
+   "winner": "Spun for Flatter",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "form",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "jockey record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "official rating",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "trainer record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "weight",
+     "n": 7,
+     "of": 7
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Woodbine",
+   "time": "20:38",
+   "winner": "Bling d'Money Home",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "form",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "jockey record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "official rating",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "trainer record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "weight",
+     "n": 8,
+     "of": 8
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Woodbine",
+   "time": "21:08",
+   "winner": "Spellcheck",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "form",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "jockey record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "official rating",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "trainer record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "weight",
+     "n": 8,
+     "of": 8
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Woodbine",
+   "time": "21:37",
+   "winner": "Zippy Gamble",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "form",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "jockey record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "official rating",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "trainer record",
+     "n": 8,
+     "of": 8
+    },
+    {
+     "what": "weight",
+     "n": 8,
+     "of": 8
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Woodbine",
+   "time": "22:06",
+   "winner": "Interim Analysis",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "form",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "jockey record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "official rating",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "trainer record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "weight",
+     "n": 10,
+     "of": 10
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Woodbine",
+   "time": "22:35",
+   "winner": "Mia Mitole",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 11,
+     "of": 11
+    },
+    {
+     "what": "form",
+     "n": 11,
+     "of": 11
+    },
+    {
+     "what": "jockey record",
+     "n": 11,
+     "of": 11
+    },
+    {
+     "what": "official rating",
+     "n": 11,
+     "of": 11
+    },
+    {
+     "what": "trainer record",
+     "n": 11,
+     "of": 11
+    },
+    {
+     "what": "weight",
+     "n": 11,
+     "of": 11
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Woodbine",
+   "time": "23:04",
+   "winner": "She's Gold",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 6,
+     "of": 6
+    },
+    {
+     "what": "form",
+     "n": 6,
+     "of": 6
+    },
+    {
+     "what": "jockey record",
+     "n": 6,
+     "of": 6
+    },
+    {
+     "what": "official rating",
+     "n": 6,
+     "of": 6
+    },
+    {
+     "what": "trainer record",
+     "n": 6,
+     "of": 6
+    },
+    {
+     "what": "weight",
+     "n": 6,
+     "of": 6
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Woodbine",
+   "time": "23:33",
+   "winner": "More Money Hunny",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "form",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "jockey record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "official rating",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "trainer record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "weight",
+     "n": 10,
+     "of": 10
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Woodbine",
+   "time": "00:02",
+   "winner": "Velvet Rage",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "form",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "jockey record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "official rating",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "trainer record",
+     "n": 7,
+     "of": 7
+    },
+    {
+     "what": "weight",
+     "n": 7,
+     "of": 7
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  },
+  {
+   "course": "Woodbine",
+   "time": "00:31",
+   "winner": "Lady Dayrells",
+   "region": "US",
+   "state": "incomplete",
+   "pick": "",
+   "chance": null,
+   "finish": "",
+   "hit": false,
+   "placed": null,
+   "missing": [
+    {
+     "what": "days since a run",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "form",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "jockey record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "official rating",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "trainer record",
+     "n": 10,
+     "of": 10
+    },
+    {
+     "what": "weight",
+     "n": 10,
+     "of": 10
+    }
+   ],
+   "blocker": "days since a run",
+   "blocker_only": false
+  }
+ ]
+}

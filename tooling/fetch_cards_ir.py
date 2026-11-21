@@ -76,13 +76,14 @@ def card(iso, course, clock, title, page):
 def meeting(iso, course):
     """Every race on the meeting's card, in off order."""
     slug = day_slug(iso)
-    index = get(f"{BASE}/racecards/{slug}/{course}")
-    listed = re.findall(rf'href="/racecards/{re.escape(slug)}/{re.escape(course)}/'
+    path = re.sub(r"[^A-Za-z0-9]+", "-", course).strip("-")   # "Abu Dhabi"
+    index = get(f"{BASE}/racecards/{slug}/{path}")
+    listed = re.findall(rf'href="/racecards/{re.escape(slug)}/{re.escape(path)}/'
                         r'(\d{4})">Race \d+ - (.*?)</a>', index)
     out = []
     for clock, raw in listed:
         title = html.unescape(re.sub(r"<[^>]+>", "", raw)).strip()
-        page = get(f"{BASE}/racecards/{slug}/{course}/{clock}")
+        page = get(f"{BASE}/racecards/{slug}/{path}/{clock}")
         got = card(iso, course, clock, title, page)
         if got:
             out.append(got)

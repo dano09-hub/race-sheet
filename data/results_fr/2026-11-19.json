@@ -1,0 +1,975 @@
+{
+ "date": "2026-11-19",
+ "region": "FR",
+ "updated": "2026-11-20T01:43:21Z",
+ "races": [
+  {
+   "course": "Saint-Cloud",
+   "time": "09:57",
+   "race": "GRAND PRIX DES APPRENTIS (FINALE CHMPT PARIS TURF DES APP & JJ)",
+   "race_no": "R1C1",
+   "winner": "JANAH",
+   "places": [
+    "JANAH",
+    "ORION ROCK",
+    "SONNAZ"
+   ],
+   "order": [
+    "JANAH",
+    "ORION ROCK",
+    "SONNAZ",
+    "AVANT L'ORAGE",
+    "ACOTANGO",
+    "DREAMS",
+    "HAVE DANCER",
+    "UNA REVELACION"
+   ],
+   "region": "FR",
+   "pick": "ACOTANGO",
+   "pick_finish": "5th",
+   "hit": false,
+   "chance": 25.5
+  },
+  {
+   "course": "Saint-Cloud",
+   "time": "10:27",
+   "race": "PRIX DE LA FRETTE",
+   "race_no": "R1C2",
+   "winner": "CREW DRAGON",
+   "places": [
+    "CREW DRAGON",
+    "MISTER SKETCH",
+    "CORTADO"
+   ],
+   "order": [
+    "CREW DRAGON",
+    "MISTER SKETCH",
+    "CORTADO",
+    "MY UNIVERSE",
+    "CIEL DE PARIS",
+    "THALIA",
+    "MARLOWE",
+    "SHEARKAN",
+    "MORGAN BAY",
+    "DURYTHME",
+    "DISTOR",
+    "ASHERAH"
+   ],
+   "region": "FR",
+   "pick": "CIEL DE PARIS",
+   "pick_finish": "5th",
+   "hit": false,
+   "chance": 16.7
+  },
+  {
+   "course": "Saint-Cloud",
+   "time": "11:00",
+   "race": "PRIX DU PONT DE SAINT-CLOUD",
+   "race_no": "R1C3",
+   "winner": "EYWA",
+   "places": [
+    "EYWA",
+    "HOLLYHOCK",
+    "KELLY KEY"
+   ],
+   "order": [
+    "EYWA",
+    "HOLLYHOCK",
+    "KELLY KEY",
+    "CHARMING CAT",
+    "AMICO PIETRO",
+    "KILOECHO",
+    "CHACUN SA VIE",
+    "DENVER CHOP",
+    "MONSIEUR DUPONT",
+    "COOLMEEN ROYAL",
+    "BIG BOOTS",
+    "PAPATEOU",
+    "NOBLE COTAI",
+    "POSSI",
+    "TACT"
+   ],
+   "region": "FR",
+   "pick": "KILOECHO",
+   "pick_finish": "6th",
+   "hit": false,
+   "chance": 21.6
+  },
+  {
+   "course": "Saint-Cloud",
+   "time": "11:35",
+   "race": "PRIX DU VIADUC DE SAINT-CLOUD",
+   "race_no": "R1C4",
+   "winner": "MARY JAYNE",
+   "places": [
+    "MARY JAYNE",
+    "JESS LIVERMORE",
+    "TIME LIKE A RIVER"
+   ],
+   "order": [
+    "MARY JAYNE",
+    "JESS LIVERMORE",
+    "TIME LIKE A RIVER",
+    "BELL SONG",
+    "LOVER SONG",
+    "ZITTO",
+    "ISMAEL PAINT",
+    "EAGLE GATE",
+    "OTOMAI",
+    "ZEOLAKIS",
+    "IMPITOYABLE",
+    "NAVACERRADA",
+    "ORINOCO",
+    "CALIFANO",
+    "ISCREAMFORICECREAM",
+    "GALLIUS"
+   ],
+   "region": "FR",
+   "pick": "EAGLE GATE",
+   "pick_finish": "8th",
+   "hit": false,
+   "chance": 16.9
+  },
+  {
+   "course": "Saint-Cloud",
+   "time": "12:10",
+   "race": "PRIX DU TUNNEL DE SAINT-CLOUD",
+   "race_no": "R1C5",
+   "winner": "YOKEN",
+   "places": [
+    "YOKEN",
+    "BAILEYS BACHELOR",
+    "GARRIS"
+   ],
+   "order": [
+    "YOKEN",
+    "BAILEYS BACHELOR",
+    "GARRIS",
+    "DANELO",
+    "GOUTTES DE DIEU",
+    "ANDARTIS",
+    "RASSENI CHOP",
+    "QUIET WIFE",
+    "DAMN PRECIOUS",
+    "PRADARO",
+    "THIBERVILLE",
+    "INDY B",
+    "REGALIEN",
+    "LOVE ADDICT",
+    "MARKUS",
+    "GIORGIANA"
+   ],
+   "region": "FR",
+   "pick": "INDY B",
+   "pick_finish": "12th",
+   "hit": false,
+   "chance": 15.1
+  },
+  {
+   "course": "Saint-Cloud",
+   "time": "12:55",
+   "race": "PRIX DE WINDSOR",
+   "race_no": "R1C6",
+   "winner": "DOURIANN",
+   "places": [
+    "DOURIANN",
+    "JUST JIM",
+    "HOMO DEUS"
+   ],
+   "order": [
+    "DOURIANN",
+    "JUST JIM",
+    "HOMO DEUS",
+    "CENTRICAL",
+    "DOUBLE UP",
+    "GET SET",
+    "MR FLEURANT",
+    "TRABUCO",
+    "BAYAMOON",
+    "COMME QUOI",
+    "PLATA D OCTOBRE",
+    "ZARAMIX",
+    "BON VIVEUR",
+    "GUILLERETTE",
+    "FLASH GIRL",
+    "AMERICAN GLORY"
+   ],
+   "region": "FR",
+   "pick": "COMME QUOI",
+   "pick_finish": "10th",
+   "hit": false,
+   "chance": 10.4
+  },
+  {
+   "course": "Saint-Cloud",
+   "time": "13:30",
+   "race": "PRIX DE BOADILLA DEL MONTE",
+   "race_no": "R1C7",
+   "winner": "LE ROI LEON",
+   "places": [
+    "LE ROI LEON",
+    "TIC TAC",
+    "PERCEVAL"
+   ],
+   "order": [
+    "LE ROI LEON",
+    "TIC TAC",
+    "PERCEVAL",
+    "KENSILVER",
+    "HEY JO",
+    "GUARDIAN",
+    "FIGHTING SPIRIT",
+    "LADY GATSBY",
+    "LONDONPOLO",
+    "DENIA",
+    "SPLENDINO",
+    "BELLA MEMORIA",
+    "YZYA",
+    "LARLIB",
+    "CATHERINE LA MER"
+   ],
+   "region": "FR",
+   "pick": "HEY JO",
+   "pick_finish": "5th",
+   "hit": false,
+   "chance": 12.1
+  },
+  {
+   "course": "Saint-Cloud",
+   "time": "14:07",
+   "race": "PRIX DES FALAISES DES VACHES NOIRES",
+   "race_no": "R1C8",
+   "winner": "JACK O'BOY",
+   "places": [
+    "JACK O'BOY",
+    "THE WHEEL",
+    "JIEPIES MELODY"
+   ],
+   "order": [
+    "JACK O'BOY",
+    "THE WHEEL",
+    "JIEPIES MELODY",
+    "MELKISEDEK",
+    "EKLAIRDEGENY",
+    "FASTER",
+    "PAMELA BOUM",
+    "LE TOLIER",
+    "BOAVISTA",
+    "EXCESSIVE",
+    "MEXICANA",
+    "PROTAGONIST",
+    "COME TI AMO",
+    "WINDBURN",
+    "GRAND MACHO",
+    "SOCIANDO"
+   ],
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
+  },
+  {
+   "course": "Saint-Cloud",
+   "time": "14:42",
+   "race": "PRIX DES FALAISES DE JOBOURG",
+   "race_no": "R1C9",
+   "winner": "CRISZILLA",
+   "places": [
+    "CRISZILLA",
+    "HIGHBARI",
+    "ZELMAN"
+   ],
+   "order": [
+    "CRISZILLA",
+    "HIGHBARI",
+    "ZELMAN",
+    "JOH SPIRIT",
+    "BABY HARTWOOD",
+    "FAMILY SECRET",
+    "MIA LOT",
+    "JAHIDIN",
+    "AMORCITA",
+    "KIANDA",
+    "FAMOSO",
+    "ROOFTOP",
+    "ANDEOL",
+    "GALORD",
+    "SIR CRATER",
+    "VAPOA"
+   ],
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
+  },
+  {
+   "course": "Saint-Cloud",
+   "time": "15:17",
+   "race": "PRIX DE BAD GODESBERG",
+   "race_no": "R1C10",
+   "winner": "VICTORY PACE",
+   "places": [
+    "VICTORY PACE",
+    "PIQUOISEAU",
+    "ARTISTIC MAN"
+   ],
+   "order": [
+    "VICTORY PACE",
+    "PIQUOISEAU",
+    "ARTISTIC MAN",
+    "LA MAZZI GOGO",
+    "STARNBERG",
+    "PORTUCALE",
+    "METS LE FEU",
+    "PESTACLE",
+    "NEUF DE PAQUES",
+    "TOP TOWN TELL TALE",
+    "STAN LE GRAND",
+    "SARASTRO",
+    "AQUILA VOLANTE",
+    "SILVER REEL",
+    "SIM CARD",
+    "INGEBORG"
+   ],
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
+  },
+  {
+   "course": "Fontainebleau",
+   "time": "10:43",
+   "race": "PRIX COLONEL BERNARD MARLIN - CHALLENGE DE L'OBSTACLE EQUINAXY",
+   "race_no": "R2C1",
+   "winner": "ELCOND'OR FORLONGE",
+   "places": [
+    "ELCOND'OR FORLONGE",
+    "SATURNE PELEM",
+    "KARMIX"
+   ],
+   "order": [
+    "ELCOND'OR FORLONGE",
+    "SATURNE PELEM",
+    "KARMIX",
+    "HILLICO CONTI"
+   ],
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
+  },
+  {
+   "course": "Fontainebleau",
+   "time": "11:17",
+   "race": "PRIX DES AUBEPINES",
+   "race_no": "R2C2",
+   "winner": "NIMITZ",
+   "places": [
+    "NIMITZ",
+    "GOOD SAVE THE KING",
+    "NIKA HAS"
+   ],
+   "order": [
+    "NIMITZ",
+    "GOOD SAVE THE KING",
+    "NIKA HAS",
+    "DEAL DAILY",
+    "QUEEN DE COEUR"
+   ],
+   "region": "FR",
+   "pick": "NATHAN IS BACK",
+   "pick_finish": "",
+   "hit": false,
+   "chance": 30.1
+  },
+  {
+   "course": "Fontainebleau",
+   "time": "11:52",
+   "race": "PRIX DU CARREFOUR DU NID DE L'AIGLE",
+   "race_no": "R2C3",
+   "winner": "PRINCESS DINO",
+   "places": [
+    "PRINCESS DINO",
+    "AQUALI MELODY",
+    "NUANCE BRUERE"
+   ],
+   "order": [
+    "PRINCESS DINO",
+    "AQUALI MELODY",
+    "NUANCE BRUERE",
+    "I AM WHAT I AM",
+    "JUMP UP",
+    "NYMPHEA DU FENOIR",
+    "KAPKANAILLE",
+    "STEFFL",
+    "BORN TO SUN",
+    "MISMARVEL FORLONGE"
+   ],
+   "region": "FR",
+   "pick": "AQUALI MELODY",
+   "pick_finish": "2nd",
+   "hit": false,
+   "chance": 21
+  },
+  {
+   "course": "Fontainebleau",
+   "time": "12:27",
+   "race": "PRIX DE LA ROUTE AMELIE",
+   "race_no": "R2C4",
+   "winner": "RAFFLES CHOICE",
+   "places": [
+    "RAFFLES CHOICE",
+    "BAD BOY DU BERLAIS",
+    "NITRO DES MOTTES"
+   ],
+   "order": [
+    "RAFFLES CHOICE",
+    "BAD BOY DU BERLAIS",
+    "NITRO DES MOTTES",
+    "CATCHME IF YOU CAN",
+    "SAY HAY",
+    "YAFTAGOLD",
+    "CLYDE DU BERLAIS"
+   ],
+   "region": "FR",
+   "pick": "RAFFLES CHOICE",
+   "pick_finish": "1st",
+   "hit": true,
+   "chance": 21.8
+  },
+  {
+   "course": "Fontainebleau",
+   "time": "13:12",
+   "race": "PRIX DE BARBIZON",
+   "race_no": "R2C5",
+   "winner": "LLOYD D'AUTAN",
+   "places": [
+    "LLOYD D'AUTAN",
+    "LE VIOLONISTE",
+    "GRIS DE MYM"
+   ],
+   "order": [
+    "LLOYD D'AUTAN",
+    "LE VIOLONISTE",
+    "GRIS DE MYM",
+    "MATA D'OR",
+    "SANGRE DE DRAGO"
+   ],
+   "region": "FR",
+   "pick": "PAINT FOR FUN",
+   "pick_finish": "",
+   "hit": false,
+   "chance": 40.1
+  },
+  {
+   "course": "Fontainebleau",
+   "time": "13:49",
+   "race": "PRIX DE THOMERY",
+   "race_no": "R2C6",
+   "winner": "LOU FAST",
+   "places": [
+    "LOU FAST",
+    "CAPTAIN FLAG",
+    "GOLD CENT"
+   ],
+   "order": [
+    "LOU FAST",
+    "CAPTAIN FLAG",
+    "GOLD CENT",
+    "JUNGLE SEA",
+    "LEVE TOT",
+    "GALET D'OUDAIRIES",
+    "IMAGINATION",
+    "TAFEDNEY",
+    "IMENHOTEP",
+    "FILZMOOSERIN"
+   ],
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
+  },
+  {
+   "course": "Fontainebleau",
+   "time": "14:25",
+   "race": "PRIX BARON MAURICE DE NEXON",
+   "race_no": "R2C7",
+   "winner": "KENCHAK",
+   "places": [
+    "KENCHAK",
+    "GOLDEN THREAD",
+    "MON FILS MADY"
+   ],
+   "order": [
+    "KENCHAK",
+    "GOLDEN THREAD",
+    "MON FILS MADY",
+    "MATERHORN PARADISE",
+    "MY LADY RAISELLE",
+    "GOLDEN DISC",
+    "SAFURA",
+    "FLEUR DE FEU",
+    "STARBOSS"
+   ],
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
+  },
+  {
+   "course": "Paris-Vincennes",
+   "time": "14:58",
+   "race": "PRIX DE FERRIERES",
+   "race_no": "R3C1",
+   "winner": "NARIO MESLINOIS",
+   "places": [
+    "NARIO MESLINOIS",
+    "NAMOUR DU COGLAIS",
+    "NIRJHARA"
+   ],
+   "order": [
+    "NARIO MESLINOIS",
+    "NAMOUR DU COGLAIS",
+    "NIRJHARA",
+    "NOBLE D'AVRIL",
+    "NOUKAT PARC",
+    "NARCISO D'EVA"
+   ],
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
+  },
+  {
+   "course": "Paris-Vincennes",
+   "time": "15:35",
+   "race": "PRIX DE BRIANCON",
+   "race_no": "R3C2",
+   "winner": "MARIYA HAUFOR",
+   "places": [
+    "MARIYA HAUFOR",
+    "MUSE PRIOR",
+    "MELODY DE L'EPINE"
+   ],
+   "order": [
+    "MARIYA HAUFOR",
+    "MUSE PRIOR",
+    "MELODY DE L'EPINE",
+    "MIMI DU MESNIL",
+    "MISS COCO",
+    "MA BIMBO",
+    "MA JOLIE BECO",
+    "MARQUISE DELACOUR",
+    "MONZA SEMILLY",
+    "MADONE DES RACQUES",
+    "MY FAVORITE THINGS",
+    "MOST WANTED",
+    "MUSE DU GOUTIER",
+    "MANILLE D'ERABLE"
+   ],
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
+  },
+  {
+   "course": "Paris-Vincennes",
+   "time": "16:09",
+   "race": "PRIX DYNAMENE",
+   "race_no": "R3C3",
+   "winner": "KRACDARCHE",
+   "places": [
+    "KRACDARCHE",
+    "KELMONDO BOY",
+    "KERSIGAN"
+   ],
+   "order": [
+    "KRACDARCHE",
+    "KELMONDO BOY",
+    "KERSIGAN",
+    "KADOR DELO",
+    "KIVIANA",
+    "KIKI DU ROC",
+    "KILLER SUN DRALIAM"
+   ],
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
+  },
+  {
+   "course": "Paris-Vincennes",
+   "time": "16:45",
+   "race": "PRIX DE CASTRES",
+   "race_no": "R3C4",
+   "winner": "MIL'S DE BAILLE",
+   "places": [
+    "MIL'S DE BAILLE",
+    "MILLESIME STAR",
+    "MY HERO"
+   ],
+   "order": [
+    "MIL'S DE BAILLE",
+    "MILLESIME STAR",
+    "MY HERO",
+    "MYTHE D'ERABLE",
+    "MALANDRINO",
+    "MILTON DU CHATELET",
+    "MIMI DE VAL",
+    "MANIGOD D'ELLE",
+    "MAESTRO D'ELFE",
+    "MILLESIME DARLING",
+    "MAJOR DE LA BASLE"
+   ],
+   "region": "FR",
+   "pick": "MAJOR DE LA BASLE",
+   "pick_finish": "11th",
+   "hit": false,
+   "chance": 15.4
+  },
+  {
+   "course": "Paris-Vincennes",
+   "time": "17:20",
+   "race": "PRIX DE L'ILE D'OLERON",
+   "race_no": "R3C5",
+   "winner": "IMAGINE D'ATOUT",
+   "places": [
+    "IMAGINE D'ATOUT",
+    "LAMBADA DU GOUTIER",
+    "KAYA DREAM"
+   ],
+   "order": [
+    "IMAGINE D'ATOUT",
+    "LAMBADA DU GOUTIER",
+    "KAYA DREAM",
+    "KAPAULA DE L'EPINE",
+    "ILTON ROYAL",
+    "HANNAH",
+    "IMPERIAL COGLAIS",
+    "HAIDA SAUTONNE"
+   ],
+   "region": "FR",
+   "pick": "LAMBADA DU GOUTIER",
+   "pick_finish": "2nd",
+   "hit": false,
+   "chance": 19.4
+  },
+  {
+   "course": "Paris-Vincennes",
+   "time": "17:55",
+   "race": "PRIX EURYNOME",
+   "race_no": "R3C6",
+   "winner": "OLGAYA",
+   "places": [
+    "OLGAYA",
+    "OLYMPE DE BELINE",
+    "OLBIA DRY"
+   ],
+   "order": [
+    "OLGAYA",
+    "OLYMPE DE BELINE",
+    "OLBIA DRY",
+    "OLIVE D'ANSY",
+    "OLBIA CASTELETS",
+    "OPEN LETTER",
+    "OPERA QUEEN",
+    "OPALE DU VALLON",
+    "ORCHESTRA"
+   ],
+   "region": "FR",
+   "pick": "OLGAYA",
+   "pick_finish": "1st",
+   "hit": true,
+   "chance": 32.1
+  },
+  {
+   "course": "Paris-Vincennes",
+   "time": "18:30",
+   "race": "PRIX TITAN",
+   "race_no": "R3C7",
+   "winner": "KING DE LARRE",
+   "places": [
+    "KING DE LARRE",
+    "KLOE D'ARRY",
+    "KING MAKER"
+   ],
+   "order": [
+    "KING DE LARRE",
+    "KLOE D'ARRY",
+    "KING MAKER",
+    "KEZIO JOSSELYN",
+    "KSAR VRIE",
+    "KALMIA QUICK",
+    "KADOR JOSSELYN"
+   ],
+   "region": "FR",
+   "pick": "KARMA QUICK",
+   "pick_finish": "",
+   "hit": false,
+   "chance": 28.4
+  },
+  {
+   "course": "Paris-Vincennes",
+   "time": "19:05",
+   "race": "PRIX TERCIDINA",
+   "race_no": "R3C8",
+   "winner": "NATACHA CASTEL",
+   "places": [
+    "NATACHA CASTEL",
+    "NEW GRASS",
+    "NYMPHADORA TONKS"
+   ],
+   "order": [
+    "NATACHA CASTEL",
+    "NEW GRASS",
+    "NYMPHADORA TONKS",
+    "NEWMARKET",
+    "NOCE ROYALE",
+    "NESSY D'AR",
+    "NIEBLITA",
+    "NINA D'EOL",
+    "NOBLE INTENTION",
+    "NORA D'ELCE",
+    "NESTOLA",
+    "NAGOYA DE LOU",
+    "NUITEE D'AMOUR"
+   ],
+   "region": "FR",
+   "pick": "NEW GRASS",
+   "pick_finish": "2nd",
+   "hit": false,
+   "chance": 29.1
+  },
+  {
+   "course": "Graignes",
+   "time": "15:52",
+   "race": "PRIX BAR-PMU RELAIS DE SAINT-JEAN",
+   "race_no": "R4C1",
+   "winner": "KING IMPERIAL",
+   "places": [
+    "KING IMPERIAL",
+    "KALINE DE VIRE",
+    "KINGSTON DU DOME"
+   ],
+   "order": [
+    "KING IMPERIAL",
+    "KALINE DE VIRE",
+    "KINGSTON DU DOME",
+    "KOMINA",
+    "KINGSTON DU BOURG",
+    "KALOUGA",
+    "KARAMEL DES BOSC",
+    "KETTINA DU CYGNE",
+    "KRAC BOREAL",
+    "KAPRICE D'EVAILLES"
+   ],
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
+  },
+  {
+   "course": "Graignes",
+   "time": "16:25",
+   "race": "PRIX MADAME RAYMOND RIGAULT",
+   "race_no": "R4C2",
+   "winner": "KLEMS DE JAVIE",
+   "places": [
+    "KLEMS DE JAVIE",
+    "KOZMIC BLUES",
+    "JOKER DE LA CRIERE"
+   ],
+   "order": [
+    "KLEMS DE JAVIE",
+    "KOZMIC BLUES",
+    "JOKER DE LA CRIERE",
+    "KARTER LEWIS",
+    "KATINKA COTON",
+    "JALBA DU FER",
+    "JIM CADE",
+    "KADO SURPRISE"
+   ],
+   "region": "FR",
+   "pick": "KOZMIC BLUES",
+   "pick_finish": "2nd",
+   "hit": false,
+   "chance": 18.8
+  },
+  {
+   "course": "Graignes",
+   "time": "17:02",
+   "race": "PRIX GARAGE FORTIN",
+   "race_no": "R4C3",
+   "winner": "LINDOR DE L'AVRE",
+   "places": [
+    "LINDOR DE L'AVRE",
+    "LOYAL ELEVEN",
+    "LE BIG JANJAN"
+   ],
+   "order": [
+    "LINDOR DE L'AVRE",
+    "LOYAL ELEVEN",
+    "LE BIG JANJAN",
+    "LE BEAU CIEL",
+    "LEADER BLACK",
+    "LUCAS D'AVRIL",
+    "LEFORT FLIGNY",
+    "LOOKY HEULINOIS",
+    "LAVATER GEDE",
+    "LUCKY LEOMAX"
+   ],
+   "region": "FR",
+   "pick": "LINDOR DE L'AVRE",
+   "pick_finish": "1st",
+   "hit": true,
+   "chance": 15.5
+  },
+  {
+   "course": "Graignes",
+   "time": "17:37",
+   "race": "PRIX INTERMARCHE CARENTAN",
+   "race_no": "R4C4",
+   "winner": "MAGNUS TOR",
+   "places": [
+    "MAGNUS TOR",
+    "MAXIMUS DU DOME",
+    "MOONLIGHT DJOC"
+   ],
+   "order": [
+    "MAGNUS TOR",
+    "MAXIMUS DU DOME",
+    "MOONLIGHT DJOC",
+    "MARQUIS DE MALAC",
+    "MILKSHAKE",
+    "MEETING MESLOIS"
+   ],
+   "region": "FR",
+   "pick": "MAGNUS MAXIMUS",
+   "pick_finish": "",
+   "hit": false,
+   "chance": 30
+  },
+  {
+   "course": "Graignes",
+   "time": "18:12",
+   "race": "PRIX LOUIS SAUVE",
+   "race_no": "R4C5",
+   "winner": "JURASSIC MOIRE",
+   "places": [
+    "JURASSIC MOIRE",
+    "JERIKA DE KERYANN",
+    "IZAAC D'HAVAROCHE"
+   ],
+   "order": [
+    "JURASSIC MOIRE",
+    "JERIKA DE KERYANN",
+    "IZAAC D'HAVAROCHE",
+    "JAMAIQUE DAIRPET",
+    "IAGO DE SENOVILLE",
+    "JACANA DE BLARY",
+    "KOQUIN DU PERCHE",
+    "HERMES DE L'ISAC"
+   ],
+   "region": "FR",
+   "pick": "JACANA DE BLARY",
+   "pick_finish": "6th",
+   "hit": false,
+   "chance": 22.3
+  },
+  {
+   "course": "Graignes",
+   "time": "18:47",
+   "race": "PRIX DE LA VILLE DE CARENTAN LES MARAIS",
+   "race_no": "R4C6",
+   "winner": "MELISSA MATCH",
+   "places": [
+    "MELISSA MATCH",
+    "MALICE DELADOU",
+    "MAMZELLE DREAM"
+   ],
+   "order": [
+    "MELISSA MATCH",
+    "MALICE DELADOU",
+    "MAMZELLE DREAM",
+    "MIRABELLE DE LARRE",
+    "MONANZA CASTEL",
+    "MARANELLA",
+    "MIST NIGHT QUICK",
+    "MADEIRA",
+    "MA CATHERINECHERIE",
+    "MISS TAVEL"
+   ],
+   "region": "FR",
+   "pick": "MELISSA MATCH",
+   "pick_finish": "1st",
+   "hit": true,
+   "chance": 41.2
+  },
+  {
+   "course": "Graignes",
+   "time": "19:22",
+   "race": "PRIX CORMORAN BOIS",
+   "race_no": "R4C7",
+   "winner": "LOVELY D'AUVRECY",
+   "places": [
+    "LOVELY D'AUVRECY",
+    "KOMELE",
+    "LADY DE L'ELLE"
+   ],
+   "order": [
+    "LOVELY D'AUVRECY",
+    "KOMELE",
+    "LADY DE L'ELLE",
+    "KAMAY DES CORONS",
+    "LADY MAURE",
+    "KARRY WHITE",
+    "LEON DU CLOS",
+    "KALYOPIE DU CANET",
+    "L'ETOILE DE ROCHE",
+    "KEPI DES MONTS"
+   ],
+   "region": "FR",
+   "pick": "LADY DE L'ELLE",
+   "pick_finish": "3rd",
+   "hit": false,
+   "chance": 17.3
+  },
+  {
+   "course": "Graignes",
+   "time": "19:47",
+   "race": "PRIX PIERRE DRION",
+   "race_no": "R4C8",
+   "winner": "NADJA",
+   "places": [
+    "NADJA",
+    "NORRINGTON",
+    "NONNE D'ERABLE"
+   ],
+   "order": [
+    "NADJA",
+    "NORRINGTON",
+    "NONNE D'ERABLE",
+    "NOW WITH US",
+    "NORTON KEN",
+    "NOTTINGHAM PLACE",
+    "NIGHTWISH TOR",
+    "NIGHT FOR MONEY"
+   ],
+   "region": "FR",
+   "pick": "NOW WITH US",
+   "pick_finish": "4th",
+   "hit": false,
+   "chance": 39.7
+  }
+ ]
+}

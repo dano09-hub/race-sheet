@@ -326,9 +326,9 @@ comparison under "Market-heavy shadow"; the published pick, the weights and the
 stored results are untouched.
 
 <!-- shadow-tally:start -->
-The 7 settled shadow days give 155 races: 45 winners for the arm against 45
-for the page, with 33 picks changed (won 4, lost 4), and a lead of +0.0 points
-at one-sided p 0.64, still inside the pre-registered bar.
+The 8 settled shadow days give 188 races: 57 winners for the arm against 56
+for the page, with 37 picks changed (won 5, lost 4), and a lead of +0.5 points
+at one-sided p 0.50, still inside the pre-registered bar.
 <!-- shadow-tally:end -->
 
 The arm does not get to win on a good week. Its decision rule is fixed in
@@ -360,8 +360,8 @@ unchanged, and the Score column still shows the raw rating.
 
 <!-- chance-record:start -->
 The live archive agrees on the direction but not yet on the size: on its own
-156 GB/IRE races the pick is shown at 26.7% and won 47 (30.1%, 95% CI
-23.5-37.7%).
+187 GB/IRE races the pick is shown at 26.4% and won 55 (29.4%, 95% CI
+23.3-36.3%).
 <!-- chance-record:end -->
 
 The archive cannot separate its own 0.0404 fit from the four-year 0.0498 yet,
@@ -373,14 +373,14 @@ Results tab's **Model chance audit** block reads it: the average stated chance
 of the rated picks, their actual win rate, and a Wilson interval around it.
 
 <!-- chance-rated:start -->
-At this build that is 52 rated races with 9 winners: the re-scored picks carry
-20.3% on average and their win rate has a 95% interval of 9.4-29.7%, so the
-block says the sample is not yet informative (298 more settled races).
+At this build that is 92 rated races with 17 winners: the re-scored picks
+carry 19.5% on average and their win rate has a 95% interval of 11.9-27.6%, so
+the block says the sample is not yet informative (258 more settled races).
 <!-- chance-rated:end -->
 
 <!-- scale-sensitivity:start -->
 At 350 races the interval is about +/-4.8 points and the 0.04 and 0.0498
-scales put the same picks 5 points apart over the 140 archived races whose
+scales put the same picks 5 points apart over the 170 archived races whose
 card still reproduces its stored pick; the interval at that size is about the
 size of the gap, so it catches a gross error and only just begins to tell the
 scales apart. At 1,600 races it narrows to about +/-2.2 points and the
@@ -396,7 +396,7 @@ pick is left blank rather than given a number the page never showed. Only seven
 days still have their cards, so the rest of the record carries no chance.
 
 <!-- blank-races:start -->
-66 of the 222 recent British and Irish races stay blank.
+75 of the 262 recent British and Irish races stay blank.
 <!-- blank-races:end -->
 
 The reason is the archive rather than the model. The intraday results sweep
@@ -1005,8 +1005,8 @@ on the page presents a pick that did not pass the six-input check.
   ledgers, the race-by-race audit and the Model chance audit from stored data
   without scraping, so a new re-score reaches the page without a fresh pull.
   <!-- coverage:start -->
-  Coverage at this build is 52 of 319 settled races (9 winners), all on
-  British cards; 29 of those were held out by price alone and are rated only
+  Coverage at this build is 92 of 459 settled races (17 winners), all on
+  British cards; 65 of those were held out by price alone and are rated only
   because every runner's price was found in a stored pre-off copy.
 
   *Generated from `data/results_rated` by `tooling/coverage_figures.py`;

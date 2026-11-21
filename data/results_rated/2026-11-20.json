@@ -13,15 +13,12 @@
    "finish": "",
    "hit": false,
    "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 3,
-     "of": 3
-    }
+   "missing": [],
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-19T17:21:33"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "unrecorded gap",
+   "blocker_only": false
   },
   {
    "course": "Ascot",
@@ -100,63 +97,57 @@
    "time": "13:55",
    "winner": "Western Knight",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
-   "finish": "",
+   "state": "rated",
+   "pick": "Crebilly",
+   "chance": 21.8,
+   "finish": "3rd",
    "hit": false,
    "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 6,
-     "of": 6
-    }
+   "missing": [],
+   "place_places": null,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-19T17:21:33"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Ascot",
    "time": "14:30",
    "winner": "Moveit Like Minnie",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
-   "finish": "",
+   "state": "rated",
+   "pick": "Williethebuilder",
+   "chance": 18.4,
+   "finish": "2nd",
    "hit": false,
    "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 8,
-     "of": 8
-    }
+   "missing": [],
+   "place_places": null,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-19T17:21:33"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Ascot",
    "time": "15:05",
    "winner": "Star Of Affinity",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
+   "state": "rated",
+   "pick": "Yes Day",
+   "chance": 16,
    "finish": "",
    "hit": false,
    "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 10,
-     "of": 10
-    }
+   "missing": [],
+   "place_places": null,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-19T17:21:33"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Ascot",
@@ -271,84 +262,76 @@
    "time": "13:08",
    "winner": "Jet Of Dreams",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
-   "finish": "",
+   "state": "rated",
+   "pick": "Legendary Luke",
+   "chance": 27,
+   "finish": "3rd",
    "hit": false,
    "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 6,
-     "of": 6
-    }
+   "missing": [],
+   "place_places": null,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-19T17:21:33"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Catterick",
    "time": "13:43",
    "winner": "Jeteye",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
+   "state": "rated",
+   "pick": "Speed Davis",
+   "chance": 16.9,
    "finish": "",
    "hit": false,
    "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 9,
-     "of": 9
-    }
+   "missing": [],
+   "place_places": null,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-19T17:21:33"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Catterick",
    "time": "14:18",
    "winner": "Finn Lough",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
-   "finish": "",
+   "state": "rated",
+   "pick": "Move With The Beat",
+   "chance": 26.5,
+   "finish": "2nd",
    "hit": false,
    "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 5,
-     "of": 5
-    }
+   "missing": [],
+   "place_places": null,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-19T17:21:33"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Catterick",
    "time": "14:53",
    "winner": "Hardy Buck",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
+   "state": "rated",
+   "pick": "Anytrixwilldo",
+   "chance": 21.5,
    "finish": "",
    "hit": false,
    "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 9,
-     "of": 9
-    }
+   "missing": [],
+   "place_places": null,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-19T17:21:33"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Catterick",
@@ -463,63 +446,57 @@
    "time": "12:57",
    "winner": "Sogna In Grande",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
+   "state": "rated",
+   "pick": "Wilstar",
+   "chance": 12.6,
    "finish": "",
    "hit": false,
    "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 11,
-     "of": 11
-    }
+   "missing": [],
+   "place_places": null,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-19T17:21:33"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Chepstow",
    "time": "13:32",
    "winner": "Lully Du Houx",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
+   "state": "rated",
+   "pick": "Lets Go To Vegas",
+   "chance": 17.1,
    "finish": "",
    "hit": false,
    "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 12,
-     "of": 12
-    }
+   "missing": [],
+   "place_places": null,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-19T17:21:33"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Chepstow",
    "time": "14:07",
    "winner": "Gingerbred",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
+   "state": "rated",
+   "pick": "No Tackle",
+   "chance": 11.8,
    "finish": "",
    "hit": false,
    "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 13,
-     "of": 13
-    }
+   "missing": [],
+   "place_places": null,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-19T17:21:33"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Chepstow",
@@ -562,21 +539,19 @@
    "time": "16:45",
    "winner": "Premier View",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
-   "finish": "",
-   "hit": false,
+   "state": "rated",
+   "pick": "Premier View",
+   "chance": 26.3,
+   "finish": "1st",
+   "hit": true,
    "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 9,
-     "of": 9
-    }
+   "missing": [],
+   "place_places": null,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-19T17:21:33"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Dundalk",
@@ -609,21 +584,19 @@
    "time": "17:45",
    "winner": "Prince Of Peppard",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
-   "finish": "",
-   "hit": false,
+   "state": "rated",
+   "pick": "Prince Of Peppard",
+   "chance": 24.3,
+   "finish": "1st",
+   "hit": true,
    "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 7,
-     "of": 7
-    }
+   "missing": [],
+   "place_places": null,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-19T17:21:33"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Dundalk",
@@ -733,21 +706,19 @@
    "time": "19:45",
    "winner": "Flying Fortress",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
+   "state": "rated",
+   "pick": "Justenzia",
+   "chance": 15.6,
    "finish": "",
    "hit": false,
    "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 13,
-     "of": 13
-    }
+   "missing": [],
+   "place_places": null,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-19T17:21:33"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Dundalk",
@@ -878,147 +849,133 @@
    "time": "18:30",
    "winner": "Gunfighter",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
-   "finish": "",
-   "hit": false,
+   "state": "rated",
+   "pick": "Gunfighter",
+   "chance": 18.5,
+   "finish": "1st",
+   "hit": true,
    "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 11,
-     "of": 11
-    }
+   "missing": [],
+   "place_places": null,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-19T17:21:33"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Wolverhampton",
    "time": "19:00",
    "winner": "Printing Money",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
-   "finish": "",
+   "state": "rated",
+   "pick": "Perfect Hope",
+   "chance": 18.9,
+   "finish": "3rd",
    "hit": false,
    "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 12,
-     "of": 12
-    }
+   "missing": [],
+   "place_places": null,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-19T17:21:33"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Wolverhampton",
    "time": "19:30",
    "winner": "Asuka",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
-   "finish": "",
-   "hit": false,
+   "state": "rated",
+   "pick": "Asuka",
+   "chance": 22.9,
+   "finish": "1st",
+   "hit": true,
    "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 10,
-     "of": 10
-    }
+   "missing": [],
+   "place_places": null,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-19T17:21:33"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Wolverhampton",
    "time": "20:00",
    "winner": "Our Planet",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
-   "finish": "",
+   "state": "rated",
+   "pick": "Barry The Worm",
+   "chance": 14.6,
+   "finish": "3rd",
    "hit": false,
    "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 13,
-     "of": 13
-    }
+   "missing": [],
+   "place_places": null,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-19T17:21:33"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Wolverhampton",
    "time": "20:30",
    "winner": "Exotic Baby",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
+   "state": "rated",
+   "pick": "Made All",
+   "chance": 11.4,
    "finish": "",
    "hit": false,
    "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 13,
-     "of": 13
-    }
+   "missing": [],
+   "place_places": null,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-19T17:21:33"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Wolverhampton",
    "time": "16:30",
    "winner": "Pitney",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
+   "state": "rated",
+   "pick": "Maith Mar Or",
+   "chance": 12.3,
    "finish": "",
    "hit": false,
    "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 13,
-     "of": 13
-    }
+   "missing": [],
+   "place_places": null,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-19T17:21:33"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Chepstow",
    "time": "14:42",
    "winner": "Jollie Dame",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
-   "finish": "",
-   "hit": false,
+   "state": "rated",
+   "pick": "Jollie Dame",
+   "chance": 15.9,
+   "finish": "1st",
+   "hit": true,
    "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 12,
-     "of": 12
-    }
+   "missing": [],
+   "place_places": null,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-19T17:21:33"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Chepstow",
@@ -1061,21 +1018,19 @@
    "time": "17:45",
    "winner": "Prince of Peppard",
    "region": "GB",
-   "state": "incomplete",
-   "pick": "",
-   "chance": null,
-   "finish": "",
-   "hit": false,
+   "state": "rated",
+   "pick": "Prince Of Peppard",
+   "chance": 24.3,
+   "finish": "1st",
+   "hit": true,
    "placed": null,
-   "missing": [
-    {
-     "what": "price",
-     "n": 7,
-     "of": 7
-    }
+   "missing": [],
+   "place_places": null,
+   "price_source": [
+    "eachway_prices.jsonl 2026-11-19T17:21:33"
    ],
-   "blocker": "price",
-   "blocker_only": true
+   "blocker": "",
+   "blocker_only": false
   },
   {
    "course": "Meydan",
