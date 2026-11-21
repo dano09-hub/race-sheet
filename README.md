@@ -890,21 +890,33 @@ users are rate-limited to 50 requests a minute and unauthenticated calls get
 delayed prices. Smarkets' terms allow automated access only after that
 approval.
 
-**Decision: the Lays tab does not show a Smarkets price.** No feed this project
-archives carries an exchange ladder: the archived cards hold racecard win
-prices, which are back prices with a bookmaker margin, and nothing holds the
-lay side, the money available at it, or the commission paid on a winning
-market. A lay price cannot be derived from a card price without inventing the
-spread, so the tab quotes the card price, the model's rank and chance, and the
-liability that price would imply per unit staked, and labels all of it as such.
-Its settled record reports the net against the total liability risked rather
-than a strike rate, because 51 winning lays at one unit each say nothing about
-the one loser that risks thirty times as much.
-Wiring in real lay prices would need an approved Smarkets API key (or an
-archived ladder) plus a job that stores the ladder before each off; the page
-would then show the exchange price beside the card price rather than replace
-the record with it. Until then a lay row is a record of the model, not a price
-feed, and no stake is taken.
+**Where the price comes from.** The Lays tab keeps to the archived card: the
+card price, the model's rank and chance, and the liability that price implies,
+with its settled record read on liability rather than strike rate, because 51
+winning lays at one unit each say nothing about the one loser that risks
+thirty times as much. The **Smarkets lays** tab adds the exchange's own side
+rather than replacing it: `tooling/smarkets.py` reads the public v3 book for
+each race the strict model rates (events, the WINNER market, its contracts and
+`quotes`), takes the best lay as the highest resting bid, converts the
+basis-point price to decimal odds (10000 / price) and the pot to the backer's
+stake (`quantity * price / 100000000`), and `tooling/smarkets_lays.py`
+snapshots that price for the model's last-rated runner before the off,
+appending it to `data/smarkets_lays.jsonl`. The **Smarkets results** tab
+settles every pre-off snapshot against the stored winner, net of the 2%
+commission on winning lays, and reads it on liability too. A race the exchange
+does not list, or a runner with no resting bid, is absent rather than priced,
+and a snapshot taken after the off is held back rather than scored in. A bid
+at the exchange floor (one basis point, 10000.00 decimal, where laying a unit
+risks 9,999 to win one) is a resting order rather than a market price, so it
+is dropped from the table and from the record and the count of dropped prices
+is stated instead.
+
+The anonymous public API is what makes this readable without an account, and
+it is also the limit: Smarkets delays those quotes by an unstated amount and
+holds them to roughly 20 quote requests a minute, so the tab calls a price a
+snapshot and not an order, and no stake is taken. An approved API key would
+make the quotes live and allow orders; nothing on this page is executable
+until then.
 
 ## Deploying
 
@@ -914,19 +926,21 @@ since `dist/public/index.html` is the whole site.
 
 ## The page
 
-Seventeen destinations, each a job rather than a data source. Old tab names
+Nineteen destinations, each a job rather than a data source. Old tab names
 still resolve to Today, so saved links and the browser's remembered tab keep
 working. Every race list gives the off time and runs in start-time order, and
 settled ledgers put each day's races in clock order. Times are held as real
 instants, so the order does not change with the viewer's timezone.
 
-Four screens read the strict model rather than a second rating. **Lays** names
+Five screens read the strict model rather than a second rating. **Lays** names
 the runner the model rates last in every race it can rate, with the liability
-the card price implies. **Longshot results**, **Overhyped results** and **Place
-banker results** replay their rules on settled days and settle each row from the
-stored result. All four are derived from the same six-input re-score as the
-ledgers: a race with a gap is left out and the gap is named, never filled, and
-no row is invented. Bet slips and Upcoming slips remain withdrawn, and nothing
+the card price implies, and the **Smarkets lays** tab prices that same runner
+at the exchange's best lay before the off. **Longshot results**, **Overhyped
+results** and **Place banker results** replay their rules on settled days and
+settle each row from the stored result, and **Smarkets results** does the same
+for the stored lay snapshots. All of them are derived from the same six-input
+re-score as the ledgers: a race with a gap is left out and the gap is named,
+never filled, and no row is invented. Bet slips and Upcoming slips remain withdrawn, and nothing
 on the page presents a pick that did not pass the six-input check.
 
 | Tab | What it is for |
@@ -934,6 +948,8 @@ on the page presents a pick that did not pass the six-input check.
 | Today | The next rated race, every rated pick with its evidence paragraph, and the list of races not rated with the missing input named. |
 | Cards | Pick any race and inspect every runner the model scored, with the full rating table. |
 | Lays | The runner the model rates last in each rated race, with the card price, its model chance and the liability that price implies. |
+| Smarkets lays | That same lay at the exchange's best price, with the money resting at it, the liability and the model's edge over the book, snapshotted before the off. |
+| Smarkets results | Every pre-off snapshot settled against the stored winner, net of commission and read on liability. |
 | UK results | Settled UK results, market checks and the standing model audits. |
 | Irish results | Settled Irish races, split from the UK ledger by course. |
 | US results | Settled US races with the off time and the speed-figure A/B. |

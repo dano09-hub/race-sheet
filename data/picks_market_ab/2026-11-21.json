@@ -1,0 +1,350 @@
+{
+ "date": "2026-11-21",
+ "generated": "2026-11-21T02:36:34+00:00",
+ "note": "Market-heavy shadow: the page's own factor scores re-weighted with the vector fitted on four years of results",
+ "metric": "weights",
+ "label": "market-heavy weighting",
+ "weights": {
+  "market": 50.8,
+  "form": 5.9,
+  "tips": 5.0,
+  "rpr": 13.0,
+  "rating": 3.4,
+  "cd": 3.6,
+  "draw": 0.9,
+  "speed": 12.0,
+  "going": 0.0,
+  "fitness": 3.4,
+  "weight": 0.0,
+  "connections": 6.1
+ },
+ "cards": 46,
+ "same": 39,
+ "changed": 7,
+ "ratedRunners": 473,
+ "runners": 473,
+ "rows": [
+  {
+   "course": "Ascot",
+   "time": "12:20",
+   "withRating": "The Walk",
+   "withoutRating": "The Walk",
+   "changed": false
+  },
+  {
+   "course": "Ascot",
+   "time": "12:55",
+   "withRating": "Steel Ally",
+   "withoutRating": "Lulamba",
+   "changed": true
+  },
+  {
+   "course": "Ascot",
+   "time": "13:30",
+   "withRating": "Lucky Place",
+   "withoutRating": "Lucky Place",
+   "changed": false
+  },
+  {
+   "course": "Ascot",
+   "time": "14:05",
+   "withRating": "That's Nice",
+   "withoutRating": "That's Nice",
+   "changed": false
+  },
+  {
+   "course": "Ascot",
+   "time": "14:40",
+   "withRating": "Rock My Way",
+   "withoutRating": "Rock My Way",
+   "changed": false
+  },
+  {
+   "course": "Ascot",
+   "time": "15:18",
+   "withRating": "Vanderpoel",
+   "withoutRating": "Vanderpoel",
+   "changed": false
+  },
+  {
+   "course": "Ascot",
+   "time": "15:48",
+   "withRating": "Herbygoesbananas",
+   "withoutRating": "Herbygoesbananas",
+   "changed": false
+  },
+  {
+   "course": "Haydock",
+   "time": "12:05",
+   "withRating": "Koktail Divin",
+   "withoutRating": "Koktail Divin",
+   "changed": false
+  },
+  {
+   "course": "Haydock",
+   "time": "12:40",
+   "withRating": "Kykorock",
+   "withoutRating": "Kykorock",
+   "changed": false
+  },
+  {
+   "course": "Haydock",
+   "time": "13:15",
+   "withRating": "North Shore",
+   "withoutRating": "North Shore",
+   "changed": false
+  },
+  {
+   "course": "Haydock",
+   "time": "13:50",
+   "withRating": "Kocktail Bleu",
+   "withoutRating": "Kocktail Bleu",
+   "changed": false
+  },
+  {
+   "course": "Haydock",
+   "time": "14:25",
+   "withRating": "Matty's Getaway",
+   "withoutRating": "Matty's Getaway",
+   "changed": false
+  },
+  {
+   "course": "Haydock",
+   "time": "15:00",
+   "withRating": "Grey Dawning",
+   "withoutRating": "Grey Dawning",
+   "changed": false
+  },
+  {
+   "course": "Haydock",
+   "time": "15:35",
+   "withRating": "Dexperts Opinion",
+   "withoutRating": "O'Connell",
+   "changed": true
+  },
+  {
+   "course": "Huntingdon",
+   "time": "12:13",
+   "withRating": "Lastbutnotleased",
+   "withoutRating": "Lastbutnotleased",
+   "changed": false
+  },
+  {
+   "course": "Huntingdon",
+   "time": "12:48",
+   "withRating": "U S Marshall",
+   "withoutRating": "That Is Blue",
+   "changed": true
+  },
+  {
+   "course": "Huntingdon",
+   "time": "13:23",
+   "withRating": "Realta Liath",
+   "withoutRating": "Realta Liath",
+   "changed": false
+  },
+  {
+   "course": "Huntingdon",
+   "time": "13:58",
+   "withRating": "North Of Richmond",
+   "withoutRating": "North Of Richmond",
+   "changed": false
+  },
+  {
+   "course": "Huntingdon",
+   "time": "14:33",
+   "withRating": "Chosen Hero",
+   "withoutRating": "Helios Allen",
+   "changed": true
+  },
+  {
+   "course": "Huntingdon",
+   "time": "15:10",
+   "withRating": "Nostrae De Cougny",
+   "withoutRating": "Nostrae De Cougny",
+   "changed": false
+  },
+  {
+   "course": "Lingfield",
+   "time": "11:00",
+   "withRating": "Honey Dale",
+   "withoutRating": "Honey Dale",
+   "changed": false
+  },
+  {
+   "course": "Lingfield",
+   "time": "11:30",
+   "withRating": "El Mutamaken",
+   "withoutRating": "El Mutamaken",
+   "changed": false
+  },
+  {
+   "course": "Lingfield",
+   "time": "12:00",
+   "withRating": "Bibury Star",
+   "withoutRating": "Bibury Star",
+   "changed": false
+  },
+  {
+   "course": "Lingfield",
+   "time": "12:35",
+   "withRating": "Iris Olivia",
+   "withoutRating": "Iris Olivia",
+   "changed": false
+  },
+  {
+   "course": "Lingfield",
+   "time": "13:10",
+   "withRating": "Mr Nugget",
+   "withoutRating": "Mr Nugget",
+   "changed": false
+  },
+  {
+   "course": "Lingfield",
+   "time": "13:45",
+   "withRating": "Tan Rapido",
+   "withoutRating": "Uncle Don",
+   "changed": true
+  },
+  {
+   "course": "Lingfield",
+   "time": "14:20",
+   "withRating": "Giorgio M",
+   "withoutRating": "Giorgio M",
+   "changed": false
+  },
+  {
+   "course": "Lingfield",
+   "time": "15:05",
+   "withRating": "The Anthony Gover",
+   "withoutRating": "The Anthony Gover",
+   "changed": false
+  },
+  {
+   "course": "Lingfield",
+   "time": "15:40",
+   "withRating": "Brave Leader",
+   "withoutRating": "Brave Leader",
+   "changed": false
+  },
+  {
+   "course": "Newcastle",
+   "time": "14:49",
+   "withRating": "Mr Moonshine",
+   "withoutRating": "Mr Moonshine",
+   "changed": false
+  },
+  {
+   "course": "Newcastle",
+   "time": "15:29",
+   "withRating": "Humble Spark",
+   "withoutRating": "Humble Spark",
+   "changed": false
+  },
+  {
+   "course": "Newcastle",
+   "time": "16:00",
+   "withRating": "Bondy Boy",
+   "withoutRating": "Bondy Boy",
+   "changed": false
+  },
+  {
+   "course": "Newcastle",
+   "time": "16:30",
+   "withRating": "Eagle Storm",
+   "withoutRating": "Eagle Storm",
+   "changed": false
+  },
+  {
+   "course": "Newcastle",
+   "time": "17:00",
+   "withRating": "Cornichon",
+   "withoutRating": "Cornichon",
+   "changed": false
+  },
+  {
+   "course": "Newcastle",
+   "time": "17:30",
+   "withRating": "Uncle Sam",
+   "withoutRating": "Pivotal Terms",
+   "changed": true
+  },
+  {
+   "course": "Newcastle",
+   "time": "18:00",
+   "withRating": "Oppenheimer",
+   "withoutRating": "Oppenheimer",
+   "changed": false
+  },
+  {
+   "course": "Newcastle",
+   "time": "18:30",
+   "withRating": "Oxford Circus",
+   "withoutRating": "Oxford Circus",
+   "changed": false
+  },
+  {
+   "course": "Newcastle",
+   "time": "19:00",
+   "withRating": "Educating Rita",
+   "withoutRating": "Roaring Ralph",
+   "changed": true
+  },
+  {
+   "course": "Punchestown",
+   "time": "11:53",
+   "withRating": "Delamotte",
+   "withoutRating": "Delamotte",
+   "changed": false
+  },
+  {
+   "course": "Punchestown",
+   "time": "12:28",
+   "withRating": "Mighty Park",
+   "withoutRating": "Mighty Park",
+   "changed": false
+  },
+  {
+   "course": "Punchestown",
+   "time": "13:03",
+   "withRating": "Ballygunner Castle",
+   "withoutRating": "Ballygunner Castle",
+   "changed": false
+  },
+  {
+   "course": "Punchestown",
+   "time": "13:38",
+   "withRating": "Predators Gold",
+   "withoutRating": "Predators Gold",
+   "changed": false
+  },
+  {
+   "course": "Punchestown",
+   "time": "14:10",
+   "withRating": "Lossiemouth",
+   "withoutRating": "Lossiemouth",
+   "changed": false
+  },
+  {
+   "course": "Punchestown",
+   "time": "14:45",
+   "withRating": "Momentum Of Love",
+   "withoutRating": "Momentum Of Love",
+   "changed": false
+  },
+  {
+   "course": "Punchestown",
+   "time": "15:23",
+   "withRating": "Gunnery Sergeant",
+   "withoutRating": "Gunnery Sergeant",
+   "changed": false
+  },
+  {
+   "course": "Punchestown",
+   "time": "15:53",
+   "withRating": "Mister Boum",
+   "withoutRating": "Mister Boum",
+   "changed": false
+  }
+ ]
+}

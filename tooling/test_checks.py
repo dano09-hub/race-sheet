@@ -3207,6 +3207,174 @@ check("caveat: writing is idempotent, so a render that changes nothing writes "
       and not caveat_figures.write(_CAVEAT_TMP, _CAVEAT_FIGS))
 
 print()
+print("Smarkets lays")
+import datetime as dt  # noqa: E402
+
+import smarkets        # noqa: E402
+import smarkets_lays   # noqa: E402
+
+check("smarkets: a course comes off the event slug, without its country suffix",
+      smarkets._course({"full_slug": "/sport/horse-racing/ffos-las/2026/11/21/13-30"})
+      == "Ffos Las"
+      and smarkets._course({"full_slug":
+                            "/sport/horse-racing/alice-springs-aus/2026/11/21/02-30"})
+      == "Alice Springs")
+check("smarkets: a horse name compares without case, apostrophes or spacing",
+      smarkets.key("Henry's Friend") == smarkets.key("HENRYS FRIEND"))
+
+_SMK_CONTRACTS = [{"id": "1", "name": "Lucky Place"},
+                  {"id": "2", "name": "No Bid"}]
+_SMK_QUOTES = {
+    "1": {"bids": [{"price": 4000, "quantity": 100000},
+                    {"price": 3900, "quantity": 250000}],
+          "offers": [{"price": 4200, "quantity": 100000},
+                      {"price": 4500, "quantity": 100000}]},
+    "2": {"bids": [], "offers": [{"price": 2000, "quantity": 100000}]},
+}
+_SMK_BOOK_ROWS = smarkets.runners(_SMK_CONTRACTS, _SMK_QUOTES)
+check("smarkets: the best lay is the highest bid, the best back the lowest "
+      "offer, and the money is the stake that bid can match",
+      abs(_SMK_BOOK_ROWS[0]["lay_odds"] - 2.5) < 1e-9
+      and abs(_SMK_BOOK_ROWS[0]["lay_stake"] - 4.0) < 1e-9
+      and _SMK_BOOK_ROWS[0]["back_odds"] < _SMK_BOOK_ROWS[0]["lay_odds"]
+      and _SMK_BOOK_ROWS[1]["lay_odds"] is None
+      and abs(_SMK_BOOK_ROWS[1]["back_odds"] - 5.0) < 1e-9,
+      _SMK_BOOK_ROWS[0])
+check("smarkets: a snapshot only counts before the off, in the venue's own "
+      "clock (BST included)",
+      smarkets_lays._pre_off("2026-11-21", "13:30",
+                             "2026-11-21T12:00:00+00:00")
+      and not smarkets_lays._pre_off("2026-11-21", "13:30",
+                                     "2026-11-21T14:00:00+00:00")
+      and not smarkets_lays._pre_off("2026-07-01", "13:30",
+                                     "2026-07-01T12:45:00+00:00")
+      and smarkets_lays._pre_off("2026-07-01", "13:30",
+                                 "2026-07-01T12:15:00+00:00"))
+
+_SMK_CARD = {"id": "ascot-1330", "course": "Ascot", "time": "13:30"}
+_SMK_GOT = {"rated": True, "runners": [
+    {"horse": "Top", "dec": 1.9, "chance": 50.0, "share": 0.5},
+    {"horse": "Lucky Place", "dec": 3.5, "chance": 30.0, "share": 0.3},
+    {"horse": "Tail End", "dec": 26.0, "chance": 2.0, "share": 0.03}]}
+_SMK_RATED = ([_SMK_CARD], {id(_SMK_CARD): _SMK_GOT}, {})
+_SMK_BOOK = {("ascot", "13:30"): {
+    "market_id": "9", "course": "Ascot", "off": "13:30",
+    "runners": [{"name": "Tail End", "lay_price": 3000,
+                 "lay_odds": 10.0 / 3, "lay_stake": 1.5,
+                 "back_odds": 3.2}]}}
+_SMK_CANDS = smarkets_lays.candidates("2026-11-21", _SMK_RATED)
+check("smarkets lays: the runner priced is the one the model rates last, not "
+      "its pick",
+      _SMK_CANDS[("ascot", "13:30")]["runner"] == "Tail End"
+      and _SMK_CANDS[("ascot", "13:30")]["model_pct"] == 2.0
+      and _SMK_CANDS[("ascot", "13:30")]["card_price"] == 26.0,
+      _SMK_CANDS)
+
+_SMK_TMP = tempfile.mkdtemp()
+_SMK_STORE = os.path.join(_SMK_TMP, "smarkets_lays.jsonl")
+_SMK_NOW = dt.datetime(2026, 11, 21, 12, 0, tzinfo=dt.timezone.utc)
+_ADDED = smarkets_lays.snapshot("2026-11-21", _SMK_RATED, _SMK_BOOK,
+                                _SMK_STORE, _SMK_NOW)
+check("smarkets lays: a pre-off snapshot stores the runner, the lay price and "
+      "the money resting at it",
+      len(_ADDED) == 1 and _ADDED[0]["lay_odds"] == 3.33
+      and _ADDED[0]["lay_stake"] == 1.5 and _ADDED[0]["fee"] == 0.02,
+      _ADDED)
+check("smarkets lays: an unchanged book writes nothing a second time",
+      smarkets_lays.snapshot("2026-11-21", _SMK_RATED, _SMK_BOOK,
+                             _SMK_STORE, _SMK_NOW) == [])
+_MOVED = {("ascot", "13:30"): {
+    "market_id": "9", "course": "Ascot", "off": "13:30",
+    "runners": [{"name": "Tail End", "lay_price": 2500,
+                 "lay_odds": 4.0, "lay_stake": 2.0,
+                 "back_odds": 3.9}]}}
+check("smarkets lays: a moved price is a new row, not a rewrite of the old one",
+      len(smarkets_lays.snapshot("2026-11-21", _SMK_RATED, _MOVED, _SMK_STORE,
+                                 _SMK_NOW + dt.timedelta(minutes=30))) == 1
+      and len(smarkets_lays.rows(_SMK_STORE)) == 2
+      and smarkets_lays.rows(_SMK_STORE)[0]["lay_odds"] == 3.33)
+
+_SMK_RES = os.path.join(_SMK_TMP, "results")
+os.makedirs(_SMK_RES)
+with open(os.path.join(_SMK_RES, "2026-11-21.json"), "w", encoding="utf-8") as f:
+    json.dump({"races": [{"region": "GB", "course": "Ascot",
+                          "time": "13:30", "winner": "Top"}]}, f)
+_SETTLED, _PENDING = smarkets_lays.settled(_SMK_STORE, _SMK_RES)
+check("smarkets lays: a stored winner settles the lay at the last pre-off "
+      "snapshot, net of commission",
+      len(_SETTLED) == 1 and _SETTLED[0]["lay_won"]
+      and abs(_SETTLED[0]["net"] - 0.98) < 1e-9
+      and abs(_SETTLED[0]["liability"] - (_SETTLED[0]["lay_odds"] - 1.0)) < 1e-9
+      and not _PENDING, _SETTLED)
+with open(os.path.join(_SMK_RES, "2026-11-21.json"), "w", encoding="utf-8") as f:
+    json.dump({"races": [{"region": "GB", "course": "Ascot",
+                          "time": "13:30", "winner": "Tail End"}]}, f)
+_LOST, _ = smarkets_lays.settled(_SMK_STORE, _SMK_RES)
+check("smarkets lays: a lay that loses pays the whole liability, not the stake",
+      len(_LOST) == 1 and not _LOST[0]["lay_won"]
+      and abs(_LOST[0]["net"] + 3.0) < 1e-9, _LOST)
+with open(os.path.join(_SMK_RES, "2026-11-21.json"), "w", encoding="utf-8") as f:
+    json.dump({"races": [{"region": "GB", "course": "Ascot",
+                          "time": "13:30", "winner": "Top"}]}, f)
+
+_SMK_LIVE = smarkets_lays.live_block("2026-11-21", _SMK_STORE)
+_SMK_RECORD = smarkets_lays.results_block(_SMK_STORE, _SMK_RES)
+check("smarkets lays: the live table carries the exchange price, the money and "
+      "the model's edge, and labels itself a projection",
+      "Tail End" in _SMK_LIVE and "4.00" in _SMK_LIVE
+      and "Stake at lay" in _SMK_LIVE and "projection, not a record" in _SMK_LIVE
+      and "delayed" in _SMK_LIVE, _SMK_LIVE[:200])
+check("smarkets lays: the record is read on liability and names the winner",
+      "units of liability were at risk" in _SMK_RECORD
+      and "won <b>1</b>" in _SMK_RECORD and "lost <b>0</b>" in _SMK_RECORD
+      and "net of <b>+1.0</b>" in _SMK_RECORD and "<td>Top</td>" in _SMK_RECORD,
+      _SMK_RECORD[:300])
+_EMPTY = os.path.join(_SMK_TMP, "empty.jsonl")
+check("smarkets lays: no snapshot and no settled row are named, never filled",
+      "No Smarkets snapshot is stored"
+      in smarkets_lays.live_block("2026-01-01", _EMPTY)
+      and "No lay snapshot has settled"
+      in smarkets_lays.results_block(_EMPTY, _SMK_RES))
+_SMK_FLOOR_BOOK = {("ascot", "13:30"): {
+    "market_id": "9", "course": "Ascot", "off": "13:30",
+    "runners": [{"name": "Tail End", "lay_price": 1,
+                 "lay_odds": 10000.0, "lay_stake": 21.47}]}}
+_FLOOR_STORE = os.path.join(_SMK_TMP, "floor.jsonl")
+smarkets_lays.snapshot("2026-11-21", _SMK_RATED, _SMK_FLOOR_BOOK,
+                       _FLOOR_STORE, _SMK_NOW)
+_FLOOR_LIVE = smarkets_lays.live_block("2026-11-21", _FLOOR_STORE)
+check("smarkets lays: a one-basis-point bid is dropped from the table and "
+      "counted",
+      smarkets_lays.floor_price({"lay_odds": 10000.0})
+      and smarkets_lays.floor_price({"lay_odds": 12000.0})
+      and not smarkets_lays.floor_price({"lay_odds": 999.0})
+      and not smarkets_lays.floor_price({})
+      and ">10000.00<" not in _FLOOR_LIVE
+      and "1 stored price at the exchange floor" in _FLOOR_LIVE
+      and "Tail End" not in _FLOOR_LIVE, _FLOOR_LIVE[:240])
+check("smarkets lays: a floor price is neither settled nor left looking pending",
+      smarkets_lays.settled(_FLOOR_STORE, _SMK_RES) == ([], [])
+      and "at the exchange floor"
+      in smarkets_lays.results_block(_FLOOR_STORE, _SMK_RES))
+
+_SMK_TINY = ("a\n<!-- SMK_SL_START -->\nx\n<!-- SMK_SL_END -->\n"
+             "<!-- SMK_RESULTS_SL_START -->\ny\n<!-- SMK_RESULTS_SL_END -->\nb\n")
+_SMK_OUT = smarkets_lays.replace_blocks(_SMK_TINY, "2026-11-21", _SMK_STORE,
+                                        _SMK_RES)
+check("smarkets lays: both panels are rewritten in place and nothing else is",
+      _SMK_OUT.startswith("a\n<!-- SMK_SL_START -->")
+      and _SMK_OUT.endswith("<!-- SMK_RESULTS_SL_END -->\nb\n")
+      and "Tail End" in _SMK_OUT and "\nx\n" not in _SMK_OUT
+      and "\ny\n" not in _SMK_OUT, _SMK_OUT[:120])
+try:
+    smarkets_lays.replace_blocks("a page with no markers")
+    _smk_refused = False
+except ValueError:
+    _smk_refused = True
+check("smarkets lays: replace refuses a page with no markers", _smk_refused)
+shutil.rmtree(_SMK_TMP)
+
+print()
 print("README figures")
 
 # These sentences quote figures the page prints from the same collectors, so
@@ -3434,6 +3602,11 @@ check("integrity: the README figures match the collectors the page uses",
       not readme_figures.stale(_readme_text, _rf_figs),
       " ".join(readme_figures.SENTENCES[name](_rf_figs[name])
                for name in readme_figures.BLOCKS))
+
+check("integrity: the Smarkets panels in index.html match the stored snapshots",
+      smarkets_lays.replace_blocks(page) == page,
+      (page.split("<!-- SMK_SL_START -->")[1][:200]
+       if "<!-- SMK_SL_START -->" in page else "no markers"))
 
 print()
 print("passed %d, failed %d%s" % (

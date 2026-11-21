@@ -1,0 +1,413 @@
+{
+ "date": "2026-11-21",
+ "generated": "2026-11-21T02:36:36+00:00",
+ "note": "US shadow: the same cards with the archived live form string in the form slot",
+ "metric": "form",
+ "label": "live form",
+ "cards": 57,
+ "same": 51,
+ "changed": 6,
+ "ratedRunners": 467,
+ "runners": 467,
+ "rows": [
+  {
+   "course": "Belmont Park",
+   "time": "17:10",
+   "withRating": "Lyn's Legacy",
+   "withoutRating": "Lyn's Legacy",
+   "changed": false
+  },
+  {
+   "course": "Belmont Park",
+   "time": "17:40",
+   "withRating": "Party in the Army",
+   "withoutRating": "Party in the Army",
+   "changed": false
+  },
+  {
+   "course": "Belmont Park",
+   "time": "19:10",
+   "withRating": "Calvin's Ride",
+   "withoutRating": "Calvin's Ride",
+   "changed": false
+  },
+  {
+   "course": "Belmont Park",
+   "time": "19:41",
+   "withRating": "Jadorlinija",
+   "withoutRating": "Jadorlinija",
+   "changed": false
+  },
+  {
+   "course": "Belmont Park",
+   "time": "20:12",
+   "withRating": "Epic Style",
+   "withoutRating": "Epic Style",
+   "changed": false
+  },
+  {
+   "course": "Belmont Park",
+   "time": "20:43",
+   "withRating": "Ground Support",
+   "withoutRating": "Ground Support",
+   "changed": false
+  },
+  {
+   "course": "Belmont Park",
+   "time": "21:14",
+   "withRating": "Duty",
+   "withoutRating": "Duty",
+   "changed": false
+  },
+  {
+   "course": "Charles Town",
+   "time": "00:00",
+   "withRating": "Go for Bourbon",
+   "withoutRating": "Go for Bourbon",
+   "changed": false
+  },
+  {
+   "course": "Charles Town",
+   "time": "00:32",
+   "withRating": "It's Fine",
+   "withoutRating": "It's Fine",
+   "changed": false
+  },
+  {
+   "course": "Charles Town",
+   "time": "01:02",
+   "withRating": "Cry Tough",
+   "withoutRating": "Cry Tough",
+   "changed": false
+  },
+  {
+   "course": "Charles Town",
+   "time": "01:32",
+   "withRating": "My Girl Bridgit",
+   "withoutRating": "My Girl Bridgit",
+   "changed": false
+  },
+  {
+   "course": "Charles Town",
+   "time": "02:32",
+   "withRating": "Dorado",
+   "withoutRating": "Tricks R for Juba",
+   "changed": true
+  },
+  {
+   "course": "Charles Town",
+   "time": "03:02",
+   "withRating": "Jubawithatwist",
+   "withoutRating": "Jubawithatwist",
+   "changed": false
+  },
+  {
+   "course": "Charles Town",
+   "time": "03:32",
+   "withRating": "Brother Moses",
+   "withoutRating": "Brother Moses",
+   "changed": false
+  },
+  {
+   "course": "Churchill Downs",
+   "time": "18:00",
+   "withRating": "Macchiato",
+   "withoutRating": "Macchiato",
+   "changed": false
+  },
+  {
+   "course": "Churchill Downs",
+   "time": "18:29",
+   "withRating": "Mustang Lady",
+   "withoutRating": "Mustang Lady",
+   "changed": false
+  },
+  {
+   "course": "Churchill Downs",
+   "time": "18:58",
+   "withRating": "Texas Dandelion",
+   "withoutRating": "Texas Dandelion",
+   "changed": false
+  },
+  {
+   "course": "Churchill Downs",
+   "time": "19:57",
+   "withRating": "Kintrigue",
+   "withoutRating": "Kintrigue",
+   "changed": false
+  },
+  {
+   "course": "Churchill Downs",
+   "time": "20:26",
+   "withRating": "Coltrane",
+   "withoutRating": "Coltrane",
+   "changed": false
+  },
+  {
+   "course": "Churchill Downs",
+   "time": "20:55",
+   "withRating": "Quick Pick",
+   "withoutRating": "Quick Pick",
+   "changed": false
+  },
+  {
+   "course": "Churchill Downs",
+   "time": "21:55",
+   "withRating": "Miss Enchanted",
+   "withoutRating": "Miss Enchanted",
+   "changed": false
+  },
+  {
+   "course": "Churchill Downs",
+   "time": "22:25",
+   "withRating": "Remember Mamba",
+   "withoutRating": "Remember Mamba",
+   "changed": false
+  },
+  {
+   "course": "Del Mar",
+   "time": "20:30",
+   "withRating": "Platinum Groove",
+   "withoutRating": "Platinum Groove",
+   "changed": false
+  },
+  {
+   "course": "Del Mar",
+   "time": "21:02",
+   "withRating": "Tee N Off",
+   "withoutRating": "Southern Melodee",
+   "changed": true
+  },
+  {
+   "course": "Del Mar",
+   "time": "21:32",
+   "withRating": "Street Swindler",
+   "withoutRating": "Street Swindler",
+   "changed": false
+  },
+  {
+   "course": "Del Mar",
+   "time": "23:03",
+   "withRating": "Clouseau",
+   "withoutRating": "Gun Runner Charlie",
+   "changed": true
+  },
+  {
+   "course": "Del Mar",
+   "time": "23:33",
+   "withRating": "Unbinding (GB)",
+   "withoutRating": "Unbinding (GB)",
+   "changed": false
+  },
+  {
+   "course": "Del Mar",
+   "time": "00:03",
+   "withRating": "Mr. A. P.",
+   "withoutRating": "Mr. A. P.",
+   "changed": false
+  },
+  {
+   "course": "Fair Grounds",
+   "time": "18:55",
+   "withRating": "Rebel Moon",
+   "withoutRating": "Rebel Moon",
+   "changed": false
+  },
+  {
+   "course": "Fair Grounds",
+   "time": "19:55",
+   "withRating": "Wadsworth",
+   "withoutRating": "Wadsworth",
+   "changed": false
+  },
+  {
+   "course": "Fair Grounds",
+   "time": "20:25",
+   "withRating": "Sippin On Gin",
+   "withoutRating": "Sippin On Gin",
+   "changed": false
+  },
+  {
+   "course": "Fair Grounds",
+   "time": "21:55",
+   "withRating": "Synthetic",
+   "withoutRating": "Synthetic",
+   "changed": false
+  },
+  {
+   "course": "Fair Grounds",
+   "time": "22:25",
+   "withRating": "Brodymeister",
+   "withoutRating": "Brodymeister",
+   "changed": false
+  },
+  {
+   "course": "Fair Grounds",
+   "time": "22:55",
+   "withRating": "Achromedoutcat",
+   "withoutRating": "Achromedoutcat",
+   "changed": false
+  },
+  {
+   "course": "Laurel Park",
+   "time": "17:00",
+   "withRating": "Horsing Around",
+   "withoutRating": "Horsing Around",
+   "changed": false
+  },
+  {
+   "course": "Laurel Park",
+   "time": "17:56",
+   "withRating": "Scarlet's Dream",
+   "withoutRating": "Scarlet's Dream",
+   "changed": false
+  },
+  {
+   "course": "Laurel Park",
+   "time": "18:25",
+   "withRating": "Celtic Contender",
+   "withoutRating": "Celtic Contender",
+   "changed": false
+  },
+  {
+   "course": "Laurel Park",
+   "time": "19:23",
+   "withRating": "Take Me To Church (IRE)",
+   "withoutRating": "Jolly Boss",
+   "changed": true
+  },
+  {
+   "course": "Laurel Park",
+   "time": "19:53",
+   "withRating": "Maida",
+   "withoutRating": "Maida",
+   "changed": false
+  },
+  {
+   "course": "Laurel Park",
+   "time": "20:23",
+   "withRating": "Don't Tell Deren",
+   "withoutRating": "Don't Tell Deren",
+   "changed": false
+  },
+  {
+   "course": "Laurel Park",
+   "time": "20:52",
+   "withRating": "Barbadian Runner",
+   "withoutRating": "Barbadian Runner",
+   "changed": false
+  },
+  {
+   "course": "Laurel Park",
+   "time": "21:22",
+   "withRating": "Stone Cold Kelly",
+   "withoutRating": "Stone Cold Kelly",
+   "changed": false
+  },
+  {
+   "course": "Remington Park",
+   "time": "22:00",
+   "withRating": "Sweep the West",
+   "withoutRating": "Sweep the West",
+   "changed": false
+  },
+  {
+   "course": "Remington Park",
+   "time": "22:45",
+   "withRating": "Tamino",
+   "withoutRating": "Tamino",
+   "changed": false
+  },
+  {
+   "course": "Remington Park",
+   "time": "23:30",
+   "withRating": "Attack Now",
+   "withoutRating": "Attack Now",
+   "changed": false
+  },
+  {
+   "course": "Remington Park",
+   "time": "23:58",
+   "withRating": "Caymen's Soldier",
+   "withoutRating": "Caymen's Soldier",
+   "changed": false
+  },
+  {
+   "course": "Remington Park",
+   "time": "01:11",
+   "withRating": "Iamkirk",
+   "withoutRating": "Iamkirk",
+   "changed": false
+  },
+  {
+   "course": "Remington Park",
+   "time": "01:56",
+   "withRating": "Invasion Girl",
+   "withoutRating": "Essential Coffee",
+   "changed": true
+  },
+  {
+   "course": "Remington Park",
+   "time": "02:24",
+   "withRating": "Burnt Orange",
+   "withoutRating": "Burnt Orange",
+   "changed": false
+  },
+  {
+   "course": "Remington Park",
+   "time": "03:09",
+   "withRating": "Easy as Pie",
+   "withoutRating": "Easy as Pie",
+   "changed": false
+  },
+  {
+   "course": "Tampa Bay Downs",
+   "time": "18:05",
+   "withRating": "Knox",
+   "withoutRating": "Knox",
+   "changed": false
+  },
+  {
+   "course": "Tampa Bay Downs",
+   "time": "19:05",
+   "withRating": "Fiftyshadesofpink",
+   "withoutRating": "Fiftyshadesofpink",
+   "changed": false
+  },
+  {
+   "course": "Tampa Bay Downs",
+   "time": "19:33",
+   "withRating": "Excellion",
+   "withoutRating": "Excellion",
+   "changed": false
+  },
+  {
+   "course": "Tampa Bay Downs",
+   "time": "20:02",
+   "withRating": "Wildcat Minny",
+   "withoutRating": "Beautiful Bolt",
+   "changed": true
+  },
+  {
+   "course": "Tampa Bay Downs",
+   "time": "20:35",
+   "withRating": "Tell Me Some Lies",
+   "withoutRating": "Tell Me Some Lies",
+   "changed": false
+  },
+  {
+   "course": "Tampa Bay Downs",
+   "time": "21:05",
+   "withRating": "Stone Cold Flex",
+   "withoutRating": "Stone Cold Flex",
+   "changed": false
+  },
+  {
+   "course": "Tampa Bay Downs",
+   "time": "21:40",
+   "withRating": "Miss Mo Town",
+   "withoutRating": "Miss Mo Town",
+   "changed": false
+  }
+ ]
+}

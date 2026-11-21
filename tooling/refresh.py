@@ -1039,6 +1039,9 @@ def rebuild_page(html=None):
     # the ledgers, so a new re-score has to reach them here too.
     import screen_results
     html = screen_results.replace_blocks(html)
+    # The exchange panels are static, built from the stored Smarkets snapshots.
+    import smarkets_lays
+    html = smarkets_lays.replace_blocks(html)
     with open(INDEX, "w", encoding="utf-8") as f:
         f.write(html)
     os.makedirs(os.path.join(ROOT, "dist", "public"), exist_ok=True)
@@ -1770,6 +1773,20 @@ def main():
     # The Lays tab and the screen-result panels, from the same re-score.
     import screen_results
     html = screen_results.replace_blocks(html)
+
+    # The exchange book for the model's lay, snapshotted before the offs, and
+    # the two Smarkets panels rebuilt from every snapshot on file. A blocked or
+    # limited API leaves the tab on its stored rows rather than failing the run.
+    try:
+        import smarkets_lays
+        try:
+            added = smarkets_lays.snapshot(iso)
+            print(f"  Smarkets:    {len(added)} lay price(s) snapshotted")
+        except Exception as e:
+            print(f"  Smarkets:    book skipped ({e})")
+        html = smarkets_lays.replace_blocks(html, iso)
+    except Exception as e:
+        print(f"  Smarkets:    panels skipped ({e})")
 
     # The Hong Kong results tab is rebuilt from data/results_hk, so a refresh
     # that only re-scrapes cards keeps the settled ledger current.
