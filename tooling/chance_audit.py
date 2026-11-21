@@ -21,6 +21,7 @@ import functools
 import glob
 import json
 import os
+import statistics
 import sys
 
 import numpy as np
@@ -76,20 +77,11 @@ def collect(results_dir=None):
     """
     root = results_dir or os.path.join(ROOT, "data", "results")
     rows = []
-    for path in sorted(glob.glob(os.path.join(root, "*.json"))):
-        try:
-            with open(path, encoding="utf-8") as f:
-                data = json.load(f)
-        except (OSError, ValueError):
-            continue
-        races = data.get("races", []) if isinstance(data, dict) else data
+    for iso, races in _days(root):
         for row in races:
-            if row.get("region") == "US":
+            if not _record_row(row):
                 continue
-            if not row.get("pick") or row.get("chance") is None:
-                continue
-            rows.append({"date": os.path.basename(path)[:-5],
-                         "chance": float(row["chance"]),
+            rows.append({"date": iso, "chance": float(row["chance"]),
                          "hit": bool(row.get("hit"))})
     out = _summary(rows)
     out["field"] = field_summary(results_dir)
@@ -100,36 +92,132 @@ def collect_rated(results_dir=None):
     """The same audit over the six-input re-score in data/results_rated."""
     root = results_dir or os.path.join(ROOT, "data", "results_rated")
     rows = []
-    for path in sorted(glob.glob(os.path.join(root, "*.json"))):
-        try:
-            with open(path, encoding="utf-8") as f:
-                data = json.load(f)
-        except (OSError, ValueError):
-            continue
-        for row in data.get("races") or []:
-            if row.get("state") != "rated":
+    for iso, races in _days(root):
+        for row in races:
+            if not _rated_row(row):
                 continue
-            if not row.get("pick") or row.get("chance") is None:
-                continue
-            rows.append({"date": os.path.basename(path)[:-5],
-                         "chance": float(row["chance"]),
+            rows.append({"date": iso, "chance": float(row["chance"]),
                          "hit": bool(row.get("hit"))})
     out = _summary(rows)
     out["rated"] = True
     return out
 
 
+def _days(root):
+    """(iso, stored races) for every settled day in a results directory."""
+    for path in sorted(glob.glob(os.path.join(root, "*.json"))):
+        try:
+            with open(path, encoding="utf-8") as f:
+                data = json.load(f)
+        except (OSError, ValueError):
+            continue
+        races = data.get("races", []) if isinstance(data, dict) else data
+        yield os.path.basename(path)[:-5], races or []
+
+
+def _key(race):
+    """A race's course and off time: how a stored row names its card."""
+    return (race.get("course"), str(race.get("time") or "")[:5])
+
+
+def _decimals(sem):
+    """The decimal places a gap's own sample error supports."""
+    return 1 if sem < 0.1 else 0
+
+
 def _gap_from(fields):
-    """The pick's chance at 0.04 and at 0.0498 over a list of field totals."""
+    """The pick's chance at 0.04 and at 0.0498 over a list of field totals.
+
+    The gap is rounded to the precision its own sample supports: a tenth of a
+    point is finer than the standard error over a few dozen matched races, so
+    such a gap prints in whole points rather than as a measured-looking 3.0.
+    """
     if not fields:
-        return {"races": 0, "gap": 0.0, "early": 0.0, "late": 0.0}
+        return {"races": 0, "gap": 0.0, "early": 0.0, "late": 0.0,
+                "sem": 0.0, "decimals": 1}
     early = [float(max(softmax(np.asarray(f) * SCALE))) for f in fields]
     late = [float(max(softmax(np.asarray(f) * FOUR_YEAR))) for f in fields]
-    n = len(fields)
+    spread = [100 * (b - a) for a, b in zip(early, late)]
+    n = len(spread)
+    sem = statistics.stdev(spread) / n ** 0.5 if n > 1 else float("inf")
+    decimals = _decimals(sem)
     return {"races": n,
             "early": 100 * sum(early) / n,
             "late": 100 * sum(late) / n,
-            "gap": 100 * sum(b - a for a, b in zip(early, late)) / n}
+            "gap": round(sum(spread) / n, decimals),
+            "sem": sem, "decimals": decimals}
+
+
+def gap_points(gap):
+    """The measured gap in points, at the precision its sample supports."""
+    if not gap or not gap.get("races"):
+        return "the gap"
+    return f"{gap['gap']:.{gap.get('decimals', 1)}f} points"
+
+
+def scale_verdict(early, gap):
+    """How the interval at a sample size stands against the measured gap.
+
+    One sentence for the page and the README, so the threshold that decides it
+    cannot drift between the two.
+    """
+    if early >= gap:
+        return ("the interval at that size is still wider than the gap, so it "
+                "catches a gross error but cannot yet tell the scales apart")
+    if early >= gap - 1:
+        return ("the interval at that size is about the size of the gap, so it "
+                "catches a gross error and only just begins to tell the "
+                "scales apart")
+    return ("the interval at that size is already narrower than the gap, so "
+            "it can tell the scales apart")
+
+
+def _matched_fields(rows, scored_for):
+    """Field totals for each row whose stored pick still re-scores.
+
+    A row whose card no longer reproduces its pick is left out: its totals
+    belong to a card the page never showed.
+    """
+    fields = []
+    for row in rows:
+        got = scored_for(row)
+        if not got or got.get("pick") != row["pick"]:
+            continue
+        totals = [r.get("total") for r in got.get("runners") or []]
+        if not totals or any(t is None for t in totals):
+            continue
+        fields.append([float(t) for t in totals])
+    return fields
+
+
+def _gap_scan(root, keep, match_day):
+    """Measure the two scales over every day whose cards can be re-scored.
+
+    `keep` says whether a stored row carries this model's pick and chance;
+    `match_day(iso)` returns a row -> re-scored-race lookup for that day, or
+    None when its cards are gone.
+    """
+    fields = []
+    for iso, rows in _days(root):
+        rows = [row for row in rows if keep(row)]
+        if not rows:
+            continue
+        scored_for = match_day(iso)
+        if scored_for:
+            fields += _matched_fields(rows, scored_for)
+    return _gap_from(fields)
+
+
+def _record_row(row):
+    """The twelve-factor record stores a chance for GB/IRE picks only."""
+    return (row.get("region") != "US" and row.get("pick")
+            and row.get("chance") is not None)
+
+
+def _rated_row(row):
+    """The six-input re-score stores a chance only for a rated pick."""
+    return (row.get("state") == "rated" and row.get("pick")
+            and row.get("chance") is not None)
 
 
 @functools.lru_cache(maxsize=4)
@@ -138,82 +226,40 @@ def _scale_gap_record(results_dir=None):
 
     A stored row carries only the 0.04 number, so the other scale needs the
     field's totals: each settled day with an archived card is re-scored with
-    the page's own scorer and matched to the pick on record. A race whose card
-    no longer reproduces that pick is left out -- its totals belong to a card
-    the page never showed -- which is why this reads fewer races than the
-    ledger it is quoted beside.
+    the page's own scorer and matched to the pick on record. Only days that
+    still have their cards can be read, which is why this covers fewer races
+    than the ledger it is quoted beside.
     """
     import backfill_chance      # lazy: it imports refresh, which imports this
     import settle
-    root = results_dir or os.path.join(ROOT, "data", "results")
-    fields = []
-    for path in sorted(glob.glob(os.path.join(root, "*.json"))):
-        iso = os.path.basename(path)[:-5]
-        try:
-            with open(path, encoding="utf-8") as f:
-                data = json.load(f)
-        except (OSError, ValueError):
-            continue
-        rows = data.get("races", []) if isinstance(data, dict) else data
-        rows = [row for row in rows
-                if row.get("region") != "US" and row.get("pick")
-                and row.get("chance") is not None]
-        if not rows:
-            continue
+
+    def match_day(iso):
         cards = settle._cards_for(iso)
         if not cards:
-            continue
-        resolve = backfill_chance._resolver(cards, settle.score_cards(cards))
-        for row in rows:
-            scored = resolve(row)
-            if not scored or scored.get("pick") != row["pick"]:
-                continue
-            totals = [r.get("total") for r in scored.get("runners") or []]
-            if not totals or any(t is None for t in totals):
-                continue
-            fields.append([float(t) for t in totals])
-    return _gap_from(fields)
+            return None
+        return backfill_chance._resolver(cards, settle.score_cards(cards))
+
+    return _gap_scan(results_dir or os.path.join(ROOT, "data", "results"),
+                     _record_row, match_day)
 
 
 @functools.lru_cache(maxsize=4)
 def _scale_gap_rated(results_dir=None):
-    """The same gap on the six-input re-score, which carries the page's chance.
-
-    Its field totals come from the re-score's own stored cards, and a race is
-    kept only where that card still produces the pick on record.
-    """
+    """The same gap on the six-input re-score, which carries the page's chance."""
     import rescore_results
     import settle
-    root = results_dir or os.path.join(ROOT, "data", "results_rated")
-    fields = []
-    for path in sorted(glob.glob(os.path.join(root, "*.json"))):
-        iso = os.path.basename(path)[:-5]
-        try:
-            with open(path, encoding="utf-8") as f:
-                data = json.load(f)
-        except (OSError, ValueError):
-            continue
-        rows = [row for row in data.get("races") or []
-                if row.get("state") == "rated" and row.get("pick")
-                and row.get("chance") is not None]
-        if not rows:
-            continue
+
+    def match_day(iso):
         cards = rescore_results.day_cards(iso)
         if not cards:
-            continue
-        scored = {(c.get("course"), str(c.get("time") or "")[:5]): s
+            return None
+        scored = {_key(c): s
                   for c, s in zip(cards, settle.score_rated_cards(cards))
                   if s and s.get("rated")}
-        for row in rows:
-            got = scored.get((row.get("course"),
-                              str(row.get("time") or "")[:5]))
-            if not got or got.get("pick") != row["pick"]:
-                continue
-            totals = [r.get("total") for r in got.get("runners") or []]
-            if not totals or any(t is None for t in totals):
-                continue
-            fields.append([float(t) for t in totals])
-    return _gap_from(fields)
+        return lambda row: scored.get(_key(row))
+
+    return _gap_scan(results_dir or os.path.join(ROOT, "data", "results_rated"),
+                     _rated_row, match_day)
 
 
 def scale_gap(rated=False, results_dir=None):
@@ -260,8 +306,8 @@ def main():
     gap = scale_gap(rated=bool(a.get("rated")))
     widths = half_widths(a)
     if gap["races"]:
-        print(f"  the 0.04 and 0.0498 scales put the same picks {gap['gap']:.1f} "
-              f"points apart over {gap['races']} rescored races "
+        print(f"  the 0.04 and 0.0498 scales put the same picks "
+              f"{gap_points(gap)} apart over {gap['races']} rescored races "
               f"({gap['early']:.1f}% against {gap['late']:.1f}%)")
     print(f"  Wilson half-width {widths[EARLY]:.1f} points at {EARLY} races, "
           f"{widths[DECISIVE]:.1f} at {DECISIVE}")

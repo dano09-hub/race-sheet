@@ -1181,8 +1181,7 @@ def chance_block_html(a, iso=None, gap=None):
         widths = chance_audit.half_widths(a)
         early_w = widths[chance_audit.EARLY]
         late_w = widths[chance_audit.DECISIVE]
-        apart = (f"{gap['gap']:.1f} points" if gap.get("races")
-                 else "the gap")
+        apart = chance_audit.gap_points(gap)
         if a.get("more_early"):
             if not gap.get("races"):
                 inner += (f'<p class="k">Not yet informative: needs '
@@ -1191,23 +1190,24 @@ def chance_block_html(a, iso=None, gap=None):
                           f'yet, so the sample this waits for is still an '
                           f'estimate.</p>')
             else:
-                relation = ("wider than that gap, so the sample still cannot "
-                            "tell the scales apart" if early_w >= gap["gap"]
-                            else "about the size of that gap, so the sample only "
-                                 "just begins to tell them apart")
+                verdict = chance_audit.scale_verdict(early_w, gap["gap"])
                 inner += (f'<p class="k">Not yet informative: needs '
-                          f'<b>{a["more_early"]}</b> more settled races. It '
-                          f'catches a gross error, but the {apart} between the '
-                          f'0.04 and 0.0498 scales sit against the '
-                          f'<b>+/-{early_w:.1f}</b> points this record would '
-                          f'still carry at {chance_audit.EARLY} races, '
-                          f'{relation}.</p>')
+                          f'<b>{a["more_early"]}</b> more settled races. The '
+                          f'{apart} between the 0.04 and 0.0498 scales over '
+                          f'<b>{gap["races"]}</b> matched races sit against '
+                          f'the <b>+/-{early_w:.1f}</b> points this sample '
+                          f'would still carry at {chance_audit.EARLY} races; '
+                          f'{verdict}.</p>')
         elif a.get("more_decisive"):
+            if gap.get("races"):
+                tail = chance_audit.scale_verdict(late_w, gap["gap"])
+            else:
+                tail = ("no re-scored card has measured the gap yet, so the "
+                        "scales cannot be told apart")
             inner += (f'<p class="k">Informative but not decisive: needs '
-                      f'<b>{a["more_decisive"]}</b> more settled races before the '
-                      f'interval narrows to about <b>+/-{late_w:.1f}</b> points, '
-                      f'well under the {apart} between the 0.04 and 0.0498 '
-                      f'scales, and they can be told apart.</p>')
+                      f'<b>{a["more_decisive"]}</b> more settled races before '
+                      f'the interval narrows to about <b>+/-{late_w:.1f}</b> '
+                      f'points; {tail}.</p>')
         else:
             inner += ('<p class="k">At this sample the interval is narrow '
                       'enough to test the scale it was fitted on.</p>')

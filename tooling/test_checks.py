@@ -1610,6 +1610,16 @@ try:
           and abs(_hw[chance_audit.DECISIVE] - 2.27) < 0.01, _hw)
     check("audit: no rate yet, no half-width to claim",
           chance_audit.half_widths({})[chance_audit.EARLY] == 0.0)
+    check("audit: a gap measured on 23 races is quoted in whole points",
+          chance_audit.gap_points({"races": 23, "gap": 3.0,
+                                   "decimals": 0}) == "3 points"
+          and chance_audit.gap_points({"races": 0}) == "the gap",
+          chance_audit.gap_points({"races": 23, "gap": 3.0,
+                                   "decimals": 0}))
+    check("audit: the gap's own error decides the precision it is quoted at",
+          chance_audit._gap_from([[1.0, 1.0], [1.0, 3.0]])["decimals"] == 0
+          and chance_audit._gap_from([[1.0, 2.0], [1.0, 2.0]])["decimals"] == 1,
+          chance_audit._gap_from([[1.0, 1.0], [1.0, 3.0]]))
     check("audit: verdict accepts an interval that contains the figure",
           chance_audit.verdict({"races": 1, "inside": True}) == "inside")
     check("audit: verdict catches a figure above the interval",
@@ -1625,12 +1635,19 @@ try:
     check("audit block: the 350-race branch compares the measured gap with the "
           "interval that sample would give",
           "between the 0.04 and 0.0498" in block and "+/-5.2" in block
-          and "cannot tell the scales apart" in block, block[-340:])
+          and "cannot yet tell the scales apart" in block, block[-340:])
     _narrow = refresh.chance_block_html(
         dict(audit, rate=0.313, more_early=200), gap={"races": 101, "gap": 4.9})
     check("audit block: a gap the 350-race interval nearly matches reads as "
           "marginal, not resolved",
           "+/-4.8" in _narrow and "only just begins" in _narrow, _narrow[-340:])
+    _coarse = refresh.chance_block_html(
+        dict(audit, rate=0.203, more_early=298),
+        gap={"races": 23, "gap": 3.0, "decimals": 0})
+    check("audit block: a gap measured on 23 races is quoted in whole points",
+          "3 points between the 0.04 and 0.0498 scales over <b>23</b> "
+          "matched races" in _coarse and "3.0 points" not in _coarse,
+          _coarse[-360:])
     _unmeasured = refresh.chance_block_html(dict(audit, more_early=200),
                                             gap={"races": 0})
     check("audit block: with no rescored card the gap is not invented",
@@ -3254,14 +3271,19 @@ check("readme: the scale sentence sets the measured gap against the interval "
       _RF_SCALE_TEXT == "At 350 races the interval is about +/-4.8 points and "
                         "the 0.04 and 0.0498 scales put the same picks 4.9 "
                         "points apart over the 101 archived races whose card "
-                        "still reproduces its stored pick, so the interval "
-                        "there is about the size of what it has to resolve: it "
-                        "catches a gross error and only just begins to tell "
-                        "the scales apart. At 1,600 races it narrows to about "
+                        "still reproduces its stored pick; the interval at "
+                        "that size is about the size of the gap, so it catches "
+                        "a gross error and only just begins to tell the "
+                        "scales apart. At 1,600 races it narrows to about "
                         "+/-2.3 points and the question can be settled."
       and "over the 1 archived race whose card"
       in readme_figures.scale_sensitivity(dict(_RF_SCALE, races=1)),
       _RF_SCALE_TEXT)
+check("readme: the page and the README take the comparison from one shared "
+      "verdict, not two hand-kept ladders",
+      chance_audit.scale_verdict(4.84, 4.9) in _RF_SCALE_TEXT
+      and chance_audit.scale_verdict(4.84, 4.9) in _narrow,
+      chance_audit.scale_verdict(4.84, 4.9))
 check("readme: which way the 350-race comparison falls is read off the "
       "numbers, not fixed in the wording",
       "still wider than the gap"

@@ -373,11 +373,11 @@ block says the sample is not yet informative (298 more settled races).
 
 <!-- scale-sensitivity:start -->
 At 350 races the interval is about +/-4.8 points and the 0.04 and 0.0498
-scales put the same picks 4.9 points apart over the 101 archived races whose
-card still reproduces its stored pick, so the interval there is about the size
-of what it has to resolve: it catches a gross error and only just begins to
-tell the scales apart. At 1,600 races it narrows to about +/-2.3 points and
-the question can be settled.
+scales put the same picks 5 points apart over the 101 archived races whose
+card still reproduces its stored pick; the interval at that size is about the
+size of the gap, so it catches a gross error and only just begins to tell the
+scales apart. At 1,600 races it narrows to about +/-2.3 points and the
+question can be settled.
 <!-- scale-sensitivity:end -->
 
 The paragraphs below describe the twelve-factor chance column that remains in

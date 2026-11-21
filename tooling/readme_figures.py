@@ -62,6 +62,7 @@ def collect():
         "chance-record": record,
         "chance-rated": chance_audit.collect_rated(),
         "scale-sensitivity": {"races": gap["races"], "gap": gap["gap"],
+                              "decimals": gap["decimals"],
                               "early": widths[chance_audit.EARLY],
                               "decisive": widths[chance_audit.DECISIVE],
                               "early_n": chance_audit.EARLY,
@@ -112,21 +113,12 @@ def scale_sensitivity(figs):
     if not figs["races"] or not figs["early"]:
         return ("No settled race can be re-scored for the 0.04 and 0.0498 "
                 "scale gap yet, so the sample sizes are still estimates.")
-    if figs["early"] >= figs["gap"]:
-        verdict = ("so the interval there is still wider than the gap: it "
-                   "catches a gross error but cannot yet tell the scales apart")
-    elif figs["early"] >= figs["gap"] - 1:
-        verdict = ("so the interval there is about the size of what it has to "
-                   "resolve: it catches a gross error and only just begins to "
-                   "tell the scales apart")
-    else:
-        verdict = ("so the interval there is already narrower than the gap and "
-                   "can tell the scales apart")
+    verdict = chance_audit.scale_verdict(figs["early"], figs["gap"])
     return (f"At {figs['early_n']} races the interval is about "
             f"+/-{figs['early']:.1f} points and the 0.04 and 0.0498 scales put "
-            f"the same picks {figs['gap']:.1f} points apart over the "
+            f"the same picks {chance_audit.gap_points(figs)} apart over the "
             f"{_count(figs['races'], 'archived race')} whose card still "
-            f"reproduces its stored pick, {verdict}. At {figs['decisive_n']:,} "
+            f"reproduces its stored pick; {verdict}. At {figs['decisive_n']:,} "
             f"races it narrows to about +/-{figs['decisive']:.1f} points and the "
             f"question can be settled.")
 
