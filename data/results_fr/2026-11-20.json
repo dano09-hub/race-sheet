@@ -1,7 +1,7 @@
 {
  "date": "2026-11-20",
  "region": "FR",
- "updated": "2026-11-20T19:37:55Z",
+ "updated": "2026-11-21T00:57:26Z",
  "races": [
   {
    "course": "Paris-Vincennes",
@@ -30,9 +30,9 @@
    ],
    "region": "FR",
    "pick": "LOU DU DONJON",
-   "chance": 19.2,
    "pick_finish": "7th",
-   "hit": false
+   "hit": false,
+   "chance": 19.2
   },
   {
    "course": "Paris-Vincennes",
@@ -57,9 +57,9 @@
    ],
    "region": "FR",
    "pick": "LOUPIOT JACTA",
-   "chance": 29.4,
    "pick_finish": "",
-   "hit": false
+   "hit": false,
+   "chance": 29.4
   },
   {
    "course": "Paris-Vincennes",
@@ -81,9 +81,9 @@
    ],
    "region": "FR",
    "pick": "MAGIC D'AIMTE",
-   "chance": 24,
    "pick_finish": "2nd",
-   "hit": false
+   "hit": false,
+   "chance": 24
   },
   {
    "course": "Paris-Vincennes",
@@ -112,7 +112,130 @@
     "JACK DES MALBERAUX",
     "JORLANDO"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
+  },
+  {
+   "course": "Paris-Vincennes",
+   "time": "19:50",
+   "race": "PRIX KERONIS",
+   "race_no": "R1C5",
+   "winner": "MEGAFLECHE",
+   "places": [
+    "MEGAFLECHE",
+    "MOONSTAR JYL",
+    "MAMAMIA DES ARRIS"
+   ],
+   "order": [
+    "MEGAFLECHE",
+    "MOONSTAR JYL",
+    "MAMAMIA DES ARRIS",
+    "MAYA DE MAHEY",
+    "MARIE CHARLOTTE",
+    "MERRY",
+    "MUSE DE MONTCEAU",
+    "MAYA PONT VAUTIER",
+    "MANDARINE TIVO",
+    "MISS BLACK BERRY",
+    "MOON DU VIVIER",
+    "MAJORELLE",
+    "MAMZELLE D'HERIPRE",
+    "MY HAPPY STORY"
+   ],
+   "region": "FR",
+   "pick": "MOON DU VIVIER",
+   "chance": 17.1,
+   "pick_finish": "11th",
+   "hit": false
+  },
+  {
+   "course": "Paris-Vincennes",
+   "time": "20:25",
+   "race": "PRIX URSA",
+   "race_no": "R1C6",
+   "winner": "DUMA NEH D'ASTI",
+   "places": [
+    "DUMA NEH D'ASTI",
+    "JOIE DES VENTES",
+    "JINA FOUTEAU"
+   ],
+   "order": [
+    "DUMA NEH D'ASTI",
+    "JOIE DES VENTES",
+    "JINA FOUTEAU",
+    "DEVIL OP",
+    "JUMPER MATIDY",
+    "JAGUAR DE VILLETOT",
+    "JUMBY BAY",
+    "JASONDOR DU VINOIS",
+    "JULIE DU CLOS"
+   ],
+   "region": "FR",
+   "pick": "LAKE'S EDINA",
+   "chance": 24.4,
+   "pick_finish": "",
+   "hit": false
+  },
+  {
+   "course": "Paris-Vincennes",
+   "time": "21:00",
+   "race": "PRIX AGATHE",
+   "race_no": "R1C7",
+   "winner": "NEPTUNE DE JEAN",
+   "places": [
+    "NEPTUNE DE JEAN",
+    "NEGOCIABLE",
+    "NORD CALITY"
+   ],
+   "order": [
+    "NEPTUNE DE JEAN",
+    "NEGOCIABLE",
+    "NORD CALITY",
+    "NOVO SUPREME",
+    "NAPOLEON DE GAGOU",
+    "NABAD DU ROCHER",
+    "NOVATO BELLO",
+    "NERPRUN",
+    "NEW ATOUT",
+    "NAMOUR DE MONTFORT",
+    "NAPOLITANO D'AWA"
+   ],
+   "region": "FR",
+   "pick": "NOVATO BELLO",
+   "chance": 16.2,
+   "pick_finish": "7th",
+   "hit": false
+  },
+  {
+   "course": "Paris-Vincennes",
+   "time": "21:25",
+   "race": "PRIX LEONA",
+   "race_no": "R1C8",
+   "winner": "MAINTENANTOUJAMAIS",
+   "places": [
+    "MAINTENANTOUJAMAIS",
+    "MEPHISTO DU CLOS",
+    "MOJITA"
+   ],
+   "order": [
+    "MAINTENANTOUJAMAIS",
+    "MEPHISTO DU CLOS",
+    "MOJITA",
+    "MINA DRY",
+    "MARQUISE DE MAGNY",
+    "MYSTIC PARKER",
+    "MAMZELL L'AVENTURE",
+    "MIMI D'AUTHISE",
+    "MAGNOLIADARCHE"
+   ],
+   "region": "FR",
+   "pick": "MOJITA",
+   "chance": 17.7,
+   "pick_finish": "3rd",
+   "hit": false
   },
   {
    "course": "Hippodrome Bordeaux le Bouscat",
@@ -136,9 +259,9 @@
    ],
    "region": "FR",
    "pick": "DIONYSOS'JAC AA",
-   "chance": 33.4,
    "pick_finish": "3rd",
-   "hit": false
+   "hit": false,
+   "chance": 33.4
   },
   {
    "course": "Hippodrome Bordeaux le Bouscat",
@@ -160,9 +283,9 @@
    ],
    "region": "FR",
    "pick": "PURPLE LION",
-   "chance": 55.9,
    "pick_finish": "1st",
-   "hit": true
+   "hit": true,
+   "chance": 55.9
   },
   {
    "course": "Hippodrome Bordeaux le Bouscat",
@@ -187,9 +310,9 @@
    ],
    "region": "FR",
    "pick": "LE CAULE",
-   "chance": 23.5,
    "pick_finish": "",
-   "hit": false
+   "hit": false,
+   "chance": 23.5
   },
   {
    "course": "Hippodrome Bordeaux le Bouscat",
@@ -213,7 +336,11 @@
     "NAAD'IN",
     "ZELVAGGIA"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Hippodrome Bordeaux le Bouscat",
@@ -236,9 +363,9 @@
    ],
    "region": "FR",
    "pick": "NOT YET",
-   "chance": 33.1,
    "pick_finish": "4th",
-   "hit": false
+   "hit": false,
+   "chance": 33.1
   },
   {
    "course": "Hippodrome Bordeaux le Bouscat",
@@ -265,7 +392,11 @@
     "MARQUISE VERA",
     "NURTURE"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Hippodrome Bordeaux le Bouscat",
@@ -291,7 +422,11 @@
     "MERLE",
     "ENBAKIRUN"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Hippodrome Bordeaux le Bouscat",
@@ -318,9 +453,9 @@
    ],
    "region": "FR",
    "pick": "NOLITO",
-   "chance": 17.6,
    "pick_finish": "8th",
-   "hit": false
+   "hit": false,
+   "chance": 17.6
   },
   {
    "course": "Chantilly",
@@ -344,9 +479,9 @@
    ],
    "region": "FR",
    "pick": "IRISH LEGEND JR",
-   "chance": 20,
    "pick_finish": "7th",
-   "hit": false
+   "hit": false,
+   "chance": 20
   },
   {
    "course": "Chantilly",
@@ -373,9 +508,9 @@
    ],
    "region": "FR",
    "pick": "LA SUISSESSE",
-   "chance": 17.8,
    "pick_finish": "2nd",
-   "hit": false
+   "hit": false,
+   "chance": 17.8
   },
   {
    "course": "Chantilly",
@@ -396,7 +531,11 @@
     "ELROMA",
     "TIMIDE"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Chantilly",
@@ -426,7 +565,11 @@
     "FLASH D'ARCO",
     "ZIDANE DORE"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Chantilly",
@@ -449,7 +592,11 @@
     "QUEEN STAGE",
     "CELTIC MOON"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Chantilly",
@@ -482,9 +629,9 @@
    ],
    "region": "FR",
    "pick": "ZIFULOTT",
-   "chance": 15.3,
    "pick_finish": "3rd",
-   "hit": false
+   "hit": false,
+   "chance": 15.3
   },
   {
    "course": "Chantilly",
@@ -516,9 +663,9 @@
    ],
    "region": "FR",
    "pick": "TINMANDER",
-   "chance": 17.4,
    "pick_finish": "13th",
-   "hit": false
+   "hit": false,
+   "chance": 17.4
   },
   {
    "course": "Chantilly",
@@ -551,9 +698,9 @@
    ],
    "region": "FR",
    "pick": "LIBERTY AMOUR",
-   "chance": 13.5,
    "pick_finish": "3rd",
-   "hit": false
+   "hit": false,
+   "chance": 13.5
   },
   {
    "course": "Saint Galmier",
@@ -575,9 +722,9 @@
    ],
    "region": "FR",
    "pick": "KING DE JOUDES",
-   "chance": 27.5,
    "pick_finish": "",
-   "hit": false
+   "hit": false,
+   "chance": 27.5
   },
   {
    "course": "Saint Galmier",
@@ -602,9 +749,9 @@
    ],
    "region": "FR",
    "pick": "OLIGO ONE",
-   "chance": 15.9,
    "pick_finish": "",
-   "hit": false
+   "hit": false,
+   "chance": 15.9
   },
   {
    "course": "Saint Galmier",
@@ -626,9 +773,9 @@
    ],
    "region": "FR",
    "pick": "INESKA",
-   "chance": 29.8,
    "pick_finish": "",
-   "hit": false
+   "hit": false,
+   "chance": 29.8
   },
   {
    "course": "Saint Galmier",
@@ -650,7 +797,11 @@
     "NOW AND THEN",
     "NELSON DU DUDY"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Saint Galmier",
@@ -678,9 +829,9 @@
    ],
    "region": "FR",
    "pick": "MOGADOR BLEU",
-   "chance": 22.1,
    "pick_finish": "1st",
-   "hit": true
+   "hit": true,
+   "chance": 22.1
   },
   {
    "course": "Saint Galmier",
@@ -705,9 +856,9 @@
    ],
    "region": "FR",
    "pick": "LIKE A JULRY",
-   "chance": 21.9,
    "pick_finish": "7th",
-   "hit": false
+   "hit": false,
+   "chance": 21.9
   },
   {
    "course": "Saint Galmier",
@@ -728,9 +879,9 @@
    ],
    "region": "FR",
    "pick": "LOVER STRYCK",
-   "chance": 24.8,
    "pick_finish": "",
-   "hit": false
+   "hit": false,
+   "chance": 24.8
   },
   {
    "course": "Saint Galmier",
@@ -755,9 +906,9 @@
    ],
    "region": "FR",
    "pick": "KARLTON DE JOUX",
-   "chance": 28.8,
    "pick_finish": "",
-   "hit": false
+   "hit": false,
+   "chance": 28.8
   }
  ]
 }
