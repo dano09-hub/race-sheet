@@ -1,15 +1,17 @@
 #!/usr/bin/env python3
 """The README numbers a render already computes.
 
-Five claims in the README repeat figures the page prints from stored data: the
+Six claims in the README repeat figures the stored data decides: the
 twelve-factor chance record in `data/results`, the six-input re-score's chance
 audit, the count of races with no stored chance, the market-heavy shadow tally,
-and the 0.04/0.0498 scale gap set against the interval each sample size would
-give. Each sits between markers and is rebuilt from the same collector the page
-uses, so the README cannot describe an older build than the page.
+the 0.04/0.0498 scale gap set against the interval each sample size would give,
+and how much of the Australia/NZ snapshot carries each field. Each sits between
+markers and is rebuilt from the same collector the page uses, so the README
+cannot describe an older build than the page.
 
 Nothing here changes a figure: every number is counted from the stored results,
-the stored re-score, the archived cards and the saved A/B snapshots. The figures
+the stored re-score, the archived cards, the Australia/NZ cards and the saved
+A/B snapshots. The figures
 that cannot be re-derived here -- the four-year fit itself, the whole-field
 audit's archive CSV, the Kaggle and Betfair reports -- stay as typed prose
 beside these blocks.
@@ -31,10 +33,12 @@ import chance_audit      # noqa: E402
 import market_arm_day    # noqa: E402
 
 RESULTS = os.path.join(ROOT, "data", "results")
+AU_CARDS = os.path.join(ROOT, "data", "au_cards.json")
 README = os.path.join(ROOT, "README.md")
 
-BLOCKS = ("chance-record", "chance-rated", "scale-sensitivity", "blank-races",
-          "shadow-tally")
+BLOCKS = ("chance-record", "chance-rated", "au-fields", "scale-sensitivity",
+          "blank-races", "shadow-tally")
+BULLETS = ("au-fields",)   # blocks that are a list item, not a paragraph
 
 
 def _count(n, noun):
@@ -67,6 +71,7 @@ def collect():
                               "decisive": widths[chance_audit.DECISIVE],
                               "early_n": chance_audit.EARLY,
                               "decisive_n": chance_audit.DECISIVE},
+        "au-fields": au_coverage(),
         "blank-races": {"blank": max(0, settled - record["races"]),
                         "races": settled},
         "shadow-tally": ab_tally.collect(snap_dir=market_arm_day.OUT_DIR,
@@ -123,6 +128,76 @@ def scale_sensitivity(figs):
             f"question can be settled.")
 
 
+def _present(value):
+    """A stored field counts only when it carries something.
+
+    An empty string is a blank; a form of "0" is a real entry (unplaced), so
+    the test is emptiness, not falsiness.
+    """
+    return value is not None and str(value).strip() != ""
+
+
+def au_coverage(cards=None):
+    """How much of the Australia/NZ snapshot carries each field.
+
+    Counted per card and per runner: a card is filled when at least one
+    runner has form, weight and barrier, and a runner counts for a field only
+    where that field is non-empty. A blank is never inferred.
+    """
+    if cards is None:
+        try:
+            with open(AU_CARDS, encoding="utf-8") as f:
+                cards = json.load(f)
+        except (OSError, ValueError):
+            cards = []
+    runners = [r for c in cards for r in (c.get("runners") or [])]
+
+    def card_has(card, *keys):
+        return all(any(_present(r.get(k)) for r in card.get("runners") or [])
+                   for k in keys)
+
+    figs = {"cards": len(cards),
+            "filled": sum(1 for c in cards
+                          if card_has(c, "form", "weight", "draw")),
+            "runners": len(runners)}
+    for field, key in (("form", "form"), ("weight", "weight"),
+                       ("barrier", "draw"), ("rating", "or"),
+                       ("price", "odds")):
+        figs[field] = sum(1 for r in runners if _present(r.get(key)))
+    figs["full"] = sum(
+        1 for c in cards
+        if c.get("runners") and all(_present(r.get("or"))
+                                    and _present(r.get("odds"))
+                                    for r in c["runners"]))
+    figs["names_only"] = figs["cards"] - figs["filled"]
+    return figs
+
+
+def _cards(n):
+    return f"{n} card{'' if n == 1 else 's'}"
+
+
+def au_fields(figs):
+    """What the stored Australia/NZ cards actually carry, field by field."""
+    if not figs.get("cards"):
+        return "No Australia/NZ card is stored yet."
+    full = (f"{_cards(figs['full'])} "
+            f"{'has' if figs['full'] == 1 else 'have'} both a rating and a "
+            f"price for every runner")
+    words = (f"**Australia/NZ now carry real fields, though not for every "
+             f"runner.** {figs['filled']} of the {figs['cards']} cards "
+             f"harvested from Punters' form guide carry form, weight and "
+             f"barrier; across their {figs['runners']} runners "
+             f"{figs['form']} show a form string, {figs['weight']} a weight, "
+             f"{figs['barrier']} a barrier, {figs['rating']} a rating and "
+             f"{figs['price']} a price, so only {full}.")
+    if figs["names_only"]:
+        words += (f" {_cards(figs['names_only'])} "
+                  f"{'is' if figs['names_only'] == 1 else 'are'} "
+                  f"names-only.")
+    return words
+
+
 def blank_races(figs):
     """How much of the settled record carries no stored chance."""
     return (f"{figs['blank']} of the {figs['races']} recent British and Irish "
@@ -149,8 +224,20 @@ def shadow_tally(figs):
 
 
 SENTENCES = {"chance-record": chance_record, "chance-rated": chance_rated,
-             "scale-sensitivity": scale_sensitivity, "blank-races": blank_races,
-             "shadow-tally": shadow_tally}
+             "au-fields": au_fields, "scale-sensitivity": scale_sensitivity,
+             "blank-races": blank_races, "shadow-tally": shadow_tally}
+
+
+def _wrap(name, text):
+    """A block's text at the width the README uses.
+
+    A bullet keeps its continuation lines at the bullet's own indent, so the
+    item stays one list item when the README is rendered.
+    """
+    if name in BULLETS:
+        return textwrap.fill("* " + text, width=78, subsequent_indent="  ",
+                             break_on_hyphens=False)
+    return textwrap.fill(text, width=78, break_on_hyphens=False)
 
 
 def replace_block(text, name, figs=None):
@@ -161,8 +248,7 @@ def replace_block(text, name, figs=None):
     j = text.find(end, i + 1)
     if i < 0 or j < 0:
         raise ValueError(f"README has no {start} ... {end} pair")
-    body = textwrap.fill(SENTENCES[name](figs[name]), width=78,
-                         break_on_hyphens=False)
+    body = _wrap(name, SENTENCES[name](figs[name]))
     return (text[:i] + start + "\n" + body + "\n" + end
             + text[j + len(end):])
 

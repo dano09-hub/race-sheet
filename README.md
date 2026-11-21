@@ -142,10 +142,13 @@ you are harvesting through a browser. Output matches the card schema in
   race name, post time and going. Reserves are excluded from the field. Odds
   arrive once betting opens. HK meetings also appear in the US feed;
   `scrape_us.py` skips them so they are never shown or scored as US races.
-* **Australia/NZ now carry real fields.** 74 of 75 cards were filled from
-  Punters' form guide harvested through a browser: last-ten form, barrier,
-  weight (kg converted to stone-pounds), their rating and the price. Two race
-  pages did not render in time and remain names-only.
+<!-- au-fields:start -->
+* **Australia/NZ now carry real fields, though not for every runner.** 74 of
+  the 75 cards harvested from Punters' form guide carry form, weight and
+  barrier; across their 924 runners 765 show a form string, 722 a weight, 811
+  a barrier, 578 a rating and 213 a price, so only 3 cards have both a rating
+  and a price for every runner. 1 card is names-only.
+<!-- au-fields:end -->
 * **`scrape_punters.py` price guard**: the parser used to read the `$0` in the
   prize column as a price. It now ignores anything below $1.01.
 * **US cards cannot pass the strict gate.** The feed files no weight at all, no

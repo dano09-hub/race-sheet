@@ -3263,6 +3263,28 @@ check("readme: the shadow sentence carries the tally and the rule's status",
       .endswith("which misses the pre-registered bar, so the arm is "
                 "retired."), _RF_ARM_TEXT)
 
+_RF_AU = {"cards": 75, "filled": 74, "runners": 924, "form": 765,
+          "weight": 722, "barrier": 811, "rating": 578, "price": 213,
+          "full": 3, "names_only": 1}
+_RF_AU_TEXT = readme_figures.au_fields(_RF_AU)
+check("readme: the Australia/NZ sentence counts the fields the stored cards "
+      "carry, not the fields the guide offers",
+      _RF_AU_TEXT == "**Australia/NZ now carry real fields, though not for "
+                     "every runner.** 74 of the 75 cards harvested from "
+                     "Punters' form guide carry form, weight and barrier; "
+                     "across their 924 runners 765 show a form string, 722 a "
+                     "weight, 811 a barrier, 578 a rating and 213 a price, so "
+                     "only 3 cards have both a rating and a price for every "
+                     "runner. 1 card is names-only.",
+      _RF_AU_TEXT)
+_RF_AU_FULL = readme_figures.au_fields(
+    dict(_RF_AU, filled=75, names_only=0, full=1))
+check("readme: a fully covered snapshot drops the names-only tail and says "
+      "one card, not 1 cards",
+      "names-only" not in _RF_AU_FULL and "1 card has both" in _RF_AU_FULL
+      and readme_figures.au_fields({}) == "No Australia/NZ card is stored yet.",
+      _RF_AU_FULL)
+
 _RF_SCALE = {"races": 101, "gap": 4.9067, "early": 4.84, "decisive": 2.27,
              "early_n": 350, "decisive_n": 1600}
 _RF_SCALE_TEXT = readme_figures.scale_sensitivity(_RF_SCALE)
@@ -3298,9 +3320,17 @@ _RF_MARKED = ("intro\n\n"
                         for name in readme_figures.BLOCKS)
               + "after\n")
 _RF_FIGS = {"chance-record": _RF_RECORD, "chance-rated": _RF_RATED,
-            "scale-sensitivity": _RF_SCALE,
+            "au-fields": _RF_AU, "scale-sensitivity": _RF_SCALE,
             "blank-races": {"blank": 1, "races": 2}, "shadow-tally": _RF_ARM}
 _RF_WRITTEN = readme_figures.replace_all(_RF_MARKED, _RF_FIGS)
+_AU_BLOCK = (_RF_WRITTEN.split("<!-- au-fields:start -->")[1]
+             .split("<!-- au-fields:end -->")[0].strip("\n"))
+check("readme: the Australia/NZ block is one indented bullet, not a bullet "
+      "followed by a stray paragraph",
+      _AU_BLOCK.startswith("* **Australia/NZ")
+      and all(line.startswith("  ") for line in _AU_BLOCK.splitlines()[1:]),
+      _AU_BLOCK)
+
 check("readme: every marked block is rewritten in place and the rest of the "
       "file is untouched",
       "typed" not in _RF_WRITTEN
@@ -3397,8 +3427,8 @@ check("integrity: the README caveat block matches the 12 November card",
       not caveat_figures.stale(_readme_text),
       caveat_figures.sentence(caveat_figures.collect()))
 
-# These four blocks repeat what the page prints, so a README that disagrees
-# with the collectors is describing an older build.
+# These blocks repeat figures the stored data decides, so a README that
+# disagrees with the collectors is describing an older build.
 _rf_figs = readme_figures.collect()
 check("integrity: the README figures match the collectors the page uses",
       not readme_figures.stale(_readme_text, _rf_figs),
