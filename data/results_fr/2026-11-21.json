@@ -1,7 +1,7 @@
 {
  "date": "2026-11-21",
  "region": "FR",
- "updated": "2026-11-21T18:43:11Z",
+ "updated": "2026-11-21T23:42:50Z",
  "races": [
   {
    "course": "Auteuil",
@@ -24,9 +24,9 @@
    ],
    "region": "FR",
    "pick": "FENOMENE D'OC AA",
-   "chance": 35.5,
    "pick_finish": "4th",
-   "hit": false
+   "hit": false,
+   "chance": 35.5
   },
   {
    "course": "Auteuil",
@@ -49,9 +49,9 @@
    ],
    "region": "FR",
    "pick": "SAWADAME",
-   "chance": 21.7,
    "pick_finish": "4th",
-   "hit": false
+   "hit": false,
+   "chance": 21.7
   },
   {
    "course": "Auteuil",
@@ -73,9 +73,9 @@
    ],
    "region": "FR",
    "pick": "JUMPING CHARLIE",
-   "chance": 31.2,
    "pick_finish": "",
-   "hit": false
+   "hit": false,
+   "chance": 31.2
   },
   {
    "course": "Auteuil",
@@ -102,9 +102,9 @@
    ],
    "region": "FR",
    "pick": "GRECIAN LIGHTNING",
-   "chance": 18.2,
    "pick_finish": "6th",
-   "hit": false
+   "hit": false,
+   "chance": 18.2
   },
   {
    "course": "Auteuil",
@@ -124,7 +124,11 @@
     "MISTRAL D ANGE",
     "FRECKLES"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Auteuil",
@@ -148,9 +152,9 @@
    ],
    "region": "FR",
    "pick": "TIGRESS DU BERLAIS",
-   "chance": 27.3,
    "pick_finish": "6th",
-   "hit": false
+   "hit": false,
+   "chance": 27.3
   },
   {
    "course": "Auteuil",
@@ -172,7 +176,11 @@
     "MIGHTYWOOD",
     "MON COMEDIEN"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Auteuil",
@@ -193,7 +201,11 @@
     "LES FONTENELLES",
     "LONDON WOOD"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Marseille Borely",
@@ -220,9 +232,9 @@
    ],
    "region": "FR",
    "pick": "KEOPS DU CHATAULT",
-   "chance": 29.3,
    "pick_finish": "1st",
-   "hit": true
+   "hit": true,
+   "chance": 29.3
   },
   {
    "course": "Marseille Borely",
@@ -248,9 +260,9 @@
    ],
    "region": "FR",
    "pick": "NOTRE DEDE",
-   "chance": 16.3,
    "pick_finish": "",
-   "hit": false
+   "hit": false,
+   "chance": 16.3
   },
   {
    "course": "Marseille Borely",
@@ -276,9 +288,9 @@
    ],
    "region": "FR",
    "pick": "MAASAI",
-   "chance": 18.2,
    "pick_finish": "",
-   "hit": false
+   "hit": false,
+   "chance": 18.2
   },
   {
    "course": "Marseille Borely",
@@ -303,9 +315,9 @@
    ],
    "region": "FR",
    "pick": "MANZANA CHENOU",
-   "chance": 17.9,
    "pick_finish": "",
-   "hit": false
+   "hit": false,
+   "chance": 17.9
   },
   {
    "course": "Marseille Borely",
@@ -334,7 +346,11 @@
     "MERINDOL",
     "MANON DES CHAMPS"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Marseille Borely",
@@ -361,9 +377,9 @@
    ],
    "region": "FR",
    "pick": "KRAK DE BUSSIERES",
-   "chance": 17.9,
    "pick_finish": "",
-   "hit": false
+   "hit": false,
+   "chance": 17.9
   },
   {
    "course": "Marseille Borely",
@@ -392,9 +408,9 @@
    ],
    "region": "FR",
    "pick": "INSOLENT SOMOLLI",
-   "chance": 15.1,
    "pick_finish": "",
-   "hit": false
+   "hit": false,
+   "chance": 15.1
   },
   {
    "course": "Marseille Borely",
@@ -422,7 +438,11 @@
     "INDESKAYA BIRD",
     "ILLUSTRE FERM"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Reims",
@@ -449,7 +469,11 @@
     "LOOPING BEN MAX",
     "L'AUDACE"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Reims",
@@ -476,7 +500,11 @@
     "MAZZARINO",
     "MILLESIME GEKA"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Reims",
@@ -502,9 +530,9 @@
    ],
    "region": "FR",
    "pick": "KOBE EIGHT",
-   "chance": 26.5,
    "pick_finish": "2nd",
-   "hit": false
+   "hit": false,
+   "chance": 26.5
   },
   {
    "course": "Reims",
@@ -533,9 +561,9 @@
    ],
    "region": "FR",
    "pick": "MY DARLING DANOVER",
-   "chance": 13.2,
    "pick_finish": "2nd",
-   "hit": false
+   "hit": false,
+   "chance": 13.2
   },
   {
    "course": "Reims",
@@ -564,9 +592,9 @@
    ],
    "region": "FR",
    "pick": "KONSPIRATOR GAME",
-   "chance": 14.5,
    "pick_finish": "5th",
-   "hit": false
+   "hit": false,
+   "chance": 14.5
   },
   {
    "course": "Reims",
@@ -589,9 +617,65 @@
    ],
    "region": "FR",
    "pick": "ONE MAN SHOW CENE",
-   "chance": 32.7,
    "pick_finish": "",
+   "hit": false,
+   "chance": 32.7
+  },
+  {
+   "course": "Reims",
+   "time": "18:41",
+   "race": "PRIX REVE DE PROPRIETAIRE",
+   "race_no": "R4C7",
+   "winner": "NUMBER ONE FLIGNY",
+   "places": [
+    "NUMBER ONE FLIGNY",
+    "NAMARIO BELLO",
+    "NOBLE DE REVE D'OR"
+   ],
+   "order": [
+    "NUMBER ONE FLIGNY",
+    "NAMARIO BELLO",
+    "NOBLE DE REVE D'OR",
+    "NEGUEV",
+    "NOMEN NESCIO",
+    "NARCOS PIYA",
+    "NABUCCO CENE",
+    "NORLANDO",
+    "NAPOLEON DE NIELES"
+   ],
+   "region": "FR",
+   "pick": "NEGUEV",
+   "chance": 14.2,
+   "pick_finish": "4th",
    "hit": false
+  },
+  {
+   "course": "Reims",
+   "time": "19:13",
+   "race": "PRIX SAS PRIMAULT",
+   "race_no": "R4C8",
+   "winner": "NOTRE FOLIE",
+   "places": [
+    "NOTRE FOLIE",
+    "NIKA DU FERS",
+    "NIGHT PIYA"
+   ],
+   "order": [
+    "NOTRE FOLIE",
+    "NIKA DU FERS",
+    "NIGHT PIYA",
+    "NUIT MAGIQUE",
+    "NEW GIRL MELOC",
+    "NIKITA DE MONCHEL",
+    "NENA NINETY NINE",
+    "NEMESIS DES CHAMPS",
+    "NIKITA D'ORGUEIL"
+   ],
+   "region": "FR",
+   "pick": "NOTRE FOLIE",
+   "chance": 26.2,
+   "pick_finish": "1st",
+   "hit": true
   },
   {
    "course": "Deauville",
@@ -613,7 +697,11 @@
     "SABROSO",
     "GALAGHER"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Deauville",
@@ -638,9 +726,9 @@
    ],
    "region": "FR",
    "pick": "INDIAN BELLE",
-   "chance": 28,
    "pick_finish": "7th",
-   "hit": false
+   "hit": false,
+   "chance": 28
   },
   {
    "course": "Deauville",
@@ -666,9 +754,9 @@
    ],
    "region": "FR",
    "pick": "FIREMAN",
-   "chance": 25.9,
    "pick_finish": "9th",
-   "hit": false
+   "hit": false,
+   "chance": 25.9
   },
   {
    "course": "Deauville",
@@ -694,9 +782,9 @@
    ],
    "region": "FR",
    "pick": "PRIMA LUCE",
-   "chance": 26.5,
    "pick_finish": "1st",
-   "hit": true
+   "hit": true,
+   "chance": 26.5
   },
   {
    "course": "Deauville",
@@ -720,9 +808,82 @@
    ],
    "region": "FR",
    "pick": "CIRCO MASSIMO",
-   "chance": 20.2,
    "pick_finish": "1st",
-   "hit": true
+   "hit": true,
+   "chance": 20.2
+  },
+  {
+   "course": "Deauville",
+   "time": "19:00",
+   "race": "PRIX DES ROUGES BARRES",
+   "race_no": "R5C6",
+   "winner": "PETITE ABEILLE",
+   "places": [
+    "PETITE ABEILLE",
+    "PLAY THE GAME",
+    "TOMOE GOZEN"
+   ],
+   "order": [
+    "PETITE ABEILLE",
+    "PLAY THE GAME",
+    "TOMOE GOZEN",
+    "TANA MA",
+    "VOGUE A L'AME",
+    "ALINKA",
+    "AREV",
+    "DARYOZA"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Deauville",
+   "time": "19:31",
+   "race": "PRIX DE LA RUE EGALITE",
+   "race_no": "R5C7",
+   "winner": "FEELINGNUIT",
+   "places": [
+    "FEELINGNUIT",
+    "EASTERN STAR",
+    "GOT FLOWER"
+   ],
+   "order": [
+    "FEELINGNUIT",
+    "EASTERN STAR",
+    "GOT FLOWER",
+    "QUARTZDARGENT",
+    "KEEP AWAY",
+    "LA DO RE",
+    "DSCHINGIS POWER",
+    "COMBERMERE"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Deauville",
+   "time": "19:59",
+   "race": "PRIX DU QUESNE",
+   "race_no": "R5C8",
+   "winner": "MISTER POWER",
+   "places": [
+    "MISTER POWER",
+    "NATH SHOW",
+    "L'ENNEMI"
+   ],
+   "order": [
+    "MISTER POWER",
+    "NATH SHOW",
+    "L'ENNEMI",
+    "KIROZ",
+    "WINGS OF FIRE",
+    "LA CRACK PRECIEUSE",
+    "SOHO VICKY",
+    "ASHIANAS KING"
+   ],
+   "region": "FR",
+   "pick": "ASHIANAS KING",
+   "chance": 26.2,
+   "pick_finish": "8th",
+   "hit": false
   },
   {
    "course": "Angers Eventard",
@@ -744,9 +905,9 @@
    ],
    "region": "FR",
    "pick": "ONLY MAN",
-   "chance": 22.2,
    "pick_finish": "",
-   "hit": false
+   "hit": false,
+   "chance": 22.2
   },
   {
    "course": "Angers Eventard",
@@ -775,9 +936,9 @@
    ],
    "region": "FR",
    "pick": "NONO DU MIREL",
-   "chance": 12.9,
    "pick_finish": "2nd",
-   "hit": false
+   "hit": false,
+   "chance": 12.9
   },
   {
    "course": "Angers Eventard",
@@ -805,9 +966,9 @@
    ],
    "region": "FR",
    "pick": "LARSON DU MARNIS",
-   "chance": 13.8,
    "pick_finish": "9th",
-   "hit": false
+   "hit": false,
+   "chance": 13.8
   },
   {
    "course": "Angers Eventard",
@@ -831,9 +992,9 @@
    ],
    "region": "FR",
    "pick": "MYRTILLE DU LUPIN",
-   "chance": 12.4,
    "pick_finish": "3rd",
-   "hit": false
+   "hit": false,
+   "chance": 12.4
   },
   {
    "course": "Angers Eventard",
@@ -863,9 +1024,9 @@
    ],
    "region": "FR",
    "pick": "MOJITO DANOVER",
-   "chance": 15.2,
    "pick_finish": "8th",
-   "hit": false
+   "hit": false,
+   "chance": 15.2
   },
   {
    "course": "Angers Eventard",
@@ -897,9 +1058,9 @@
    ],
    "region": "FR",
    "pick": "JULIA BELLA",
-   "chance": 22.4,
    "pick_finish": "13th",
-   "hit": false
+   "hit": false,
+   "chance": 22.4
   },
   {
    "course": "Angers Eventard",
@@ -930,9 +1091,9 @@
    ],
    "region": "FR",
    "pick": "KHARA DRY",
-   "chance": 13.9,
    "pick_finish": "4th",
-   "hit": false
+   "hit": false,
+   "chance": 13.9
   },
   {
    "course": "Angers Eventard",
@@ -963,9 +1124,9 @@
    ],
    "region": "FR",
    "pick": "KARO FASHION",
-   "chance": 36.9,
    "pick_finish": "10th",
-   "hit": false
+   "hit": false,
+   "chance": 36.9
   },
   {
    "course": "Graignes",
@@ -990,7 +1151,11 @@
     "LE COQUIN",
     "L'ONCLE JET"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Graignes",
@@ -1015,7 +1180,11 @@
     "L'ANSE NOIRE",
     "LUTECE DE LA FOLIE"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Graignes",
@@ -1040,7 +1209,11 @@
     "KIEVEL",
     "KASAQUE PIYA"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Graignes",
@@ -1065,7 +1238,11 @@
     "MAZOU DE L'ITON",
     "MILLE VOLTS JERSOP"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Graignes",
@@ -1088,7 +1265,11 @@
     "MATCHO NUMBER FIVE",
     "MAESTRO AWAGNE"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Graignes",
@@ -1113,7 +1294,11 @@
     "ICONE PONT VAUTIER",
     "KRACKER PIYA"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Graignes",
@@ -1138,7 +1323,11 @@
     "JOTT DU BOCAGE",
     "HARIBELLE DANOVER"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Graignes",
@@ -1156,7 +1345,11 @@
     "MARIE LOU DE LARRE",
     "MERVEILLE DE JIEL"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   }
  ]
 }
