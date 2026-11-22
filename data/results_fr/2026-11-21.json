@@ -1,7 +1,7 @@
 {
  "date": "2026-11-21",
  "region": "FR",
- "updated": "2026-11-21T23:42:50Z",
+ "updated": "2026-11-22T05:10:12Z",
  "races": [
   {
    "course": "Auteuil",
@@ -645,9 +645,9 @@
    ],
    "region": "FR",
    "pick": "NEGUEV",
-   "chance": 14.2,
    "pick_finish": "4th",
-   "hit": false
+   "hit": false,
+   "chance": 14.2
   },
   {
    "course": "Reims",
@@ -673,9 +673,9 @@
    ],
    "region": "FR",
    "pick": "NOTRE FOLIE",
-   "chance": 26.2,
    "pick_finish": "1st",
-   "hit": true
+   "hit": true,
+   "chance": 26.2
   },
   {
    "course": "Deauville",
@@ -833,7 +833,11 @@
     "AREV",
     "DARYOZA"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Deauville",
@@ -856,7 +860,11 @@
     "DSCHINGIS POWER",
     "COMBERMERE"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Deauville",
@@ -881,9 +889,9 @@
    ],
    "region": "FR",
    "pick": "ASHIANAS KING",
-   "chance": 26.2,
    "pick_finish": "8th",
-   "hit": false
+   "hit": false,
+   "chance": 26.2
   },
   {
    "course": "Angers Eventard",
