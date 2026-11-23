@@ -1,7 +1,7 @@
 {
  "date": "2026-11-22",
  "region": "CL",
- "updated": "2026-11-22T19:04:25Z",
+ "updated": "2026-11-23T00:22:05Z",
  "races": [
   {
    "course": "Valparaiso",
@@ -33,9 +33,9 @@
    ],
    "region": "CL",
    "pick": "BAPKIZA",
-   "chance": 12,
    "pick_finish": "1st",
-   "hit": true
+   "hit": true,
+   "chance": 12
   },
   {
    "course": "Valparaiso",
@@ -62,6 +62,226 @@
     "CHEVALIER NOIRE",
     "ATONITO",
     "SOCIO BUENO"
+   ],
+   "region": "CL",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
+  },
+  {
+   "course": "Valparaiso",
+   "time": "18:54",
+   "race": "MEHMET S.",
+   "race_no": "R6C3",
+   "winner": "OCHO DE ABRIL",
+   "places": [
+    "OCHO DE ABRIL",
+    "PERDUTO",
+    "LIVE IN FEAR"
+   ],
+   "order": [
+    "OCHO DE ABRIL",
+    "PERDUTO",
+    "LIVE IN FEAR",
+    "DALE TOTO",
+    "HIMALAYA SPIRIT",
+    "ROPOPOMPOM",
+    "SIBARATO",
+    "HOOTEROAD",
+    "THE WIND",
+    "BISMARK"
+   ],
+   "region": "CL"
+  },
+  {
+   "course": "Valparaiso",
+   "time": "19:25",
+   "race": "LAMENTERO H.",
+   "race_no": "R6C4",
+   "winner": "JAPONEITOR",
+   "places": [
+    "JAPONEITOR",
+    "CARIBEAN PASSION",
+    "TODO CAMBIA"
+   ],
+   "order": [
+    "JAPONEITOR",
+    "CARIBEAN PASSION",
+    "TODO CAMBIA",
+    "GERASIMOVA",
+    "SALUS",
+    "MUY RESPETADA",
+    "DANGEROUS BOARDER",
+    "LATEN GOOD",
+    "PRIMO JULERO",
+    "PAZZELLE",
+    "LA CHULA"
+   ],
+   "region": "CL"
+  },
+  {
+   "course": "Valparaiso",
+   "time": "19:53",
+   "race": "LADY IN RED H.",
+   "race_no": "R6C5",
+   "winner": "PETIROSSA",
+   "places": [
+    "PETIROSSA",
+    "ULTIMO PASEO",
+    "ASCOT RAIN"
+   ],
+   "order": [
+    "PETIROSSA",
+    "ULTIMO PASEO",
+    "ASCOT RAIN",
+    "LYNGOTE",
+    "AFIRMATE GATO",
+    "SO HANDSOME",
+    "ALTIRO VOY",
+    "GONSARA",
+    "ROJO BURGUES",
+    "MARINO SIN VACILAR"
+   ],
+   "region": "CL"
+  },
+  {
+   "course": "Valparaiso",
+   "time": "20:20",
+   "race": "LANOSO H.",
+   "race_no": "R6C6",
+   "winner": "MIYAGI",
+   "places": [
+    "MIYAGI",
+    "KARAKOY",
+    "CHAOU TU PLATA"
+   ],
+   "order": [
+    "MIYAGI",
+    "KARAKOY",
+    "CHAOU TU PLATA",
+    "ARRAZZO",
+    "NAKBA",
+    "ALBERTO EL GRANDE",
+    "EDDIE",
+    "TRABALAINS",
+    "ABRAZO OLVIDADO"
+   ],
+   "region": "CL",
+   "pick": "EDDIE",
+   "chance": 19.4,
+   "pick_finish": "7th",
+   "hit": false
+  },
+  {
+   "course": "Valparaiso",
+   "time": "20:50",
+   "race": "LA KAKUNA H.",
+   "race_no": "R6C7",
+   "winner": "MIPIPO",
+   "places": [
+    "MIPIPO",
+    "CHOW CHOW",
+    "AFRICAN SPIRIT"
+   ],
+   "order": [
+    "MIPIPO",
+    "CHOW CHOW",
+    "AFRICAN SPIRIT",
+    "BETTER THAN",
+    "MONTERRICO",
+    "AWARDED",
+    "MICKY",
+    "EL SALVADOR",
+    "PRESUMIDA FLAME",
+    "BONE LESS"
+   ],
+   "region": "CL",
+   "pick": "EL RODO",
+   "chance": 14.8,
+   "pick_finish": "",
+   "hit": false
+  },
+  {
+   "course": "Valparaiso",
+   "time": "21:20",
+   "race": "LE GRAND DUC H.",
+   "race_no": "R6C8",
+   "winner": "PERLA DEL AUSTRO",
+   "places": [
+    "PERLA DEL AUSTRO",
+    "ALL IN",
+    "FRANK SLADE"
+   ],
+   "order": [
+    "PERLA DEL AUSTRO",
+    "ALL IN",
+    "FRANK SLADE",
+    "CHAMPELICE",
+    "SHEEZA",
+    "NAMANDU",
+    "CRISTIANISIMO RED",
+    "CALOCHITA",
+    "LANCELOT",
+    "MODELO DEL SALTO",
+    "ANTIYAL"
+   ],
+   "region": "CL",
+   "pick": "MODELO DEL SALTO",
+   "chance": 19,
+   "pick_finish": "10th",
+   "hit": false
+  },
+  {
+   "course": "Valparaiso",
+   "time": "21:55",
+   "race": "LOLITA MIA H.",
+   "race_no": "R6C9",
+   "winner": "SOUL QUEEN",
+   "places": [
+    "SOUL QUEEN",
+    "BLUE LABEL",
+    "GUERRERO ARABE"
+   ],
+   "order": [
+    "SOUL QUEEN",
+    "BLUE LABEL",
+    "GUERRERO ARABE",
+    "PELAMBRE",
+    "BELLA CLARA",
+    "EL NINO GUSTAVO",
+    "CUANTO TE QUIERO",
+    "DE MUSICA LIGERA",
+    "PRIMA NOTTE",
+    "FAFIFO",
+    "GRAN CAFRUNE"
+   ],
+   "region": "CL"
+  },
+  {
+   "course": "Valparaiso",
+   "time": "22:25",
+   "race": "LA CATO H.",
+   "race_no": "R6C10",
+   "winner": "VICHITO",
+   "places": [
+    "VICHITO",
+    "MISTER E",
+    "ORCA"
+   ],
+   "order": [
+    "VICHITO",
+    "MISTER E",
+    "ORCA",
+    "ZIM",
+    "CUANDO VUELVES",
+    "DALE ISI",
+    "DALE FLACA",
+    "LA GIOCONDA",
+    "DALE LIKE",
+    "CATENACCIO",
+    "SIKELIA",
+    "BOMBA DE RACIMO"
    ],
    "region": "CL"
   }

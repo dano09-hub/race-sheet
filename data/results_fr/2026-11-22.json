@@ -1,7 +1,7 @@
 {
  "date": "2026-11-22",
  "region": "FR",
- "updated": "2026-11-22T19:04:22Z",
+ "updated": "2026-11-23T00:22:01Z",
  "races": [
   {
    "course": "Paris-Vincennes",
@@ -29,9 +29,9 @@
    ],
    "region": "FR",
    "pick": "KRONOS D'ERPION",
-   "chance": 19.6,
    "pick_finish": "4th",
-   "hit": false
+   "hit": false,
+   "chance": 19.6
   },
   {
    "course": "Paris-Vincennes",
@@ -58,7 +58,11 @@
     "MADRILENE",
     "MAYA D'AVRIL"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Paris-Vincennes",
@@ -82,7 +86,11 @@
     "LOVE GLYCINES",
     "LORIGRE"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Paris-Vincennes",
@@ -112,9 +120,9 @@
    ],
    "region": "FR",
    "pick": "KING OPERA",
-   "chance": 13.3,
    "pick_finish": "11th",
-   "hit": false
+   "hit": false,
+   "chance": 13.3
   },
   {
    "course": "Paris-Vincennes",
@@ -139,7 +147,11 @@
     "LUTIN VENESI",
     "LIZZANO D'ALOUETTE"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Paris-Vincennes",
@@ -165,7 +177,11 @@
     "US DARBY",
     "ISMAELE"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Paris-Vincennes",
@@ -193,9 +209,9 @@
    ],
    "region": "FR",
    "pick": "JIPET DE CREPIN",
-   "chance": 16.3,
    "pick_finish": "",
-   "hit": false
+   "hit": false,
+   "chance": 16.3
   },
   {
    "course": "Paris-Vincennes",
@@ -220,7 +236,11 @@
     "NIKITA",
     "NOELA JOSSELYN"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Paris-Vincennes",
@@ -247,9 +267,9 @@
    ],
    "region": "FR",
    "pick": "LITTLE ROAD",
-   "chance": 23.7,
    "pick_finish": "2nd",
-   "hit": false
+   "hit": false,
+   "chance": 23.7
   },
   {
    "course": "Lyon-Parilly",
@@ -273,9 +293,9 @@
    ],
    "region": "FR",
    "pick": "NOBEL DU CHENET",
-   "chance": 39.2,
    "pick_finish": "5th",
-   "hit": false
+   "hit": false,
+   "chance": 39.2
   },
   {
    "course": "Lyon-Parilly",
@@ -300,9 +320,9 @@
    ],
    "region": "FR",
    "pick": "TIME IS MONEY",
-   "chance": 37.7,
    "pick_finish": "3rd",
-   "hit": false
+   "hit": false,
+   "chance": 37.7
   },
   {
    "course": "Lyon-Parilly",
@@ -326,9 +346,9 @@
    ],
    "region": "FR",
    "pick": "MAGNIFICA",
-   "chance": 22.6,
    "pick_finish": "4th",
-   "hit": false
+   "hit": false,
+   "chance": 22.6
   },
   {
    "course": "Lyon-Parilly",
@@ -353,9 +373,9 @@
    ],
    "region": "FR",
    "pick": "NEW YORK STRIP",
-   "chance": 42,
    "pick_finish": "1st",
-   "hit": true
+   "hit": true,
+   "chance": 42
   },
   {
    "course": "Lyon-Parilly",
@@ -376,9 +396,9 @@
    ],
    "region": "FR",
    "pick": "MY GEMME",
-   "chance": 31.7,
    "pick_finish": "1st",
-   "hit": true
+   "hit": true,
+   "chance": 31.7
   },
   {
    "course": "Lyon-Parilly",
@@ -398,7 +418,11 @@
     "SPRINGSTEEL",
     "LES YEUX REVOLVER"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Lyon-Parilly",
@@ -416,7 +440,11 @@
     "JEANNE DE GUYE",
     "IZINO D'AIRY"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Lyon-Parilly",
@@ -434,7 +462,11 @@
     "MASTER NONANTAIS",
     "JALOGNY"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Fontainebleau",
@@ -458,7 +490,11 @@
     "NOT TO BE MIST",
     "FLY TOGETHER"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Fontainebleau",
@@ -492,9 +528,9 @@
    ],
    "region": "FR",
    "pick": "BAY RIVER",
-   "chance": 13.4,
    "pick_finish": "1st",
-   "hit": true
+   "hit": true,
+   "chance": 13.4
   },
   {
    "course": "Fontainebleau",
@@ -517,9 +553,9 @@
    ],
    "region": "FR",
    "pick": "NIRANO DE PALMA",
-   "chance": 36.3,
    "pick_finish": "4th",
-   "hit": false
+   "hit": false,
+   "chance": 36.3
   },
   {
    "course": "Fontainebleau",
@@ -541,7 +577,11 @@
     "LARMES DE JOIE",
     "MILADY FATAL"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Fontainebleau",
@@ -567,7 +607,11 @@
     "SILK ROADSTER",
     "LAITH"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Fontainebleau",
@@ -598,7 +642,11 @@
     "NORTHERN ECLIPSE",
     "ARCTIC BAY"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Fontainebleau",
@@ -627,7 +675,11 @@
     "GREY WOLF",
     "RUUDJE"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Fontainebleau",
@@ -655,7 +707,11 @@
     "RECOLETTY",
     "NABAB ' K"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Toulouse la Cepiere",
@@ -685,9 +741,9 @@
    ],
    "region": "FR",
    "pick": "VILLEQUIER",
-   "chance": 20.7,
    "pick_finish": "8th",
-   "hit": false
+   "hit": false,
+   "chance": 20.7
   },
   {
    "course": "Toulouse la Cepiere",
@@ -716,9 +772,9 @@
    ],
    "region": "FR",
    "pick": "BELLE DE CLHOE",
-   "chance": 19.4,
    "pick_finish": "7th",
-   "hit": false
+   "hit": false,
+   "chance": 19.4
   },
   {
    "course": "Toulouse la Cepiere",
@@ -743,9 +799,9 @@
    ],
    "region": "FR",
    "pick": "IDOLODITREXENTA",
-   "chance": 27.3,
    "pick_finish": "2nd",
-   "hit": false
+   "hit": false,
+   "chance": 27.3
   },
   {
    "course": "Toulouse la Cepiere",
@@ -778,9 +834,9 @@
    ],
    "region": "FR",
    "pick": "MARIE DE PRUSSE",
-   "chance": 14.2,
    "pick_finish": "10th",
-   "hit": false
+   "hit": false,
+   "chance": 14.2
   },
   {
    "course": "Toulouse la Cepiere",
@@ -805,9 +861,9 @@
    ],
    "region": "FR",
    "pick": "PERSIANA",
-   "chance": 27,
    "pick_finish": "1st",
-   "hit": true
+   "hit": true,
+   "chance": 27
   },
   {
    "course": "Toulouse la Cepiere",
@@ -831,9 +887,9 @@
    ],
    "region": "FR",
    "pick": "LE DOC",
-   "chance": 23.9,
    "pick_finish": "2nd",
-   "hit": false
+   "hit": false,
+   "chance": 23.9
   },
   {
    "course": "Toulouse la Cepiere",
@@ -860,7 +916,11 @@
     "MISS PARANO",
     "BURWASH"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Nancy-Brabois",
@@ -889,9 +949,9 @@
    ],
    "region": "FR",
    "pick": "TOPINAMBUR",
-   "chance": 19.4,
    "pick_finish": "12th",
-   "hit": false
+   "hit": false,
+   "chance": 19.4
   },
   {
    "course": "Nancy-Brabois",
@@ -912,7 +972,11 @@
     "BIBI DU MOULIN",
     "NIKITA DU TOMONT"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Nancy-Brabois",
@@ -936,7 +1000,11 @@
     "JOYCE GALESTE",
     "KAMINO"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Nancy-Brabois",
@@ -960,7 +1028,11 @@
     "MIRAGE DES PINS",
     "MAYREAU"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Nancy-Brabois",
@@ -979,7 +1051,11 @@
     "LE CHAT BOTTE",
     "LOVELY TESS"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Nancy-Brabois",
@@ -1004,7 +1080,11 @@
     "JUPITER DES ROCS",
     "L'ESTERELLE"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Nancy-Brabois",
@@ -1025,7 +1105,11 @@
     "NABAB DE SIVOLA",
     "NIRVANA JULIA"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Salon de Provence",
@@ -1051,9 +1135,9 @@
    ],
    "region": "FR",
    "pick": "NAMTSO DU VALO",
-   "chance": 15.2,
    "pick_finish": "2nd",
-   "hit": false
+   "hit": false,
+   "chance": 15.2
   },
   {
    "course": "Salon de Provence",
@@ -1081,9 +1165,9 @@
    ],
    "region": "FR",
    "pick": "MISTER DES LOYAUX",
-   "chance": 15.1,
    "pick_finish": "3rd",
-   "hit": false
+   "hit": false,
+   "chance": 15.1
   },
   {
    "course": "Salon de Provence",
@@ -1109,9 +1193,9 @@
    ],
    "region": "FR",
    "pick": "KYRIELLE D'ALBRET",
-   "chance": 17.8,
    "pick_finish": "4th",
-   "hit": false
+   "hit": false,
+   "chance": 17.8
   },
   {
    "course": "Salon de Provence",
@@ -1138,9 +1222,9 @@
    ],
    "region": "FR",
    "pick": "LOUNA D'AUVILLIER",
-   "chance": 13.7,
    "pick_finish": "6th",
-   "hit": false
+   "hit": false,
+   "chance": 13.7
   },
   {
    "course": "Salon de Provence",
@@ -1165,9 +1249,9 @@
    ],
    "region": "FR",
    "pick": "JUAN PERRINE",
-   "chance": 17.6,
    "pick_finish": "4th",
-   "hit": false
+   "hit": false,
+   "chance": 17.6
   },
   {
    "course": "Salon de Provence",
@@ -1189,9 +1273,9 @@
    ],
    "region": "FR",
    "pick": "JOKERO BELLO",
-   "chance": 20,
    "pick_finish": "5th",
-   "hit": false
+   "hit": false,
+   "chance": 20
   },
   {
    "course": "Salon de Provence",
@@ -1217,9 +1301,9 @@
    ],
    "region": "FR",
    "pick": "IMPRESARIO",
-   "chance": 32.1,
    "pick_finish": "1st",
-   "hit": true
+   "hit": true,
+   "chance": 32.1
   },
   {
    "course": "Hippodrome Bordeaux le Bouscat",
@@ -1239,9 +1323,9 @@
    ],
    "region": "FR",
    "pick": "NECTAR DU LEARD",
-   "chance": 38.9,
    "pick_finish": "3rd",
-   "hit": false
+   "hit": false,
+   "chance": 38.9
   },
   {
    "course": "Hippodrome Bordeaux le Bouscat",
@@ -1270,9 +1354,9 @@
    ],
    "region": "FR",
    "pick": "NEWTON DE SAFRAN",
-   "chance": 16.6,
    "pick_finish": "10th",
-   "hit": false
+   "hit": false,
+   "chance": 16.6
   },
   {
    "course": "Hippodrome Bordeaux le Bouscat",
@@ -1302,7 +1386,11 @@
     "L'OR DU MELEUC",
     "L'AVENTURE D'ANSY"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Hippodrome Bordeaux le Bouscat",
@@ -1327,7 +1415,11 @@
     "JULIANA SPIRIT",
     "KODIAK DU NORD"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Hippodrome Bordeaux le Bouscat",
@@ -1349,7 +1441,11 @@
     "JACKPOT DES BORDES",
     "JOYEUSE DE LAVANCE"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Hippodrome Bordeaux le Bouscat",
@@ -1373,7 +1469,11 @@
     "MOLLY DEL GREEN",
     "MUSE DU LOISIR"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Hippodrome Bordeaux le Bouscat",
@@ -1397,7 +1497,11 @@
     "MALICIEUX SAMCOF",
     "MONA LISA BOND"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Hippodrome Bordeaux le Bouscat",
@@ -1426,7 +1530,11 @@
     "IDYLLE DU DIGEON",
     "JADE DALAMEDA"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Cordemais",
@@ -1450,9 +1558,9 @@
    ],
    "region": "FR",
    "pick": "OLISCO DES EPINES",
-   "chance": 11.3,
    "pick_finish": "1st",
-   "hit": true
+   "hit": true,
+   "chance": 11.3
   },
   {
    "course": "Cordemais",
@@ -1475,9 +1583,9 @@
    ],
    "region": "FR",
    "pick": "NICOLETTA DU CLOS",
-   "chance": 16.2,
    "pick_finish": "2nd",
-   "hit": false
+   "hit": false,
+   "chance": 16.2
   },
   {
    "course": "Cordemais",
@@ -1506,9 +1614,9 @@
    ],
    "region": "FR",
    "pick": "NUMBER CASH",
-   "chance": 11.1,
    "pick_finish": "8th",
-   "hit": false
+   "hit": false,
+   "chance": 11.1
   },
   {
    "course": "Cordemais",
@@ -1536,9 +1644,9 @@
    ],
    "region": "FR",
    "pick": "NICE DE CHOISEL",
-   "chance": 16.4,
    "pick_finish": "1st",
-   "hit": true
+   "hit": true,
+   "chance": 16.4
   },
   {
    "course": "Cordemais",
@@ -1565,9 +1673,9 @@
    ],
    "region": "FR",
    "pick": "JOYCE ANGOT",
-   "chance": 13.4,
    "pick_finish": "9th",
-   "hit": false
+   "hit": false,
+   "chance": 13.4
   },
   {
    "course": "Cordemais",
@@ -1588,7 +1696,11 @@
     "MARTIN SOMOLLI",
     "MAKAO DAIRPET"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Cordemais",
@@ -1614,7 +1726,11 @@
     "HOTMAIL",
     "KAIROS DU GOUTIER"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Cordemais",
@@ -1635,7 +1751,11 @@
     "MATUVU",
     "MELOPEE BELLA"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Vire",
@@ -1659,9 +1779,9 @@
    ],
    "region": "FR",
    "pick": "NERINA DE VIDO",
-   "chance": 27.8,
    "pick_finish": "1st",
-   "hit": true
+   "hit": true,
+   "chance": 27.8
   },
   {
    "course": "Vire",
@@ -1686,9 +1806,9 @@
    ],
    "region": "FR",
    "pick": "NEPTUNE PACA",
-   "chance": 25.6,
    "pick_finish": "8th",
-   "hit": false
+   "hit": false,
+   "chance": 25.6
   },
   {
    "course": "Vire",
@@ -1716,9 +1836,9 @@
    ],
    "region": "FR",
    "pick": "JAKA DU RUEL",
-   "chance": 22.2,
    "pick_finish": "2nd",
-   "hit": false
+   "hit": false,
+   "chance": 22.2
   },
   {
    "course": "Vire",
@@ -1745,9 +1865,9 @@
    ],
    "region": "FR",
    "pick": "LILI MARLEEN",
-   "chance": 33.4,
    "pick_finish": "4th",
-   "hit": false
+   "hit": false,
+   "chance": 33.4
   },
   {
    "course": "Vire",
@@ -1772,9 +1892,9 @@
    ],
    "region": "FR",
    "pick": "MAESTRO BREKKA",
-   "chance": 19.8,
    "pick_finish": "1st",
-   "hit": true
+   "hit": true,
+   "chance": 19.8
   },
   {
    "course": "Vire",
@@ -1801,9 +1921,9 @@
    ],
    "region": "FR",
    "pick": "MEMORABLE",
-   "chance": 18.6,
    "pick_finish": "4th",
-   "hit": false
+   "hit": false,
+   "chance": 18.6
   },
   {
    "course": "Vire",
@@ -1831,9 +1951,9 @@
    ],
    "region": "FR",
    "pick": "MANON DU GOUTIER",
-   "chance": 13.7,
    "pick_finish": "",
-   "hit": false
+   "hit": false,
+   "chance": 13.7
   },
   {
    "course": "Vire",
@@ -1858,9 +1978,9 @@
    ],
    "region": "FR",
    "pick": "MERIDA RIVERIE",
-   "chance": 10.6,
    "pick_finish": "5th",
-   "hit": false
+   "hit": false,
+   "chance": 10.6
   },
   {
    "course": "Vire",
@@ -1884,7 +2004,11 @@
     "KER MIEL",
     "JEDELWEIS D'URFIST"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Vire",
@@ -1912,9 +2036,9 @@
    ],
    "region": "FR",
    "pick": "HADDOCK D'ECOUVES",
-   "chance": 23.9,
    "pick_finish": "11th",
-   "hit": false
+   "hit": false,
+   "chance": 23.9
   },
   {
    "course": "Mauquenchy",
@@ -1940,9 +2064,9 @@
    ],
    "region": "FR",
    "pick": "NOUVELLE ETOILE",
-   "chance": 13.4,
    "pick_finish": "1st",
-   "hit": true
+   "hit": true,
+   "chance": 13.4
   },
   {
    "course": "Mauquenchy",
@@ -1971,9 +2095,9 @@
    ],
    "region": "FR",
    "pick": "NOBLESKA DE PIPAN",
-   "chance": 13.9,
    "pick_finish": "8th",
-   "hit": false
+   "hit": false,
+   "chance": 13.9
   },
   {
    "course": "Mauquenchy",
@@ -2001,9 +2125,9 @@
    ],
    "region": "FR",
    "pick": "JAIZKIBEL",
-   "chance": 22.5,
    "pick_finish": "5th",
-   "hit": false
+   "hit": false,
+   "chance": 22.5
   },
   {
    "course": "Mauquenchy",
@@ -2035,9 +2159,9 @@
    ],
    "region": "FR",
    "pick": "KLYDE GALAA",
-   "chance": 19,
    "pick_finish": "2nd",
-   "hit": false
+   "hit": false,
+   "chance": 19
   },
   {
    "course": "Mauquenchy",
@@ -2063,7 +2187,11 @@
     "MYA DES MONTS",
     "MOON SLAP"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Mauquenchy",
@@ -2088,7 +2216,11 @@
     "MELLONA DE YENN",
     "MADESKA"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Mauquenchy",
@@ -2117,7 +2249,11 @@
     "JIPANGA DE NILE",
     "JERRY PONT VAUTIER"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Mauquenchy",
@@ -2145,7 +2281,11 @@
     "LADY DU LILAS",
     "LHASSA SANCTA"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Mauquenchy",
@@ -2170,7 +2310,11 @@
     "KANSAS DE DIGEON",
     "JUSTE SAMBA"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Maure de Bretagne",
@@ -2194,9 +2338,9 @@
    ],
    "region": "FR",
    "pick": "MISTER POM",
-   "chance": 28.2,
    "pick_finish": "2nd",
-   "hit": false
+   "hit": false,
+   "chance": 28.2
   },
   {
    "course": "Maure de Bretagne",
@@ -2221,9 +2365,9 @@
    ],
    "region": "FR",
    "pick": "MELILOT BELLO",
-   "chance": 16.6,
    "pick_finish": "1st",
-   "hit": true
+   "hit": true,
+   "chance": 16.6
   },
   {
    "course": "Maure de Bretagne",
@@ -2244,9 +2388,9 @@
    ],
    "region": "FR",
    "pick": "MESSUA DE LABRUNIE",
-   "chance": 48.3,
    "pick_finish": "2nd",
-   "hit": false
+   "hit": false,
+   "chance": 48.3
   },
   {
    "course": "Maure de Bretagne",
@@ -2275,9 +2419,9 @@
    ],
    "region": "FR",
    "pick": "KOPA VRIE",
-   "chance": 27.3,
    "pick_finish": "6th",
-   "hit": false
+   "hit": false,
+   "chance": 27.3
   },
   {
    "course": "Maure de Bretagne",
@@ -2299,7 +2443,11 @@
     "LUCIOLE BLEUE",
     "KALENDARIUS VAL"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Maure de Bretagne",
@@ -2324,7 +2472,11 @@
     "LEELOO MATCH",
     "LAZIO CASTILLAN"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Maure de Bretagne",
@@ -2346,7 +2498,11 @@
     "GRACIEUSE RODINO",
     "JAGOAR PEMBO"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Meslay du Maine",
@@ -2366,7 +2522,11 @@
     "NEBRASKA DE KERSER",
     "MAGIC DREAMS"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Meslay du Maine",
@@ -2390,7 +2550,11 @@
     "NISTRAL DU CHARME",
     "NINO DE SAINT JEAN"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Meslay du Maine",
@@ -2410,7 +2574,11 @@
     "MESTIVEL",
     "MERCATO"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Meslay du Maine",
@@ -2435,7 +2603,11 @@
     "NALA DU PORTUGAL",
     "NATSBY DU PASSAGE"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Meslay du Maine",
@@ -2457,7 +2629,11 @@
     "TARA KIND",
     "LADY DU GRAND VAL"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Meslay du Maine",
@@ -2484,7 +2660,11 @@
     "LEON JERSOP",
     "LEADER DU MAINE"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Meslay du Maine",
@@ -2503,7 +2683,11 @@
     "KANVILFLOMORINIERE",
     "LUA MATER"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Meslay du Maine",
@@ -2528,7 +2712,11 @@
     "LUCKY LUC FOSSAVIE",
     "LE REGENT"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Meslay du Maine",
@@ -2558,7 +2746,11 @@
     "KIFF DU MANOLET",
     "GOLD DE CHOISEL"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   }
  ]
 }
