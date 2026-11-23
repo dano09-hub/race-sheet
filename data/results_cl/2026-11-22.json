@@ -1,7 +1,7 @@
 {
  "date": "2026-11-22",
  "region": "CL",
- "updated": "2026-11-23T00:22:05Z",
+ "updated": "2026-11-23T08:11:16Z",
  "races": [
   {
    "course": "Valparaiso",
@@ -92,7 +92,11 @@
     "THE WIND",
     "BISMARK"
    ],
-   "region": "CL"
+   "region": "CL",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Valparaiso",
@@ -118,7 +122,11 @@
     "PAZZELLE",
     "LA CHULA"
    ],
-   "region": "CL"
+   "region": "CL",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Valparaiso",
@@ -143,7 +151,11 @@
     "ROJO BURGUES",
     "MARINO SIN VACILAR"
    ],
-   "region": "CL"
+   "region": "CL",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Valparaiso",
@@ -169,9 +181,9 @@
    ],
    "region": "CL",
    "pick": "EDDIE",
-   "chance": 19.4,
    "pick_finish": "7th",
-   "hit": false
+   "hit": false,
+   "chance": 19.4
   },
   {
    "course": "Valparaiso",
@@ -198,9 +210,9 @@
    ],
    "region": "CL",
    "pick": "EL RODO",
-   "chance": 14.8,
    "pick_finish": "",
-   "hit": false
+   "hit": false,
+   "chance": 14.8
   },
   {
    "course": "Valparaiso",
@@ -228,9 +240,9 @@
    ],
    "region": "CL",
    "pick": "MODELO DEL SALTO",
-   "chance": 19,
    "pick_finish": "10th",
-   "hit": false
+   "hit": false,
+   "chance": 19
   },
   {
    "course": "Valparaiso",
@@ -256,7 +268,11 @@
     "FAFIFO",
     "GRAN CAFRUNE"
    ],
-   "region": "CL"
+   "region": "CL",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Valparaiso",
@@ -283,7 +299,11 @@
     "SIKELIA",
     "BOMBA DE RACIMO"
    ],
-   "region": "CL"
+   "region": "CL",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   }
  ]
 }
