@@ -1,0 +1,872 @@
+{
+ "date": "2026-11-23",
+ "region": "FR",
+ "updated": "2026-11-23T23:25:31Z",
+ "races": [
+  {
+   "course": "Paris-Vincennes",
+   "time": "12:57",
+   "race": "PRIX DE MONTIGNAC-CHARENTE",
+   "race_no": "R1C1",
+   "winner": "INDY ROCK",
+   "places": [
+    "INDY ROCK",
+    "HOMARD LAND",
+    "CHITCHAT"
+   ],
+   "order": [
+    "INDY ROCK",
+    "HOMARD LAND",
+    "CHITCHAT",
+    "IBIZA BELLA",
+    "JONGLEUSE DE LUNE",
+    "IDYLLE EXPRESS",
+    "KARAMBAR",
+    "NINEPOINTS LASSE",
+    "KAMEHAMEHA",
+    "FREEDOM (NOR)",
+    "IN RED",
+    "ELEGANCE KRONOS",
+    "HEADSCOTT",
+    "KELMEC"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Paris-Vincennes",
+   "time": "13:32",
+   "race": "PRIX DE RETHONDES",
+   "race_no": "R1C2",
+   "winner": "LILA D'OCTAV",
+   "places": [
+    "LILA D'OCTAV",
+    "LOLA DE CHENU",
+    "LADY DE GREZ"
+   ],
+   "order": [
+    "LILA D'OCTAV",
+    "LOLA DE CHENU",
+    "LADY DE GREZ",
+    "LEDORIKA",
+    "LUNA DOMA",
+    "LIBERTY CASH",
+    "LADY AURELIA"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Paris-Vincennes",
+   "time": "14:08",
+   "race": "PRIX DE CERISY",
+   "race_no": "R1C3",
+   "winner": "NEW HAUFOR",
+   "places": [
+    "NEW HAUFOR",
+    "NORTON ELCE",
+    "NAGANOSTAR"
+   ],
+   "order": [
+    "NEW HAUFOR",
+    "NORTON ELCE",
+    "NAGANOSTAR",
+    "NOTHING COMPARES",
+    "NARVAL PIERJI",
+    "NUMBER DU GERS",
+    "NEED FOR LOVE",
+    "NASH DE VANDEL",
+    "NOBLE PETTEVINIERE"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Paris-Vincennes",
+   "time": "14:41",
+   "race": "PRIX DE SANTIGNY",
+   "race_no": "R1C4",
+   "winner": "NONALISA",
+   "places": [
+    "NONALISA",
+    "NAZLA GIRL",
+    "NOEMIE D'AVEL"
+   ],
+   "order": [
+    "NONALISA",
+    "NAZLA GIRL",
+    "NOEMIE D'AVEL",
+    "NINA",
+    "NUSTINE",
+    "NOUBA DU SAPHIR",
+    "NEYOLE CHALEONAISE",
+    "NUSICA ASSCHADEL",
+    "NANALAND"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Paris-Vincennes",
+   "time": "15:17",
+   "race": "PRIX DE LECELLES",
+   "race_no": "R1C5",
+   "winner": "KEIGHT BLESS",
+   "places": [
+    "KEIGHT BLESS",
+    "KAIROS DE BOMO",
+    "KELCANTO BELLO"
+   ],
+   "order": [
+    "KEIGHT BLESS",
+    "KAIROS DE BOMO",
+    "KELCANTO BELLO",
+    "KYSKO DE FAEL",
+    "KEITHOS DU RHIN",
+    "KOCKTAIL WOOD",
+    "KAMIKAZE DU CAMPUS"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Paris-Vincennes",
+   "time": "15:51",
+   "race": "PRIX DE LANDIVISIAU",
+   "race_no": "R1C6",
+   "winner": "MALOUINES QUESNOT",
+   "places": [
+    "MALOUINES QUESNOT",
+    "MAHIZ DE GUEZ",
+    "MYGIRL DES FORGES"
+   ],
+   "order": [
+    "MALOUINES QUESNOT",
+    "MAHIZ DE GUEZ",
+    "MYGIRL DES FORGES",
+    "MINERVE DE VANDEL",
+    "MY BLACK CADENCE",
+    "MY STORY",
+    "MINILADY DE CHOC",
+    "MAYA DES GENETS",
+    "MONEY MONEY PIYA"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Paris-Vincennes",
+   "time": "16:26",
+   "race": "PRIX DE VICENCE",
+   "race_no": "R1C7",
+   "winner": "MY DREAM MESLOIS",
+   "places": [
+    "MY DREAM MESLOIS",
+    "MAJOR DU BISTON",
+    "MIKADO CASTELETS"
+   ],
+   "order": [
+    "MY DREAM MESLOIS",
+    "MAJOR DU BISTON",
+    "MIKADO CASTELETS",
+    "MAESTRO VET",
+    "MOZART DU DOLLAR",
+    "MYLEY ELDE",
+    "MONARQUE",
+    "MOZART SAUTONNE",
+    "MILORD DARLING",
+    "MY DREAM",
+    "MAGELLANO SUN",
+    "MANHATTAN JIEL",
+    "MODERN STYLE",
+    "MIGUEL DE LOU",
+    "MISTER D'ECROVILLE",
+    "MBAPE DES CHARRONS"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Paris-Vincennes",
+   "time": "17:00",
+   "race": "PRIX DE CABRIERES",
+   "race_no": "R1C8",
+   "winner": "NIKITA DU MOUTHIEU",
+   "places": [
+    "NIKITA DU MOUTHIEU",
+    "NOTE REBELLE",
+    "NEBULEUSE FLIGNY"
+   ],
+   "order": [
+    "NIKITA DU MOUTHIEU",
+    "NOTE REBELLE",
+    "NEBULEUSE FLIGNY",
+    "NINA HAGEN D'OR",
+    "NATIVE DE PLAY",
+    "NO LIMIT DELO",
+    "NOSTRA COSA",
+    "NOUBA D'ATOUT",
+    "NOBLESS DU NOYER",
+    "NOLITA MADRIK",
+    "NIKITA DU BOUFFEY"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Nantes",
+   "time": "09:54",
+   "race": "PRIX DES PARIEURS PMU+",
+   "race_no": "R2C1",
+   "winner": "BRAMDEAN LAD",
+   "places": [
+    "BRAMDEAN LAD",
+    "NEUTRINO",
+    "MISTER DAVIER"
+   ],
+   "order": [
+    "BRAMDEAN LAD",
+    "NEUTRINO",
+    "MISTER DAVIER",
+    "RITANO GUAPO",
+    "BALLYEDWARD",
+    "NE DIS JAMAIS NON",
+    "HOMME DE DIEU"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Nantes",
+   "time": "10:26",
+   "race": "PRIX DE SAINT-MALO",
+   "race_no": "R2C2",
+   "winner": "NANJAYA",
+   "places": [
+    "NANJAYA",
+    "CHAMPIONNE D'ANJOU",
+    "SOLESSENCE"
+   ],
+   "order": [
+    "NANJAYA",
+    "CHAMPIONNE D'ANJOU",
+    "SOLESSENCE",
+    "COEUR DE BALLON",
+    "NEW YORK D'ERABLE",
+    "MALICE DE VEGUY"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Nantes",
+   "time": "11:01",
+   "race": "PRIX PRESIDENT HERVE DE LA BROSSE",
+   "race_no": "R2C3",
+   "winner": "KIMFLY",
+   "places": [
+    "KIMFLY",
+    "KLAIRE SECRETE",
+    "YEMASKA"
+   ],
+   "order": [
+    "KIMFLY",
+    "KLAIRE SECRETE",
+    "YEMASKA",
+    "J'AI LA COTE",
+    "CHADOC",
+    "JALWAY",
+    "CHASUBLE"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Nantes",
+   "time": "11:44",
+   "race": "PRIX ROGER CHAIGNON",
+   "race_no": "R2C4",
+   "winner": "SAUTERN DE HOUELLE",
+   "places": [
+    "SAUTERN DE HOUELLE",
+    "MALICA DE THAIX",
+    "MALESSIA"
+   ],
+   "order": [
+    "SAUTERN DE HOUELLE",
+    "MALICA DE THAIX",
+    "MALESSIA",
+    "DIZAVRIL PELEM",
+    "ABONDENSE",
+    "SHAMROCK MELODY",
+    "KIRKITA",
+    "MOLOTOF COCKTAIL"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Nantes",
+   "time": "12:15",
+   "race": "PRIX DURALOCK",
+   "race_no": "R2C5",
+   "winner": "CLOTH OF SEA",
+   "places": [
+    "CLOTH OF SEA",
+    "BAR TENDER",
+    "DOUCE AMIE"
+   ],
+   "order": [
+    "CLOTH OF SEA",
+    "BAR TENDER",
+    "DOUCE AMIE",
+    "PRINCE OF PARIS",
+    "DASHKA",
+    "MARVEL DELABLAIRIE",
+    "LA BELLE STAR"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Nantes",
+   "time": "12:49",
+   "race": "PRIX REGIS BERTIN",
+   "race_no": "R2C6",
+   "winner": "GELINA",
+   "places": [
+    "GELINA",
+    "SHEZALA",
+    "MAJOR DU LARGE"
+   ],
+   "order": [
+    "GELINA",
+    "SHEZALA",
+    "MAJOR DU LARGE",
+    "MAIRYGARDE DE MEE",
+    "ISULA SENAM",
+    "FUN LOVE",
+    "MERLIN DU LARGE"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Nantes",
+   "time": "13:19",
+   "race": "PRIX GILLES TARTOUE- CHALLENGE DE L'OBSTACLE EQUINAXY (PX J. BROSSAIS)",
+   "race_no": "R2C7",
+   "winner": "TRES PLUMEUR",
+   "places": [
+    "TRES PLUMEUR",
+    "LE KARMA",
+    "DENHAM RISK"
+   ],
+   "order": [
+    "TRES PLUMEUR",
+    "LE KARMA",
+    "DENHAM RISK",
+    "GINO DU MATHAN",
+    "MAGIC THEYSS"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Chantilly",
+   "time": "11:19",
+   "race": "PRIX DU VERGALY",
+   "race_no": "R3C1",
+   "winner": "BEAUTIFUL MEMORY",
+   "places": [
+    "BEAUTIFUL MEMORY",
+    "NEPALAIS",
+    "INCREMENTAL"
+   ],
+   "order": [
+    "BEAUTIFUL MEMORY",
+    "NEPALAIS",
+    "INCREMENTAL",
+    "HOLLYWOOD AFRICANS",
+    "EXTRAPOL",
+    "USER AMISTOSO",
+    "MAITRE D'ARMES",
+    "BATURHAN",
+    "GOLDEN VALE",
+    "ANTAIOS"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Chantilly",
+   "time": "12:00",
+   "race": "PRIX DU CHATEAU DE PIERREFONDS",
+   "race_no": "R3C2",
+   "winner": "DERNI CHOP",
+   "places": [
+    "DERNI CHOP",
+    "WAYKIKI",
+    "MICOCOULIER STREET"
+   ],
+   "order": [
+    "DERNI CHOP",
+    "WAYKIKI",
+    "MICOCOULIER STREET",
+    "LA JUSTICIERE",
+    "NEW CHAPTER",
+    "MICKAEL D'OO",
+    "ALLEZ FRERES",
+    "MOONEY VISION",
+    "MAGDA",
+    "THE MAGPIE",
+    "LIGHT OF THUNDER",
+    "ZARALADY",
+    "MARANTAO"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Chantilly",
+   "time": "12:33",
+   "race": "PRIX DU JARDIN DE LA VOLIERE",
+   "race_no": "R3C3",
+   "winner": "ALPSEE",
+   "places": [
+    "ALPSEE",
+    "ALPHA LEPORIS",
+    "DUBARA"
+   ],
+   "order": [
+    "ALPSEE",
+    "ALPHA LEPORIS",
+    "DUBARA",
+    "PETIT GENIE",
+    "OROPENDOLA",
+    "DIAMANTE",
+    "REGAL CHOP",
+    "LILY ANGEL",
+    "LUCKY VOWS",
+    "FONTANA DI TREVI",
+    "NEW EVE",
+    "RIVER DREAM"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Chantilly",
+   "time": "13:15",
+   "race": "PRIX DE L'ENCLOS DES KANGOUROUS",
+   "race_no": "R3C4",
+   "winner": "JEMAA EL FNA",
+   "places": [
+    "JEMAA EL FNA",
+    "ROUGE PERRIERS",
+    "GOLDEN RUN"
+   ],
+   "order": [
+    "JEMAA EL FNA",
+    "ROUGE PERRIERS",
+    "GOLDEN RUN",
+    "MAJESTIC PEARL",
+    "HOMBRE VERTICAL",
+    "ARWOOD",
+    "SAXEEN",
+    "DIVO TWO TIMES",
+    "OUD ILAM",
+    "DO YOU SEA",
+    "CHAMPAGNE SUNSET"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Chantilly",
+   "time": "13:48",
+   "race": "PRIX DES STATUES DES PREUSES",
+   "race_no": "R3C5",
+   "winner": "GRAY D'ALBION",
+   "places": [
+    "GRAY D'ALBION",
+    "BOBBY JEAN",
+    "GALILEE DREAM"
+   ],
+   "order": [
+    "GRAY D'ALBION",
+    "BOBBY JEAN",
+    "GALILEE DREAM",
+    "WHATAHERO",
+    "REGALIENNE",
+    "PACO",
+    "LOUVE PRECIEUSE",
+    "GRACEHILL",
+    "PARISIAN BELLE",
+    "ILLOIS"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Chantilly",
+   "time": "14:23",
+   "race": "PRIX DES NEUFS FAMEUSES GUERRIERES",
+   "race_no": "R3C6",
+   "winner": "KHYRILOVITCH",
+   "places": [
+    "KHYRILOVITCH",
+    "MISSOURI",
+    "MAGIC TREVILLE"
+   ],
+   "order": [
+    "KHYRILOVITCH",
+    "MISSOURI",
+    "MAGIC TREVILLE",
+    "ROMANCE MARINE",
+    "MARKSWOMAN",
+    "SI CAPO SI",
+    "ROYAL SHAKE",
+    "ANTICO",
+    "AMOUAGE",
+    "CHRISTINE",
+    "LIKETHEWIND"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Chantilly",
+   "time": "14:57",
+   "race": "PRIX DE LA SALLE DES PREUSES",
+   "race_no": "R3C7",
+   "winner": "SIGNOR GALLI",
+   "places": [
+    "SIGNOR GALLI",
+    "CASARES",
+    "OUT OF THE BLUE"
+   ],
+   "order": [
+    "SIGNOR GALLI",
+    "CASARES",
+    "OUT OF THE BLUE",
+    "J'AURAIS DU",
+    "GRAN HABANO",
+    "FLY HALF",
+    "REKHALE",
+    "ANTICIPATION ZERO",
+    "HARRISON POINT",
+    "ASTON CLINTON"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Chantilly",
+   "time": "15:33",
+   "race": "PRIX DE LA ROUTE DE LA VALLEE",
+   "race_no": "R3C8",
+   "winner": "NOT LIKE US",
+   "places": [
+    "NOT LIKE US",
+    "BELLE HARMONIE",
+    "DREAMFORFUTURE"
+   ],
+   "order": [
+    "NOT LIKE US",
+    "BELLE HARMONIE",
+    "DREAMFORFUTURE",
+    "SIRAT",
+    "VADAZAL",
+    "SHE'S A LADY",
+    "DORADO",
+    "ALBATH'OR",
+    "LATE NIGHT",
+    "WINGS OF GLORY",
+    "SALVATAGGIO",
+    "BIRDY SUN",
+    "MARIUS DEL MYRE",
+    "BELLE OF GEORGIA"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Hippodrome Marseille Pont de Vivaux",
+   "time": "16:07",
+   "race": "PRIX DE LA BARBEN",
+   "race_no": "R4C1",
+   "winner": "RABBAH",
+   "places": [
+    "RABBAH",
+    "AMERICANO",
+    "SIR GARSING"
+   ],
+   "order": [
+    "RABBAH",
+    "AMERICANO",
+    "SIR GARSING",
+    "BAGAZ",
+    "WELCOME CHARLY",
+    "BONNY WAY",
+    "BARSSIO",
+    "LADY MANA",
+    "GOOD QUESTION",
+    "ALROMY",
+    "VIKTHOR"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Hippodrome Marseille Pont de Vivaux",
+   "time": "16:42",
+   "race": "PRIX DU ROUET",
+   "race_no": "R4C2",
+   "winner": "ZELICA",
+   "places": [
+    "ZELICA",
+    "LAGOONE CHOPE",
+    "CAPABLE"
+   ],
+   "order": [
+    "ZELICA",
+    "LAGOONE CHOPE",
+    "CAPABLE",
+    "BLANCHE SACREE",
+    "SEKKU",
+    "FOLLOW YOU",
+    "ALGECIRAS",
+    "RIDWAAN",
+    "PORT SANTA PONSA",
+    "JAMAL"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Hippodrome Marseille Pont de Vivaux",
+   "time": "17:15",
+   "race": "PRIX DE LA CRIEE",
+   "race_no": "R4C3",
+   "winner": "FAITH IN YOU",
+   "places": [
+    "FAITH IN YOU",
+    "RED SCOTCH",
+    "INTRIGUING"
+   ],
+   "order": [
+    "FAITH IN YOU",
+    "RED SCOTCH",
+    "INTRIGUING",
+    "OTONIA",
+    "MAC TYSON",
+    "NOCTURNE BLOU",
+    "OBLENSKHY",
+    "MISTER SOCKS",
+    "YODA",
+    "MERI SIVA",
+    "PRINCESS ALMA"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Hippodrome Marseille Pont de Vivaux",
+   "time": "17:45",
+   "race": "PRIX DES CRIQUES",
+   "race_no": "R4C4",
+   "winner": "STARSHIP",
+   "places": [
+    "STARSHIP",
+    "SI NOIR",
+    "MUNCH"
+   ],
+   "order": [
+    "STARSHIP",
+    "SI NOIR",
+    "MUNCH",
+    "NOVA FOR EVER",
+    "STRIVE",
+    "LIZA CHOPE",
+    "GYPSEA",
+    "CAPELINE"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Hippodrome Marseille Pont de Vivaux",
+   "time": "18:15",
+   "race": "PRIX REINE LUMIERE",
+   "race_no": "R4C5",
+   "winner": "HE TOUCHED ME",
+   "places": [
+    "HE TOUCHED ME",
+    "STUNNING HERO",
+    "RESOLUTION"
+   ],
+   "order": [
+    "HE TOUCHED ME",
+    "STUNNING HERO",
+    "RESOLUTION",
+    "THE DOCTOR",
+    "SASKATOON",
+    "KHELONYX",
+    "MERCI ELIE",
+    "WAZIERS"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Hippodrome Marseille Pont de Vivaux",
+   "time": "18:45",
+   "race": "PRIX DE GARDANNE",
+   "race_no": "R4C6",
+   "winner": "HADITOUNI",
+   "places": [
+    "HADITOUNI",
+    "IT'S PISTACHIO",
+    "ZARWALYAH"
+   ],
+   "order": [
+    "HADITOUNI",
+    "IT'S PISTACHIO",
+    "ZARWALYAH",
+    "KANEWKO",
+    "POSSENHOFEN",
+    "EL VEGAS",
+    "SHY FEELING",
+    "SANTA LUZIA",
+    "KING OF POP"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Hippodrome Marseille Pont de Vivaux",
+   "time": "19:15",
+   "race": "PRIX DANIEL VERGEZ",
+   "race_no": "R4C7",
+   "winner": "LILY DES ROSES",
+   "places": [
+    "LILY DES ROSES",
+    "HUGO CABRET",
+    "EX ANIMO"
+   ],
+   "order": [
+    "LILY DES ROSES",
+    "HUGO CABRET",
+    "EX ANIMO",
+    "DISSEMBLE",
+    "JOYPHORIA",
+    "GHENGIS KHAN",
+    "AMERICAN STORM"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Agen la Garenne",
+   "time": "12:53",
+   "race": "PRIX SERGIO RAFFAELLO",
+   "race_no": "R6C1",
+   "winner": "DULCINA CHOP",
+   "places": [
+    "DULCINA CHOP",
+    "WISH YOU JOY",
+    "JAPONESE GARDEN"
+   ],
+   "order": [
+    "DULCINA CHOP",
+    "WISH YOU JOY",
+    "JAPONESE GARDEN",
+    "FILLE D ARTISTE",
+    "ALASSA",
+    "BALMA",
+    "KANCHANA",
+    "ROSE DU CHAMP"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Agen la Garenne",
+   "time": "13:27",
+   "race": "PRIX JEAN-CLAUDE CHASSENARD",
+   "race_no": "R6C2",
+   "winner": "LARK",
+   "places": [
+    "LARK",
+    "BELLA JOSEPHINE",
+    "PROLIXE"
+   ],
+   "order": [
+    "LARK",
+    "BELLA JOSEPHINE",
+    "PROLIXE",
+    "FLINK"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Agen la Garenne",
+   "time": "13:59",
+   "race": "PRIX JEROME RAMBAUD (PRIX DUNAMIS)",
+   "race_no": "R6C3",
+   "winner": "VOIX DE CRISTAL AA",
+   "places": [
+    "VOIX DE CRISTAL AA",
+    "KIRIE AA",
+    "DIEGO DE LENZAC AA"
+   ],
+   "order": [
+    "VOIX DE CRISTAL AA",
+    "KIRIE AA",
+    "DIEGO DE LENZAC AA",
+    "NEVA PONTADOUR AA",
+    "HYDE POMPADOUR AA",
+    "FLINTILIE AA",
+    "ISEULT DU PACS AA"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Agen la Garenne",
+   "time": "14:27",
+   "race": "PRIX DE PAU",
+   "race_no": "R6C4",
+   "winner": "NYRHONE DE COUELY",
+   "places": [
+    "NYRHONE DE COUELY",
+    "ARKADY",
+    "NAPOU VALLIS"
+   ],
+   "order": [
+    "NYRHONE DE COUELY",
+    "ARKADY",
+    "NAPOU VALLIS",
+    "GLWA'DOCH",
+    "NIRVANA DES MOTTES",
+    "PANZERINA",
+    "MARCASTLE LAUJAC"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Agen la Garenne",
+   "time": "15:01",
+   "race": "PRIX JEAN-MARIE HEBRARD",
+   "race_no": "R6C5",
+   "winner": "MATADOR FOREZ",
+   "places": [
+    "MATADOR FOREZ",
+    "LARA DES MOTTES",
+    "LE PALOIS"
+   ],
+   "order": [
+    "MATADOR FOREZ",
+    "LARA DES MOTTES",
+    "LE PALOIS",
+    "MARECHAL DE L'AIR",
+    "FOLKORIKO",
+    "FAN DE CHICHOUNE",
+    "LE CHARME",
+    "LA GAZELLE",
+    "LANCIA SPORT"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Agen la Garenne",
+   "time": "15:35",
+   "race": "GRAND CROSS COUNTRY DE LA GARENNE",
+   "race_no": "R6C6",
+   "winner": "FRAGA HAS",
+   "places": [
+    "FRAGA HAS",
+    "SPES FULLKAM",
+    "HERMINE ALLEN"
+   ],
+   "order": [
+    "FRAGA HAS",
+    "SPES FULLKAM",
+    "HERMINE ALLEN",
+    "L AUDACIEUX",
+    "CAPTAIN DU BERLAIS",
+    "JALOUSIE D'AINAY"
+   ],
+   "region": "FR"
+  }
+ ]
+}
