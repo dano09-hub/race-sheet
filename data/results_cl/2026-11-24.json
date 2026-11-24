@@ -1,0 +1,78 @@
+{
+ "date": "2026-11-24",
+ "region": "CL",
+ "updated": "2026-11-24T21:56:06Z",
+ "races": [
+  {
+   "course": "Concepcion",
+   "time": "20:15",
+   "race": "WIND'S DEVIL",
+   "race_no": "R6C4",
+   "winner": "CUARTO C",
+   "places": [
+    "CUARTO C",
+    "COFFEE BAY",
+    "FLIGHT OF ICARUS"
+   ],
+   "order": [
+    "CUARTO C",
+    "COFFEE BAY",
+    "FLIGHT OF ICARUS",
+    "COPAYAPU",
+    "GRAN RAI",
+    "FIRST RAIDER",
+    "STROKE OF LUCK",
+    "CURRY",
+    "TE QUIERO A TI"
+   ],
+   "region": "CL"
+  },
+  {
+   "course": "Concepcion",
+   "time": "20:45",
+   "race": "WISH CROWN",
+   "race_no": "R6C5",
+   "winner": "EL CATIMBA",
+   "places": [
+    "EL CATIMBA",
+    "VIAJE A CARMEL",
+    "GREYHOUND"
+   ],
+   "order": [
+    "EL CATIMBA",
+    "VIAJE A CARMEL",
+    "GREYHOUND",
+    "RUCIA DE ORO",
+    "DOMINGA MISTERIO",
+    "SAHARA QUALITY",
+    "GOOD VICTORY",
+    "ALBIORIX",
+    "BEL CUORE"
+   ],
+   "region": "CL"
+  },
+  {
+   "course": "Concepcion",
+   "time": "21:20",
+   "race": "WHITE SHARK",
+   "race_no": "R6C6",
+   "winner": "MAJESTIC AURA",
+   "places": [
+    "MAJESTIC AURA",
+    "ROJO JAMAS",
+    "QUIERO TODO"
+   ],
+   "order": [
+    "MAJESTIC AURA",
+    "ROJO JAMAS",
+    "QUIERO TODO",
+    "STAIN",
+    "LIMENO FELIZ",
+    "LOST IN SUMMER",
+    "NINA SAMARITANA",
+    "TATARISTAN"
+   ],
+   "region": "CL"
+  }
+ ]
+}

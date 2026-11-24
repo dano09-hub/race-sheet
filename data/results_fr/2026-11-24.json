@@ -1,0 +1,609 @@
+{
+ "date": "2026-11-24",
+ "region": "FR",
+ "updated": "2026-11-24T21:56:03Z",
+ "races": [
+  {
+   "course": "Deauville",
+   "time": "12:55",
+   "race": "PRIX DU CHATEAU DE BAYEUX",
+   "race_no": "R1C1",
+   "winner": "STARAC",
+   "places": [
+    "STARAC",
+    "TAMYZ",
+    "COLGAN SENORA"
+   ],
+   "order": [
+    "STARAC",
+    "TAMYZ",
+    "COLGAN SENORA",
+    "CHESS",
+    "CASSIUS",
+    "FEARLESS CHEETAH",
+    "ROULETTE",
+    "SAPRISTI",
+    "HASAPIKO",
+    "STEP MORNING",
+    "PRETTY QUEEN",
+    "FERDINAND PREMIER",
+    "MONONOF",
+    "NATORSPEED ESSEF",
+    "MISTERWINNER"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Deauville",
+   "time": "13:30",
+   "race": "PRIX DE VADALLIERE",
+   "race_no": "R1C2",
+   "winner": "CENTRAL PARK WEST",
+   "places": [
+    "CENTRAL PARK WEST",
+    "AGADOR",
+    "BLACK PHANTOM"
+   ],
+   "order": [
+    "CENTRAL PARK WEST",
+    "AGADOR",
+    "BLACK PHANTOM",
+    "VENTOSILLA",
+    "GET SET",
+    "SWIFT FLIGHT",
+    "LISEO",
+    "NEW BOMBAY",
+    "LUCIOLE ROQUE"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Deauville",
+   "time": "14:07",
+   "race": "PRIX DE PREAUX",
+   "race_no": "R1C3",
+   "winner": "STELLIA",
+   "places": [
+    "STELLIA",
+    "UPMANIA",
+    "ROSA AUREA"
+   ],
+   "order": [
+    "STELLIA",
+    "UPMANIA",
+    "ROSA AUREA",
+    "MQSE D'ANDROS",
+    "MIRYACALE",
+    "SHOLPANA",
+    "AUTRICHE",
+    "DANAELLE",
+    "BAILYCHKA",
+    "BLUE STAR"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Deauville",
+   "time": "14:43",
+   "race": "PRIX DE MONTFORT",
+   "race_no": "R1C4",
+   "winner": "VEGAWAN",
+   "places": [
+    "VEGAWAN",
+    "PORTO URBINO",
+    "JE VAIS A RIO"
+   ],
+   "order": [
+    "VEGAWAN",
+    "PORTO URBINO",
+    "JE VAIS A RIO",
+    "SALMY",
+    "SILVER BAY",
+    "DUTCHMAN",
+    "LORENZO",
+    "ASSET",
+    "VATICANO",
+    "GRACELLO",
+    "VLATY'LEZ",
+    "BLACK ECHO TAKE"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Deauville",
+   "time": "15:19",
+   "race": "PRIX DE L'HOTEL DU CROISSANT",
+   "race_no": "R1C5",
+   "winner": "VESINABA",
+   "places": [
+    "VESINABA",
+    "LITTLE HAVANA",
+    "MAESTRO CHOP"
+   ],
+   "order": [
+    "VESINABA",
+    "LITTLE HAVANA",
+    "MAESTRO CHOP",
+    "SIXTINE BAAL",
+    "ECLAIR DE VATI",
+    "SANDON",
+    "MORNING FIVE",
+    "JACK'S SON",
+    "GALIWAY D'ANGE",
+    "SEMEUR",
+    "TUNDRA",
+    "AMICIS",
+    "JUST FOR GAB'S",
+    "PURBRIGHT DRALLIV"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Deauville",
+   "time": "15:57",
+   "race": "PRIX DU GRAND HOTEL D'ARGOUGES",
+   "race_no": "R1C6",
+   "winner": "LE GARDOLOT",
+   "places": [
+    "LE GARDOLOT",
+    "SUPERCLASS",
+    "CHERRY PIE"
+   ],
+   "order": [
+    "LE GARDOLOT",
+    "SUPERCLASS",
+    "CHERRY PIE",
+    "ALREADY QUEEN",
+    "MY DARLING",
+    "BORN TO WIN",
+    "ATALAYA",
+    "MONSIEUR GEORGE",
+    "ZELZANA",
+    "PEARL DE NUIT",
+    "TREZY BOUNTY",
+    "LELLA DESJY",
+    "MURANO",
+    "CHERE TRESOR"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Deauville",
+   "time": "16:29",
+   "race": "PRIX DU MANOIR DE LA CAILLERIE",
+   "race_no": "R1C7",
+   "winner": "TORRONE",
+   "places": [
+    "TORRONE",
+    "HOT COLD",
+    "JAGUARE PRECIEUSE"
+   ],
+   "order": [
+    "TORRONE",
+    "HOT COLD",
+    "JAGUARE PRECIEUSE",
+    "ADLAN SENORA",
+    "CARLSTON",
+    "MAYAMAR",
+    "VIANETA",
+    "NOVA MOON",
+    "SOGYNT",
+    "THE LAST FOAL",
+    "ANCTOT",
+    "MONTE CUPOLINO",
+    "QUE BELLA",
+    "GOT MAN"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Deauville",
+   "time": "17:01",
+   "race": "PRIX DU CONSERVATOIRE DE LA DENTELLE",
+   "race_no": "R1C8",
+   "winner": "LETTYT FIGHT",
+   "places": [
+    "LETTYT FIGHT",
+    "NEVER COME BACK",
+    "PAPILLE D'ARGENT"
+   ],
+   "order": [
+    "LETTYT FIGHT",
+    "NEVER COME BACK",
+    "PAPILLE D'ARGENT",
+    "ALMAGRO",
+    "BIALYSTOK",
+    "ARGYRON",
+    "CATHERINE'S GIFT",
+    "LADY ACHILLIA",
+    "BECQUANIENTE",
+    "RHIPPER",
+    "HISTOIREDEMARS",
+    "HAPPY HARRY",
+    "ZAKARIIA",
+    "ZILCOVER"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Paris-Vincennes",
+   "time": "11:17",
+   "race": "PRIX DU TOUQUET",
+   "race_no": "R3C1",
+   "winner": "MANDELA SEVEN",
+   "places": [
+    "MANDELA SEVEN",
+    "MOJITO DES ECUS",
+    "MEANDRE DE VANDEL"
+   ],
+   "order": [
+    "MANDELA SEVEN",
+    "MOJITO DES ECUS",
+    "MEANDRE DE VANDEL",
+    "MONSTER SPEED",
+    "MERRY CHRISTMAS",
+    "MARECHAL TURGOT",
+    "MANGO PAULO",
+    "MILORD DES ARRIS",
+    "MAURICIO DU DERBY"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Paris-Vincennes",
+   "time": "11:52",
+   "race": "PRIX D'HOSSEGOR",
+   "race_no": "R3C2",
+   "winner": "LOBBY MESLOIS",
+   "places": [
+    "LOBBY MESLOIS",
+    "LINGUIST D'HERIPRE",
+    "LOZEN DE BANVILLE"
+   ],
+   "order": [
+    "LOBBY MESLOIS",
+    "LINGUIST D'HERIPRE",
+    "LOZEN DE BANVILLE",
+    "LAURENE DE BAILLY",
+    "LIGNE BLANCHE",
+    "LOUPIAC DE GODREL",
+    "LEON DE SOURCE",
+    "LEONARDO TURGOT",
+    "LIPINSKA",
+    "LIKE A BIRD STAR",
+    "LORD DE LA FUTAIE",
+    "LATINOS DU NOYER",
+    "LIPTON TONIC"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Paris-Vincennes",
+   "time": "12:27",
+   "race": "PRIX DE GENSAC",
+   "race_no": "R3C3",
+   "winner": "NEWMAN TURGOT",
+   "places": [
+    "NEWMAN TURGOT",
+    "NICKNAME",
+    "NELSON DE BANVILLE"
+   ],
+   "order": [
+    "NEWMAN TURGOT",
+    "NICKNAME",
+    "NELSON DE BANVILLE",
+    "NE M'ATTENDS PAS",
+    "NAVARONE",
+    "NAKALOUN"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Paris-Vincennes",
+   "time": "13:12",
+   "race": "PRIX DES ANEMONES",
+   "race_no": "R3C4",
+   "winner": "OUBLON DE LA COTE",
+   "places": [
+    "OUBLON DE LA COTE",
+    "OPERA WOOD",
+    "OLLISTER CYJUS"
+   ],
+   "order": [
+    "OUBLON DE LA COTE",
+    "OPERA WOOD",
+    "OLLISTER CYJUS",
+    "ORACIO DE LAUNI",
+    "OUTSTANDING CASH",
+    "OPIO DE LA VALLEE",
+    "OLIU MAG"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Paris-Vincennes",
+   "time": "13:47",
+   "race": "PRIX DE MASSIAC",
+   "race_no": "R3C5",
+   "winner": "L'IDEALISTE",
+   "places": [
+    "L'IDEALISTE",
+    "LOULOU BOY",
+    "LARGINO BRAVOURE"
+   ],
+   "order": [
+    "L'IDEALISTE",
+    "LOULOU BOY",
+    "LARGINO BRAVOURE",
+    "LORD SUN DRALIAM",
+    "LEONARDO",
+    "LAGON DU DEZERT",
+    "LEON DU CLOS",
+    "LOTUS DE BEYLEV",
+    "LITYGE DE CYM",
+    "LOUIS GAILLARD",
+    "LOVELY TRIP",
+    "LE BEST MADRIK"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Paris-Vincennes",
+   "time": "14:24",
+   "race": "PRIX DE RICHELIEU",
+   "race_no": "R3C6",
+   "winner": "NINO DE TIMBOEUF",
+   "places": [
+    "NINO DE TIMBOEUF",
+    "NOBLE SUPREME",
+    "NEW FRIEND"
+   ],
+   "order": [
+    "NINO DE TIMBOEUF",
+    "NOBLE SUPREME",
+    "NEW FRIEND",
+    "NECTAR VRIE",
+    "NOMADE PIYA",
+    "NITRY ATALANTE",
+    "NIACK DU CORTA"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Paris-Vincennes",
+   "time": "15:00",
+   "race": "PRIX DE PLOUBALAY",
+   "race_no": "R3C7",
+   "winner": "NEPTUNE DE BLARY",
+   "places": [
+    "NEPTUNE DE BLARY",
+    "NEW HOLIDAY",
+    "NUIT DE MAI"
+   ],
+   "order": [
+    "NEPTUNE DE BLARY",
+    "NEW HOLIDAY",
+    "NUIT DE MAI",
+    "NASHVILLE BLUE",
+    "NENESSE PECE",
+    "NATURA",
+    "NEW EPATANTE",
+    "NOBLESSE DU CHENE",
+    "NUANCE DE COLMINE",
+    "NUANCE CASTELETS"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Paris-Vincennes",
+   "time": "15:36",
+   "race": "PRIX DE BAUGE",
+   "race_no": "R3C8",
+   "winner": "MON PRESTIGE NEMO",
+   "places": [
+    "MON PRESTIGE NEMO",
+    "MAESTRO D'AVEL",
+    "MONEY DU CORTA"
+   ],
+   "order": [
+    "MON PRESTIGE NEMO",
+    "MAESTRO D'AVEL",
+    "MONEY DU CORTA",
+    "MILANO BOCNEUF",
+    "MYAGO CAYENNAIS",
+    "MILLE SOUS GEKA",
+    "MAGE DES MONTS",
+    "MALCKO DE MARSAC",
+    "MURANO DU GANEP",
+    "MARTIN DU SOUND",
+    "MONZON DU CHATELET",
+    "MATADOR DU PONT"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Amiens",
+   "time": "16:10",
+   "race": "PRIX DU COLISEUM",
+   "race_no": "R4C1",
+   "winner": "LA VERITE",
+   "places": [
+    "LA VERITE",
+    "LADY DES SOURCES",
+    "LUTECE RINGEAT"
+   ],
+   "order": [
+    "LA VERITE",
+    "LADY DES SOURCES",
+    "LUTECE RINGEAT",
+    "LILY IMPERATRICE",
+    "LADY VICTORY",
+    "LIBERTY LOVE",
+    "LINKA D'ADELE",
+    "L'HISTOIRE SECRETE",
+    "LIMNEE D'AUVRECY",
+    "LUTECE D'AVIGNERE"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Amiens",
+   "time": "16:42",
+   "race": "PRIX DE LA TOUR PERRET",
+   "race_no": "R4C2",
+   "winner": "KISS ME",
+   "places": [
+    "KISS ME",
+    "KING MOKO",
+    "KINASSE DE VIVOIN"
+   ],
+   "order": [
+    "KISS ME",
+    "KING MOKO",
+    "KINASSE DE VIVOIN",
+    "ISEA DU QUENNE"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Amiens",
+   "time": "17:19",
+   "race": "PRIX DU TROPHY TOUR",
+   "race_no": "R4C3",
+   "winner": "MY WAY D'ALB",
+   "places": [
+    "MY WAY D'ALB",
+    "MAESTRO DE FERFAY",
+    "MIKONOS DU ROSAY"
+   ],
+   "order": [
+    "MY WAY D'ALB",
+    "MAESTRO DE FERFAY",
+    "MIKONOS DU ROSAY",
+    "MEDOC DES GLENAN",
+    "MYSTERE DES ARRIS",
+    "MARIO DU CAIEU",
+    "MAESTRO DES NOES",
+    "MILOR DES CAILLONS",
+    "MILORD DU COJEUL",
+    "MUSIKER"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Amiens",
+   "time": "17:45",
+   "race": "PRIX DU MARCHE DE NOEL - AMIENS",
+   "race_no": "R4C4",
+   "winner": "MILONGA DU CHENE",
+   "places": [
+    "MILONGA DU CHENE",
+    "MUSANIA DE WARNOC",
+    "MARBELLA TEJY"
+   ],
+   "order": [
+    "MILONGA DU CHENE",
+    "MUSANIA DE WARNOC",
+    "MARBELLA TEJY",
+    "MALIZIOSA",
+    "MUSE D'EURVAD",
+    "MADELEINE RENKA",
+    "MISSION IMPOSSIBLE",
+    "MAKINA DANICA"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Amiens",
+   "time": "18:15",
+   "race": "PRIX DU CHALLENGE AMIENS CAMPUS",
+   "race_no": "R4C5",
+   "winner": "KENAVO TUILERIE",
+   "places": [
+    "KENAVO TUILERIE",
+    "KILLY D'IRATY",
+    "KOPEK BOURBON"
+   ],
+   "order": [
+    "KENAVO TUILERIE",
+    "KILLY D'IRATY",
+    "KOPEK BOURBON",
+    "KADOR DU RABUTIN",
+    "KALISTO DU BOURDON",
+    "KOLMI DES EPINES",
+    "KISS YOU PIYA",
+    "KASIMODO DREAM",
+    "KEL BAMBOIS",
+    "KING GEORGES ELLIS"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Amiens",
+   "time": "18:45",
+   "race": "PRIX DE L'EXPO \"PLOUF\" CIAP AMIENS",
+   "race_no": "R4C6",
+   "winner": "NOUBA DE PADD",
+   "places": [
+    "NOUBA DE PADD",
+    "NIKITA DE MONTCEAU",
+    "NASMANIA"
+   ],
+   "order": [
+    "NOUBA DE PADD",
+    "NIKITA DE MONTCEAU",
+    "NASMANIA",
+    "NEPTUNE MADRIK",
+    "NEMESIA",
+    "NOUCHKA WIND"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Amiens",
+   "time": "19:15",
+   "race": "PRIX DES ARCHIVES DEPARTEMENTALES",
+   "race_no": "R4C7",
+   "winner": "OPIUM DRY",
+   "places": [
+    "OPIUM DRY",
+    "OK D'EURVAD",
+    "OMARICK DIESCHOOT"
+   ],
+   "order": [
+    "OPIUM DRY",
+    "OK D'EURVAD",
+    "OMARICK DIESCHOOT",
+    "OPPIDA",
+    "OCALA",
+    "OPTIMA BOURBON"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Amiens",
+   "time": "19:45",
+   "race": "PRIX DE LA STATUE DU PETIT PRINCE",
+   "race_no": "R4C8",
+   "winner": "IDEAL D'AUCHY",
+   "places": [
+    "IDEAL D'AUCHY",
+    "HIJO MOKO",
+    "INDY FOUTEAU"
+   ],
+   "order": [
+    "IDEAL D'AUCHY",
+    "HIJO MOKO",
+    "INDY FOUTEAU",
+    "INSTIGATEUR",
+    "HELLO CAUVELLIERE",
+    "IBRA DE LOU",
+    "HASHTAG DU LION",
+    "IROKO DU NORD",
+    "JACKARY D'OCQUE",
+    "JOKER MADRIK"
+   ],
+   "region": "FR"
+  }
+ ]
+}
