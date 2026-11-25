@@ -1,7 +1,7 @@
 {
  "date": "2026-11-24",
  "region": "CL",
- "updated": "2026-11-24T21:56:06Z",
+ "updated": "2026-11-25T04:47:34Z",
  "races": [
   {
    "course": "Concepcion",
@@ -25,7 +25,11 @@
     "CURRY",
     "TE QUIERO A TI"
    ],
-   "region": "CL"
+   "region": "CL",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Concepcion",
@@ -49,7 +53,11 @@
     "ALBIORIX",
     "BEL CUORE"
    ],
-   "region": "CL"
+   "region": "CL",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Concepcion",
@@ -71,6 +79,79 @@
     "LOST IN SUMMER",
     "NINA SAMARITANA",
     "TATARISTAN"
+   ],
+   "region": "CL",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
+  },
+  {
+   "course": "Concepcion",
+   "time": "21:50",
+   "race": "WENA GOYITA",
+   "race_no": "R6C7",
+   "winner": "GUAPO MATIAS",
+   "places": [
+    "GUAPO MATIAS",
+    "MAL MIRADA",
+    "RAYMI"
+   ],
+   "order": [
+    "GUAPO MATIAS",
+    "MAL MIRADA",
+    "RAYMI",
+    "SIN EL",
+    "TODAS VUELVEN",
+    "MILTEO",
+    "EL TATUADO",
+    "SIMONE BULL",
+    "VAN DER SAR"
+   ],
+   "region": "CL"
+  },
+  {
+   "course": "Concepcion",
+   "time": "22:20",
+   "race": "WIND FALL",
+   "race_no": "R6C8",
+   "winner": "MI TIO RAUL",
+   "places": [
+    "MI TIO RAUL",
+    "KIRINO",
+    "SMALL SHY"
+   ],
+   "order": [
+    "MI TIO RAUL",
+    "KIRINO",
+    "SMALL SHY",
+    "BITTER BATIDO",
+    "VERSERO",
+    "LINDA LA GRINGA",
+    "ONKEL BRUNO",
+    "SURICATA"
+   ],
+   "region": "CL"
+  },
+  {
+   "course": "Concepcion",
+   "time": "22:53",
+   "race": "WINNETOU",
+   "race_no": "R6C9",
+   "winner": "ATRAQUELE COMPADRE",
+   "places": [
+    "ATRAQUELE COMPADRE",
+    "DOBLE NEGRO",
+    "MY BJORK"
+   ],
+   "order": [
+    "ATRAQUELE COMPADRE",
+    "DOBLE NEGRO",
+    "MY BJORK",
+    "EL VIEJO LAUCHA",
+    "CHIMICHURRI",
+    "EL TATA PANCHO",
+    "COMPADRE CRISTIAN"
    ],
    "region": "CL"
   }
