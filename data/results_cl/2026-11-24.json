@@ -1,7 +1,7 @@
 {
  "date": "2026-11-24",
  "region": "CL",
- "updated": "2026-11-25T04:47:34Z",
+ "updated": "2026-11-25T21:04:57Z",
  "races": [
   {
    "course": "Concepcion",
@@ -108,7 +108,11 @@
     "SIMONE BULL",
     "VAN DER SAR"
    ],
-   "region": "CL"
+   "region": "CL",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Concepcion",
@@ -131,7 +135,11 @@
     "ONKEL BRUNO",
     "SURICATA"
    ],
-   "region": "CL"
+   "region": "CL",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Concepcion",
@@ -153,7 +161,11 @@
     "EL TATA PANCHO",
     "COMPADRE CRISTIAN"
    ],
-   "region": "CL"
+   "region": "CL",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   }
  ]
 }
