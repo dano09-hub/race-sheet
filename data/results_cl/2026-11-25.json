@@ -1,7 +1,7 @@
 {
  "date": "2026-11-25",
  "region": "CL",
- "updated": "2026-11-26T03:39:05Z",
+ "updated": "2026-11-26T13:10:27Z",
  "races": [
   {
    "course": "Valparaiso",
@@ -27,7 +27,11 @@
     "ROJO BURGUES",
     "GRACIOSA COZETTE"
    ],
-   "region": "CL"
+   "region": "CL",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Valparaiso",
@@ -53,7 +57,11 @@
     "CLACO",
     "ARZAK"
    ],
-   "region": "CL"
+   "region": "CL",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Valparaiso",
@@ -76,7 +84,11 @@
     "RAMSES",
     "JARUM"
    ],
-   "region": "CL"
+   "region": "CL",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Valparaiso",
@@ -106,7 +118,11 @@
     "LATIGUERA",
     "LA CARMELA"
    ],
-   "region": "CL"
+   "region": "CL",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   }
  ]
 }
