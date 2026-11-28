@@ -1,7 +1,7 @@
 {
  "date": "2026-11-27",
  "region": "FR",
- "updated": "2026-11-28T03:05:57Z",
+ "updated": "2026-11-28T11:57:50Z",
  "races": [
   {
    "course": "Paris-Vincennes",
@@ -196,7 +196,11 @@
     "HEGA DES LANDIERS",
     "IDUNN"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Paris-Vincennes",
@@ -219,7 +223,11 @@
     "NUANCE DE STAR",
     "NOSTALGIQUE JAYF"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Compiegne",
@@ -1095,7 +1103,11 @@
     "HAPPY DE TOUCHYVON",
     "HADES DE SUCE"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Toulouse la Cepiere",
@@ -1124,7 +1136,11 @@
     "IDEAL GABINLEA",
     "INVINCIBLE BOURBON"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   }
  ]
 }
