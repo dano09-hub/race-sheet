@@ -1,7 +1,7 @@
 {
  "date": "2026-11-27",
  "region": "FR",
- "updated": "2026-11-27T20:42:12Z",
+ "updated": "2026-11-28T03:05:57Z",
  "races": [
   {
    "course": "Paris-Vincennes",
@@ -26,7 +26,11 @@
     "KEMILLA DE BRION",
     "KINOHA D'OURVILLE"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Paris-Vincennes",
@@ -51,7 +55,11 @@
     "NINO DE LARRE",
     "NARCO DU CHATELET"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Paris-Vincennes",
@@ -80,7 +88,11 @@
     "LATINO AU CROSNIER",
     "LOU PANTAIL"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Paris-Vincennes",
@@ -106,7 +118,11 @@
     "KELLY GEDE",
     "JONGLEUSE DE BRY"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Paris-Vincennes",
@@ -125,7 +141,11 @@
     "JOIE DES VENTES",
     "JIRI PACHA"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Paris-Vincennes",
@@ -151,6 +171,54 @@
     "MALINE DU PLESSIS",
     "MISS MOCCA"
    ],
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
+  },
+  {
+   "course": "Paris-Vincennes",
+   "time": "20:50",
+   "race": "PRIX LES RESTOS DU COEUR (PRIX PHILAGORIA)",
+   "race_no": "R1C7",
+   "winner": "ILOVIROIZ DI LEONE",
+   "places": [
+    "ILOVIROIZ DI LEONE",
+    "IBIZA DE CONNEE",
+    "IN LOVE DE BLARY"
+   ],
+   "order": [
+    "ILOVIROIZ DI LEONE",
+    "IBIZA DE CONNEE",
+    "IN LOVE DE BLARY",
+    "CREEK'S NU LOVE",
+    "HEGA DES LANDIERS",
+    "IDUNN"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Paris-Vincennes",
+   "time": "21:15",
+   "race": "PRIX OTTILIA",
+   "race_no": "R1C8",
+   "winner": "NEW GIRL DU NOYER",
+   "places": [
+    "NEW GIRL DU NOYER",
+    "NORA DE GUERINIERE",
+    "NATHALINA D'ARGENT"
+   ],
+   "order": [
+    "NEW GIRL DU NOYER",
+    "NORA DE GUERINIERE",
+    "NATHALINA D'ARGENT",
+    "NIJNI NOVGOROD TEK",
+    "NOUMEA DE LA PIECE",
+    "NEW GIRL DU CHENE",
+    "NUANCE DE STAR",
+    "NOSTALGIQUE JAYF"
+   ],
    "region": "FR"
   },
   {
@@ -173,7 +241,11 @@
     "ROI DU REVE",
     "LIDOCAINE DE COTTE"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Compiegne",
@@ -195,7 +267,11 @@
     "NEXTOBE HAS",
     "SEVERAN"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Compiegne",
@@ -216,7 +292,11 @@
     "ZOOK",
     "FLONIS"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Compiegne",
@@ -239,7 +319,11 @@
     "SUBMARINER",
     "NOPAL DU BREUIL"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Compiegne",
@@ -261,7 +345,11 @@
     "CHOEUR DE GRIVE",
     "INLANDSIS"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Compiegne",
@@ -283,7 +371,11 @@
     "MADISON ROQUE",
     "LE PHILOSOPHE"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Compiegne",
@@ -305,7 +397,11 @@
     "LEADER CONTI",
     "LORENZO DU CHENET"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Pornichet",
@@ -336,7 +432,11 @@
     "FULGURANT OLIVIER",
     "SAO HUNTER'S"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Pornichet",
@@ -364,7 +464,11 @@
     "EAGLE TREE",
     "DEUX DE COUPE"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Pornichet",
@@ -391,7 +495,11 @@
     "VILLA D'ESTE",
     "LIGHTNING BONNIE"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Pornichet",
@@ -417,7 +525,11 @@
     "SACRED SONG",
     "CELTIQUE CITY"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Pornichet",
@@ -443,7 +555,11 @@
     "GWOONISE",
     "CIRQUE ETOILE"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Pornichet",
@@ -472,7 +588,11 @@
     "DEPENDE",
     "INEFFABLE"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Pornichet",
@@ -502,7 +622,11 @@
     "MA BARBIE'K",
     "BANMA"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Pornichet",
@@ -532,7 +656,11 @@
     "PLUIE D'ARAIZE",
     "COOL HEART"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Pornichet",
@@ -562,7 +690,11 @@
     "CHESTER SKY",
     "WONDER BOY"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Hippodrome Marseille Pont de Vivaux",
@@ -586,7 +718,11 @@
     "NAPOLEON DE GOUYE",
     "NOLAN QUESNOT"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Hippodrome Marseille Pont de Vivaux",
@@ -610,7 +746,11 @@
     "KING GIORGIO",
     "KALINA LOVE"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Hippodrome Marseille Pont de Vivaux",
@@ -637,7 +777,11 @@
     "IDEFIX DHELPA",
     "JALAPENO"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Hippodrome Marseille Pont de Vivaux",
@@ -663,7 +807,11 @@
     "IDEAL LOVER",
     "JOJO DE BOURGOGNE"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Hippodrome Marseille Pont de Vivaux",
@@ -690,7 +838,11 @@
     "LAWMAN",
     "LA HORSE"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Hippodrome Marseille Pont de Vivaux",
@@ -716,7 +868,11 @@
     "MALADETTA DE LOU",
     "MARGUERITE QUICK"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Hippodrome Marseille Pont de Vivaux",
@@ -738,7 +894,11 @@
     "ILLYTRASS",
     "HAVRE DE PAIX"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Toulouse la Cepiere",
@@ -758,7 +918,11 @@
     "LAST ROUND",
     "LYNX DES RACQUES"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Toulouse la Cepiere",
@@ -780,7 +944,11 @@
     "MAC TYSON",
     "MATIS DU VIGNAC"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Toulouse la Cepiere",
@@ -806,7 +974,11 @@
     "LOVELY MARINA",
     "LIKE A DESTINY"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Toulouse la Cepiere",
@@ -833,7 +1005,11 @@
     "NOVA TURGOT",
     "NEW WINNER DUEM"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Toulouse la Cepiere",
@@ -859,7 +1035,11 @@
     "MARQUIS BOURBON",
     "MIAMI DREAM"
    ],
-   "region": "FR"
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
   },
   {
    "course": "Toulouse la Cepiere",
@@ -882,6 +1062,67 @@
     "MORGANE DE TOI",
     "MONIE EFJI",
     "MISSIS DE BENAC"
+   ],
+   "region": "FR",
+   "pick": "",
+   "pick_finish": "",
+   "hit": false,
+   "chance": null
+  },
+  {
+   "course": "Toulouse la Cepiere",
+   "time": "20:30",
+   "race": "PRIX DU SYNDICAT NATIONAL DES PROPRIETAIRES",
+   "race_no": "R6C7",
+   "winner": "ISKO D'IQUAINE",
+   "places": [
+    "ISKO D'IQUAINE",
+    "HAYRTON MAGIC",
+    "IVES DES GLENAN"
+   ],
+   "order": [
+    "ISKO D'IQUAINE",
+    "HAYRTON MAGIC",
+    "IVES DES GLENAN",
+    "GLADIATOR DE NIMES",
+    "IMPULSIF D'AVENIR",
+    "ILESLOR DES KECHES",
+    "IDOLE DE BEYLEV",
+    "HARONA D'OLIVERIE",
+    "INCA DE MONE",
+    "HASPARNE DUEM",
+    "IBERICO",
+    "HAPPY DE TOUCHYVON",
+    "HADES DE SUCE"
+   ],
+   "region": "FR"
+  },
+  {
+   "course": "Toulouse la Cepiere",
+   "time": "21:00",
+   "race": "PRIX DE L'ANETO",
+   "race_no": "R6C8",
+   "winner": "KIANNICK OF NOUIC",
+   "places": [
+    "KIANNICK OF NOUIC",
+    "KATSUMOTO",
+    "JIRENS DUEM"
+   ],
+   "order": [
+    "KIANNICK OF NOUIC",
+    "KATSUMOTO",
+    "JIRENS DUEM",
+    "KAROUZO",
+    "IBIS D'OR",
+    "ILTON DU BRAY",
+    "ISEA D'HOULBEC",
+    "ICARIOS GEMINI",
+    "KHALIFE DELALANDE",
+    "JOLIE FLEUR OR",
+    "JET DE LA FERME",
+    "IGGY RUDLAND",
+    "IDEAL GABINLEA",
+    "INVINCIBLE BOURBON"
    ],
    "region": "FR"
   }
